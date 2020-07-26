@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical"
+    tools:context=".activity.AddFurnitureActivity">
+
+    <include layout="@layout/layout_title_all" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/add_furniture_search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_36"
+            android:layout_marginStart="@dimen/dip_16"
+            android:layout_marginTop="@dimen/dip_10"
+            android:layout_marginEnd="@dimen/dip_16"
+            android:background="@drawable/select_white_r4_25dp_bg"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/edit_keyword_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dip_16"
+                android:layout_marginEnd="@dimen/dip_16"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:hint="搜索关键字"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textSize="@dimen/f_15" />
+
+            <ImageView
+                android:id="@+id/edit_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dip_40"
+                android:layout_marginEnd="@dimen/dip_16"
+                android:scaleType="center"
+                android:src="@drawable/icon_delete"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/add_furniture_type_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_36"
+            android:layout_marginStart="@dimen/dip_16"
+            android:layout_marginTop="@dimen/dip_10"
+            android:layout_marginEnd="@dimen/dip_16"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/template_type_left"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/select_template_left_bg"
+                android:gravity="center"
+                android:textColor="@drawable/select_white_text_color"
+                android:textSize="@dimen/f_15"
+                tools:text="矢量图" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/split_color" />
+
+            <TextView
+                android:id="@+id/template_type_middle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/select_template_middle_bg"
+                android:gravity="center"
+                android:textColor="@drawable/select_white_text_color"
+                android:textSize="@dimen/f_15"
+                tools:text="矢量图" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/split_color" />
+
+            <TextView
+                android:id="@+id/template_type_right"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/select_template_right_bg"
+                android:gravity="center"
+                android:textColor="@drawable/select_white_text_color"
+                android:textSize="@dimen/f_15"
+                tools:text="矢量图" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/add_furniture_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+        <com.gongwu.wherecollect.view.EmptyView
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/furniture_edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_50"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/furniture_user_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_rename"
+            android:gravity="center"
+            android:text="自定义"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_10" />
+
+        <TextView
+            android:id="@+id/furniture_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dip_20"
+            android:layout_marginEnd="@dimen/dip_20"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_edit_search"
+            android:gravity="center"
+            android:text="搜索"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_10" />
+
+    </LinearLayout>
+</LinearLayout>

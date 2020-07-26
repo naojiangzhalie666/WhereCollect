@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dip_80"
+    android:orientation="horizontal">
+
+
+    <com.gongwu.wherecollect.view.GoodsImageView
+        android:id="@+id/import_img_view"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_64"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dip_10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dip_10"
+        android:layout_toEndOf="@id/import_img_view"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/import_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textColor="@color/act_relation_goods_text_color"
+            android:textSize="@dimen/f_15"
+            tools:text="一个不怎么常用的杯子" />
+
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_16"
+        android:button="@drawable/checkbox_style"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/dip_24"
+        android:background="@color/split_color" />
+</RelativeLayout>

@@ -1,0 +1,5 @@
+include ':app'
+include ':camerafragment'
+include ':recyclerview-swipe'
+include ':showcase'
+rootProject.name = 'WhereCollect'

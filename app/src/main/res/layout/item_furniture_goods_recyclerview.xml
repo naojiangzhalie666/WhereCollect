@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/img_layout"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_64"
+        android:layout_marginTop="@dimen/dip_4"
+        android:layout_marginBottom="@dimen/dip_4"
+        android:background="@drawable/select_furniture_look_item_bg"
+        android:padding="@dimen/dip_2">
+
+        <com.gongwu.wherecollect.view.GoodsImageView
+            android:id="@+id/img_view"
+            android:layout_width="@dimen/dip_64"
+            android:layout_height="@dimen/dip_64" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/object_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dip_4"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@drawable/select_furniture_look_item_text_bg"
+        android:textSize="12sp" />
+</LinearLayout>

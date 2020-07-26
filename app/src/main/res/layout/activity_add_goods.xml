@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_goods_add"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_hight">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="@dimen/title_hight"
+            android:layout_height="@dimen/title_hight"
+            android:background="@color/activity_bg"
+            android:src="@drawable/back_icon" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:textColor="@color/black_txt"
+            android:textSize="@dimen/f_17"
+            tools:text="标题" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dip_18"
+            android:layout_marginTop="@dimen/dip_10"
+            android:layout_marginBottom="@dimen/dip_10"
+            android:text="@string/base_content"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_12" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_110"
+            android:layout_marginStart="@dimen/dip_18"
+            android:layout_marginEnd="@dimen/dip_18"
+            android:background="@drawable/shape_remind_item_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/add_img_view"
+                android:layout_width="@dimen/dip_76"
+                android:layout_height="@dimen/dip_76"
+                android:layout_marginStart="@dimen/dip_16"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_add_goods" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/goods_name_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/hint_goods_name"
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:paddingStart="@dimen/dip_16"
+                    android:paddingEnd="@dimen/dip_16"
+                    android:singleLine="true"
+                    android:textColor="@color/black_txt"
+                    android:textColorHint="@color/divider"
+                    android:textSize="@dimen/f_15"
+                    android:theme="@style/MyEditText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginStart="@dimen/dip_16"
+                    android:background="@color/split_color" />
+
+                <TextView
+                    android:id="@+id/add_goods_sort_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dip_50"
+                    android:background="@drawable/select_changheader_btn_other"
+                    android:drawableEnd="@drawable/icon_next_black"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/dip_16"
+                    android:paddingEnd="@dimen/dip_16"
+                    android:text="@string/add_goods_sort"
+                    android:textColor="@color/divider"
+                    android:textSize="@dimen/f_15" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dip_18"
+            android:layout_marginTop="@dimen/dip_30"
+            android:layout_marginBottom="@dimen/dip_10"
+            android:text="@string/other_content"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_12" />
+
+        <TextView
+            android:id="@+id/add_other_content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_50"
+            android:background="@drawable/select_changheader_btn_other"
+            android:drawableEnd="@drawable/icon_next_black"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dip_18"
+            android:paddingRight="@dimen/dip_18"
+            android:text="@string/add_other_content_text"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_15" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.gongwu.wherecollect.view.ObjectInfoLookView
+                android:id="@+id/goodsInfo_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:layout_marginTop="@dimen/dip_16"
+            android:layout_marginBottom="@dimen/dip_16"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/commit_bt"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/dip_150"
+                android:layout_height="@dimen/dip_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="@dimen/dip_16"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/select_white_r4_25dp_bg"
+                android:enabled="false"
+                android:text="@string/finished_text"
+                android:textColor="@drawable/select_commit_text_color"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/select_location_bt"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/dip_150"
+                android:layout_height="@dimen/dip_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/select_maincolor_r4_20dp_bg"
+                android:enabled="false"
+                android:text="@string/edit_goods_location"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

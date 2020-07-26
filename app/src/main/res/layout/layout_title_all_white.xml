@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_hight"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/title_hight">
+
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="@dimen/title_hight"
+        android:layout_height="@dimen/title_hight"
+        android:background="@drawable/select_activity_bg"
+        android:src="@drawable/icon_amera_back" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:textSize="@dimen/f_17"
+        tools:text="标题" />
+
+
+    <TextView
+        android:id="@+id/title_commit_white_tv"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_30"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_14"
+        android:background="@drawable/shape_remind_add_bg"
+        android:gravity="center"
+        android:text="@string/finished_text"
+        android:textColor="@color/remind_add_text_color"
+        android:textSize="@dimen/f_15"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

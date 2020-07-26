@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical"
+    tools:context=".object.AddMoreGoodsActivity">
+
+    <include layout="@layout/layout_title_all" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/add_more_goods_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dip_16"
+        android:layout_marginTop="@dimen/dip_58"
+        android:layout_marginEnd="@dimen/dip_16" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/add_more_goods_list_view"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dip_18"
+            android:layout_marginTop="@dimen/dip_10"
+            android:layout_marginBottom="@dimen/dip_10"
+            android:text="@string/base_content"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_12" />
+
+        <TextView
+            android:id="@+id/add_goods_list_sort"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_50"
+            android:background="@drawable/select_changheader_btn_other"
+            android:drawableEnd="@drawable/icon_next_black"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dip_18"
+            android:paddingRight="@dimen/dip_18"
+            android:text="@string/add_goods_sort"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dip_18"
+            android:layout_marginTop="@dimen/dip_10"
+            android:layout_marginBottom="@dimen/dip_10"
+            android:text="@string/other_content"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_12" />
+
+        <TextView
+            android:id="@+id/add_other_content_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_50"
+            android:background="@drawable/select_changheader_btn_other"
+            android:drawableEnd="@drawable/icon_next_black"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dip_18"
+            android:paddingRight="@dimen/dip_18"
+            android:text="@string/add_other_content_text"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_15" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <com.gongwu.wherecollect.view.ObjectInfoLookView
+                android:id="@+id/goodsInfo_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:layout_marginTop="@dimen/dip_16"
+            android:layout_marginBottom="@dimen/dip_16"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/commit_bt"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/dip_150"
+                android:layout_height="@dimen/dip_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="@dimen/dip_16"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/select_white_r4_25dp_bg"
+                android:enabled="false"
+                android:text="@string/finished_text"
+                android:textColor="@drawable/select_commit_text_color"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/select_location_bt"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="@dimen/dip_150"
+                android:layout_height="@dimen/dip_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/select_maincolor_r4_20dp_bg"
+                android:enabled="false"
+                android:text="@string/edit_goods_location"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

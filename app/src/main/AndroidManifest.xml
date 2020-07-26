@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.gongwu.wherecollect">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="com.huawei.permission.sec.MDM" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <application
+        android:name=".base.App"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/icon_app"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ImportMoreGoodsActivity"></activity>
+        <activity android:name=".activity.FamilyAdministerSharedActivity" />
+        <activity android:name=".activity.AddFamilyToSelectRoomsActivity" />
+        <activity android:name=".activity.FamilyAdministerDetailsActivity" />
+        <activity android:name=".activity.AddFamilyActivity" />
+        <activity android:name=".activity.FamilyAdministerActivity" />
+        <activity android:name=".activity.LayerTemplateActivity" />
+        <activity android:name=".activity.AddFurnitureActivity" />
+        <activity android:name=".activity.EditRoomActivity" />
+        <activity android:name=".activity.EditFurniturePatternActivity" />
+        <activity android:name=".activity.EditHomeActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.ShareSpaceDetailsActivity" />
+        <activity android:name=".activity.SharePersonDetailsActivity" />
+        <activity android:name=".activity.AddSharedPersonActivity" />
+        <activity android:name=".activity.ShareListActivity" />
+        <activity android:name=".activity.RemindRemarksActivity" />
+        <activity android:name=".activity.RelationGoodsListActivity" />
+        <activity android:name=".activity.AddRemindActivity" />
+        <activity android:name=".object.GoodsDetailsActivity" />
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" /> <!-- ###########友盟 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5a2de126f43e484ca70000ef" /> <!-- Channel ID用来标识App的推广渠道，作为推送消息时给用户分组的一个维度。 -->
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_VALUE}" />
+
+        <meta-data
+            android:name="com.gongwu.wherecollect.util.SimpleGlideModule"
+            android:value="GlideModule" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- 设置最大屏幕比例，适配全面屏 -->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1106091663" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- ###########友盟 -->
+        <activity android:name=".activity.PersonActivity" />
+        <activity android:name=".activity.WebActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".ImageSelect.ImageGridActivity" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".activity.CameraMainActivity" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name="com.zsitech.oncon.barcode.core.CaptureActivity" />
+        <activity android:name=".object.SelectSortChildActivity" />
+        <activity android:name=".object.SelectChannelActivity" />
+        <activity android:name=".object.SelectSeasonActivity" />
+        <activity android:name=".object.SelectColorActivity" />
+        <activity android:name=".object.SelectSortActivity" />
+        <activity android:name=".activity.FurnitureLookActivity" />
+        <activity android:name=".object.AddMoreGoodsActivity" />
+        <activity android:name=".activity.ImportHelpActivity" />
+        <activity android:name=".object.AddGoodsPropertyActivity" />
+        <activity android:name=".object.AddGoodsActivity" />
+        <activity android:name=".activity.ForgetPWDActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.LoginEmailActivity" />
+
+        <service
+            android:name=".service.TimerService"
+            android:enabled="true"
+            android:exported="true" />
+    </application>
+
+</manifest>

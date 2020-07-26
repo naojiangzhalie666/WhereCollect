@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_hight"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/title_hight">
+
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="@dimen/title_hight"
+        android:layout_height="@dimen/title_hight"
+        android:background="@drawable/select_activity_bg"
+        android:scaleType="centerInside"
+        android:src="@drawable/back_icon" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:textColor="@color/black_txt"
+        android:textSize="@dimen/f_17"
+        tools:text="标题" />
+
+    <TextView
+        android:id="@+id/title_commit_tv"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_30"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_12"
+        android:background="@drawable/select_maincolor_r4_15dp_bg"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/title_black_commit_tv"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/dip_4"
+        android:layout_marginEnd="@dimen/dip_12"
+        android:layout_marginBottom="@dimen/dip_4"
+        android:background="@drawable/select_trans_bg"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:textColor="@color/color333"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/split_view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/split_color"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/title_commit_white_tv"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_30"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_14"
+        android:background="@drawable/shape_remind_add_bg"
+        android:elevation="@dimen/dip_2"
+        android:gravity="center"
+        android:text="新建"
+        android:textColor="@color/remind_add_text_color"
+        android:textSize="@dimen/f_15"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/title_commit_maincolor_tv"
+        android:layout_width="@dimen/dip_100"
+        android:layout_height="@dimen/dip_30"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_14"
+        android:background="@drawable/select_maincolor_r4_20dp_bg"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/f_15"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/image_btn"
+        android:layout_width="@dimen/title_hight"
+        android:layout_height="@dimen/title_hight"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/select_activity_bg"
+        android:src="@drawable/icon_menu"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/maincolor"
+    android:orientation="vertical"
+    tools:context=".activity.FurnitureLookActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_hight">
+
+        <ImageButton
+            android:id="@+id/back_btn"
+            android:layout_width="@dimen/dip_48"
+            android:layout_height="@dimen/dip_48"
+            android:layout_centerVertical="true"
+            android:background="@drawable/select_activity_bg"
+            android:src="@drawable/icon_back_white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/furniture_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f_17"
+                tools:text="抽屉" />
+
+            <TextView
+                android:id="@+id/room_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white_30"
+                android:textSize="@dimen/f_11"
+                tools:text="客厅" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/tablelayout_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="@dimen/dip_6"
+        android:paddingEnd="@dimen/dip_6"
+        android:paddingBottom="@dimen/dip_6">
+
+        <com.gongwu.wherecollect.view.furniture.CustomTableRowLayout
+            android:id="@+id/tablelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/look_furniture_goods_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_box_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/look_furniture_geceng_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:layout_marginStart="@dimen/dip_16"
+            android:layout_marginEnd="@dimen/dip_16"
+            android:drawableEnd="@drawable/icon_look_arrow_up"
+            android:ellipsize="start"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_13"
+            tools:text="123" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/furniture_look_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/split_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_52"
+        android:paddingStart="@dimen/dip_16"
+        android:paddingEnd="@dimen/dip_16"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <FrameLayout
+            android:id="@+id/furniture_edit_layer_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/furniture_edit_layer_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_edit_menu"
+                android:gravity="center"
+                android:text="编辑结构"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_add_box_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_add_box_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_add_furniture"
+                android:gravity="center"
+                android:text="添加收纳盒"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_import_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_import_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_import"
+                android:gravity="center"
+                android:text="导入物品"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_del_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_del_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_del"
+                android:gravity="center"
+                android:text="删除物品"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_remove_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_remove_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_remove"
+                android:gravity="center"
+                android:text="移动"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_top_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_top_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_top"
+                android:gravity="center"
+                android:text="置顶"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_goods_details_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_goods_details_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_goods_details"
+                android:gravity="center"
+                android:text="物品详情"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_back_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_back_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_furniture_back"
+                android:gravity="center"
+                android:text="后退"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

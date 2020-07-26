@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/main_tab_rg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_50"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_tab_bg_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            style="@style/main_tab_text_style"
+            android:drawableTop="@drawable/select_main_tab_space_icon"
+            android:text="@string/main_tab_space"
+             />
+
+        <RadioButton
+            style="@style/main_tab_text_style"
+            android:drawableTop="@drawable/select_main_tab_look_icon"
+            android:text="@string/main_tab_look"
+            android:textColor="@drawable/select_main_tab_text_color" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/add_goods_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/icon_main_tab_add" />
+        </FrameLayout>
+
+        <RadioButton
+            style="@style/main_tab_text_style"
+            android:drawableTop="@drawable/select_main_tab_remind_icon"
+            android:text="@string/main_tab_remind"
+            android:textColor="@drawable/select_main_tab_text_color" />
+
+        <RadioButton
+            style="@style/main_tab_text_style"
+            android:drawableTop="@drawable/select_main_tab_me_icon"
+            android:text="@string/main_tab_me"
+            android:textColor="@drawable/select_main_tab_text_color" />
+
+    </RadioGroup>
+
+    <FrameLayout
+        android:id="@+id/main_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_tab_rg" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/main_tab_rg"
+        android:background="@color/split_color" />
+</RelativeLayout>

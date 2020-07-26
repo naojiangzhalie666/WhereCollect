@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dip_100"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/popup_family_list_view"
+        android:layout_marginTop="@dimen/dip_20"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/look_more_tv"
+        android:layout_width="@dimen/dip_76"
+        android:layout_height="@dimen/dip_32"
+        android:layout_marginTop="@dimen/dip_7"
+        android:layout_marginBottom="@dimen/dip_7"
+        android:background="@drawable/shape_divider_r16dp"
+        android:gravity="center"
+        android:text="@string/look_more"
+        android:textColor="@color/color333" />
+</LinearLayout>

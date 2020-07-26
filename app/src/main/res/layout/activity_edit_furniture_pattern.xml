@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/maincolor"
+    android:orientation="vertical"
+    tools:context=".activity.EditFurniturePatternActivity">
+
+    <include layout="@layout/layout_title_all_white" />
+
+    <LinearLayout
+        android:id="@+id/tablelayout_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="@dimen/dip_6"
+        android:paddingEnd="@dimen/dip_6">
+
+        <com.gongwu.wherecollect.view.furniture.CustomTableRowLayout
+            android:id="@+id/edit_furniture_pattern_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_100"
+        android:layout_marginTop="@dimen/dip_10"
+        android:background="@color/white_54"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/dip_16"
+        android:paddingEnd="@dimen/dip_16">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="点击隔层进行编辑，可上下左右调整隔层大小"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_15" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dip_4"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/edit_revoke_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/select_revoke_image"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="撤销"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+
+            <TextView
+                android:id="@+id/edit_recovery_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/select_recovery_image"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="还原"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/dip_20"
+                android:layout_marginStart="@dimen/f_10"
+                android:layout_marginEnd="@dimen/dip_10"
+                android:background="@color/color999" />
+
+            <TextView
+                android:id="@+id/edit_h_split_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/select_h_split_image"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="垂直拆分"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+
+            <TextView
+                android:id="@+id/edit_v_split_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/select_v_split_image"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="水平拆分"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+
+            <TextView
+                android:id="@+id/edit_combine_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/select_combine_image"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="合并"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

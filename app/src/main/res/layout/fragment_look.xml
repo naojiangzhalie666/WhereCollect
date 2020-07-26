@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".FragmentMain.LookFragment">
+
+    <RelativeLayout
+        android:id="@+id/look_fm_title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_44"
+        android:background="@color/maincolor">
+
+        <ImageView
+            android:id="@+id/family_type_iv"
+            android:layout_width="@dimen/dip_20"
+            android:layout_height="@dimen/dip_20"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dip_12"
+            android:src="@drawable/ic_home"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/look_family_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dip_3"
+            android:layout_toEndOf="@id/family_type_iv"
+            android:ellipsize="end"
+            android:maxLength="13"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/f_13"
+            tools:text="北京的家" />
+
+        <ImageView
+            android:id="@+id/batch_edit_iv"
+            android:layout_width="@dimen/dip_22"
+            android:layout_height="@dimen/dip_22"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dip_12"
+            android:src="@drawable/icon_batch_edit" />
+
+        <LinearLayout
+            android:id="@+id/fm_search_layout"
+            android:layout_width="@dimen/dip_150"
+            android:layout_height="@dimen/dip_30"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dip_18"
+            android:layout_toStartOf="@id/batch_edit_iv"
+            android:background="@drawable/shape_search_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dip_12"
+                android:layout_height="@dimen/dip_12"
+                android:layout_marginStart="@dimen/dip_12"
+                android:src="@drawable/icon_search" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dip_2"
+                android:text="不用翻箱倒柜"
+                android:textColor="@color/main_tab_un_text_color"
+                android:textSize="@dimen/f_12" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/look_fm_title_layout"
+        android:orientation="horizontal">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sort_list_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/activity_bg" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_60"
+                android:layout_marginStart="@dimen/dip_14"
+                android:layout_marginTop="@dimen/dip_10"
+                android:layout_marginEnd="@dimen/dip_14"
+                android:layout_marginBottom="@dimen/dip_10"
+                android:background="@drawable/shape_goods_percentage_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/goods_number_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color333"
+                        android:textSize="@dimen/f_15"
+                        tools:text="48" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="全部"
+                        android:textColor="#698DA9"
+                        android:textSize="@dimen/f_12" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/goods_percentage_iv"
+                    android:layout_width="@dimen/dip_22"
+                    android:layout_height="@dimen/dip_22"
+                    android:src="@drawable/icon_goods_percentage" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/goods_not_location_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color333"
+                        android:textSize="@dimen/f_15"
+                        tools:text="48" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="未标记位置"
+                        android:textColor="#698DA9"
+                        android:textSize="@dimen/f_12" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.scwang.smartrefresh.layout.header.ClassicsHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@id/swipe_target"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <com.gongwu.wherecollect.view.EmptyView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>

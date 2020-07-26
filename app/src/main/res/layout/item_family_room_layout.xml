@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dip_130"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/object_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dip_10"
+        android:textColor="@color/color999"
+        android:textSize="@dimen/f_12"
+        tools:text="8个物品" />
+
+    <TextView
+        android:id="@+id/room_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/object_count_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dip_6"
+        android:textColor="@color/color999"
+        android:textSize="@dimen/f_13"
+        tools:text="鞋柜" />
+
+    <ImageView
+        android:id="@+id/room_img_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/room_name_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dip_10"
+        android:scaleType="centerInside" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/split_color" />
+
+    <View
+        android:id="@+id/right_split_view"
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:background="@color/split_color" />
+
+    <ImageView
+        android:id="@+id/empty_layers_view"
+        android:layout_width="@dimen/dip_20"
+        android:layout_height="@dimen/dip_30"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/dip_4"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_empty_layers"
+        android:visibility="gone"/>
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/dip_2"
+        android:layout_marginEnd="@dimen/dip_2"
+        android:button="@drawable/checkbox_style"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
+</RelativeLayout>

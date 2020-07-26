@@ -1,0 +1,173 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_hight">
+
+        <ImageView
+            android:layout_width="@dimen/dip_32"
+            android:layout_height="@dimen/dip_32"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dip_16"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_msg_iv" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_100">
+
+        <FrameLayout
+            android:id="@+id/person_iv_layout"
+            android:layout_width="@dimen/dip_65"
+            android:layout_height="@dimen/dip_65"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/dip_16"
+            android:background="@drawable/shape_user_image_bg">
+
+            <ImageView
+                android:id="@+id/person_iv"
+                android:layout_width="@dimen/dip_64"
+                android:layout_height="@dimen/dip_64"
+                android:scaleType="fitXY"
+                android:src="@drawable/icon_app" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/person_details_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dip_12"
+            android:layout_toRightOf="@id/person_iv_layout"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_txt"
+                    android:textSize="@dimen/f_18" />
+
+                <ImageView
+                    android:id="@+id/vip_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dip_4"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_vip"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/user_id_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_4"
+                android:textColor="@color/black_other_one"
+                android:textSize="@dimen/f_13" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/user_code_iv"
+            android:layout_width="@dimen/dip_24"
+            android:layout_height="@dimen/dip_24"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dip_22"
+            android:src="@drawable/qrcode_icon" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/buy_vip_iv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_60"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_buy_vip" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dip_10"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/start_share_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_50"
+            android:background="@drawable/select_white_bg"
+            android:drawableStart="@drawable/icon_link_iv"
+            android:drawableEnd="@drawable/icon_next_black"
+            android:drawablePadding="@dimen/dip_16"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dip_16"
+            android:paddingEnd="@dimen/dip_16"
+            android:text="共享人管理"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_17" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="@dimen/dip_16"
+            android:background="@color/split_color" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_50"
+            android:background="@drawable/select_white_bg"
+            android:drawableStart="@drawable/icon_wechat_iv"
+            android:drawableEnd="@drawable/icon_next_black"
+            android:drawablePadding="@dimen/dip_16"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dip_16"
+            android:paddingEnd="@dimen/dip_16"
+            android:text="推荐给好友"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_17" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="@dimen/dip_16"
+            android:background="@color/split_color" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_50"
+            android:background="@drawable/select_white_bg"
+            android:drawableStart="@drawable/icon_feedback_iv"
+            android:drawableEnd="@drawable/icon_next_black"
+            android:drawablePadding="@dimen/dip_16"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dip_16"
+            android:paddingEnd="@dimen/dip_16"
+            android:text="意见反馈"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_17" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginStart="@dimen/dip_16"
+            android:background="@color/split_color" />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dip_90"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/main_goods_img_layout"
+        android:layout_width="@dimen/dip_68"
+        android:layout_height="@dimen/dip_68"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dip_10"
+        android:background="@drawable/shape_maingoods_bg">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/dip_68"
+            android:layout_height="@dimen/dip_68"
+            android:layout_centerInParent="true"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/no_url_img_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/f_20"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dip_10"
+        android:layout_toEndOf="@id/main_goods_img_layout"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textColor="@color/act_relation_goods_text_color"
+            android:textSize="@dimen/f_15"
+            tools:text="一个不怎么常用的杯子" />
+
+        <TextView
+            android:id="@+id/location_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_4"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/act_relation_goods_text_hint_color"
+            android:textSize="@dimen/f_12"
+            tools:text="客厅/茶几/左2" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/dip_24"
+        android:background="@color/split_color" />
+</RelativeLayout>

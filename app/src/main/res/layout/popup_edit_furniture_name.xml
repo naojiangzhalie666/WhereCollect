@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dip_310"
+    android:layout_height="wrap_content"
+    android:background="@drawable/home01_bg_card"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_hight"
+        android:layout_marginBottom="@dimen/dip_10">
+
+        <ImageView
+            android:id="@+id/cancel_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dip_24"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_card_act_finish" />
+
+
+        <TextView
+            android:id="@+id/pop_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/pop_edit_furniture_name"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_17" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/iv_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/pop_furniture_iv"
+            android:layout_width="@dimen/dip_100"
+            android:layout_height="@dimen/dip_100"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_img_error" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/dip_240"
+        android:layout_height="@dimen/dip_50"
+        android:layout_marginTop="@dimen/dip_20"
+        android:background="@drawable/shape_divider_r25dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dip_16"
+        android:paddingEnd="@dimen/dip_16">
+
+        <EditText
+            android:id="@+id/edit_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dip_50"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:hint="请输入名称"
+            android:textSize="@dimen/f_15" />
+
+        <ImageView
+            android:id="@+id/clear"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dip_40"
+            android:scaleType="center"
+            android:src="@drawable/icon_delete"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pop_commit_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_50"
+        android:layout_marginTop="@dimen/dip_30"
+        android:background="@drawable/shape_act_color_bottom_r8dp"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:textColor="@color/maincolor"
+        android:textSize="@dimen/f_17" />
+</LinearLayout>

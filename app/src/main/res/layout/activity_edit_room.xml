@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical"
+    tools:context=".activity.EditRoomActivity">
+
+    <include layout="@layout/layout_title_all" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+            android:id="@+id/edit_room_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/room_edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_50"
+        android:background="@color/white_76"
+        android:gravity="center"
+        android:paddingStart="@dimen/dip_16"
+        android:paddingEnd="@dimen/dip_16">
+
+        <TextView
+            android:id="@+id/room_add_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_add_furniture"
+            android:gravity="center"
+            android:text="添加"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_10" />
+
+        <TextView
+            android:id="@+id/room_edit_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_edit_menu"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_10" />
+
+        <TextView
+            android:id="@+id/room_move_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_move_furniture"
+            android:gravity="center"
+            android:text="移动"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_10" />
+
+        <TextView
+            android:id="@+id/room_cancel_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_edit_cancel"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_10"
+            android:visibility="gone" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical"
+    tools:context=".object.SelectSortActivity">
+
+    <include layout="@layout/layout_title_all" />
+
+    <LinearLayout
+        android:id="@+id/search_sort_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_45"
+        android:layout_marginStart="@dimen/dip_27"
+        android:layout_marginTop="@dimen/dip_10"
+        android:layout_marginEnd="@dimen/dip_27"
+        android:background="@drawable/shape_white_r4dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dip_14"
+            android:layout_height="@dimen/dip_14"
+            android:src="@drawable/icon_search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dip_4"
+            android:text="搜索或自定义添加"
+            android:textColor="@color/color999"
+            android:textSize="@dimen/f_15" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dip_16"
+        android:layout_marginTop="@dimen/dip_40"
+        android:layout_marginEnd="@dimen/dip_16">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sort_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/sort_child_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_220"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dip_20"
+            android:background="@drawable/shape_white_r15dp"
+            android:gravity="center_horizontal"
+            android:visibility="invisible"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_16"
+                android:text="子分类推荐"
+                android:textColor="@color/color333" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sort_child_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dip_10"
+                android:layout_marginEnd="@dimen/dip_10" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

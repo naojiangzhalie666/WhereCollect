@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#32BE74</color>
+    <color name="maincolor">#32BE74</color>
+    <color name="maincolor_press">#069E3D</color>
+    <color name="btn_enable">#DDDDDD</color>
+    <color name="windowsbg">#faf5f0</color>
+    <color name="windowsbg2">#F0F0F0</color>
+    <color name="black_txt">#343939</color>
+    <color name="divider">#d2d2d2</color>
+    <color name="bgcolor2">#faf5f0</color>
+
+
+    <color name="trans">#00000000</color>
+    <color name="head">#f5f5f5</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="red">#f00</color>
+    <color name="red_light">#ED774C</color>
+    <color name="redd">#88ff6666</color>
+    <color name="reds">#ea5465</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_87">#DE000000</color>
+    <color name="black_70">#b3000000</color>
+    <color name="black_54">#8f000000</color>
+    <color name="black_40">#66000000</color>
+    <color name="black_26">#42000000</color>
+    <color name="black_12">#1e000000</color>
+    <color name="black_05">#0c000000</color>
+    <color name="white_76">#b3ffffff</color>
+    <color name="white_30">#8fffffff</color>
+    <color name="white_54">#8fffffff</color>
+    <color name="white_12">#1effffff</color>
+    <color name="holo_red_light">#ffff4444</color>
+
+    <color name="home_tab_text_color">#B3FFFFFF</color>
+    <color name="home_tab_select_text_color">#FFFFFF</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="select_btn_press">#ffe3e3e3</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <color name="item_gray_bg">#f1f1f1</color>
+    <color name="text_header">#dddedd</color>
+
+
+    <!-- A light Holo shade of green -->
+    <color name="holo_green_light">#ff99cc00</color>
+    <!-- A Holo shade of purple -->
+    <color name="holo_purple">#ffaa66cc</color>
+    <!-- A dark Holo shade of orange -->
+    <color name="holo_orange_dark">#ffff8800</color>
+    <!-- A dark Holo shade of red -->
+    <color name="holo_red_dark">#ffcc0000</color>
+    <color name="black_other">#343936</color>
+    <color name="black_other_one">#999999</color>
+    <color name="btn_enable_other">#b8e7c9</color>
+    <color name="pieChart">#fce0dd</color>
+    <color name="pieChart1">#6dd0e8</color>
+    <color name="pieChart2">#87dff5</color>
+    <color name="pieChart3">#f98ea6</color>
+    <color name="pieChart4">#fab0c1</color>
+    <color name="pieChart5">#f9bfa3</color>
+    <color name="pieChart6">#976B5A</color>
+    <color name="pieChart7">#ED774C</color>
+    <color name="pieChart8">#9CA615</color>
+    <color name="pieChart9">#35BFBB</color>
+    <color name="pieChart10">#B165D2</color>
+    <color name="pieChart11">#E656D1</color>
+    <color name="pieChart12">#99682D</color>
+    <color name="pieChart13">#5AD32C</color>
+    <color name="pieChart14">#2CD3C1</color>
+    <color name="pieChart15">#7165A3</color>
+    <color name="goods_color_1">#9076F2</color>
+    <color name="goods_color_2">#F19EC2</color>
+    <color name="goods_color_3">#13B5B1</color>
+    <color name="goods_color_4">#E66868</color>
+    <color name="goods_color_5">#F29B76</color>
+    <color name="goods_color_6">#AFC4D5</color>
+    <color name="goods_color_7">#32B16C</color>
+    <color name="goods_color_8">#13B5B1</color>
+    <color name="goods_color_9">#7ECEF4</color>
+    <color name="goods_color_0">#B5B5B5</color>
+    <color name="colorddd">#ddd</color>
+    <color name="color999">#999999</color>
+    <color name="color666">#666666</color>
+    <color name="color333">#333333</color>
+    <color name="colorf9">#f9f9f9</color>
+    <color name="colorf7">#f7f7f7</color>
+
+    <color name="vifrification">#60ffffff</color>   <!-- 透明 -->
+    <color name="green_text_color">#209b40</color>
+
+    <color name="font_common_1">#424242</color>
+    <color name="font_common_2">#a1a1a1</color>
+    <color name="commom_background">#f3f3f3</color>
+    <color name="activity_bg">#F6F6F6</color>
+    <color name="remind_add_text_color">#32BE74</color>
+    <color name="remind_unfinish_text_color">#FEA964</color>
+    <color name="split_color">#DEDEDE</color>
+    <color name="act_relation_goods_text_color">#151515</color>
+    <color name="act_relation_goods_text_hint_color">#888888</color>
+    <color name="remind_delete_text_color">#FE6464</color>
+    <color name="remind_time_out_color">#FF4646</color>
+    <color name="remind_first_color">#FEA964</color>
+
+    <color name="main_tab_text_color">#32BE74</color>
+    <color name="main_tab_color">#32BE74</color>
+    <color name="main_tab_un_text_color">#999999</color>
+    <color name="main_tab_bg_color">#FAFAFC</color>
+    <color name="switch_normal_color">#F4F4F4</color>
+
+</resources>

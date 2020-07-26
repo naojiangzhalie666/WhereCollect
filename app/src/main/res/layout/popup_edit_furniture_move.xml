@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dip_310"
+    android:layout_height="@dimen/dip_340"
+    android:background="@drawable/home01_bg_card"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_hight">
+
+        <ImageView
+            android:id="@+id/pop_back_icon"
+            android:layout_width="@dimen/title_hight"
+            android:layout_height="@dimen/title_hight"
+            android:scaleType="centerInside"
+            android:src="@drawable/back_icon"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/cancel_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dip_24"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_card_act_finish" />
+
+
+        <TextView
+            android:id="@+id/pop_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/pop_select_family"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_17" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/edit_furniture_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/pop_commit_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_50"
+        android:background="@drawable/shape_act_color_bottom_r8dp"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:textColor="@color/maincolor"
+        android:textSize="@dimen/f_17"
+        android:visibility="gone" />
+</LinearLayout>
