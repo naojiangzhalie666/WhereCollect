@@ -3,11 +3,13 @@ package com.gongwu.wherecollect.activity;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
@@ -25,7 +27,9 @@ import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IMainContract;
 import com.gongwu.wherecollect.contract.presenter.MainPresenter;
 import com.gongwu.wherecollect.net.entity.response.MessageBean;
+import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.permission.FloatWindowManager;
 import com.gongwu.wherecollect.service.TimerService;
 import com.gongwu.wherecollect.util.DialogUtil;
@@ -51,6 +55,9 @@ import butterknife.OnClick;
 public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> implements IMainContract.IMainView, RadioGroup.OnCheckedChangeListener {
     private static final String TAG = "MainActivity";
 
+    public static RoomFurnitureBean moveLayerBean;
+    public static ObjectBean moveBoxBean;
+
     private static final int TAB_SPACE = 0;
     private static final int TAB_LOOK = 1;
     private static final int TAB_REMIND = 3;
@@ -60,6 +67,10 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     @BindView(R.id.main_tab_rg)
     RadioGroup main_tab_rg;
+    @BindView(R.id.move_layer_layout)
+    View moveLayerView;
+    @BindView(R.id.main_place_tv)
+    TextView moveView;
 
     SparseArray<BaseFragment> fragments;
 
@@ -90,7 +101,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     }
 
 
-    @OnClick({R.id.add_goods_iv})
+    @OnClick({R.id.add_goods_iv, R.id.main_place_tv, R.id.main_cancel_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_goods_iv:
@@ -110,6 +121,13 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                 } else {
                     checkPermissionRequestEach(MainActivity.this, true);
                 }
+                break;
+            case R.id.main_place_tv:
+                Toast.makeText(mContext, "请选择隔层", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_cancel_tv:
+                MainActivity.moveLayerBean = null;
+                moveLayerView.setVisibility(View.GONE);
                 break;
         }
     }
@@ -139,6 +157,27 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                 }
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (moveLayerBean != null) {
+            moveLayerView.setVisibility(View.VISIBLE);
+            // 使用代码设置drawableTop
+            Drawable drawable = getResources().getDrawable(R.drawable.icon_place);
+            // 这一步必须要做,否则不会显示.
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            moveView.setCompoundDrawables(null, drawable, null, null);
+        } else if (moveBoxBean != null) {
+            moveLayerView.setVisibility(View.VISIBLE);
+            // 使用代码设置drawableTop
+            Drawable drawable = getResources().getDrawable(R.drawable.icon_move_box);
+            // 这一步必须要做,否则不会显示.
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+            moveView.setCompoundDrawables(null, drawable, null, null);
+        }
 
     }
 
@@ -233,6 +272,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         super.onStart();
         if (initData) {
             selectTab(AppConstant.DEFAULT_INDEX_OF);
+            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
             initData = false;
         }
     }

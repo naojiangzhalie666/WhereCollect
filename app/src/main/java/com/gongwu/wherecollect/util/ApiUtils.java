@@ -608,4 +608,36 @@ public class ApiUtils {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().topSelectGoods(requestMap).enqueue(callBack);
     }
+
+    /**
+     * 编辑收纳盒名称
+     */
+    public static <D extends RequestBase> void editBoxName(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().editBoxName(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 删除收纳盒
+     */
+    public static <D extends RequestBase> void delBox(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().delBox(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 迁移隔层
+     */
+    public static <D extends RequestBase> void moveLayer(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().moveLayer(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 迁移收纳盒
+     */
+    public static <D extends RequestBase> void moveBox(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().moveBox(requestMap).enqueue(callBack);
+    }
 }

@@ -89,7 +89,6 @@ public class ObjectBean implements Serializable {
     private String expire_date;
     private int count;//物品数量
     private boolean isSelectSpace;
-    private int is_share;
     private List<String> share_users;
     /**
      * x : 0
@@ -176,14 +175,6 @@ public class ObjectBean implements Serializable {
 
     public void setRecommend_group_name(String recommend_group_name) {
         this.recommend_group_name = recommend_group_name;
-    }
-
-    public int getIs_share() {
-        return is_share;
-    }
-
-    public void setIs_share(int is_share) {
-        this.is_share = is_share;
     }
 
     public List<String> getShare_users() {

@@ -8,17 +8,16 @@
     <RadioGroup
         android:id="@+id/main_tab_rg"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_50"
+        android:layout_height="@dimen/dip_52"
         android:layout_alignParentBottom="true"
-        android:background="@color/main_tab_bg_color"
+        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <RadioButton
             style="@style/main_tab_text_style"
             android:drawableTop="@drawable/select_main_tab_space_icon"
-            android:text="@string/main_tab_space"
-             />
+            android:text="@string/main_tab_space" />
 
         <RadioButton
             style="@style/main_tab_text_style"
@@ -53,6 +52,7 @@
 
     </RadioGroup>
 
+
     <FrameLayout
         android:id="@+id/main_frame_layout"
         android:layout_width="match_parent"
@@ -64,4 +64,50 @@
         android:layout_height="1dp"
         android:layout_above="@id/main_tab_rg"
         android:background="@color/split_color" />
+
+    <LinearLayout
+        android:id="@+id/move_layer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_52"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/main_cancel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_edit_cancel"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/main_place_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="0.5"
+                android:drawableTop="@drawable/icon_place"
+                android:gravity="center"
+                android:text="放置"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+    </LinearLayout>
 </RelativeLayout>

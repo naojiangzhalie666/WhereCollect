@@ -96,6 +96,70 @@ public class FurnitureModel implements IFurnitureContract.IFurnitureModel {
     }
 
     @Override
+    public void editBoxName(EditGoodsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.editBoxName(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void delBox(EditGoodsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.delBox(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void moveLayer(EditGoodsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.moveLayer(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void moveBox(EditGoodsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.moveBox(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void getFurnitureLayersOrBox(String uid, String location_code, float level, String family_code, String room_id, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.getFurnitureLayersOrBox(uid, location_code, level, family_code, room_id, new ApiCallBack<RoomFurnitureResponse>() {

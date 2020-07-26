@@ -19,44 +19,44 @@ import java.util.TreeMap;
 public class CommonUtils {
 
 
-	private static String getFieldValueByFieldName(String fieldName, Object object, Class clazz) {
-		try {
-			Field field = clazz.getDeclaredField(fieldName);
-			field.setAccessible(true);
-			if ("java.util.List".equals(field.getType().getName())){
-				return JsonUtils.jsonFromObject(field.get(object));
-			}
-			return field.get(object).toString();
-		} catch (Exception e) {
-			return null;
-		}
-	}
+    private static String getFieldValueByFieldName(String fieldName, Object object, Class clazz) {
+        try {
+            Field field = clazz.getDeclaredField(fieldName);
+            field.setAccessible(true);
+            if ("java.util.List".equals(field.getType().getName())) {
+                return JsonUtils.jsonFromObject(field.get(object));
+            }
+            return field.get(object).toString();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
-	public static <T> Map<String, String> getAllFields(T request) {
-		if (request ==null) return null;
-		TreeMap<String, String> map = new TreeMap<>();
-		Class clazz = request.getClass();
-		while (clazz != null) {
-			ArrayList<Field> list = new ArrayList<>(Arrays.asList(clazz.getDeclaredFields()));
-			for (Field field : list) {
-				String fieldName = field.getName();
-				if (fieldName.startsWith("shadow$")) {
-					continue;
-				}
-				if (field.isSynthetic()) {
-					continue;
-				}
-				if (field.getName().equals("serialVersionUID")) {
-					continue;
-				}
-				String attr = getFieldValueByFieldName(fieldName, request, clazz);
-				if (attr == null) {
-					continue;
-				}
-				map.put(fieldName, attr);
-			}
-			clazz = clazz.getSuperclass();
-		}
-		return map;
-	}
+    public static <T> Map<String, String> getAllFields(T request) {
+        if (request == null) return null;
+        TreeMap<String, String> map = new TreeMap<>();
+        Class clazz = request.getClass();
+        while (clazz != null) {
+            ArrayList<Field> list = new ArrayList<>(Arrays.asList(clazz.getDeclaredFields()));
+            for (Field field : list) {
+                String fieldName = field.getName();
+                if (fieldName.startsWith("shadow$")) {
+                    continue;
+                }
+                if (field.isSynthetic()) {
+                    continue;
+                }
+                if (field.getName().equals("serialVersionUID")) {
+                    continue;
+                }
+                String attr = getFieldValueByFieldName(fieldName, request, clazz);
+                if (attr == null || "null".equals(attr)) {
+                    continue;
+                }
+                map.put(fieldName, attr);
+            }
+            clazz = clazz.getSuperclass();
+        }
+        return map;
+    }
 }

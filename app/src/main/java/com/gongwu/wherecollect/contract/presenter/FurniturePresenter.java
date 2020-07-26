@@ -137,6 +137,62 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
     }
 
     @Override
+    public void moveLayer(String uid, String location_code, String code) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        EditGoodsReq req = new EditGoodsReq();
+        req.setUid(uid);
+        req.setLocation_code(location_code);
+        req.setCode(code);
+        mModel.moveLayer(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().moveLayerSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void moveBox(String uid, String location_code, String code) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        EditGoodsReq req = new EditGoodsReq();
+        req.setUid(uid);
+        req.setLocation_code(location_code);
+        req.setCode(code);
+        mModel.moveBox(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().moveBoxSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
     public void importGoods(String uid, String location_code, String object_codes, String code) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
@@ -152,6 +208,61 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().importGoodsSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void editBoxName(String uid, String location_code, String name) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        EditGoodsReq req = new EditGoodsReq();
+        req.setUid(uid);
+        req.setLocation_code(location_code);
+        req.setName(name);
+        mModel.editBoxName(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().editBoxNameSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void delBox(String uid, String code) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        EditGoodsReq req = new EditGoodsReq();
+        req.setUid(uid);
+        req.setCode(code);
+        mModel.delBox(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().delBoxSuccess(data);
                 }
             }
 

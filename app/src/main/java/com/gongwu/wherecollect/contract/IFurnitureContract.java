@@ -28,6 +28,14 @@ public interface IFurnitureContract {
 
         void topSelectGoods(EditGoodsReq req, final RequestCallback callback);
 
+        void editBoxName(EditGoodsReq req, final RequestCallback callback);
+
+        void delBox(EditGoodsReq req, final RequestCallback callback);
+
+        void moveLayer(EditGoodsReq req, final RequestCallback callback);
+
+        void moveBox(EditGoodsReq req, final RequestCallback callback);
+
         void getFurnitureLayersOrBox(String uid, String location_code, float level, String family_code, String room_id, final RequestCallback callback);
 
         void resetLayerName(LayerReq req, final RequestCallback callback);
@@ -44,7 +52,15 @@ public interface IFurnitureContract {
 
         void topSelectGoods(String uid, String furnitureCode, List<String> objectIds);
 
+        void moveLayer(String uid, String location_code, String code);
+
+        void moveBox(String uid, String location_code, String code);
+
         void importGoods(String uid, String location_code, String object_codes, String code);
+
+        void editBoxName(String uid, String location_code, String name);
+
+        void delBox(String uid, String code);
 
         void getFurnitureLayersOrBox(String uid, String location_code, float level, String family_code, String room_id);
 
@@ -63,6 +79,14 @@ public interface IFurnitureContract {
         void topSelectGoodsSuccess(RequestSuccessBean bean);
 
         void importGoodsSuccess(RequestSuccessBean bean);
+
+        void editBoxNameSuccess(RequestSuccessBean bean);
+
+        void delBoxSuccess(RequestSuccessBean bean);
+
+        void moveLayerSuccess(RequestSuccessBean bean);
+
+        void moveBoxSuccess(RequestSuccessBean bean);
 
         void getFurnitureLayersOrBoxSuccess(RoomFurnitureResponse data);
 

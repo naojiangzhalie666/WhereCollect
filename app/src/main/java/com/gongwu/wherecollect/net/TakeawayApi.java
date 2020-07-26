@@ -311,4 +311,20 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v400/objects/top")
     Call<ResponseBase<RequestSuccessBean>> topSelectGoods(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("users/location/edit")
+    Call<ResponseBase<RequestSuccessBean>> editBoxName(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v300/location/delete")
+    Call<ResponseBase<RequestSuccessBean>> delBox(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v300/location/move-layer")
+    Call<ResponseBase<RequestSuccessBean>> moveLayer(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v300/location/move")
+    Call<ResponseBase<RequestSuccessBean>> moveBox(@FieldMap Map<String, String> map);
 }

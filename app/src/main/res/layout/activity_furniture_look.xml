@@ -99,10 +99,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_52"
-        android:paddingStart="@dimen/dip_16"
-        android:paddingEnd="@dimen/dip_16"
         android:background="@color/white"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingStart="@dimen/dip_16"
+        android:paddingEnd="@dimen/dip_16">
 
         <FrameLayout
             android:id="@+id/furniture_edit_layer_view"
@@ -251,6 +251,63 @@
                 android:drawableTop="@drawable/icon_furniture_back"
                 android:gravity="center"
                 android:text="后退"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_cancel_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_cancel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_edit_cancel"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_place_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_place_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_place"
+                android:gravity="center"
+                android:text="放置"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/furniture_move_box_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/furniture_move_box_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_move_box"
+                android:gravity="center"
+                android:text="放置"
                 android:textColor="@color/color999"
                 android:textSize="@dimen/f_10" />
         </FrameLayout>

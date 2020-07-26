@@ -13,6 +13,7 @@ public class EditGoodsReq extends RequestBase {
     private String furnitureCode;
     private List<String> objectIds;
     private Integer page;
+    private String name;
 
     public EditGoodsReq(String uid, String location_code) {
         this.uid = uid;
@@ -85,5 +86,13 @@ public class EditGoodsReq extends RequestBase {
 
     public void setObjectIds(List<String> objectIds) {
         this.objectIds = objectIds;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

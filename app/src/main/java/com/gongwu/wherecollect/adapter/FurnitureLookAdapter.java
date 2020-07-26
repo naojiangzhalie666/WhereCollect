@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.StringUtils;
@@ -52,8 +53,12 @@ public class FurnitureLookAdapter extends RecyclerView.Adapter<FurnitureLookAdap
         holder.mImgView.name.setText(null);
         holder.mImgView.head.setBackground(null);
         holder.mImgView.head.setImageDrawable(null);
+        holder.itemView.setAlpha(1.0f);
         if (tempBean.getLevel() == AppConstant.LEVEL_BOX) {
             holder.mImgView.head.setImageDrawable(context.getDrawable(R.drawable.icon_template_box));
+            if (MainActivity.moveBoxBean != null && MainActivity.moveBoxBean.getCode().equals(tempBean.getCode())) {
+                holder.itemView.setAlpha(0.5f);
+            }
         } else {
             holder.imgLayout.setBackground(context.getDrawable(R.drawable.select_furniture_look_item_bg));
             if (tempBean.getObject_url().contains("http")) {
