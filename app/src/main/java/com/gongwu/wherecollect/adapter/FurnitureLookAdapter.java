@@ -48,6 +48,7 @@ public class FurnitureLookAdapter extends RecyclerView.Adapter<FurnitureLookAdap
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
+        //111
         ObjectBean tempBean = mlist.get(position);
         holder.imgLayout.setBackground(null);
         holder.mImgView.name.setText(null);
