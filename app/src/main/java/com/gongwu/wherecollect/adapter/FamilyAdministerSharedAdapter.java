@@ -44,7 +44,7 @@ public class FamilyAdministerSharedAdapter extends RecyclerView.Adapter<FamilyAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         SharedPersonBean bean = mlist.get(position);
-        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.icon_app);
+        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.ic_user_error);
         holder.userNameTv.setText(bean.getNickname());
         String s = "";
         if (bean.getSharedRoom() != null && bean.getSharedRoom().size() > 0) {

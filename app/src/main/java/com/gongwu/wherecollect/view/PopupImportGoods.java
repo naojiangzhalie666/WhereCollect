@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +26,8 @@ import razerdp.basepopup.BasePopupWindow;
 public class PopupImportGoods extends BasePopupWindow {
     @BindView(R.id.popup_family_list_view)
     RecyclerView mRecyclerView;
+    @BindView(R.id.look_more_tv)
+    TextView lookMoreTv;
 
     private List<ObjectBean> mlist;
     private ImportGoodsAdapter mAdapter;
@@ -59,8 +62,9 @@ public class PopupImportGoods extends BasePopupWindow {
             public void onItemClick(int positions, View view) {
                 if (listener != null) {
                     listener.onItemsClick(positions, view);
+                    mlist.remove(positions);
+                    mAdapter.notifyDataSetChanged();
                 }
-                dismiss();
             }
         });
     }
@@ -106,5 +110,9 @@ public class PopupImportGoods extends BasePopupWindow {
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
+    }
+
+    public void setLookMoveVisibility(int visibility) {
+        lookMoreTv.setVisibility(visibility);
     }
 }

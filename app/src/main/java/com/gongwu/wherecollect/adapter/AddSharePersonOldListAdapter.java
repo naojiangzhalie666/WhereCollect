@@ -45,7 +45,7 @@ public class AddSharePersonOldListAdapter extends RecyclerView.Adapter<AddShareP
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         SharedPersonBean bean = datas.get(position);
-        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.icon_app);
+        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.ic_user_error);
         holder.userNameTv.setText(bean.getNickname());
         holder.userUsidTv.setText("ID: " + bean.getUsid());
     }

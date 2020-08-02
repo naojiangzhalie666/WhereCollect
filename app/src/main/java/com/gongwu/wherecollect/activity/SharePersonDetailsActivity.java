@@ -70,7 +70,7 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
         imageBtn.setImageDrawable(getResources().getDrawable(R.drawable.icon_link_iv));
         sharedPersonBean = (SharedPersonBean) getIntent().getSerializableExtra("sharedPersonBean");
         if (sharedPersonBean != null) {
-            ImageLoader.loadCircle(this, share_person_iv, sharedPersonBean.getAvatar(), R.drawable.icon_app);
+            ImageLoader.loadCircle(this, share_person_iv, sharedPersonBean.getAvatar(), R.drawable.ic_user_error);
             share_user_name.setText(sharedPersonBean.getNickname());
             share_user_id_tv.setText("ID: " + sharedPersonBean.getUsid());
             for (SharedLocationBean bean : sharedPersonBean.getShared_locations()) {

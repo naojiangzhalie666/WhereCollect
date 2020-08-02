@@ -121,7 +121,7 @@ public class PersonActivity extends BaseActivity {
      */
     public void refreshUi() {
         user = App.getUser(mContext);
-        ImageLoader.loadCircle(mContext, personIv, user.getAvatar(), R.drawable.icon_app);
+        ImageLoader.loadCircle(mContext, personIv, user.getAvatar(), R.drawable.ic_user_error);
         tvNick.setText(user.getNickname());
         tvSex.setText(user.getGender());
         tvBirthday.setText(user.getBirthday());

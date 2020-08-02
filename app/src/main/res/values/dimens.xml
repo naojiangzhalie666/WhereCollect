@@ -6,6 +6,7 @@
 
 
     <!-- 文字的大小 -->
+    <dimen name="f_4">4sp</dimen>
     <dimen name="f_8">8sp</dimen>
     <dimen name="f_10">10sp</dimen>
     <dimen name="f_11">11sp</dimen>

@@ -50,7 +50,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/dip_12"
-                        android:src="@drawable/icon_app" />
+                        android:src="@drawable/ic_user_error" />
 
                     <View
                         android:layout_width="match_parent"

@@ -36,6 +36,7 @@ import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.view.ActivityTaskManager;
+import com.gongwu.wherecollect.view.GoodsImageView;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.ExplainReasonCallback;
 import com.permissionx.guolindev.callback.ForwardToSettingsCallback;
@@ -57,6 +58,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     public static RoomFurnitureBean moveLayerBean;
     public static ObjectBean moveBoxBean;
+    public static List<ObjectBean> moveGoodsList;
 
     private static final int TAB_SPACE = 0;
     private static final int TAB_LOOK = 1;
@@ -71,6 +73,15 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     View moveLayerView;
     @BindView(R.id.main_place_tv)
     TextView moveView;
+    @BindView(R.id.main_place_layout)
+    View moveLayout;
+    @BindView(R.id.main_move_goods_view)
+    View moveGoodsView;
+    @BindView(R.id.main_move_goods_iv)
+    GoodsImageView moveGoodsIV;
+    @BindView(R.id.main_move_goods_number)
+    TextView redNumberTv;
+
 
     SparseArray<BaseFragment> fragments;
 
@@ -101,7 +112,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     }
 
 
-    @OnClick({R.id.add_goods_iv, R.id.main_place_tv, R.id.main_cancel_tv})
+    @OnClick({R.id.add_goods_iv, R.id.main_place_tv, R.id.main_cancel_tv, R.id.main_move_goods_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_goods_iv:
@@ -123,10 +134,14 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                 }
                 break;
             case R.id.main_place_tv:
+            case R.id.main_move_goods_iv:
                 Toast.makeText(mContext, "请选择隔层", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main_cancel_tv:
+                MainActivity.moveBoxBean = null;
+                MainActivity.moveGoodsList = null;
                 MainActivity.moveLayerBean = null;
+                main_tab_rg.setVisibility(View.VISIBLE);
                 moveLayerView.setVisibility(View.GONE);
                 break;
         }
@@ -163,22 +178,46 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     @Override
     protected void onResume() {
         super.onResume();
-        if (moveLayerBean != null) {
+        if (MainActivity.moveLayerBean != null) {
             moveLayerView.setVisibility(View.VISIBLE);
+            moveLayout.setVisibility(View.VISIBLE);
+            moveGoodsView.setVisibility(View.GONE);
+            main_tab_rg.setVisibility(View.GONE);
             // 使用代码设置drawableTop
             Drawable drawable = getResources().getDrawable(R.drawable.icon_place);
             // 这一步必须要做,否则不会显示.
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             moveView.setCompoundDrawables(null, drawable, null, null);
-        } else if (moveBoxBean != null) {
+        } else if (MainActivity.moveBoxBean != null) {
             moveLayerView.setVisibility(View.VISIBLE);
+            moveLayout.setVisibility(View.VISIBLE);
+            moveGoodsView.setVisibility(View.GONE);
+            main_tab_rg.setVisibility(View.GONE);
             // 使用代码设置drawableTop
             Drawable drawable = getResources().getDrawable(R.drawable.icon_move_box);
             // 这一步必须要做,否则不会显示.
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             moveView.setCompoundDrawables(null, drawable, null, null);
+        } else if (MainActivity.moveGoodsList != null && MainActivity.moveGoodsList.size() > 0) {
+            moveLayerView.setVisibility(View.VISIBLE);
+            moveGoodsView.setVisibility(View.VISIBLE);
+            moveLayout.setVisibility(View.GONE);
+            main_tab_rg.setVisibility(View.GONE);
+            moveGoodsIV.setCircle(MainActivity.moveGoodsList.get(MainActivity.moveGoodsList.size() - 1));
+            moveGoodsIV.setTextSize(8);
+            if (MainActivity.moveGoodsList.size() > 1) {
+                redNumberTv.setVisibility(View.VISIBLE);
+                redNumberTv.setText(String.valueOf(MainActivity.moveGoodsList.size()));
+            } else {
+                redNumberTv.setVisibility(View.GONE);
+            }
+        } else {
+            MainActivity.moveBoxBean = null;
+            MainActivity.moveGoodsList = null;
+            MainActivity.moveLayerBean = null;
+            main_tab_rg.setVisibility(View.VISIBLE);
+            moveLayerView.setVisibility(View.GONE);
         }
-
     }
 
     @Override

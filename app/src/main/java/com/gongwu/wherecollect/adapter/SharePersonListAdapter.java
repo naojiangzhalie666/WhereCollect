@@ -43,7 +43,7 @@ public class SharePersonListAdapter extends RecyclerView.Adapter<SharePersonList
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         SharedPersonBean bean = datas.get(position);
-        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.icon_app);
+        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.ic_user_error);
         holder.userNameTv.setText(bean.getNickname());
         String s = "";
         if (bean.getShared_locations() != null && bean.getShared_locations().size() > 0) {

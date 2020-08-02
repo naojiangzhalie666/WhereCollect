@@ -62,7 +62,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_above="@id/main_tab_rg"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dip_52"
         android:background="@color/split_color" />
 
     <LinearLayout
@@ -93,6 +94,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/main_place_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
@@ -109,5 +111,46 @@
                 android:textColor="@color/color999"
                 android:textSize="@dimen/f_10" />
         </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/main_move_goods_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:visibility="gone">
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/main_move_goods_iv"
+                android:layout_width="@dimen/dip_30"
+                android:layout_height="@dimen/dip_30"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/main_move_goods_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/main_move_goods_iv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dip_2"
+                android:gravity="center"
+                android:text="放置"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+
+            <TextView
+                android:id="@+id/main_move_goods_number"
+                android:layout_width="@dimen/dip_12"
+                android:layout_height="@dimen/dip_12"
+                android:layout_alignTop="@id/main_move_goods_iv"
+                android:layout_toEndOf="@id/main_move_goods_tv"
+                android:background="@drawable/shape_oval_red_bg"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f_8"
+                android:visibility="gone"
+                tools:text="2" />
+        </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

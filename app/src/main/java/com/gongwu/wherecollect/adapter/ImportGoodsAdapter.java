@@ -63,8 +63,6 @@ public class ImportGoodsAdapter extends RecyclerView.Adapter<ImportGoodsAdapter.
             }
         }
         holder.name.setText(tempBean.getName());
-        holder.imgLayout.setSelected(tempBean.isSelect());
-        holder.name.setSelected(tempBean.isSelect());
     }
 
     @Override

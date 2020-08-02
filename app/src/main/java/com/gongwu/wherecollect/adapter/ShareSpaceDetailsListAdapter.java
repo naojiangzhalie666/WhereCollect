@@ -58,7 +58,7 @@ public class ShareSpaceDetailsListAdapter extends RecyclerView.Adapter<ShareSpac
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         SharedPersonBean bean = datas.get(position);
-        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.icon_app);
+        ImageLoader.loadCircle(mContext, holder.userIconIv, bean.getAvatar(), R.drawable.ic_user_error);
         holder.userNameTv.setText(bean.getNickname());
         holder.userSpaceTv.setText(content);
         holder.closeIv.setOnClickListener(new View.OnClickListener() {

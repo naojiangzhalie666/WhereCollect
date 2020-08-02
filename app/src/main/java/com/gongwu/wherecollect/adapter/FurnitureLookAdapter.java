@@ -129,6 +129,7 @@ public class FurnitureLookAdapter extends RecyclerView.Adapter<FurnitureLookAdap
         return null;
     }
 
+
     public String getSelectGoodsIds() {
         StringBuilder sb = new StringBuilder();
         for (ObjectBean bean : mlist) {

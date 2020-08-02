@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.GlideRoundTransform;
 import com.gongwu.wherecollect.util.StringUtils;
 
@@ -166,6 +167,39 @@ public class GoodsImageView extends FrameLayout {
                 });
     }
 
+    public void setCircle(ObjectBean bean) {
+        if (bean.getObject_url().contains("http")) {
+            loadCircle(bean.getObject_url());
+        } else {
+            int resId = Color.parseColor(bean.getObject_url());
+            setResourceCircle(bean.getName(), resId);
+        }
+    }
+
+    public void loadCircle(String url) {
+        name.setTag(url);
+        Glide.with(context)
+                .load(url)
+                .asBitmap()
+                .diskCacheStrategy
+                        (DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.ic_img_error)
+                .dontAnimate()
+                .error(R.drawable.ic_user_error)
+                .into(new BitmapImageViewTarget(head) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        if (name.getTag().toString().equals(url)) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(context.getResources(),
+                                            resource);
+                            circularBitmapDrawable.setCircular(true);
+                            head.setImageDrawable(circularBitmapDrawable);
+                        }
+                    }
+                });
+    }
+
     public void setImg(String headUrl, int radius) {
         name.setTag(headUrl);
 //        head.setBackground(null);
@@ -194,6 +228,15 @@ public class GoodsImageView extends FrameLayout {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setCornerRadius(StringUtils.convertDipToPixels(getContext(), radius));
+        drawable.setColor(resId);
+        head.setBackground(drawable);
+    }
+
+    public void setResourceCircle(String nickName, int resId) {
+        name.setVisibility(VISIBLE);
+        name.setText(getEndNick(nickName));
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.OVAL);
         drawable.setColor(resId);
         head.setBackground(drawable);
     }

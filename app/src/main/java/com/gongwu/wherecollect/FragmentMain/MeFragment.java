@@ -89,7 +89,7 @@ public class MeFragment extends BaseFragment {
         user = App.getUser(getActivity());
         if (user == null) return;
         vipView.setVisibility(user.isIs_vip() ? View.VISIBLE : View.GONE);
-        ImageLoader.loadCircle(getActivity(), personIv, user.getAvatar(), R.drawable.icon_app);
+        ImageLoader.loadCircle(getActivity(), personIv, user.getAvatar(), R.drawable.ic_user_error);
         userName.setText(user.getNickname());
         userId.setText(String.format(getString(R.string.user_usid_text), user.getUsid()));
         buyVipIv.setVisibility(user.isIs_vip() ? View.GONE : View.VISIBLE);
@@ -106,7 +106,7 @@ public class MeFragment extends BaseFragment {
                 ShareListActivity.start(mContext);
                 break;
             case R.id.user_code_iv:
-                Glide.with(getContext()).load(user.getAvatar().equals("http://7xroa4.com1.z0.glb.clouddn.com/default/shounaer_icon.png") ? R.drawable.icon_app : user.getAvatar()).asBitmap().into(new SimpleTarget<Bitmap>() {
+                Glide.with(getContext()).load(user.getAvatar().equals("http://7xroa4.com1.z0.glb.clouddn.com/default/shounaer_icon.png") ? R.drawable.ic_user_error : user.getAvatar()).asBitmap().into(new SimpleTarget<Bitmap>() {
                     @Override
                     public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
                         UserCodeDialog userCodeDialog = new UserCodeDialog(getActivity());

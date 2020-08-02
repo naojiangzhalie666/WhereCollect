@@ -311,5 +311,47 @@
                 android:textColor="@color/color999"
                 android:textSize="@dimen/f_10" />
         </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/furniture_move_goods_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/move_goods_iv"
+                android:layout_width="@dimen/dip_30"
+                android:layout_height="@dimen/dip_30"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center" />
+
+
+            <TextView
+                android:id="@+id/furniture_move_goods_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/move_goods_iv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dip_2"
+                android:gravity="center"
+                android:text="放置"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_10" />
+
+
+            <TextView
+                android:id="@+id/furniture_move_goods_number"
+                android:layout_width="@dimen/dip_12"
+                android:layout_height="@dimen/dip_12"
+                android:layout_alignTop="@id/move_goods_iv"
+                android:layout_toEndOf="@id/furniture_move_goods_tv"
+                android:background="@drawable/shape_oval_red_bg"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f_8"
+                android:visibility="gone"
+                tools:text="2" />
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
