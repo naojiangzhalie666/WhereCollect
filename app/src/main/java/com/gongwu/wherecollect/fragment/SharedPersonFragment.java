@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.SharePersonDetailsActivity;
-import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
 import com.gongwu.wherecollect.adapter.SharePersonListAdapter;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseFragment;
@@ -164,7 +163,7 @@ public class SharedPersonFragment extends BaseFragment<SharePresenter> implement
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(EventBusMsg.updateShareMsg msg) {
+    public void onMessageEvent(EventBusMsg.UpdateShareMsg msg) {
         if (mRefreshLayout != null) {
             mRefreshLayout.autoRefresh();
         }

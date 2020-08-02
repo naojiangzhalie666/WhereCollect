@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity;
-import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
 import com.gongwu.wherecollect.adapter.ShareSpaceListAdapter;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseFragment;
@@ -162,7 +161,7 @@ public class SharedSpaceFragment extends BaseFragment<SharePresenter> implements
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(EventBusMsg.updateShareMsg msg) {
+    public void onMessageEvent(EventBusMsg.UpdateShareMsg msg) {
         if (mRefreshLayout != null) {
             mRefreshLayout.autoRefresh();
         }

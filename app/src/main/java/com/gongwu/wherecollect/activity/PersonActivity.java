@@ -1,7 +1,6 @@
 package com.gongwu.wherecollect.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -111,7 +110,7 @@ public class PersonActivity extends BaseActivity {
                         startActivity(intent);
                         setResult(RESULT_OK);
                         finish();
-                        EventBus.getDefault().post(new EventBusMsg.stopService());
+                        EventBus.getDefault().post(new EventBusMsg.StopService());
                     }
                 }, null);
     }

@@ -21,13 +21,16 @@ public class EventBusMsg {
     public static class RefreshActivity {
     }
 
-    public static class updateShareMsg {
+    public static class UpdateShareMsg {
     }
 
-    public static class startService {
+    public static class StartService {
     }
 
-    public static class stopService {
+    public static class StopService {
+    }
+
+    public static class SelectHomeTab {
     }
 
     public static class MainTabMessage {

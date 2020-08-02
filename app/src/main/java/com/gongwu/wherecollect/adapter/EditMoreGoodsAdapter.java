@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,9 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
-import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
-import com.gongwu.wherecollect.net.entity.response.MainGoodsDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.StringUtils;
@@ -35,11 +34,11 @@ import butterknife.ButterKnife;
  * @author zhaojin
  * @since JDK 1.7
  */
-public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.CustomViewHolder> {
+public class EditMoreGoodsAdapter extends RecyclerView.Adapter<EditMoreGoodsAdapter.CustomViewHolder> {
     Context context;
     List<ObjectBean> mlist;
 
-    public MainGoodsAdapter(Context context, List<ObjectBean> list) {
+    public EditMoreGoodsAdapter(Context context, List<ObjectBean> list) {
         this.context = context;
         this.mlist = list;
     }
@@ -70,7 +69,7 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_main_goods_layout, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_edit_more_goods_layout, viewGroup, false);
         return new CustomViewHolder(view);
     }
 
@@ -88,6 +87,7 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
         }
         holder.nameTv.setText(bean.getName());
         holder.locationTv.setText(getLoction(bean));
+        holder.mCheckBox.setChecked(bean.isSelect());
     }
 
     @Override
@@ -102,6 +102,8 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
         TextView nameTv;
         @BindView(R.id.location_tv)
         TextView locationTv;
+        @BindView(R.id.check_box)
+        CheckBox mCheckBox;
 
         public CustomViewHolder(View view) {
             super(view);
@@ -123,4 +125,18 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
     public void setOnItemClickListener(MyOnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
+
+    public String getSelectGoodsIds() {
+        StringBuilder sb = new StringBuilder();
+        for (ObjectBean bean : mlist) {
+            if (bean.isSelect()) {
+                sb.append(bean.get_id()).append(",");
+            }
+        }
+        if (sb.length() > 0) {
+            sb.delete(sb.length() - 1, sb.length());
+        }
+        return sb.toString();
+    }
+
 }

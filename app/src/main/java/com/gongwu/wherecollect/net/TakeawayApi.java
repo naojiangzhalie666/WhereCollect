@@ -327,4 +327,11 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v300/location/move")
     Call<ResponseBase<RequestSuccessBean>> moveBox(@FieldMap Map<String, String> map);
+
+    @GET("api/app/v400/batchOpsObjectList")
+    Call<ResponseBase<List<ObjectBean>>> getEditMoreGoodsList(@Query("uid") String uid, @Query("family_code") String family_code, @Query("category_code") String code);
+
+    @FormUrlEncoded
+    @POST("api/app/v400/objectsAddCategory")
+    Call<ResponseBase<RequestSuccessBean>> objectsAddCategory(@FieldMap Map<String, String> map);
 }

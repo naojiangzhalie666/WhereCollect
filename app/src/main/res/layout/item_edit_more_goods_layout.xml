@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/dip_10"
+        android:layout_marginEnd="@dimen/dip_48"
         android:layout_toEndOf="@id/main_goods_img_view"
         android:orientation="vertical">
 
@@ -36,13 +37,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dip_4"
-            android:ellipsize="end"
+            android:ellipsize="start"
             android:singleLine="true"
             android:textColor="@color/act_relation_goods_text_hint_color"
             android:textSize="@dimen/f_12"
             tools:text="客厅/茶几/左2" />
 
     </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_16"
+        android:button="@drawable/checkbox_style"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
     <View
         android:layout_width="match_parent"

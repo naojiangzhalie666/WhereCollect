@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.EditMoreGoodsActivity;
 import com.gongwu.wherecollect.adapter.MainGoodsAdapter;
 import com.gongwu.wherecollect.adapter.MainGoodsSortAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
@@ -185,11 +186,14 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         }
     }
 
-    @OnClick({R.id.look_family_name})
+    @OnClick({R.id.look_family_name, R.id.batch_edit_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.look_family_name:
                 showPopupWindow();
+                break;
+            case R.id.batch_edit_iv:
+                EditMoreGoodsActivity.start(mContext, familyBean.getCode());
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -247,6 +251,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         goodsNotLocationTv.setText(String.valueOf(mainGoodsBean.getNoLocation()));
         mDetailsList.addAll(mainGoodsBean.getObjects());
         mAdapter.notifyDataSetChanged();
+        mRecyclerView.smoothScrollToPosition(AppConstant.DEFAULT_INDEX_OF);
     }
 
     @Override

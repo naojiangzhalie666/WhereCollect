@@ -1,6 +1,5 @@
 package com.gongwu.wherecollect.object;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
@@ -73,7 +72,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     //需要上传图片的bean类
     private ObjectBean uploadBean;
     //属性bean
-    private ObjectBean objectBean;
+    private ObjectBean sortBean;
     private List<ObjectBean> mlist;
     private Loading loading;
 
@@ -97,7 +96,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     private void initData() {
         mlist = new ArrayList<>();
         //属性bean
-        objectBean = new ObjectBean();
+        sortBean = new ObjectBean();
         //添加goods的item
         ObjectBean bean = new ObjectBean();
         bean.set__v(ADD_GOODS_CODE);
@@ -130,13 +129,13 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
                 finish();
                 break;
             case R.id.add_goods_list_sort:
-                SelectSortActivity.start(mContext, objectBean);
+                SelectSortActivity.start(mContext, sortBean);
                 break;
             case R.id.add_other_content_tv:
-                AddGoodsPropertyActivity.start(mContext, objectBean, true);
+                AddGoodsPropertyActivity.start(mContext, sortBean, true);
                 break;
             case R.id.commit_bt:
-                getPresenter().addMoreGoods(mContext, mlist, objectBean);
+                getPresenter().addMoreGoods(mContext, mlist, sortBean);
                 break;
         }
     }
@@ -316,13 +315,13 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             selectImgDialog.onActivityResult(requestCode, resultCode, data);
         }
         if (AppConstant.REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
-            objectBean = (ObjectBean) data.getSerializableExtra("objectBean");
-            if (objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
-                sortNameTv.setText(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
+            sortBean = (ObjectBean) data.getSerializableExtra("sortBean");
+            if (sortBean.getCategories() != null && sortBean.getCategories().size() > 0) {
+                sortNameTv.setText(sortBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
             } else {
                 sortNameTv.setText(R.string.add_goods_sort);
             }
-            goodsInfoView.init(objectBean);
+            goodsInfoView.init(sortBean);
         }
         if (requestCode == BOOK_CODE && resultCode == CaptureActivity.result) {//扫描的到结果
             String code = data.getStringExtra("result");

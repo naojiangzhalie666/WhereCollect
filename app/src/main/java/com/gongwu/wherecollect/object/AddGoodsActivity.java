@@ -173,7 +173,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (AppConstant.REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
-            objectBean = (ObjectBean) data.getSerializableExtra("objectBean");
+            objectBean = (ObjectBean) data.getSerializableExtra("sortBean");
             if (objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
                 sortNameTv.setText(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
                 sortNameTv.setTextColor(getResources().getColor(R.color.color333));

@@ -640,4 +640,20 @@ public class ApiUtils {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().moveBox(requestMap).enqueue(callBack);
     }
+
+
+    /**
+     * 批量编辑物品列表
+     */
+    public static <D extends RequestBase> void getEditMoreGoodsList(String uid, String family_code, String category_code, ApiCallBack<List<ObjectBean>> callBack) {
+        ApiInstance.getApi().getEditMoreGoodsList(uid, family_code, category_code).enqueue(callBack);
+    }
+
+    /**
+     * 批量添加分类
+     */
+    public static <D extends RequestBase> void objectsAddCategory(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().objectsAddCategory(requestMap).enqueue(callBack);
+    }
 }

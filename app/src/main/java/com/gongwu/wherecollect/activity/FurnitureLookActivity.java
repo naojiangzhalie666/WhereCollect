@@ -954,4 +954,10 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         }
         Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+    }
 }

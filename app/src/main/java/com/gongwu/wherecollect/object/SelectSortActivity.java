@@ -51,7 +51,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
     @BindView(R.id.sort_child_layout)
     View mChildLayout;
 
-    private ObjectBean objectBean;
+    private ObjectBean sortBean;
     private SortGridAdapter mAdapter;
     private SortChildGridAdapter mChildAdapter;
     List<BaseBean> mlist;
@@ -69,7 +69,10 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
         mTitleTv.setText("分类");
         commitTv.setVisibility(View.VISIBLE);
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
-        objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
+        sortBean = (ObjectBean) getIntent().getSerializableExtra("sortBean");
+        if (sortBean == null) {
+            sortBean = new ObjectBean();
+        }
         mlist = new ArrayList<>();
         mChildList = new ArrayList<>();
 
@@ -113,7 +116,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
                 commit();
                 break;
             case R.id.search_sort_layout:
-                SelectSortChildActivity.start(mContext, objectBean);
+                SelectSortChildActivity.start(mContext, sortBean);
                 break;
         }
     }
@@ -152,9 +155,9 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
         } else if (selectBaseBean != null) {
             list.add(selectBaseBean);
         }
-        objectBean.setCategories(list.size() > 0 ? list : null);
+        sortBean.setCategories(list.size() > 0 ? list : null);
         Intent intent = new Intent();
-        intent.putExtra("objectBean", objectBean);
+        intent.putExtra("sortBean", sortBean);
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -165,9 +168,9 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
         return AddGoodsPropertyPresenter.getInstance();
     }
 
-    public static void start(Context mContext, ObjectBean objectBean) {
+    public static void start(Context mContext, ObjectBean sortBean) {
         Intent intent = new Intent(mContext, SelectSortActivity.class);
-        intent.putExtra("objectBean", objectBean);
+        intent.putExtra("sortBean", sortBean);
         ((Activity) mContext).startActivityForResult(intent, AppConstant.REQUEST_CODE);
     }
 

@@ -65,7 +65,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     private static final int TAB_REMIND = 3;
     private static final int TAB_ME = 4;
     private int current_index_of = -1;
-    private boolean initData;
+    private boolean initData, initTab;
 
     @BindView(R.id.main_tab_rg)
     RadioGroup main_tab_rg;
@@ -306,6 +306,11 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.SelectHomeTab msg) {
+        initTab = true;
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -313,6 +318,9 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             selectTab(AppConstant.DEFAULT_INDEX_OF);
             EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
             initData = false;
+        } else if (initTab) {
+            selectTab(AppConstant.DEFAULT_INDEX_OF);
+            initTab = false;
         }
     }
 
@@ -339,7 +347,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     @Override
     public void dealWithShareRequestSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
-            EventBus.getDefault().post(new EventBusMsg.updateShareMsg());
+            EventBus.getDefault().post(new EventBusMsg.UpdateShareMsg());
         }
     }
 
@@ -347,7 +355,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
      * 启动服务
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(EventBusMsg.startService msg) {
+    public void onMessageEvent(EventBusMsg.StartService msg) {
         //启动Android定时器，并且启动服务
         TimerService.getConnet(this);
     }
@@ -356,7 +364,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
      * 停止服务
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(EventBusMsg.stopService msg) {
+    public void onMessageEvent(EventBusMsg.StopService msg) {
         //停止由AlarmManager启动的循环
         TimerService.stop(this);
         //停止由服务启动的循环

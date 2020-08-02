@@ -119,6 +119,7 @@
     <string name="user_family_name">%1$s的家</string>
     <string name="import_goods">归入物品</string>
     <string name="remove_text">迁移</string>
+    <string name="edit_more_goods">批量编辑</string>
 
     <string name="user_usid_text">ID: %1$s</string>
 
