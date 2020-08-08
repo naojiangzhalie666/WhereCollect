@@ -39,7 +39,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.EditMoreGoodsActivity"></activity>
+        <activity android:name=".activity.BuyVIPActivity"></activity>
+        <activity android:name=".activity.MessageListActivity" />
+        <activity android:name=".activity.EditMoreGoodsActivity" />
         <activity android:name=".activity.ImportMoreGoodsActivity" />
         <activity android:name=".activity.FamilyAdministerSharedActivity" />
         <activity android:name=".activity.AddFamilyToSelectRoomsActivity" />

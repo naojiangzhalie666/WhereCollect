@@ -33,6 +33,7 @@ import com.umeng.socialize.UMShareConfig;
 import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.litepal.LitePalApplication;
 
 import java.io.File;
 
@@ -67,6 +68,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        LitePalApplication.initialize(this);
         initUM();
         initCache();
         try {//必须加上/否则剪切照片可能会出错

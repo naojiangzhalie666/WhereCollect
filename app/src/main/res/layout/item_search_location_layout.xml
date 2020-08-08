@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_10"
+        android:background="@color/activity_bg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dip_16"
+        android:layout_marginTop="@dimen/dip_10"
+        android:layout_marginBottom="@dimen/dip_10"
+        android:text="位置"
+        android:textColor="@color/act_relation_goods_text_hint_color"
+        android:textSize="@dimen/f_15" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_locations_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

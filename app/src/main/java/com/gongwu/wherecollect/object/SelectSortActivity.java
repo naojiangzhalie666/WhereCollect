@@ -69,7 +69,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
         mTitleTv.setText("分类");
         commitTv.setVisibility(View.VISIBLE);
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
-        sortBean = (ObjectBean) getIntent().getSerializableExtra("sortBean");
+        sortBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
         if (sortBean == null) {
             sortBean = new ObjectBean();
         }
@@ -157,7 +157,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
         }
         sortBean.setCategories(list.size() > 0 ? list : null);
         Intent intent = new Intent();
-        intent.putExtra("sortBean", sortBean);
+        intent.putExtra("objectBean", sortBean);
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -170,7 +170,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
 
     public static void start(Context mContext, ObjectBean sortBean) {
         Intent intent = new Intent(mContext, SelectSortActivity.class);
-        intent.putExtra("sortBean", sortBean);
+        intent.putExtra("objectBean", sortBean);
         ((Activity) mContext).startActivityForResult(intent, AppConstant.REQUEST_CODE);
     }
 

@@ -3,11 +3,13 @@ package com.gongwu.wherecollect.net;
 import com.gongwu.wherecollect.net.entity.base.ResponseBase;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
+import com.gongwu.wherecollect.net.entity.response.MessagePostBean;
 import com.gongwu.wherecollect.net.entity.response.MyFamilyListBean;
 import com.gongwu.wherecollect.net.entity.response.FurnitureTemplateBean;
 import com.gongwu.wherecollect.net.entity.response.LayerTemplateBean;
 import com.gongwu.wherecollect.net.entity.response.MsgBean;
 import com.gongwu.wherecollect.net.entity.response.RelationGoodsBean;
+import com.gongwu.wherecollect.net.entity.response.RemindBean;
 import com.gongwu.wherecollect.net.entity.response.RemindDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
@@ -24,6 +26,7 @@ import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureGoodsBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse;
+import com.gongwu.wherecollect.net.entity.response.SerchListBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
@@ -65,6 +68,10 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v320/add-objects")
     Call<ResponseBase<List<ObjectBean>>> addGoods(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("users/object-add")
+    Call<ResponseBase<ObjectBean>> editGoods(@FieldMap Map<String, String> map);
 
     @GET("api/app/v420/svg-catpure")
     Call<ResponseBase<String>> getCatpure();
@@ -334,4 +341,24 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v400/objectsAddCategory")
     Call<ResponseBase<RequestSuccessBean>> objectsAddCategory(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v340/search")
+    Call<ResponseBase<SerchListBean>> getSearchList(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v330/messages")
+    Call<ResponseBase<MessagePostBean>> getMessagesList(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v300/location/remove-object")
+    Call<ResponseBase<RequestSuccessBean>> removeObjectFromFurnitrue(@FieldMap Map<String, String> map);
+
+
+    @GET("api/app/v350/get-reminds-by-objid")
+    Call<ResponseBase<List<RemindBean>>> getGoodsRemindsById(@Query("uid") String uid, @Query("obj_id") String obj_id);
+
+    @FormUrlEncoded
+    @POST("users/object-del")
+    Call<ResponseBase<RequestSuccessBean>> delGoods(@FieldMap Map<String, String> map);
 }

@@ -146,7 +146,7 @@ public class FamilyRoomFragment extends BaseFragment<FamilyPresenter> implements
                     if (bean.getLayers() == null || bean.getLayers().size() == 0) {
                         LayerTemplateActivity.start(mContext, bean, familyCode);
                     } else {
-                        FurnitureLookActivity.start(mContext, familyCode, bean);
+                        FurnitureLookActivity.start(mContext, familyCode, bean, null);
                     }
                 }
             }

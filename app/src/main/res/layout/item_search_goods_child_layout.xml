@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dip_60"
+    android:background="@color/white"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dip_10"
+        android:layout_marginEnd="@dimen/dip_100"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:textColor="@color/act_relation_goods_text_color"
+            android:textSize="@dimen/f_14"
+            tools:text="一个不怎么常用的杯子" />
+
+        <TextView
+            android:id="@+id/location_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_4"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/act_relation_goods_text_hint_color"
+            android:textSize="@dimen/f_12"
+            tools:text="客厅/茶几/左2" />
+
+    </LinearLayout>
+
+    <com.gongwu.wherecollect.view.GoodsImageView
+        android:id="@+id/search_goods_img_view"
+        android:layout_width="@dimen/dip_50"
+        android:layout_height="@dimen/dip_50"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dip_10"
+        android:layout_marginEnd="@dimen/dip_16" />
+
+    <View
+        android:id="@+id/split_view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/dip_24"
+        android:background="@color/split_color" />
+</RelativeLayout>

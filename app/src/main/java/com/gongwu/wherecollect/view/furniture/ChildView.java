@@ -52,6 +52,15 @@ public class ChildView extends RelativeLayout {
         }
     }
 
+    public void setEditableByFalse() {
+        if (bean != null) {
+            bean.setSelect(false);
+        }
+        if (selectCount == 0) {
+            textView.setBackgroundResource(resID);
+        }
+    }
+
     public void setSelectCount(boolean isSelect) {
         if (bean.isSelect()) return;
         if (isSelect) {

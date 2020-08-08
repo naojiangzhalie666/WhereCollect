@@ -16,6 +16,8 @@ import java.util.Map;
 public interface IAddGoodsContract {
     interface IAddGoodsModel {
 
+        void editGoods(AddGoodsReq req, final RequestCallback callback);
+
         void addObjects(AddGoodsReq req, final RequestCallback callback);
 
         void addMoreGoods(AddGoodsReq req, final RequestCallback callback);
@@ -26,6 +28,8 @@ public interface IAddGoodsContract {
     }
 
     interface IAddGoodsPresenter {
+        void editGoods(Context context, ObjectBean tempBean, String names, String isbn);
+
         void addObjects(Context context, ObjectBean tempBean, String names, String isbn);
 
         void addMoreGoods(Context mContext, List<ObjectBean> mlist, ObjectBean common);
@@ -36,6 +40,11 @@ public interface IAddGoodsContract {
     }
 
     interface IAddGoodsView extends BaseView {
+        /**
+         * 编辑物品
+         */
+        void editGoodsSuccess(ObjectBean data);
+
         /**
          * 添加物品
          */

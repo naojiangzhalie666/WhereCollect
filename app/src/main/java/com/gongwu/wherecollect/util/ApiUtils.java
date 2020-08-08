@@ -9,6 +9,7 @@ import com.gongwu.wherecollect.net.entity.response.ChannelBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
+import com.gongwu.wherecollect.net.entity.response.MessagePostBean;
 import com.gongwu.wherecollect.net.entity.response.MyFamilyListBean;
 import com.gongwu.wherecollect.net.entity.response.FurnitureTemplateBean;
 import com.gongwu.wherecollect.net.entity.response.HomeFamilyRoomBean;
@@ -18,6 +19,7 @@ import com.gongwu.wherecollect.net.entity.response.MainGoodsBean;
 import com.gongwu.wherecollect.net.entity.response.MsgBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RelationGoodsBean;
+import com.gongwu.wherecollect.net.entity.response.RemindBean;
 import com.gongwu.wherecollect.net.entity.response.RemindDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.RemindListBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
@@ -26,6 +28,7 @@ import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureGoodsBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse;
+import com.gongwu.wherecollect.net.entity.response.SerchListBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
@@ -145,6 +148,14 @@ public class ApiUtils {
     public static <D extends RequestBase> void addGoods(D request, ApiCallBack<List<ObjectBean>> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().addGoods(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 编辑物品
+     */
+    public static <D extends RequestBase> void editGoods(D request, ApiCallBack<ObjectBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().editGoods(requestMap).enqueue(callBack);
     }
 
 
@@ -655,5 +666,41 @@ public class ApiUtils {
     public static <D extends RequestBase> void objectsAddCategory(D request, ApiCallBack<RequestSuccessBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().objectsAddCategory(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 搜索列表
+     */
+    public static <D extends RequestBase> void getSearchList(D request, ApiCallBack<SerchListBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().getSearchList(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 消息列表
+     */
+    public static <D extends RequestBase> void getMessagesList(D request, ApiCallBack<MessagePostBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().getMessagesList(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 清空物品位置
+     */
+    public static <D extends RequestBase> void removeObjectFromFurnitrue(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().removeObjectFromFurnitrue(requestMap).enqueue(callBack);
+    }
+
+    public static <D extends RequestBase> void getGoodsRemindsById(String uid, String object_id, ApiCallBack<List<RemindBean>> callBack) {
+        ApiInstance.getApi().getGoodsRemindsById(uid, object_id).enqueue(callBack);
+    }
+
+    /**
+     * 删除物品
+     */
+    public static <D extends RequestBase> void delGoods(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().delGoods(requestMap).enqueue(callBack);
     }
 }

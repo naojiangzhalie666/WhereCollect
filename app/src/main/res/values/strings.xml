@@ -55,6 +55,7 @@
     <string name="add_other_content_text">添加其他属性</string>
     <string name="base_content">基本属性</string>
     <string name="other_content">其他属性</string>
+    <string name="reminds_content">提醒</string>
     <string name="add_goods_sort">分类</string>
     <string name="hint_goods_name">名称</string>
     <string name="goods_text">物品</string>
@@ -68,7 +69,7 @@
     <string name="remind_good_text">关联物品</string>
     <string name="remind_time_text">提醒时间</string>
     <string name="remind_first_text">优先处理</string>
-    <string name="remind_overdue_time_text">过期提醒</string>
+    <string name="remind_overdue_time_text">重复提醒</string>
     <string name="remind_overdue_time_hint_text">开启后过期将每日提醒</string>
     <string name="remind_remarks_text">说明备注</string>
     <string name="title_text">标题</string>
@@ -118,8 +119,14 @@
     <string name="furniture_number">%1$s个家具</string>
     <string name="user_family_name">%1$s的家</string>
     <string name="import_goods">归入物品</string>
+    <string name="not_location_goods">未归位</string>
+    <string name="not_name_goods">未定义</string>
     <string name="remove_text">迁移</string>
     <string name="edit_more_goods">批量编辑</string>
+    <string name="open">展开全部</string>
+    <string name="close">收起全部</string>
+    <string name="message_title">消息中心</string>
+    <string name="commit_edit">确认修改</string>
 
     <string name="user_usid_text">ID: %1$s</string>
 

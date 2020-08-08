@@ -127,9 +127,13 @@
         <com.gongwu.wherecollect.view.EmptyView
             android:id="@+id/empty_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/split_color" />
 
     <LinearLayout
         android:id="@+id/furniture_edit_layout"

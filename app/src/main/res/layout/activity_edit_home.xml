@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:drawableTop="@drawable/icon_add_furniture"
             android:gravity="center"
-            android:text="添加家具"
+            android:text="@string/add_furniture"
             android:textColor="@color/color999"
             android:textSize="@dimen/f_10" />
 

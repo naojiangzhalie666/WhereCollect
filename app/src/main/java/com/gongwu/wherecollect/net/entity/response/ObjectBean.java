@@ -331,7 +331,7 @@ public class ObjectBean implements Serializable {
 
     public String getObject_url() {
         if (TextUtils.isEmpty(object_url)) {
-            return null;
+            return "#E66868";
         }
         if (object_url.contains("http")) {
             return object_url;

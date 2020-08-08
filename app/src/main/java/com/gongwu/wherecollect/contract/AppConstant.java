@@ -22,6 +22,8 @@ public class AppConstant {
     public final static int SELECT_PHOTO_COUNT = 1;
 
 
+    public final static int LEVEL_FAMILY = -1;
+    public final static int LEVEL_ROOM = 0;
     public final static int LEVEL_FURNITURE = 1;
     public final static int LEVEL_INTERLAYER = 2;
     public final static int LEVEL_BOX = 3;

@@ -129,12 +129,15 @@ public class CustomTableRowLayout extends RelativeLayout {
         addView(v);
         for (int i = 0; i < StringUtils.getListSize(childBeans); i++) {
             ChildView ob = new ChildView(context, resId);
-            ob.setEditable(false);
+            ob.setEditableByFalse();
             ob.setObject(childBeans.get(i), this);
             addView(ob);
             if (!isChildViewClick) {
                 ob.setOnClickListener(new OnClickListener(listener));
             }
+        }
+        if (initListener != null) {
+            initListener.OnInit();
         }
     }
 
@@ -541,6 +544,16 @@ public class CustomTableRowLayout extends RelativeLayout {
             ChildView view = ((ChildView) getChildAt(i));
             view.setUnSelectCount();
         }
+    }
+
+    private OnInitListener initListener;
+
+    public interface OnInitListener {
+        void OnInit();
+    }
+
+    public void setOnInitListener(OnInitListener initListener) {
+        this.initListener = initListener;
     }
 
     public static interface OnItemClickListener {

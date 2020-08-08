@@ -164,7 +164,7 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
             @Override
             public void onItemClick(int position, View view) {
                 Intent intent = new Intent(getContext(), AddRemindActivity.class);
-                intent.putExtra("remind_bean",  mUnData.get(position));
+                intent.putExtra("remind_bean", mUnData.get(position));
                 startActivityForResult(intent, START_CODE);
             }
 
@@ -182,7 +182,7 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
             @Override
             public void onItemClick(int position, View view) {
                 Intent intent = new Intent(getContext(), AddRemindActivity.class);
-                intent.putExtra("remind_bean",  mData.get(position));
+                intent.putExtra("remind_bean", mData.get(position));
                 startActivityForResult(intent, START_CODE);
             }
 
@@ -211,7 +211,7 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.title_commit_white_tv:
-                AddRemindActivity.start(getContext());
+                AddRemindActivity.start(getContext(), null);
                 break;
             case R.id.remind_unfinish_title_layout:
                 initViewAndData(false);

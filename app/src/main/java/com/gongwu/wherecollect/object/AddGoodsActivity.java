@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
@@ -21,13 +22,19 @@ import com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.net.entity.response.RemindBean;
+import com.gongwu.wherecollect.util.DateUtil;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
+import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.PopupAddGoods;
 import com.gongwu.wherecollect.view.EditTextWatcher;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoLookView;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -62,6 +69,16 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     Button mCommitBt;
     @BindView(R.id.select_location_bt)
     Button mSelectLocationBt;
+    @BindView(R.id.goods_location_layout)
+    View locationView;
+    @BindView(R.id.goods_location_tv)
+    TextView locationTv;
+    @BindView(R.id.remind_layout)
+    View remindLayout;
+    @BindView(R.id.remind_name_tv)
+    TextView remindNameTv;
+    @BindView(R.id.remind_time_tv)
+    TextView remindTimeTv;
 
     private Loading loading;
 
@@ -70,7 +87,9 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
 
     private final String IMG_COLOR_CODE = "0";//默认图片颜色的值
     private ObjectBean objectBean;
+    private RemindBean remindBean;
     private PopupAddGoods popup;
+    private boolean setGoodsLocation;
 
     @Override
     protected int getLayoutId() {
@@ -79,11 +98,46 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
 
     @Override
     protected void initViews() {
-        mTitleView.setText(R.string.add_goods_text);
-        head.setImageDrawable(getResources().getDrawable(R.drawable.icon_add_goods));
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
         initEvent();
-        initData();
+        objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
+        if (objectBean == null) {
+            mTitleView.setText(R.string.add_goods_text);
+            head.setImageDrawable(getResources().getDrawable(R.drawable.icon_add_goods));
+            initData();
+        } else {
+            mTitleView.setText(R.string.edit_text);
+            remindBean = (RemindBean) getIntent().getSerializableExtra("remindBean");
+            mSelectLocationBt.setVisibility(View.GONE);
+            mCommitBt.setText(R.string.commit_edit);
+            goodsInfoView.init(objectBean);
+            if (!TextUtils.isEmpty(objectBean.getNameText())) {
+                mEditText.setText(objectBean.getNameText());
+            }
+            if (objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
+                sortNameTv.setText(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
+                sortNameTv.setTextColor(getResources().getColor(R.color.color333));
+            }
+            if (objectBean.getObject_url().contains("#")) {
+                int resId = Color.parseColor(objectBean.getObject_url());
+                mImageView.setResourceColor(objectBean.getName(), resId, 10);
+            } else {
+                mImageView.setImg(objectBean.getObject_url(), 10);
+            }
+            locationView.setVisibility(View.VISIBLE);
+            locationTv.setText(StringUtils.getGoodsLoction(objectBean));
+            if (remindBean != null) {
+                remindLayout.setVisibility(View.VISIBLE);
+                //标题
+                remindNameTv.setText(remindBean.getTitle());
+                //时间
+                if (remindBean.getTips_time() != 0) {
+                    remindTimeTv.setText(DateUtil.dateToString(remindBean.getTips_time(), DateUtil.DatePattern.ONLY_MINUTE));
+                }
+            } else {
+                remindLayout.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -136,7 +190,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         });
     }
 
-    @OnClick({R.id.back_btn, R.id.add_img_view, R.id.add_goods_sort_tv, R.id.add_other_content_tv, R.id.commit_bt})
+    @OnClick({R.id.back_btn, R.id.add_img_view, R.id.add_goods_sort_tv, R.id.add_other_content_tv, R.id.commit_bt, R.id.select_location_bt})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -160,6 +214,10 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             case R.id.commit_bt:
                 onClickCommit();
                 break;
+            case R.id.select_location_bt:
+                setGoodsLocation = true;
+                onClickCommit();
+                break;
 
         }
     }
@@ -173,8 +231,8 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (AppConstant.REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
-            objectBean = (ObjectBean) data.getSerializableExtra("sortBean");
-            if (objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
+            objectBean = (ObjectBean) data.getSerializableExtra("objectBean");
+            if (objectBean != null && objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
                 sortNameTv.setText(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
                 sortNameTv.setTextColor(getResources().getColor(R.color.color333));
             } else {
@@ -202,7 +260,23 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
 
 
     @Override
+    public void editGoodsSuccess(ObjectBean data) {
+        if (data != null) {
+            Intent intent = new Intent();
+            intent.putExtra("objectBean", data);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
+
+    @Override
     public void addObjectsSuccess(List<ObjectBean> data) {
+        if (setGoodsLocation) {
+            MainActivity.moveGoodsList = new ArrayList<>();
+            MainActivity.moveGoodsList.addAll(data);
+            EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+            setGoodsLocation = false;
+        }
         finish();
     }
 
@@ -274,12 +348,12 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     @Override
     public void onUpLoadSuccess(String path) {
         objectBean.setObject_url(path);
-        getPresenter().addObjects(mContext, objectBean, mEditText.getText().toString(), ISBN);
+        addOrEditGoods();
     }
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext,"");
+        loading = Loading.show(null, mContext, "");
     }
 
     @Override
@@ -306,12 +380,21 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         }
         if (objectBean.getObject_url().contains("#")) {
             //调用接口
-            getPresenter().addObjects(mContext, objectBean, mEditText.getText().toString(), ISBN);
+            addOrEditGoods();
         } else if (objectBean.getObject_url().contains("http")) {
-            getPresenter().addObjects(mContext, objectBean, mEditText.getText().toString(), ISBN);
+            addOrEditGoods();
         } else {
             //图片有地址 直接上传
             getPresenter().uploadImg(mContext, objectBean.getObjectFiles());
+        }
+    }
+
+    private void addOrEditGoods() {
+        //调用接口
+        if (TextUtils.isEmpty(objectBean.get_id())) {
+            getPresenter().addObjects(mContext, objectBean, mEditText.getText().toString(), ISBN);
+        } else {
+            getPresenter().editGoods(mContext, objectBean, mEditText.getText().toString(), ISBN);
         }
     }
 

@@ -177,7 +177,7 @@ public class EditMoreGoodsActivity extends BaseMvpActivity<EditMoreGoodsActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (AppConstant.REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
-            ObjectBean sortBean = (ObjectBean) data.getSerializableExtra("sortBean");
+            ObjectBean sortBean = (ObjectBean) data.getSerializableExtra("objectBean");
             if (sortBean == null || sortBean.getCategories() == null || sortBean.getCategories().size() < 1) {
                 Lg.getInstance().d(TAG, "sortBean == null");
                 return;

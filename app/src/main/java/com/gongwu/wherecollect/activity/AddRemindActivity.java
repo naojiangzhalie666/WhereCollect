@@ -119,6 +119,10 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
         } else {
             initEvent();
         }
+        selectGoods = (ObjectBean) getIntent().getSerializableExtra("selectGoods");
+        if (selectGoods != null) {
+            setSelectGoods(selectGoods);
+        }
     }
 
     private void initEvent() {
@@ -284,8 +288,11 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
         }
     }
 
-    public static void start(Context mContext) {
+    public static void start(Context mContext, ObjectBean selectGoods) {
         Intent intent = new Intent(mContext, AddRemindActivity.class);
+        if (selectGoods != null) {
+            intent.putExtra("selectGoods", selectGoods);
+        }
         mContext.startActivity(intent);
     }
 
@@ -395,7 +402,7 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
             mEditText.setText(selectGoods.getName());
         }
         //位置跳转按钮显示
-        if (!TextUtils.isEmpty(location)) {
+        if (!TextUtils.isEmpty(location) && !getString(R.string.not_location_goods).equals(location)) {
             locationBean = selectGoods;
             locationIv.setVisibility(View.VISIBLE);
         } else {

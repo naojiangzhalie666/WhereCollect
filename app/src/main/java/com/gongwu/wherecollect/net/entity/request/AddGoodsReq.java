@@ -15,10 +15,12 @@ public class AddGoodsReq extends RequestBase {
     private String star;
     private String name;
     private String image_urls;
+    private String image_url;
     private String count;
     private String buy_date;
     private String expire_date;
     private String key;
+    private String code;
 
     public String getKey() {
         return key;
@@ -146,5 +148,21 @@ public class AddGoodsReq extends RequestBase {
 
     public void setExpire_date(String expire_date) {
         this.expire_date = expire_date;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }

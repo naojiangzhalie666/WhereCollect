@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.EditMoreGoodsActivity;
+import com.gongwu.wherecollect.activity.SearchActivity;
 import com.gongwu.wherecollect.adapter.MainGoodsAdapter;
 import com.gongwu.wherecollect.adapter.MainGoodsSortAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
@@ -186,7 +187,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         }
     }
 
-    @OnClick({R.id.look_family_name, R.id.batch_edit_iv})
+    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.look_family_name:
@@ -194,6 +195,9 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 break;
             case R.id.batch_edit_iv:
                 EditMoreGoodsActivity.start(mContext, familyBean.getCode());
+                break;
+            case R.id.fm_search_layout:
+                SearchActivity.start(mContext);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");

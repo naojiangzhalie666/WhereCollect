@@ -91,6 +91,7 @@
     <dimen name="dip_330">330dip</dimen>
     <dimen name="dip_340">340dip</dimen>
     <dimen name="dip_350">350dip</dimen>
+    <dimen name="dip_400">400dip</dimen>
     <dimen name="msg_count_shape">20px</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>

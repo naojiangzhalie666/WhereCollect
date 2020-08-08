@@ -15,6 +15,22 @@ import java.util.Map;
 public class AddGoodsModel implements IAddGoodsContract.IAddGoodsModel {
 
     @Override
+    public void editGoods(AddGoodsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.editGoods(req, new ApiCallBack<ObjectBean>() {
+            @Override
+            public void onSuccess(ObjectBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void addObjects(AddGoodsReq req, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.addGoods(req, new ApiCallBack<List<ObjectBean>>() {

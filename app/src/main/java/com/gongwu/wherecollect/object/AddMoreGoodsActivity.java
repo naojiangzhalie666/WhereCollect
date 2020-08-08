@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.adapter.AddMoreGoodsAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
 import com.gongwu.wherecollect.adapter.StackAdapter;
@@ -27,12 +28,15 @@ import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.AddGoodsDialog;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoLookView;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -75,6 +79,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     private ObjectBean sortBean;
     private List<ObjectBean> mlist;
     private Loading loading;
+    private boolean setGoodsLocation;
 
     @Override
     protected int getLayoutId() {
@@ -122,7 +127,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         mStackAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.back_btn, R.id.add_goods_list_sort, R.id.add_other_content_tv, R.id.commit_bt})
+    @OnClick({R.id.back_btn, R.id.add_goods_list_sort, R.id.add_other_content_tv, R.id.commit_bt, R.id.select_location_bt})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -135,6 +140,10 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
                 AddGoodsPropertyActivity.start(mContext, sortBean, true);
                 break;
             case R.id.commit_bt:
+                getPresenter().addMoreGoods(mContext, mlist, sortBean);
+                break;
+            case R.id.select_location_bt:
+                setGoodsLocation = true;
                 getPresenter().addMoreGoods(mContext, mlist, sortBean);
                 break;
         }
@@ -267,13 +276,23 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     }
 
     @Override
+    public void editGoodsSuccess(ObjectBean data) {
+
+    }
+
+    @Override
     public void addObjectsSuccess(List<ObjectBean> data) {
 
     }
 
     @Override
     public void addMoreGoodsSuccess(List<ObjectBean> data) {
-        Toast.makeText(mContext, "添加完成", Toast.LENGTH_SHORT).show();
+        if (setGoodsLocation) {
+            MainActivity.moveGoodsList = new ArrayList<>();
+            MainActivity.moveGoodsList.addAll(data);
+            EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+            setGoodsLocation = false;
+        }
         finish();
     }
 
@@ -315,7 +334,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             selectImgDialog.onActivityResult(requestCode, resultCode, data);
         }
         if (AppConstant.REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
-            sortBean = (ObjectBean) data.getSerializableExtra("sortBean");
+            sortBean = (ObjectBean) data.getSerializableExtra("objectBean");
             if (sortBean.getCategories() != null && sortBean.getCategories().size() > 0) {
                 sortNameTv.setText(sortBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
             } else {

@@ -115,6 +115,48 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
 
 
     @Override
+    public void editGoods(Context context, ObjectBean tempBean, String names, String isbn) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        AddGoodsReq goodsReq = new AddGoodsReq();
+        goodsReq.setUid(App.getUser(context).getId());
+        goodsReq.setISBN(isbn);
+        goodsReq.setCategory_codes(StringUtils.isEmpty(tempBean.getCategories()) ? "" : tempBean.getCategories().get(tempBean.getCategories().size() - 1).getCode());
+        goodsReq.setChannel(TextUtils.isEmpty(tempBean.getChannel()) ? "" : JsonUtils.jsonFromObject(tempBean.getChannel().split(">")));
+        goodsReq.setColor(TextUtils.isEmpty(tempBean.getColor()) ? "" : JsonUtils.jsonFromObject(tempBean.getColor().split("、")));
+        goodsReq.setDetail(TextUtils.isEmpty(tempBean.getDetail()) ? "" : tempBean.getDetail());
+        goodsReq.setPrice_max(tempBean.getPrice() + "");
+        goodsReq.setPrice_min(tempBean.getPrice() + "");
+        goodsReq.setSeason(tempBean.getSeason());
+        goodsReq.setStar(tempBean.getStar() + "");
+        goodsReq.setName(names);
+        goodsReq.setImage_url(tempBean.getObject_url());
+        goodsReq.setCount(tempBean.getCount() + "");
+        goodsReq.setBuy_date(tempBean.getBuy_date());
+        goodsReq.setExpire_date(tempBean.getExpire_date());
+        goodsReq.setCode(tempBean.get_id());
+        mModel.editGoods(goodsReq, new RequestCallback<ObjectBean>() {
+
+            @Override
+            public void onSuccess(ObjectBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().editGoodsSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
     public void addObjects(Context context, ObjectBean tempBean, String names, String isbn) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();

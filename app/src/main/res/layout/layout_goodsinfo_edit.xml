@@ -318,8 +318,9 @@
     <RelativeLayout
         android:id="@+id/qita_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_50"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:minHeight="@dimen/dip_50"
         android:orientation="horizontal">
 
         <TextView

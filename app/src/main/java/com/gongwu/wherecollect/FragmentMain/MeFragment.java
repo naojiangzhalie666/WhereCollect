@@ -19,6 +19,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.BuyVIPActivity;
+import com.gongwu.wherecollect.activity.MessageListActivity;
 import com.gongwu.wherecollect.activity.PersonActivity;
 import com.gongwu.wherecollect.activity.ShareListActivity;
 import com.gongwu.wherecollect.base.BaseFragment;
@@ -95,7 +97,7 @@ public class MeFragment extends BaseFragment {
         buyVipIv.setVisibility(user.isIs_vip() ? View.GONE : View.VISIBLE);
     }
 
-    @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.start_share_tv, R.id.user_code_iv})
+    @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.start_share_tv, R.id.user_code_iv, R.id.msg_iv, R.id.buy_vip_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.person_iv:
@@ -113,6 +115,12 @@ public class MeFragment extends BaseFragment {
                         userCodeDialog.showDialog(user.getUsid(), resource);
                     }
                 });
+                break;
+            case R.id.msg_iv:
+                MessageListActivity.start(mContext);
+                break;
+            case R.id.buy_vip_iv:
+                BuyVIPActivity.start(mContext);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
