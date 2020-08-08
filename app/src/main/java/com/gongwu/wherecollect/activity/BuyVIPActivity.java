@@ -15,6 +15,9 @@ import com.gongwu.wherecollect.util.StringUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 购买vip
+ */
 public class BuyVIPActivity extends BaseActivity {
 
     @BindView(R.id.title_layout)
