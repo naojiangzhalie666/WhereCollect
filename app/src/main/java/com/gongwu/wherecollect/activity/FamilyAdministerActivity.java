@@ -71,7 +71,11 @@ public class FamilyAdministerActivity extends BaseMvpActivity<FamilyAdministerAc
                 finish();
                 break;
             case R.id.add_family:
-                AddFamilyActivity.start(mContext);
+                if (App.getUser(mContext).isIs_vip()) {
+                    AddFamilyActivity.start(mContext);
+                } else {
+                    BuyVIPActivity.start(mContext);
+                }
                 break;
             default:
                 break;

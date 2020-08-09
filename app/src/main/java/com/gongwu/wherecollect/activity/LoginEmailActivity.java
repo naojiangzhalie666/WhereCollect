@@ -42,6 +42,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
     @BindView(R.id.pwd_edit)
     EditText pwdEdit;
     private Loading loading;
+    private boolean isEmailLogin;
 
     @Override
     protected LoginPresenter createPresenter() {
@@ -85,6 +86,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
                     Toast.makeText(mContext, "请填写邮箱或密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                isEmailLogin = true;
                 getPresenter().loginEmail(emailEdit.getText().toString().trim(), pwdEdit.getText().toString().trim(), StringUtils.getCurrentVersionName(mContext));
                 break;
             case R.id.agree:
@@ -99,6 +101,10 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
 
     @Override
     public void loginbyThirdPartySuccess(UserBean data) {
+        if (isEmailLogin){
+            data.setPassLogin(true);
+        }
+        isEmailLogin = false;
         getPresenter().startMainActivity(this, data);
     }
 
@@ -126,6 +132,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
 
     @Override
     public void onError(String result) {
+        isEmailLogin = false;
         Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 

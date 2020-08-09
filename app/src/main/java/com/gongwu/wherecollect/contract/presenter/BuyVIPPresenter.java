@@ -5,6 +5,7 @@ import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.contract.model.BuyVIPModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
 
 public class BuyVIPPresenter extends BasePresenter<IBuyVIPContract.IBuyVIPView> implements IBuyVIPContract.IBuyVIPPresenter {
@@ -36,6 +37,30 @@ public class BuyVIPPresenter extends BasePresenter<IBuyVIPContract.IBuyVIPView> 
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getVIPPriceSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getUserInfo(String uid) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        mModel.getUserInfo(uid, new RequestCallback<UserBean>() {
+            @Override
+            public void onSuccess(UserBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getUserInfoSuccess(data);
                 }
             }
 

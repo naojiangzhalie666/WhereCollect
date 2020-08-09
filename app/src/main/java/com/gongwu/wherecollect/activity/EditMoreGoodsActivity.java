@@ -107,6 +107,7 @@ public class EditMoreGoodsActivity extends BaseMvpActivity<EditMoreGoodsActivity
                 finish();
                 break;
             case R.id.edit_more_goods_del:
+                if (isVip()) return;
                 //删除选择物品
                 DialogUtil.show(null, "删除选中物品?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
                     @Override
@@ -116,6 +117,7 @@ public class EditMoreGoodsActivity extends BaseMvpActivity<EditMoreGoodsActivity
                 }, null);
                 break;
             case R.id.edit_more_goods_location:
+                if (isVip()) return;
                 MainActivity.moveGoodsList = new ArrayList<>();
                 for (ObjectBean bean : mlist) {
                     if (bean.isSelect()) {
@@ -126,11 +128,20 @@ public class EditMoreGoodsActivity extends BaseMvpActivity<EditMoreGoodsActivity
                 finish();
                 break;
             case R.id.edit_more_goods_tag:
+                if (isVip()) return;
                 SelectSortActivity.start(mContext, null);
                 break;
             default:
                 break;
         }
+    }
+
+    private boolean isVip() {
+        if (!App.getUser(mContext).isIs_vip()) {
+            BuyVIPActivity.start(mContext);
+            return false;
+        }
+        return true;
     }
 
     private void showEditBtnLayoutUpOrDown(boolean show) {

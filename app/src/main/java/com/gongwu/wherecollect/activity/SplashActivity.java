@@ -71,6 +71,7 @@ public class SplashActivity extends BaseActivity {
         PermissionX.init(this).permissions(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_PHONE_STATE,
                 Manifest.permission.CAMERA).
                 onExplainRequestReason(new ExplainReasonCallback() {
                     @Override

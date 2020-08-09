@@ -49,6 +49,7 @@
                 android:layout_height="@dimen/dip_50"
                 android:background="@color/transparent"
                 android:hint="密码"
+                android:inputType="textPassword"
                 android:singleLine="true"
                 android:textColor="@color/black_87"
                 android:textSize="@dimen/f_13" />

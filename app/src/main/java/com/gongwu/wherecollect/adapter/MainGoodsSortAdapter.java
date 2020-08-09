@@ -72,7 +72,7 @@ public class MainGoodsSortAdapter extends RecyclerView.Adapter<MainGoodsSortAdap
         MainGoodsBean bean = mData.get(i);
         holder.nameTv.setText(bean.getName());
         holder.sortView.setSelected(i == selectPosition);
-        holder.nameTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, i == selectPosition ? 16 : 13);
+        holder.nameTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, i == selectPosition ? 14 : 13);
     }
 
     @Override
@@ -85,7 +85,6 @@ public class MainGoodsSortAdapter extends RecyclerView.Adapter<MainGoodsSortAdap
         TextView nameTv;
         @BindView(R.id.main_goods_sort_view)
         View sortView;
-
 
         public CustomViewHolder(View view) {
             super(view);

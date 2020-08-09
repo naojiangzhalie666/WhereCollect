@@ -256,7 +256,6 @@ public class LoginPresenter extends BasePresenter<ILoginContract.ILoginView> imp
 
     public void startMainActivity(Activity ac, UserBean user) {
         if (App.getUser(ac) != null && App.getUser(ac).isTest()) {
-            user.setPassLogin(true);
             user.setId(user.getId());
             user.setTestId("");
             logoutTest(App.getUser(ac).getId());

@@ -723,10 +723,41 @@ public class ApiUtils {
     }
 
     /**
+     * 获取用户信息
+     */
+    public static <D extends RequestBase> void getUserInfo(String uid, ApiCallBack<UserBean> callBack) {
+        ApiInstance.getApi().getUserInfo(uid).enqueue(callBack);
+    }
+
+    /**
      * 反馈意见
      */
     public static <D extends RequestBase> void feedBack(D request, ApiCallBack<FeedbackBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().feedBack(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 修改用户信息
+     */
+    public static <D extends RequestBase> void editInfo(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().editInfo(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 设置手机号
+     */
+    public static <D extends RequestBase> void changePhone(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().changePhone(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 判断手机号是否绑定
+     */
+    public static <D extends RequestBase> void isRegistered(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().isRegistered(requestMap).enqueue(callBack);
     }
 }

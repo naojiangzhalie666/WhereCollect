@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 import com.gongwu.wherecollect.R;
@@ -16,11 +17,22 @@ import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.contract.presenter.BuyVIPPresenter;
 import com.gongwu.wherecollect.net.entity.WxPayBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
+import com.gongwu.wherecollect.service.TimerService;
+import com.gongwu.wherecollect.util.EventBusMsg;
+import com.gongwu.wherecollect.util.JsonUtils;
+import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.view.Loading;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,7 +48,9 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     private static final String WECHAT = "wechat";
 
     private static final String ALIPAY = "alipay";
+
     private VIPBean vipBean;
+    private Loading loading;
 
     @Override
     protected int getLayoutId() {
@@ -45,6 +59,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @Override
     protected void initViews() {
+        EventBus.getDefault().register(this);
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -54,7 +69,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         }
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) titleLayout.getLayoutParams();
         lp.setMargins(0, StringUtils.getStatusBarHeight(mContext), 0, 0);
-
         getPresenter().getVIPPrice(App.getUser(mContext).getId());
     }
 
@@ -69,7 +83,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                 if (vipBean == null) {
                     getPresenter().getVIPPrice(App.getUser(mContext).getId());
                 } else {
-                    getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), 1, WECHAT, null);
+                    getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), WECHAT, null);
                 }
                 break;
             default:
@@ -115,6 +129,16 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     }
 
     @Override
+    public void getUserInfoSuccess(UserBean data) {
+        if (data != null) {
+            data.setPassLogin(App.getUser(mContext).isPassLogin());
+            SaveDate.getInstence(mContext).setUser(JsonUtils.jsonFromObject(data));
+            App.setUser(data);
+            finish();
+        }
+    }
+
+    @Override
     public void buyVipWXOrAliSuccess(BuyVIPResultBean data) {
         if (data != null && data.getWeichat() != null) {
             startWechatPay(data.getWeichat());
@@ -123,21 +147,34 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @Override
     public void showProgressDialog() {
-
+        loading = Loading.show(null, mContext, "");
     }
 
     @Override
     public void hideProgressDialog() {
-
+        if (loading != null) {
+            loading.dismiss();
+        }
     }
 
     @Override
     public void onError(String result) {
-
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected BuyVIPPresenter createPresenter() {
         return BuyVIPPresenter.getInstance();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.RefreshUserInfo msg) {
+        getPresenter().getUserInfo(App.getUser(mContext).getId());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

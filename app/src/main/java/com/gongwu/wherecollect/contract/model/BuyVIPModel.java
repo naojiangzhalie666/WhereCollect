@@ -4,6 +4,7 @@ import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
 import com.gongwu.wherecollect.util.ApiUtils;
 
@@ -14,6 +15,22 @@ public class BuyVIPModel implements IBuyVIPContract.IBuyVIPModel {
         ApiUtils.getVIPPrice(uid, new ApiCallBack<VIPBean>() {
             @Override
             public void onSuccess(VIPBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getUserInfo(String uid, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getUserInfo(uid, new ApiCallBack<UserBean>() {
+            @Override
+            public void onSuccess(UserBean data) {
                 callback.onSuccess(data);
             }
 

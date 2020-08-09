@@ -5,7 +5,7 @@ public class WxPayBean {
     private String partnerid;//微信支付分配的商户号
     private String prepayid;//微信返回的支付交易会话ID
     //        private String package;// 扩展字段 暂填写固定值Sign=WXPay
-    private String noncestr;//随机字符串,随机字符串，不长于32位。推荐随机数生成算法
+    private String nonce_str;//随机字符串,随机字符串，不长于32位。推荐随机数生成算法
     private String sign;//签名，详见签名生成算法注意：签名方式一定要与统一下单接口使用的一致
     private String timestamp;//时间戳，请见接口规则-参数规定
 
@@ -34,11 +34,11 @@ public class WxPayBean {
     }
 
     public String getNoncestr() {
-        return noncestr;
+        return nonce_str;
     }
 
     public void setNoncestr(String noncestr) {
-        this.noncestr = noncestr;
+        this.nonce_str = noncestr;
     }
 
     public String getSign() {

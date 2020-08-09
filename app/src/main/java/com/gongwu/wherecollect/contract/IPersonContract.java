@@ -3,20 +3,20 @@ package com.gongwu.wherecollect.contract;
 
 import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
-import com.gongwu.wherecollect.net.entity.response.UserBean;
+import com.gongwu.wherecollect.net.entity.request.EditPersonReq;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+
 
 public interface IPersonContract {
     interface IPersonModel {
-
-        void logout(final RequestCallback callback);
+        void editInfo(EditPersonReq req, final RequestCallback callback);
     }
 
     interface IPersonPresenter {
-        void logout();
+        void editInfo(String uid, int keyword, String value);
     }
 
     interface IPersonView extends BaseView {
-
-        void logoutSuccess(UserBean data);
+        void editInfoSuccess(RequestSuccessBean data);
     }
 }

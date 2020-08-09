@@ -54,15 +54,14 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             switch (resp.errCode) {
                 case 0://支付成功
                     Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
+
                     Lg.getInstance().d(TAG, "onResp: resp.errCode = 0   支付成功");
                     break;
                 case -1://错误，可能的原因：签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等
-                    Toast.makeText(this, "支付错误" + resp.errCode, Toast.LENGTH_SHORT).show();
                     Lg.getInstance().d(TAG, "onResp: resp.errCode = -1  支付错误");
                     break;
                 case -2://用户取消，无需处理。发生场景：用户不支付了，点击取消，返回APP。
                     Lg.getInstance().d(TAG, "onResp: resp.errCode = -2  用户取消");
-                    Toast.makeText(this, "用户取消" + resp.errCode, Toast.LENGTH_SHORT).show();
                     break;
 
             }

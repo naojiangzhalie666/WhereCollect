@@ -11,10 +11,6 @@ android {
             storeFile file('D:/key.jks')
             storePassword '123456'
         }
-
-        debug {
-            storeFile file("../debug.keystore")
-        }
     }
 
     defaultConfig {

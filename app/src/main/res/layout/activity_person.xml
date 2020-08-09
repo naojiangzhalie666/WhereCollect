@@ -262,9 +262,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/black_12" />
+                    android:layout_height="1px"
+                    android:layout_marginStart="@dimen/dip_16"
+                    android:background="@color/split_color" />
 
                 <RelativeLayout
                     android:id="@+id/wb_layout"
@@ -300,9 +300,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/black_12"></View>
+                    android:layout_height="1px"
+                    android:layout_marginStart="@dimen/dip_16"
+                    android:background="@color/split_color" />
 
                 <RelativeLayout
                     android:id="@+id/qq_layout"
@@ -338,9 +338,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/black_12" />
+                    android:layout_height="1px"
+                    android:layout_marginStart="@dimen/dip_16"
+                    android:background="@color/split_color" />
 
                 <RelativeLayout
                     android:id="@+id/email_layout"
@@ -417,9 +417,10 @@
                 <View
                     android:id="@+id/tv_changePWD_view"
                     android:layout_width="match_parent"
-                    android:layout_height="2px"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/black_12" />
+                    android:layout_height="1px"
+                    android:layout_marginStart="@dimen/dip_16"
+                    android:background="@color/split_color" />
+
                 <!--android:drawableLeft="@drawable/icon_a_pwd"-->
                 <TextView
                     android:id="@+id/tv_changePWD"

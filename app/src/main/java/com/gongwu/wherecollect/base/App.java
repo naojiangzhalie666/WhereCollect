@@ -21,6 +21,8 @@ import com.gongwu.wherecollect.util.SaveDate;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
@@ -69,8 +71,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         LitePalApplication.initialize(this);
+        IWXAPI api = WXAPIFactory.createWXAPI(this, AppConstant.WX_APP_ID);
+        api.registerApp(AppConstant.WX_APP_ID);
         initUM();
-
         initCache();
         try {//必须加上/否则剪切照片可能会出错
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
