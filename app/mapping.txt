@@ -15350,9 +15350,9 @@ com.gongwu.wherecollect.util.EventBusMsg$MainTabMessage -> com.gongwu.wherecolle
 com.gongwu.wherecollect.util.EventBusMsg$RefreshActivity -> com.gongwu.wherecollect.util.g:
 com.gongwu.wherecollect.util.EventBusMsg$RefreshFragment -> com.gongwu.wherecollect.util.h:
 com.gongwu.wherecollect.util.EventBusMsg$RefreshRoomsFragment -> com.gongwu.wherecollect.util.i:
-com.gongwu.wherecollect.util.EventBusMsg$startService -> com.gongwu.wherecollect.util.j:
-com.gongwu.wherecollect.util.EventBusMsg$stopService -> com.gongwu.wherecollect.util.k:
-com.gongwu.wherecollect.util.EventBusMsg$updateShareMsg -> com.gongwu.wherecollect.util.l:
+com.gongwu.wherecollect.util.EventBusMsg$StartService -> com.gongwu.wherecollect.util.j:
+com.gongwu.wherecollect.util.EventBusMsg$StopService -> com.gongwu.wherecollect.util.k:
+com.gongwu.wherecollect.util.EventBusMsg$UpdateShareMsg -> com.gongwu.wherecollect.util.l:
 com.gongwu.wherecollect.util.FileUtil -> com.gongwu.wherecollect.util.m:
     android.graphics.Bitmap centerSquareScaleBitmap(android.graphics.Bitmap,int) -> a
     java.io.File compress(java.io.File,boolean) -> a

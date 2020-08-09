@@ -11,6 +11,10 @@ android {
             storeFile file('D:/key.jks')
             storePassword '123456'
         }
+
+        debug {
+            storeFile file("../debug.keystore")
+        }
     }
 
     defaultConfig {
@@ -119,6 +123,8 @@ dependencies {
     implementation 'com.contrarywind:Android-PickerView:4.1.8'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.pixplicity.sharp:library:1.1.0'
+    //微信支付
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
     implementation files('libs/glide.jar')
     implementation files('libs/SocialSDK_QQ_Simplify.jar')

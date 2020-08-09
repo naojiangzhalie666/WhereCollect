@@ -24,8 +24,11 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -717,5 +720,18 @@ public class StringUtils {
             e.printStackTrace();
         }
         return statusBarHeight;
+    }
+
+    /**
+     * 判断微信是否安装
+     * @param context
+     * @return true 已安装   false 未安装
+     */
+    public  static boolean isWxAppInstalled(Context context) {
+        IWXAPI wxApi = WXAPIFactory.createWXAPI(context, null);
+        wxApi.registerApp(AppConstant.WX_APP_ID);
+        boolean bIsWXAppInstalled = false;
+        bIsWXAppInstalled = wxApi.isWXAppInstalled();
+        return bIsWXAppInstalled;
     }
 }

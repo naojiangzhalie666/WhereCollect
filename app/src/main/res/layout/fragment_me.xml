@@ -129,6 +129,7 @@
             android:background="@color/split_color" />
 
         <TextView
+            android:id="@+id/user_share_app"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dip_50"
             android:background="@drawable/select_white_bg"
@@ -149,6 +150,7 @@
             android:background="@color/split_color" />
 
         <TextView
+            android:id="@+id/feed_back_tv"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dip_50"
             android:background="@drawable/select_white_bg"

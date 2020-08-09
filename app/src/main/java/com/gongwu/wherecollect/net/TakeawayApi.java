@@ -1,7 +1,9 @@
 package com.gongwu.wherecollect.net;
 
 import com.gongwu.wherecollect.net.entity.base.ResponseBase;
+import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
+import com.gongwu.wherecollect.net.entity.response.FeedbackBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
 import com.gongwu.wherecollect.net.entity.response.MessagePostBean;
 import com.gongwu.wherecollect.net.entity.response.MyFamilyListBean;
@@ -30,6 +32,7 @@ import com.gongwu.wherecollect.net.entity.response.SerchListBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
+import com.gongwu.wherecollect.net.entity.response.VIPBean;
 
 import java.util.List;
 import java.util.Map;
@@ -361,4 +364,14 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("users/object-del")
     Call<ResponseBase<RequestSuccessBean>> delGoods(@FieldMap Map<String, String> map);
+
+    @GET("api/app/v420/vip-price")
+    Call<ResponseBase<VIPBean>> getVIPPrice(@Query("uid") String uid);
+
+    @GET("api/app/v420/vorder")
+    Call<ResponseBase<BuyVIPResultBean>> buyVipWXOrAli(@Query("uid") String uid, @Query("price") int price, @Query("type") String type, @Query("couponId") String couponId);
+
+    @FormUrlEncoded
+    @POST("users/feedback")
+    Call<ResponseBase<FeedbackBean>> feedBack(@FieldMap Map<String, String> map);
 }

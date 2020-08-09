@@ -29,6 +29,8 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
     <application
         android:name=".base.App"
         android:allowBackup="true"
@@ -39,7 +41,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.BuyVIPActivity"></activity>
+        <activity android:name=".activity.FeedBackActivity"></activity>
+        <activity android:name=".activity.BuyVIPActivity" />
         <activity android:name=".activity.MessageListActivity" />
         <activity android:name=".activity.EditMoreGoodsActivity" />
         <activity android:name=".activity.ImportMoreGoodsActivity" />
@@ -113,6 +116,19 @@
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <!-- 这里填写你申请的app id -->
+                <data android:scheme="wx9b2c37b4717d4c13" />
             </intent-filter>
         </activity>
         <activity

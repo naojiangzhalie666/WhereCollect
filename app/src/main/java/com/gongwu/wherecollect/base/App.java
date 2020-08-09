@@ -70,6 +70,7 @@ public class App extends Application {
         super.onCreate();
         LitePalApplication.initialize(this);
         initUM();
+
         initCache();
         try {//必须加上/否则剪切照片可能会出错
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -98,7 +99,7 @@ public class App extends Application {
 
     private void initUM() {
         Config.DEBUG = BuildConfig.LOGSHOW;
-        PlatformConfig.setWeixin("wx9b2c37b4717d4c13", "e1777498993b4eecbc20e9ef8c520c5d");
+        PlatformConfig.setWeixin(AppConstant.WX_APP_ID, "e1777498993b4eecbc20e9ef8c520c5d");
 //        PlatformConfig.setQQZone("1105780975", "YtsbvRT5V9PUaG8X1");
         PlatformConfig.setQQZone("1106091663", "DknG4bIDrqPOQPSa");
         PlatformConfig.setSinaWeibo("2932944667", "ce56f1cd16996a7895964192463a3027", "https://sns.whalecloud" +

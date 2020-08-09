@@ -5,9 +5,11 @@ import com.gongwu.wherecollect.net.ApiInstance;
 import com.gongwu.wherecollect.net.entity.base.RequestBase;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
+import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
 import com.gongwu.wherecollect.net.entity.response.ChannelBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
+import com.gongwu.wherecollect.net.entity.response.FeedbackBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
 import com.gongwu.wherecollect.net.entity.response.MessagePostBean;
 import com.gongwu.wherecollect.net.entity.response.MyFamilyListBean;
@@ -32,6 +34,7 @@ import com.gongwu.wherecollect.net.entity.response.SerchListBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
+import com.gongwu.wherecollect.net.entity.response.VIPBean;
 
 import java.util.List;
 import java.util.Map;
@@ -696,11 +699,34 @@ public class ApiUtils {
         ApiInstance.getApi().getGoodsRemindsById(uid, object_id).enqueue(callBack);
     }
 
+
     /**
      * 删除物品
      */
     public static <D extends RequestBase> void delGoods(D request, ApiCallBack<RequestSuccessBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().delGoods(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 获取vip价格
+     */
+    public static <D extends RequestBase> void getVIPPrice(String uid, ApiCallBack<VIPBean> callBack) {
+        ApiInstance.getApi().getVIPPrice(uid).enqueue(callBack);
+    }
+
+    /**
+     * 购买vip
+     */
+    public static <D extends RequestBase> void buyVipWXOrAli(String uid, int price, String type, String couponId, ApiCallBack<BuyVIPResultBean> callBack) {
+        ApiInstance.getApi().buyVipWXOrAli(uid, price, type, couponId).enqueue(callBack);
+    }
+
+    /**
+     * 反馈意见
+     */
+    public static <D extends RequestBase> void feedBack(D request, ApiCallBack<FeedbackBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().feedBack(requestMap).enqueue(callBack);
     }
 }

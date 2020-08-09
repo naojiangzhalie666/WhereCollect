@@ -303,14 +303,16 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
     }
 
     private void setMainActTabRedNum() {
+        int num = 0;
         if (mUnData.size() > 0) {
-            int num = 0;
             for (RemindBean bean : mUnData) {
                 if (bean.isTimeout()) {
                     num++;
                 }
             }
 //            EventBus.getDefault().post(new EventBusMsg.RefreshRemindRedNum(num > 0));
+            SendIconNumUtil.sendIconNumNotification(num, (Application) getContext().getApplicationContext());
+        } else {
             SendIconNumUtil.sendIconNumNotification(num, (Application) getContext().getApplicationContext());
         }
     }

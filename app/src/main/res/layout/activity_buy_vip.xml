@@ -204,7 +204,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/select_location_bt"
+        android:id="@+id/commit_bt"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_45"

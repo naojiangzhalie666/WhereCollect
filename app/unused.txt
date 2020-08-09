@@ -9059,7 +9059,7 @@ androidx.transition.Scene
     private java.lang.Runnable mEnterAction
 androidx.appcompat.widget.ActivityChooserModel$ActivityChooserModelClient
 io.reactivex.internal.operators.single.SingleInternalHelper$ToFlowableIterable
-com.gongwu.wherecollect.util.EventBusMsg$startService
+com.gongwu.wherecollect.util.EventBusMsg$StartService
     public void <init>()
 io.reactivex.internal.operators.observable.ObservableAmb
 androidx.appcompat.app.ActionBarDrawerToggle$ToolbarCompatDelegate
