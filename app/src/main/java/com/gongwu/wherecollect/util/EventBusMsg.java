@@ -27,7 +27,8 @@ public class EventBusMsg {
     public static class StartService {
     }
 
-    public static class RefreshUserInfo {
+    public static class BuyVipSuccess {
+
     }
 
     public static class StopService {

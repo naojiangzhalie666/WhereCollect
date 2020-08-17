@@ -4,7 +4,7 @@ import com.gongwu.wherecollect.net.entity.base.RequestBase;
 
 public class RegisterReq extends RequestBase {
 
-    private String avatar = "http://7xroa4.com1.z0.glb.clouddn.com/default/shounaer_icon.png";
+    private String avatar = "http://cdn.shouner.com/default/shounaer_icon.png";
     private String mail;
     private String nickname;
     private String password;

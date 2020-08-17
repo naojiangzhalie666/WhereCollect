@@ -17,6 +17,7 @@ import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IPersonContract;
 import com.gongwu.wherecollect.contract.presenter.PersonPresenter;
+import com.gongwu.wherecollect.net.entity.request.BindAppReq;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.util.DialogUtil;
@@ -27,12 +28,14 @@ import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.QiNiuUploadUtil;
 import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.ChangeHeaderImgDialog;
 import com.gongwu.wherecollect.view.ChangeSexDialog;
 import com.gongwu.wherecollect.view.DateBirthdayDialog;
 import com.gongwu.wherecollect.view.EditTextDialog;
 import com.gongwu.wherecollect.view.Loading;
 import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -103,11 +106,11 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
     @Override
     protected void initViews() {
         mTitleView.setText(R.string.title_ac_person);
-        user = App.getUser(mContext);
-        refreshUi();
+        getPresenter().getUserInfo(App.getUser(mContext).getId());
     }
 
-    @OnClick({R.id.back_btn, R.id.tv_loginOut, R.id.nick_layout, R.id.sex_layout, R.id.birth_layout, R.id.head_layout, R.id.phone_layout})
+    @OnClick({R.id.back_btn, R.id.tv_loginOut, R.id.nick_layout, R.id.sex_layout, R.id.birth_layout,
+            R.id.head_layout, R.id.phone_layout, R.id.wx_layout, R.id.wb_layout, R.id.qq_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -122,7 +125,7 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
                 };
                 break;
             case R.id.nick_layout:
-                EditTextDialog nameDialog = new EditTextDialog(mContext, "昵称", "请输入昵称",
+                EditTextDialog nameDialog = new EditTextDialog(mContext, "昵称", "请输入新昵称",
                         EditTextDialog.TYPE_TEXT) {
                     @Override
                     public void result(String result) {
@@ -153,6 +156,15 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
                 break;
             case R.id.phone_layout:
                 ConfigChangePhoneActivity.start(mContext);
+                break;
+            case R.id.wx_layout:
+                getPresenter().otherLogin(mContext, SHARE_MEDIA.WEIXIN);
+                break;
+            case R.id.wb_layout:
+                getPresenter().otherLogin(mContext, SHARE_MEDIA.SINA);
+                break;
+            case R.id.qq_layout:
+                getPresenter().otherLogin(mContext, SHARE_MEDIA.QQ);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -197,16 +209,19 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
             return;
         if (user.getQq() != null && (!TextUtils.isEmpty(user.getQq().getOpenid()))) {
             tvQq.setText(user.getQq().getNickname());
+            qqLayout.setEnabled(false);
         } else {
             tvPhone.setText(R.string.unbound_text);
         }
         if (user.getWeixin() != null && (!TextUtils.isEmpty(user.getWeixin().getOpenid()))) {
             tvWx.setText(user.getWeixin().getNickname());
+            wxLayout.setEnabled(false);
         } else {
             tvWx.setText(R.string.unbound_text);
         }
         if (user.getSina() != null && (!TextUtils.isEmpty(user.getSina().getOpenid()))) {
             tvWb.setText(user.getSina().getNickname());
+            wbLayout.setEnabled(false);
         } else {
             tvWb.setText(R.string.unbound_text);
         }
@@ -219,6 +234,17 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
             tvPhone.setText(user.getMobile());
         } else {
             tvPhone.setText(R.string.unbound_text);
+        }
+    }
+
+    @Override
+    public void getUserInfoSuccess(UserBean data) {
+        if (data != null) {
+            data.setPassLogin(App.getUser(mContext).isPassLogin());
+            user = data;
+            SaveDate.getInstence(this).setUser(JsonUtils.jsonFromObject(user));
+            App.setUser(user);
+            refreshUi();
         }
     }
 
@@ -249,6 +275,28 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
             refreshUi();
             String stringUser = JsonUtils.jsonFromObject(user);
             SaveDate.getInstence(mContext).setUser(stringUser);
+        }
+    }
+
+    @Override
+    public void bindCheckSuccess(RequestSuccessBean data, BindAppReq req) {
+        //判断第三方账号是否绑定
+        if (data.getBound() == AppConstant.BIND_APP) {
+            DialogUtil.show("提示", "已绑定其他收哪儿账号,是否继续绑定?继续绑定将删除以前绑定账号", "继续", "取消", this, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    getPresenter().bindAccount(req);
+                }
+            }, null);
+        } else {
+            getPresenter().bindAccount(req);
+        }
+    }
+
+    @Override
+    public void bindAccountSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            getPresenter().getUserInfo(App.getUser(mContext).getId());
         }
     }
 
@@ -325,7 +373,7 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
 
     @Override
     public void onError(String result) {
-
+        ToastUtil.show(mContext, result, Toast.LENGTH_SHORT);
     }
 
     @Override

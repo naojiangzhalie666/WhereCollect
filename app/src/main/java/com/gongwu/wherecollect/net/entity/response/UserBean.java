@@ -251,6 +251,9 @@ public class UserBean implements Serializable {
     }
 
     public String getAvatar() {
+        if (!TextUtils.isEmpty(avatar)) {
+            avatar.replace("7xroa4.com1.z0.glb.clouddn.com", "cdn.shouner.com");
+        }
         return avatar;
     }
 
@@ -298,7 +301,7 @@ public class UserBean implements Serializable {
         this.is_vip = is_vip;
     }
 
-    public static class ScoreBean implements Serializable{
+    public static class ScoreBean implements Serializable {
         private int total;
         private int current;
 
@@ -319,7 +322,7 @@ public class UserBean implements Serializable {
         }
     }
 
-    public static class WeixinBean implements Serializable{
+    public static class WeixinBean implements Serializable {
         /**
          * nickname : 呜呜呜呜
          * unionid : o9XfKwflYsmdJZpci3Nh8KYSIKwg
@@ -354,7 +357,7 @@ public class UserBean implements Serializable {
         }
     }
 
-    public static class QqBean implements Serializable{
+    public static class QqBean implements Serializable {
         /**
          * nickname : 赵进
          * openid : 4EE7BFC2FB9494EAACFC5FF3E409A41D
@@ -379,7 +382,7 @@ public class UserBean implements Serializable {
         }
     }
 
-    public static class SinaBean implements Serializable{
+    public static class SinaBean implements Serializable {
         private String nickname;
         private String openid;
 

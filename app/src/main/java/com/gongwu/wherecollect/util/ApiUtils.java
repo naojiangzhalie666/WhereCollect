@@ -760,4 +760,34 @@ public class ApiUtils {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().isRegistered(requestMap).enqueue(callBack);
     }
+
+
+    /**
+     * APP端分享成功记录
+     */
+    public static <D extends RequestBase> void sharedApp(String uid, String share_type, ApiCallBack<RequestSuccessBean> callBack) {
+        ApiInstance.getApi().sharedApp(uid, share_type).enqueue(callBack);
+    }
+
+    /**
+     * 支付成功后，app端的同步通知
+     */
+    public static <D extends RequestBase> void notificationServer(String uid, String pay_type, String order_no, ApiCallBack<RequestSuccessBean> callBack) {
+        ApiInstance.getApi().notificationServer(uid, pay_type, order_no).enqueue(callBack);
+    }
+
+    /**
+     * 判断用户是否绑定了第三方账号
+     */
+    public static <D extends RequestBase> void bindCheck(String uid, String pay_type, String order_no, ApiCallBack<RequestSuccessBean> callBack) {
+        ApiInstance.getApi().bindCheck(uid, pay_type, order_no).enqueue(callBack);
+    }
+
+    /**
+     * 绑定第三方账号
+     */
+    public static <D extends RequestBase> void bindAccount(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().bindAccount(requestMap).enqueue(callBack);
+    }
 }

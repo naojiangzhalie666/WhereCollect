@@ -387,6 +387,19 @@ public interface TakeawayApi {
     Call<ResponseBase<RequestSuccessBean>> changePhone(@FieldMap Map<String, String> map);
 
     @FormUrlEncoded
-    @POST("users/is-registered?")
+    @POST("users/is-registered")
     Call<ResponseBase<RequestSuccessBean>> isRegistered(@FieldMap Map<String, String> map);
+
+    @GET("api/app/v420/app/share")
+    Call<ResponseBase<RequestSuccessBean>> sharedApp(@Query("uid") String uid, @Query("share_type") String share_type);
+
+    @GET("api/app/v420/app/notify")
+    Call<ResponseBase<RequestSuccessBean>> notificationServer(@Query("uid") String uid, @Query("pay_type") String pay_type, @Query("order_no") String order_no);
+
+    @GET("api/app/v420/bind-check")
+    Call<ResponseBase<RequestSuccessBean>> bindCheck(@Query("uid") String uid, @Query("openid") String openid, @Query("type") String type);
+
+    @FormUrlEncoded
+    @POST("api/app/v420/bind-account")
+    Call<ResponseBase<RequestSuccessBean>> bindAccount(@FieldMap Map<String, String> map);
 }

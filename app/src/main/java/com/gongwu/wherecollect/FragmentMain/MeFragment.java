@@ -74,13 +74,18 @@ public class MeFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (!isAdded()) return;
-        refreshUi();
         initUI();
     }
 
     private void initUI() {
         StatusBarUtil.setStatusBarColor(getActivity(), getResources().getColor(R.color.activity_bg));
         StatusBarUtil.setLightStatusBar(getActivity(), true);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        refreshUi();
     }
 
     /**

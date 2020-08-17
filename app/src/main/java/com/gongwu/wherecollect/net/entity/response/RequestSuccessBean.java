@@ -2,6 +2,7 @@ package com.gongwu.wherecollect.net.entity.response;
 
 public class RequestSuccessBean {
     private int ok;
+    private int bound;
     private String remindId;
     private boolean isRegistered;
 
@@ -27,5 +28,13 @@ public class RequestSuccessBean {
 
     public void setRegistered(boolean registered) {
         isRegistered = registered;
+    }
+
+    public int getBound() {
+        return bound;
+    }
+
+    public void setBound(int bound) {
+        this.bound = bound;
     }
 }

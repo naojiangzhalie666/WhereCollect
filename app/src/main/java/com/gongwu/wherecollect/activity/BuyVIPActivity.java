@@ -4,8 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -17,18 +22,20 @@ import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.contract.presenter.BuyVIPPresenter;
 import com.gongwu.wherecollect.net.entity.WxPayBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
-import com.gongwu.wherecollect.service.TimerService;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.JsonUtils;
 import com.gongwu.wherecollect.util.SaveDate;
+import com.gongwu.wherecollect.util.ShareUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.Loading;
-import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,6 +51,16 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @BindView(R.id.title_layout)
     RelativeLayout titleLayout;
+    @BindView(R.id.buy_vip_hint)
+    TextView buyVipHint;
+    @BindView(R.id.buy_vip_original)
+    TextView buyVipOriginal;
+    @BindView(R.id.commit_bt)
+    Button commitBt;
+    @BindView(R.id.check_wechat)
+    CheckBox wechatCk;
+    @BindView(R.id.check_alipay)
+    CheckBox alipayCk;
 
     private static final String WECHAT = "wechat";
 
@@ -51,6 +68,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     private VIPBean vipBean;
     private Loading loading;
+    private String orderId;
 
     @Override
     protected int getLayoutId() {
@@ -70,10 +88,14 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) titleLayout.getLayoutParams();
         lp.setMargins(0, StringUtils.getStatusBarHeight(mContext), 0, 0);
         getPresenter().getVIPPrice(App.getUser(mContext).getId());
+        buyVipHint.setVisibility(View.GONE);
+        buyVipOriginal.setVisibility(View.GONE);
+        commitBt.setVisibility(View.GONE);
+
     }
 
 
-    @OnClick({R.id.back_btn, R.id.commit_bt})
+    @OnClick({R.id.back_btn, R.id.commit_bt, R.id.buy_vip_original, R.id.alipay_layout, R.id.wechat_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn://返回
@@ -83,12 +105,61 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                 if (vipBean == null) {
                     getPresenter().getVIPPrice(App.getUser(mContext).getId());
                 } else {
-                    getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), WECHAT, null);
+                    //是否分享
+                    if (TextUtils.isEmpty(vipBean.getCouponId())) {
+                        sharedAPP();
+                    } else {
+                        if (alipayCk.isChecked()) {
+                            Toast.makeText(mContext, "支付宝暂未接入,请使用微信支付", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, null);
+                    }
                 }
+                break;
+            case R.id.buy_vip_original:
+                if (alipayCk.isChecked()) {
+                    Toast.makeText(mContext, "支付宝暂未接入,请使用微信支付", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, null);
+                break;
+            case R.id.alipay_layout:
+                alipayCk.setChecked(true);
+                wechatCk.setChecked(false);
+                break;
+            case R.id.wechat_layout:
+                alipayCk.setChecked(false);
+                wechatCk.setChecked(true);
                 break;
             default:
                 break;
         }
+    }
+
+    private void sharedAPP() {
+        ShareUtil.openShareVIPDialog(this, new UMShareListener() {
+            @Override
+            public void onStart(SHARE_MEDIA share_media) {
+
+            }
+
+            @Override
+            public void onResult(SHARE_MEDIA share_media) {
+                getPresenter().sharedApp(App.getUser(mContext).getId(), "WECHAT");
+
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA share_media, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media) {
+
+            }
+        });
     }
 
     /**
@@ -113,7 +184,10 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         payRequest.timeStamp = wxPayBean.getTimestamp();
         payRequest.sign = wxPayBean.getSign();
         //发起请求，调起微信前去支付
-        api.sendReq(payRequest);
+        boolean send = api.sendReq(payRequest);
+        if (send) {
+            orderId = wxPayBean.getOrder_no();
+        }
     }
 
     public static void start(Context context) {
@@ -125,6 +199,16 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     public void getVIPPriceSuccess(VIPBean data) {
         if (data != null) {
             vipBean = data;
+            if (TextUtils.isEmpty(data.getCouponId())) {
+                buyVipHint.setVisibility(View.VISIBLE);
+                buyVipOriginal.setVisibility(View.VISIBLE);
+                commitBt.setVisibility(View.VISIBLE);
+            } else {
+                commitBt.setVisibility(View.VISIBLE);
+                commitBt.setText(R.string.shared_vip_buy_commit);
+                buyVipHint.setVisibility(View.VISIBLE);
+                buyVipHint.setText(R.string.shared_vip_buy_hint);
+            }
         }
     }
 
@@ -135,6 +219,25 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
             SaveDate.getInstence(mContext).setUser(JsonUtils.jsonFromObject(data));
             App.setUser(data);
             finish();
+        }
+    }
+
+    @Override
+    public void sharedAppSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            buyVipHint.setVisibility(View.GONE);
+            buyVipOriginal.setVisibility(View.GONE);
+            commitBt.setVisibility(View.GONE);
+            getPresenter().getVIPPrice(App.getUser(mContext).getId());
+        }
+    }
+
+    @Override
+    public void notificationServerSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            getPresenter().getUserInfo(App.getUser(mContext).getId());
+        } else {
+            Toast.makeText(mContext, "请稍后刷新尝试", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -168,8 +271,8 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(EventBusMsg.RefreshUserInfo msg) {
-        getPresenter().getUserInfo(App.getUser(mContext).getId());
+    public void onMessageEvent(EventBusMsg.BuyVipSuccess msg) {
+        getPresenter().notificationServer(App.getUser(mContext).getId(), wechatCk.isChecked() ? WECHAT : ALIPAY, orderId);
     }
 
     @Override
@@ -177,4 +280,5 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
 }

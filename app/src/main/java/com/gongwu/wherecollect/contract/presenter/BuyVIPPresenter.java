@@ -5,6 +5,7 @@ import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.contract.model.BuyVIPModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
 
@@ -61,6 +62,54 @@ public class BuyVIPPresenter extends BasePresenter<IBuyVIPContract.IBuyVIPView> 
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getUserInfoSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void sharedApp(String uid, String share_type) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        mModel.sharedApp(uid, share_type, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().sharedAppSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void notificationServer(String uid, String pay_type, String order_no) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        mModel.notificationServer(uid, pay_type, order_no, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().notificationServerSuccess(data);
                 }
             }
 

@@ -16,6 +16,8 @@ public class AppConstant {
 
     public final static String WX_APP_ID = "wx9b2c37b4717d4c13";
 
+    public final static int BIND_APP = 1;
+
     public final static int DEFAULT_INDEX_OF = 0;
 
     public final static int REQUEST_CODE = 0x998;

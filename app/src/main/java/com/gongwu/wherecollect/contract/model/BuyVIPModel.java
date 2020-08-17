@@ -4,6 +4,7 @@ import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
 import com.gongwu.wherecollect.util.ApiUtils;
@@ -31,6 +32,38 @@ public class BuyVIPModel implements IBuyVIPContract.IBuyVIPModel {
         ApiUtils.getUserInfo(uid, new ApiCallBack<UserBean>() {
             @Override
             public void onSuccess(UserBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void sharedApp(String uid, String share_type, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.sharedApp(uid, share_type, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void notificationServer(String uid, String pay_type, String order_no, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.notificationServer(uid, pay_type, order_no, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
                 callback.onSuccess(data);
             }
 

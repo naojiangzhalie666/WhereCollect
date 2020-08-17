@@ -8,6 +8,7 @@ public class WxPayBean {
     private String nonce_str;//随机字符串,随机字符串，不长于32位。推荐随机数生成算法
     private String sign;//签名，详见签名生成算法注意：签名方式一定要与统一下单接口使用的一致
     private String timestamp;//时间戳，请见接口规则-参数规定
+    private String order_no;
 
     public String getAppid() {
         return appid;
@@ -55,5 +56,13 @@ public class WxPayBean {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getOrder_no() {
+        return order_no;
+    }
+
+    public void setOrder_no(String order_no) {
+        this.order_no = order_no;
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.gongwu.wherecollect.contract.AppConstant;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -13,6 +14,8 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     private static final String TAG = "WXPayEntryActivity";
@@ -54,7 +57,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             switch (resp.errCode) {
                 case 0://支付成功
                     Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
-
+                    EventBus.getDefault().post(new EventBusMsg.BuyVipSuccess());
                     Lg.getInstance().d(TAG, "onResp: resp.errCode = 0   支付成功");
                     break;
                 case -1://错误，可能的原因：签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等
@@ -65,7 +68,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                     break;
 
             }
-
             finish();//这里需要关闭该页面
         }
 

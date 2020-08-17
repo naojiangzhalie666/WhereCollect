@@ -91,12 +91,27 @@ public class ShareUtil {
      */
     public static void openShareDialog(Activity context) {
         UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
+        UMWeb web = new UMWeb("https://www.shouner.com/");
+        web.setTitle("收哪儿-你的物品收纳记录管家");//标题
+        web.setThumb(thumb);  //缩略图
+        web.setDescription("找东西,不操心");//描述
+        new ShareAction(context)
+                .withMedia(web)
+
+                .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.SINA, SHARE_MEDIA.QQ,
+                        SHARE_MEDIA.QZONE)
+                .open();
+    }
+
+    public static void openShareVIPDialog(Activity context, UMShareListener listener) {
+        UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
         UMWeb web = new UMWeb("http://www.shouner.com/");
         web.setTitle("收哪儿-你的物品收纳记录管家");//标题
         web.setThumb(thumb);  //缩略图
         web.setDescription("找东西,不操心");//描述
         new ShareAction(context)
                 .withMedia(web)
+                .setCallback(listener)
                 .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.SINA, SHARE_MEDIA.QQ,
                         SHARE_MEDIA.QZONE)
                 .open();
