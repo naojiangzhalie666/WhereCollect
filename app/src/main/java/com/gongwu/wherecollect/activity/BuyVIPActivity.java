@@ -56,7 +56,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * 购买vip
+ * 购买vip界面
  */
 public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresenter> implements IBuyVIPContract.IBuyVIPView {
     private static final String TAG = "BuyVIPActivity";
