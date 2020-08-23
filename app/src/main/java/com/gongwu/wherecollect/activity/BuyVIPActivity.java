@@ -1,9 +1,13 @@
 package com.gongwu.wherecollect.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.nfc.Tag;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -14,12 +18,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.alipay.sdk.app.EnvUtils;
+import com.alipay.sdk.app.PayTask;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.contract.presenter.BuyVIPPresenter;
+import com.gongwu.wherecollect.net.entity.AuthResult;
+import com.gongwu.wherecollect.net.entity.PayResult;
 import com.gongwu.wherecollect.net.entity.WxPayBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
@@ -27,6 +35,7 @@ import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.JsonUtils;
+import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.ShareUtil;
 import com.gongwu.wherecollect.util.StringUtils;
@@ -41,6 +50,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -48,6 +59,7 @@ import butterknife.OnClick;
  * 购买vip
  */
 public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresenter> implements IBuyVIPContract.IBuyVIPView {
+    private static final String TAG = "BuyVIPActivity";
 
     @BindView(R.id.title_layout)
     RelativeLayout titleLayout;
@@ -77,6 +89,8 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @Override
     protected void initViews() {
+        //正式环境要去掉
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         EventBus.getDefault().register(this);
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
@@ -113,16 +127,13 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                             Toast.makeText(mContext, "支付宝暂未接入,请使用微信支付", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, null);
+                        getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
                     }
                 }
                 break;
             case R.id.buy_vip_original:
-                if (alipayCk.isChecked()) {
-                    Toast.makeText(mContext, "支付宝暂未接入,请使用微信支付", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, null);
+                if (vipBean == null) return;
+                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
                 break;
             case R.id.alipay_layout:
                 alipayCk.setChecked(true);
@@ -190,6 +201,85 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         }
     }
 
+    /**
+     * 支付（加签过程不允许在客户端进行，必须在服务端，否则有极大的安全隐患）
+     *
+     * @param orderInfo 加签后的支付请求参数字符串（主要包含商户的订单信息，key=value形式，以&连接）。
+     */
+    private void pay(final String orderInfo) {
+        final Runnable payRunnable = new Runnable() {
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(BuyVIPActivity.this);
+                //第二个参数设置为true，将会在调用pay接口的时候直接唤起一个loading
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                Message msg = new Message();
+                msg.what = SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+    private static final int SDK_PAY_FLAG = 1;
+    private static final int SDK_AUTH_FLAG = 2;
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_PAY_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                    /**
+                     * 对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                     */
+                    String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                    String resultStatus = payResult.getResultStatus();
+                    // 判断resultStatus 为9000则代表支付成功
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        if (TextUtils.isEmpty(orderId)) return;
+                        getPresenter().notificationServer(App.getUser(mContext).getId(), wechatCk.isChecked() ? WECHAT : ALIPAY, orderId);
+                        Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                        Toast.makeText(mContext, "支付失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+                case SDK_AUTH_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
+                    String resultStatus = authResult.getResultStatus();
+
+                    // 判断resultStatus 为“9000”且result_code
+                    // 为“200”则代表授权成功，具体状态码代表含义可参考授权接口文档
+                    if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
+                        // 获取alipay_open_id，调支付时作为参数extern_token 的value
+                        // 传入，则支付账户为该授权账户
+                        Lg.getInstance().d(TAG, "授权成功");
+                        Toast.makeText(mContext, "授权成功", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // 其他状态值则为授权失败
+                        Lg.getInstance().d(TAG, "授权失败");
+                        Toast.makeText(mContext, "授权失败", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
+
+        ;
+    };
+
     public static void start(Context context) {
         Intent intent = new Intent(context, BuyVIPActivity.class);
         context.startActivity(intent);
@@ -245,6 +335,11 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     public void buyVipWXOrAliSuccess(BuyVIPResultBean data) {
         if (data != null && data.getWeichat() != null) {
             startWechatPay(data.getWeichat());
+        } else if (data != null && data.getAlipay() != null && !TextUtils.isEmpty(data.getAlipay().getPayUrl())) {
+            pay(data.getAlipay().getPayUrl());
+            if (!TextUtils.isEmpty(data.getAlipay().getOrder_no())) {
+                orderId = data.getAlipay().getOrder_no();
+            }
         }
     }
 
