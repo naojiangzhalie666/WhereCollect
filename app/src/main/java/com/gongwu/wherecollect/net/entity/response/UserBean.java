@@ -47,19 +47,19 @@ public class UserBean implements Serializable {
     private int object_count;
     private int location_count;
     private int box_count;
-    private String loginway = "";
+    private String loginway;
     private boolean data_cleaner;
     private WeixinBean weixin;
     private QqBean qq;
     private SinaBean sina;
-    private String id = "";
-    private String _id = "";
-    private String gender = "";
-    private String avatar = "";
-    private String nickname = "";
-    private String mail = "";
-    private String birthday = "";
-    private String mobile = "";
+    private String id;
+    private String _id;
+    private String gender;
+    private String avatar;
+    private String nickname;
+    private String mail;
+    private String birthday;
+    private String mobile;
     private String openid;
     private String usid;
     private String max_version;
@@ -104,11 +104,7 @@ public class UserBean implements Serializable {
     }
 
     public boolean isTest() {
-        return !TextUtils.isEmpty(_id);
-    }
-
-    public void setTestId(String id) {
-        this._id = id;
+        return isTest;
     }
 
     public String getBirthday() {

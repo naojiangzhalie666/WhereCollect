@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: 83eb0f2
+# pg_map_id: 1b35a4c
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -15822,7 +15822,7 @@ com.gongwu.wherecollect.contract.presenter.LoginPresenter -> com.gongwu.wherecol
     void logoutTestSuccess(android.app.Activity) -> a
     void setUmAuthListener(com.gongwu.wherecollect.base.BaseActivity) -> a
     void startActivityForResult(android.app.Activity,java.lang.Class) -> a
-    void startMainActivity(android.app.Activity,com.gongwu.wherecollect.net.entity.response.UserBean) -> a
+    void startMainActivity(android.app.Activity,com.gongwu.wherecollect.net.entity.response.UserBean,boolean) -> a
     void loginPhone(java.lang.String,java.lang.String) -> b
     com.gongwu.wherecollect.contract.presenter.LoginPresenter$UmAuthListener getUmAuthListener() -> c
     void registerUserTest() -> d
@@ -25569,8 +25569,9 @@ org.greenrobot.eventbus.EventBus -> org.greenrobot.eventbus.c:
     void unsubscribeByEventType(java.lang.Object,java.lang.Class) -> a
     void checkPostStickyEventToSubscription(org.greenrobot.eventbus.Subscription,java.lang.Object) -> b
     org.greenrobot.eventbus.EventBus getDefault() -> b
-    void register(java.lang.Object) -> b
-    void unregister(java.lang.Object) -> c
+    void postSticky(java.lang.Object) -> b
+    void register(java.lang.Object) -> c
+    void unregister(java.lang.Object) -> d
 org.greenrobot.eventbus.EventBus$1 -> org.greenrobot.eventbus.c$a:
 org.greenrobot.eventbus.EventBus$2 -> org.greenrobot.eventbus.c$b:
     int[] $SwitchMap$org$greenrobot$eventbus$ThreadMode -> a

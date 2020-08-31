@@ -105,7 +105,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
             data.setPassLogin(true);
         }
         isEmailLogin = false;
-        getPresenter().startMainActivity(this, data);
+        getPresenter().startMainActivity(this, data,true);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         if (START_CODE == requestCode && RESULT_OK == resultCode) {
             UserBean userBean = (UserBean) data.getSerializableExtra("user");
-            getPresenter().startMainActivity(this, userBean);
+            getPresenter().startMainActivity(this, userBean,true);
         }
     }
 

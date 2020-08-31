@@ -10577,7 +10577,6 @@ org.greenrobot.eventbus.EventBus
     public static void clearCaches()
     public synchronized boolean isRegistered(java.lang.Object)
     public void cancelEventDelivery(java.lang.Object)
-    public void postSticky(java.lang.Object)
     public java.lang.Object getStickyEvent(java.lang.Class)
     public java.lang.Object removeStickyEvent(java.lang.Class)
     public boolean removeStickyEvent(java.lang.Object)

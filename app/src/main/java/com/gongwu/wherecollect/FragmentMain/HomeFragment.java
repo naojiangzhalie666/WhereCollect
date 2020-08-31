@@ -99,8 +99,10 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeCo
         if (!isAdded()) return;
         if (!init) {
             initViews();
+            getPresenter().getUserFamily(App.getUser(mContext).getId(), App.getUser(mContext).getNickname());
             init = true;
         }
+        EventBus.getDefault().register(this);
         initUI();
     }
 
@@ -111,13 +113,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeCo
         //联动
         mViewPager.setAdapter(adapter);
         mViewPager.addOnPageChangeListener(this);
-        EventBus.getDefault().register(this);
     }
 
     private void initUI() {
         StatusBarUtil.setStatusBarColor(getActivity(), getResources().getColor(R.color.maincolor));
         StatusBarUtil.setLightStatusBar(getActivity(), false);
-        getPresenter().getUserFamily(App.getUser(mContext).getId(), App.getUser(mContext).getNickname());
     }
 
     @OnClick({R.id.edit_home_iv, R.id.family_layout})
@@ -245,7 +245,7 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements IHomeCo
         EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe(sticky = true, threadMode = ThreadMode.POSTING)
     public void onMessageEvent(EventBusMsg.RefreshFragment msg) {
         refreshFragment = true;
     }

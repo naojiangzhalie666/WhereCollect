@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.nfc.Tag;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
@@ -12,7 +11,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +61,8 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @BindView(R.id.title_layout)
     RelativeLayout titleLayout;
+    @BindView(R.id.title_tv)
+    TextView titleTv;
     @BindView(R.id.buy_vip_hint)
     TextView buyVipHint;
     @BindView(R.id.buy_vip_original)
@@ -91,6 +91,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     protected void initViews() {
         //正式环境要去掉
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+        titleTv.setText(R.string.act_vip_buy_title);
         EventBus.getDefault().register(this);
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
@@ -123,10 +124,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                     if (TextUtils.isEmpty(vipBean.getCouponId())) {
                         sharedAPP();
                     } else {
-                        if (alipayCk.isChecked()) {
-                            Toast.makeText(mContext, "支付宝暂未接入,请使用微信支付", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
                         getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
                     }
                 }

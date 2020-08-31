@@ -254,10 +254,8 @@ public class LoginPresenter extends BasePresenter<ILoginContract.ILoginView> imp
         ac.startActivityForResult(intent, AppConstant.REQUEST_CODE);
     }
 
-    public void startMainActivity(Activity ac, UserBean user) {
-        if (App.getUser(ac) != null && App.getUser(ac).isTest()) {
-            user.setId(user.getId());
-            user.setTestId("");
+    public void startMainActivity(Activity ac, UserBean user, boolean isLogoutTest) {
+        if (App.getUser(ac) != null && App.getUser(ac).isTest() && isLogoutTest) {
             logoutTest(App.getUser(ac).getId());
             SaveDate.getInstence(ac).setUser(JsonUtils.jsonFromObject(user));
             App.setUser(user);
@@ -274,6 +272,7 @@ public class LoginPresenter extends BasePresenter<ILoginContract.ILoginView> imp
             ac.startActivity(intent);
         } else {
             EventBus.getDefault().post(new EventBusMsg.MainTabMessage(AppConstant.DEFAULT_INDEX_OF));
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
         }
         ac.setResult(Activity.RESULT_OK);
         ac.finish();

@@ -61,11 +61,12 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null) {
-            mBundle = savedInstanceState.getBundle("bundle");
-        } else {
-            mBundle = getArguments() == null ? new Bundle() : getArguments();
-        }
+//        if (savedInstanceState != null) {
+//            mBundle = savedInstanceState.getBundle("bundle");
+//        } else {
+//
+//        }
+        mBundle = getArguments() == null ? new Bundle() : getArguments();
         //初始化presenter
         mPresenter = initPresenter();
     }

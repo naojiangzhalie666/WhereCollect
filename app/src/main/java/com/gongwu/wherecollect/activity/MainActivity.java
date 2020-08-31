@@ -319,7 +319,6 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         super.onStart();
         if (initData) {
             selectTab(AppConstant.DEFAULT_INDEX_OF);
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
             initData = false;
         } else if (initTab) {
             selectTab(AppConstant.DEFAULT_INDEX_OF);

@@ -37,293 +37,315 @@
             android:src="@drawable/icon_white_back" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/vip_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_layout"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dip_27"
-            android:layout_marginTop="@dimen/dip_50"
-            android:layout_marginEnd="@dimen/dip_27"
-            android:background="@drawable/select_white_r4_25dp_bg"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/dip_80"
-            android:paddingBottom="@dimen/dip_30">
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_52"
+                android:layout_marginStart="@dimen/dip_27"
+                android:layout_marginTop="@dimen/dip_50"
+                android:layout_marginEnd="@dimen/dip_27"
+                android:background="@drawable/shape_white_top_r20dp" />
+
+            <ImageView
+                android:layout_width="@dimen/dip_100"
+                android:layout_height="@dimen/dip_100"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_crown" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dip_16"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/dip_25"
-                    android:layout_height="@dimen/dip_25"
-                    android:src="@drawable/icon_vip_house" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dip_4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="多个家庭/场景管理"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_13" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="可创建多个家庭或场景，分别管理空间及其物品"
-                        android:textColor="@color/color999"
-                        android:textSize="@dimen/f_12" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dip_16"
-                android:layout_marginTop="@dimen/dip_24"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/dip_25"
-                    android:layout_height="@dimen/dip_25"
-                    android:src="@drawable/icon_vip_goods" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dip_4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="物品批量编辑"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_13" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="修改分类、标记位置更方便"
-                        android:textColor="@color/color999"
-                        android:textSize="@dimen/f_12" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dip_16"
-                android:layout_marginTop="@dimen/dip_24"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/dip_25"
-                    android:layout_height="@dimen/dip_25"
-                    android:src="@drawable/icon_vip_share" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dip_4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="家人协作共享"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_13" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="可与家人共同管理家中物品"
-                        android:textColor="@color/color999"
-                        android:textSize="@dimen/f_12" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dip_16"
-                android:layout_marginTop="@dimen/dip_24"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/dip_25"
-                    android:layout_height="@dimen/dip_25"
-                    android:src="@drawable/icon_vip_update" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dip_4"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="一次购买持续更新"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_13" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="统计功能、搭配功能等，\n更多功能持续更新中…"
-                        android:textColor="@color/color999"
-                        android:textSize="@dimen/f_12" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dip_16"
-                android:layout_marginTop="@dimen/dip_24"
-                android:text="支付方式"
-                android:textColor="@color/color999"
-                android:textSize="@dimen/f_13" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dip_16"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/wechat_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/dip_27"
+                    android:layout_marginEnd="@dimen/dip_27"
+                    android:background="@drawable/shape_white_bottom_r20dp"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dip_20"
+                    android:paddingBottom="@dimen/dip_20">
 
-                    <ImageView
-                        android:layout_width="@dimen/dip_25"
-                        android:layout_height="@dimen/dip_25"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/icon_wechat" />
-
-                    <TextView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dip_16"
-                        android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="微信支付"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_15" />
+                        android:orientation="horizontal">
 
-                    <CheckBox
-                        android:id="@+id/check_wechat"
+                        <ImageView
+                            android:layout_width="@dimen/dip_25"
+                            android:layout_height="@dimen/dip_25"
+                            android:src="@drawable/icon_vip_house" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dip_4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="多个家庭/场景管理"
+                                android:textColor="@color/color333"
+                                android:textSize="@dimen/f_13" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="可创建多个家庭或场景，分别管理空间及其物品"
+                                android:textColor="@color/color999"
+                                android:textSize="@dimen/f_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dip_16"
+                        android:layout_marginTop="@dimen/dip_24"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dip_25"
+                            android:layout_height="@dimen/dip_25"
+                            android:src="@drawable/icon_vip_goods" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dip_4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="物品批量编辑"
+                                android:textColor="@color/color333"
+                                android:textSize="@dimen/f_13" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="修改分类、标记位置更方便"
+                                android:textColor="@color/color999"
+                                android:textSize="@dimen/f_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dip_16"
+                        android:layout_marginTop="@dimen/dip_24"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dip_25"
+                            android:layout_height="@dimen/dip_25"
+                            android:src="@drawable/icon_vip_share" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dip_4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="家人协作共享"
+                                android:textColor="@color/color333"
+                                android:textSize="@dimen/f_13" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="可与家人共同管理家中物品"
+                                android:textColor="@color/color999"
+                                android:textSize="@dimen/f_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dip_16"
+                        android:layout_marginTop="@dimen/dip_24"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dip_25"
+                            android:layout_height="@dimen/dip_25"
+                            android:src="@drawable/icon_vip_update" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dip_4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="一次购买持续更新"
+                                android:textColor="@color/color333"
+                                android:textSize="@dimen/f_13" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="统计功能、搭配功能等，\n更多功能持续更新中…"
+                                android:textColor="@color/color999"
+                                android:textSize="@dimen/f_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:button="@drawable/checkbox_style"
-                        android:checked="true"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false" />
+                        android:layout_marginStart="@dimen/dip_16"
+                        android:layout_marginTop="@dimen/dip_24"
+                        android:text="支付方式"
+                        android:textColor="@color/color999"
+                        android:textSize="@dimen/f_13" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dip_16"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/wechat_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dip_25"
+                                android:layout_height="@dimen/dip_25"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/icon_wechat" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dip_16"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="微信支付"
+                                android:textColor="@color/color333"
+                                android:textSize="@dimen/f_15" />
+
+                            <CheckBox
+                                android:id="@+id/check_wechat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:button="@drawable/checkbox_style"
+                                android:checked="true"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/alipay_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dip_20"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/dip_25"
+                                android:layout_height="@dimen/dip_25"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/icon_alipay" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/dip_16"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="支付宝"
+                                android:textColor="@color/color333"
+                                android:textSize="@dimen/f_15" />
+
+                            <CheckBox
+                                android:id="@+id/check_alipay"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:button="@drawable/checkbox_style"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:focusableInTouchMode="false" />
+                        </LinearLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/alipay_layout"
+                <Button
+                    android:id="@+id/commit_bt"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
+                    android:layout_height="@dimen/dip_45"
+                    android:layout_marginStart="@dimen/dip_27"
+                    android:layout_marginTop="@dimen/dip_32"
+                    android:layout_marginEnd="@dimen/dip_27"
+                    android:background="@drawable/select_maincolor_r4_20dp_bg"
+                    android:text="邀请好友，立减6元"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/buy_vip_hint"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/wechat_layout"
-                    android:layout_marginTop="@dimen/dip_20"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="@dimen/dip_10"
+                    android:text="*分享动作完成后即可享有折扣"
+                    android:textColor="@color/color999"
+                    android:textSize="@dimen/f_12" />
 
-                    <ImageView
-                        android:layout_width="@dimen/dip_25"
-                        android:layout_height="@dimen/dip_25"
-                        android:scaleType="centerInside"
-                        android:src="@drawable/icon_alipay" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dip_16"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="支付宝"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_15" />
-
-                    <CheckBox
-                        android:id="@+id/check_alipay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:button="@drawable/checkbox_style"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/buy_vip_original"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_10"
+                    android:layout_marginBottom="@dimen/dip_20"
+                    android:text="直接原价¥18元购买"
+                    android:textColor="@color/main_tab_text_color"
+                    android:textSize="@dimen/f_17" />
             </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
-        <ImageView
-            android:layout_width="@dimen/dip_100"
-            android:layout_height="@dimen/dip_100"
-            android:layout_centerHorizontal="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/icon_crown" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/commit_bt"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_45"
-        android:layout_below="@id/vip_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="@dimen/dip_27"
-        android:layout_marginTop="@dimen/dip_32"
-        android:layout_marginEnd="@dimen/dip_27"
-        android:background="@drawable/select_maincolor_r4_20dp_bg"
-        android:text="邀请好友，立减6元"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/buy_vip_hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/commit_bt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dip_10"
-        android:text="*分享动作完成后即可享有折扣"
-        android:textColor="@color/color999"
-        android:textSize="@dimen/f_12" />
-
-    <TextView
-        android:id="@+id/buy_vip_original"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buy_vip_hint"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/dip_10"
-        android:text="直接原价¥18元购买"
-        android:textColor="@color/main_tab_text_color"
-        android:textSize="@dimen/f_17" />
 </RelativeLayout>
