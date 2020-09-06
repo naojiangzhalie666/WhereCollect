@@ -329,7 +329,7 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
 
     @Override
     public void hideProgressDialog() {
-
+//
     }
 
     @Override
