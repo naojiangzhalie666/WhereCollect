@@ -5,8 +5,10 @@ import com.gongwu.wherecollect.contract.IAddGoodsContract;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
+import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.util.ApiUtils;
 
 import java.util.List;
@@ -84,6 +86,22 @@ public class AddGoodsModel implements IAddGoodsContract.IAddGoodsModel {
         ApiUtils.getTaobaoInfo(req, new ApiCallBack<BookBean>() {
             @Override
             public void onSuccess(BookBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void removeObjectFromFurnitrue(GoodsDetailsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.removeObjectFromFurnitrue(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
                 callback.onSuccess(data);
             }
 

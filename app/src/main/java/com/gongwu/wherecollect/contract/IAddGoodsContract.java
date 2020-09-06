@@ -6,8 +6,10 @@ import android.content.Context;
 import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
+import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 
 import java.io.File;
 import java.util.List;
@@ -25,6 +27,8 @@ public interface IAddGoodsContract {
         void getBookInfo(AddGoodsReq req, final RequestCallback callback);
 
         void getTaobaoInfo(AddGoodsReq req, final RequestCallback callback);
+
+        void removeObjectFromFurnitrue(GoodsDetailsReq req, final RequestCallback callback);
     }
 
     interface IAddGoodsPresenter {
@@ -37,6 +41,8 @@ public interface IAddGoodsContract {
         void getBookInfo(String uid, String isbn);
 
         void getTaobaoInfo(String uid, String key);
+
+        void removeObjectFromFurnitrue(String uid, String code);
     }
 
     interface IAddGoodsView extends BaseView {
@@ -89,5 +95,7 @@ public interface IAddGoodsContract {
          * 裁剪图片返回
          */
         void getCropBitmap(File file);
+
+        void removeObjectFromFurnitrueSuccess(RequestSuccessBean data);
     }
 }

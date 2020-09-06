@@ -30,12 +30,17 @@ import com.gongwu.wherecollect.contract.IRemindContract;
 import com.gongwu.wherecollect.contract.presenter.RemindPresenter;
 import com.gongwu.wherecollect.net.entity.response.RemindBean;
 import com.gongwu.wherecollect.net.entity.response.RemindListBean;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.util.iconNum.SendIconNumUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,12 +122,12 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
         super.onViewCreated(view, savedInstanceState);
         if (!isAdded()) return;
         if (!init) {
-
             initUI();
             initEvent();
             init = true;
         }
         initStatusBar();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -337,6 +342,17 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
         loading = false;
         mRefreshLayout.finishRefresh(true);
         mRefreshLayout.finishLoadMore(true);
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.POSTING)
+    public void onMessageEvent(EventBusMsg.RefreshRemind msg) {
+        mRefreshLayout.autoRefresh();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
     }
 
 }

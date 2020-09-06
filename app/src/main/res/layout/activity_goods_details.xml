@@ -97,7 +97,7 @@
                     android:background="@color/split_color" />
 
                 <TextView
-                    android:id="@+id/goods_location_tv"
+                    android:id="@+id/goods_details_location_tv"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dip_40"
                     android:drawableStart="@drawable/location_orange_icon"

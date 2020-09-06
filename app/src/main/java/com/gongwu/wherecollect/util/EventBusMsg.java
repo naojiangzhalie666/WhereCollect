@@ -18,7 +18,13 @@ public class EventBusMsg {
     public static class RefreshFragment {
     }
 
+    public static class RefreshRemind {
+    }
+
     public static class RefreshActivity {
+    }
+
+    public static class RefreshEditItem {
     }
 
     public static class UpdateShareMsg {

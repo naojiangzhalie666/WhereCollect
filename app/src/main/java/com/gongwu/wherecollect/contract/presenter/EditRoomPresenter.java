@@ -112,8 +112,8 @@ public class EditRoomPresenter extends BasePresenter<IEditRoomContract.IEditRoom
         }
         EditRoomReq roomReq = new EditRoomReq();
         roomReq.setUid(uid);
-        roomReq.setLocation_name(location_name);
-        roomReq.setLocation_id(location_code);
+        roomReq.setName(location_name);
+        roomReq.setLocation_code(location_code);
         mModel.editRoom(roomReq, new RequestCallback<RequestSuccessBean>() {
             @Override
             public void onSuccess(RequestSuccessBean data) {

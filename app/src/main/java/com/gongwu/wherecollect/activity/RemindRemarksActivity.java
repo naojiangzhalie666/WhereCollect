@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.BaseActivity;
+import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.EditTextWatcher;
 
 import butterknife.BindView;
@@ -24,7 +25,7 @@ public class RemindRemarksActivity extends BaseActivity {
     EditText mEditText;
     @BindView(R.id.remind_remarks_text_num_tv)
     TextView numTv;
-    @BindView(R.id.title_commit_white_tv)
+    @BindView(R.id.title_commit_tv_color_maincolor)
     TextView commitTv;
 
     @Override
@@ -35,19 +36,21 @@ public class RemindRemarksActivity extends BaseActivity {
     @Override
     protected void initViews() {
         titleTv.setText(R.string.remind_remarks_title_text);
-        commitTv.setText(R.string.finished_text);
+        commitTv.setVisibility(View.VISIBLE);
         String text = getIntent().getStringExtra("remind_remarks");
         mEditText.setText(text);
+        numTv.setText(String.format(getString(R.string.remind_remarks_num_text), String.valueOf(mEditText.getText().toString().trim().length())));
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
         initEvent();
     }
 
-    @OnClick({R.id.back_btn, R.id.title_commit_white_tv})
+    @OnClick({R.id.back_btn, R.id.title_commit_tv_color_maincolor})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn://返回
                 finish();
                 break;
-            case R.id.title_commit_white_tv:
+            case R.id.title_commit_tv_color_maincolor:
                 Intent intent = new Intent();
                 if (!TextUtils.isEmpty(mEditText.getText().toString().trim())) {
                     intent.putExtra("remind_remarks", mEditText.getText().toString().trim());

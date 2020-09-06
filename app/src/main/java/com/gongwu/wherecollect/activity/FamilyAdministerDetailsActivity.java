@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,9 +31,12 @@ import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.SharedUserBean;
 import com.gongwu.wherecollect.util.DialogUtil;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.PopupEditFurnitureName;
 import com.gongwu.wherecollect.view.Loading;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -193,6 +197,7 @@ public class FamilyAdministerDetailsActivity extends BaseMvpActivity<FamilyAdmin
     @Override
     public void delFamilySuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             finish();
         }
     }
@@ -273,6 +278,6 @@ public class FamilyAdministerDetailsActivity extends BaseMvpActivity<FamilyAdmin
 
     @Override
     public void onError(String result) {
-
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 }

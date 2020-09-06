@@ -107,29 +107,32 @@ public class EditMoreGoodsActivity extends BaseMvpActivity<EditMoreGoodsActivity
                 finish();
                 break;
             case R.id.edit_more_goods_del:
-                if (isVip()) return;
-                //删除选择物品
-                DialogUtil.show(null, "删除选中物品?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        getPresenter().delSelectGoods(App.getUser(mContext).getId(), mAdapter.getSelectGoodsIds());
-                    }
-                }, null);
+                if (isVip()) {
+                    //删除选择物品
+                    DialogUtil.show(null, "删除选中物品?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getPresenter().delSelectGoods(App.getUser(mContext).getId(), mAdapter.getSelectGoodsIds());
+                        }
+                    }, null);
+                }
                 break;
             case R.id.edit_more_goods_location:
-                if (isVip()) return;
-                MainActivity.moveGoodsList = new ArrayList<>();
-                for (ObjectBean bean : mlist) {
-                    if (bean.isSelect()) {
-                        MainActivity.moveGoodsList.add(bean);
+                if (isVip()) {
+                    MainActivity.moveGoodsList = new ArrayList<>();
+                    for (ObjectBean bean : mlist) {
+                        if (bean.isSelect()) {
+                            MainActivity.moveGoodsList.add(bean);
+                        }
                     }
+                    EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+                    finish();
                 }
-                EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
-                finish();
                 break;
             case R.id.edit_more_goods_tag:
-                if (isVip()) return;
-                SelectSortActivity.start(mContext, null);
+                if (isVip()) {
+                    SelectSortActivity.start(mContext, null);
+                }
                 break;
             default:
                 break;

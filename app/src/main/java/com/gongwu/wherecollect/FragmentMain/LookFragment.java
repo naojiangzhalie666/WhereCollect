@@ -219,7 +219,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                     if (!mFamilylist.get(position).isSystemEdit()) {
                         if (!mFamilylist.get(position).getCode().equals(familyBean.getCode())) {
                             mFamilyName.setText(mFamilylist.get(position).getName());
-                            LookFragment.this.familyBean = mFamilylist.get(position);
+                            familyBean = mFamilylist.get(position);
                             //设置当前家庭
                             familyTypeIv.setImageDrawable(getResources().getDrawable(mFamilylist.get(position).isBeShared() ? R.drawable.ic_shared : R.drawable.ic_home));
                             SaveDate.getInstence(mContext).setFamilyCode(mFamilylist.get(position).getCode());

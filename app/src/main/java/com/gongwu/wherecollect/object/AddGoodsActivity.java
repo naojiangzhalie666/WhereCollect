@@ -1,6 +1,7 @@
 package com.gongwu.wherecollect.object;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -23,7 +24,9 @@ import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RemindBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.util.DateUtil;
+import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
@@ -50,6 +53,7 @@ import razerdp.basepopup.BasePopupWindow;
 public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoodsPresenter> implements IAddGoodsContract.IAddGoodsView, PopupAddGoods.AddGoodsPopupClickListener {
     private static final String TAG = AddGoodsActivity.class.getSimpleName();
     public static final int BOOK_CODE = 0x112;
+    public static final int RESULT_FINISH = 0x193;
     @BindView(R.id.title_tv)
     TextView mTitleView;
     @BindView(R.id.add_img_view)
@@ -190,7 +194,8 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         });
     }
 
-    @OnClick({R.id.back_btn, R.id.add_img_view, R.id.add_goods_sort_tv, R.id.add_other_content_tv, R.id.commit_bt, R.id.select_location_bt})
+    @OnClick({R.id.back_btn, R.id.add_img_view, R.id.add_goods_sort_tv, R.id.add_other_content_tv,
+            R.id.goods_location_tv, R.id.commit_bt, R.id.select_location_bt})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -218,7 +223,27 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 setGoodsLocation = true;
                 onClickCommit();
                 break;
+            case R.id.goods_location_tv:
+                editLocation();
+                break;
+        }
+    }
 
+    private void editLocation() {
+        if (locationTv.getText().toString().equals("未归位")) {
+            MainActivity.moveGoodsList = new ArrayList<>();
+            MainActivity.moveGoodsList.clear();
+            MainActivity.moveGoodsList.add(objectBean);
+            EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+            setResult(RESULT_FINISH);
+            finish();
+        } else {
+            DialogUtil.show("提示", "将原有位置清空？", "确定", "取消", this, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    getPresenter().removeObjectFromFurnitrue(App.getUser(mContext).getId(), objectBean.get_id());
+                }
+            }, null);
         }
     }
 
@@ -343,6 +368,19 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         mImageView.setHead(IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
         objectBean.setObject_url(imgFile.getAbsolutePath());
         setCommitBtnEnable(true);
+    }
+
+    @Override
+    public void removeObjectFromFurnitrueSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            MainActivity.moveGoodsList = new ArrayList<>();
+            MainActivity.moveGoodsList.clear();
+            MainActivity.moveGoodsList.add(objectBean);
+            EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
+            setResult(RESULT_FINISH);
+            finish();
+        }
     }
 
     @Override

@@ -130,6 +130,8 @@
     <string name="act_vip_buy_title">购买服务</string>
     <string name="shared_vip_buy_hint">*原价18元，已享6元优惠</string>
     <string name="shared_vip_buy_commit">优惠领取成功，立即¥12购买</string>
+    <string name="not_categories_text">未分类</string>
+    <string name="not_location_text">未归位</string>
 
     <string name="user_usid_text">ID: %1$s</string>
 

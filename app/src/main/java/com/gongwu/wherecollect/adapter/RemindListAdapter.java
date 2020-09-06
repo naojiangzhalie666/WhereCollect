@@ -100,7 +100,7 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Vi
         } else {
             holder.editFinishedTv.setVisibility(View.GONE);
         }
-        holder.split_view.setVisibility((i == mData.size() - 1) ? View.GONE : View.VISIBLE);
+        holder.split_view.setVisibility((mData.size() > 5 && (i == mData.size() - 1)) ? View.GONE : View.VISIBLE);
     }
 
     @Override

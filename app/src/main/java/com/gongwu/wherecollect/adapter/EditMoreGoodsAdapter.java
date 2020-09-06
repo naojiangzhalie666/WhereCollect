@@ -79,6 +79,8 @@ public class EditMoreGoodsAdapter extends RecyclerView.Adapter<EditMoreGoodsAdap
         holder.mImgView.name.setText(null);
         holder.mImgView.head.setBackground(null);
         holder.mImgView.head.setImageDrawable(null);
+        holder.notCategoriesType.setVisibility(View.GONE);
+        holder.notLocationType.setVisibility(View.INVISIBLE);
         if (bean.getObject_url().contains("http")) {
             holder.mImgView.setImg(bean.getObject_url(), 3);
         } else {
@@ -86,7 +88,14 @@ public class EditMoreGoodsAdapter extends RecyclerView.Adapter<EditMoreGoodsAdap
             holder.mImgView.setResourceColor(bean.getName(), resId, 3);
         }
         holder.nameTv.setText(bean.getName());
-        holder.locationTv.setText(getLoction(bean));
+        if (StringUtils.isEmpty(bean.getLocations())) {
+            holder.notLocationType.setVisibility(View.VISIBLE);
+        } else {
+            holder.locationTv.setText(getLoction(bean));
+        }
+        if (StringUtils.isEmpty(bean.getCategories())) {
+            holder.notCategoriesType.setVisibility(View.VISIBLE);
+        }
         holder.mCheckBox.setChecked(bean.isSelect());
     }
 
@@ -102,6 +111,10 @@ public class EditMoreGoodsAdapter extends RecyclerView.Adapter<EditMoreGoodsAdap
         TextView nameTv;
         @BindView(R.id.location_tv)
         TextView locationTv;
+        @BindView(R.id.not_categories_type)
+        TextView notCategoriesType;
+        @BindView(R.id.not_location_type)
+        TextView notLocationType;
         @BindView(R.id.check_box)
         CheckBox mCheckBox;
 

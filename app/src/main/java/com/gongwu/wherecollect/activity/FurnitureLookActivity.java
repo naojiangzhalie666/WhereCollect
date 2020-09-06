@@ -127,13 +127,13 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     private FurnitureLookAdapter mAdapter;
     private FurnitureBean furnitureBean;
     private ObjectBean selectGoodsBean;
-    //总数据
+    //总数据(含有物品和收纳盒)
     private List<ObjectBean> mData = new ArrayList<>();
     //adapter 区分隔层物品
     private List<ObjectBean> mAdapterData = new ArrayList<>();
     //收纳盒list
     private List<ObjectBean> mBoxlist = new ArrayList<>();
-    //物品集合
+    //物品集合(只含物品)
     private List<ObjectBean> objects = new ArrayList<>();
     //导入物品
     private int importPosition = -1;
@@ -423,9 +423,16 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         }
     }
 
+    /**
+     * 导入物品成功
+     *
+     * @param bean
+     */
     @Override
     public void importGoodsSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            //刷新首页房间数据
+            EventBus.getDefault().post(new EventBusMsg.RefreshRoomsFragment());
             if (importBean != null) {
                 List<BaseBean> locations = new ArrayList<>();
                 BaseBean baseBean = new BaseBean();
@@ -436,6 +443,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     baseBean1.setCode(selectBoxBean.getCode());
                     locations.add(baseBean1);
                 }
+                //设置导入物品新的层级
                 importBean.setLocations(locations);
                 mData.add(boxCount, importBean);
                 objects.add(AppConstant.DEFAULT_INDEX_OF, importBean);
@@ -449,12 +457,13 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     showMoveGoodsButton();
                     if (MainActivity.moveGoodsList.size() == 0) {
                         cancelTv.performClick();
-                        importGoodsPopup.dismiss();
+                        if (importGoodsPopup != null && importGoodsPopup.isShowing()) {
+                            importGoodsPopup.dismiss();
+                        }
                     }
                 }
                 importPosition = -1;
             } else {
-                EventBus.getDefault().post(new EventBusMsg.RefreshRoomsFragment());
                 finish();
             }
         }
@@ -893,9 +902,17 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 if (mAdapterData.get(i).isSelect()) {
                     MainActivity.moveGoodsList.add(mAdapterData.get(i));
                     String id = mAdapterData.get(i).get_id();
+                    //删除总数据
                     for (int j = 0; j < mData.size(); j++) {
                         if (id.equals(mData.get(j).get_id())) {
                             mData.remove(j);
+                            break;
+                        }
+                    }
+                    //删除物品list
+                    for (int a = 0; a < objects.size(); a++) {
+                        if (id.equals(objects.get(a).get_id())) {
+                            objects.remove(a);
                             break;
                         }
                     }

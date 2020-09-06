@@ -21,8 +21,11 @@ import com.gongwu.wherecollect.contract.presenter.AddFamilyToSelectRoomsPresente
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.PopupEditFurnitureName;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,6 +138,7 @@ public class AddFamilyToSelectRoomsActivity extends BaseMvpActivity<AddFamilyToS
     @Override
     public void createFamilySuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             setResult(RESULT_OK);
             finish();
         }

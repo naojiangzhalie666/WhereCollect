@@ -73,7 +73,11 @@ public class AddFurniturePresenter extends BasePresenter<IAddFurnitureContract.I
         if (bean.getRatio() > 0) {
             req.setRatio(bean.getRatio());
         }
-        req.setScale(JsonUtils.jsonFromObject(bean.getScale()));
+        if (bean.getScale()==null){
+            req.setScale("{\"x\":0.0,\"y\":1.0}");
+        }else{
+            req.setScale(JsonUtils.jsonFromObject(bean.getScale()));
+        }
         if (!TextUtils.isEmpty(bean.getCode())) {
             req.setSystem_furniture_code(bean.getCode());
         }

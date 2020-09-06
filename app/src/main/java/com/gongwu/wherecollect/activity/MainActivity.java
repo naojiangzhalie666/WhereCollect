@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -250,6 +251,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     String okUrl;
     String cancelStr;
     String cancelUrl;
+    AlertDialog alertDialog;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.GetMessageList msg) {
@@ -278,8 +280,8 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             Lg.getInstance().e(TAG, "消息没有buttons");
             return;
         }
-
-        DialogUtil.showMsg("", messageBean.getContent(), okStr, cancelStr, MainActivity.this, new DialogInterface.OnClickListener() {
+        if (alertDialog != null && alertDialog.isShowing()) return;
+        alertDialog = DialogUtil.showMsg("", messageBean.getContent(), okStr, cancelStr, MainActivity.this, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 AppConstant.isShowMsg = false;

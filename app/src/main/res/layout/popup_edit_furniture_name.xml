@@ -68,6 +68,9 @@
             android:background="@color/transparent"
             android:gravity="center"
             android:hint="请输入名称"
+            android:inputType="text"
+            android:lines="1"
+            android:singleLine="true"
             android:textSize="@dimen/f_15" />
 
         <ImageView

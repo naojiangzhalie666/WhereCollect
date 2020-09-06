@@ -101,12 +101,11 @@ public class AddGoodsPropertyModel implements IAddGoodsPropertyContract.IAddGood
     }
 
     @Override
-    public void getSearchSort(String uid, String category_code, String keyword, RequestCallback callback) {
+    public void getSearchSort(String uid, String keyword, RequestCallback callback) {
         if (callback == null) return;
         AddGoodsPropertyReq base = new AddGoodsPropertyReq();
         base.setUid(uid);
         base.setKeyword(keyword);
-        base.setCategory_code(category_code);
         ApiUtils.getSearchSort(base, new ApiCallBack<List<ChannelBean>>() {
             @Override
             public void onSuccess(List<ChannelBean> data) {

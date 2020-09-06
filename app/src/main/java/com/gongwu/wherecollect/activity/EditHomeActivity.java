@@ -70,7 +70,6 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
     TextView topView;
 
     private Loading loading;
-    private int selectPostion;
     private String familyCode;
     private List<BaseFragment> fragments = new ArrayList<>();
     private List<RoomBean> mlist = new ArrayList<>();
@@ -79,7 +78,7 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
     private List<FurnitureBean> mselectlist;
     private int selectPosition = 0;
     private FurnitureBean selectFurnitureBean;
-    private boolean refresh;
+    private boolean refresh, refreshItem;
 
     @Override
     protected int getLayoutId() {
@@ -98,7 +97,7 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
         mViewPager.setAdapter(mAdapter);
         mViewPager.addOnPageChangeListener(this);
         familyCode = getIntent().getStringExtra("familyCode");
-        selectPostion = getIntent().getIntExtra("selectPostion", AppConstant.DEFAULT_INDEX_OF);
+        selectPosition = getIntent().getIntExtra("selectPosition", AppConstant.DEFAULT_INDEX_OF);
         if (!TextUtils.isEmpty(familyCode)) {
             getPresenter().getFamilyRoomList(App.getUser(mContext).getId(), familyCode);
         }
@@ -112,10 +111,19 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
     @Override
     protected void onResume() {
         super.onResume();
+        //刷新空间
         if (refresh) {
-            getPresenter().getFamilyRoomList(App.getUser(mContext).getId(), familyCode);
             refresh = false;
+            getPresenter().getFamilyRoomList(App.getUser(mContext).getId(), familyCode);
         }
+        //添加新的家具刷新
+        if (refreshItem) {
+            refreshItem = false;
+            if (fragments.size() > selectPosition) {
+                fragments.get(selectPosition).refreshFragment();
+            }
+        }
+
     }
 
     @OnClick({R.id.back_btn, R.id.image_btn, R.id.furniture_add_tv, R.id.furniture_edit_tv, R.id.furniture_move_tv, R.id.furniture_del_tv, R.id.furniture_top_tv})
@@ -264,8 +272,8 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
                 fragments.add(fragment);
             }
             mAdapter.notifyDataSetChanged();
-            if (fragments.size() > selectPostion) {
-                mViewPager.setCurrentItem(selectPostion);
+            if (fragments.size() > selectPosition) {
+                mViewPager.setCurrentItem(selectPosition);
             }
         }
     }
@@ -381,10 +389,10 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
         }
     }
 
-    public static void start(Context mContext, String familyCode, int selectPostion) {
+    public static void start(Context mContext, String familyCode, int selectPosition) {
         Intent intent = new Intent(mContext, EditHomeActivity.class);
         intent.putExtra("familyCode", familyCode);
-        intent.putExtra("selectPostion", selectPostion);
+        intent.putExtra("selectPosition", selectPosition);
         mContext.startActivity(intent);
     }
 
@@ -452,6 +460,11 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.RefreshActivity msg) {
         refresh = true;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.RefreshEditItem msg) {
+        refreshItem = true;
     }
 
     @Override

@@ -16,6 +16,7 @@ import com.gongwu.wherecollect.BuildConfig;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.JsonUtils;
 import com.gongwu.wherecollect.util.SaveDate;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
@@ -115,6 +116,8 @@ public class App extends Application {
         //获取消息推送代理示例
         //注册推送服务，每次调用register方法都会回调该接口
         PushAgent mPushAgent = PushAgent.getInstance(this);
+        //设置通知栏显示数量
+        mPushAgent.setDisplayNotificationNumber(5);
         mPushAgent.register(new IUmengRegisterCallback() {
             @Override
             public void onSuccess(String deviceToken) {
@@ -131,7 +134,7 @@ public class App extends Application {
             @Override
             public Notification getNotification(Context context, UMessage msg) {
                 //收到推送
-//                EventBus.getDefault().post(new EventBusMsg.RefreshRemind());
+                EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
                 systemMode();
                 return super.getNotification(context, msg);
             }

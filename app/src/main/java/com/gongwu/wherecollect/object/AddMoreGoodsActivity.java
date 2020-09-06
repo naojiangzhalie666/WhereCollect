@@ -27,6 +27,7 @@ import com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.SelectImgDialog;
@@ -461,6 +462,11 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
 
     @Override
     public void getCropBitmap(File file) {
+
+    }
+
+    @Override
+    public void removeObjectFromFurnitrueSuccess(RequestSuccessBean data) {
 
     }
 }

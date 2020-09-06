@@ -24,8 +24,10 @@ import com.gongwu.wherecollect.contract.model.AddGoodsModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
+import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.object.AddGoodsActivity;
 import com.gongwu.wherecollect.object.AddMoreGoodsActivity;
 import com.gongwu.wherecollect.util.DateUtil;
@@ -294,6 +296,33 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getTaobaoInfoSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void removeObjectFromFurnitrue(String uid, String code) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        GoodsDetailsReq req = new GoodsDetailsReq();
+        req.setUid(uid);
+        req.setCode(code);
+        mModel.removeObjectFromFurnitrue(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().removeObjectFromFurnitrueSuccess(data);
                 }
             }
 

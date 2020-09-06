@@ -59,7 +59,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     ObjectInfoLookView goodsInfoView;
     @BindView(R.id.image_btn)
     ImageButton imageBtn;
-    @BindView(R.id.goods_location_tv)
+    @BindView(R.id.goods_details_location_tv)
     TextView locationTv;
     @BindView(R.id.remind_layout)
     View remindLayout;
@@ -116,7 +116,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         }
     }
 
-    @OnClick({R.id.back_btn, R.id.image_btn, R.id.goods_location_tv, R.id.remind_item_layout})
+    @OnClick({R.id.back_btn, R.id.image_btn, R.id.goods_details_location_tv, R.id.remind_item_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -152,7 +152,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                     }
                 };
                 break;
-            case R.id.goods_location_tv:
+            case R.id.goods_details_location_tv:
                 if (locationTv.getText().toString().equals("未归位")) return;
                 String familyCode = "";
                 FurnitureBean furnitureBean = new FurnitureBean();
@@ -205,6 +205,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
             MainActivity.moveGoodsList = new ArrayList<>();
             MainActivity.moveGoodsList.add(objectBean);
             EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             finish();
         }
     }
@@ -261,6 +262,8 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         if (AppConstant.REQUEST_CODE == requestCode && resultCode == RESULT_OK) {
             objectBean = (ObjectBean) data.getSerializableExtra("objectBean");
             initData();
+        } else if (AppConstant.REQUEST_CODE == requestCode && resultCode == AddGoodsActivity.RESULT_FINISH) {
+            finish();
         }
     }
 }

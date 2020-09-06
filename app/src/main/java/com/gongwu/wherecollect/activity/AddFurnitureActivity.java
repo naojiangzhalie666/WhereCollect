@@ -241,34 +241,32 @@ public class AddFurnitureActivity extends BaseMvpActivity<AddFurnitureActivity, 
     }
 
     private void showEditFurnitureNamePopupWindow() {
-        if (editNamePopup == null) {
-            editNamePopup = new PopupEditFurnitureName(mContext);
-            editNamePopup.setBackground(Color.TRANSPARENT);
-            editNamePopup.setPopupGravity(Gravity.CENTER);
-            editNamePopup.setPopupClickListener(new PopupEditFurnitureName.PopupClickListener() {
+        editNamePopup = new PopupEditFurnitureName(mContext);
+        editNamePopup.setBackground(Color.TRANSPARENT);
+        editNamePopup.setPopupGravity(Gravity.CENTER);
+        editNamePopup.setPopupClickListener(new PopupEditFurnitureName.PopupClickListener() {
 
-                @Override
-                public void onCommitClick(FurnitureBean bean) {
-                    if (bean.getBackground_url().contains("http")) {
-                        getPresenter().addFurniture(App.getUser(mContext).getId(), familyCode, locationCode, bean);
-                    } else {
-                        AddFurnitureActivity.this.selectFurnitureBean = bean;
-                        //图片有地址 直接上传
-                        getPresenter().uploadImg(mContext, new File(bean.getBackground_url()));
-                    }
+            @Override
+            public void onCommitClick(FurnitureBean bean) {
+                if (bean.getBackground_url().contains("http")) {
+                    getPresenter().addFurniture(App.getUser(mContext).getId(), familyCode, locationCode, bean);
+                } else {
+                    AddFurnitureActivity.this.selectFurnitureBean = bean;
+                    //图片有地址 直接上传
+                    getPresenter().uploadImg(mContext, new File(bean.getBackground_url()));
                 }
+            }
 
-                @Override
-                public void onEditNameCommitClick(String name) {
+            @Override
+            public void onEditNameCommitClick(String name) {
 
-                }
+            }
 
-                @Override
-                public void onImgClick() {
-                    showSelectDialog();
-                }
-            });
-        }
+            @Override
+            public void onImgClick() {
+                showSelectDialog();
+            }
+        });
         editNamePopup.showPopupWindow();
         editNamePopup.initData(R.string.user_add_furniture, null, null, true);
     }
@@ -288,7 +286,7 @@ public class AddFurnitureActivity extends BaseMvpActivity<AddFurnitureActivity, 
     public void addFurnitureSuccess(FurnitureBean bean) {
         if (bean != null) {
             EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
-            EventBus.getDefault().post(new EventBusMsg.RefreshActivity());
+            EventBus.getDefault().post(new EventBusMsg.RefreshEditItem());
             finish();
         }
     }
