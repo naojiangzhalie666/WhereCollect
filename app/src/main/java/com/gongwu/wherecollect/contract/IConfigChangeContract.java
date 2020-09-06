@@ -3,6 +3,8 @@ package com.gongwu.wherecollect.contract;
 
 import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.request.BindPhoneReq;
+import com.gongwu.wherecollect.net.entity.request.EditPasswordReq;
 import com.gongwu.wherecollect.net.entity.request.EditPersonReq;
 import com.gongwu.wherecollect.net.entity.request.LoginReq;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
@@ -10,15 +12,20 @@ import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 
 public interface IConfigChangeContract {
     interface IConfigChangeModel {
-//        void changePhone(EditPersonReq req, final RequestCallback callback);
+        void bindPhone(BindPhoneReq req, final RequestCallback callback);
+
+        void changePassword(EditPasswordReq req, final RequestCallback callback);
 
         void isRegistered(EditPersonReq req, final RequestCallback callback);
 
         void getCode(LoginReq req, final RequestCallback callback);
+
     }
 
     interface IConfigChangePresenter {
-//        void changePhone(String uid, int keyword, String value);
+        void bindPhone(String uid, String type, String mobile, int code);
+
+        void changePassword(String uid, String original_password, String password);
 
         void isRegistered(String uid, String phone);
 
@@ -26,7 +33,9 @@ public interface IConfigChangeContract {
     }
 
     interface IConfigChangeView extends BaseView {
-//        void changePhoneSuccess(RequestSuccessBean data);
+        void bindPhoneSuccess(RequestSuccessBean data);
+
+        void changePasswordSuccess(RequestSuccessBean data);
 
         void isRegisteredSuccess(RequestSuccessBean data);
 

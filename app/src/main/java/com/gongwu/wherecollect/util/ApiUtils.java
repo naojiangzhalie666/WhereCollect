@@ -790,4 +790,12 @@ public class ApiUtils {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().bindAccount(requestMap).enqueue(callBack);
     }
+
+    /**
+     * 修改密码
+     */
+    public static <D extends RequestBase> void changePassword(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().changePassword(requestMap).enqueue(callBack);
+    }
 }

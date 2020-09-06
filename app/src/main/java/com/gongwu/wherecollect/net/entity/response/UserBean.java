@@ -65,7 +65,7 @@ public class UserBean implements Serializable {
     private String max_version;
     private String login_messag;
 
-    private boolean isPassLogin;
+    private boolean has_password;
 
     private boolean is_vip;
 
@@ -88,11 +88,11 @@ public class UserBean implements Serializable {
     }
 
     public boolean isPassLogin() {
-        return isPassLogin;
+        return has_password;
     }
 
     public void setPassLogin(boolean passLogin) {
-        isPassLogin = passLogin;
+        has_password = passLogin;
     }
 
     public String getMobile() {

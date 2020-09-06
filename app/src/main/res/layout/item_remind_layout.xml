@@ -3,44 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/remind_content_item"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dip_70"
+    android:layout_height="@dimen/dip_80"
     android:clickable="true">
 
     <RelativeLayout
         android:id="@+id/remind_item_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/dip_80">
 
-        <RelativeLayout
-            android:id="@+id/item_remind_goods_img_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.gongwu.wherecollect.view.GoodsImageView
+            android:id="@+id/remind_img_view"
+            android:layout_width="@dimen/dip_68"
+            android:layout_height="@dimen/dip_68"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dip_16">
-
-            <ImageView
-                android:id="@+id/item_remind_goods_iv"
-                android:layout_width="@dimen/dip_54"
-                android:layout_height="@dimen/dip_54" />
-
-            <TextView
-                android:id="@+id/no_url_img_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:textColor="@color/white"
-                android:textSize="@dimen/f_13"
-                android:visibility="gone" />
-        </RelativeLayout>
+            android:layout_marginStart="@dimen/dip_16" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dip_16"
-            android:layout_toEndOf="@id/item_remind_goods_img_layout"
+            android:layout_marginStart="@dimen/dip_10"
+            android:layout_toEndOf="@id/remind_img_view"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -53,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:textColor="@color/act_relation_goods_text_color"
-                    android:textSize="@dimen/f_15"
+                    android:textSize="@dimen/f_14"
                     tools:text="遥控器" />
 
                 <TextView
@@ -76,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dip_4"
                 android:textColor="@color/color999"
-                android:textSize="@dimen/f_13"
+                android:textSize="@dimen/f_12"
                 tools:text="遥控器" />
 
             <TextView
@@ -93,15 +76,15 @@
         <View
             android:id="@+id/split_view"
             android:layout_width="match_parent"
-            android:layout_height="2px"
+            android:layout_height="1px"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="@dimen/dip_16"
-            android:background="@color/black_12" />
+            android:background="@color/split_color" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/remind_delete_tv"
-        android:layout_width="@dimen/dip_90"
+        android:layout_width="@dimen/dip_80"
         android:layout_height="match_parent"
         android:background="@color/remind_delete_text_color"
         android:gravity="center"
@@ -111,7 +94,7 @@
 
     <TextView
         android:id="@+id/remind_edit_finished_tv"
-        android:layout_width="@dimen/dip_90"
+        android:layout_width="@dimen/dip_80"
         android:layout_height="match_parent"
         android:background="@color/remind_add_text_color"
         android:gravity="center"

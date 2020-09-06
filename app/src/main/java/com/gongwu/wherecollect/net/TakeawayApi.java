@@ -402,4 +402,8 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v420/bind-account")
     Call<ResponseBase<RequestSuccessBean>> bindAccount(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("users/change-password")
+    Call<ResponseBase<RequestSuccessBean>> changePassword(@FieldMap Map<String, String> map);
 }

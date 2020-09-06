@@ -302,7 +302,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     @Override
     public void getUserInfoSuccess(UserBean data) {
         if (data != null) {
-            data.setPassLogin(App.getUser(mContext).isPassLogin());
             SaveDate.getInstence(mContext).setUser(JsonUtils.jsonFromObject(data));
             App.setUser(data);
             finish();

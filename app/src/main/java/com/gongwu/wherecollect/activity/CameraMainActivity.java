@@ -168,10 +168,10 @@ public class CameraMainActivity extends BaseActivity {
         }
         if (requestCode == SelectImgDialog.REQUST_PHOTOSELECT && resultCode == ImageGridActivity.RESULT) {
             List<ImageData> temp = (ArrayList<ImageData>) data.getSerializableExtra("list");
-            if (temp.size() == 1) {
+            if (temp.size() == 1 && !continuous) {
                 AddGoodsActivity.start(mContext, FileUtil.compress(new File(temp.get(0).getBigUri()), false).getAbsolutePath(), "");
                 finish();
-            } else if (temp.size() > 1) {
+            } else if (temp.size() > 0 && continuous) {
                 for (ImageData id : temp) {
                     files.add(FileUtil.compress(new File(id.getBigUri()), false).getAbsolutePath());
                 }

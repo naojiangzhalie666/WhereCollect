@@ -17,9 +17,12 @@ import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.RemindBean;
 import com.gongwu.wherecollect.util.DateUtil;
 import com.gongwu.wherecollect.util.ImageLoader;
+import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.SwipeMenuLayout;
 
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,27 +51,21 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Vi
         holder.swipeMenuLayout.setSwipeEnable(true);//设置侧滑功能开关
         RemindBean remindBean = mData.get(i);
         //是否含有物品信息
-        if (TextUtils.isEmpty(remindBean.getAssociated_object_url())) {
-            holder.imgIv.setVisibility(View.GONE);
+        holder.mImgView.name.setText(null);
+        holder.mImgView.head.setBackground(null);
+        holder.mImgView.head.setImageDrawable(null);
+        if (!TextUtils.isEmpty(remindBean.getAssociated_object_url()) &&
+                remindBean.getAssociated_object_url().contains("http")) {
+            holder.mImgView.setImg(remindBean.getAssociated_object_url(), 3);
         } else {
-            //图片
-            holder.imgIv.setImageDrawable(null);
-            holder.imgIv.setVisibility(View.VISIBLE);
-            if (remindBean.getAssociated_object_url().contains("http")) {
-                holder.imgIv.setImageDrawable(null);
-                holder.imgIv.setBackgroundResource(0);
-                ImageLoader.load(mContext, holder.imgIv, remindBean.getAssociated_object_url());
-                holder.imgTv.setVisibility(View.GONE);
-            } else if (remindBean.getAssociated_object_url().contains("#")) {
-                holder.imgIv.setImageDrawable(null);
-                holder.imgIv.setBackgroundResource(0);
-                holder.imgIv.setBackgroundColor(Color.parseColor(remindBean.getAssociated_object_url()));
-                holder.imgTv.setVisibility(View.VISIBLE);
-                holder.imgTv.setText(remindBean.getTitle());
-            } else {
-                holder.imgIv.setVisibility(View.GONE);
-                holder.imgTv.setVisibility(View.GONE);
+            if (TextUtils.isEmpty(remindBean.getAssociated_object_url())) {
+                // 随机颜色
+                Random random = new Random();
+                int randomcolor = random.nextInt(10);
+                remindBean.setAssociated_object_url(StringUtils.getResCode(randomcolor));
             }
+            int resId = Color.parseColor(remindBean.getAssociated_object_url());
+            holder.mImgView.setResourceColor(remindBean.getTitle(), resId, 3);
         }
         //超时字体颜色
         if (remindBean.getDone() != AppConstant.REMIND_FINISH_CODE && remindBean.isTimeout()) {
@@ -112,10 +109,8 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Vi
 
         @BindView(R.id.remind_content_item)
         SwipeMenuLayout swipeMenuLayout;
-        @BindView(R.id.item_remind_goods_iv)
-        ImageView imgIv;
-        @BindView(R.id.no_url_img_tv)
-        TextView imgTv;
+        @BindView(R.id.remind_img_view)
+        GoodsImageView mImgView;
         @BindView(R.id.item_remind_name_tv)
         TextView remindNameTv;
         @BindView(R.id.item_remind_time_tv)

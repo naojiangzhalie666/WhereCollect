@@ -110,8 +110,10 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
     }
 
     @OnClick({R.id.back_btn, R.id.tv_loginOut, R.id.nick_layout, R.id.sex_layout, R.id.birth_layout,
-            R.id.head_layout, R.id.phone_layout, R.id.wx_layout, R.id.wb_layout, R.id.qq_layout})
+            R.id.head_layout, R.id.phone_layout, R.id.wx_layout, R.id.wb_layout, R.id.qq_layout,
+            R.id.tv_changePWD})
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.back_btn:
                 finish();
@@ -152,10 +154,12 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
                 selectDateDialog();
                 break;
             case R.id.tv_loginOut:
-                logout();
+                tipsLogout();
                 break;
             case R.id.phone_layout:
-                ConfigChangePhoneActivity.start(mContext);
+                intent = new Intent(this, ConfigChangePhoneActivity.class);
+                intent.putExtra("changePhone", true);
+                startActivityForResult(intent, AppConstant.REQUEST_CODE);
                 break;
             case R.id.wx_layout:
                 getPresenter().otherLogin(mContext, SHARE_MEDIA.WEIXIN);
@@ -166,25 +170,22 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
             case R.id.qq_layout:
                 getPresenter().otherLogin(mContext, SHARE_MEDIA.QQ);
                 break;
+            case R.id.tv_changePWD:
+                intent = new Intent(this, ConfigChangePhoneActivity.class);
+                startActivityForResult(intent, AppConstant.REQUEST_CODE);
+                break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
                 break;
         }
     }
 
-    private void logout() {
+    private void tipsLogout() {
         DialogUtil.show("提示", "退出将会清空缓存数据,确定退出？", "确定", "取消", (Activity) mContext,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        App.setUser(null);
-                        SaveDate.getInstence(mContext).setUser("");
-                        Intent intent = new Intent(mContext, LoginActivity.class);
-                        intent.putExtra("isFinish", true);
-                        startActivity(intent);
-                        setResult(RESULT_OK);
-                        finish();
-                        EventBus.getDefault().post(new EventBusMsg.StopService());
+                        logout();
                     }
                 }, null);
     }
@@ -240,7 +241,6 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
     @Override
     public void getUserInfoSuccess(UserBean data) {
         if (data != null) {
-            data.setPassLogin(App.getUser(mContext).isPassLogin());
             user = data;
             SaveDate.getInstence(this).setUser(JsonUtils.jsonFromObject(user));
             App.setUser(user);
@@ -282,20 +282,35 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
     public void bindCheckSuccess(RequestSuccessBean data, BindAppReq req) {
         //判断第三方账号是否绑定
         if (data.getBound() == AppConstant.BIND_APP) {
-            DialogUtil.show("提示", "已绑定其他收哪儿账号,是否继续绑定?继续绑定将删除以前绑定账号", "继续", "取消", this, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    getPresenter().bindAccount(req);
-                }
-            }, null);
+            tipsUser(req);
         } else {
             getPresenter().bindAccount(req);
         }
     }
 
+    private void tipsUser(BindAppReq req) {
+        DialogUtil.show("", "该账号已绑定", "删除此账号内容并绑定", "取消", this, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                againTipsUser(req);
+            }
+        }, null);
+    }
+
+
+    private void againTipsUser(BindAppReq req) {
+        DialogUtil.show("提示", "此操作将删除待绑定账号的全部内容,删除后内容不可恢复", "删除", "取消", this, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                getPresenter().bindAccount(req);
+            }
+        }, null);
+    }
+
     @Override
     public void bindAccountSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            Toast.makeText(mContext, "账号绑定成功", Toast.LENGTH_SHORT).show();
             getPresenter().getUserInfo(App.getUser(mContext).getId());
         }
     }
@@ -357,6 +372,23 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
         if (changeHeaderdialog != null) {
             changeHeaderdialog.onActivityResult(requestCode, resultCode, data);
         }
+        if (requestCode == AppConstant.REQUEST_CODE && resultCode == ConfigChangePhoneActivity.PASSWORD_CODE) {
+            logout();
+        }
+        if (requestCode == AppConstant.REQUEST_CODE && resultCode == ConfigChangePhoneActivity.PHONE_CODE) {
+            getPresenter().getUserInfo(App.getUser(mContext).getId());
+        }
+    }
+
+    private void logout() {
+        App.setUser(null);
+        SaveDate.getInstence(mContext).setUser("");
+        Intent intent = new Intent(mContext, LoginActivity.class);
+        intent.putExtra("isFinish", true);
+        startActivity(intent);
+        setResult(RESULT_OK);
+        finish();
+        EventBus.getDefault().post(new EventBusMsg.StopService());
     }
 
     @Override

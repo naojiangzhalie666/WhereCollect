@@ -30,6 +30,7 @@ import com.gongwu.wherecollect.contract.IRemindContract;
 import com.gongwu.wherecollect.contract.presenter.RemindPresenter;
 import com.gongwu.wherecollect.net.entity.response.RemindBean;
 import com.gongwu.wherecollect.net.entity.response.RemindListBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.ToastUtil;
@@ -175,12 +176,12 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
 
             @Override
             public void onItemDeleteClick(int position, View view) {
-//                deleteRemind(mUnData.get(position));
+                getPresenter().deteleRemind(App.getUser(mContext).getId(), mUnData.get(position).get_id());
             }
 
             @Override
             public void onItemEditFinishedClick(int position, View view) {
-//                setRemindDone(mUnData.get(position));
+                getPresenter().setRemindDone(App.getUser(mContext).getId(), mUnData.get(position).get_id());
             }
         });
         mAdapter.setOnItemClickListener(new OnRemindItemClickListener() {
@@ -193,7 +194,7 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
 
             @Override
             public void onItemDeleteClick(int position, View view) {
-//                deleteRemind(mData.get(position));
+                getPresenter().deteleRemind(App.getUser(mContext).getId(), mData.get(position).get_id());
             }
 
             @Override
@@ -304,6 +305,20 @@ public class RemindFragment extends BaseFragment<RemindPresenter> implements IRe
         } else {
             mAdapter.notifyDataSetChanged();
             emptyIv.setVisibility(mData.size() == 0 ? View.VISIBLE : View.GONE);
+        }
+    }
+
+    @Override
+    public void deteleRemindSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
+    public void setRemindDoneSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            mRefreshLayout.autoRefresh();
         }
     }
 

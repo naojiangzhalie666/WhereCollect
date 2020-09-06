@@ -27,6 +27,8 @@ import butterknife.OnClick;
 
 public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhoneActivity, ConfigChangePresenter> implements IConfigChangeContract.IConfigChangeView {
     private static final String TAG = "ConfigChangePhoneActivi";
+    public static final int PASSWORD_CODE = 0x1111;
+    public static final int PHONE_CODE = 0x1112;
 
     @BindView(R.id.title_tv)
     TextView titleTv;
@@ -42,6 +44,16 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
     Button sendBt;
     @BindView(R.id.submit_bt)
     Button commitBt;
+    @BindView(R.id.old_password)
+    EditText oldPasswordEt;
+    @BindView(R.id.new_password)
+    EditText newPasswordEt;
+    @BindView(R.id.bind_phone_layout)
+    View bind_phone_layout;
+    @BindView(R.id.bind_password_layout)
+    View bind_password_layout;
+
+    private boolean changePhone;
 
     @Override
     protected int getLayoutId() {
@@ -50,7 +62,13 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
 
     @Override
     protected void initViews() {
-        titleTv.setText("绑定手机号");
+        changePhone = getIntent().getBooleanExtra("changePhone", false);
+        titleTv.setText(changePhone ? "绑定手机号" : "修改密码");
+        bind_phone_layout.setVisibility(changePhone ? View.VISIBLE : View.GONE);
+        bind_password_layout.setVisibility(changePhone ? View.GONE : View.VISIBLE);
+        if (!changePhone) {
+            commitBt.setText("修改密码");
+        }
         initImgCode();
     }
 
@@ -67,7 +85,11 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
                 initImgCode();
                 break;
             case R.id.submit_bt:
-                commit();
+                if (changePhone) {
+                    commit();
+                } else {
+                    commitPassword();
+                }
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -88,6 +110,22 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
             Toast.makeText(mContext, getString(R.string.login_code_error_text), Toast.LENGTH_SHORT).show();
             return;
         }
+    }
+
+    private void commitPassword() {
+        if (oldPasswordEt.getText().toString().trim().length() == 0) {
+            Toast.makeText(mContext, getString(R.string.old_error_text), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (newPasswordEt.getText().toString().trim().length() == 0) {
+            Toast.makeText(mContext, getString(R.string.new_error_text), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (oldPasswordEt.getText().toString().trim().equals(newPasswordEt.getText().toString().trim())) {
+            Toast.makeText(mContext, getString(R.string.password_error_text), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        getPresenter().changePassword(App.getUser(mContext).getId(), oldPasswordEt.getText().toString().trim(), newPasswordEt.getText().toString().trim());
     }
 
     /**
@@ -120,6 +158,24 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
         });
     }
 
+
+    @Override
+    public void bindPhoneSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            Toast.makeText(mContext, "绑定成功", Toast.LENGTH_SHORT).show();
+            setResult(PHONE_CODE);
+            finish();
+        }
+    }
+
+    @Override
+    public void changePasswordSuccess(RequestSuccessBean data) {
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            Toast.makeText(mContext, "修改成功", Toast.LENGTH_SHORT).show();
+            setResult(PASSWORD_CODE);
+            finish();
+        }
+    }
 
     @Override
     public void isRegisteredSuccess(RequestSuccessBean data) {
@@ -165,7 +221,7 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
 
     @Override
     public void onError(String result) {
-
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -173,8 +229,9 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
         return ConfigChangePresenter.getInstance();
     }
 
-    public static void start(Context context) {
+    public static void start(Context context, boolean changePhone) {
         Intent intent = new Intent(context, ConfigChangePhoneActivity.class);
+        intent.putExtra("changePhone", changePhone);
         context.startActivity(intent);
     }
 }

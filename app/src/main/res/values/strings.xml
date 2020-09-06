@@ -23,6 +23,9 @@
     <string name="login_phone_error_text">请输入正确的手机号</string>
     <string name="login_img_error_text">请输入图形验证码</string>
     <string name="login_code_error_text">请输入正确的验证码</string>
+    <string name="old_error_text">请输入原密码</string>
+    <string name="new_error_text">请输入新密码</string>
+    <string name="password_error_text">新密码不能与原密码相同</string>
 
     <string name="remind_unfinish_text">未完成</string>
     <string name="remind_finished_text">已完成</string>
