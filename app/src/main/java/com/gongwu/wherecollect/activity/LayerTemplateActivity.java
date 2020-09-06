@@ -122,7 +122,7 @@ public class LayerTemplateActivity extends BaseMvpActivity<LayerTemplateActivity
     @Override
     public void updataFurnitureSuccess(FurnitureBean bean) {
         if (bean != null) {
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             finish();
         }
     }

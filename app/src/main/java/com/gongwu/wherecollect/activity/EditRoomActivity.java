@@ -260,7 +260,7 @@ public class EditRoomActivity extends BaseMvpActivity<EditRoomActivity, EditRoom
     @Override
     public void updataRoomPositionSuccess(List<RoomBean> rooms) {
         if (rooms != null && rooms.size() > 0) {
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             EventBus.getDefault().post(new EventBusMsg.RefreshActivity());
         }
     }
@@ -270,7 +270,7 @@ public class EditRoomActivity extends BaseMvpActivity<EditRoomActivity, EditRoom
         if (rooms != null) {
             mlist.add(rooms);
             mAdapter.notifyDataSetChanged();
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             EventBus.getDefault().post(new EventBusMsg.RefreshActivity());
         }
     }
@@ -281,7 +281,7 @@ public class EditRoomActivity extends BaseMvpActivity<EditRoomActivity, EditRoom
             mlist.remove(selectPosition);
             selectPosition = -1;
             mAdapter.notifyDataSetChanged();
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             EventBus.getDefault().post(new EventBusMsg.RefreshActivity());
         }
     }
@@ -293,7 +293,7 @@ public class EditRoomActivity extends BaseMvpActivity<EditRoomActivity, EditRoom
             editName = null;
             selectPosition = -1;
             mAdapter.notifyDataSetChanged();
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             EventBus.getDefault().post(new EventBusMsg.RefreshActivity());
         }
     }
@@ -308,7 +308,7 @@ public class EditRoomActivity extends BaseMvpActivity<EditRoomActivity, EditRoom
                 }
             }
             mAdapter.notifyDataSetChanged();
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             EventBus.getDefault().post(new EventBusMsg.RefreshActivity());
         }
     }

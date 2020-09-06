@@ -30,7 +30,7 @@ public class ImageGridActivity extends BaseActivity implements PhotosDialog.Ondi
 
     @BindView(R.id.title_tv)
     TextView mTitleTv;
-    @BindView(R.id.title_commit_tv)
+    @BindView(R.id.title_commit_tv_color_maincolor)
     TextView commitTv;
 
     public static final int RESULT = 834;
@@ -62,6 +62,9 @@ public class ImageGridActivity extends BaseActivity implements PhotosDialog.Ondi
     protected void initViews() {
         mTitleTv.setText("选择照片");
         imgMax = getIntent().getIntExtra("max", 10);
+        if (imgMax > 1) {
+            commitTv.setVisibility(View.VISIBLE);
+        }
         helper = AlbumHelper.getHelper();
         helper.init(this);
         AlbumHelper helper = AlbumHelper.getHelper();
@@ -70,10 +73,16 @@ public class ImageGridActivity extends BaseActivity implements PhotosDialog.Ondi
         initView();
     }
 
-    @OnClick({R.id.back_btn})
+    @OnClick({R.id.back_btn, R.id.title_commit_tv_color_maincolor})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
+                finish();
+                break;
+            case R.id.title_commit_tv_color_maincolor:
+                Intent intent = new Intent();
+                intent.putExtra("list", (Serializable) adapter.chooseList);
+                setResult(RESULT, intent);
                 finish();
                 break;
         }
@@ -92,9 +101,9 @@ public class ImageGridActivity extends BaseActivity implements PhotosDialog.Ondi
             protected void change(List<ImageData> chooseList) {
                 super.change(chooseList);
                 if (StringUtils.isEmpty(chooseList)) {
-//                    titleLayout.setTitle("选择照片");
+                    mTitleTv.setText("选择照片");
                 } else {
-//                    titleLayout.setTitle(String.format("已选择(%s)", chooseList.size()));
+                    mTitleTv.setText(String.format("已选择(%s)", chooseList.size()));
                     //最大勾选图片数量为1的时候自动跳转到切割图片界面
                     new Handler().postDelayed(new Runnable() {
                         @Override

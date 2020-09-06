@@ -40,6 +40,19 @@
         android:visibility="gone" />
 
     <TextView
+        android:id="@+id/title_commit_tv_color_maincolor"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_30"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_12"
+        android:background="@drawable/select_trans_bg"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:textColor="@color/maincolor"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/title_black_commit_tv"
         android:layout_width="@dimen/dip_64"
         android:layout_height="match_parent"

@@ -143,7 +143,7 @@ public class CameraMainActivity extends BaseActivity {
                 break;
             case R.id.camera_select_img_layout:
                 Intent i = new Intent(mContext, ImageGridActivity.class);
-                i.putExtra("max", continuous ? 10 : 1);
+                i.putExtra("max", continuous ? 9 : 1);
                 startActivityForResult(i, SelectImgDialog.REQUST_PHOTOSELECT);
                 break;
             case R.id.rl_camera_saoma:

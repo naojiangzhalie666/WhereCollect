@@ -224,7 +224,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                             familyTypeIv.setImageDrawable(getResources().getDrawable(mFamilylist.get(position).isBeShared() ? R.drawable.ic_shared : R.drawable.ic_home));
                             SaveDate.getInstence(mContext).setFamilyCode(mFamilylist.get(position).getCode());
                             App.setSelectFamilyBean(mFamilylist.get(position));
-                            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+                            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
                             mRefreshLayout.autoRefresh();
                         }
                     }

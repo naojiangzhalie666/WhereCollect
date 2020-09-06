@@ -314,7 +314,15 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 showMoveGoodsButton();
                 break;
             case R.id.move_goods_iv:
-                showImportGoodsPopup(MainActivity.moveGoodsList, false);
+                if (MainActivity.moveGoodsList != null && MainActivity.moveGoodsList.size() > 0) {
+                    if (MainActivity.moveGoodsList.size() > 1) {
+                        showImportGoodsPopup(MainActivity.moveGoodsList, false);
+                    } else {
+                        importBean = MainActivity.moveGoodsList.get(AppConstant.DEFAULT_INDEX_OF);
+                        importPosition = AppConstant.DEFAULT_INDEX_OF;
+                        postImportGoods(importBean.get_id());
+                    }
+                }
                 break;
             default:
                 break;
@@ -988,6 +996,6 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+        EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
     }
 }

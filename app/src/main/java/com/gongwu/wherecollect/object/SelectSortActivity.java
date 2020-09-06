@@ -116,7 +116,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
                 commit();
                 break;
             case R.id.search_sort_layout:
-                SelectSortChildActivity.start(mContext, sortBean);
+                SelectSortChildActivity.start(mContext, sortBean, false);
                 break;
         }
     }

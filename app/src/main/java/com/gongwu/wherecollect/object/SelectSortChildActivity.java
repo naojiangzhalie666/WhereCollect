@@ -47,6 +47,10 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     private ObjectBean objectBean;
     private SortChildAdapter mAdapter;
     private List<ChannelBean> mlist;
+    //添加属性-选择分类子标签
+    private boolean initSortByChild;
+    //添加属性-选择分类子标签
+    //一级分类标签
     private String baseCode;
 
     @Override
@@ -56,23 +60,34 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
 
     @Override
     protected void initViews() {
-        mTitleTv.setText("分类");
+
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
-        baseCode = objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getCode();
+        initSortByChild = getIntent().getBooleanExtra("initSortByChild", false);
+        mTitleTv.setText(initSortByChild ? "分类子标签" : "分类");
         mlist = new ArrayList<>();
         mAdapter = new SortChildAdapter(mContext, mlist);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
         seachEdit.addTextChangedListener(this);
-
-        getPresenter().getCategoryDetails(App.getUser(mContext).getId(), baseCode);
+        if (initSortByChild && objectBean != null && objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
+            baseCode = objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getCode();
+        }
+        if (!TextUtils.isEmpty(baseCode)) {
+            getPresenter().getCategoryDetails(App.getUser(mContext).getId(), baseCode);
+        }
     }
 
-    public static void start(Context mContext, ObjectBean objectBean) {
+    /**
+     * @param mContext        Context
+     * @param objectBean      物品实体类
+     * @param initSortByChild 是否为分类子标签
+     */
+    public static void start(Context mContext, ObjectBean objectBean, boolean initSortByChild) {
         Intent intent = new Intent(mContext, SelectSortChildActivity.class);
         intent.putExtra("objectBean", objectBean);
+        intent.putExtra("initSortByChild", initSortByChild);
         ((Activity) mContext).startActivityForResult(intent, AddGoodsPropertyActivity.REQUEST_CODE);
     }
 
@@ -127,10 +142,12 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (TextUtils.isEmpty(seachEdit.getText())) {
             clear.setVisibility(View.GONE);
-            getPresenter().getCategoryDetails(App.getUser(mContext).getId(), baseCode);
+            if (initSortByChild && !TextUtils.isEmpty(baseCode)) {
+                getPresenter().getCategoryDetails(App.getUser(mContext).getId(), baseCode);
+            }
         } else {
             clear.setVisibility(View.VISIBLE);
-            getPresenter().getSearchSort(App.getUser(mContext).getId(), baseCode, seachEdit.getText().toString());
+            getPresenter().getSearchSort(App.getUser(mContext).getId(), seachEdit.getText().toString());
         }
     }
 

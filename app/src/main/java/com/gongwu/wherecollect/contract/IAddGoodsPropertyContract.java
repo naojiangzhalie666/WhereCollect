@@ -21,7 +21,7 @@ public interface IAddGoodsPropertyContract {
 
         void getChannelList(String uid, String keyword, final RequestCallback callback);
 
-        void getSearchSort(String uid, String category_code, String keyword, final RequestCallback callback);
+        void getSearchSort(String uid,  String keyword, final RequestCallback callback);
 
         void addChannel(String uid, String name, String code, final RequestCallback callback);
     }
@@ -37,7 +37,7 @@ public interface IAddGoodsPropertyContract {
 
         void getChannelList(String uid, String keyword);
 
-        void getSearchSort(String uid, String category_code, String keyword);
+        void getSearchSort(String uid,  String keyword);
 
         void addChannel(String uid, String name, String code);
     }

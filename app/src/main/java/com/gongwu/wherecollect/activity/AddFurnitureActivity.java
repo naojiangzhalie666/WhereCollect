@@ -287,7 +287,7 @@ public class AddFurnitureActivity extends BaseMvpActivity<AddFurnitureActivity, 
     @Override
     public void addFurnitureSuccess(FurnitureBean bean) {
         if (bean != null) {
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             EventBus.getDefault().post(new EventBusMsg.RefreshActivity());
             finish();
         }

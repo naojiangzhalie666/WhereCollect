@@ -120,8 +120,8 @@ public class AddGoodsPropertyPresenter extends BasePresenter<IAddGoodsPropertyCo
     }
 
     @Override
-    public void getSearchSort(String uid, String category_code, String keyword) {
-        mModel.getSearchSort(uid, category_code, keyword, new RequestCallback<List<ChannelBean>>() {
+    public void getSearchSort(String uid, String keyword) {
+        mModel.getSearchSort(uid,  keyword, new RequestCallback<List<ChannelBean>>() {
             @Override
             public void onSuccess(List<ChannelBean> data) {
                 if (getUIView() != null) {

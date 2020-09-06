@@ -346,9 +346,9 @@ public class ObjectInfoEditView extends LinearLayout {
         switch (view.getId()) {
             case R.id.fenlei_layout:
                 if (bean.getCategories() != null && bean.getCategories().size() > 0) {
-                    SelectSortChildActivity.start(getContext(), bean);
+                    SelectSortChildActivity.start(getContext(), bean, true);
                 } else {
-                    Toast.makeText(getContext(),"请先添加分类", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "请先添加分类", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.yanse_layout:

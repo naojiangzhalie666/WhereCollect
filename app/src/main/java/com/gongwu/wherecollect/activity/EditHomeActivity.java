@@ -377,7 +377,7 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
             setNotEditLayout();
             fragments.get(selectPosition).clearSelect();
             fragments.get(selectPosition).refreshFragment();
-            EventBus.getDefault().post(new EventBusMsg.RefreshFragment());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
         }
     }
 
