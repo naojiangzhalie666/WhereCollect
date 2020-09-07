@@ -18,6 +18,7 @@ import com.gongwu.wherecollect.contract.presenter.EditFurniturePatternPresenter;
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.util.JsonUtils;
+import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.Loading;
@@ -52,6 +53,7 @@ public class EditFurniturePatternActivity extends BaseMvpActivity<EditFurnitureP
     TextView commitView;
 
     private Loading loading;
+    private String familyCode;
     private FurnitureBean mFurnitureBean;
 
     @Override
@@ -64,6 +66,7 @@ public class EditFurniturePatternActivity extends BaseMvpActivity<EditFurnitureP
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.maincolor));
         StatusBarUtil.setLightStatusBar(this, false);
         commitView.setVisibility(View.VISIBLE);
+        familyCode = getIntent().getStringExtra("family_code");
         mFurnitureBean = (FurnitureBean) getIntent().getSerializableExtra("furnitureBean");
         titleTv.setText(TextUtils.isEmpty(mFurnitureBean.getName()) ? "" : mFurnitureBean.getName());
         if (mFurnitureBean != null && mFurnitureBean.getLayers() != null && mFurnitureBean.getLayers().size() > 0) {
@@ -129,7 +132,7 @@ public class EditFurniturePatternActivity extends BaseMvpActivity<EditFurnitureP
             layer.put("layer_codes", mFurnitureBean.getLayers().get(i).getCode());
             layers.add(layer);
         }
-        getPresenter().updataFurniture(App.getUser(mContext).getId(), mFurnitureBean.getCode(), JsonUtils.jsonFromObject(layers), tableRowLayout.getShape());
+        getPresenter().updataFurniture(App.getUser(mContext).getId(), familyCode, mFurnitureBean.getCode(), JsonUtils.jsonFromObject(layers), tableRowLayout.getShape());
     }
 
     /**
@@ -148,9 +151,10 @@ public class EditFurniturePatternActivity extends BaseMvpActivity<EditFurnitureP
         return EditFurniturePatternPresenter.getInstance();
     }
 
-    public static void start(Context mContext, FurnitureBean furnitureBean) {
+    public static void start(Context mContext, FurnitureBean furnitureBean, String familyCode) {
         Intent intent = new Intent(mContext, EditFurniturePatternActivity.class);
         intent.putExtra("furnitureBean", furnitureBean);
+        intent.putExtra("family_code", familyCode);
         ((Activity) mContext).startActivityForResult(intent, AppConstant.REQUEST_CODE);
     }
 

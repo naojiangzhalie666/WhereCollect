@@ -171,6 +171,7 @@ public class SharedSpaceFragment extends BaseFragment<SharePresenter> implements
     public void closeShareUserSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
             mRefreshLayout.autoRefresh();
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
         }
     }
 

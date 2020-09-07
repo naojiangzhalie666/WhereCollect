@@ -16,7 +16,7 @@ public interface IEditFurniturePatternContract {
 
     interface IEditFurniturePatternPresenter {
 
-        void updataFurniture(String uid, String code, String layers, float ratio);
+        void updataFurniture(String uid, String family_code, String code, String layers, float ratio);
 
     }
 

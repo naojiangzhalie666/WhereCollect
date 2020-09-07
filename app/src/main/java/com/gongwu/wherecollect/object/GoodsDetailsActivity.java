@@ -28,6 +28,7 @@ import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RemindBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.util.DateUtil;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
@@ -156,6 +157,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                 if (locationTv.getText().toString().equals("未归位")) return;
                 String familyCode = "";
                 FurnitureBean furnitureBean = new FurnitureBean();
+                RoomBean roomBean = new RoomBean();
                 for (BaseBean bean : objectBean.getLocations()) {
                     if (bean.getLevel() == AppConstant.LEVEL_FAMILY) {
                         familyCode = bean.getCode();
@@ -163,6 +165,8 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                     if (bean.getLevel() == AppConstant.LEVEL_ROOM) {
                         furnitureBean.set_id(bean.get_id());
                         furnitureBean.setLocation_code(bean.getCode());
+                        roomBean.set_id(bean.get_id());
+                        roomBean.setCode(bean.getCode());
                     }
                     if (bean.getLevel() == AppConstant.LEVEL_FURNITURE) {
                         furnitureBean.setCode(bean.getCode());
@@ -174,7 +178,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                         TextUtils.isEmpty(furnitureBean.getCode())) {
                     return;
                 }
-                FurnitureLookActivity.start(mContext, familyCode, furnitureBean, objectBean);
+                FurnitureLookActivity.start(mContext, familyCode, furnitureBean, objectBean, roomBean);
                 break;
             case R.id.remind_item_layout:
                 Intent intent = new Intent(mContext, AddRemindActivity.class);

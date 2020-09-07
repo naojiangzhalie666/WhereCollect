@@ -20,12 +20,13 @@ public class EditFurniturePatternPresenter extends BasePresenter<IEditFurnitureP
     }
 
     @Override
-    public void updataFurniture(String uid, String code, String layers, float ratio) {
+    public void updataFurniture(String uid, String family_code, String code, String layers, float ratio) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
         }
         EditFurnitureReq furnitureReq = new EditFurnitureReq();
         furnitureReq.setUid(uid);
+        furnitureReq.setFamily_code(family_code);
         furnitureReq.setCode(code);
         furnitureReq.setLayers(layers);
         furnitureReq.setRatio(ratio);

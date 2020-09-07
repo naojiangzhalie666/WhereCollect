@@ -188,7 +188,7 @@ public class EditHomeActivity extends BaseMvpActivity<EditHomeActivity, EditHome
 
                 @Override
                 public void onSecondClick() {
-                    EditFurniturePatternActivity.start(mContext, mselectlist.get(AppConstant.DEFAULT_INDEX_OF));
+                    EditFurniturePatternActivity.start(mContext, mselectlist.get(AppConstant.DEFAULT_INDEX_OF), familyCode);
                 }
 
             });

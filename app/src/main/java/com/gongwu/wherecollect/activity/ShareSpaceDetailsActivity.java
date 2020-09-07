@@ -24,9 +24,12 @@ import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.util.DialogUtil;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.view.Loading;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -137,11 +140,14 @@ public class ShareSpaceDetailsActivity extends BaseMvpActivity<SharePersonDetail
 
     @Override
     public void closeShareUserSuccess(RequestSuccessBean data) {
-        if (mlist.get(selectPositon).getUid().equals(App.getUser(mContext).getId())) {
-            setResult(RESULT_OK);
-            finish();
-        } else {
-            mRefreshLayout.autoRefresh();
+        if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
+            if (mlist.get(selectPositon).getUid().equals(App.getUser(mContext).getId())) {
+                setResult(RESULT_OK);
+                finish();
+            } else {
+                mRefreshLayout.autoRefresh();
+            }
         }
     }
 

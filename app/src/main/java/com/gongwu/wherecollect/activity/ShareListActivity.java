@@ -95,21 +95,6 @@ public class ShareListActivity extends BaseActivity implements ViewPager.OnPageC
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == START_CODE && resultCode == Activity.RESULT_OK) {
-            fragments.get(0).refreshFragment();
-            fragments.get(1).refreshFragment();
-        }
-//        if (requestCode == 102 && resultCode == Activity.RESULT_OK) {
-//            fragments.get(0).refreshFragment();
-//        }
-//        if (requestCode == 104 && resultCode == Activity.RESULT_OK) {
-//            fragments.get(1).refreshFragment();
-//        }
-    }
-
-    @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }

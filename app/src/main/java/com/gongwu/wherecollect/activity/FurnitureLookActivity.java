@@ -125,6 +125,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     private Loading loading;
     private ChildView selectView;
     private FurnitureLookAdapter mAdapter;
+    private RoomBean roomBean;
     private FurnitureBean furnitureBean;
     private ObjectBean selectGoodsBean;
     //总数据(含有物品和收纳盒)
@@ -144,6 +145,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     private int selectGoods = 0;
     private float y;
     private String resetName;
+    private String family_code;
 
     @Override
     protected int getLayoutId() {
@@ -153,6 +155,8 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     @Override
     protected void initViews() {
         y = tabLayout.getY();
+        family_code = getIntent().getStringExtra("family_code");
+        roomBean = (RoomBean) getIntent().getSerializableExtra("roomBean");
         furnitureBean = (FurnitureBean) getIntent().getSerializableExtra("furnitureBean");
         selectGoodsBean = (ObjectBean) getIntent().getSerializableExtra("selectGoodsBean");
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.maincolor));
@@ -237,7 +241,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     }
                 } else {
                     //编辑结构
-                    EditFurniturePatternActivity.start(mContext, furnitureBean);
+                    EditFurniturePatternActivity.start(mContext, furnitureBean, family_code);
                 }
                 break;
             case R.id.furniture_add_box_tv:
@@ -337,13 +341,13 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     App.getUser(mContext).getId(),
                     furnitureBean.getCode(),
                     AppConstant.LEVEL_INTERLAYER,
-                    getIntent().getStringExtra("family_code"),
-                    furnitureBean.get_id()
+                    family_code,
+                    roomBean.get_id()
             );
             getPresenter().getFurnitureDetails(
                     App.getUser(mContext).getId(),
                     furnitureBean.getCode(),
-                    getIntent().getStringExtra("family_code")
+                    family_code
             );
             init = true;
         }
@@ -418,7 +422,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             getPresenter().getFurnitureDetails(
                     App.getUser(mContext).getId(),
                     furnitureBean.getCode(),
-                    getIntent().getStringExtra("family_code")
+                    family_code
             );
         }
     }
@@ -509,7 +513,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             getPresenter().getFurnitureDetails(
                     App.getUser(mContext).getId(),
                     furnitureBean.getCode(),
-                    getIntent().getStringExtra("family_code"));
+                    family_code);
         }
     }
 
@@ -521,7 +525,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             getPresenter().getFurnitureDetails(
                     App.getUser(mContext).getId(),
                     furnitureBean.getCode(),
-                    getIntent().getStringExtra("family_code"));
+                    family_code);
         }
     }
 
@@ -552,7 +556,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             getPresenter().getFurnitureDetails(
                     App.getUser(mContext).getId(),
                     furnitureBean.getCode(),
-                    getIntent().getStringExtra("family_code")
+                    family_code
             );
         }
     }
@@ -982,11 +986,12 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         return MainActivity.moveLayerBean != null || MainActivity.moveBoxBean != null || (MainActivity.moveGoodsList != null && MainActivity.moveGoodsList.size() > 0);
     }
 
-    public static void start(Context context, String family_code, FurnitureBean furnitureBean, ObjectBean selectGoodsBean) {
+    public static void start(Context context, String family_code, FurnitureBean furnitureBean, ObjectBean selectGoodsBean, RoomBean roomBean) {
         Intent intent = new Intent(context, FurnitureLookActivity.class);
         intent.putExtra("family_code", family_code);
         intent.putExtra("furnitureBean", furnitureBean);
         intent.putExtra("selectGoodsBean", selectGoodsBean);
+        intent.putExtra("roomBean", roomBean);
         context.startActivity(intent);
     }
 

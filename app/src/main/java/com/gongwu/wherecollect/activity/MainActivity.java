@@ -352,6 +352,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     public void dealWithShareRequestSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
             EventBus.getDefault().post(new EventBusMsg.UpdateShareMsg());
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
         }
     }
 

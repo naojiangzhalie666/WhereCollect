@@ -25,8 +25,11 @@ import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.util.DialogUtil;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.view.Loading;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +143,7 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
     @Override
     public void closeShareUserSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
             mlist.remove(deleteSpacePosition);
             mAdapter.notifyDataSetChanged();
         }
@@ -147,7 +151,7 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext,"");
+        loading = Loading.show(null, mContext, "");
     }
 
     @Override

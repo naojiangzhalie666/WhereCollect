@@ -156,12 +156,6 @@ public class SharedPersonFragment extends BaseFragment<SharePresenter> implement
         mAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void refreshFragment() {
-        isViewInitiated = true;
-        initData = false;
-    }
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.UpdateShareMsg msg) {
         if (mRefreshLayout != null) {
@@ -178,6 +172,7 @@ public class SharedPersonFragment extends BaseFragment<SharePresenter> implement
     public void closeShareUserSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
             mRefreshLayout.autoRefresh();
+            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
         }
     }
 

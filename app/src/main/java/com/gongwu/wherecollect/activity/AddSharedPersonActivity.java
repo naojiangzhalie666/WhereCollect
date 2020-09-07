@@ -30,11 +30,14 @@ import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.util.DialogUtil;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.PopupAddShareSpace;
 import com.gongwu.wherecollect.view.EditTextWatcher;
 import com.gongwu.wherecollect.view.Loading;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -197,6 +200,7 @@ public class AddSharedPersonActivity extends BaseMvpActivity<AddSharedPersonActi
     @Override
     public void setShareLocationSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
+            EventBus.getDefault().post(new EventBusMsg.UpdateShareMsg());
             setResult(RESULT_OK);
             finish();
         }
