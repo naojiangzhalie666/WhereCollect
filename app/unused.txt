@@ -458,6 +458,7 @@ kotlin.collections.ArraysKt___ArraysKt$asSequence$$inlined$Sequence$6
 okhttp3.internal.cache.DiskLruCache
 com.gongwu.wherecollect.object.AddGoodsActivity
     public static final int BOOK_CODE
+    public static final int RESULT_FINISH
 io.reactivex.internal.operators.flowable.FlowableTakeUntilPredicate$InnerSubscriber
 kotlin.BuilderInference
 androidx.transition.ViewGroupUtilsApi14
@@ -3371,6 +3372,8 @@ io.reactivex.internal.operators.observable.ObservableScanSeed$ScanSeedObserver
 androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo
     public int changeFlags
 kotlin.jvm.internal.TypeReference$WhenMappings
+com.gongwu.wherecollect.contract.IConfigChangeContract$IConfigChangeView
+    public abstract void bindPhoneSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean)
 io.reactivex.internal.operators.maybe.MaybeDelaySubscriptionOtherPublisher$OtherSubscriber
 kotlin.io.LinesSequence
 kotlin.text.CharsKt__CharKt
@@ -4617,6 +4620,8 @@ okhttp3.CacheControl$Builder
     public final okhttp3.CacheControl$Builder noTransform()
     public final okhttp3.CacheControl$Builder immutable()
 com.gongwu.wherecollect.contract.IConfigChangeContract$IConfigChangePresenter
+    public abstract void bindPhone(java.lang.String,java.lang.String,java.lang.String,int)
+    public abstract void changePassword(java.lang.String,java.lang.String,java.lang.String)
     public abstract void isRegistered(java.lang.String,java.lang.String)
     public abstract void getCode(java.lang.String,java.lang.String)
 io.reactivex.internal.operators.observable.ObservableJoin
@@ -7154,6 +7159,7 @@ com.gongwu.wherecollect.contract.IAddGoodsContract$IAddGoodsPresenter
     public abstract void addMoreGoods(android.content.Context,java.util.List,com.gongwu.wherecollect.net.entity.response.ObjectBean)
     public abstract void getBookInfo(java.lang.String,java.lang.String)
     public abstract void getTaobaoInfo(java.lang.String,java.lang.String)
+    public abstract void removeObjectFromFurnitrue(java.lang.String,java.lang.String)
 androidx.core.view.inputmethod.InputConnectionCompat$2
 com.alipay.sdk.sys.a$a
     public void <init>()
@@ -7241,6 +7247,7 @@ androidx.appcompat.app.AppCompatDialog
     public androidx.appcompat.app.ActionBar getSupportActionBar()
 com.gongwu.wherecollect.contract.IMainContract$IMainPresenter
     public abstract void dealWithShareRequest(java.lang.String,java.lang.String)
+    public abstract void getVersion(java.lang.String)
 com.gongwu.wherecollect.view.GoodsImageView$GlideListener
     public abstract void onSucces(android.graphics.Bitmap)
     public abstract void onError()
@@ -8107,8 +8114,6 @@ androidx.appcompat.widget.Toolbar$LayoutParams
 kotlin.comparisons.ComparisonsKt__ComparisonsKt$thenByDescending$1
 com.github.florent37.camerafragment.internal.enums.MediaAction
 com.gongwu.wherecollect.FragmentMain.RemindFragment
-    public void showProgressDialog()
-    public void hideProgressDialog()
     private static final java.lang.String CODE_UNFINISH
     private static final java.lang.String CODE_FINISHED
     private static final int START_CODE
@@ -8746,6 +8751,8 @@ androidx.core.view.accessibility.AccessibilityManagerCompat
     public static boolean isTouchExplorationEnabled(android.view.accessibility.AccessibilityManager)
     private void <init>()
 kotlin.random.FallbackThreadLocalRandom
+com.gongwu.wherecollect.contract.IConfigChangeContract$IConfigChangeModel
+    public abstract void bindPhone(com.gongwu.wherecollect.net.entity.request.BindPhoneReq,com.gongwu.wherecollect.interfacedef.RequestCallback)
 com.google.android.material.snackbar.SnackbarManager$SnackbarRecord
     void <init>(int,com.google.android.material.snackbar.SnackbarManager$Callback)
 okhttp3.internal.http1.Http1ExchangeCodec$AbstractSource
@@ -10305,6 +10312,8 @@ com.google.zxing.common.HybridBinarizer
     private static final int BLOCK_SIZE_MASK
     private static final int MINIMUM_DIMENSION
     private static final int MIN_DYNAMIC_RANGE
+com.gongwu.wherecollect.contract.model.ConfigChangeModel
+    public void bindPhone(com.gongwu.wherecollect.net.entity.request.BindPhoneReq,com.gongwu.wherecollect.interfacedef.RequestCallback)
 io.reactivex.internal.operators.maybe.MaybeToFlowable$MaybeToFlowableSubscriber
 com.google.android.material.circularreveal.CircularRevealFrameLayout
     public void <init>(android.content.Context)
@@ -10571,6 +10580,8 @@ com.alipay.sdk.cons.b
 androidx.constraintlayout.widget.ConstraintHelper
     public void <init>(android.content.Context,android.util.AttributeSet)
     public void <init>(android.content.Context,android.util.AttributeSet,int)
+com.gongwu.wherecollect.util.EventBusMsg$RefreshRemind
+    public void <init>()
 com.google.android.material.bottomnavigation.BottomNavigationView$SavedState$1
 org.greenrobot.eventbus.EventBus
     public static org.greenrobot.eventbus.EventBusBuilder builder()
@@ -10769,6 +10780,12 @@ kotlin.collections.CollectionsKt__IterablesKt$Iterable$1
 io.reactivex.internal.observers.QueueDrainSubscriberPad2
 anetwork.channel.IBodyHandler
 io.reactivex.FlowableEmitter
+com.gongwu.wherecollect.contract.presenter.ConfigChangePresenter$1
+    void <init>(com.gongwu.wherecollect.contract.presenter.ConfigChangePresenter)
+    public void onSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean)
+    public void onFailure(java.lang.String)
+    public synthetic bridge void onSuccess(java.lang.Object)
+    final synthetic com.gongwu.wherecollect.contract.presenter.ConfigChangePresenter this$0
 androidx.drawerlayout.widget.DrawerLayout
 io.reactivex.internal.operators.mixed.ObservableSwitchMapCompletable$SwitchMapCompletableObserver
 androidx.core.text.ICUCompat
@@ -11370,7 +11387,11 @@ androidx.core.app.TaskStackBuilder
 com.gongwu.wherecollect.contract.presenter.BuyVIPPresenter
     private static final java.lang.String TAG
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity
+    public static void start(android.content.Context,boolean)
+    public void bindPhoneSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean)
     private static final java.lang.String TAG
+    public static final int PASSWORD_CODE
+    public static final int PHONE_CODE
 androidx.recyclerview.widget.ViewBoundsCheck
     static final int GT
     static final int EQ
@@ -11619,7 +11640,7 @@ com.google.android.material.math.MathUtils
     public static final float DEFAULT_EPSILON
 io.reactivex.internal.operators.observable.ObservableReplay$Node
 com.gongwu.wherecollect.contract.IEditFurniturePatternContract$IEditFurniturePatternPresenter
-    public abstract void updataFurniture(java.lang.String,java.lang.String,java.lang.String,float)
+    public abstract void updataFurniture(java.lang.String,java.lang.String,java.lang.String,java.lang.String,float)
 com.gongwu.wherecollect.contract.presenter.EditHomePresenter$Inner
     private void <init>()
 kotlin.UShortKt
@@ -12392,6 +12413,8 @@ kotlin.sequences.DropSequence$iterator$1
     public final void setLeft(int)
 com.gongwu.wherecollect.contract.IRemindContract$IRemindPresenter
     public abstract void getRemindList(java.lang.String,java.lang.String,int)
+    public abstract void deteleRemind(java.lang.String,java.lang.String)
+    public abstract void setRemindDone(java.lang.String,java.lang.String)
 com.google.android.material.button.MaterialButton$IconGravity
 androidx.transition.Slide$6
 androidx.appcompat.app.AppCompatDelegate$NightMode
@@ -13480,7 +13503,7 @@ com.gongwu.wherecollect.contract.IAddGoodsPropertyContract$IAddGoodsPropertyPres
     public abstract void getFirstCategoryList(java.lang.String)
     public abstract void getCategoryDetails(java.lang.String,java.lang.String)
     public abstract void getChannelList(java.lang.String,java.lang.String)
-    public abstract void getSearchSort(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void getSearchSort(java.lang.String,java.lang.String)
     public abstract void addChannel(java.lang.String,java.lang.String,java.lang.String)
 kotlin.text.MatchGroup
     public static synthetic kotlin.text.MatchGroup copy$default(kotlin.text.MatchGroup,java.lang.String,kotlin.ranges.IntRange,int,java.lang.Object)
@@ -13737,12 +13760,15 @@ com.scwang.smartrefresh.layout.util.ViscousFluidInterpolator
     private static final float VISCOUS_FLUID_SCALE
 io.reactivex.internal.operators.flowable.FlowableConcatMapEager$ConcatMapEagerDelayErrorSubscriber
 kotlin.random.PlatformRandom
+com.gongwu.wherecollect.contract.model.ConfigChangeModel$1
 org.intellij.lang.annotations.Subst
 androidx.recyclerview.widget.TileList
 kotlin.text.Regex$Companion
     public final kotlin.text.Regex fromLiteral(java.lang.String)
     public final java.lang.String escape(java.lang.String)
     public final java.lang.String escapeReplacement(java.lang.String)
+com.gongwu.wherecollect.contract.presenter.ConfigChangePresenter
+    public void bindPhone(java.lang.String,java.lang.String,java.lang.String,int)
 androidx.core.widget.TintableCompoundButton
     public abstract android.content.res.ColorStateList getSupportButtonTintList()
     public abstract android.graphics.PorterDuff$Mode getSupportButtonTintMode()
@@ -16804,6 +16830,8 @@ androidx.media.MediaBrowserServiceCompat$3
     final synthetic androidx.media.MediaBrowserServiceCompat this$0
 com.gongwu.wherecollect.adapter.LayerTemplateAdapter
     private android.content.Context mContext
+com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter$10
+    final synthetic com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter this$0
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding this$0
 androidx.arch.core.executor.ArchTaskExecutor
@@ -17187,6 +17215,8 @@ com.github.florent37.camerafragment.internal.ui.model.PhotoQualityOption
     private com.github.florent37.camerafragment.internal.utils.Size size
 razerdp.basepopup.BasePopupHelper$1
     final synthetic razerdp.basepopup.BasePopupHelper this$0
+com.gongwu.wherecollect.contract.model.AddGoodsModel$6
+    final synthetic com.gongwu.wherecollect.contract.model.AddGoodsModel this$0
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
 com.gongwu.wherecollect.fragment.FamilyRoomFragment$2
@@ -17225,6 +17255,8 @@ com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding this$0
 com.tencent.bugly.proguard.s$1
     final synthetic com.tencent.bugly.proguard.s a
+com.gongwu.wherecollect.contract.model.RemindModel$2
+    final synthetic com.gongwu.wherecollect.contract.model.RemindModel this$0
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.SearchActivity_ViewBinding this$0
 okhttp3.internal.platform.android.StandardAndroidSocketAdapter
@@ -17370,6 +17402,8 @@ com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding this$0
 com.tencent.bugly.proguard.ak$2
     final synthetic com.tencent.bugly.proguard.ak c
+com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.EditMoreGoodsModel$2
     final synthetic com.gongwu.wherecollect.contract.model.EditMoreGoodsModel this$0
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$5
@@ -17427,8 +17461,6 @@ com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding$1
     final synthetic com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding this$0
 androidx.recyclerview.widget.ItemTouchHelper$RecoverAnimation
     final int mAnimationType
-com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter$8
-    final synthetic com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter this$0
 com.gongwu.wherecollect.adapter.SharePersonDetailsSpaceListAdapter$ViewHolder
     final synthetic com.gongwu.wherecollect.adapter.SharePersonDetailsSpaceListAdapter this$0
 com.gongwu.wherecollect.permission.FloatWindowManager$6
@@ -17576,6 +17608,8 @@ com.gongwu.wherecollect.activity.FeedBackActivity_ViewBinding$1
 com.gongwu.wherecollect.swipecardview.FlingCardListener
     private final int TOUCH_ABOVE
     private final int TOUCH_BELOW
+com.gongwu.wherecollect.contract.model.RemindModel$3
+    final synthetic com.gongwu.wherecollect.contract.model.RemindModel this$0
 androidx.core.view.accessibility.AccessibilityNodeInfoCompat
     static void <clinit>()
 androidx.appcompat.widget.SuggestionsAdapter
@@ -17709,6 +17743,8 @@ com.permissionx.guolindev.request.PermissionBuilder$2
     final synthetic com.permissionx.guolindev.request.PermissionBuilder this$0
 com.gongwu.wherecollect.contract.model.AddFamilyToSelectRoomsModel$2
     final synthetic com.gongwu.wherecollect.contract.model.AddFamilyToSelectRoomsModel this$0
+com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$7
+    final synthetic com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$6
     final synthetic com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding this$0
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$4
@@ -18175,8 +18211,6 @@ androidx.media.MediaBrowserServiceCompat$ConnectionRecord
     public final android.os.Bundle rootHints
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$1
     final synthetic com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding this$0
-com.gongwu.wherecollect.contract.model.ConfigChangeModel$1
-    final synthetic com.gongwu.wherecollect.contract.model.ConfigChangeModel this$0
 androidx.transition.ChangeBounds$10
     final synthetic androidx.transition.ChangeBounds this$0
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$1
@@ -18251,6 +18285,10 @@ com.alipay.sdk.app.PayTask
     private final java.lang.String e
     private final java.lang.String f
     private final java.lang.String g
+com.gongwu.wherecollect.contract.model.ConfigChangeModel$4
+    final synthetic com.gongwu.wherecollect.contract.model.ConfigChangeModel this$0
+com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding this$0
 okio.Segment
     public static final okio.Segment$Companion Companion
 androidx.transition.ViewOverlayApi14$OverlayViewGroup
@@ -18311,6 +18349,8 @@ com.google.android.material.floatingactionbutton.FloatingActionButtonImpl$Disabl
     final synthetic com.google.android.material.floatingactionbutton.FloatingActionButtonImpl this$0
 com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding$6
     final synthetic com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.MainModel$2
+    final synthetic com.gongwu.wherecollect.contract.model.MainModel this$0
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$9
     final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$7
@@ -18328,8 +18368,12 @@ com.gongwu.wherecollect.view.ChangeHeaderImgDialog
     public final int REQUST_CAMARE
     public final int REQUST_PHOTOSELECT
     android.widget.ImageView headerIv
+com.gongwu.wherecollect.contract.model.ConfigChangeModel$3
+    final synthetic com.gongwu.wherecollect.contract.model.ConfigChangeModel this$0
 com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel$3
     final synthetic com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel this$0
+com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$11
+    final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
 com.pixplicity.sharp.Sharp$SvgHandler$SvgGroup
     final synthetic com.pixplicity.sharp.Sharp$SvgHandler this$0
 com.gongwu.wherecollect.contract.model.HomeModel$2

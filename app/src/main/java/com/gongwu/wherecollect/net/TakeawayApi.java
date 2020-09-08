@@ -33,6 +33,7 @@ import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
+import com.gongwu.wherecollect.net.entity.response.VersionBean;
 
 import java.util.List;
 import java.util.Map;
@@ -406,4 +407,7 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("users/change-password")
     Call<ResponseBase<RequestSuccessBean>> changePassword(@FieldMap Map<String, String> map);
+
+    @GET("api/app/v420/app/version/check")
+    Call<ResponseBase<VersionBean>> getVersion(@Query("system_name") String system_name, @Query("app_version") String app_version);
 }

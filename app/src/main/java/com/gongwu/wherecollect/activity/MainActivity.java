@@ -31,11 +31,13 @@ import com.gongwu.wherecollect.net.entity.response.MessageBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
+import com.gongwu.wherecollect.net.entity.response.VersionBean;
 import com.gongwu.wherecollect.permission.FloatWindowManager;
 import com.gongwu.wherecollect.service.TimerService;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
+import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.ActivityTaskManager;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.permissionx.guolindev.PermissionX;
@@ -91,7 +93,6 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     @Override
     protected void initViews() {
-
         main_tab_rg.setOnCheckedChangeListener(this);
         fragments = new SparseArray<>();
         fragments.put(TAB_SPACE, HomeFragment.getInstance());
@@ -104,6 +105,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             TimerService.getConnet(this);
         }
         EventBus.getDefault().register(this);
+        getPresenter().getVersion(StringUtils.getCurrentVersionName(mContext));
     }
 
     private void selectTab(int indexOf) {
@@ -346,6 +348,11 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     @Override
     protected MainPresenter createPresenter() {
         return MainPresenter.getInstance();
+    }
+
+    @Override
+    public void getVersionSuccess(VersionBean bean) {
+
     }
 
     @Override

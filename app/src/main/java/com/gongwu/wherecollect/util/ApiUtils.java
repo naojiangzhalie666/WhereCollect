@@ -35,6 +35,7 @@ import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
+import com.gongwu.wherecollect.net.entity.response.VersionBean;
 
 import java.util.List;
 import java.util.Map;
@@ -797,5 +798,12 @@ public class ApiUtils {
     public static <D extends RequestBase> void changePassword(D request, ApiCallBack<RequestSuccessBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().changePassword(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 获取最新版本
+     */
+    public static <D extends RequestBase> void getVersion(String app_version, ApiCallBack<VersionBean> callBack) {
+        ApiInstance.getApi().getVersion("ANDROID", app_version).enqueue(callBack);
     }
 }

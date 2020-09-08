@@ -194,7 +194,11 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (AddGoodsPropertyActivity.REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
-            commit();
+            ObjectBean objectBean = (ObjectBean) data.getSerializableExtra("objectBean");
+            Intent intent = new Intent();
+            intent.putExtra("objectBean", objectBean);
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 

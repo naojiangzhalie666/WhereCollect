@@ -62,6 +62,7 @@
         android:paddingRight="17dp">
 
         <TextView
+            android:id="@+id/sort_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="推荐标签"
@@ -69,6 +70,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/sort_child_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

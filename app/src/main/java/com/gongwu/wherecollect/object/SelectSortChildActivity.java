@@ -41,8 +41,13 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     RecyclerView mRecyclerView;
     @BindView(R.id.seach_edit)
     EditText seachEdit;
+    @BindView(R.id.sort_tv)
+    TextView sort_tv;
+    @BindView(R.id.sort_child_tv)
+    TextView sort_child_tv;
     @BindView(R.id.clear)
-    ImageView clear;
+    ImageView clearView;
+
 
     private ObjectBean objectBean;
     private SortChildAdapter mAdapter;
@@ -65,8 +70,13 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
         initSortByChild = getIntent().getBooleanExtra("initSortByChild", false);
         mTitleTv.setText(initSortByChild ? "分类子标签" : "分类");
+        if (!initSortByChild) {
+            sort_tv.setText("建议分类");
+            sort_child_tv.setText("子标签");
+        }
         mlist = new ArrayList<>();
         mAdapter = new SortChildAdapter(mContext, mlist);
+        mAdapter.setAdapterType(initSortByChild);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(this);
@@ -111,11 +121,15 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
         mAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.back_btn})
+    @OnClick({R.id.back_btn, R.id.clear})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
                 finish();
+                break;
+            case R.id.clear:
+                clearView.setVisibility(View.GONE);
+                seachEdit.setText("");
                 break;
         }
     }
@@ -141,12 +155,12 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (TextUtils.isEmpty(seachEdit.getText())) {
-            clear.setVisibility(View.GONE);
+            clearView.setVisibility(View.GONE);
             if (initSortByChild && !TextUtils.isEmpty(baseCode)) {
                 getPresenter().getCategoryDetails(App.getUser(mContext).getId(), baseCode);
             }
         } else {
-            clear.setVisibility(View.VISIBLE);
+            clearView.setVisibility(View.VISIBLE);
             getPresenter().getSearchSort(App.getUser(mContext).getId(), seachEdit.getText().toString());
         }
     }
