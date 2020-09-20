@@ -56,6 +56,7 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
     private int deleteSpacePosition = -1;
     private SharedPersonBean sharedPersonBean;
     private List<SharedLocationBean> mlist = new ArrayList<>();
+    private boolean isCloseAll = false;
 
     @Override
     protected int getLayoutId() {
@@ -113,6 +114,7 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
         DialogUtil.show("", "确定断开与@" + sharedPersonBean.getNickname() + "的全部共享?\n(断开后属于共享空间的非本人添加的物品也将被清空)", "确定", "取消", this, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                isCloseAll = true;
                 getPresenter().closeShareUser(App.getUser(mContext).getId(), ""
                         , sharedPersonBean.getId(), 0);
             }
@@ -144,8 +146,16 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
     public void closeShareUserSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
             EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
-            mlist.remove(deleteSpacePosition);
-            mAdapter.notifyDataSetChanged();
+            EventBus.getDefault().post(new EventBusMsg.UpdateShareMsg());
+            if (isCloseAll) {
+                finish();
+                return;
+            }
+            if (deleteSpacePosition >= 0 && mlist.size() > deleteSpacePosition) {
+                mlist.remove(deleteSpacePosition);
+                mAdapter.notifyDataSetChanged();
+                deleteSpacePosition = -1;
+            }
         }
     }
 

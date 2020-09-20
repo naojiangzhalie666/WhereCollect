@@ -52,11 +52,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:visibility="gone"
         android:background="@color/split_color" />
 
 
     <TextView
         android:id="@+id/scan_tv"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_40"
         android:gravity="center"

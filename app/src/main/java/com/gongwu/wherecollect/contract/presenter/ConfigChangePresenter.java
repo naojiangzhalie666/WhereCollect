@@ -27,7 +27,7 @@ public class ConfigChangePresenter extends BasePresenter<IConfigChangeContract.I
     }
 
     @Override
-    public void bindPhone(String uid, String type, String phone, int code) {
+    public void bindPhone(String uid, String phone, String code) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
         }

@@ -16,8 +16,8 @@
         android:id="@+id/add_goods_iv"
         android:layout_width="@dimen/dip_120"
         android:layout_height="@dimen/dip_120"
-        android:layout_marginBottom="@dimen/dip_10"
         android:layout_marginTop="@dimen/dip_30"
+        android:layout_marginBottom="@dimen/dip_10"
         android:src="@drawable/select_pic" />
 
     <EditText
@@ -41,7 +41,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/black_12" />
+        android:background="@color/black_12"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/code_layout"
@@ -49,7 +50,8 @@
         android:layout_height="@dimen/dip_44"
         android:background="@drawable/select_changheader_btn_other"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"

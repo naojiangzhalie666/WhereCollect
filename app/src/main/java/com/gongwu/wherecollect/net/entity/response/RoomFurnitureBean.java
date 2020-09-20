@@ -17,6 +17,17 @@ public class RoomFurnitureBean  implements Serializable {
     private Point scale;
     private int ratio;
     private boolean isSelect;
+    //迁移隔层需要的
+    //原始家庭code
+    private String family_code;
+
+    public String getFamily_code() {
+        return family_code;
+    }
+
+    public void setFamily_code(String family_code) {
+        this.family_code = family_code;
+    }
 
     public boolean isSelect() {
         return isSelect;

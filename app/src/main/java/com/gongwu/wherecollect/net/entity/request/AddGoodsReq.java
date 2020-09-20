@@ -21,6 +21,7 @@ public class AddGoodsReq extends RequestBase {
     private String expire_date;
     private String key;
     private String code;
+    private String location_codes;
 
     public String getKey() {
         return key;
@@ -164,5 +165,13 @@ public class AddGoodsReq extends RequestBase {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getLocation_codes() {
+        return location_codes;
+    }
+
+    public void setLocation_codes(String location_codes) {
+        this.location_codes = location_codes;
     }
 }

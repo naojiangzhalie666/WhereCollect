@@ -136,7 +136,7 @@ public class AddGoodsDialog extends Dialog {
                 break;
             case R.id.submit_tv:
                 if (goodsCount >= goodsMaxCount) {
-                    ToastUtil.show(context, "一次最多添加10个物品", Toast.LENGTH_SHORT);
+                    ToastUtil.show(context, "一次最多添加9个物品", Toast.LENGTH_SHORT);
                     return;
                 }
                 //确定

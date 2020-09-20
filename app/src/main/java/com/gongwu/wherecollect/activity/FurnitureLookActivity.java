@@ -249,7 +249,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 showEditNamePopupWindow(false, false);
                 break;
             case R.id.furniture_import_tv:
-                //放置物品
+                //导入物品,先获取没有归位的物品然后显示pop
                 getPresenter().getImportGoodsList(App.getUser(mContext).getId(), furnitureBean.getLocation_code());
                 break;
             case R.id.furniture_back_tv:
@@ -305,7 +305,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     return;
                 }
                 //放置隔层
-                getPresenter().moveLayer(App.getUser(mContext).getId(), selectView.getObjectBean().getCode(), MainActivity.moveLayerBean.getCode());
+                getPresenter().moveLayer(App.getUser(mContext).getId(), selectView.getObjectBean().getCode(), MainActivity.moveLayerBean.getCode(), MainActivity.moveLayerBean.getFamily_code(), App.getSelectFamilyBean().getCode());
                 break;
             case R.id.furniture_move_box_tv:
                 if (selectView == null) {
@@ -360,13 +360,18 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     @Override
     public void getFurnitureDetailsSuccess(RoomFurnitureGoodsBean data) {
+        //初始化数据
         mData.clear();
+        objects.clear();
+        mBoxlist.clear();
+        boxCount = AppConstant.DEFAULT_INDEX_OF;
         if (data.getLocations() != null && data.getLocations().size() > 0) {
             boxCount = data.getLocations().size();
             for (ObjectBean boxBean : data.getLocations()) {
                 boxBean.setLocations(boxBean.getParents());
             }
         }
+        //排序
         if (data.getObjects() != null && data.getObjects().size() > 0) {
             Collections.sort(data.getObjects(), new Comparator<ObjectBean>() {
                 @Override
@@ -449,7 +454,25 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 }
                 //设置导入物品新的层级
                 importBean.setLocations(locations);
+                //重新导入后删除原先物品的数据然后再次添加
+                String id = importBean.get_id();
+                //删除总数据
+                for (int j = 0; j < mData.size(); j++) {
+                    if (id.equals(mData.get(j).get_id())) {
+                        mData.remove(j);
+                        break;
+                    }
+                }
+                //删除物品list
+                for (int a = 0; a < objects.size(); a++) {
+                    if (id.equals(objects.get(a).get_id())) {
+                        objects.remove(a);
+                        break;
+                    }
+                }
+                //boxCount判断盒子有几个,将物品移到盒子后面
                 mData.add(boxCount, importBean);
+                //将物品添加到物品集合第一个位置
                 objects.add(AppConstant.DEFAULT_INDEX_OF, importBean);
                 String code = isBox ? selectBoxBean.getCode() : selectView.getObjectBean().getCode();
                 refreshListView(code);
@@ -493,15 +516,14 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     public void delBoxSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
             gcNameTv.setText(getPresenter().getLoction(selectView.getObjectBean()));
-            showSelectLayerButton();
-            for (ObjectBean goods : mData) {
-                if (goods.getCode().equals(selectBoxBean.getCode())) {
-                    mData.remove(goods);
-                    break;
-                }
-            }
             selectBoxBean = null;
-            refreshListView(selectView.getObjectBean().getCode());
+            isBox = false;
+            //删除盒子后,直接请求新的数据
+            showSelectLayerButton();
+            getPresenter().getFurnitureDetails(
+                    App.getUser(mContext).getId(),
+                    furnitureBean.getCode(),
+                    family_code);
         }
     }
 
@@ -636,12 +658,14 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             selectView = childView;
         }
         refreshListView(location.getCode());
-        moveLayerView.setAlpha(selectView.isEdit() ? 1.0f : 0.5f);
-        moveBoxTv.setAlpha(selectView.isEdit() ? 1.0f : 0.5f);
-        moveGoodsView.setAlpha(selectView.isEdit() ? 1.0f : 0.5f);
-        moveLayerView.setEnabled(selectView.isEdit());
-        moveBoxTv.setEnabled(selectView.isEdit());
-        moveGoodsIV.setEnabled(selectView.isEdit());
+        if (selectView != null) {
+            moveLayerView.setAlpha(selectView.isEdit() ? 1.0f : 0.5f);
+            moveBoxTv.setAlpha(selectView.isEdit() ? 1.0f : 0.5f);
+            moveGoodsView.setAlpha(selectView.isEdit() ? 1.0f : 0.5f);
+            moveLayerView.setEnabled(selectView.isEdit());
+            moveBoxTv.setEnabled(selectView.isEdit());
+            moveGoodsIV.setEnabled(selectView.isEdit());
+        }
     }
 
     private PopupImportGoods importGoodsPopup;
@@ -654,8 +678,8 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         importGoodsPopup.setPopupGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
         importGoodsPopup.setOnItemClickListener(new PopupImportGoods.OnItemClickListener() {
             @Override
-            public void onItemsClick(int position, View v) {
-                importBean = beans.get(position);
+            public void onItemsClick(int position, ObjectBean bean) {
+                importBean = bean;
                 importPosition = position;
                 postImportGoods(importBean.get_id());
             }
@@ -676,32 +700,30 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
      * 添加收纳盒或者修改收纳盒名称
      */
     private void showEditNamePopupWindow(boolean isResetName, boolean isResetBox) {
-        if (editNamePopup == null) {
-            editNamePopup = new PopupEditFurnitureName(mContext);
-            editNamePopup.setPopupGravity(Gravity.CENTER);
-            editNamePopup.setPopupClickListener(new PopupEditFurnitureName.PopupClickListener() {
-                @Override
-                public void onImgClick() {
-                }
+        editNamePopup = new PopupEditFurnitureName(mContext);
+        editNamePopup.setPopupGravity(Gravity.CENTER);
+        editNamePopup.setPopupClickListener(new PopupEditFurnitureName.PopupClickListener() {
+            @Override
+            public void onImgClick() {
+            }
 
-                @Override
-                public void onCommitClick(FurnitureBean bean) {
-                    if (isResetBox) {
-                        resetName = bean.getName();
-                        getPresenter().editBoxName(App.getUser(mContext).getId(), selectBoxBean.getCode(), resetName);
-                    } else {
-                        getPresenter().addBox(App.getUser(mContext).getId(), selectView.getObjectBean().getCode(), bean.getName());
-                    }
+            @Override
+            public void onCommitClick(FurnitureBean bean) {
+                if (isResetBox) {
+                    resetName = bean.getName();
+                    getPresenter().editBoxName(App.getUser(mContext).getId(), selectBoxBean.getCode(), resetName);
+                } else {
+                    getPresenter().addBox(App.getUser(mContext).getId(), selectView.getObjectBean().getCode(), bean.getName());
                 }
+            }
 
-                @Override
-                public void onEditNameCommitClick(String name) {
-                    resetName = name;
-                    getPresenter().resetLayerName(App.getUser(mContext).getId(), resetName, selectView.getObjectBean().getCode(), furnitureBean.getCode());
+            @Override
+            public void onEditNameCommitClick(String name) {
+                resetName = name;
+                getPresenter().resetLayerName(App.getUser(mContext).getId(), resetName, selectView.getObjectBean().getCode(), furnitureBean.getCode());
 
-                }
-            });
-        }
+            }
+        });
         editNamePopup.showPopupWindow();
         if (isResetName) {
             editNamePopup.initData(R.string.layer_name, selectView.getObjectBean().getName(), null, false);
@@ -716,30 +738,30 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     private void showPopupWindow() {
         //只选一个才显示编辑模式
-        if (popup == null) {
-            popup = new PopupEditInterlayer(mContext);
-            popup.setBackground(Color.TRANSPARENT);
-            popup.setPopupGravity(Gravity.TOP | Gravity.CENTER);
-            popup.setItemName(R.string.layer_move, R.string.reset_name);
-            popup.setPopupClickListener(new PopupEditInterlayer.EditInterlayerClickListener() {
-                @Override
-                public void onFirstClick() {
-                    DialogUtil.show(null, "整体迁移该隔层内收纳盒和物品?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            MainActivity.moveLayerBean = selectView.getObjectBean();
-                            showMoveLayerButton();
-                        }
-                    }, null);
-                }
+        popup = new PopupEditInterlayer(mContext);
+        popup.setBackground(Color.TRANSPARENT);
+        popup.setPopupGravity(Gravity.TOP | Gravity.CENTER);
+        popup.setItemName(R.string.layer_move, R.string.reset_name);
+        popup.setPopupClickListener(new PopupEditInterlayer.EditInterlayerClickListener() {
+            @Override
+            public void onFirstClick() {
+                DialogUtil.show(null, "整体迁移该隔层内收纳盒和物品?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        RoomFurnitureBean moveLayerBean = selectView.getObjectBean();
+                        moveLayerBean.setFamily_code(App.getSelectFamilyBean().getCode());
+                        MainActivity.moveLayerBean = moveLayerBean;
+                        showMoveLayerButton();
+                    }
+                }, null);
+            }
 
-                @Override
-                public void onSecondClick() {
-                    showEditNamePopupWindow(true, false);
-                }
+            @Override
+            public void onSecondClick() {
+                showEditNamePopupWindow(true, false);
+            }
 
-            });
-        }
+        });
         popup.showPopupWindow(editLayerTv);
     }
 
@@ -747,41 +769,39 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     private void showEditBoxPopup() {
         //只选一个才显示编辑模式
-        if (boxPopup == null) {
-            boxPopup = new PopupEditBox(mContext);
-            boxPopup.setBackground(Color.TRANSPARENT);
-            boxPopup.setPopupGravity(Gravity.TOP | Gravity.CENTER);
-            boxPopup.setPopupClickListener(new PopupEditBox.EditInterlayerClickListener() {
-                @Override
-                public void onResetNameClick() {
-                    showEditNamePopupWindow(false, true);
-                }
+        boxPopup = new PopupEditBox(mContext);
+        boxPopup.setBackground(Color.TRANSPARENT);
+        boxPopup.setPopupGravity(Gravity.TOP | Gravity.CENTER);
+        boxPopup.setPopupClickListener(new PopupEditBox.EditInterlayerClickListener() {
+            @Override
+            public void onResetNameClick() {
+                showEditNamePopupWindow(false, true);
+            }
 
-                @Override
-                public void onReMoveClick() {
-                    DialogUtil.show(null, "整体迁移该盒子?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ObjectBean objectBean = new ObjectBean();
-                            objectBean.setCode(selectBoxBean.getCode());
-                            MainActivity.moveBoxBean = objectBean;
-                            refreshListView(selectView.getObjectBean().getCode());
-                            showMoveBoxButton();
-                        }
-                    }, null);
-                }
+            @Override
+            public void onReMoveClick() {
+                DialogUtil.show(null, "整体迁移该盒子?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ObjectBean objectBean = new ObjectBean();
+                        objectBean.setCode(selectBoxBean.getCode());
+                        MainActivity.moveBoxBean = objectBean;
+                        refreshListView(selectView.getObjectBean().getCode());
+                        showMoveBoxButton();
+                    }
+                }, null);
+            }
 
-                @Override
-                public void onDelClick() {
-                    DialogUtil.show(null, "确定删除该收纳盒吗?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            getPresenter().delBox(App.getUser(mContext).getId(), selectBoxBean.getCode());
-                        }
-                    }, null);
-                }
-            });
-        }
+            @Override
+            public void onDelClick() {
+                DialogUtil.show(null, "确定删除该收纳盒吗?", "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getPresenter().delBox(App.getUser(mContext).getId(), selectBoxBean.getCode());
+                    }
+                }, null);
+            }
+        });
         boxPopup.showPopupWindow(editLayerTv);
     }
 
@@ -792,6 +812,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             //编辑结构
             furnitureBean = (FurnitureBean) data.getSerializableExtra("furnitureBean");
             tablelayout.init(furnitureBean.getLayers(), CustomTableRowLayout.shape_width, R.drawable.shape_geceng1);
+            getPresenter().getFurnitureDetails(App.getUser(mContext).getId(), furnitureBean.getCode(), family_code);
         } else if (AppConstant.REQUEST_CODE_OTHER == requestCode && RESULT_OK == resultCode) {
             //判断是否是导入更多物品界面返回
             postImportGoods(data.getStringExtra("location_codes"));
@@ -905,21 +926,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             for (int i = 0; i < mAdapterData.size(); i++) {
                 if (mAdapterData.get(i).isSelect()) {
                     MainActivity.moveGoodsList.add(mAdapterData.get(i));
-                    String id = mAdapterData.get(i).get_id();
-                    //删除总数据
-                    for (int j = 0; j < mData.size(); j++) {
-                        if (id.equals(mData.get(j).get_id())) {
-                            mData.remove(j);
-                            break;
-                        }
-                    }
-                    //删除物品list
-                    for (int a = 0; a < objects.size(); a++) {
-                        if (id.equals(objects.get(a).get_id())) {
-                            objects.remove(a);
-                            break;
-                        }
-                    }
+                    //移除当前选中的物品
                     mAdapterData.remove(i);
                     i--;
                 }

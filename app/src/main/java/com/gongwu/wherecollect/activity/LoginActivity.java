@@ -72,8 +72,8 @@ public class LoginActivity extends BaseMvpActivity<LoginActivity, LoginPresenter
     protected void initViews() {
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
         backView.setVisibility(View.GONE);
-        mCommitTv.setVisibility(View.VISIBLE);
-        mCommitTv.setText(R.string.login_trial);
+//        mCommitTv.setVisibility(View.VISIBLE);
+//        mCommitTv.setText(R.string.login_trial);
         mTitleView.setText(R.string.login_title);
         getPresenter().setUmAuthListener(this);
         initImgCode();

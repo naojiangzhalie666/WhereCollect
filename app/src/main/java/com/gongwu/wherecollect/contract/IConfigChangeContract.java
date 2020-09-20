@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.contract;
 
 import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.request.BindAppReq;
 import com.gongwu.wherecollect.net.entity.request.BindPhoneReq;
 import com.gongwu.wherecollect.net.entity.request.EditPasswordReq;
 import com.gongwu.wherecollect.net.entity.request.EditPersonReq;
@@ -23,7 +24,8 @@ public interface IConfigChangeContract {
     }
 
     interface IConfigChangePresenter {
-        void bindPhone(String uid, String type, String mobile, int code);
+        void bindPhone(String uid, String mobile, String code);
+
 
         void changePassword(String uid, String original_password, String password);
 

@@ -142,4 +142,5 @@ dependencies {
     implementation project(':recyclerview-swipe')
     implementation project(':camerafragment')
     implementation project(':showcase')
+    implementation project(':appupdateX')
 }

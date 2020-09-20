@@ -124,7 +124,6 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         AddGoodsReq goodsReq = new AddGoodsReq();
         goodsReq.setUid(App.getUser(context).getId());
         goodsReq.setISBN(isbn);
-        goodsReq.setCategory_codes(StringUtils.isEmpty(tempBean.getCategories()) ? "" : tempBean.getCategories().get(tempBean.getCategories().size() - 1).getCode());
         goodsReq.setChannel(TextUtils.isEmpty(tempBean.getChannel()) ? "" : JsonUtils.jsonFromObject(tempBean.getChannel().split(">")));
         goodsReq.setColor(TextUtils.isEmpty(tempBean.getColor()) ? "" : JsonUtils.jsonFromObject(tempBean.getColor().split("、")));
         goodsReq.setDetail(TextUtils.isEmpty(tempBean.getDetail()) ? "" : tempBean.getDetail());
@@ -138,6 +137,26 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         goodsReq.setBuy_date(tempBean.getBuy_date());
         goodsReq.setExpire_date(tempBean.getExpire_date());
         goodsReq.setCode(tempBean.get_id());
+        if (tempBean.getCategories() != null && tempBean.getCategories().size() > 0) {
+            StringBuilder ca = new StringBuilder();
+            for (int i = 0; i < StringUtils.getListSize(tempBean.getCategories()); i++) {
+                ca.append(tempBean.getCategories().get(i).getCode());
+                if (i != tempBean.getCategories().size() - 1) {
+                    ca.append(",");
+                }
+            }
+            goodsReq.setCategory_codes(ca.toString());
+        }
+        if (tempBean.getLocations() != null && tempBean.getLocations().size() > 0) {
+            StringBuilder lc = new StringBuilder();
+            for (int i = 0; i < StringUtils.getListSize(tempBean.getLocations()); i++) {
+                lc.append(tempBean.getLocations().get(i).getCode());
+                if (i != tempBean.getLocations().size() - 1) {
+                    lc.append(",");
+                }
+            }
+            goodsReq.setLocation_codes(lc.toString());
+        }
         mModel.editGoods(goodsReq, new RequestCallback<ObjectBean>() {
 
             @Override

@@ -110,6 +110,7 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
             Toast.makeText(mContext, getString(R.string.login_code_error_text), Toast.LENGTH_SHORT).show();
             return;
         }
+        getPresenter().bindPhone(App.getUser(mContext).getId(), mPhoneView.getText().toString().trim(), numberET.getText().toString().trim());
     }
 
     private void commitPassword() {
@@ -195,7 +196,6 @@ public class ConfigChangePhoneActivity extends BaseMvpActivity<ConfigChangePhone
     }
 
     private void setBtDisEnble() {
-        // TODO Auto-generated method stub
         sendBt.setEnabled(false);
         new CountDownTimer(60000, 1000) {
             public void onTick(long millisUntilFinished) {

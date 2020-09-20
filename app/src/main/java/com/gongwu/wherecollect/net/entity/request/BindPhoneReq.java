@@ -6,7 +6,7 @@ public class BindPhoneReq extends RequestBase {
     private String uid;
     private String type;
     private String mobile;
-    private int code;
+    private String code;
 
     public String getUid() {
         return uid;
@@ -32,11 +32,11 @@ public class BindPhoneReq extends RequestBase {
         this.mobile = mobile;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 }

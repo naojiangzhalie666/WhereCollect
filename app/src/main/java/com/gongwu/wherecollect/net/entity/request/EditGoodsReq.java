@@ -14,6 +14,11 @@ public class EditGoodsReq extends RequestBase {
     private List<String> objectIds;
     private Integer page;
     private String name;
+    //迁移隔层需要的
+    //原始家庭code
+    private String family_code;
+    //目标家庭code
+    private String target_family_code;
 
     public EditGoodsReq(String uid, String location_code) {
         this.uid = uid;
@@ -22,6 +27,22 @@ public class EditGoodsReq extends RequestBase {
 
 
     public EditGoodsReq() {
+    }
+
+    public String getFamily_code() {
+        return family_code;
+    }
+
+    public void setFamily_code(String family_code) {
+        this.family_code = family_code;
+    }
+
+    public String getTarget_family_code() {
+        return target_family_code;
+    }
+
+    public void setTarget_family_code(String target_family_code) {
+        this.target_family_code = target_family_code;
     }
 
     public String getUid() {

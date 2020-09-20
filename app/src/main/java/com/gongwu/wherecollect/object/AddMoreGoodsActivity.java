@@ -91,7 +91,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     protected void initViews() {
         mTitleView.setText(R.string.add_more_text);
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
-
+        mlist = new ArrayList<>();
         initData();
         mlistView.setLayoutManager(new GridLayoutManager(mContext, spanCount, LinearLayoutManager.VERTICAL, false));
         mAdapter = new AddMoreGoodsAdapter(mContext, mlist);
@@ -100,7 +100,6 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     }
 
     private void initData() {
-        mlist = new ArrayList<>();
         //属性bean
         sortBean = new ObjectBean();
         //添加goods的item
@@ -153,7 +152,6 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     @Override
     public void onItemClick(int positions, View view) {
         ObjectBean objectBean = mlist.get(positions);
-
         startDialog(ADD_GOODS_CODE == objectBean.get__v() ? null : objectBean);
     }
 
@@ -164,31 +162,29 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         if (objectBean != null) {
             objectBean.setSelect(true);
         }
-        if (mDialog == null) {
-            //添加
-            mDialog = new AddGoodsDialog(mContext, mlist.size()) {
-                @Override
-                public void result(ObjectBean bean) {
-                    //上传
-                    if (!TextUtils.isEmpty(bean.getObject_url()) && !bean.getObject_url().contains("7xroa4") && !bean.getObject_url().contains("#") && !bean.getObject_url().contains("cdn.shouner.com/object/image")) {
-                        uploadBean = bean;
-                        getPresenter().uploadImg(mContext, new File(bean.getObject_url()));
-                        return;
-                    }
-                    if (!bean.isSelect()) {
-                        bean.setSelect(false);
-                        mlist.add(AppConstant.DEFAULT_INDEX_OF, bean);
-                    }
-                    mAdapter.notifyDataSetChanged();
-                    setCommitBtnEnable(mlist.size() > 1);
+        //添加
+        mDialog = new AddGoodsDialog(mContext, mlist.size()) {
+            @Override
+            public void result(ObjectBean bean) {
+                //上传
+                if (!TextUtils.isEmpty(bean.getObject_url()) && !bean.getObject_url().contains("7xroa4") && !bean.getObject_url().contains("#") && !bean.getObject_url().contains("cdn.shouner.com/object/image")) {
+                    uploadBean = bean;
+                    getPresenter().uploadImg(mContext, new File(bean.getObject_url()));
+                    return;
                 }
+                if (!bean.isSelect()) {
+                    bean.setSelect(false);
+                    mlist.add(AppConstant.DEFAULT_INDEX_OF, bean);
+                }
+                mAdapter.notifyDataSetChanged();
+                setCommitBtnEnable(mlist.size() > 1);
+            }
 
-                @Override
-                public void scanCode() {
-                    startActivityForResult(new Intent(mContext, CaptureActivity.class), BOOK_CODE);
-                }
-            };
-        }
+            @Override
+            public void scanCode() {
+                startActivityForResult(new Intent(mContext, CaptureActivity.class), BOOK_CODE);
+            }
+        };
         mDialog.show();
         mDialog.setObjectBean(objectBean);
     }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/dip_200"
     android:layout_height="wrap_content"
-    android:background="@drawable/home01_bg_card">
+    android:background="@drawable/home01_bg_card"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/popup_family_list_view"
@@ -11,4 +13,4 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dip_4"
         android:layout_marginBottom="@dimen/dip_4" />
-</FrameLayout>
+</LinearLayout>

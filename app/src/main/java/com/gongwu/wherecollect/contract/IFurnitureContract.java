@@ -52,7 +52,7 @@ public interface IFurnitureContract {
 
         void topSelectGoods(String uid, String furnitureCode, List<String> objectIds);
 
-        void moveLayer(String uid, String location_code, String code);
+        void moveLayer(String uid, String location_code, String code, String family_code, String target_family_code);
 
         void moveBox(String uid, String location_code, String code);
 

@@ -137,7 +137,7 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
     }
 
     @Override
-    public void moveLayer(String uid, String location_code, String code) {
+    public void moveLayer(String uid, String location_code, String code, String family_code, String target_family_code) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
         }
@@ -145,6 +145,8 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
         req.setUid(uid);
         req.setLocation_code(location_code);
         req.setCode(code);
+        req.setFamily_code(family_code);
+        req.setTarget_family_code(target_family_code);
         mModel.moveLayer(req, new RequestCallback<RequestSuccessBean>() {
             @Override
             public void onSuccess(RequestSuccessBean data) {

@@ -61,7 +61,7 @@ public class PopupImportGoods extends BasePopupWindow {
             @Override
             public void onItemClick(int positions, View view) {
                 if (listener != null) {
-                    listener.onItemsClick(positions, view);
+                    listener.onItemsClick(positions, mlist.get(positions));
                     mlist.remove(positions);
                     mAdapter.notifyDataSetChanged();
                 }
@@ -103,7 +103,7 @@ public class PopupImportGoods extends BasePopupWindow {
 
     public interface OnItemClickListener {
 
-        void onItemsClick(int position, View v);
+        void onItemsClick(int position, ObjectBean bean);
 
         void onLookMoreClick();
     }
