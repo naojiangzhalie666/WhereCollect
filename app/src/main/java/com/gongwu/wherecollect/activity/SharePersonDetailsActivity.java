@@ -122,7 +122,7 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
     }
 
 
-    @OnClick({R.id.back_btn, R.id.image_btn})
+    @OnClick({R.id.back_btn, R.id.image_btn, R.id.add_space_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn://返回
@@ -130,6 +130,9 @@ public class SharePersonDetailsActivity extends BaseMvpActivity<SharePersonDetai
                 break;
             case R.id.image_btn:
                 startDeletaHintDialog();
+                break;
+            case R.id.add_space_iv:
+                Toast.makeText(mContext, "没有更多可共享空间~", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

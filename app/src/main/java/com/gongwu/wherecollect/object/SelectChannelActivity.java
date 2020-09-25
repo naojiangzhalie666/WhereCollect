@@ -203,6 +203,11 @@ public class SelectChannelActivity extends BaseMvpActivity<SelectColorActivity, 
     }
 
     @Override
+    public void saveCustomSubCateSuccess(BaseBean bean) {
+
+    }
+
+    @Override
     public void addChannelSuccess(ChannelBean data) {
         back(data.getString());
     }

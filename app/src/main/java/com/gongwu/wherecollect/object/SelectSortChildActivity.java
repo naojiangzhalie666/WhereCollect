@@ -45,8 +45,14 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     TextView sort_tv;
     @BindView(R.id.sort_child_tv)
     TextView sort_child_tv;
+    @BindView(R.id.definition_sort_tv)
+    TextView defSortTv;
     @BindView(R.id.clear)
     ImageView clearView;
+    @BindView(R.id.list_view_layuout)
+    View list_view_layuout;
+    @BindView(R.id.hint_layout)
+    View hint_layout;
 
 
     private ObjectBean objectBean;
@@ -87,6 +93,10 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
         if (!TextUtils.isEmpty(baseCode)) {
             getPresenter().getCategoryDetails(App.getUser(mContext).getId(), baseCode);
         }
+
+        clearView.setVisibility(View.GONE);
+        list_view_layuout.setVisibility(View.GONE);
+        hint_layout.setVisibility(View.GONE);
     }
 
     /**
@@ -109,7 +119,10 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     @Override
     public void getCategoryDetailsSuccess(List<ChannelBean> data) {
         mlist.clear();
-        mlist.addAll(data);
+        if (data != null && data.size() > 0) {
+            mlist.addAll(data);
+            list_view_layuout.setVisibility(View.VISIBLE);
+        }
         mAdapter.notifyDataSetChanged();
     }
 
@@ -117,11 +130,31 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     @Override
     public void getSearchSortSuccess(List<ChannelBean> data) {
         mlist.clear();
-        mlist.addAll(data);
+        if (data != null && data.size() > 0) {
+            mlist.addAll(data);
+        }
         mAdapter.notifyDataSetChanged();
+        defSortTv.setText(String.format(getString(R.string.definition_sort), seachEdit.getText().toString().trim()));
     }
 
-    @OnClick({R.id.back_btn, R.id.clear})
+    @Override
+    public void saveCustomSubCateSuccess(BaseBean bean) {
+        if (bean != null) {
+            List<BaseBean> list = new ArrayList<>();
+            if (initSortByChild && objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
+                list.addAll(objectBean.getCategories());
+            }
+            bean.set_id(bean.getId());
+            list.add(bean);
+            objectBean.setCategories(list.size() > 0 ? list : null);
+            Intent intent = new Intent();
+            intent.putExtra("objectBean", objectBean);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
+
+    @OnClick({R.id.back_btn, R.id.clear, R.id.definition_sort_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -130,6 +163,16 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
             case R.id.clear:
                 clearView.setVisibility(View.GONE);
                 seachEdit.setText("");
+                break;
+            case R.id.definition_sort_tv:
+                if (initSortByChild && !TextUtils.isEmpty(baseCode)) {
+                    getPresenter().saveCustomSubCate(App.getUser(mContext).getId(),
+                            seachEdit.getText().toString().trim(), baseCode);
+                } else {
+                    getPresenter().saveCustomCate(App.getUser(mContext).getId(),
+                            seachEdit.getText().toString().trim());
+                }
+
                 break;
         }
     }
@@ -156,11 +199,16 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if (TextUtils.isEmpty(seachEdit.getText())) {
             clearView.setVisibility(View.GONE);
+            list_view_layuout.setVisibility(View.GONE);
+            hint_layout.setVisibility(View.GONE);
+            defSortTv.setText("");
             if (initSortByChild && !TextUtils.isEmpty(baseCode)) {
                 getPresenter().getCategoryDetails(App.getUser(mContext).getId(), baseCode);
             }
         } else {
             clearView.setVisibility(View.VISIBLE);
+            list_view_layuout.setVisibility(View.VISIBLE);
+            hint_layout.setVisibility(View.VISIBLE);
             getPresenter().getSearchSort(App.getUser(mContext).getId(), seachEdit.getText().toString());
         }
     }

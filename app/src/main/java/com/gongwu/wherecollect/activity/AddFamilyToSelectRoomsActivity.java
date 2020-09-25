@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.adapter.AddFamilyToSelectRoomsAdapter;
@@ -162,7 +163,7 @@ public class AddFamilyToSelectRoomsActivity extends BaseMvpActivity<AddFamilyToS
 
     @Override
     public void onError(String result) {
-
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
 }

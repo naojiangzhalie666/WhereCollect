@@ -148,6 +148,14 @@ public interface TakeawayApi {
     @POST("users/category-search")
     Call<ResponseBase<List<ChannelBean>>> getSearchSort(@FieldMap Map<String, String> map);
 
+    @FormUrlEncoded
+    @POST("api/app/v400/saveCustomCate")
+    Call<ResponseBase<BaseBean>> saveCustomCate(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v400/saveCustomSubCate")
+    Call<ResponseBase<BaseBean>> saveCustomSubCate(@FieldMap Map<String, String> map);
+
     @GET("api/app/v400/firstCategory/list")
     Call<ResponseBase<List<BaseBean>>> getFirstCategoryList(@Query("uid") String uid);
 

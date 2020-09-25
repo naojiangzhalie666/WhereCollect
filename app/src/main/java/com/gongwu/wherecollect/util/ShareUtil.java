@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.net.Config;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -90,6 +91,10 @@ public class ShareUtil {
      * @param context
      */
     public static void openShareDialog(Activity context) {
+        if (!StringUtils.isWxAppInstalled(context)) {
+            Toast.makeText(context, "请安装微信后分享", Toast.LENGTH_SHORT).show();
+            return;
+        }
         UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
         UMWeb web = new UMWeb("https://www.shouner.com/");
         web.setTitle("收哪儿-你的物品收纳记录管家");//标题
@@ -97,24 +102,25 @@ public class ShareUtil {
         web.setDescription("找东西,不操心");//描述
         new ShareAction(context)
                 .withMedia(web)
-
-                .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.SINA, SHARE_MEDIA.QQ,
-                        SHARE_MEDIA.QZONE)
-                .open();
+                .setPlatform(SHARE_MEDIA.WEIXIN)//传入平台
+                .share();
     }
 
     public static void openShareVIPDialog(Activity context, UMShareListener listener) {
+        if (!StringUtils.isWxAppInstalled(context)) {
+            Toast.makeText(context, "请安装微信后分享", Toast.LENGTH_SHORT).show();
+            return;
+        }
         UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
-        UMWeb web = new UMWeb("http://www.shouner.com/");
+        UMWeb web = new UMWeb(Config.SHARE_URL);
         web.setTitle("收哪儿-你的物品收纳记录管家");//标题
         web.setThumb(thumb);  //缩略图
         web.setDescription("找东西,不操心");//描述
         new ShareAction(context)
                 .withMedia(web)
+                .setPlatform(SHARE_MEDIA.WEIXIN)//传入平台
                 .setCallback(listener)
-                .setDisplayList(SHARE_MEDIA.WEIXIN_CIRCLE, SHARE_MEDIA.WEIXIN, SHARE_MEDIA.SINA, SHARE_MEDIA.QQ,
-                        SHARE_MEDIA.QZONE)
-                .open();
+                .share();
     }
 
     /**

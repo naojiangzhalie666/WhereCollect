@@ -247,7 +247,7 @@ public class SearchActivity extends BaseMvpActivity<SearchActivity, SearchPresen
 
     @Override
     public void onError(String result) {
-
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
     public static void start(Context context) {

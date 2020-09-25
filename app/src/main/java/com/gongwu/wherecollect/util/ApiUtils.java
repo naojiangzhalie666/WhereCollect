@@ -267,6 +267,22 @@ public class ApiUtils {
     }
 
     /**
+     * 自定义一级分类
+     */
+    public static <D extends RequestBase> void saveCustomCate(D request, ApiCallBack<BaseBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().saveCustomCate(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 自定义二级分类
+     */
+    public static <D extends RequestBase> void saveCustomSubCate(D request, ApiCallBack<BaseBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().saveCustomSubCate(requestMap).enqueue(callBack);
+    }
+
+    /**
      * 获取物品一级分类
      */
     public static <D extends RequestBase> void getFirstCategoryList(String uid, ApiCallBack<List<BaseBean>> callBack) {

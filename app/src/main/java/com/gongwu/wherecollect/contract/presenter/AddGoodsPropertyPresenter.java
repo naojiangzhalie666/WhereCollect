@@ -5,6 +5,7 @@ import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.IAddGoodsPropertyContract;
 import com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.request.CustomSubCateReq;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ChannelBean;
 
@@ -127,6 +128,55 @@ public class AddGoodsPropertyPresenter extends BasePresenter<IAddGoodsPropertyCo
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getSearchSortSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void saveCustomCate(String uid, String name) {
+        CustomSubCateReq req = new CustomSubCateReq();
+        req.setUid(uid);
+        req.setName(name);
+        mModel.saveCustomCate(req, new RequestCallback<BaseBean>() {
+            @Override
+            public void onSuccess(BaseBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().saveCustomSubCateSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void saveCustomSubCate(String uid, String name, String parent_code) {
+        CustomSubCateReq req = new CustomSubCateReq();
+        req.setUid(uid);
+        req.setName(name);
+        req.setParent_code(parent_code);
+        mModel.saveCustomSubCate(req, new RequestCallback<BaseBean>() {
+            @Override
+            public void onSuccess(BaseBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().saveCustomSubCateSuccess(data);
                 }
             }
 

@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.contract;
 
 import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.request.CustomSubCateReq;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ChannelBean;
 
@@ -21,7 +22,11 @@ public interface IAddGoodsPropertyContract {
 
         void getChannelList(String uid, String keyword, final RequestCallback callback);
 
-        void getSearchSort(String uid,  String keyword, final RequestCallback callback);
+        void getSearchSort(String uid, String keyword, final RequestCallback callback);
+
+        void saveCustomCate(CustomSubCateReq req, final RequestCallback callback);
+
+        void saveCustomSubCate(CustomSubCateReq req, final RequestCallback callback);
 
         void addChannel(String uid, String name, String code, final RequestCallback callback);
     }
@@ -37,7 +42,11 @@ public interface IAddGoodsPropertyContract {
 
         void getChannelList(String uid, String keyword);
 
-        void getSearchSort(String uid,  String keyword);
+        void getSearchSort(String uid, String keyword);
+
+        void saveCustomCate(String uid, String name);
+
+        void saveCustomSubCate(String uid, String name, String parent_code);
 
         void addChannel(String uid, String name, String code);
     }
@@ -55,6 +64,8 @@ public interface IAddGoodsPropertyContract {
         void getChannelListSuccess(List<ChannelBean> data);
 
         void getSearchSortSuccess(List<ChannelBean> data);
+
+        void saveCustomSubCateSuccess(BaseBean bean);
 
         void addChannelSuccess(ChannelBean data);
 

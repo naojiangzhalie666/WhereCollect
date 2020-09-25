@@ -89,8 +89,8 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @Override
     protected void initViews() {
-        //正式环境要去掉
-        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
+        //支付宝正式环境要去掉
+//        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
         titleTv.setText(R.string.act_vip_buy_title);
         EventBus.getDefault().register(this);
         if (Build.VERSION.SDK_INT >= 21) {
@@ -287,7 +287,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         if (data != null) {
             vipBean = data;
             if (TextUtils.isEmpty(data.getCouponId())) {
-                buyVipHint.setVisibility(View.VISIBLE);
                 buyVipOriginal.setVisibility(View.VISIBLE);
                 commitBt.setVisibility(View.VISIBLE);
             } else {

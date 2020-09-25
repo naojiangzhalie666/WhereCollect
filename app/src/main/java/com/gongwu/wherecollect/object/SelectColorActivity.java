@@ -162,6 +162,11 @@ public class SelectColorActivity extends BaseMvpActivity<SelectColorActivity, Ad
     }
 
     @Override
+    public void saveCustomSubCateSuccess(BaseBean bean) {
+
+    }
+
+    @Override
     public void addChannelSuccess(ChannelBean data) {
         //添加购买渠道接口，SelectColorActivity不用管
     }

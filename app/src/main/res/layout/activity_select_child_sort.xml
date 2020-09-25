@@ -55,6 +55,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/hint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7dp"
@@ -79,13 +80,33 @@
             android:textSize="12sp" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/serchListView"
+    <ScrollView
+        android:id="@+id/list_view_layuout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:divider="@color/trans"
-        android:dividerHeight="0px"
-        android:scrollbars="none" />
+        android:background="@color/white">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/serchListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/definition_sort_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_20"
+                android:layout_marginBottom="@dimen/dip_20"
+                android:gravity="center"
+                android:textColor="@color/main_tab_color"
+                android:textSize="@dimen/f_13"
+                tools:text="自定义" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -10,10 +10,13 @@ package com.gongwu.wherecollect.net;
  * @class describe
  */
 public class Config {
+    public static final boolean IS_TEST = true;
     //线上环境
 //    public static final String BASE_URL = "https://www.shouner.com/";
     //测试环境
-    public static final String BASE_URL="http://www.shouner.com:9202/";
+    public static final String BASE_URL = IS_TEST ? "http://www.shouner.com:9202/" : "https://www.shouner.com/";
+
+    public static final String SHARE_URL = IS_TEST ? "http://std.shouner.com/popularize/" : "https://rg.shouner.com/";
 
     public static final String CONTENT_TYPE_KEY = "Content-Type";
     public static final String CONTENT_TYPE_VALUE = "application/x-www-form-urlencoded; charset=UTF-8";

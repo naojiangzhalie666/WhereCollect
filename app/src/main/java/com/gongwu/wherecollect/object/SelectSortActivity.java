@@ -22,7 +22,9 @@ import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IAddGoodsPropertyContract;
+import com.gongwu.wherecollect.contract.ISelectSortContract;
 import com.gongwu.wherecollect.contract.presenter.AddGoodsPropertyPresenter;
+import com.gongwu.wherecollect.contract.presenter.SelectSortPresenter;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ChannelBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -38,7 +40,7 @@ import butterknife.OnClick;
 /**
  * 设置物品分类
  */
-public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, AddGoodsPropertyPresenter> implements IAddGoodsPropertyContract.IAddGoodsPropertyView, MyOnItemClickListener {
+public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, SelectSortPresenter> implements ISelectSortContract.ISelectSortView, MyOnItemClickListener {
 
     @BindView(R.id.title_tv)
     TextView mTitleTv;
@@ -164,8 +166,8 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
 
 
     @Override
-    protected AddGoodsPropertyPresenter createPresenter() {
-        return AddGoodsPropertyPresenter.getInstance();
+    protected SelectSortPresenter createPresenter() {
+        return SelectSortPresenter.getInstance();
     }
 
     public static void start(Context mContext, ObjectBean sortBean) {
@@ -183,8 +185,10 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
 
     @Override
     public void getCategoryDetailsSuccess(List<ChannelBean> data) {
-        mChildLayout.setVisibility(View.VISIBLE);
-        AnimationUtil.upSlide(mChildLayout, 300);
+        if (mChildLayout.getVisibility() == View.INVISIBLE) {
+            mChildLayout.setVisibility(View.VISIBLE);
+            AnimationUtil.upSlide(mChildLayout, 300);
+        }
         mChildList.clear();
         mChildList.addAll(data);
         mChildAdapter.notifyDataSetChanged();
@@ -200,32 +204,6 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Add
             setResult(RESULT_OK, intent);
             finish();
         }
-    }
-
-    @Override
-    public void getColorsSuccess(List<String> data) {
-        //选择颜色接口，SelectChannelActivity不用管
-    }
-
-    @Override
-    public void getChannelSuccess(List<ChannelBean> data) {
-        //获取购买渠道接口，SelectSortActivity不用管
-    }
-
-
-    @Override
-    public void getChannelListSuccess(List<ChannelBean> data) {
-        //搜索购买渠道接口，SelectSortActivity不用管
-    }
-
-    @Override
-    public void getSearchSortSuccess(List<ChannelBean> data) {
-
-    }
-
-    @Override
-    public void addChannelSuccess(ChannelBean data) {
-        //添加购买渠道接口，SelectSortActivity不用管
     }
 
     @Override

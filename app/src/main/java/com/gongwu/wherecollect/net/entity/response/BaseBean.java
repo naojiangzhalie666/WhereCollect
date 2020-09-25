@@ -13,13 +13,13 @@ import java.util.List;
 public class BaseBean implements Serializable {
 
     protected String _id;
+    protected String id;
     protected String code;
     protected int level;
     protected String name;
     protected String user_id;
     protected boolean isBeShared;
     protected boolean isSelect;
-
 
 
     public BaseBean() {
@@ -30,6 +30,14 @@ public class BaseBean implements Serializable {
         this.code = code;
         this.level = level;
         this._id = _id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

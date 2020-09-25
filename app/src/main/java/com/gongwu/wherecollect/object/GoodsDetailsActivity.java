@@ -252,7 +252,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
 
     @Override
     public void onError(String result) {
-
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
     @Override

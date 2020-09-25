@@ -19,7 +19,9 @@ import retrofit2.Response;
 
 public abstract class ApiCallBack<T> implements Callback<ResponseBase<T>> {
     private static final String TAG = ApiCallBack.class.getSimpleName();
+    private static final String NET_ERROR = "No address associated with hostname";
     private static final int SUCCESS_CODE = 200;
+
 
     @Override
     public void onResponse(Call<ResponseBase<T>> call, Response<ResponseBase<T>> response) {
@@ -47,7 +49,7 @@ public abstract class ApiCallBack<T> implements Callback<ResponseBase<T>> {
     @Override
     public void onFailure(Call<ResponseBase<T>> call, Throwable throwable) {
         Lg.getInstance().e(TAG, throwable.getMessage());
-        onFailed(throwable.getMessage());
+        onFailed(!throwable.getMessage().contains(NET_ERROR) ? throwable.getMessage() : "请打开网络连接");
     }
 
     public abstract void onSuccess(T data);

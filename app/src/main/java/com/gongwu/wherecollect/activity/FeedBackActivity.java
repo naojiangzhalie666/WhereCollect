@@ -125,7 +125,7 @@ public class FeedBackActivity extends BaseMvpActivity<FeedBackActivity, FeedBack
 
     @Override
     public void onError(String result) {
-
+        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
     @Override

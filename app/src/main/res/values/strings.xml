@@ -54,6 +54,7 @@
     <string name="add_more_goods_property">选择共同属性</string>
 
     <string name="room_object_count">%1$s个物品</string>
+    <string name="definition_sort">自定义为“%1$s”分类</string>
 
     <string name="add_other_content_text">添加其他属性</string>
     <string name="base_content">基本属性</string>
