@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: 40cc6bd
+# pg_map_id: 21ff29f
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -17021,6 +17021,8 @@ com.gongwu.wherecollect.object.SelectSortChildActivity -> com.gongwu.wherecollec
     void getSearchSortSuccess(java.util.List) -> m
     void getChannelListSuccess(java.util.List) -> p
     void getChannelSuccess(java.util.List) -> v
+com.gongwu.wherecollect.object.SelectSortChildActivity$1 -> com.gongwu.wherecollect.object.SelectSortChildActivity$a:
+    boolean canScrollVertically() -> b
 com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding:
     com.gongwu.wherecollect.object.SelectSortChildActivity target -> a
     android.view.View view7f0800a0 -> c

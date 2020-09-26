@@ -17330,6 +17330,8 @@ com.alipay.security.mobile.module.http.model.d
     public java.lang.String i
 com.gongwu.wherecollect.adapter.SearchListAdapter$GoodsViewHolder
     final synthetic com.gongwu.wherecollect.adapter.SearchListAdapter this$0
+com.gongwu.wherecollect.object.SelectSortChildActivity$1
+    final synthetic com.gongwu.wherecollect.object.SelectSortChildActivity this$0
 com.alipay.security.mobile.module.http.v2.b
     static void <clinit>()
 androidx.fragment.app.FragmentManagerImpl$5

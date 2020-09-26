@@ -97,6 +97,14 @@ public class SelectSortChildActivity extends BaseMvpActivity<SelectColorActivity
         clearView.setVisibility(View.GONE);
         list_view_layuout.setVisibility(View.GONE);
         hint_layout.setVisibility(View.GONE);
+        //mRecyclerView固定
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        mRecyclerView.setLayoutManager(layoutManager);
     }
 
     /**
