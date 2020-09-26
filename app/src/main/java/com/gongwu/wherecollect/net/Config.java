@@ -10,7 +10,7 @@ package com.gongwu.wherecollect.net;
  * @class describe
  */
 public class Config {
-    public static final boolean IS_TEST = true;
+    public static final boolean IS_TEST = false;
     //线上环境
 //    public static final String BASE_URL = "https://www.shouner.com/";
     //测试环境
@@ -23,5 +23,10 @@ public class Config {
 
     public static final String WEB_SERVICE_NAME = "收哪儿服务条款";
     public static final String WEB_SERVICE_URL = "http://www.shouner.com/privacy";
+
+    public static final String WEB_PRIVACY_NAME = "收哪儿隐私保护政策";
+    public static final String WEB_PRIVACY_URL = "http://www.shouner.com/privacy";
+
+    public static final String VERSION = "68";
 
 }

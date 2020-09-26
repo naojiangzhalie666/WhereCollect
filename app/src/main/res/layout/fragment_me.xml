@@ -170,6 +170,22 @@
             android:layout_marginStart="@dimen/dip_16"
             android:background="@color/split_color" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/privacy_policy_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dip_20"
+                android:text="隐私政策"
+                android:textColor="@color/split_color"
+                android:textSize="@dimen/f_15"
+                android:visibility="visible" />
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

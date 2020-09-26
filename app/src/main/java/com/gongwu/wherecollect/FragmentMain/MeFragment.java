@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.FragmentMain;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,14 +25,17 @@ import com.gongwu.wherecollect.activity.FeedBackActivity;
 import com.gongwu.wherecollect.activity.MessageListActivity;
 import com.gongwu.wherecollect.activity.PersonActivity;
 import com.gongwu.wherecollect.activity.ShareListActivity;
+import com.gongwu.wherecollect.activity.WebActivity;
 import com.gongwu.wherecollect.base.BaseFragment;
 import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.base.App;
+import com.gongwu.wherecollect.net.Config;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.ShareUtil;
 import com.gongwu.wherecollect.util.StatusBarUtil;
+import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.UserCodeDialog;
 
 import butterknife.BindView;
@@ -54,6 +58,8 @@ public class MeFragment extends BaseFragment {
     TextView userName;
     @BindView(R.id.user_id_tv)
     TextView userId;
+    @BindView(R.id.privacy_policy_tv)
+    TextView privacyPolicyTv;
 
     private UserBean user;
     private boolean init;
@@ -99,9 +105,13 @@ public class MeFragment extends BaseFragment {
         userName.setText(user.getNickname());
         userId.setText(String.format(getString(R.string.user_usid_text), user.getUsid()));
         buyVipIv.setVisibility(user.isIs_vip() ? View.GONE : View.VISIBLE);
+        privacyPolicyTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+//        privacyPolicyTv.setVisibility(StringUtils.isTencent(mContext) ? View.VISIBLE : View.GONE);
+        privacyPolicyTv.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.start_share_tv, R.id.user_code_iv, R.id.msg_iv, R.id.buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app})
+    @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.start_share_tv, R.id.user_code_iv,
+            R.id.msg_iv, R.id.buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app,R.id.privacy_policy_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.person_iv:
@@ -131,6 +141,9 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.user_share_app:
                 ShareUtil.openShareDialog(getActivity());
+                break;
+            case R.id.privacy_policy_tv:
+                WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -724,14 +725,29 @@ public class StringUtils {
 
     /**
      * 判断微信是否安装
+     *
      * @param context
      * @return true 已安装   false 未安装
      */
-    public  static boolean isWxAppInstalled(Context context) {
+    public static boolean isWxAppInstalled(Context context) {
         IWXAPI wxApi = WXAPIFactory.createWXAPI(context, null);
         wxApi.registerApp(AppConstant.WX_APP_ID);
         boolean bIsWXAppInstalled = false;
         bIsWXAppInstalled = wxApi.isWXAppInstalled();
         return bIsWXAppInstalled;
+    }
+
+    public static boolean isTencent(Context context) {
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            String value = (String) applicationInfo.metaData.getString("UMENG_CHANNEL");
+            if ("tencent".equals(value)) {
+                return true;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

@@ -31,6 +31,27 @@ android {
         shounaer {
             manifestPlaceholders = [CHANNEL_VALUE: "shounaer"]
         }
+        huawei {
+            manifestPlaceholders = [CHANNEL_VALUE: "huawei"]
+        }
+        xiaomi {
+            manifestPlaceholders = [CHANNEL_VALUE: "xiaomi"]
+        }
+        vivo {
+            manifestPlaceholders = [CHANNEL_VALUE: "vivo"]
+        }
+        oppo {
+            manifestPlaceholders = [CHANNEL_VALUE: "oppo"]
+        }
+        tencent {
+            manifestPlaceholders = [CHANNEL_VALUE: "tencent"]
+        }
+        baidu {
+            manifestPlaceholders = [CHANNEL_VALUE: "baidu"]
+        }
+        ali {
+            manifestPlaceholders = [CHANNEL_VALUE: "ali"]
+        }
     }
     buildTypes {
         release {

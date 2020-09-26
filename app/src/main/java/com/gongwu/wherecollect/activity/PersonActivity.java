@@ -17,6 +17,7 @@ import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IPersonContract;
 import com.gongwu.wherecollect.contract.presenter.PersonPresenter;
+import com.gongwu.wherecollect.net.Config;
 import com.gongwu.wherecollect.net.entity.request.BindAppReq;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
@@ -107,7 +108,9 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
     protected void initViews() {
         mTitleView.setText(R.string.title_ac_person);
         getPresenter().getUserInfo(App.getUser(mContext).getId());
-        versionTv.setText("收哪儿 Beta v"+StringUtils.getCurrentVersionName(mContext));
+        StringBuilder sb = new StringBuilder();
+        sb.append("收哪儿 Beta v").append(StringUtils.getCurrentVersionName(mContext)).append("(").append(Config.VERSION).append(")");
+        versionTv.setText(sb.toString());
     }
 
     @OnClick({R.id.back_btn, R.id.tv_loginOut, R.id.nick_layout, R.id.sex_layout, R.id.birth_layout,
