@@ -355,7 +355,8 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     @Override
     public void getVersionSuccess(VersionBean bean) {
-        if (!TextUtils.isEmpty(bean.getVersion()) && !TextUtils.isEmpty(bean.getNewlyVersion())) {
+        if (!TextUtils.isEmpty(bean.getVersion()) && !TextUtils.isEmpty(bean.getNewlyVersion())
+                && !bean.getVersion().equals(bean.getNewlyVersion())) {
             manager = DownloadManager.getInstance(MainActivity.this);
             UpdateConfiguration configuration = new UpdateConfiguration()
                     //输出错误日志

@@ -11418,6 +11418,7 @@ com.gongwu.wherecollect.util.StringUtils
     public static boolean isPad(android.content.Context)
     public static boolean isSoftShowing(android.app.Activity)
     public static int getStatusBarByTop(android.app.Activity)
+    public static boolean isTencent(android.content.Context)
 com.scwang.smartrefresh.layout.R
 io.reactivex.internal.operators.maybe.MaybeAmb$AmbMaybeObserver
 io.reactivex.subjects.AsyncSubject$AsyncDisposable
@@ -18091,6 +18092,8 @@ com.gongwu.wherecollect.view.ChangeHeaderImgDialog$1
     final synthetic com.gongwu.wherecollect.view.ChangeHeaderImgDialog this$0
 com.azhon.appupdate.dialog.UpdateDialog$1
     final synthetic com.azhon.appupdate.dialog.UpdateDialog this$0
+com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$9
+    final synthetic com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding this$0
 com.gongwu.wherecollect.activity.AddSharedPersonActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.AddSharedPersonActivity_ViewBinding this$0
 okhttp3.internal.http1.Http1ExchangeCodec$UnknownLengthSource
