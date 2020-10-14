@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.ActivityTaskManager;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 
@@ -36,6 +37,18 @@ public abstract class BaseActivity extends FragmentActivity {
         initPresenter();
         initViews();
         ActivityTaskManager.getInstance().putActivity(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
     }
 
     @Override
