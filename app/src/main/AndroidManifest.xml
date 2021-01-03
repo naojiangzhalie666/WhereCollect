@@ -41,7 +41,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ConfigChangePhoneActivity"></activity>
+        <activity android:name=".activity.AddChangWangGoodActivity"></activity>
+        <activity android:name=".activity.ConfigChangePhoneActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

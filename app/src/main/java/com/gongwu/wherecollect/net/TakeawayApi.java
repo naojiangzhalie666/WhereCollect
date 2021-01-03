@@ -2,6 +2,9 @@ package com.gongwu.wherecollect.net;
 
 import com.gongwu.wherecollect.net.entity.base.ResponseBase;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
+import com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean;
+import com.gongwu.wherecollect.net.entity.response.ChangWangListBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.FeedbackBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
@@ -109,6 +112,10 @@ public interface TakeawayApi {
 
     @GET("api/app/v400/family/getFamilyRoomList")
     Call<ResponseBase<List<FamilyBean>>> getFamilyRoomLists(@Query("uid") String uid, @Query("code") String key);
+
+    @FormUrlEncoded
+    @POST("api/app/v350/object-recommend-group-new")
+    Call<ResponseBase<List<ChangWangBean>>> getCangWangList(@FieldMap Map<String, String> map);
 
     @GET("api/app/v400/objectList")
     Call<ResponseBase<List<MainGoodsBean>>> getUserGoddsList(@Query("uid") String uid, @Query("family_code") String key);
@@ -418,4 +425,13 @@ public interface TakeawayApi {
 
     @GET("api/app/v420/app/version/check")
     Call<ResponseBase<VersionBean>> getVersion(@Query("system_name") String system_name, @Query("app_version") String app_version);
+
+    @FormUrlEncoded
+    @POST("api/app/v350/object-recommend-group-objects")
+    Call<ResponseBase<ChangWangListBean>> getCangWangGoodsList(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v350/object-recommend-option")
+    Call<ResponseBase<ChangWangDetailBean>> setCangWangDetail(@FieldMap Map<String, String> map);
+
 }

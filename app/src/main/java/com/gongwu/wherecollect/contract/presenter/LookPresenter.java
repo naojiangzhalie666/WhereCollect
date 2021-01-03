@@ -5,7 +5,7 @@ import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.ILookContract;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.contract.model.LookModel;
-import com.gongwu.wherecollect.net.entity.request.GoodsListReq;
+import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.MainGoodsBean;
 
@@ -37,6 +37,27 @@ public class LookPresenter extends BasePresenter<ILookContract.ILookView> implem
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getUserFamilySuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getChangWangList(String uid) {
+        mModel.getChangWangList(uid, new RequestCallback<List<ChangWangBean>>() {
+            @Override
+            public void onSuccess(List<ChangWangBean> data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getChangWangListSuccess(data);
                 }
             }
 

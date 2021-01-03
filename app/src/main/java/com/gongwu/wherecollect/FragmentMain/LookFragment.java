@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.AddChangWangGoodActivity;
 import com.gongwu.wherecollect.activity.EditMoreGoodsActivity;
 import com.gongwu.wherecollect.activity.SearchActivity;
 import com.gongwu.wherecollect.adapter.MainGoodsAdapter;
@@ -28,6 +29,7 @@ import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseFragment;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.ILookContract;
+import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.MainGoodsBean;
 import com.gongwu.wherecollect.contract.presenter.LookPresenter;
@@ -78,6 +80,8 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     TextView goodsNotLocationTv;
     @BindView(R.id.family_type_iv)
     ImageView familyTypeIv;
+    @BindView(R.id.add_changwang_tv)
+    TextView addCWGoodView;
 
     private FamilyBean familyBean;
     private List<FamilyBean> mFamilylist = new ArrayList<>();
@@ -86,6 +90,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     private MainGoodsSortAdapter mSortAdapter;
     private MainGoodsAdapter mAdapter;
     private int selectPosition = AppConstant.DEFAULT_INDEX_OF;
+    private String changWangCode, goodType;
 
     private LookFragment() {
     }
@@ -152,6 +157,9 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
     private void initData() {
+        if (!App.getUser(mContext).getTest()){
+            getPresenter().getChangWangList(App.getUser(mContext).getId());
+        }
         getPresenter().getUserFamily(App.getUser(mContext).getId(), App.getUser(mContext).getNickname());
     }
 
@@ -187,7 +195,8 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         }
     }
 
-    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout})
+
+    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout, R.id.add_changwang_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.look_family_name:
@@ -198,6 +207,9 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 break;
             case R.id.fm_search_layout:
                 SearchActivity.start(mContext);
+                break;
+            case R.id.add_changwang_tv:
+                AddChangWangGoodActivity.start(getContext(), goodType, changWangCode);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -245,6 +257,29 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             selectPosition = AppConstant.DEFAULT_INDEX_OF;
         }
         selectSortGoods(selectPosition);
+    }
+
+    @Override
+    public void getChangWangListSuccess(List<ChangWangBean> changWangBeans) {
+        if (changWangBeans != null && changWangBeans.size() > 0) {
+            ChangWangBean aiWangBean = changWangBeans.get(0);
+            //name=爱忘爆款
+            if (aiWangBean.getObject_count() > aiWangBean.getComplete()) {
+                goodType = aiWangBean.getName();
+                changWangCode = aiWangBean.getCode();
+                addCWGoodView.setVisibility(View.VISIBLE);
+            } else if (changWangBeans.size() > 1) {
+                //name=热门备余物
+                ChangWangBean reMenBean = changWangBeans.get(1);
+                if (reMenBean.getObject_count() > reMenBean.getComplete()) {
+                    goodType = reMenBean.getName();
+                    changWangCode = reMenBean.getCode();
+                    addCWGoodView.setVisibility(View.VISIBLE);
+                } else {
+                    changWangCode = null;
+                }
+            }
+        }
     }
 
     private void selectSortGoods(int indexOf) {

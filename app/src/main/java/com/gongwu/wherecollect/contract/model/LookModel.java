@@ -5,6 +5,8 @@ import com.gongwu.wherecollect.contract.ILookContract;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.entity.request.GoodsListReq;
+import com.gongwu.wherecollect.net.entity.request.UserReq;
+import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.MainGoodsBean;
 import com.gongwu.wherecollect.util.ApiUtils;
@@ -30,9 +32,27 @@ public class LookModel implements ILookContract.ILookModel {
     }
 
     @Override
+    public void getChangWangList(String uid, RequestCallback callback) {
+        if (callback == null) return;
+        UserReq req = new UserReq();
+        req.setUid(uid);
+        ApiUtils.getCangWangList(req, new ApiCallBack<List<ChangWangBean>>() {
+            @Override
+            public void onSuccess(List<ChangWangBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void getObjectBean(String uid, String family_code, RequestCallback callback) {
         if (callback == null) return;
-        ApiUtils.getUserGoddsList(uid,family_code, new ApiCallBack<List<MainGoodsBean>>() {
+        ApiUtils.getUserGoddsList(uid, family_code, new ApiCallBack<List<MainGoodsBean>>() {
             @Override
             public void onSuccess(List<MainGoodsBean> data) {
                 callback.onSuccess(data);

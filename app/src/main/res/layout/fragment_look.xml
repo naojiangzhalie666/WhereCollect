@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".FragmentMain.LookFragment">
 
@@ -74,10 +73,26 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/add_changwang_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_40"
+        android:background="@color/maincolor"
+        android:drawableStart="@drawable/ymy_icon"
+        android:drawableEnd="@drawable/go_icon"
+        android:drawablePadding="@dimen/dip_6"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dip_4"
+        android:layout_below="@id/look_fm_title_layout"
+        android:text="常忘备余物快速添加,看看“有没有”"
+        android:textColor="@color/white"
+        android:textSize="@dimen/f_12"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/look_fm_title_layout"
+        android:layout_below="@id/add_changwang_tv"
         android:orientation="horizontal">
 
         <androidx.recyclerview.widget.RecyclerView

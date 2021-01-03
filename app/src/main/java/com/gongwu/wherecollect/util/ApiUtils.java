@@ -6,6 +6,9 @@ import com.gongwu.wherecollect.net.entity.base.RequestBase;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
+import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
+import com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean;
+import com.gongwu.wherecollect.net.entity.response.ChangWangListBean;
 import com.gongwu.wherecollect.net.entity.response.ChannelBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
@@ -186,6 +189,14 @@ public class ApiUtils {
 
     public static <D extends RequestBase> void getFamilyRoomLists(String uid, String code, ApiCallBack<List<FamilyBean>> callBack) {
         ApiInstance.getApi().getFamilyRoomLists(uid, code).enqueue(callBack);
+    }
+
+    /**
+     * 获取常忘物品列表
+     */
+    public static <D extends RequestBase> void getCangWangList(D request, ApiCallBack<List<ChangWangBean>> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().getCangWangList(requestMap).enqueue(callBack);
     }
 
     /**
@@ -821,5 +832,21 @@ public class ApiUtils {
      */
     public static <D extends RequestBase> void getVersion(String app_version, ApiCallBack<VersionBean> callBack) {
         ApiInstance.getApi().getVersion("ANDROID", app_version).enqueue(callBack);
+    }
+
+    /**
+     * 获取常忘物品详情的list
+     */
+    public static <D extends RequestBase> void getCangWangGoodsList(D request, ApiCallBack<ChangWangListBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().getCangWangGoodsList(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 设置常忘物品有没有
+     */
+    public static <D extends RequestBase> void setCangWangDetail(D request, ApiCallBack<ChangWangDetailBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().setCangWangDetail(requestMap).enqueue(callBack);
     }
 }
