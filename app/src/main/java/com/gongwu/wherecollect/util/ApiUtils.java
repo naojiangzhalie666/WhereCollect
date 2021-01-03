@@ -36,6 +36,7 @@ import com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse;
 import com.gongwu.wherecollect.net.entity.response.SerchListBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
+import com.gongwu.wherecollect.net.entity.response.StatisticsBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
 import com.gongwu.wherecollect.net.entity.response.VersionBean;
@@ -849,4 +850,47 @@ public class ApiUtils {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().setCangWangDetail(requestMap).enqueue(callBack);
     }
+
+    /**
+     * 归位统计
+     */
+    public static <D extends RequestBase> void getGoodsReturnDetails(String uid, String family_code, String code, ApiCallBack<List<StatisticsBean>> callBack) {
+        ApiInstance.getApi().getGoodsReturnDetails(uid, family_code, code).enqueue(callBack);
+    }
+
+    /**
+     * 分类统计
+     */
+    public static <D extends RequestBase> void getGoodsSortDetails(String uid, String family_code, ApiCallBack<List<StatisticsBean>> callBack) {
+        ApiInstance.getApi().getGoodsSortDetails(uid, family_code).enqueue(callBack);
+    }
+
+    /**
+     * 颜色统计
+     */
+    public static <D extends RequestBase> void getGoodsColorsDetails(String uid, String family_code, ApiCallBack<List<StatisticsBean>> callBack) {
+        ApiInstance.getApi().getGoodsColorsDetails(uid, family_code).enqueue(callBack);
+    }
+
+    /**
+     * 季节统计
+     */
+    public static <D extends RequestBase> void getGoodsSeasonDetails(String uid, String family_code, ApiCallBack<List<StatisticsBean>> callBack) {
+        ApiInstance.getApi().getGoodsSeasonDetails(uid, family_code).enqueue(callBack);
+    }
+
+    /**
+     * 价格统计
+     */
+    public static <D extends RequestBase> void getGoodsPriceDetails(String uid, String family_code, String code, ApiCallBack<List<StatisticsBean>> callBack) {
+        ApiInstance.getApi().getGoodsPriceDetails(uid, family_code, code).enqueue(callBack);
+    }
+
+    /**
+     * 购买时间统计(季度)
+     */
+    public static <D extends RequestBase> void getGoodsTimeDetails(String uid, String family_code, String code, ApiCallBack<List<StatisticsBean>> callBack) {
+        ApiInstance.getApi().getGoodsTimeDetails(uid, family_code, code).enqueue(callBack);
+    }
+
 }

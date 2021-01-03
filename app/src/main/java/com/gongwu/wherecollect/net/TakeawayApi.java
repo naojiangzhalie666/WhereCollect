@@ -34,6 +34,7 @@ import com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse;
 import com.gongwu.wherecollect.net.entity.response.SerchListBean;
 import com.gongwu.wherecollect.net.entity.response.SharedPersonBean;
 import com.gongwu.wherecollect.net.entity.response.SharedLocationBean;
+import com.gongwu.wherecollect.net.entity.response.StatisticsBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VIPBean;
 import com.gongwu.wherecollect.net.entity.response.VersionBean;
@@ -433,5 +434,24 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v350/object-recommend-option")
     Call<ResponseBase<ChangWangDetailBean>> setCangWangDetail(@FieldMap Map<String, String> map);
+
+    @GET("api/app/v420/statics1")
+    Call<ResponseBase<List<StatisticsBean>>> getGoodsReturnDetails(@Query("uid") String uid, @Query("family_code") String family_code, @Query("code") String code);
+
+    @GET("api/app/v420/statics2")
+    Call<ResponseBase<List<StatisticsBean>>> getGoodsSortDetails(@Query("uid") String uid, @Query("family_code") String family_code);
+
+    @GET("api/app/v420/statics3")
+    Call<ResponseBase<List<StatisticsBean>>> getGoodsColorsDetails(@Query("uid") String uid, @Query("family_code") String family_code);
+
+    @GET("api/app/v420/statics4")
+    Call<ResponseBase<List<StatisticsBean>>> getGoodsSeasonDetails(@Query("uid") String uid, @Query("family_code") String family_code);
+
+    @GET("api/app/v420/statics5")
+    Call<ResponseBase<List<StatisticsBean>>> getGoodsPriceDetails(@Query("uid") String uid, @Query("family_code") String family_code, @Query("code") String code);
+
+    @GET("api/app/v420/statics6")
+    Call<ResponseBase<List<StatisticsBean>>> getGoodsTimeDetails(@Query("uid") String uid, @Query("family_code") String family_code, @Query("code") String code);
+
 
 }

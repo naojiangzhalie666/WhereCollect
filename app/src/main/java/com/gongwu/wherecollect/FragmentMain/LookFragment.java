@@ -22,6 +22,7 @@ import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.AddChangWangGoodActivity;
 import com.gongwu.wherecollect.activity.EditMoreGoodsActivity;
 import com.gongwu.wherecollect.activity.SearchActivity;
+import com.gongwu.wherecollect.activity.StatisticsActivity;
 import com.gongwu.wherecollect.adapter.MainGoodsAdapter;
 import com.gongwu.wherecollect.adapter.MainGoodsSortAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
@@ -157,7 +158,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
     private void initData() {
-        if (!App.getUser(mContext).getTest()){
+        if (!App.getUser(mContext).getTest()) {
             getPresenter().getChangWangList(App.getUser(mContext).getId());
         }
         getPresenter().getUserFamily(App.getUser(mContext).getId(), App.getUser(mContext).getNickname());
@@ -196,7 +197,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
 
-    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout, R.id.add_changwang_tv})
+    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout, R.id.add_changwang_tv, R.id.statistics_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.look_family_name:
@@ -210,6 +211,17 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 break;
             case R.id.add_changwang_tv:
                 AddChangWangGoodActivity.start(getContext(), goodType, changWangCode);
+                break;
+            case R.id.statistics_layout:
+                String type;
+                if (mList.get(selectPosition).getCode().equals(StatisticsActivity.TYPE_ALL)){
+                    type = StatisticsActivity.TYPE_ALL;
+                }else if (mList.get(selectPosition).getName().equals("衣装打扮")){
+                    type = StatisticsActivity.TYPE_CLOTHES;
+                }else{
+                    type = StatisticsActivity.TYPE_OTHER;
+                }
+                StatisticsActivity.start(mContext, familyBean.getCode(), mList.get(selectPosition).getCode(),type);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
