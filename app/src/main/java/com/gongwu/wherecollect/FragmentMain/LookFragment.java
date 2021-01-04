@@ -213,15 +213,17 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 AddChangWangGoodActivity.start(getContext(), goodType, changWangCode);
                 break;
             case R.id.statistics_layout:
-                String type;
-                if (mList.get(selectPosition).getCode().equals(StatisticsActivity.TYPE_ALL)){
-                    type = StatisticsActivity.TYPE_ALL;
-                }else if (mList.get(selectPosition).getName().equals("衣装打扮")){
-                    type = StatisticsActivity.TYPE_CLOTHES;
-                }else{
-                    type = StatisticsActivity.TYPE_OTHER;
+                if (mList != null && mList.size() > 0) {
+                    String type;
+                    if (mList.get(selectPosition).getCode().equals(StatisticsActivity.TYPE_ALL)) {
+                        type = StatisticsActivity.TYPE_ALL;
+                    } else if (mList.get(selectPosition).getName().equals("衣装打扮")) {
+                        type = StatisticsActivity.TYPE_CLOTHES;
+                    } else {
+                        type = StatisticsActivity.TYPE_OTHER;
+                    }
+                    StatisticsActivity.start(mContext, familyBean.getCode(), mList.get(selectPosition).getCode(), type);
                 }
-                StatisticsActivity.start(mContext, familyBean.getCode(), mList.get(selectPosition).getCode(),type);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");

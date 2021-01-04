@@ -25,8 +25,7 @@
                 android:id="@+id/return_chart_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,6 +42,16 @@
                     android:layout_height="@dimen/dip_230"
                     android:layout_margin="@dimen/dip_12"
                     android:background="@drawable/shape_statistics_item_bg">
+
+                    <TextView
+                        android:id="@+id/return_chart_empty_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="暂无数据"
+                        android:textColor="@color/black_70"
+                        android:textSize="@dimen/f_15"
+                        android:visibility="gone" />
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/return_chart"
@@ -75,6 +84,16 @@
                     android:layout_margin="@dimen/dip_12"
                     android:background="@drawable/shape_statistics_item_bg">
 
+                    <TextView
+                        android:id="@+id/sort_chart_empty_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="暂无数据"
+                        android:textColor="@color/black_70"
+                        android:textSize="@dimen/f_15"
+                        android:visibility="gone" />
+
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/sort_chart"
                         android:layout_width="match_parent"
@@ -106,6 +125,16 @@
                     android:layout_margin="@dimen/dip_12"
                     android:background="@drawable/shape_statistics_item_bg">
 
+                    <TextView
+                        android:id="@+id/price_chart_empty_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="暂无数据"
+                        android:textColor="@color/black_70"
+                        android:textSize="@dimen/f_15"
+                        android:visibility="gone" />
+
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/price_chart"
                         android:layout_width="match_parent"
@@ -135,6 +164,16 @@
                     android:layout_height="@dimen/dip_230"
                     android:layout_margin="@dimen/dip_12"
                     android:background="@drawable/shape_statistics_item_bg">
+
+                    <TextView
+                        android:id="@+id/time_chart_empty_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="暂无数据"
+                        android:textColor="@color/black_70"
+                        android:textSize="@dimen/f_15"
+                        android:visibility="gone" />
 
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/time_chart"
@@ -168,6 +207,16 @@
                     android:layout_margin="@dimen/dip_12"
                     android:background="@drawable/shape_statistics_item_bg">
 
+                    <TextView
+                        android:id="@+id/color_chart_empty_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="暂无数据"
+                        android:textColor="@color/black_70"
+                        android:textSize="@dimen/f_15"
+                        android:visibility="gone" />
+
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/color_chart"
                         android:layout_width="match_parent"
@@ -199,6 +248,16 @@
                     android:layout_height="@dimen/dip_230"
                     android:layout_margin="@dimen/dip_12"
                     android:background="@drawable/shape_statistics_item_bg">
+
+                    <TextView
+                        android:id="@+id/season_chart_empty_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="暂无数据"
+                        android:textColor="@color/black_70"
+                        android:textSize="@dimen/f_15"
+                        android:visibility="gone" />
 
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/season_chart"

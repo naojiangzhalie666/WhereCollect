@@ -62,6 +62,21 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
     HorizontalBarChart mColorChart;
     @BindView(R.id.season_chart)
     HorizontalBarChart mSeasonChart;
+
+    @BindView(R.id.return_chart_empty_tv)
+    TextView mReturnChartEmptyTv;
+    @BindView(R.id.sort_chart_empty_tv)
+    TextView mSortChartEmptyTv;
+    @BindView(R.id.price_chart_empty_tv)
+    TextView mPriceChartEmptyTv;
+    @BindView(R.id.time_chart_empty_tv)
+    TextView mTimeChartEmptyTv;
+    @BindView(R.id.color_chart_empty_tv)
+    TextView mColorChartEmptyTv;
+    @BindView(R.id.season_chart_empty_tv)
+    TextView mSeasonChartEmptyTv;
+
+
     @BindView(R.id.return_chart_layout)
     View chartLayout;
     @BindView(R.id.sort_chart_layout)
@@ -150,7 +165,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsReturnDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setPieChart(mReturnChart, bean);
+        getPresenter().setPieChart(mReturnChart, bean, mReturnChartEmptyTv);
     }
 
     /**
@@ -158,7 +173,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsSortDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setPieChart(mSortChart, bean);
+        getPresenter().setPieChart(mSortChart, bean, mSortChartEmptyTv);
     }
 
     /**
@@ -166,7 +181,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsColorsDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setHorizontalBarChart(mColorChart, bean);
+        getPresenter().setHorizontalBarChart(mColorChart, bean, mColorChartEmptyTv);
     }
 
     /**
@@ -174,7 +189,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsSeasonDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setHorizontalBarChart(mSeasonChart, bean);
+        getPresenter().setHorizontalBarChart(mSeasonChart, bean, mSeasonChartEmptyTv);
     }
 
     /**
@@ -182,7 +197,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsPriceDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setPieChart(mPriceChart, bean);
+        getPresenter().setPieChart(mPriceChart, bean, mPriceChartEmptyTv);
     }
 
     /**
@@ -190,7 +205,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsTimeDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setHorizontalBarChart(mTimeChart, bean);
+        getPresenter().setHorizontalBarChart(mTimeChart, bean, mTimeChartEmptyTv);
     }
 
     public static void start(Context context, String family_code, String code, String type) {
