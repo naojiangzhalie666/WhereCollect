@@ -25,7 +25,8 @@
                 android:id="@+id/return_chart_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -50,13 +51,13 @@
                         android:layout_centerInParent="true"
                         android:text="暂无数据"
                         android:textColor="@color/black_70"
-                        android:textSize="@dimen/f_15"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/f_15" />
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/return_chart"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -91,13 +92,13 @@
                         android:layout_centerInParent="true"
                         android:text="暂无数据"
                         android:textColor="@color/black_70"
-                        android:textSize="@dimen/f_15"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/f_15" />
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/sort_chart"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -132,13 +133,13 @@
                         android:layout_centerInParent="true"
                         android:text="暂无数据"
                         android:textColor="@color/black_70"
-                        android:textSize="@dimen/f_15"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/f_15" />
 
                     <com.github.mikephil.charting.charts.PieChart
                         android:id="@+id/price_chart"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
             <!--购买时间分布-->
@@ -172,14 +173,14 @@
                         android:layout_centerInParent="true"
                         android:text="暂无数据"
                         android:textColor="@color/black_70"
-                        android:textSize="@dimen/f_15"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/f_15" />
 
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/time_chart"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@android:color/white" />
+                        android:background="@android:color/white"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -214,14 +215,14 @@
                         android:layout_centerInParent="true"
                         android:text="暂无数据"
                         android:textColor="@color/black_70"
-                        android:textSize="@dimen/f_15"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/f_15" />
 
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/color_chart"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@android:color/white" />
+                        android:background="@android:color/white"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -256,14 +257,14 @@
                         android:layout_centerInParent="true"
                         android:text="暂无数据"
                         android:textColor="@color/black_70"
-                        android:textSize="@dimen/f_15"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/f_15" />
 
                     <com.github.mikephil.charting.charts.HorizontalBarChart
                         android:id="@+id/season_chart"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@android:color/white" />
+                        android:background="@android:color/white"
+                        android:visibility="gone" />
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>

@@ -190,6 +190,8 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
                 emptyView.setVisibility(View.VISIBLE);
                 return;
             }
+            chart.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
             chart.setUsePercentValues(false);
             chart.getDescription().setEnabled(false);
             chart.setExtraOffsets(5, 10, 5, 5);
@@ -218,11 +220,10 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
             PieDataSet dataSet = new PieDataSet(entries, null);
 
             dataSet.setDrawIcons(false);
-
+            dataSet.setValueFormatter(new PercentFormatter());
             dataSet.setSliceSpace(1f);
             dataSet.setIconsOffset(new MPPointF(0, 40));
             dataSet.setSelectionShift(5f);
-
             // add a lot of colors
 
             ArrayList<Integer> colors = new ArrayList<>();
@@ -280,7 +281,8 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
                 emptyView.setVisibility(View.VISIBLE);
                 return;
             }
-
+            chart.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
             //填补空数据,让图表好看点
             if (bean.size() < 3) {
                 for (int i = 0; i < (3 - bean.size()); i++) {
