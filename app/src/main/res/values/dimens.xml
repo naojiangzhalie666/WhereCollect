@@ -48,7 +48,9 @@
     <dimen name="dip_30">30dip</dimen>
     <dimen name="dip_32">32dip</dimen>
     <dimen name="dip_34">34dip</dimen>
+    <dimen name="dip_35">35.8dip</dimen>
     <dimen name="dip_36">36dip</dimen>
+    <dimen name="dip_39">39dip</dimen>
     <dimen name="dip_40">40dip</dimen>
     <dimen name="dip_42">42dip</dimen>
     <dimen name="dip_44">44dip</dimen>
@@ -59,10 +61,14 @@
     <dimen name="dip_54">54dip</dimen>
     <dimen name="dip_58">58dip</dimen>
     <dimen name="dip_60">60dip</dimen>
+    <dimen name="dip_61">61dip</dimen>
+    <dimen name="dip_62">62dip</dimen>
+    <dimen name="dip_63">63dip</dimen>
     <dimen name="dip_64">64dip</dimen>
     <dimen name="dip_65">65dip</dimen>
     <dimen name="dip_68">68dip</dimen>
     <dimen name="dip_70">70dip</dimen>
+    <dimen name="dip_71">71dip</dimen>
     <dimen name="dip_76">76dip</dimen>
     <dimen name="dip_78">78dip</dimen>
     <dimen name="dip_80">80dip</dimen>
@@ -71,6 +77,7 @@
     <dimen name="dip_90">90dip</dimen>
     <dimen name="dip_91">91dip</dimen>
     <dimen name="dip_100">100dip</dimen>
+    <dimen name="dip_104">104dip</dimen>
     <dimen name="dip_110">110dip</dimen>
     <dimen name="dip_114">114dip</dimen>
     <dimen name="dip_120">120dip</dimen>
@@ -91,8 +98,11 @@
     <dimen name="dip_330">330dip</dimen>
     <dimen name="dip_340">340dip</dimen>
     <dimen name="dip_350">350dip</dimen>
+    <dimen name="dip_360">350dip</dimen>
     <dimen name="dip_400">400dip</dimen>
     <dimen name="dip_500">500dip</dimen>
+    <dimen name="dip_509">509dip</dimen>
+    <dimen name="dip_571">571.43dip</dimen>
     <dimen name="msg_count_shape">20px</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>

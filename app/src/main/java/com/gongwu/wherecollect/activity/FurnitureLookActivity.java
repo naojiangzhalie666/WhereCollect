@@ -146,6 +146,8 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     private float y;
     private String resetName;
     private String family_code;
+    //房间结构
+    private RoomFurnitureResponse mRoomFurnitureResponse;
 
     @Override
     protected int getLayoutId() {
@@ -219,7 +221,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     @OnClick({R.id.back_btn, R.id.look_furniture_geceng_tv, R.id.furniture_edit_layer_tv, R.id.furniture_add_box_tv, R.id.furniture_import_tv, R.id.furniture_back_tv,
             R.id.furniture_goods_details_tv, R.id.furniture_del_tv, R.id.furniture_top_tv, R.id.furniture_cancel_tv, R.id.furniture_place_tv, R.id.furniture_move_box_tv,
-            R.id.furniture_remove_tv, R.id.move_goods_iv})
+            R.id.furniture_remove_tv, R.id.move_goods_iv, R.id.detailed_list_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -327,6 +329,9 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                         postImportGoods(importBean.get_id());
                     }
                 }
+                break;
+            case R.id.detailed_list_tv:
+                DetailedListActivity.start(mContext, family_code, roomBean.getCode(), furnitureBean.getCode(), mRoomFurnitureResponse);
                 break;
             default:
                 break;
@@ -558,6 +563,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         furnitureBean.setLayers(data.getLayers());
         furnitureBean.setName(data.getFurniture_name());
         tablelayout.init(data.getLayers(), CustomTableRowLayout.shape_width, R.drawable.shape_geceng1);
+        mRoomFurnitureResponse = data;
         if (data.getParents() != null && data.getParents().size() > 0) {
             RoomFurnitureBean furnitureBean = data.getLayers().get(AppConstant.DEFAULT_INDEX_OF);
             gcNameTv.setText(getPresenter().getLoction(furnitureBean));

@@ -102,8 +102,14 @@ public class CustomTableRowLayout extends RelativeLayout {
         this.childBeans = childBeans;
         num = childBeans.size();
         selectBeans.clear();
-        initChild();
+//        initChild();
         setShape(shape);
+    }
+
+    private int padding = 0;
+
+    public void setPaddingView(int padding) {
+        this.padding = padding;
     }
 
     private void changeShapeAndInit() {
@@ -131,6 +137,9 @@ public class CustomTableRowLayout extends RelativeLayout {
             ChildView ob = new ChildView(context, resId);
             ob.setEditableByFalse();
             ob.setObject(childBeans.get(i), this);
+            if (padding > 0) {
+                ob.setPadding(padding);
+            }
             addView(ob);
             if (!isChildViewClick) {
                 ob.setOnClickListener(new OnClickListener(listener));
@@ -505,6 +514,7 @@ public class CustomTableRowLayout extends RelativeLayout {
         return view;
     }
 
+
     /**
      * 取消高亮
      */
@@ -531,6 +541,21 @@ public class CustomTableRowLayout extends RelativeLayout {
                 if (view.getObjectBean().getCode().equals(object.getLocations().get(j).getCode())) {
                     return view;
                 }
+            }
+        }
+        return null;
+    }
+
+    public View findViewByPoint(Point object) {
+        for (int i = 0; i < getChildCount(); i++) {
+            if (!(getChildAt(i) instanceof ChildView)) {
+                continue;
+            }
+            ChildView view = ((ChildView) getChildAt(i));
+            RoomFurnitureBean bean = view.getObjectBean();
+            if (bean.getPosition().getX() == object.getX() &&
+                    bean.getPosition().getY() == object.getY()) {
+                return view;
             }
         }
         return null;

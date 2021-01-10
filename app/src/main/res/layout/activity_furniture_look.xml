@@ -43,6 +43,17 @@
                 android:textSize="@dimen/f_11"
                 tools:text="客厅" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/detailed_list_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/dip_10"
+            android:textColor="@color/white"
+            android:textSize="@dimen/f_14"
+            android:text="生成清单" />
     </RelativeLayout>
 
     <LinearLayout

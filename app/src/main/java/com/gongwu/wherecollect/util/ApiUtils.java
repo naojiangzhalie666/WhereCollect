@@ -10,6 +10,7 @@ import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangListBean;
 import com.gongwu.wherecollect.net.entity.response.ChannelBean;
+import com.gongwu.wherecollect.net.entity.response.DetailedListBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.FeedbackBean;
@@ -891,6 +892,13 @@ public class ApiUtils {
      */
     public static <D extends RequestBase> void getGoodsTimeDetails(String uid, String family_code, String code, ApiCallBack<List<StatisticsBean>> callBack) {
         ApiInstance.getApi().getGoodsTimeDetails(uid, family_code, code).enqueue(callBack);
+    }
+
+    /**
+     * 清单
+     */
+    public static <D extends RequestBase> void getDetailedList(String uid, String family_code, String room_code, String furniture_code, ApiCallBack<DetailedListBean> callBack) {
+        ApiInstance.getApi().getDetailedList(uid, family_code, room_code, furniture_code).enqueue(callBack);
     }
 
 }

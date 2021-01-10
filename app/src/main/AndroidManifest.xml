@@ -41,7 +41,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.StatisticsActivity"></activity>
+        <activity android:name=".activity.DetailedListActivity"></activity>
+        <activity android:name=".activity.StatisticsActivity" />
         <activity android:name=".activity.AddChangWangGoodActivity" />
         <activity android:name=".activity.ConfigChangePhoneActivity" />
 

@@ -1,8 +1,9 @@
 package com.gongwu.wherecollect.net.entity.response;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RoomFurnitureResponse {
+public class RoomFurnitureResponse implements Serializable {
 
     private String furniture_name;
     private String room_code;
