@@ -7,6 +7,7 @@
 
     <!-- 文字的大小 -->
     <dimen name="f_4">4sp</dimen>
+    <dimen name="f_6">6sp</dimen>
     <dimen name="f_8">8sp</dimen>
     <dimen name="f_10">10sp</dimen>
     <dimen name="f_11">11sp</dimen>
@@ -31,6 +32,7 @@
     <dimen name="dip_6">6dip</dimen>
     <dimen name="dip_7">7dip</dimen>
     <dimen name="dip_8">8dip</dimen>
+    <dimen name="dip_9">9dip</dimen>
     <dimen name="dip_10">10dip</dimen>
     <dimen name="dip_12">12dip</dimen>
     <dimen name="dip_14">14dip</dimen>
@@ -59,6 +61,7 @@
     <dimen name="dip_50">50dip</dimen>
     <dimen name="dip_52">52dip</dimen>
     <dimen name="dip_54">54dip</dimen>
+    <dimen name="dip_56">56dip</dimen>
     <dimen name="dip_58">58dip</dimen>
     <dimen name="dip_60">60dip</dimen>
     <dimen name="dip_61">61dip</dimen>

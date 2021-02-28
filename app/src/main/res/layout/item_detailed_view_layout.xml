@@ -1,26 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:paddingTop="@dimen/dip_2"
+    android:paddingBottom="@dimen/dip_2">
 
-    <com.gongwu.wherecollect.view.GoodsImageView
-        android:id="@+id/detailed_img_iv"
-        android:layout_width="@dimen/dip_50"
-        android:layout_height="@dimen/dip_50"
-        android:scaleType="centerInside" />
-
-    <TextView
-        android:id="@+id/detailed_name_tv"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:singleLine="true"
-        android:textColor="@color/color999"
-        android:textSize="@dimen/f_10"
-        tools:text="鞋柜" />
-</LinearLayout>
+        android:background="@color/split_color"
+        android:paddingTop="@dimen/dip_4"
+        android:paddingBottom="@dimen/dip_4">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/detailed_img_iv"
+                android:layout_width="@dimen/dip_50"
+                android:layout_height="@dimen/dip_45"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/detailed_name_tv"
+                android:layout_width="@dimen/dip_50"
+                android:layout_height="@dimen/dip_10"
+                android:layout_below="@id/detailed_img_iv"
+                android:background="@color/white"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/color999"
+                android:textSize="@dimen/f_6"
+                tools:text="鞋柜" />
+
+            <ImageView
+                android:id="@+id/detailed_view_type_box"
+                android:layout_width="@dimen/dip_8"
+                android:layout_height="@dimen/dip_8"
+                android:layout_marginStart="1dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_template_box" />
+
+            <TextView
+                android:id="@+id/detailed_view_type_name"
+                android:layout_width="@dimen/dip_26"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/detailed_view_type_box"
+                android:background="@drawable/shape_detailed_list_layout_item_frame"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center"
+                android:text="隔层内"
+                android:textColor="@color/black_87"
+                android:textSize="@dimen/f_6" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

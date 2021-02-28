@@ -219,6 +219,8 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                         type = StatisticsActivity.TYPE_ALL;
                     } else if (mList.get(selectPosition).getName().equals("衣装打扮")) {
                         type = StatisticsActivity.TYPE_CLOTHES;
+                    } else if (mList.get(selectPosition).getName().equals("未分类")) {
+                        return;
                     } else {
                         type = StatisticsActivity.TYPE_OTHER;
                     }

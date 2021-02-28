@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dip_8"
     android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dip_6"
-        android:layout_marginTop="@dimen/dip_6"
+        android:layout_marginStart="@dimen/dip_4"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -36,18 +36,26 @@
             android:textColor="@color/black_87"
             android:textSize="@dimen/f_10"
             tools:text="隔层123" />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dip_6"
-        android:layout_marginTop="@dimen/dip_10"
-        android:orientation="vertical">
+        android:layout_marginStart="@dimen/dip_4"
+        android:layout_marginEnd="@dimen/dip_4"
+        android:background="@drawable/shape_dotted"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/dip_4"
+        android:paddingTop="@dimen/dip_2"
+        android:paddingEnd="@dimen/dip_4"
+        android:paddingBottom="@dimen/dip_2">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/detailed_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
+
 </LinearLayout>

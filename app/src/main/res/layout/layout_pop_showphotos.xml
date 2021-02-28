@@ -3,11 +3,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <com.zhaojin.myviews.TagViewPagerPhotos
+    <com.gongwu.wherecollect.view.TagViewPagerPhotos
         android:id="@+id/showPhotos_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.zhaojin.myviews.TagViewPagerPhotos>
+    </com.gongwu.wherecollect.view.TagViewPagerPhotos>
 
     <ImageView
         android:id="@+id/image_pager_selector"

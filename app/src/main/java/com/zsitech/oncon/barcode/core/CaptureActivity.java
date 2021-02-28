@@ -149,10 +149,10 @@ public final class CaptureActivity extends BaseActivity implements SurfaceHolder
         titleView = (TextView) findViewById(R.id.title_ca);
         contentView = (TextView) findViewById(R.id.capture_content_view);
         String title = getIntent().getStringExtra("title");
-        if (!TextUtils.isEmpty(title)){
+        if (!TextUtils.isEmpty(title)) {
             String content = getIntent().getStringExtra("content");
             titleView.setText(title);
-            contentView.setText(content);
+            contentView.setText(TextUtils.isEmpty(content) ? "" : content);
         }
     }
 

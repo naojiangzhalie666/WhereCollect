@@ -223,6 +223,12 @@ public class DateUtil {
         return daysOfMonth(calendar.get(Calendar.YEAR), calendar.get(Calendar.DATE) + 1);
     }
 
+    public static String getTime() {
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        return sdf.format(date);
+    }
+
     /**
      * 获取指定月份的天数
      *

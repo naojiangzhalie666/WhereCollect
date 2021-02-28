@@ -1,6 +1,5 @@
 package com.gongwu.wherecollect.net.entity.response;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class DetailedListGoodsBean {
@@ -10,7 +9,8 @@ public class DetailedListGoodsBean {
     private int obj_count;
     private String layer_code;
     private String layer_name;
-    private List<Goods> objs;
+    private List<DetailedGoodsBean> objs;
+    private List<DetailedListBoxesBean> boxes;
 
     public Point getScale() {
         return scale;
@@ -60,62 +60,19 @@ public class DetailedListGoodsBean {
         this.layer_name = layer_name;
     }
 
-    public List<Goods> getObjs() {
+    public List<DetailedGoodsBean> getObjs() {
         return objs;
     }
 
-    public void setObjs(List<Goods> objs) {
+    public void setObjs(List<DetailedGoodsBean> objs) {
         this.objs = objs;
     }
 
-    public static class Goods implements Serializable {
-        private String name;
-        private String img;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getImg() {
-            return img;
-        }
-
-        public void setImg(String img) {
-            this.img = img;
-        }
+    public List<DetailedListBoxesBean> getBoxes() {
+        return boxes;
     }
 
-    public static class Box implements Serializable {
-        private String box_code;
-        private String box_name;
-        private List<Goods> objs;
-
-        public String getBox_code() {
-            return box_code;
-        }
-
-        public void setBox_code(String box_code) {
-            this.box_code = box_code;
-        }
-
-        public String getBox_name() {
-            return box_name;
-        }
-
-        public void setBox_name(String box_name) {
-            this.box_name = box_name;
-        }
-
-        public List<Goods> getObjs() {
-            return objs;
-        }
-
-        public void setObjs(List<Goods> objs) {
-            this.objs = objs;
-        }
+    public void setBoxes(List<DetailedListBoxesBean> boxes) {
+        this.boxes = boxes;
     }
 }

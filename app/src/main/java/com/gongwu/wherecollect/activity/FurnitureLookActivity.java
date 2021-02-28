@@ -233,6 +233,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 break;
             case R.id.furniture_edit_layer_tv:
                 //编辑
+                if (mData == null || mData.size() == 0) return;
                 if (selectView != null) {
                     if (isBox) {
                         //编辑收纳盒
@@ -331,7 +332,12 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 }
                 break;
             case R.id.detailed_list_tv:
-                DetailedListActivity.start(mContext, family_code, roomBean.getCode(), furnitureBean.getCode(), mRoomFurnitureResponse);
+                if (mData == null || mData.size() == 0) return;
+                if (selectView != null) {
+                    selectView.setEditable(false);
+                    selectView = null;
+                }
+                DetailedListActivity.start(mContext, family_code, roomBean.get_id(), roomBean.getCode(), furnitureBean.getCode(), mRoomFurnitureResponse);
                 break;
             default:
                 break;

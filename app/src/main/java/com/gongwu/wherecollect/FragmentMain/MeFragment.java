@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.FeedBackActivity;
+import com.gongwu.wherecollect.activity.FurnitureLookActivity;
 import com.gongwu.wherecollect.activity.MessageListActivity;
 import com.gongwu.wherecollect.activity.PersonActivity;
 import com.gongwu.wherecollect.activity.ShareListActivity;
@@ -30,13 +32,17 @@ import com.gongwu.wherecollect.base.BaseFragment;
 import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.net.Config;
+import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
+import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.ShareUtil;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.UserCodeDialog;
+import com.zsitech.oncon.barcode.core.CaptureActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,6 +53,7 @@ import butterknife.OnClick;
 public class MeFragment extends BaseFragment {
 
     private static final String TAG = "MeFragment";
+    private final int START_CODE = 1012;
 
     @BindView(R.id.buy_vip_iv)
     ImageView buyVipIv;
@@ -110,13 +117,18 @@ public class MeFragment extends BaseFragment {
         privacyPolicyTv.setVisibility(View.GONE);
     }
 
-    @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.start_share_tv, R.id.user_code_iv,
-            R.id.msg_iv, R.id.buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app,R.id.privacy_policy_tv})
+    @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.qr_code_tv, R.id.start_share_tv, R.id.user_code_iv,
+            R.id.msg_iv, R.id.buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app, R.id.privacy_policy_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.person_iv:
             case R.id.person_details_layout:
                 startActivity(new Intent(getActivity(), PersonActivity.class));
+                break;
+            case R.id.qr_code_tv:
+                Intent intent = new Intent(mContext, CaptureActivity.class);
+                intent.putExtra("title", "清单扫码");
+                startActivityForResult(intent, START_CODE);
                 break;
             case R.id.start_share_tv:
                 ShareListActivity.start(mContext);
@@ -148,6 +160,42 @@ public class MeFragment extends BaseFragment {
             default:
                 Lg.getInstance().e(TAG, "onClick default");
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == START_CODE && resultCode == CaptureActivity.result) {//扫描的到结果
+            String result = data.getStringExtra("result");
+            String[] codes = result.split(",");
+            String family_code = null;
+            String room_id = null;
+            String room_code = null;
+            String furniture_code = null;
+            for (int i = 0; i < codes.length; i++) {
+                String string = codes[i];
+                if (string.contains("goFurniture:fc")) {
+                    furniture_code = string.split("=")[1];
+                } else if (string.contains("rd")) {
+                    room_id = string.split("=")[1];
+                } else if (string.contains("rc")) {
+                    room_code = string.split("=")[1];
+                } else if (string.contains("fmc")) {
+                    family_code = string.split("=")[1];
+                }
+            }
+            if (!TextUtils.isEmpty(family_code)
+                    && !TextUtils.isEmpty(room_id)
+                    && !TextUtils.isEmpty(room_code)
+                    && !TextUtils.isEmpty(furniture_code)) {
+                RoomBean roomBean = new RoomBean();
+                roomBean.set_id(room_id);
+                roomBean.setCode(room_code);
+                FurnitureBean furnitureBean = new FurnitureBean();
+                furnitureBean.setCode(furniture_code);
+                FurnitureLookActivity.start(mContext, family_code, furnitureBean, null, roomBean);
+            }
         }
     }
 

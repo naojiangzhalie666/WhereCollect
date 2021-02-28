@@ -23,6 +23,7 @@ import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IGoodsDetailsContract;
 import com.gongwu.wherecollect.contract.presenter.GoodsDetailsPresenter;
+import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -32,6 +33,7 @@ import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.util.DateUtil;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
+import com.gongwu.wherecollect.util.PhotosDialog;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.GoodsImageView;
@@ -117,11 +119,20 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         }
     }
 
-    @OnClick({R.id.back_btn, R.id.image_btn, R.id.goods_details_location_tv, R.id.remind_item_layout})
+    @OnClick({R.id.back_btn, R.id.add_img_view, R.id.image_btn, R.id.goods_details_location_tv, R.id.remind_item_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
                 finish();
+                break;
+            case R.id.add_img_view:
+                if (objectBean.getObject_url().contains("#")) return;
+                List<ImageData> imageDatas = new ArrayList<>();
+                ImageData imageData = new ImageData();
+                imageData.setUrl(objectBean.getObject_url());
+                imageDatas.add(imageData);
+                PhotosDialog photosDialog = new PhotosDialog(this, false, false, imageDatas);
+                photosDialog.showPhotos(0);
                 break;
             case R.id.image_btn:
                 ObjectsLookMenuDialog dialog = new ObjectsLookMenuDialog(this, objectBean) {

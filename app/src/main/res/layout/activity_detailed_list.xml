@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activity.DetailedListActivity">
 
     <include layout="@layout/layout_title_all" />
@@ -17,6 +18,8 @@
             android:id="@+id/content_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:background="@color/color666"
+            android:orientation="vertical"
+            android:padding="@dimen/dip_4" />
     </ScrollView>
 </RelativeLayout>
