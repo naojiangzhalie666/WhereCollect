@@ -146,6 +146,7 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //支付宝
     implementation(name: 'alipaySdk-15.7.9-20200727142814-noUtdid', ext: 'aar')
+    implementation files('libs/iTextpdf.jar')
     implementation files('libs/glide.jar')
     implementation files('libs/SocialSDK_QQ_Simplify.jar')
     implementation files('libs/SocialSDK_WeChat_Simplify.jar')

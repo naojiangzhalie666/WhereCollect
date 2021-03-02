@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: 9d623ab
+# pg_map_id: d92ff74
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -9976,7 +9976,6 @@ anetwork.channel.aidl.NetworkService -> anetwork.channel.aidl.NetworkService:
 anetwork.channel.aidl.NetworkService$1 -> anetwork.channel.aidl.f:
     anetwork.channel.aidl.NetworkService this$0 -> a
 anetwork.channel.aidl.ParcelableFuture -> anetwork.channel.aidl.g:
-    anetwork.channel.aidl.NetworkResponse get(long) -> a
 anetwork.channel.aidl.ParcelableFuture$Stub -> anetwork.channel.aidl.g$a:
 anetwork.channel.aidl.ParcelableHeader -> anetwork.channel.aidl.h:
     java.util.Map header -> b
@@ -10054,7 +10053,6 @@ anetwork.channel.aidl.adapter.ConnectionDelegate -> anetwork.channel.aidl.n.a:
 anetwork.channel.aidl.adapter.ParcelableFutureResponse -> anetwork.channel.aidl.n.b:
     java.util.concurrent.Future future -> a
     anetwork.channel.aidl.NetworkResponse response -> b
-    anetwork.channel.aidl.NetworkResponse get(long) -> a
 anetwork.channel.aidl.adapter.ParcelableInputStreamImpl -> anetwork.channel.aidl.n.c:
     java.util.concurrent.atomic.AtomicBoolean isClosed -> a
     int rto -> f
@@ -11763,8 +11761,8 @@ com.gongwu.wherecollect.FragmentMain.HomeFragment$2 -> com.gongwu.wherecollect.F
     int compare(com.gongwu.wherecollect.net.entity.response.RoomBean,com.gongwu.wherecollect.net.entity.response.RoomBean) -> a
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding:
     com.gongwu.wherecollect.FragmentMain.HomeFragment target -> a
-    android.view.View view7f0800f0 -> c
-    android.view.View view7f080124 -> b
+    android.view.View view7f0800f1 -> c
+    android.view.View view7f080125 -> b
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.HomeFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$b:
@@ -11820,11 +11818,11 @@ com.gongwu.wherecollect.FragmentMain.LookFragment$4 -> com.gongwu.wherecollect.F
     void onItemsClick(int,android.view.View) -> b
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding:
     android.view.View view7f080047 -> c
-    android.view.View view7f0801d4 -> b
-    android.view.View view7f080135 -> e
+    android.view.View view7f0801d5 -> b
+    android.view.View view7f080136 -> e
     com.gongwu.wherecollect.FragmentMain.LookFragment target -> a
     android.view.View view7f08007b -> d
-    android.view.View view7f080313 -> f
+    android.view.View view7f080314 -> f
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.LookFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$b:
@@ -11846,17 +11844,17 @@ com.gongwu.wherecollect.FragmentMain.MeFragment -> com.gongwu.wherecollect.Fragm
 com.gongwu.wherecollect.FragmentMain.MeFragment$1 -> com.gongwu.wherecollect.FragmentMain.MeFragment$a:
     com.gongwu.wherecollect.FragmentMain.MeFragment this$0 -> a
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding:
-    android.view.View view7f0801f2 -> i
-    android.view.View view7f08038b -> h
-    android.view.View view7f08038f -> k
-    android.view.View view7f080129 -> j
+    android.view.View view7f0801f3 -> i
+    android.view.View view7f08038c -> h
+    android.view.View view7f080390 -> k
+    android.view.View view7f08012a -> j
     com.gongwu.wherecollect.FragmentMain.MeFragment target -> a
-    android.view.View view7f080224 -> c
+    android.view.View view7f080225 -> c
     android.view.View view7f080088 -> b
-    android.view.View view7f080223 -> e
-    android.view.View view7f080241 -> d
-    android.view.View view7f08030f -> g
-    android.view.View view7f080250 -> f
+    android.view.View view7f080224 -> e
+    android.view.View view7f080242 -> d
+    android.view.View view7f080310 -> g
+    android.view.View view7f080251 -> f
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$b:
     com.gongwu.wherecollect.FragmentMain.MeFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$10 -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$a:
@@ -11931,9 +11929,9 @@ com.gongwu.wherecollect.FragmentMain.RemindFragment$4 -> com.gongwu.wherecollect
     void onItemDeleteClick(int,android.view.View) -> c
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding:
     com.gongwu.wherecollect.FragmentMain.RemindFragment target -> a
-    android.view.View view7f08026b -> c
-    android.view.View view7f080285 -> b
-    android.view.View view7f08034d -> d
+    android.view.View view7f08026c -> c
+    android.view.View view7f080286 -> b
+    android.view.View view7f08034e -> d
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.RemindFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$b:
@@ -11970,7 +11968,7 @@ com.gongwu.wherecollect.ImageSelect.ImageGridActivity$2 -> com.gongwu.wherecolle
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding:
     com.gongwu.wherecollect.ImageSelect.ImageGridActivity target -> a
     android.view.View view7f080073 -> c
-    android.view.View view7f08034c -> b
+    android.view.View view7f08034d -> b
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$1 -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$a:
     com.gongwu.wherecollect.ImageSelect.ImageGridActivity val$target -> a
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$2 -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$b:
@@ -12064,9 +12062,9 @@ com.gongwu.wherecollect.activity.AddChangWangGoodActivity -> com.gongwu.wherecol
     void initView() -> o
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding:
     com.gongwu.wherecollect.activity.AddChangWangGoodActivity target -> a
-    android.view.View view7f080201 -> c
-    android.view.View view7f080187 -> b
-    android.view.View view7f0803ad -> e
+    android.view.View view7f080202 -> c
+    android.view.View view7f080188 -> b
+    android.view.View view7f0803ae -> e
     android.view.View view7f080074 -> d
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddChangWangGoodActivity val$target -> a
@@ -12114,7 +12112,7 @@ com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity$1 -> com.gongwu.
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity target -> a
     android.view.View view7f080073 -> c
-    android.view.View view7f08034b -> b
+    android.view.View view7f08034c -> b
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity val$target -> a
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$b:
@@ -12185,15 +12183,15 @@ com.gongwu.wherecollect.activity.AddFurnitureActivity$5 -> com.gongwu.wherecolle
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding:
-    android.view.View view7f08015a -> i
-    android.view.View view7f080157 -> h
-    android.view.View view7f08032f -> c
-    android.view.View view7f08034b -> b
+    android.view.View view7f08015b -> i
+    android.view.View view7f080158 -> h
+    android.view.View view7f080330 -> c
+    android.view.View view7f08034c -> b
     com.gongwu.wherecollect.activity.AddFurnitureActivity target -> a
-    android.view.View view7f080331 -> e
-    android.view.View view7f080330 -> d
+    android.view.View view7f080332 -> e
+    android.view.View view7f080331 -> d
     android.view.View view7f080073 -> g
-    android.view.View view7f0800e8 -> f
+    android.view.View view7f0800e9 -> f
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddFurnitureActivity val$target -> a
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$b:
@@ -12247,14 +12245,14 @@ com.gongwu.wherecollect.activity.AddRemindActivity$4 -> com.gongwu.wherecollect.
     com.gongwu.wherecollect.activity.AddRemindActivity this$0 -> a
     void onTimeSelect(java.util.Date,android.view.View) -> a
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding:
-    android.view.View view7f080104 -> i
-    android.view.View view7f08027a -> h
-    android.view.View view7f080270 -> c
-    android.view.View view7f08034d -> b
-    android.view.View view7f080167 -> e
-    android.view.View view7f080106 -> d
+    android.view.View view7f080105 -> i
+    android.view.View view7f08027b -> h
+    android.view.View view7f080271 -> c
+    android.view.View view7f08034e -> b
+    android.view.View view7f080168 -> e
+    android.view.View view7f080107 -> d
     com.gongwu.wherecollect.activity.AddRemindActivity target -> a
-    android.view.View view7f08027e -> g
+    android.view.View view7f08027f -> g
     android.view.View view7f080073 -> f
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddRemindActivity val$target -> a
@@ -12381,7 +12379,7 @@ com.gongwu.wherecollect.activity.BuyVIPActivity_ViewBinding -> com.gongwu.wherec
     android.view.View view7f080089 -> b
     android.view.View view7f08006c -> e
     android.view.View view7f080073 -> d
-    android.view.View view7f08039f -> f
+    android.view.View view7f0803a0 -> f
 com.gongwu.wherecollect.activity.BuyVIPActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.BuyVIPActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.BuyVIPActivity val$target -> a
 com.gongwu.wherecollect.activity.BuyVIPActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.BuyVIPActivity_ViewBinding$b:
@@ -12423,11 +12421,11 @@ com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding -> com.gongwu.wh
     android.view.View view7f080077 -> h
     com.gongwu.wherecollect.activity.CameraMainActivity target -> a
     android.view.View view7f0800c2 -> c
-    android.view.View view7f08025b -> b
+    android.view.View view7f08025c -> b
     android.view.View view7f08008c -> e
-    android.view.View view7f080190 -> d
-    android.view.View view7f080394 -> g
-    android.view.View view7f080290 -> f
+    android.view.View view7f080191 -> d
+    android.view.View view7f080395 -> g
+    android.view.View view7f080291 -> f
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.CameraMainActivity val$target -> a
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$b:
@@ -12467,11 +12465,11 @@ com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$1 -> com.gongwu.where
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$2 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$b:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity this$0 -> a
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding:
-    android.view.View view7f0802ce -> c
+    android.view.View view7f0802cf -> c
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity target -> a
-    android.view.View view7f080194 -> b
+    android.view.View view7f080195 -> b
     android.view.View view7f080073 -> e
-    android.view.View view7f080319 -> d
+    android.view.View view7f08031a -> d
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity val$target -> a
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$b:
@@ -12481,30 +12479,51 @@ com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$3 -> com.
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$4 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$d:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity val$target -> a
 com.gongwu.wherecollect.activity.DetailedListActivity -> com.gongwu.wherecollect.activity.DetailedListActivity:
-    int indexof -> n
-    int initCount -> o
+    java.util.List boxCodes -> r
+    int indexof -> o
+    java.util.List gcCodes -> q
     java.lang.String family_code -> i
-    java.util.List code -> p
     java.lang.String userId -> h
     java.lang.String room_code -> k
     java.lang.String room_id -> j
     java.lang.String qrcodeString -> m
     com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse structure -> g
     java.lang.String furniture_code -> l
+    java.lang.String PDFpath -> s
     com.gongwu.wherecollect.view.Loading loading -> f
+    java.util.List views -> n
+    int initCount -> p
+    android.content.Context access$000(com.gongwu.wherecollect.activity.DetailedListActivity) -> a
+    android.graphics.Bitmap getBitmapFromView(android.view.View) -> a
     void getDetailedListSuccess(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> a
     void start(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse) -> a
+    android.content.Context access$100(com.gongwu.wherecollect.activity.DetailedListActivity) -> b
     void initData(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> b
+    java.util.List access$300(com.gongwu.wherecollect.activity.DetailedListActivity) -> c
     void hideProgressDialog() -> d
     void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
     com.gongwu.wherecollect.contract.presenter.DetailedListPresenter createPresenter() -> k
+    java.lang.String access$200() -> m
+    void getPDF() -> n
+com.gongwu.wherecollect.activity.DetailedListActivity$1 -> com.gongwu.wherecollect.activity.DetailedListActivity$a:
+    com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
+    void accept(java.lang.Boolean) -> a
+com.gongwu.wherecollect.activity.DetailedListActivity$2 -> com.gongwu.wherecollect.activity.DetailedListActivity$b:
+    com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
+    void accept(java.lang.Throwable) -> a
+com.gongwu.wherecollect.activity.DetailedListActivity$3 -> com.gongwu.wherecollect.activity.DetailedListActivity$c:
+    com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
+    void subscribe(io.reactivex.ObservableEmitter) -> a
 com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding -> com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding:
-    android.view.View view7f080073 -> b
+    android.view.View view7f080073 -> c
+    android.view.View view7f080189 -> b
     com.gongwu.wherecollect.activity.DetailedListActivity target -> a
 com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$a:
+    com.gongwu.wherecollect.activity.DetailedListActivity val$target -> a
+com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$b:
     com.gongwu.wherecollect.activity.DetailedListActivity val$target -> a
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity:
     java.lang.String familyCode -> g
@@ -12527,12 +12546,12 @@ com.gongwu.wherecollect.activity.EditFurniturePatternActivity$1 -> com.gongwu.wh
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding:
     android.view.View view7f080073 -> h
     com.gongwu.wherecollect.activity.EditFurniturePatternActivity target -> a
-    android.view.View view7f080103 -> c
-    android.view.View view7f080109 -> b
-    android.view.View view7f08010e -> e
-    android.view.View view7f0800ef -> d
-    android.view.View view7f08034d -> g
-    android.view.View view7f0800e9 -> f
+    android.view.View view7f080104 -> c
+    android.view.View view7f08010a -> b
+    android.view.View view7f08010f -> e
+    android.view.View view7f0800f0 -> d
+    android.view.View view7f08034e -> g
+    android.view.View view7f0800ea -> f
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditFurniturePatternActivity val$target -> a
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$b:
@@ -12623,14 +12642,14 @@ com.gongwu.wherecollect.activity.EditHomeActivity$6 -> com.gongwu.wherecollect.a
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding:
-    android.view.View view7f080188 -> h
-    android.view.View view7f080144 -> c
+    android.view.View view7f080189 -> h
+    android.view.View view7f080145 -> c
     com.gongwu.wherecollect.activity.EditHomeActivity target -> a
-    android.view.View view7f080139 -> b
-    android.view.View view7f08013f -> e
-    android.view.View view7f080150 -> d
+    android.view.View view7f08013a -> b
+    android.view.View view7f080140 -> e
+    android.view.View view7f080151 -> d
     android.view.View view7f080073 -> g
-    android.view.View view7f080158 -> f
+    android.view.View view7f080159 -> f
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditHomeActivity val$target -> a
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$b:
@@ -12685,10 +12704,10 @@ com.gongwu.wherecollect.activity.EditMoreGoodsActivity$3 -> com.gongwu.wherecoll
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity this$0 -> a
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity target -> a
-    android.view.View view7f0800f8 -> c
+    android.view.View view7f0800f9 -> c
     android.view.View view7f080073 -> b
-    android.view.View view7f0800fd -> e
-    android.view.View view7f0800fb -> d
+    android.view.View view7f0800fe -> e
+    android.view.View view7f0800fc -> d
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity val$target -> a
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$b:
@@ -12760,12 +12779,12 @@ com.gongwu.wherecollect.activity.EditRoomActivity$4 -> com.gongwu.wherecollect.a
 com.gongwu.wherecollect.activity.EditRoomActivity$MyHandler -> com.gongwu.wherecollect.activity.EditRoomActivity$e:
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding:
     com.gongwu.wherecollect.activity.EditRoomActivity target -> a
-    android.view.View view7f080297 -> c
-    android.view.View view7f08034d -> b
-    android.view.View view7f080291 -> e
-    android.view.View view7f080294 -> d
+    android.view.View view7f080298 -> c
+    android.view.View view7f08034e -> b
+    android.view.View view7f080292 -> e
+    android.view.View view7f080295 -> d
     android.view.View view7f080073 -> g
-    android.view.View view7f080292 -> f
+    android.view.View view7f080293 -> f
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditRoomActivity val$target -> a
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$b:
@@ -12854,9 +12873,9 @@ com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity$5 -> com.gongwu
     void onImgClick() -> a
 com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding -> com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity target -> a
-    android.view.View view7f08038c -> c
-    android.view.View view7f08034a -> b
-    android.view.View view7f0802e9 -> e
+    android.view.View view7f08038d -> c
+    android.view.View view7f08034b -> b
+    android.view.View view7f0802ea -> e
     android.view.View view7f080065 -> d
     android.view.View view7f0800d0 -> g
     android.view.View view7f080073 -> f
@@ -12910,7 +12929,7 @@ com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity$2 -> com.gongwu.
     void onItemsClick(int,android.view.View) -> b
 com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding -> com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding:
     android.view.View view7f080073 -> c
-    android.view.View view7f08034a -> b
+    android.view.View view7f08034b -> b
     com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity target -> a
 com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity val$target -> a
@@ -12965,8 +12984,8 @@ com.gongwu.wherecollect.activity.ForgetPWDActivity$2 -> com.gongwu.wherecollect.
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.lang.String) -> b
 com.gongwu.wherecollect.activity.ForgetPWDActivity_ViewBinding -> com.gongwu.wherecollect.activity.ForgetPWDActivity_ViewBinding:
-    android.view.View view7f0802cf -> c
-    android.view.View view7f080194 -> b
+    android.view.View view7f0802d0 -> c
+    android.view.View view7f080195 -> b
     android.view.View view7f0800b9 -> e
     android.view.View view7f080073 -> d
     com.gongwu.wherecollect.activity.ForgetPWDActivity target -> a
@@ -13123,20 +13142,20 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity$9$2 -> com.gongwu.whereco
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding:
     com.gongwu.wherecollect.activity.FurnitureLookActivity target -> a
     android.view.View view7f0800d9 -> p
-    android.view.View view7f080137 -> i
+    android.view.View view7f080138 -> i
     android.view.View view7f080073 -> h
-    android.view.View view7f08013a -> k
-    android.view.View view7f080148 -> j
-    android.view.View view7f08013f -> m
-    android.view.View view7f080145 -> l
-    android.view.View view7f080155 -> o
-    android.view.View view7f080158 -> n
-    android.view.View view7f080141 -> c
-    android.view.View view7f0801d6 -> b
-    android.view.View view7f08014b -> e
-    android.view.View view7f080153 -> d
-    android.view.View view7f08013c -> g
-    android.view.View view7f0801ef -> f
+    android.view.View view7f08013b -> k
+    android.view.View view7f080149 -> j
+    android.view.View view7f080140 -> m
+    android.view.View view7f080146 -> l
+    android.view.View view7f080156 -> o
+    android.view.View view7f080159 -> n
+    android.view.View view7f080142 -> c
+    android.view.View view7f0801d7 -> b
+    android.view.View view7f08014c -> e
+    android.view.View view7f080154 -> d
+    android.view.View view7f08013d -> g
+    android.view.View view7f0801f0 -> f
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$g:
     com.gongwu.wherecollect.activity.FurnitureLookActivity val$target -> a
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$10 -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$a:
@@ -13192,7 +13211,7 @@ com.gongwu.wherecollect.activity.ImportMoreGoodsActivity$2 -> com.gongwu.whereco
     void onItemClick(int,android.view.View) -> a
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity target -> a
-    android.view.View view7f080348 -> c
+    android.view.View view7f080349 -> c
     android.view.View view7f080073 -> b
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity val$target -> a
@@ -13255,14 +13274,14 @@ com.gongwu.wherecollect.activity.LoginActivity$3 -> com.gongwu.wherecollect.acti
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.lang.String) -> b
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding:
-    android.view.View view7f0801d0 -> h
+    android.view.View view7f0801d1 -> h
     com.gongwu.wherecollect.activity.LoginActivity target -> a
-    android.view.View view7f080194 -> c
-    android.view.View view7f08034a -> b
-    android.view.View view7f0801d2 -> e
-    android.view.View view7f0802cf -> d
+    android.view.View view7f080195 -> c
+    android.view.View view7f08034b -> b
+    android.view.View view7f0801d3 -> e
+    android.view.View view7f0802d0 -> d
     android.view.View view7f080069 -> g
-    android.view.View view7f0801d3 -> f
+    android.view.View view7f0801d4 -> f
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.LoginActivity val$target -> a
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$b:
@@ -13293,12 +13312,12 @@ com.gongwu.wherecollect.activity.LoginEmailActivity -> com.gongwu.wherecollect.a
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding:
     android.view.View view7f080069 -> h
     com.gongwu.wherecollect.activity.LoginEmailActivity target -> a
-    android.view.View view7f0801d3 -> c
+    android.view.View view7f0801d4 -> c
     android.view.View view7f080073 -> b
-    android.view.View view7f080365 -> e
-    android.view.View view7f08036b -> d
-    android.view.View view7f0801d1 -> g
-    android.view.View view7f0801d2 -> f
+    android.view.View view7f080366 -> e
+    android.view.View view7f08036c -> d
+    android.view.View view7f0801d2 -> g
+    android.view.View view7f0801d3 -> f
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.LoginEmailActivity val$target -> a
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$b:
@@ -13364,9 +13383,9 @@ com.gongwu.wherecollect.activity.MainActivity$7 -> com.gongwu.wherecollect.activ
     com.gongwu.wherecollect.net.entity.response.MessageBean val$messageBean -> a
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding:
     com.gongwu.wherecollect.activity.MainActivity target -> a
-    android.view.View view7f0801de -> c
-    android.view.View view7f0801e3 -> b
-    android.view.View view7f0801d9 -> e
+    android.view.View view7f0801df -> c
+    android.view.View view7f0801e4 -> b
+    android.view.View view7f0801da -> e
     android.view.View view7f08004e -> d
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.MainActivity val$target -> a
@@ -13493,17 +13512,17 @@ com.gongwu.wherecollect.activity.PersonActivity$8 -> com.gongwu.wherecollect.act
     void result(int,int,int) -> a
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding:
     android.view.View view7f080073 -> i
-    android.view.View view7f08035f -> h
-    android.view.View view7f0802d2 -> k
-    android.view.View view7f080200 -> j
+    android.view.View view7f080360 -> h
+    android.view.View view7f0802d3 -> k
+    android.view.View view7f080201 -> j
     android.view.View view7f08007f -> l
-    android.view.View view7f080367 -> c
-    android.view.View view7f080179 -> b
+    android.view.View view7f080368 -> c
+    android.view.View view7f08017a -> b
     com.gongwu.wherecollect.activity.PersonActivity target -> a
-    android.view.View view7f08039c -> e
-    android.view.View view7f0803a7 -> d
-    android.view.View view7f080228 -> g
-    android.view.View view7f08024e -> f
+    android.view.View view7f08039d -> e
+    android.view.View view7f0803a8 -> d
+    android.view.View view7f080229 -> g
+    android.view.View view7f08024f -> f
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$c:
     com.gongwu.wherecollect.activity.PersonActivity val$target -> a
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$10 -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$a:
@@ -13539,7 +13558,7 @@ com.gongwu.wherecollect.activity.RegisterActivity -> com.gongwu.wherecollect.act
     void userRegister() -> m
     void forgetPWDSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> p
 com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding -> com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding:
-    android.view.View view7f08025e -> c
+    android.view.View view7f08025f -> c
     android.view.View view7f080073 -> b
     com.gongwu.wherecollect.activity.RegisterActivity target -> a
 com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding$a:
@@ -13589,7 +13608,7 @@ com.gongwu.wherecollect.activity.RemindRemarksActivity$1 -> com.gongwu.wherecoll
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding:
     com.gongwu.wherecollect.activity.RemindRemarksActivity target -> a
     android.view.View view7f080073 -> c
-    android.view.View view7f08034c -> b
+    android.view.View view7f08034d -> b
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.RemindRemarksActivity val$target -> a
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$b:
@@ -13629,8 +13648,8 @@ com.gongwu.wherecollect.activity.SearchActivity$4 -> com.gongwu.wherecollect.act
     com.gongwu.wherecollect.activity.SearchActivity this$0 -> b
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding -> com.gongwu.wherecollect.activity.SearchActivity_ViewBinding:
     android.view.View view7f0800a7 -> c
-    android.view.View view7f0802ae -> b
-    android.view.View view7f0802d0 -> e
+    android.view.View view7f0802af -> b
+    android.view.View view7f0802d1 -> e
     android.view.View view7f080073 -> d
     com.gongwu.wherecollect.activity.SearchActivity target -> a
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$a:
@@ -13659,7 +13678,7 @@ com.gongwu.wherecollect.activity.ShareListActivity$CustomPagerAdapter -> com.gon
     long getItemId(int) -> b
 com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding -> com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding:
     com.gongwu.wherecollect.activity.ShareListActivity target -> a
-    android.view.View view7f0802d3 -> c
+    android.view.View view7f0802d4 -> c
     android.view.View view7f080055 -> b
 com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ShareListActivity val$target -> a
@@ -13703,7 +13722,7 @@ com.gongwu.wherecollect.activity.SharePersonDetailsActivity$3 -> com.gongwu.wher
 com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding -> com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.SharePersonDetailsActivity target -> a
     android.view.View view7f080073 -> c
-    android.view.View view7f080188 -> b
+    android.view.View view7f080189 -> b
     android.view.View view7f080066 -> d
 com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.SharePersonDetailsActivity val$target -> a
@@ -17035,10 +17054,10 @@ com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding -> com.gongwu.wherec
     com.gongwu.wherecollect.object.AddGoodsActivity target -> a
     android.view.View view7f080050 -> c
     android.view.View view7f080051 -> b
-    android.view.View view7f0802c8 -> e
+    android.view.View view7f0802c9 -> e
     android.view.View view7f0800b6 -> d
     android.view.View view7f080073 -> g
-    android.view.View view7f080169 -> f
+    android.view.View view7f08016a -> f
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.AddGoodsActivity val$target -> a
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$b:
@@ -17143,7 +17162,7 @@ com.gongwu.wherecollect.object.AddMoreGoodsActivity$3 -> com.gongwu.wherecollect
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding:
-    android.view.View view7f0802c8 -> c
+    android.view.View view7f0802c9 -> c
     android.view.View view7f0800b6 -> b
     android.view.View view7f080073 -> e
     android.view.View view7f08004f -> d
@@ -17192,11 +17211,11 @@ com.gongwu.wherecollect.object.GoodsDetailsActivity$2 -> com.gongwu.wherecollect
     com.gongwu.wherecollect.object.GoodsDetailsActivity this$0 -> a
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.object.GoodsDetailsActivity target -> a
-    android.view.View view7f080188 -> c
+    android.view.View view7f080189 -> c
     android.view.View view7f080051 -> b
     android.view.View view7f080073 -> e
-    android.view.View view7f080165 -> d
-    android.view.View view7f080272 -> f
+    android.view.View view7f080166 -> d
+    android.view.View view7f080273 -> f
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.GoodsDetailsActivity val$target -> a
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$b:
@@ -17231,8 +17250,8 @@ com.gongwu.wherecollect.object.SelectChannelActivity -> com.gongwu.wherecollect.
     void getChannelSuccess(java.util.List) -> z
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding:
     android.view.View view7f0800a6 -> c
-    android.view.View view7f08034b -> b
-    android.view.View view7f080175 -> e
+    android.view.View view7f08034c -> b
+    android.view.View view7f080176 -> e
     android.view.View view7f080073 -> d
     com.gongwu.wherecollect.object.SelectChannelActivity target -> a
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$a:
@@ -17277,7 +17296,7 @@ com.gongwu.wherecollect.object.SelectColorActivity$2$1 -> com.gongwu.wherecollec
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding:
     android.view.View view7f080073 -> c
     com.gongwu.wherecollect.object.SelectColorActivity target -> a
-    android.view.View view7f08034b -> b
+    android.view.View view7f08034c -> b
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectColorActivity val$target -> a
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$b:
@@ -17297,7 +17316,7 @@ com.gongwu.wherecollect.object.SelectSeasonActivity -> com.gongwu.wherecollect.o
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding:
     com.gongwu.wherecollect.object.SelectSeasonActivity target -> a
     android.view.View view7f080073 -> c
-    android.view.View view7f08034b -> b
+    android.view.View view7f08034c -> b
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSeasonActivity val$target -> a
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$b:
@@ -17329,8 +17348,8 @@ com.gongwu.wherecollect.object.SelectSortActivity$2 -> com.gongwu.wherecollect.o
     com.gongwu.wherecollect.object.SelectSortActivity this$0 -> a
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding:
     android.view.View view7f080073 -> c
-    android.view.View view7f08034b -> b
-    android.view.View view7f0802bc -> d
+    android.view.View view7f08034c -> b
+    android.view.View view7f0802bd -> d
     com.gongwu.wherecollect.object.SelectSortActivity target -> a
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSortActivity val$target -> a
@@ -17735,18 +17754,23 @@ com.gongwu.wherecollect.util.EventBusMsg$SelectHomeTab -> com.gongwu.wherecollec
 com.gongwu.wherecollect.util.EventBusMsg$StartService -> com.gongwu.wherecollect.util.n:
 com.gongwu.wherecollect.util.EventBusMsg$StopService -> com.gongwu.wherecollect.util.o:
 com.gongwu.wherecollect.util.EventBusMsg$UpdateShareMsg -> com.gongwu.wherecollect.util.p:
-com.gongwu.wherecollect.util.FileUtil -> com.gongwu.wherecollect.util.q:
+com.gongwu.wherecollect.util.FileShareUtils -> com.gongwu.wherecollect.util.q:
+    java.io.File getFileUrl(android.content.Context) -> a
+    android.net.Uri getUriForFile(android.content.Context,java.io.File) -> a
+    void startIntent(android.content.Context,android.net.Uri,java.lang.String,int) -> a
+    void sharePdfFile(android.content.Context,java.io.File) -> b
+com.gongwu.wherecollect.util.FileUtil -> com.gongwu.wherecollect.util.r:
     android.graphics.Bitmap centerSquareScaleBitmap(android.graphics.Bitmap,int) -> a
     java.io.File compress(java.io.File,boolean) -> a
     void copyFile(java.io.File,java.lang.String) -> a
     void deleteFolderFile(java.lang.String) -> a
     android.net.Uri getUriFromFile(android.content.Context,java.io.File) -> a
     void updateGallery(android.content.Context,java.lang.String) -> a
-com.gongwu.wherecollect.util.FileUtil$1 -> com.gongwu.wherecollect.util.q$a:
-com.gongwu.wherecollect.util.GlideRoundTransform -> com.gongwu.wherecollect.util.r:
+com.gongwu.wherecollect.util.FileUtil$1 -> com.gongwu.wherecollect.util.r$a:
+com.gongwu.wherecollect.util.GlideRoundTransform -> com.gongwu.wherecollect.util.s:
     float radius -> a
     android.graphics.Bitmap roundCrop(com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool,android.graphics.Bitmap) -> a
-com.gongwu.wherecollect.util.ImageLoader -> com.gongwu.wherecollect.util.s:
+com.gongwu.wherecollect.util.ImageLoader -> com.gongwu.wherecollect.util.t:
     int getGLESTextureLimitBelowLollipop() -> a
     void load(android.content.Context,android.widget.ImageView,java.lang.String) -> a
     void load(android.content.Context,android.widget.ImageView,java.lang.String,int) -> a
@@ -17756,27 +17780,27 @@ com.gongwu.wherecollect.util.ImageLoader -> com.gongwu.wherecollect.util.s:
     void loadCircle(android.content.Context,android.widget.ImageView,java.lang.String,int) -> b
     int getMaxBitmap() -> c
     void placeholderLoad(android.content.Context,android.widget.ImageView,java.lang.String,int) -> c
-com.gongwu.wherecollect.util.ImageLoader$1 -> com.gongwu.wherecollect.util.s$a:
+com.gongwu.wherecollect.util.ImageLoader$1 -> com.gongwu.wherecollect.util.t$a:
     android.content.Context val$context -> a
     android.widget.ImageView val$iv -> b
-com.gongwu.wherecollect.util.JsonUtils -> com.gongwu.wherecollect.util.t:
+com.gongwu.wherecollect.util.JsonUtils -> com.gongwu.wherecollect.util.u:
     com.google.gson.Gson sGson -> a
     java.lang.String jsonFromObject(java.lang.Object) -> a
     java.lang.Object objectFromJson(java.lang.String,java.lang.Class) -> a
-com.gongwu.wherecollect.util.Lg -> com.gongwu.wherecollect.util.u:
+com.gongwu.wherecollect.util.Lg -> com.gongwu.wherecollect.util.v:
     void d(java.lang.String,java.lang.String) -> a
     com.gongwu.wherecollect.util.Lg getInstance() -> a
     void e(java.lang.String,java.lang.String) -> b
-com.gongwu.wherecollect.util.Lg$1 -> com.gongwu.wherecollect.util.u$a:
-com.gongwu.wherecollect.util.Lg$Holder -> com.gongwu.wherecollect.util.u$b:
+com.gongwu.wherecollect.util.Lg$1 -> com.gongwu.wherecollect.util.v$a:
+com.gongwu.wherecollect.util.Lg$Holder -> com.gongwu.wherecollect.util.v$b:
     com.gongwu.wherecollect.util.Lg INSTANCE -> a
     com.gongwu.wherecollect.util.Lg access$000() -> a
-com.gongwu.wherecollect.util.PermissionUtil -> com.gongwu.wherecollect.util.v:
+com.gongwu.wherecollect.util.PermissionUtil -> com.gongwu.wherecollect.util.w:
     boolean cameraIsCanUse() -> a
-com.gongwu.wherecollect.util.PermissionUtil$1 -> com.gongwu.wherecollect.util.v$a:
+com.gongwu.wherecollect.util.PermissionUtil$1 -> com.gongwu.wherecollect.util.w$a:
     android.app.Activity val$context -> a
-com.gongwu.wherecollect.util.PermissionUtil$2 -> com.gongwu.wherecollect.util.v$b:
-com.gongwu.wherecollect.util.PhotosDialog -> com.gongwu.wherecollect.util.w:
+com.gongwu.wherecollect.util.PermissionUtil$2 -> com.gongwu.wherecollect.util.w$b:
+com.gongwu.wherecollect.util.PhotosDialog -> com.gongwu.wherecollect.util.x:
     android.widget.ImageView imageSelect -> h
     com.gongwu.wherecollect.util.PhotosDialog$OndismissListener listener -> e
     com.gongwu.wherecollect.view.TagViewPagerPhotos myViewPager -> a
@@ -17800,26 +17824,26 @@ com.gongwu.wherecollect.util.PhotosDialog -> com.gongwu.wherecollect.util.w:
     android.content.Context access$300(com.gongwu.wherecollect.util.PhotosDialog) -> d
     int access$400(com.gongwu.wherecollect.util.PhotosDialog) -> e
     android.widget.ImageView access$500(com.gongwu.wherecollect.util.PhotosDialog) -> f
-com.gongwu.wherecollect.util.PhotosDialog$1 -> com.gongwu.wherecollect.util.w$a:
+com.gongwu.wherecollect.util.PhotosDialog$1 -> com.gongwu.wherecollect.util.x$a:
     com.gongwu.wherecollect.util.PhotosDialog this$0 -> a
-com.gongwu.wherecollect.util.PhotosDialog$2 -> com.gongwu.wherecollect.util.w$b:
+com.gongwu.wherecollect.util.PhotosDialog$2 -> com.gongwu.wherecollect.util.x$b:
     com.gongwu.wherecollect.util.PhotosDialog this$0 -> a
-com.gongwu.wherecollect.util.PhotosDialog$3 -> com.gongwu.wherecollect.util.w$c:
+com.gongwu.wherecollect.util.PhotosDialog$3 -> com.gongwu.wherecollect.util.x$c:
     com.gongwu.wherecollect.util.PhotosDialog this$0 -> a
     android.view.View getView(android.view.ViewGroup,int) -> a
-com.gongwu.wherecollect.util.PhotosDialog$3$1 -> com.gongwu.wherecollect.util.w$c$a:
+com.gongwu.wherecollect.util.PhotosDialog$3$1 -> com.gongwu.wherecollect.util.x$c$a:
     android.widget.ProgressBar val$bar -> a
     com.gongwu.wherecollect.util.PhotosDialog$3 this$1 -> b
     boolean onException(java.lang.Exception,java.lang.String,com.bumptech.glide.request.target.Target,boolean) -> a
     boolean onResourceReady(com.bumptech.glide.load.resource.drawable.GlideDrawable,java.lang.String,com.bumptech.glide.request.target.Target,boolean,boolean) -> a
-com.gongwu.wherecollect.util.PhotosDialog$4 -> com.gongwu.wherecollect.util.w$d:
+com.gongwu.wherecollect.util.PhotosDialog$4 -> com.gongwu.wherecollect.util.x$d:
     com.gongwu.wherecollect.util.PhotosDialog this$0 -> a
     void onSelected(int) -> a
-com.gongwu.wherecollect.util.PhotosDialog$OndismissListener -> com.gongwu.wherecollect.util.w$e:
-com.gongwu.wherecollect.util.QRCode -> com.gongwu.wherecollect.util.x:
+com.gongwu.wherecollect.util.PhotosDialog$OndismissListener -> com.gongwu.wherecollect.util.x$e:
+com.gongwu.wherecollect.util.QRCode -> com.gongwu.wherecollect.util.y:
     int IMAGE_HALFWIDTH -> a
     android.graphics.Bitmap createQRCodeWithLogo(java.lang.String,int,android.graphics.Bitmap) -> a
-com.gongwu.wherecollect.util.QiNiuUploadUtil -> com.gongwu.wherecollect.util.y:
+com.gongwu.wherecollect.util.QiNiuUploadUtil -> com.gongwu.wherecollect.util.z:
     android.content.Context context -> a
     android.os.Handler handler -> c
     com.gongwu.wherecollect.util.QiNiuUploadUtil$UpLoadListener listener -> d
@@ -17832,31 +17856,31 @@ com.gongwu.wherecollect.util.QiNiuUploadUtil -> com.gongwu.wherecollect.util.y:
     void start(java.lang.String,java.io.File) -> a
     void upLoad(java.lang.String,java.lang.String,java.io.File) -> a
     com.gongwu.wherecollect.util.QiNiuUploadUtil$UpLoadListener access$200(com.gongwu.wherecollect.util.QiNiuUploadUtil) -> b
-com.gongwu.wherecollect.util.QiNiuUploadUtil$1 -> com.gongwu.wherecollect.util.y$a:
+com.gongwu.wherecollect.util.QiNiuUploadUtil$1 -> com.gongwu.wherecollect.util.z$a:
     java.io.File val$file -> b
     com.gongwu.wherecollect.util.QiNiuUploadUtil this$0 -> c
     java.lang.String val$path -> a
-com.gongwu.wherecollect.util.QiNiuUploadUtil$1$1 -> com.gongwu.wherecollect.util.y$a$a:
+com.gongwu.wherecollect.util.QiNiuUploadUtil$1$1 -> com.gongwu.wherecollect.util.z$a$a:
     com.gongwu.wherecollect.util.QiNiuUploadUtil$1 this$1 -> c
     java.lang.String val$key -> b
     void onFailed(java.lang.String) -> a
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.util.Map) -> a
-com.gongwu.wherecollect.util.QiNiuUploadUtil$2 -> com.gongwu.wherecollect.util.y$b:
+com.gongwu.wherecollect.util.QiNiuUploadUtil$2 -> com.gongwu.wherecollect.util.z$b:
     com.gongwu.wherecollect.util.QiNiuUploadUtil this$0 -> a
-com.gongwu.wherecollect.util.QiNiuUploadUtil$3 -> com.gongwu.wherecollect.util.y$c:
+com.gongwu.wherecollect.util.QiNiuUploadUtil$3 -> com.gongwu.wherecollect.util.z$c:
     java.io.File val$file -> a
     com.gongwu.wherecollect.util.QiNiuUploadUtil this$0 -> b
-com.gongwu.wherecollect.util.QiNiuUploadUtil$UpLoadListener -> com.gongwu.wherecollect.util.y$d:
+com.gongwu.wherecollect.util.QiNiuUploadUtil$UpLoadListener -> com.gongwu.wherecollect.util.z$d:
     void onUpLoadSuccess(java.lang.String) -> a
     void onUpLoadError(java.lang.String) -> b
-com.gongwu.wherecollect.util.RomUtils -> com.gongwu.wherecollect.util.z:
+com.gongwu.wherecollect.util.RomUtils -> com.gongwu.wherecollect.util.a0:
     int getLightStatusBarAvailableRomType() -> a
     boolean isAndroidMOrAbove() -> b
     boolean isFlymeV4OrAbove() -> c
     boolean isMiUIV6OrAbove() -> d
     boolean isMiUIV7OrAbove() -> e
-com.gongwu.wherecollect.util.SaveDate -> com.gongwu.wherecollect.util.a0:
+com.gongwu.wherecollect.util.SaveDate -> com.gongwu.wherecollect.util.b0:
     android.content.SharedPreferences sharedPreferences -> a
     com.gongwu.wherecollect.util.SaveDate SAVEDATE -> b
     java.lang.String getFamilyCode() -> a
@@ -17886,14 +17910,14 @@ com.gongwu.wherecollect.util.SelectImgDialog -> com.gongwu.wherecollect.util.Sel
 com.gongwu.wherecollect.util.SelectImgDialog$2 -> com.gongwu.wherecollect.util.SelectImgDialog$a:
     com.gongwu.wherecollect.util.SelectImgDialog this$0 -> a
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding -> com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding:
-    android.view.View view7f0800f3 -> i
-    android.view.View view7f080299 -> h
+    android.view.View view7f0800f4 -> i
+    android.view.View view7f08029a -> h
     com.gongwu.wherecollect.util.SelectImgDialog target -> a
-    android.view.View view7f0802c3 -> c
+    android.view.View view7f0802c4 -> c
     android.view.View view7f08008a -> b
-    android.view.View view7f080199 -> e
-    android.view.View view7f08024f -> d
-    android.view.View view7f0801c4 -> g
+    android.view.View view7f08019a -> e
+    android.view.View view7f080250 -> d
+    android.view.View view7f0801c5 -> g
     android.view.View view7f08008e -> f
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$1 -> com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$a:
     com.gongwu.wherecollect.util.SelectImgDialog val$target -> a
@@ -17911,16 +17935,16 @@ com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$7 -> com.gongwu.whereco
     com.gongwu.wherecollect.util.SelectImgDialog val$target -> a
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$8 -> com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$h:
     com.gongwu.wherecollect.util.SelectImgDialog val$target -> a
-com.gongwu.wherecollect.util.ShareUtil -> com.gongwu.wherecollect.util.b0:
+com.gongwu.wherecollect.util.ShareUtil -> com.gongwu.wherecollect.util.c0:
     void openShareDialog(android.app.Activity) -> a
     void openShareVIPDialog(android.app.Activity,com.umeng.socialize.UMShareListener) -> a
-com.gongwu.wherecollect.util.StatusBarUtil -> com.gongwu.wherecollect.util.c0:
+com.gongwu.wherecollect.util.StatusBarUtil -> com.gongwu.wherecollect.util.d0:
     boolean MIUISetStatusBarLightMode(android.app.Activity,boolean) -> a
     void setStatusBarColor(android.app.Activity,int) -> a
     void setAndroidNativeLightStatusBar(android.app.Activity,boolean) -> b
     boolean setFlymeLightStatusBar(android.app.Activity,boolean) -> c
     void setLightStatusBar(android.app.Activity,boolean) -> d
-com.gongwu.wherecollect.util.StringUtils -> com.gongwu.wherecollect.util.d0:
+com.gongwu.wherecollect.util.StringUtils -> com.gongwu.wherecollect.util.e0:
     java.text.SimpleDateFormat dateFormat -> a
     int convertDipToPixels(android.content.Context,int) -> a
     java.lang.String formatIntTime(int) -> a
@@ -17938,13 +17962,13 @@ com.gongwu.wherecollect.util.StringUtils -> com.gongwu.wherecollect.util.d0:
     int getStatusBarByResId(android.content.Context) -> c
     int getStatusBarHeight(android.content.Context) -> d
     boolean isWxAppInstalled(android.content.Context) -> e
-com.gongwu.wherecollect.util.StringUtils$1 -> com.gongwu.wherecollect.util.d0$a:
+com.gongwu.wherecollect.util.StringUtils$1 -> com.gongwu.wherecollect.util.e0$a:
     int compare(com.gongwu.wherecollect.net.entity.response.BaseBean,com.gongwu.wherecollect.net.entity.response.BaseBean) -> a
-com.gongwu.wherecollect.util.StringUtils$2 -> com.gongwu.wherecollect.util.d0$b:
+com.gongwu.wherecollect.util.StringUtils$2 -> com.gongwu.wherecollect.util.e0$b:
     int compare(com.gongwu.wherecollect.net.entity.response.BaseBean,com.gongwu.wherecollect.net.entity.response.BaseBean) -> a
-com.gongwu.wherecollect.util.ToastUtil -> com.gongwu.wherecollect.util.e0:
+com.gongwu.wherecollect.util.ToastUtil -> com.gongwu.wherecollect.util.f0:
     void show(android.content.Context,java.lang.String,int) -> a
-com.gongwu.wherecollect.util.iconNum.IconBadgeNumManager -> com.gongwu.wherecollect.util.f0.a:
+com.gongwu.wherecollect.util.iconNum.IconBadgeNumManager -> com.gongwu.wherecollect.util.g0.a:
     java.util.Map iconBadgeNumModelMap -> a
     com.gongwu.wherecollect.util.iconNum.LauncherHelper launcherHelper -> b
     java.lang.String getSetIconBadgeNumModel(android.app.Application) -> a
@@ -17956,15 +17980,15 @@ com.gongwu.wherecollect.util.iconNum.IconBadgeNumManager -> com.gongwu.wherecoll
     android.app.Notification setSamsungIconBadgeNum(android.app.Application,android.app.Notification,int) -> f
     android.app.Notification setVIVOIconBadgeNum(android.app.Application,android.app.Notification,int) -> g
     android.app.Notification setXiaoMiIconBadgeNum(android.app.Application,android.app.Notification,int) -> h
-com.gongwu.wherecollect.util.iconNum.LauncherHelper -> com.gongwu.wherecollect.util.f0.b:
+com.gongwu.wherecollect.util.iconNum.LauncherHelper -> com.gongwu.wherecollect.util.g0.b:
     java.util.Map launcherMap -> a
     java.lang.String getLauncherPackageName(android.content.Context) -> a
     java.lang.String getLauncherTypeByName(java.lang.String) -> a
-com.gongwu.wherecollect.util.iconNum.SendIconNumUtil -> com.gongwu.wherecollect.util.f0.c:
+com.gongwu.wherecollect.util.iconNum.SendIconNumUtil -> com.gongwu.wherecollect.util.g0.c:
     com.gongwu.wherecollect.util.iconNum.IconBadgeNumManager setIconBadgeNumManager -> a
     android.app.NotificationManager nm -> b
     void sendIconNumNotification(int,android.app.Application) -> a
-com.gongwu.wherecollect.util.iconNum.Utils -> com.gongwu.wherecollect.util.f0.d:
+com.gongwu.wherecollect.util.iconNum.Utils -> com.gongwu.wherecollect.util.g0.d:
     com.gongwu.wherecollect.util.iconNum.Utils instance -> a
     boolean canResolveBroadcast(android.content.Context,android.content.Intent) -> a
     com.gongwu.wherecollect.util.iconNum.Utils getInstance() -> a
@@ -18006,7 +18030,7 @@ com.gongwu.wherecollect.view.AddGoodsDialog$2 -> com.gongwu.wherecollect.view.Ad
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding -> com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding:
-    android.view.View view7f08031a -> c
+    android.view.View view7f08031b -> c
     com.gongwu.wherecollect.view.AddGoodsDialog target -> a
     android.view.View view7f08004e -> b
     android.view.View view7f080092 -> e
@@ -18063,11 +18087,11 @@ com.gongwu.wherecollect.view.ChangeSexDialog -> com.gongwu.wherecollect.view.Cha
     void getResult(java.lang.String) -> a
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding:
     com.gongwu.wherecollect.view.ChangeSexDialog target -> a
-    android.view.View view7f08012a -> c
-    android.view.View view7f0801e5 -> b
-    android.view.View view7f0801c4 -> e
+    android.view.View view7f08012b -> c
+    android.view.View view7f0801e6 -> b
+    android.view.View view7f0801c5 -> e
     android.view.View view7f08008e -> d
-    android.view.View view7f080299 -> f
+    android.view.View view7f08029a -> f
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.ChangeSexDialog val$target -> a
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$2 -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$b:
@@ -18105,7 +18129,7 @@ com.gongwu.wherecollect.view.DetailedListView -> com.gongwu.wherecollect.view.d:
     android.widget.ImageView furnitureImgIv -> b
     android.widget.ImageView codeImgView -> c
     android.widget.ImageView access$000(com.gongwu.wherecollect.view.DetailedListView) -> a
-    com.gongwu.wherecollect.net.entity.response.DetailedListBean initData(com.gongwu.wherecollect.net.entity.response.DetailedListBean,java.lang.String,com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse,int,int,java.util.List) -> a
+    com.gongwu.wherecollect.net.entity.response.DetailedListBean initData(com.gongwu.wherecollect.net.entity.response.DetailedListBean,java.lang.String,com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse,int,int,java.util.List,java.util.List) -> a
     void initQRCode(java.lang.String) -> a
     void initView(android.content.Context) -> a
 com.gongwu.wherecollect.view.DetailedListView$1 -> com.gongwu.wherecollect.view.d$a:
@@ -18226,14 +18250,14 @@ com.gongwu.wherecollect.view.ObjectInfoEditView$7 -> com.gongwu.wherecollect.vie
 com.gongwu.wherecollect.view.ObjectInfoEditView$ChangeListener -> com.gongwu.wherecollect.view.ObjectInfoEditView$h:
     void change() -> a
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding:
-    android.view.View view7f080248 -> h
-    android.view.View view7f0803aa -> c
+    android.view.View view7f080249 -> h
+    android.view.View view7f0803ab -> c
     com.gongwu.wherecollect.view.ObjectInfoEditView target -> a
-    android.view.View view7f08012d -> b
-    android.view.View view7f08024b -> e
-    android.view.View view7f0801b6 -> d
-    android.view.View view7f080120 -> g
-    android.view.View view7f080253 -> f
+    android.view.View view7f08012e -> b
+    android.view.View view7f08024c -> e
+    android.view.View view7f0801b7 -> d
+    android.view.View view7f080121 -> g
+    android.view.View view7f080254 -> f
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectInfoEditView val$target -> a
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$2 -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$b:
@@ -18268,7 +18292,7 @@ com.gongwu.wherecollect.view.ObjectInfoLookView$1 -> com.gongwu.wherecollect.vie
     int compare(com.gongwu.wherecollect.net.entity.response.BaseBean,com.gongwu.wherecollect.net.entity.response.BaseBean) -> a
 com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding -> com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding:
     com.gongwu.wherecollect.view.ObjectInfoLookView target -> a
-    android.view.View view7f0801cb -> b
+    android.view.View view7f0801cc -> b
 com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectInfoLookView val$target -> a
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog:
@@ -18282,13 +18306,13 @@ com.gongwu.wherecollect.view.ObjectsLookMenuDialog -> com.gongwu.wherecollect.vi
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog$1 -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog$a:
     com.gongwu.wherecollect.view.ObjectsLookMenuDialog this$0 -> a
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding:
-    android.view.View view7f080299 -> h
+    android.view.View view7f08029a -> h
     com.gongwu.wherecollect.view.ObjectsLookMenuDialog target -> a
-    android.view.View view7f0800ee -> c
-    android.view.View view7f0800f7 -> b
+    android.view.View view7f0800ef -> c
+    android.view.View view7f0800f8 -> b
     android.view.View view7f0800d2 -> e
     android.view.View view7f080059 -> d
-    android.view.View view7f0801c4 -> g
+    android.view.View view7f0801c5 -> g
     android.view.View view7f08008e -> f
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectsLookMenuDialog val$target -> a
@@ -18327,8 +18351,8 @@ com.gongwu.wherecollect.view.PopupAddGoods$AddGoodsPopupClickListener -> com.gon
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding:
     android.view.View view7f08008d -> c
     android.view.View view7f080090 -> b
-    android.view.View view7f0802a3 -> e
-    android.view.View view7f08022b -> d
+    android.view.View view7f0802a4 -> e
+    android.view.View view7f08022c -> d
     com.gongwu.wherecollect.view.PopupAddGoods target -> a
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupAddGoods val$target -> a
@@ -18352,8 +18376,8 @@ com.gongwu.wherecollect.view.PopupAddShareSpace$PopupCommitClickListener -> com.
     void onCommitClickListener(java.util.List) -> r
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding:
     com.gongwu.wherecollect.view.PopupAddShareSpace target -> a
-    android.view.View view7f080234 -> c
-    android.view.View view7f080233 -> b
+    android.view.View view7f080235 -> c
+    android.view.View view7f080234 -> b
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupAddShareSpace val$target -> a
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$b:
@@ -18369,9 +18393,9 @@ com.gongwu.wherecollect.view.PopupEditBox$EditInterlayerClickListener -> com.gon
     void onDelClick() -> c
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditBox target -> a
-    android.view.View view7f080107 -> c
-    android.view.View view7f080108 -> b
-    android.view.View view7f0800ea -> d
+    android.view.View view7f080108 -> c
+    android.view.View view7f080109 -> b
+    android.view.View view7f0800eb -> d
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditBox val$target -> a
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$b:
@@ -18396,9 +18420,9 @@ com.gongwu.wherecollect.view.PopupEditFurnitureName$PopupClickListener -> com.go
     void onImgClick() -> a
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding -> com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditFurnitureName target -> a
-    android.view.View view7f080231 -> c
+    android.view.View view7f080232 -> c
     android.view.View view7f0800a6 -> b
-    android.view.View view7f080230 -> e
+    android.view.View view7f080231 -> e
     android.view.View view7f080090 -> d
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditFurnitureName val$target -> a
@@ -18419,8 +18443,8 @@ com.gongwu.wherecollect.view.PopupEditInterlayer$EditInterlayerClickListener -> 
     void onFirstClick() -> b
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditInterlayer target -> a
-    android.view.View view7f0800ec -> c
-    android.view.View view7f0800f4 -> b
+    android.view.View view7f0800ed -> c
+    android.view.View view7f0800f5 -> b
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditInterlayer val$target -> a
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$b:
@@ -18460,8 +18484,8 @@ com.gongwu.wherecollect.view.PopupEditMoveFurniture$PopupClickListener -> com.go
     void onCommitClick(java.lang.String,java.lang.String) -> a
     void onMoveRoomClick(com.gongwu.wherecollect.net.entity.response.FamilyBean) -> a
 com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding -> com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding:
-    android.view.View view7f08022f -> c
-    android.view.View view7f080230 -> b
+    android.view.View view7f080230 -> c
+    android.view.View view7f080231 -> b
     android.view.View view7f080090 -> d
     com.gongwu.wherecollect.view.PopupEditMoveFurniture target -> a
 com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding$a:
@@ -18508,7 +18532,7 @@ com.gongwu.wherecollect.view.PopupImportGoods$OnItemClickListener -> com.gongwu.
     void onLookMoreClick() -> a
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding:
     com.gongwu.wherecollect.view.PopupImportGoods target -> a
-    android.view.View view7f0801d8 -> b
+    android.view.View view7f0801d9 -> b
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupImportGoods val$target -> a
 com.gongwu.wherecollect.view.RatingBar -> com.gongwu.wherecollect.view.RatingBar:
@@ -23173,9 +23197,7 @@ com.zsitech.oncon.barcode.camera.CameraManager -> e.g.a.a.a.c:
     void startPreview() -> e
     void stopPreview() -> f
 com.zsitech.oncon.barcode.camera.DefaultOpenCameraInterface -> e.g.a.a.a.d:
-    android.hardware.Camera open() -> a
 com.zsitech.oncon.barcode.camera.OpenCameraInterface -> e.g.a.a.a.e:
-    android.hardware.Camera open() -> a
 com.zsitech.oncon.barcode.camera.OpenCameraManager -> e.g.a.a.a.f:
 com.zsitech.oncon.barcode.camera.PreviewCallback -> e.g.a.a.a.g:
     android.os.Handler previewHandler -> b
@@ -23352,16 +23374,85 @@ de.hdodenhof.circleimageview.CircleImageView -> de.hdodenhof.circleimageview.Cir
     void setup() -> e
     void updateShaderMatrix() -> f
 io.reactivex.CompletableObserver -> io.reactivex.a:
-io.reactivex.Flowable -> io.reactivex.b:
-io.reactivex.FlowableSubscriber -> io.reactivex.c:
-io.reactivex.MaybeObserver -> io.reactivex.d:
-io.reactivex.MaybeSource -> io.reactivex.e:
-io.reactivex.Observable -> io.reactivex.f:
-io.reactivex.ObservableSource -> io.reactivex.g:
-io.reactivex.Observer -> io.reactivex.h:
-io.reactivex.SingleObserver -> io.reactivex.i:
-io.reactivex.disposables.CompositeDisposable -> io.reactivex.j.a:
-io.reactivex.disposables.Disposable -> io.reactivex.j.b:
+io.reactivex.Emitter -> io.reactivex.b:
+io.reactivex.Flowable -> io.reactivex.c:
+    int BUFFER_SIZE -> a
+    int bufferSize() -> a
+io.reactivex.FlowableSubscriber -> io.reactivex.d:
+io.reactivex.MaybeObserver -> io.reactivex.e:
+io.reactivex.MaybeSource -> io.reactivex.f:
+io.reactivex.Observable -> io.reactivex.g:
+    int bufferSize() -> a
+    io.reactivex.Observable create(io.reactivex.ObservableOnSubscribe) -> a
+    io.reactivex.Observable observeOn(io.reactivex.Scheduler) -> a
+    io.reactivex.Observable observeOn(io.reactivex.Scheduler,boolean,int) -> a
+    io.reactivex.disposables.Disposable subscribe(io.reactivex.functions.Consumer,io.reactivex.functions.Consumer) -> a
+    io.reactivex.disposables.Disposable subscribe(io.reactivex.functions.Consumer,io.reactivex.functions.Consumer,io.reactivex.functions.Action,io.reactivex.functions.Consumer) -> a
+    void subscribe(io.reactivex.Observer) -> a
+    void subscribeActual(io.reactivex.Observer) -> b
+    io.reactivex.Observable subscribeOn(io.reactivex.Scheduler) -> b
+io.reactivex.ObservableEmitter -> io.reactivex.h:
+io.reactivex.ObservableOnSubscribe -> io.reactivex.i:
+    void subscribe(io.reactivex.ObservableEmitter) -> a
+io.reactivex.ObservableSource -> io.reactivex.j:
+    void subscribe(io.reactivex.Observer) -> a
+io.reactivex.Observer -> io.reactivex.k:
+io.reactivex.Scheduler -> io.reactivex.l:
+    io.reactivex.Scheduler$Worker createWorker() -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable) -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.Scheduler$DisposeTask -> io.reactivex.l$a:
+    java.lang.Thread runner -> c
+    io.reactivex.Scheduler$Worker w -> b
+    java.lang.Runnable decoratedRun -> a
+io.reactivex.Scheduler$Worker -> io.reactivex.l$b:
+    long now(java.util.concurrent.TimeUnit) -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable) -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.SingleObserver -> io.reactivex.m:
+io.reactivex.android.plugins.RxAndroidPlugins -> io.reactivex.n.a.a:
+    io.reactivex.functions.Function onMainThreadHandler -> b
+    io.reactivex.functions.Function onInitMainThreadHandler -> a
+    java.lang.Object apply(io.reactivex.functions.Function,java.lang.Object) -> a
+    io.reactivex.Scheduler applyRequireNonNull(io.reactivex.functions.Function,java.util.concurrent.Callable) -> a
+    io.reactivex.Scheduler callRequireNonNull(java.util.concurrent.Callable) -> a
+    io.reactivex.Scheduler onMainThreadScheduler(io.reactivex.Scheduler) -> a
+    io.reactivex.Scheduler initMainThreadScheduler(java.util.concurrent.Callable) -> b
+io.reactivex.android.schedulers.AndroidSchedulers -> io.reactivex.n.b.a:
+    io.reactivex.Scheduler MAIN_THREAD -> a
+    io.reactivex.Scheduler mainThread() -> a
+io.reactivex.android.schedulers.AndroidSchedulers$1 -> io.reactivex.n.b.a$a:
+io.reactivex.android.schedulers.AndroidSchedulers$MainHolder -> io.reactivex.n.b.a$b:
+    io.reactivex.Scheduler DEFAULT -> a
+io.reactivex.android.schedulers.HandlerScheduler -> io.reactivex.n.b.b:
+    android.os.Handler handler -> a
+    io.reactivex.Scheduler$Worker createWorker() -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.android.schedulers.HandlerScheduler$HandlerWorker -> io.reactivex.n.b.b$a:
+    android.os.Handler handler -> a
+    boolean disposed -> b
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.android.schedulers.HandlerScheduler$ScheduledRunnable -> io.reactivex.n.b.b$b:
+    java.lang.Runnable delegate -> b
+    android.os.Handler handler -> a
+io.reactivex.disposables.CompositeDisposable -> io.reactivex.o.a:
+    io.reactivex.internal.util.OpenHashSet resources -> a
+    boolean disposed -> b
+    boolean delete(io.reactivex.disposables.Disposable) -> a
+    void dispose(io.reactivex.internal.util.OpenHashSet) -> a
+    boolean isDisposed() -> a
+    boolean remove(io.reactivex.disposables.Disposable) -> b
+    boolean add(io.reactivex.disposables.Disposable) -> c
+io.reactivex.disposables.Disposable -> io.reactivex.o.b:
+io.reactivex.disposables.Disposables -> io.reactivex.o.c:
+    io.reactivex.disposables.Disposable disposed() -> a
+    io.reactivex.disposables.Disposable fromRunnable(java.lang.Runnable) -> a
+io.reactivex.disposables.ReferenceDisposable -> io.reactivex.o.d:
+    boolean isDisposed() -> a
+    void onDisposed(java.lang.Object) -> a
+io.reactivex.disposables.RunnableDisposable -> io.reactivex.o.e:
+    void onDisposed(java.lang.Object) -> a
+    void onDisposed(java.lang.Runnable) -> a
 io.reactivex.exceptions.CompositeException$CompositeExceptionCausalChain -> io.reactivex.exceptions.CompositeException$a:
 io.reactivex.exceptions.CompositeException$PrintStreamOrWriter -> io.reactivex.exceptions.CompositeException$b:
     void println(java.lang.Object) -> a
@@ -23372,68 +23463,86 @@ io.reactivex.exceptions.CompositeException$WrappedPrintWriter -> io.reactivex.ex
     java.io.PrintWriter printWriter -> a
     void println(java.lang.Object) -> a
 io.reactivex.exceptions.Exceptions -> io.reactivex.exceptions.a:
-    void throwIfFatal(java.lang.Throwable) -> a
-io.reactivex.flowables.GroupedFlowable -> io.reactivex.k.a:
-io.reactivex.functions.Action -> io.reactivex.l.a:
-io.reactivex.functions.BiConsumer -> io.reactivex.l.b:
+    java.lang.RuntimeException propagate(java.lang.Throwable) -> a
+    void throwIfFatal(java.lang.Throwable) -> b
+io.reactivex.flowables.GroupedFlowable -> io.reactivex.p.a:
+io.reactivex.functions.Action -> io.reactivex.q.a:
+io.reactivex.functions.BiConsumer -> io.reactivex.q.b:
     void accept(java.lang.Object,java.lang.Object) -> a
-io.reactivex.functions.BiFunction -> io.reactivex.l.c:
-io.reactivex.functions.BiPredicate -> io.reactivex.l.d:
-io.reactivex.functions.Cancellable -> io.reactivex.l.e:
-io.reactivex.functions.Consumer -> io.reactivex.l.f:
-io.reactivex.functions.Function -> io.reactivex.l.g:
-io.reactivex.functions.LongConsumer -> io.reactivex.l.h:
-io.reactivex.functions.Predicate -> io.reactivex.l.i:
+io.reactivex.functions.BiFunction -> io.reactivex.q.c:
+io.reactivex.functions.BiPredicate -> io.reactivex.q.d:
+io.reactivex.functions.Cancellable -> io.reactivex.q.e:
+io.reactivex.functions.Consumer -> io.reactivex.q.f:
+io.reactivex.functions.Function -> io.reactivex.q.g:
+io.reactivex.functions.LongConsumer -> io.reactivex.q.h:
+io.reactivex.functions.Predicate -> io.reactivex.q.i:
     boolean test(java.lang.Object) -> a
 io.reactivex.internal.disposables.DisposableContainer -> io.reactivex.internal.disposables.a:
     boolean delete(io.reactivex.disposables.Disposable) -> a
-io.reactivex.internal.functions.Functions -> io.reactivex.m.a.a:
-    io.reactivex.functions.Consumer ON_ERROR_MISSING -> b
+    boolean remove(io.reactivex.disposables.Disposable) -> b
+    boolean add(io.reactivex.disposables.Disposable) -> c
+io.reactivex.internal.disposables.ListCompositeDisposable -> io.reactivex.internal.disposables.b:
+    java.util.List resources -> a
+    boolean disposed -> b
+    boolean delete(io.reactivex.disposables.Disposable) -> a
+    void dispose(java.util.List) -> a
+    boolean remove(io.reactivex.disposables.Disposable) -> b
+    boolean add(io.reactivex.disposables.Disposable) -> c
+io.reactivex.internal.functions.Functions -> io.reactivex.r.a.a:
+    io.reactivex.functions.Consumer EMPTY_CONSUMER -> c
+    io.reactivex.functions.Consumer ON_ERROR_MISSING -> d
+    io.reactivex.functions.Action EMPTY_ACTION -> b
     java.lang.Runnable EMPTY_RUNNABLE -> a
-io.reactivex.internal.functions.Functions$EmptyAction -> io.reactivex.m.a.a$a:
-io.reactivex.internal.functions.Functions$EmptyConsumer -> io.reactivex.m.a.a$b:
-io.reactivex.internal.functions.Functions$EmptyLongConsumer -> io.reactivex.m.a.a$c:
-io.reactivex.internal.functions.Functions$EmptyRunnable -> io.reactivex.m.a.a$d:
-io.reactivex.internal.functions.Functions$ErrorConsumer -> io.reactivex.m.a.a$e:
+    io.reactivex.functions.Consumer emptyConsumer() -> a
+io.reactivex.internal.functions.Functions$EmptyAction -> io.reactivex.r.a.a$a:
+io.reactivex.internal.functions.Functions$EmptyConsumer -> io.reactivex.r.a.a$b:
+io.reactivex.internal.functions.Functions$EmptyLongConsumer -> io.reactivex.r.a.a$c:
+io.reactivex.internal.functions.Functions$EmptyRunnable -> io.reactivex.r.a.a$d:
+io.reactivex.internal.functions.Functions$ErrorConsumer -> io.reactivex.r.a.a$e:
     void accept(java.lang.Throwable) -> a
-io.reactivex.internal.functions.Functions$FalsePredicate -> io.reactivex.m.a.a$f:
+io.reactivex.internal.functions.Functions$FalsePredicate -> io.reactivex.r.a.a$f:
     boolean test(java.lang.Object) -> a
-io.reactivex.internal.functions.Functions$Identity -> io.reactivex.m.a.a$g:
-io.reactivex.internal.functions.Functions$MaxRequestSubscription -> io.reactivex.m.a.a$h:
+io.reactivex.internal.functions.Functions$Identity -> io.reactivex.r.a.a$g:
+io.reactivex.internal.functions.Functions$MaxRequestSubscription -> io.reactivex.r.a.a$h:
     void accept(org.reactivestreams.Subscription) -> a
-io.reactivex.internal.functions.Functions$NaturalObjectComparator -> io.reactivex.m.a.a$i:
-io.reactivex.internal.functions.Functions$NullCallable -> io.reactivex.m.a.a$j:
-io.reactivex.internal.functions.Functions$OnErrorMissingConsumer -> io.reactivex.m.a.a$k:
+io.reactivex.internal.functions.Functions$NaturalObjectComparator -> io.reactivex.r.a.a$i:
+io.reactivex.internal.functions.Functions$NullCallable -> io.reactivex.r.a.a$j:
+io.reactivex.internal.functions.Functions$OnErrorMissingConsumer -> io.reactivex.r.a.a$k:
     void accept(java.lang.Throwable) -> a
-io.reactivex.internal.functions.Functions$TruePredicate -> io.reactivex.m.a.a$l:
+io.reactivex.internal.functions.Functions$TruePredicate -> io.reactivex.r.a.a$l:
     boolean test(java.lang.Object) -> a
-io.reactivex.internal.functions.ObjectHelper -> io.reactivex.m.a.b:
+io.reactivex.internal.functions.ObjectHelper -> io.reactivex.r.a.b:
+    int compare(int,int) -> a
+    int compare(long,long) -> a
     boolean equals(java.lang.Object,java.lang.Object) -> a
     java.lang.Object requireNonNull(java.lang.Object,java.lang.String) -> a
-io.reactivex.internal.functions.ObjectHelper$BiObjectPredicate -> io.reactivex.m.a.b$a:
-io.reactivex.internal.fuseable.HasUpstreamMaybeSource -> io.reactivex.m.b.a:
-io.reactivex.internal.fuseable.QueueDisposable -> io.reactivex.m.b.b:
-io.reactivex.internal.fuseable.QueueFuseable -> io.reactivex.m.b.c:
-io.reactivex.internal.fuseable.QueueSubscription -> io.reactivex.m.b.d:
-io.reactivex.internal.fuseable.SimplePlainQueue -> io.reactivex.m.b.e:
-io.reactivex.internal.fuseable.SimpleQueue -> io.reactivex.m.b.f:
+    int verifyPositive(int,java.lang.String) -> a
+io.reactivex.internal.functions.ObjectHelper$BiObjectPredicate -> io.reactivex.r.a.b$a:
+io.reactivex.internal.fuseable.HasUpstreamMaybeSource -> io.reactivex.r.b.a:
+io.reactivex.internal.fuseable.HasUpstreamObservableSource -> io.reactivex.r.b.b:
+io.reactivex.internal.fuseable.QueueDisposable -> io.reactivex.r.b.c:
+io.reactivex.internal.fuseable.QueueFuseable -> io.reactivex.r.b.d:
+io.reactivex.internal.fuseable.QueueSubscription -> io.reactivex.r.b.e:
+io.reactivex.internal.fuseable.SimplePlainQueue -> io.reactivex.r.b.f:
+io.reactivex.internal.fuseable.SimpleQueue -> io.reactivex.r.b.g:
 io.reactivex.internal.observers.InnerQueuedObserverSupport -> io.reactivex.internal.observers.a:
     void drain() -> a
     void innerComplete(io.reactivex.internal.observers.InnerQueuedObserver) -> a
     void innerError(io.reactivex.internal.observers.InnerQueuedObserver,java.lang.Throwable) -> a
     void innerNext(io.reactivex.internal.observers.InnerQueuedObserver,java.lang.Object) -> a
 io.reactivex.internal.operators.flowable.FlowableGroupBy$GroupedUnicast -> io.reactivex.internal.operators.flowable.a:
-    io.reactivex.internal.operators.flowable.FlowableGroupBy$State state -> a
+    io.reactivex.internal.operators.flowable.FlowableGroupBy$State state -> b
     io.reactivex.internal.operators.flowable.FlowableGroupBy$GroupedUnicast createWith(java.lang.Object,int,io.reactivex.internal.operators.flowable.FlowableGroupBy$GroupBySubscriber,boolean) -> a
-    void onComplete() -> a
     void onError(java.lang.Throwable) -> a
     void onNext(java.lang.Object) -> a
+    void onComplete() -> b
 io.reactivex.internal.operators.flowable.FlowableGroupBy$State -> io.reactivex.internal.operators.flowable.b:
     io.reactivex.internal.queue.SpscLinkedArrayQueue queue -> b
     java.util.concurrent.atomic.AtomicBoolean cancelled -> h
     io.reactivex.internal.operators.flowable.FlowableGroupBy$GroupBySubscriber parent -> c
     java.util.concurrent.atomic.AtomicReference actual -> i
     boolean outputFused -> j
+    int produced -> k
     boolean done -> f
     java.lang.Throwable error -> g
     java.lang.Object key -> a
@@ -23441,17 +23550,29 @@ io.reactivex.internal.operators.flowable.FlowableGroupBy$State -> io.reactivex.i
     boolean delayError -> d
     boolean checkTerminated(boolean,boolean,org.reactivestreams.Subscriber,boolean) -> a
 io.reactivex.internal.operators.maybe.MaybeToFlowable -> io.reactivex.internal.operators.maybe.a:
-io.reactivex.internal.operators.observable.ObservableGroupBy$GroupedUnicast -> io.reactivex.internal.operators.observable.a:
+io.reactivex.internal.operators.observable.AbstractObservableWithUpstream -> io.reactivex.internal.operators.observable.a:
+    io.reactivex.ObservableSource source -> a
+io.reactivex.internal.operators.observable.ObservableCreate -> io.reactivex.internal.operators.observable.b:
+    io.reactivex.ObservableOnSubscribe source -> a
+    void subscribeActual(io.reactivex.Observer) -> b
+io.reactivex.internal.operators.observable.ObservableCreate$CreateEmitter -> io.reactivex.internal.operators.observable.b$a:
+    io.reactivex.Observer observer -> a
+    boolean isDisposed() -> a
+    void onError(java.lang.Throwable) -> a
+    boolean tryOnError(java.lang.Throwable) -> b
+io.reactivex.internal.operators.observable.ObservableGroupBy$GroupedUnicast -> io.reactivex.internal.operators.observable.c:
     io.reactivex.internal.operators.observable.ObservableGroupBy$State state -> a
     io.reactivex.internal.operators.observable.ObservableGroupBy$GroupedUnicast createWith(java.lang.Object,int,io.reactivex.internal.operators.observable.ObservableGroupBy$GroupByObserver,boolean) -> a
-    void onComplete() -> a
     void onError(java.lang.Throwable) -> a
     void onNext(java.lang.Object) -> a
-io.reactivex.internal.operators.observable.ObservableGroupBy$State -> io.reactivex.internal.operators.observable.b:
+    void onComplete() -> b
+    void subscribeActual(io.reactivex.Observer) -> b
+io.reactivex.internal.operators.observable.ObservableGroupBy$State -> io.reactivex.internal.operators.observable.d:
     io.reactivex.internal.queue.SpscLinkedArrayQueue queue -> b
     io.reactivex.internal.operators.observable.ObservableGroupBy$GroupByObserver parent -> c
+    java.util.concurrent.atomic.AtomicBoolean once -> h
     java.util.concurrent.atomic.AtomicBoolean cancelled -> g
-    java.util.concurrent.atomic.AtomicReference actual -> h
+    java.util.concurrent.atomic.AtomicReference actual -> i
     boolean done -> e
     java.lang.Throwable error -> f
     java.lang.Object key -> a
@@ -23460,7 +23581,39 @@ io.reactivex.internal.operators.observable.ObservableGroupBy$State -> io.reactiv
     void drain() -> a
     void onError(java.lang.Throwable) -> a
     void onNext(java.lang.Object) -> a
+    void subscribe(io.reactivex.Observer) -> a
     void onComplete() -> c
+io.reactivex.internal.operators.observable.ObservableObserveOn -> io.reactivex.internal.operators.observable.e:
+    io.reactivex.Scheduler scheduler -> b
+    int bufferSize -> d
+    boolean delayError -> c
+    void subscribeActual(io.reactivex.Observer) -> b
+io.reactivex.internal.operators.observable.ObservableObserveOn$ObserveOnObserver -> io.reactivex.internal.operators.observable.e$a:
+    boolean cancelled -> i
+    int sourceMode -> j
+    boolean outputFused -> k
+    io.reactivex.Observer actual -> a
+    io.reactivex.Scheduler$Worker worker -> b
+    java.lang.Throwable error -> g
+    int bufferSize -> d
+    boolean done -> h
+    io.reactivex.disposables.Disposable s -> f
+    boolean delayError -> c
+    io.reactivex.internal.fuseable.SimpleQueue queue -> e
+    boolean checkTerminated(boolean,boolean,io.reactivex.Observer) -> a
+    void drainFused() -> a
+    void drainNormal() -> c
+    void schedule() -> d
+io.reactivex.internal.operators.observable.ObservableSubscribeOn -> io.reactivex.internal.operators.observable.f:
+    io.reactivex.Scheduler scheduler -> b
+    void subscribeActual(io.reactivex.Observer) -> b
+io.reactivex.internal.operators.observable.ObservableSubscribeOn$SubscribeOnObserver -> io.reactivex.internal.operators.observable.f$a:
+    io.reactivex.Observer actual -> a
+    java.util.concurrent.atomic.AtomicReference s -> b
+    void setDisposable(io.reactivex.disposables.Disposable) -> a
+io.reactivex.internal.operators.observable.ObservableSubscribeOn$SubscribeTask -> io.reactivex.internal.operators.observable.f$b:
+    io.reactivex.internal.operators.observable.ObservableSubscribeOn$SubscribeOnObserver parent -> a
+    io.reactivex.internal.operators.observable.ObservableSubscribeOn this$0 -> b
 io.reactivex.internal.queue.SpscLinkedArrayQueue -> io.reactivex.internal.queue.a:
     java.lang.Object HAS_NEXT -> j
     java.util.concurrent.atomic.AtomicLong producerIndex -> a
@@ -23474,27 +23627,147 @@ io.reactivex.internal.queue.SpscLinkedArrayQueue -> io.reactivex.internal.queue.
     int producerLookAheadStep -> b
     void adjustLookAheadStep(int) -> a
     int calcWrappedOffset(long,int) -> a
-    void clear() -> a
+    long lpConsumerIndex() -> a
     java.lang.Object lvElement(java.util.concurrent.atomic.AtomicReferenceArray,int) -> a
     java.lang.Object newBufferPoll(java.util.concurrent.atomic.AtomicReferenceArray,long,int) -> a
-    boolean offer(java.lang.Object) -> a
     void resize(java.util.concurrent.atomic.AtomicReferenceArray,long,int,java.lang.Object,long) -> a
     void soConsumerIndex(long) -> a
     void soElement(java.util.concurrent.atomic.AtomicReferenceArray,int,java.lang.Object) -> a
     void soNext(java.util.concurrent.atomic.AtomicReferenceArray,java.util.concurrent.atomic.AtomicReferenceArray) -> a
     boolean writeToQueue(java.util.concurrent.atomic.AtomicReferenceArray,java.lang.Object,long,int) -> a
     int calcDirectOffset(int) -> b
-    boolean isEmpty() -> b
+    long lpProducerIndex() -> b
     java.util.concurrent.atomic.AtomicReferenceArray lvNextBufferAndUnlink(java.util.concurrent.atomic.AtomicReferenceArray,int) -> b
     void soProducerIndex(long) -> b
-    java.lang.Object poll() -> c
-    long lpConsumerIndex() -> d
-    long lpProducerIndex() -> e
-    long lvConsumerIndex() -> f
-    long lvProducerIndex() -> g
+    long lvConsumerIndex() -> c
+    long lvProducerIndex() -> d
 io.reactivex.internal.schedulers.AbstractDirectTask -> io.reactivex.internal.schedulers.a:
-io.reactivex.internal.schedulers.NonBlockingThread -> io.reactivex.internal.schedulers.b:
+io.reactivex.internal.schedulers.ComputationScheduler -> io.reactivex.internal.schedulers.b:
+    io.reactivex.internal.schedulers.RxThreadFactory THREAD_FACTORY -> d
+    int MAX_THREADS -> e
+    java.util.concurrent.atomic.AtomicReference pool -> b
+    io.reactivex.internal.schedulers.ComputationScheduler$PoolWorker SHUTDOWN_WORKER -> f
+    java.util.concurrent.ThreadFactory threadFactory -> a
+    io.reactivex.internal.schedulers.ComputationScheduler$FixedSchedulerPool NONE -> c
+    int cap(int,int) -> a
+    io.reactivex.Scheduler$Worker createWorker() -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+    void start() -> b
+io.reactivex.internal.schedulers.ComputationScheduler$EventLoopWorker -> io.reactivex.internal.schedulers.b$a:
+    io.reactivex.disposables.CompositeDisposable timed -> b
+    io.reactivex.internal.disposables.ListCompositeDisposable both -> c
+    io.reactivex.internal.disposables.ListCompositeDisposable serial -> a
+    boolean disposed -> e
+    io.reactivex.internal.schedulers.ComputationScheduler$PoolWorker poolWorker -> d
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable) -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.internal.schedulers.ComputationScheduler$FixedSchedulerPool -> io.reactivex.internal.schedulers.b$b:
+    io.reactivex.internal.schedulers.ComputationScheduler$PoolWorker[] eventLoops -> b
+    long n -> c
+    int cores -> a
+    io.reactivex.internal.schedulers.ComputationScheduler$PoolWorker getEventLoop() -> a
+    void shutdown() -> b
+io.reactivex.internal.schedulers.ComputationScheduler$PoolWorker -> io.reactivex.internal.schedulers.b$c:
+io.reactivex.internal.schedulers.IoScheduler -> io.reactivex.internal.schedulers.c:
+    io.reactivex.internal.schedulers.RxThreadFactory EVICTOR_THREAD_FACTORY -> d
+    io.reactivex.internal.schedulers.RxThreadFactory WORKER_THREAD_FACTORY -> c
+    java.util.concurrent.TimeUnit KEEP_ALIVE_UNIT -> e
+    io.reactivex.internal.schedulers.IoScheduler$ThreadWorker SHUTDOWN_THREAD_WORKER -> f
+    java.util.concurrent.atomic.AtomicReference pool -> b
+    java.util.concurrent.ThreadFactory threadFactory -> a
+    io.reactivex.internal.schedulers.IoScheduler$CachedWorkerPool NONE -> g
+    io.reactivex.Scheduler$Worker createWorker() -> a
+    void start() -> b
+io.reactivex.internal.schedulers.IoScheduler$CachedWorkerPool -> io.reactivex.internal.schedulers.c$a:
+    io.reactivex.disposables.CompositeDisposable allWorkers -> c
+    java.util.concurrent.ThreadFactory threadFactory -> f
+    long keepAliveTime -> a
+    java.util.concurrent.ScheduledExecutorService evictorService -> d
+    java.util.concurrent.ConcurrentLinkedQueue expiringWorkerQueue -> b
+    java.util.concurrent.Future evictorTask -> e
+    void evictExpiredWorkers() -> a
+    void release(io.reactivex.internal.schedulers.IoScheduler$ThreadWorker) -> a
+    io.reactivex.internal.schedulers.IoScheduler$ThreadWorker get() -> b
+    long now() -> c
+    void shutdown() -> d
+io.reactivex.internal.schedulers.IoScheduler$EventLoopWorker -> io.reactivex.internal.schedulers.c$b:
+    io.reactivex.disposables.CompositeDisposable tasks -> a
+    java.util.concurrent.atomic.AtomicBoolean once -> d
+    io.reactivex.internal.schedulers.IoScheduler$ThreadWorker threadWorker -> c
+    io.reactivex.internal.schedulers.IoScheduler$CachedWorkerPool pool -> b
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.internal.schedulers.IoScheduler$ThreadWorker -> io.reactivex.internal.schedulers.c$c:
+    long expirationTime -> c
+    void setExpirationTime(long) -> a
+    long getExpirationTime() -> b
+io.reactivex.internal.schedulers.NewThreadScheduler -> io.reactivex.internal.schedulers.d:
+    io.reactivex.internal.schedulers.RxThreadFactory THREAD_FACTORY -> b
+    java.util.concurrent.ThreadFactory threadFactory -> a
+    io.reactivex.Scheduler$Worker createWorker() -> a
+io.reactivex.internal.schedulers.NewThreadWorker -> io.reactivex.internal.schedulers.e:
+    boolean disposed -> b
+    java.util.concurrent.ScheduledExecutorService executor -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable) -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+    io.reactivex.internal.schedulers.ScheduledRunnable scheduleActual(java.lang.Runnable,long,java.util.concurrent.TimeUnit,io.reactivex.internal.disposables.DisposableContainer) -> a
+    void shutdown() -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> b
+io.reactivex.internal.schedulers.NonBlockingThread -> io.reactivex.internal.schedulers.f:
 io.reactivex.internal.schedulers.RxThreadFactory$RxCustomThread -> io.reactivex.internal.schedulers.RxThreadFactory$a:
+io.reactivex.internal.schedulers.SchedulerMultiWorkerSupport -> io.reactivex.internal.schedulers.g:
+io.reactivex.internal.schedulers.SchedulerPoolFactory -> io.reactivex.internal.schedulers.h:
+    java.util.Map POOLS -> d
+    java.util.concurrent.atomic.AtomicReference PURGE_THREAD -> c
+    boolean PURGE_ENABLED -> a
+    int PURGE_PERIOD_SECONDS -> b
+    java.util.concurrent.ScheduledExecutorService create(java.util.concurrent.ThreadFactory) -> a
+    void start() -> a
+    void tryPutIntoPool(boolean,java.util.concurrent.ScheduledExecutorService) -> a
+    void tryStart(boolean) -> a
+io.reactivex.internal.schedulers.SchedulerPoolFactory$PurgeProperties -> io.reactivex.internal.schedulers.h$a:
+    boolean purgeEnable -> a
+    int purgePeriod -> b
+    void load(java.util.Properties) -> a
+io.reactivex.internal.schedulers.SchedulerPoolFactory$ScheduledTask -> io.reactivex.internal.schedulers.h$b:
+io.reactivex.internal.schedulers.SingleScheduler -> io.reactivex.internal.schedulers.i:
+    io.reactivex.internal.schedulers.RxThreadFactory SINGLE_THREAD_FACTORY -> b
+    java.util.concurrent.atomic.AtomicReference executor -> a
+    java.util.concurrent.ScheduledExecutorService SHUTDOWN -> c
+    java.util.concurrent.ScheduledExecutorService createExecutor(java.util.concurrent.ThreadFactory) -> a
+    io.reactivex.Scheduler$Worker createWorker() -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.internal.schedulers.SingleScheduler$ScheduledWorker -> io.reactivex.internal.schedulers.i$a:
+    io.reactivex.disposables.CompositeDisposable tasks -> b
+    boolean disposed -> c
+    java.util.concurrent.ScheduledExecutorService executor -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.internal.schedulers.TrampolineScheduler -> io.reactivex.internal.schedulers.j:
+    io.reactivex.internal.schedulers.TrampolineScheduler INSTANCE -> a
+    io.reactivex.Scheduler$Worker createWorker() -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable) -> a
+    io.reactivex.disposables.Disposable scheduleDirect(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+    io.reactivex.internal.schedulers.TrampolineScheduler instance() -> b
+io.reactivex.internal.schedulers.TrampolineScheduler$SleepingRunnable -> io.reactivex.internal.schedulers.j$a:
+    long execTime -> c
+    java.lang.Runnable run -> a
+    io.reactivex.internal.schedulers.TrampolineScheduler$TrampolineWorker worker -> b
+io.reactivex.internal.schedulers.TrampolineScheduler$TimedRunnable -> io.reactivex.internal.schedulers.j$b:
+    long execTime -> b
+    java.lang.Runnable run -> a
+    int count -> c
+    boolean disposed -> d
+    int compareTo(io.reactivex.internal.schedulers.TrampolineScheduler$TimedRunnable) -> a
+io.reactivex.internal.schedulers.TrampolineScheduler$TrampolineWorker -> io.reactivex.internal.schedulers.j$c:
+    java.util.concurrent.atomic.AtomicInteger counter -> c
+    java.util.concurrent.atomic.AtomicInteger wip -> b
+    java.util.concurrent.PriorityBlockingQueue queue -> a
+    boolean disposed -> d
+    io.reactivex.disposables.Disposable enqueue(java.lang.Runnable,long) -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable) -> a
+    io.reactivex.disposables.Disposable schedule(java.lang.Runnable,long,java.util.concurrent.TimeUnit) -> a
+io.reactivex.internal.schedulers.TrampolineScheduler$TrampolineWorker$AppendToQueueTask -> io.reactivex.internal.schedulers.j$c$a:
+    io.reactivex.internal.schedulers.TrampolineScheduler$TimedRunnable timedRunnable -> a
+    io.reactivex.internal.schedulers.TrampolineScheduler$TrampolineWorker this$0 -> b
 io.reactivex.internal.subscribers.InnerQueuedSubscriberSupport -> io.reactivex.internal.subscribers.a:
     void drain() -> a
     void innerComplete(io.reactivex.internal.subscribers.InnerQueuedSubscriber) -> a
@@ -23508,6 +23781,7 @@ io.reactivex.internal.util.ExceptionHelper -> io.reactivex.internal.util.b:
     java.lang.Throwable TERMINATED -> a
     boolean addThrowable(java.util.concurrent.atomic.AtomicReference,java.lang.Throwable) -> a
     java.lang.Throwable terminate(java.util.concurrent.atomic.AtomicReference) -> a
+    java.lang.RuntimeException wrapOrThrow(java.lang.Throwable) -> a
 io.reactivex.internal.util.ExceptionHelper$Termination -> io.reactivex.internal.util.b$a:
 io.reactivex.internal.util.HalfSerializer -> io.reactivex.internal.util.c:
     void onComplete(org.reactivestreams.Subscriber,java.util.concurrent.atomic.AtomicInteger,io.reactivex.internal.util.AtomicThrowable) -> a
@@ -23519,12 +23793,24 @@ io.reactivex.internal.util.NotificationLite$ErrorNotification -> io.reactivex.in
     java.lang.Throwable e -> a
 io.reactivex.internal.util.NotificationLite$SubscriptionNotification -> io.reactivex.internal.util.NotificationLite$c:
     org.reactivestreams.Subscription s -> a
-io.reactivex.internal.util.Pow2 -> io.reactivex.internal.util.d:
+io.reactivex.internal.util.OpenHashSet -> io.reactivex.internal.util.d:
+    java.lang.Object[] keys -> e
+    int maxSize -> d
+    float loadFactor -> a
+    int mask -> b
+    int size -> c
+    boolean add(java.lang.Object) -> a
+    java.lang.Object[] keys() -> a
+    int mix(int) -> a
+    boolean removeEntry(int,java.lang.Object[],int) -> a
+    void rehash() -> b
+    boolean remove(java.lang.Object) -> b
+io.reactivex.internal.util.Pow2 -> io.reactivex.internal.util.e:
     int roundToPowerOfTwo(int) -> a
-io.reactivex.internal.util.QueueDrainHelper -> io.reactivex.internal.util.e:
+io.reactivex.internal.util.QueueDrainHelper -> io.reactivex.internal.util.f:
     io.reactivex.internal.fuseable.SimpleQueue createQueue(int) -> a
     void request(org.reactivestreams.Subscription,int) -> a
-io.reactivex.observables.GroupedObservable -> io.reactivex.n.a:
+io.reactivex.observables.GroupedObservable -> io.reactivex.s.a:
 io.reactivex.observers.BaseTestConsumer$1 -> io.reactivex.observers.a:
 io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$1 -> io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$a:
 io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$2 -> io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$b:
@@ -23533,12 +23819,47 @@ io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$4 -> io.reactivex.obser
 io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$5 -> io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$e:
 io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$6 -> io.reactivex.observers.BaseTestConsumer$TestWaitStrategy$f:
 io.reactivex.observers.LambdaConsumerIntrospection -> io.reactivex.observers.b:
-io.reactivex.plugins.RxJavaPlugins -> io.reactivex.o.a:
+io.reactivex.plugins.RxJavaPlugins -> io.reactivex.t.a:
     io.reactivex.functions.Consumer errorHandler -> a
+    io.reactivex.functions.Function onScheduleHandler -> b
+    io.reactivex.functions.Function onInitNewThreadHandler -> f
+    io.reactivex.functions.Function onInitIoHandler -> e
+    io.reactivex.functions.BiFunction onObservableSubscribe -> i
+    io.reactivex.functions.Function onInitSingleHandler -> d
+    io.reactivex.functions.Function onInitComputationHandler -> c
+    io.reactivex.functions.Function onObservableAssembly -> h
+    io.reactivex.functions.Function onIoHandler -> g
+    java.lang.Object apply(io.reactivex.functions.BiFunction,java.lang.Object,java.lang.Object) -> a
+    java.lang.Object apply(io.reactivex.functions.Function,java.lang.Object) -> a
+    io.reactivex.Scheduler applyRequireNonNull(io.reactivex.functions.Function,java.util.concurrent.Callable) -> a
+    io.reactivex.Scheduler callRequireNonNull(java.util.concurrent.Callable) -> a
     boolean isBug(java.lang.Throwable) -> a
+    io.reactivex.Observable onAssembly(io.reactivex.Observable) -> a
+    io.reactivex.Scheduler onIoScheduler(io.reactivex.Scheduler) -> a
+    java.lang.Runnable onSchedule(java.lang.Runnable) -> a
+    io.reactivex.Observer onSubscribe(io.reactivex.Observable,io.reactivex.Observer) -> a
+    io.reactivex.Scheduler initComputationScheduler(java.util.concurrent.Callable) -> b
     void onError(java.lang.Throwable) -> b
+    io.reactivex.Scheduler initIoScheduler(java.util.concurrent.Callable) -> c
     void uncaught(java.lang.Throwable) -> c
-io.reactivex.schedulers.SchedulerRunnableIntrospection -> io.reactivex.p.a:
+    io.reactivex.Scheduler initNewThreadScheduler(java.util.concurrent.Callable) -> d
+    io.reactivex.Scheduler initSingleScheduler(java.util.concurrent.Callable) -> e
+io.reactivex.schedulers.SchedulerRunnableIntrospection -> io.reactivex.u.a:
+io.reactivex.schedulers.Schedulers -> io.reactivex.u.b:
+    io.reactivex.Scheduler IO -> a
+    io.reactivex.Scheduler io() -> a
+io.reactivex.schedulers.Schedulers$ComputationHolder -> io.reactivex.u.b$a:
+    io.reactivex.Scheduler DEFAULT -> a
+io.reactivex.schedulers.Schedulers$ComputationTask -> io.reactivex.u.b$b:
+io.reactivex.schedulers.Schedulers$IOTask -> io.reactivex.u.b$c:
+io.reactivex.schedulers.Schedulers$IoHolder -> io.reactivex.u.b$d:
+    io.reactivex.Scheduler DEFAULT -> a
+io.reactivex.schedulers.Schedulers$NewThreadHolder -> io.reactivex.u.b$e:
+    io.reactivex.Scheduler DEFAULT -> a
+io.reactivex.schedulers.Schedulers$NewThreadTask -> io.reactivex.u.b$f:
+io.reactivex.schedulers.Schedulers$SingleHolder -> io.reactivex.u.b$g:
+    io.reactivex.Scheduler DEFAULT -> a
+io.reactivex.schedulers.Schedulers$SingleTask -> io.reactivex.u.b$h:
 kotlin.ExceptionsKt -> kotlin.a:
     void addSuppressed(java.lang.Throwable,java.lang.Throwable) -> a
 kotlin.ExceptionsKt__ExceptionsKt -> kotlin.b:

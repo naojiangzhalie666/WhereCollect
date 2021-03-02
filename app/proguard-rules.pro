@@ -211,3 +211,6 @@ rx.internal.util.atomic.LinkedQueueNode consumerNode;
 -keep class com.tencent.mm.sdk.** {
     *;
 }
+# itext
+-dontwarn com.itextpdf.**
+-keep class com.itextpdf.** {*;}
