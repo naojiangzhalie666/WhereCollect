@@ -1382,6 +1382,8 @@ com.google.android.material.resources.TextAppearance$1
 io.reactivex.internal.operators.single.SingleInternalHelper$NoSuchElementCallable
 androidx.core.os.ParcelableCompat$ParcelableCompatCreatorHoneycombMR2
 io.reactivex.internal.operators.mixed.FlowableConcatMapMaybe
+com.gongwu.wherecollect.contract.IBindEmailContract$IBindEmailPresenter
+    public abstract void bindEmail(java.lang.String,java.lang.String,java.lang.String)
 androidx.core.text.util.FindAddress$ZipRange
 kotlin.sequences.SequencesKt__SequencesKt$Sequence$1
 androidx.media.MediaBrowserServiceCompatApi26
@@ -1548,6 +1550,8 @@ okhttp3.Handshake
     public final java.security.Principal localPrincipal()
     public final java.security.Principal -deprecated_localPrincipal()
 io.reactivex.internal.operators.maybe.MaybeError
+com.gongwu.wherecollect.activity.BindEmailActivity
+    private static final java.lang.String TAG
 io.reactivex.internal.operators.mixed.CompletableAndThenObservable
 io.reactivex.internal.operators.flowable.FlowableFromCallable
 kotlin.sequences.FlatteningSequence$iterator$1
@@ -1741,6 +1745,8 @@ androidx.vectordrawable.R
 com.yalantis.ucrop.util.RotationGestureDetector$SimpleOnRotationGestureListener
     public boolean onRotation(com.yalantis.ucrop.util.RotationGestureDetector)
 razerdp.util.animation.TranslationConfig$1
+com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding
+    public void <init>(com.gongwu.wherecollect.activity.BindEmailActivity)
 com.google.android.material.circularreveal.CircularRevealRelativeLayout
 io.reactivex.internal.operators.flowable.FlowableTakeUntil$TakeUntilMainSubscriber
 androidx.constraintlayout.solver.widgets.ConstraintTableLayout$VerticalSlice
@@ -3440,12 +3446,12 @@ io.reactivex.internal.operators.flowable.FlowableWithLatestFrom$FlowableWithLate
 io.reactivex.internal.operators.observable.ObservableTakeUntil
 androidx.core.net.DatagramSocketWrapper$DatagramSocketImplWrapper
 androidx.core.graphics.PathSegment
-io.reactivex.internal.operators.flowable.FlowableAllSingle$AllSubscriber
 com.google.zxing.oned.CodaBarReader
     private static final int MAX_ACCEPTABLE
     private static final int PADDING
     private static final java.lang.String ALPHABET_STRING
     private static final int MIN_CHARACTER_LENGTH
+io.reactivex.internal.operators.flowable.FlowableAllSingle$AllSubscriber
 io.reactivex.internal.subscribers.BlockingFirstSubscriber
 kotlin.UnsignedKt
 com.contrarywind.adapter.WheelAdapter
@@ -7020,6 +7026,7 @@ razerdp.basepopup.QuickPopupConfig
     public razerdp.basepopup.QuickPopupConfig keyEventListener(razerdp.basepopup.BasePopupWindow$KeyEventListener)
     public razerdp.basepopup.QuickPopupConfig keyBoardChangeListener(razerdp.util.KeyboardUtils$OnKeyboardChangeListener)
 androidx.lifecycle.LiveData$AlwaysActiveObserver
+com.gongwu.wherecollect.contract.IBindEmailContract
 com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel$3
 io.reactivex.subjects.ReplaySubject$ReplayDisposable
 kotlin.collections.ArraysKt___ArraysKt$asIterable$$inlined$Iterable$4
@@ -16596,6 +16603,8 @@ kotlin.comparisons.ComparisonsKt__ComparisonsKt
     public static final synthetic int access$compareValuesByImpl(java.lang.Object,java.lang.Object,kotlin.jvm.functions.Function1[])
     public void <init>()
 io.reactivex.internal.operators.maybe.MaybeZipArray
+com.gongwu.wherecollect.contract.presenter.BindEmailPresenter$Inner
+    private void <init>()
 io.reactivex.internal.operators.flowable.FlowableSamplePublisher$SamplerSubscriber
 io.reactivex.internal.operators.parallel.ParallelMapTry
 androidx.core.view.WindowInsetsCompat
@@ -16811,6 +16820,8 @@ com.google.android.material.transformation.ExpandableBehavior
     private static final int STATE_UNINITIALIZED
     private static final int STATE_EXPANDED
     private static final int STATE_COLLAPSED
+com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$12
+    final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$3
     final synthetic com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.HomeModel$1
@@ -16923,6 +16934,8 @@ com.gongwu.wherecollect.ImageSelect.ImageGridAdapter
     public int selectTotal
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$1
     final synthetic com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.BindEmailModel$1
+    final synthetic com.gongwu.wherecollect.contract.model.BindEmailModel this$0
 com.gongwu.wherecollect.view.GoodsImageView
     private com.gongwu.wherecollect.view.GoodsImageView$GlideListener listener
     private final int substringlength
@@ -17548,6 +17561,8 @@ com.gongwu.wherecollect.activity.FamilyAdministerActivity_ViewBinding$2
 androidx.transition.FragmentTransitionSupport$4
     final synthetic android.graphics.Rect val$epicenter
     final synthetic androidx.transition.FragmentTransitionSupport this$0
+com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding this$0
 com.google.android.material.appbar.ViewUtilsLollipop
     private static final int[] STATE_LIST_ANIM_ATTRS
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$2
@@ -17633,6 +17648,8 @@ com.scwang.smartrefresh.layout.header.ClassicsHeader
     static void <clinit>()
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$4
     final synthetic com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding this$0
+com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding this$0
 androidx.core.app.ActivityCompat$SharedElementCallback21Impl$1
     final synthetic android.app.SharedElementCallback$OnSharedElementsReadyListener val$listener
     final synthetic androidx.core.app.ActivityCompat$SharedElementCallback21Impl this$0

@@ -36,6 +36,8 @@ public class FloatWindowManager {
 
     private static volatile FloatWindowManager instance;
 
+    private static boolean isShow;
+
     public static FloatWindowManager getInstance() {
         if (instance == null) {
             synchronized (FloatWindowManager.class) {
@@ -51,6 +53,10 @@ public class FloatWindowManager {
         if (checkPermission(context)) {
             return true;
         } else {
+            if (isShow) {
+                return false;
+            }
+            isShow = true;
             applyPermission(context);
         }
         return false;

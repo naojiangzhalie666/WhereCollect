@@ -175,8 +175,10 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
                 getPresenter().otherLogin(mContext, SHARE_MEDIA.QQ);
                 break;
             case R.id.email_layout:
-                intent = new Intent(this, BindEmailActivity.class);
-                startActivityForResult(intent, AppConstant.REQUEST_CODE);
+                if (TextUtils.isEmpty(user.getMail())) {
+                    intent = new Intent(this, BindEmailActivity.class);
+                    startActivityForResult(intent, AppConstant.REQUEST_CODE);
+                }
                 break;
             case R.id.tv_changePWD:
                 intent = new Intent(this, ConfigChangePhoneActivity.class);
