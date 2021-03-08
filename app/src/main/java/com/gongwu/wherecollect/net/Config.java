@@ -27,6 +27,6 @@ public class Config {
     public static final String WEB_PRIVACY_NAME = "收哪儿隐私保护政策";
     public static final String WEB_PRIVACY_URL = "http://www.shouner.com/privacy";
 
-    public static final String VERSION = "69";
+    public static final String VERSION = "70";
 
 }

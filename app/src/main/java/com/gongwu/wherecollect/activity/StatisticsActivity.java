@@ -153,7 +153,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsReturnDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setPieChart(mReturnChart, bean, mReturnChartEmptyTv);
+        getPresenter().setPieChart(mReturnChart, bean, mReturnChartEmptyTv, false);
     }
 
     /**
@@ -161,7 +161,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsSortDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setPieChart(mSortChart, bean, mSortChartEmptyTv);
+        getPresenter().setPieChart(mSortChart, bean, mSortChartEmptyTv, true);
     }
 
     /**
@@ -185,7 +185,7 @@ public class StatisticsActivity extends BaseMvpActivity<StatisticsActivity, Stat
      */
     @Override
     public void getGoodsPriceDetailsSuccess(List<StatisticsBean> bean) {
-        getPresenter().setPieChart(mPriceChart, bean, mPriceChartEmptyTv);
+        getPresenter().setPieChart(mPriceChart, bean, mPriceChartEmptyTv, true);
     }
 
     /**

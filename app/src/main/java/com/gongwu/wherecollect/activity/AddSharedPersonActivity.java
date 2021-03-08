@@ -246,7 +246,7 @@ public class AddSharedPersonActivity extends BaseMvpActivity<AddSharedPersonActi
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

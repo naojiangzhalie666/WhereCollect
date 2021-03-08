@@ -27,6 +27,7 @@ import com.gongwu.wherecollect.view.DetailedListView;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.SplitView;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Rectangle;
@@ -132,6 +133,7 @@ public class DetailedListActivity extends BaseMvpActivity<DetailedListActivity, 
                         //获取图片
                         img = Image.getInstance(byteArray);
                         //使图片与A4纸张大小自适应
+                        img.setAlignment(Element.ALIGN_CENTER);
                         img.scaleToFit(new Rectangle(PageSize.A4));
                         //添加到PDF文档
                         doc.add(img);
@@ -223,7 +225,7 @@ public class DetailedListActivity extends BaseMvpActivity<DetailedListActivity, 
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

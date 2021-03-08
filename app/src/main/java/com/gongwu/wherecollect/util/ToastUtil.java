@@ -1,4 +1,5 @@
 package com.gongwu.wherecollect.util;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.widget.Toast;
@@ -11,9 +12,14 @@ import android.widget.Toast;
  * @since JDK 1.7
  */
 public class ToastUtil {
+    public static void show(Context context, String text) {
+        Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
+    }
+
     public static void show(Context context, String text, int time) {
         Toast.makeText(context, text, time).show();
     }
+
     public static void showTopToast(Context context, String text) {
         Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0, 180);

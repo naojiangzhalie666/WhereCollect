@@ -233,18 +233,19 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 break;
             case R.id.furniture_edit_layer_tv:
                 //编辑
-                if (mData == null || mData.size() == 0) return;
-                if (selectView != null) {
-                    if (isBox) {
-                        //编辑收纳盒
-                        showEditBoxPopup();
+                if (tablelayout != null && tablelayout.getChildBeans() != null && tablelayout.getChildBeans().size() > 0) {
+                    if (selectView != null) {
+                        if (isBox) {
+                            //编辑收纳盒
+                            showEditBoxPopup();
+                        } else {
+                            //编辑隔层
+                            showPopupWindow();
+                        }
                     } else {
-                        //编辑隔层
-                        showPopupWindow();
+                        //编辑结构
+                        EditFurniturePatternActivity.start(mContext, furnitureBean, family_code);
                     }
-                } else {
-                    //编辑结构
-                    EditFurniturePatternActivity.start(mContext, furnitureBean, family_code);
                 }
                 break;
             case R.id.furniture_add_box_tv:
@@ -332,7 +333,10 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 }
                 break;
             case R.id.detailed_list_tv:
-                if (mData == null || mData.size() == 0) return;
+                if (mData == null || mData.size() == 0) {
+                    Toast.makeText(mContext, "家具内没有物品,请添加物品", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (selectView != null) {
                     selectView.setEditable(false);
                     selectView = null;
@@ -455,13 +459,20 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             EventBus.getDefault().post(new EventBusMsg.RefreshRoomsFragment());
             if (importBean != null) {
                 List<BaseBean> locations = new ArrayList<>();
-                BaseBean baseBean = new BaseBean();
-                baseBean.setCode(selectView.getObjectBean().getCode());
-                locations.add(baseBean);
                 if (isBox) {
-                    BaseBean baseBean1 = new BaseBean();
-                    baseBean1.setCode(selectBoxBean.getCode());
-                    locations.add(baseBean1);
+                    locations.addAll(selectBoxBean.getLocations());
+                    BaseBean baseBean = new BaseBean();
+                    baseBean.setCode(selectBoxBean.getCode());
+                    baseBean.setName(selectBoxBean.getName());
+                    baseBean.setLevel(selectBoxBean.getLevel());
+                    locations.add(baseBean);
+                } else {
+                    locations.addAll(selectView.getObjectBean().getParents());
+                    BaseBean baseBean = new BaseBean();
+                    baseBean.setCode(selectView.getObjectBean().getCode());
+                    baseBean.setName(selectView.getObjectBean().getName());
+                    baseBean.setLevel(2);
+                    locations.add(baseBean);
                 }
                 //设置导入物品新的层级
                 importBean.setLocations(locations);
@@ -1016,7 +1027,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

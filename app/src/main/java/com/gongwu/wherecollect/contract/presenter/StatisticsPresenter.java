@@ -23,6 +23,7 @@ import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.MPPointF;
+import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.IStatisticsContract;
 import com.gongwu.wherecollect.contract.model.StatisticsModel;
@@ -176,7 +177,7 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
         });
     }
 
-    public void setPieChart(PieChart chart, List<StatisticsBean> bean, TextView emptyView) {
+    public void setPieChart(PieChart chart, List<StatisticsBean> bean, TextView emptyView, boolean percentage) {
         if (bean != null && bean.size() > 0) {
             boolean isShowChart = true;
             for (StatisticsBean statisticsBean : bean) {
@@ -192,13 +193,14 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
             }
             chart.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
-            chart.setUsePercentValues(false);
+            chart.setUsePercentValues(percentage);
             chart.getDescription().setEnabled(false);
-            chart.setExtraOffsets(5, 10, 5, 5);
+            chart.setExtraOffsets(5, 5, 40, 5);
             chart.setDragDecelerationFrictionCoef(0.95f);
             chart.setHoleRadius(0f);
             chart.setTransparentCircleRadius(0f);
             chart.setRotationAngle(0);
+            chart.setDrawEntryLabels(false);
             chart.animateY(1400, Easing.EaseInOutQuad);
 
             Legend l = chart.getLegend();
@@ -228,6 +230,9 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
 
             ArrayList<Integer> colors = new ArrayList<>();
 
+            for (int c : VORDIPLOM_COLORS)
+                colors.add(c);
+
             for (int c : ColorTemplate.VORDIPLOM_COLORS)
                 colors.add(c);
 
@@ -253,7 +258,15 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
 
             //dataSet.setSelectionShift(0f);
             PieData data = new PieData(dataSet);
-            data.setValueFormatter(new PercentFormatter());
+            data.setValueFormatter(new PercentFormatter(chart) {
+                @Override
+                public String getPieLabel(float value, PieEntry pieEntry) {
+                    if (!percentage) {
+                        return String.valueOf((int) value);
+                    }
+                    return super.getPieLabel(value, pieEntry);
+                }
+            });
             data.setValueTextSize(11f);
             data.setValueTextColor(Color.BLACK);
             chart.setData(data);
@@ -265,6 +278,11 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
             emptyView.setVisibility(View.VISIBLE);
         }
     }
+
+    public static final int[] VORDIPLOM_COLORS = {
+            Color.rgb(238, 127, 143), Color.rgb(116, 177, 236), Color.rgb(127, 148, 241),
+            Color.rgb(138, 218, 209), Color.rgb(239, 189, 96), Color.rgb(234, 156, 128)
+    };
 
     public void setHorizontalBarChart(HorizontalBarChart chart, List<StatisticsBean> bean, TextView emptyView) {
         if (bean != null && bean.size() > 0) {
@@ -369,6 +387,7 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
                 });
                 set1.setDrawIcons(false);
                 set1.setDrawValues(true);
+                set1.setColor(Color.rgb(50, 189, 116));
                 ArrayList<IBarDataSet> dataSets = new ArrayList<>();
                 dataSets.add(set1);
 

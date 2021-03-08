@@ -112,7 +112,7 @@ public class FeedBackActivity extends BaseMvpActivity<FeedBackActivity, FeedBack
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

@@ -251,7 +251,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

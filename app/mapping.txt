@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: d92ff74
+# pg_map_id: 2a6d326
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -12497,20 +12497,19 @@ com.gongwu.wherecollect.activity.DetailedListActivity -> com.gongwu.wherecollect
     android.graphics.Bitmap getBitmapFromView(android.view.View) -> a
     void getDetailedListSuccess(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> a
     void start(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse) -> a
-    android.content.Context access$100(com.gongwu.wherecollect.activity.DetailedListActivity) -> b
+    java.util.List access$200(com.gongwu.wherecollect.activity.DetailedListActivity) -> b
     void initData(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> b
-    java.util.List access$300(com.gongwu.wherecollect.activity.DetailedListActivity) -> c
     void hideProgressDialog() -> d
     void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
     com.gongwu.wherecollect.contract.presenter.DetailedListPresenter createPresenter() -> k
-    java.lang.String access$200() -> m
+    java.lang.String access$100() -> m
     void getPDF() -> n
 com.gongwu.wherecollect.activity.DetailedListActivity$1 -> com.gongwu.wherecollect.activity.DetailedListActivity$a:
     com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
-    void accept(java.lang.Boolean) -> a
+    void accept(java.io.File) -> a
 com.gongwu.wherecollect.activity.DetailedListActivity$2 -> com.gongwu.wherecollect.activity.DetailedListActivity$b:
     com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
     void accept(java.lang.Throwable) -> a
@@ -16720,11 +16719,12 @@ com.gongwu.wherecollect.contract.presenter.SharePresenter$3 -> com.gongwu.wherec
     void onSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> a
     void onSuccess(java.lang.Object) -> a
 com.gongwu.wherecollect.contract.presenter.StatisticsPresenter -> com.gongwu.wherecollect.a.g3.j0:
+    int[] VORDIPLOM_COLORS -> d
     com.gongwu.wherecollect.contract.IStatisticsContract$IStatisticsModel mModel -> c
     void getGoodsColorsDetails(java.lang.String,java.lang.String) -> a
     void getGoodsPriceDetails(java.lang.String,java.lang.String,java.lang.String) -> a
     void setHorizontalBarChart(com.github.mikephil.charting.charts.HorizontalBarChart,java.util.List,android.widget.TextView) -> a
-    void setPieChart(com.github.mikephil.charting.charts.PieChart,java.util.List,android.widget.TextView) -> a
+    void setPieChart(com.github.mikephil.charting.charts.PieChart,java.util.List,android.widget.TextView,boolean) -> a
     void getGoodsReturnDetails(java.lang.String,java.lang.String,java.lang.String) -> b
     void getGoodsSeasonDetails(java.lang.String,java.lang.String) -> b
     void getGoodsSortDetails(java.lang.String,java.lang.String) -> c
@@ -16761,8 +16761,10 @@ com.gongwu.wherecollect.contract.presenter.StatisticsPresenter$6 -> com.gongwu.w
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.util.List) -> a
 com.gongwu.wherecollect.contract.presenter.StatisticsPresenter$7 -> com.gongwu.wherecollect.a.g3.j0$g:
-    java.util.List val$bean -> a
+    boolean val$percentage -> a
 com.gongwu.wherecollect.contract.presenter.StatisticsPresenter$8 -> com.gongwu.wherecollect.a.g3.j0$h:
+    java.util.List val$bean -> a
+com.gongwu.wherecollect.contract.presenter.StatisticsPresenter$9 -> com.gongwu.wherecollect.a.g3.j0$i:
 com.gongwu.wherecollect.fragment.FamilyRoomFragment -> com.gongwu.wherecollect.fragment.FamilyRoomFragment:
     boolean isEdit -> m
     java.lang.String familyCode -> f

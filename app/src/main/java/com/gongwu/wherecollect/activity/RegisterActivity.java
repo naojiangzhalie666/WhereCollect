@@ -98,7 +98,7 @@ public class RegisterActivity extends BaseMvpActivity<RegisterActivity, Register
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

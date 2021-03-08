@@ -129,7 +129,7 @@ public class LayerTemplateActivity extends BaseMvpActivity<LayerTemplateActivity
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

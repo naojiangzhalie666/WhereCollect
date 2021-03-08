@@ -354,7 +354,7 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext);
+        loading = Loading.show(loading, mContext);
     }
 
     @Override

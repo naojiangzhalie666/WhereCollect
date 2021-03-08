@@ -74,9 +74,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/dip_40"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dip_40">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -168,7 +168,7 @@
                         <ImageView
                             android:layout_width="@dimen/dip_25"
                             android:layout_height="@dimen/dip_25"
-                            android:src="@drawable/icon_vip_share" />
+                            android:src="@drawable/icon_vip_detailed" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -179,14 +179,49 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="家人协作共享"
+                                android:text="导出物品清单"
                                 android:textColor="@color/color333"
                                 android:textSize="@dimen/f_13" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="可与家人共同管理家中物品"
+                                android:text="生成PDF家具物品清单,方便导出打印"
+                                android:textColor="@color/color999"
+                                android:textSize="@dimen/f_12" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dip_16"
+                        android:layout_marginTop="@dimen/dip_24"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/dip_25"
+                            android:layout_height="@dimen/dip_25"
+                            android:src="@drawable/icon_vip_statistics" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dip_4"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="统计功能"
+                                android:textColor="@color/color333"
+                                android:textSize="@dimen/f_13" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="价格、时间、颜色...,根据不同分类展示统计\n内容"
                                 android:textColor="@color/color999"
                                 android:textSize="@dimen/f_12" />
                         </LinearLayout>
@@ -221,7 +256,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="更多功能持续更新中…"
+                                android:text="统计功能、搭配功能等\n更多功能持续更新中…"
                                 android:textColor="@color/color999"
                                 android:textSize="@dimen/f_12" />
                         </LinearLayout>

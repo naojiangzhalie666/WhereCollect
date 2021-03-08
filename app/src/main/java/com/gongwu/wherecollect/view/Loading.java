@@ -32,6 +32,8 @@ public class Loading extends Dialog {
     public static Loading show(Loading loading, Context context, String text) {
         if (loading == null) {
             loading = Loading.createDialog(context);
+        } else {
+            loading.dismiss();
         }
         loading.setMessage(text);
         loading.setCancelable(true);
@@ -47,6 +49,8 @@ public class Loading extends Dialog {
     public static Loading show(Loading loading, Context context) {
         if (loading == null) {
             loading = Loading.createDialog(context);
+        } else {
+            loading.dismiss();
         }
         loading.setMessage(context.getString(R.string.loading_text));
         try {

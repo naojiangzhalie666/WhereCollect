@@ -17642,6 +17642,8 @@ com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$1
     final synthetic com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding this$0
 okhttp3.internal.http2.Header
     public static final okhttp3.internal.http2.Header$Companion Companion
+com.gongwu.wherecollect.contract.presenter.StatisticsPresenter$9
+    final synthetic com.gongwu.wherecollect.contract.presenter.StatisticsPresenter this$0
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.EditHomeModel$3

@@ -166,7 +166,7 @@ public class LoginActivity extends BaseMvpActivity<LoginActivity, LoginPresenter
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

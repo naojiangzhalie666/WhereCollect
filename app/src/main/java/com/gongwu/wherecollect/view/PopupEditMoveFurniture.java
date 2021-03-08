@@ -135,7 +135,7 @@ public class PopupEditMoveFurniture extends BasePopupWindow implements MyOnItemC
     }
 
     public void initData() {
-        loading = Loading.show(null, getContext(), "");
+        loading = Loading.show(loading, getContext(), "");
         ApiUtils.getUserFamily(App.getUser(getContext()).getId(), App.getUser(getContext()).getNickname(), new ApiCallBack<List<FamilyBean>>() {
             @Override
             public void onSuccess(List<FamilyBean> data) {
@@ -161,7 +161,7 @@ public class PopupEditMoveFurniture extends BasePopupWindow implements MyOnItemC
     }
 
     public void initNextData(FamilyBean bean) {
-        loading = Loading.show(null, getContext(), "");
+        loading = Loading.show(loading, getContext(), "");
         ApiUtils.getFamilyRoomLists(App.getUser(getContext()).getId(), bean.getCode(), new ApiCallBack<List<FamilyBean>>() {
             @Override
             public void onSuccess(List<FamilyBean> data) {

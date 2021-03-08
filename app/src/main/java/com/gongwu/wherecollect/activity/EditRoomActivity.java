@@ -324,7 +324,7 @@ public class EditRoomActivity extends BaseMvpActivity<EditRoomActivity, EditRoom
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

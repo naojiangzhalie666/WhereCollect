@@ -115,7 +115,7 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
 
     @OnClick({R.id.back_btn, R.id.tv_loginOut, R.id.nick_layout, R.id.sex_layout, R.id.birth_layout,
             R.id.head_layout, R.id.phone_layout, R.id.wx_layout, R.id.wb_layout, R.id.qq_layout,
-            R.id.tv_changePWD})
+            R.id.email_layout, R.id.tv_changePWD})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -173,6 +173,10 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
                 break;
             case R.id.qq_layout:
                 getPresenter().otherLogin(mContext, SHARE_MEDIA.QQ);
+                break;
+            case R.id.email_layout:
+                intent = new Intent(this, BindEmailActivity.class);
+                startActivityForResult(intent, AppConstant.REQUEST_CODE);
                 break;
             case R.id.tv_changePWD:
                 intent = new Intent(this, ConfigChangePhoneActivity.class);
@@ -382,6 +386,9 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
         if (requestCode == AppConstant.REQUEST_CODE && resultCode == ConfigChangePhoneActivity.PHONE_CODE) {
             getPresenter().getUserInfo(App.getUser(mContext).getId());
         }
+        if (requestCode == AppConstant.REQUEST_CODE && resultCode == RESULT_OK) {
+            getPresenter().getUserInfo(App.getUser(mContext).getId());
+        }
     }
 
     private void logout() {
@@ -397,7 +404,7 @@ public class PersonActivity extends BaseMvpActivity<PersonActivity, PersonPresen
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext, "");
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override

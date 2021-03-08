@@ -114,7 +114,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
 
     @Override
     public void showProgressDialog() {
-        loading = Loading.show(null, mContext);
+        loading = Loading.show(loading, mContext);
     }
 
     @Override
