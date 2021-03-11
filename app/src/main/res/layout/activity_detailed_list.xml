@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".activity.DetailedListActivity">
+    android:background="@color/maincolor"
+    android:orientation="vertical"
+    tools:context=".activity.InventoryActivity">
 
-    <include layout="@layout/layout_title_all" />
+    <include layout="@layout/layout_title_all_white" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/title_hight">
+        android:background="@color/white">
 
         <LinearLayout
             android:id="@+id/content_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/color666"
             android:orientation="vertical"
-            android:padding="@dimen/dip_4" />
+            android:visibility="gone"/>
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

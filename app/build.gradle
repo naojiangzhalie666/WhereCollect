@@ -17,6 +17,7 @@ android {
         applicationId "com.gongwu.wherecollect"
         minSdkVersion 21
         targetSdkVersion 29
+        //Config.VERSION 也需要修改
         versionCode 13
         versionName "4.2.0"
         flavorDimensions "13"

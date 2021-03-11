@@ -195,7 +195,7 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
             emptyView.setVisibility(View.GONE);
             chart.setUsePercentValues(percentage);
             chart.getDescription().setEnabled(false);
-            chart.setExtraOffsets(5, 5, 40, 5);
+            chart.setExtraOffsets(10, 20, 50, 20);
             chart.setDragDecelerationFrictionCoef(0.95f);
             chart.setHoleRadius(0f);
             chart.setTransparentCircleRadius(0f);
@@ -254,6 +254,7 @@ public class StatisticsPresenter extends BasePresenter<IStatisticsContract.IStat
             dataSet.setValueLinePart1OffsetPercentage(80f);
             dataSet.setValueLinePart1Length(0.8f);
             dataSet.setValueLinePart2Length(1.6f);
+            dataSet.setXValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
             dataSet.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 
             //dataSet.setSelectionShift(0f);

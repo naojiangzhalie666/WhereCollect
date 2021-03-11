@@ -39,5 +39,15 @@
         android:textSize="@dimen/f_15"
         android:visibility="gone" />
 
-
+    <ImageButton
+        android:id="@+id/image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_10"
+        android:background="@drawable/select_activity_bg"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_menu"
+        android:visibility="gone" />
 </RelativeLayout>

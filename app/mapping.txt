@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: 1f11e90
+# pg_map_id: 9e2e9ae
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -6027,8 +6027,8 @@ androidx.fragment.app.DialogFragment -> androidx.fragment.app.c:
     void dismissInternal(boolean,boolean) -> a
     android.app.Dialog onCreateDialog(android.os.Bundle) -> a
     void setupDialog(android.app.Dialog,int) -> a
-    android.app.Dialog getDialog() -> f
-    int getTheme() -> g
+    android.app.Dialog getDialog() -> c
+    int getTheme() -> d
 androidx.fragment.app.DialogFragment$1 -> androidx.fragment.app.c$a:
     androidx.fragment.app.DialogFragment this$0 -> a
 androidx.fragment.app.Fragment$1 -> androidx.fragment.app.Fragment$a:
@@ -11583,19 +11583,19 @@ com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment -> com.github.
     void stopRecording(com.github.florent37.camerafragment.listeners.CameraFragmentResultListener) -> b
     void takePhoto(com.github.florent37.camerafragment.listeners.CameraFragmentResultListener,java.lang.String,java.lang.String) -> b
     com.github.florent37.camerafragment.internal.controller.CameraController access$200(com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment) -> c
+    void clearCameraPreview() -> c
     void setCameraTypeFrontBack(int) -> c
     com.github.florent37.camerafragment.listeners.CameraFragmentResultListener access$300(com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment) -> d
+    void notifyListeners() -> d
     void onStartVideoRecord(java.io.File) -> d
     void setFlashMode(int) -> d
     long access$400(com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment) -> e
+    void onActionPhotoVideoChanged() -> e
     void setMaxVideoDuration(int) -> e
     void setMediaFilePath(java.io.File) -> e
-    void clearCameraPreview() -> f
+    void onCameraTypeFrontBackChanged() -> f
     void setRecordState(int) -> f
-    void notifyListeners() -> g
-    void onActionPhotoVideoChanged() -> h
-    void onCameraTypeFrontBackChanged() -> i
-    void onFlashModeChanged() -> j
+    void onFlashModeChanged() -> g
 com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment$1 -> com.github.florent37.camerafragment.c.d.a$a:
     com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment this$0 -> a
     void setText(java.lang.String) -> a
@@ -11739,20 +11739,20 @@ com.gongwu.wherecollect.FragmentMain.HomeFragment -> com.gongwu.wherecollect.Fra
     java.util.List access$000(com.gongwu.wherecollect.FragmentMain.HomeFragment) -> a
     java.lang.String access$102(com.gongwu.wherecollect.FragmentMain.HomeFragment,java.lang.String) -> a
     void getUserFamilyRoomSuccess(com.gongwu.wherecollect.net.entity.response.HomeFamilyRoomBean) -> a
+    void hideProgressDialog() -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     java.lang.String access$100(com.gongwu.wherecollect.FragmentMain.HomeFragment) -> b
+    void showProgressDialog() -> b
     android.content.Context access$200(com.gongwu.wherecollect.FragmentMain.HomeFragment) -> c
     android.content.Context access$300(com.gongwu.wherecollect.FragmentMain.HomeFragment) -> d
-    void hideProgressDialog() -> d
     com.gongwu.wherecollect.base.BasePresenter access$400(com.gongwu.wherecollect.FragmentMain.HomeFragment) -> e
-    void showProgressDialog() -> e
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    com.gongwu.wherecollect.contract.presenter.HomePresenter initPresenter() -> e
     android.content.Context access$500(com.gongwu.wherecollect.FragmentMain.HomeFragment) -> f
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    com.gongwu.wherecollect.contract.presenter.HomePresenter initPresenter() -> h
-    com.gongwu.wherecollect.FragmentMain.HomeFragment getInstance() -> j
-    void initUI() -> k
-    void initViews() -> l
-    void showPopupWindow() -> m
+    com.gongwu.wherecollect.FragmentMain.HomeFragment getInstance() -> g
+    void initUI() -> h
+    void initViews() -> i
+    void showPopupWindow() -> j
     void getUserFamilySuccess(java.util.List) -> r
 com.gongwu.wherecollect.FragmentMain.HomeFragment$1 -> com.gongwu.wherecollect.FragmentMain.HomeFragment$a:
     com.gongwu.wherecollect.FragmentMain.HomeFragment this$0 -> a
@@ -11784,25 +11784,25 @@ com.gongwu.wherecollect.FragmentMain.LookFragment -> com.gongwu.wherecollect.Fra
     android.content.Context access$000(com.gongwu.wherecollect.FragmentMain.LookFragment) -> a
     com.gongwu.wherecollect.net.entity.response.FamilyBean access$102(com.gongwu.wherecollect.FragmentMain.LookFragment,com.gongwu.wherecollect.net.entity.response.FamilyBean) -> a
     int access$302(com.gongwu.wherecollect.FragmentMain.LookFragment,int) -> a
+    void hideProgressDialog() -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     void selectSortGoods(int) -> a
     com.gongwu.wherecollect.net.entity.response.FamilyBean access$100(com.gongwu.wherecollect.FragmentMain.LookFragment) -> b
     void access$400(com.gongwu.wherecollect.FragmentMain.LookFragment,int) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.FragmentMain.LookFragment) -> c
     int access$300(com.gongwu.wherecollect.FragmentMain.LookFragment) -> d
-    void hideProgressDialog() -> d
     java.util.List access$500(com.gongwu.wherecollect.FragmentMain.LookFragment) -> e
-    void showProgressDialog() -> e
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    com.gongwu.wherecollect.contract.presenter.LookPresenter initPresenter() -> e
     java.util.List access$600(com.gongwu.wherecollect.FragmentMain.LookFragment) -> f
     android.content.Context access$700(com.gongwu.wherecollect.FragmentMain.LookFragment) -> g
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    com.gongwu.wherecollect.contract.presenter.LookPresenter initPresenter() -> h
-    com.gongwu.wherecollect.FragmentMain.LookFragment getInstance() -> j
-    void initData() -> k
-    void initStatusBar() -> l
-    void initUI() -> m
-    void refreshLayoutFinished() -> n
-    void showPopupWindow() -> o
+    com.gongwu.wherecollect.FragmentMain.LookFragment getInstance() -> g
+    void initData() -> h
+    void initStatusBar() -> i
+    void initUI() -> j
+    void refreshLayoutFinished() -> k
+    void showPopupWindow() -> l
     void getUserFamilySuccess(java.util.List) -> r
 com.gongwu.wherecollect.FragmentMain.LookFragment$1 -> com.gongwu.wherecollect.FragmentMain.LookFragment$a:
     com.gongwu.wherecollect.FragmentMain.LookFragment this$0 -> a
@@ -11837,10 +11837,10 @@ com.gongwu.wherecollect.FragmentMain.MeFragment -> com.gongwu.wherecollect.Fragm
     com.gongwu.wherecollect.net.entity.response.UserBean user -> f
     com.gongwu.wherecollect.net.entity.response.UserBean access$000(com.gongwu.wherecollect.FragmentMain.MeFragment) -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    com.gongwu.wherecollect.FragmentMain.MeFragment getInstance() -> j
-    void initUI() -> k
-    void refreshUi() -> l
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    com.gongwu.wherecollect.FragmentMain.MeFragment getInstance() -> g
+    void initUI() -> h
+    void refreshUi() -> i
 com.gongwu.wherecollect.FragmentMain.MeFragment$1 -> com.gongwu.wherecollect.FragmentMain.MeFragment$a:
     com.gongwu.wherecollect.FragmentMain.MeFragment this$0 -> a
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding:
@@ -11887,30 +11887,30 @@ com.gongwu.wherecollect.FragmentMain.RemindFragment -> com.gongwu.wherecollect.F
     int access$002(com.gongwu.wherecollect.FragmentMain.RemindFragment,int) -> a
     int access$008(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> a
     void getRemindListSuccess(com.gongwu.wherecollect.net.entity.response.RemindListBean) -> a
+    void hideProgressDialog() -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     void initViewAndData(boolean) -> a
     void access$100(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> b
+    void showProgressDialog() -> b
     java.util.List access$200(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> c
     void deteleRemindSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> c
     android.content.Context access$300(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> d
-    void hideProgressDialog() -> d
     com.gongwu.wherecollect.base.BasePresenter access$400(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> e
-    void showProgressDialog() -> e
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    com.gongwu.wherecollect.contract.presenter.RemindPresenter initPresenter() -> e
     android.content.Context access$500(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> f
     void setRemindDoneSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> f
     com.gongwu.wherecollect.base.BasePresenter access$600(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> g
+    com.gongwu.wherecollect.FragmentMain.RemindFragment getInstance() -> g
     java.util.List access$700(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> h
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    com.gongwu.wherecollect.contract.presenter.RemindPresenter initPresenter() -> h
+    void initData() -> h
     android.content.Context access$800(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> i
+    void initEvent() -> i
     com.gongwu.wherecollect.base.BasePresenter access$900(com.gongwu.wherecollect.FragmentMain.RemindFragment) -> j
-    com.gongwu.wherecollect.FragmentMain.RemindFragment getInstance() -> j
-    void initData() -> k
-    void initEvent() -> l
-    void initStatusBar() -> m
-    void initUI() -> n
-    void refreshLayoutFinished() -> o
-    void setMainActTabRedNum() -> p
+    void initStatusBar() -> j
+    void initUI() -> k
+    void refreshLayoutFinished() -> l
+    void setMainActTabRedNum() -> m
 com.gongwu.wherecollect.FragmentMain.RemindFragment$1 -> com.gongwu.wherecollect.FragmentMain.RemindFragment$a:
     com.gongwu.wherecollect.FragmentMain.RemindFragment this$0 -> a
     void onRefresh(com.scwang.smartrefresh.layout.api.RefreshLayout) -> a
@@ -12042,6 +12042,7 @@ com.gongwu.wherecollect.activity.AddChangWangGoodActivity -> com.gongwu.wherecol
     com.gongwu.wherecollect.adapter.SwipeCardViewAdapter mAdapter -> j
     com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView mSwipeView -> f
     void getChangWangGoodsListSuccess(com.gongwu.wherecollect.net.entity.response.ChangWangListBean) -> a
+    void hideProgressDialog() -> a
     void onRightCardExit(java.lang.Object) -> a
     void onScroll(float,float) -> a
     void setAllBtnEnable(boolean) -> a
@@ -12049,9 +12050,8 @@ com.gongwu.wherecollect.activity.AddChangWangGoodActivity -> com.gongwu.wherecol
     void setChangWangDetailSuccess(com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean) -> a
     void start(android.content.Context,java.lang.String,java.lang.String) -> a
     void onLeftCardExit(java.lang.Object) -> b
+    void showProgressDialog() -> b
     void onAdapterAboutToEmpty(int) -> c
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     void removeFirstObjectInAdapter() -> g
     int getLayoutId() -> h
     void initViews() -> j
@@ -12093,11 +12093,11 @@ com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity -> com.gongwu.wh
     com.gongwu.wherecollect.adapter.AddFamilyToSelectRoomsAdapter mAdapter -> f
     void createFamilySuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> M
     java.util.List access$000(com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,java.lang.String) -> a
     com.gongwu.wherecollect.adapter.AddFamilyToSelectRoomsAdapter access$100(com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity) -> b
     void onItemsClick(int,android.view.View) -> b
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
+    void showProgressDialog() -> b
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -12137,17 +12137,17 @@ com.gongwu.wherecollect.activity.AddFurnitureActivity -> com.gongwu.wherecollect
     boolean access$402(com.gongwu.wherecollect.activity.AddFurnitureActivity,boolean) -> a
     com.gongwu.wherecollect.net.entity.response.FurnitureBean access$902(com.gongwu.wherecollect.activity.AddFurnitureActivity,com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> a
     void getFurnitureListSuccess(java.util.List) -> a
+    void hideProgressDialog() -> a
     void onItemClick(com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> a
     void onUpLoadSuccess(java.lang.String) -> a
     void start(android.content.Context,java.lang.String,java.lang.String) -> a
     java.lang.String access$100(com.gongwu.wherecollect.activity.AddFurnitureActivity) -> b
+    void showProgressDialog() -> b
     android.content.Context access$1000(com.gongwu.wherecollect.activity.AddFurnitureActivity) -> c
     void addFurnitureSuccess(com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> c
     com.gongwu.wherecollect.base.BasePresenter access$1100(com.gongwu.wherecollect.activity.AddFurnitureActivity) -> d
-    void hideProgressDialog() -> d
     void scrollToPosition(int) -> d
     void access$1200(com.gongwu.wherecollect.activity.AddFurnitureActivity) -> e
-    void showProgressDialog() -> e
     java.io.File access$1300(com.gongwu.wherecollect.activity.AddFurnitureActivity) -> f
     com.gongwu.wherecollect.util.SelectImgDialog access$1400(com.gongwu.wherecollect.activity.AddFurnitureActivity) -> g
     com.gongwu.wherecollect.view.PopupEditFurnitureName access$1500(com.gongwu.wherecollect.activity.AddFurnitureActivity) -> h
@@ -12217,12 +12217,12 @@ com.gongwu.wherecollect.activity.AddRemindActivity -> com.gongwu.wherecollect.ac
     void access$000(com.gongwu.wherecollect.activity.AddRemindActivity) -> a
     long access$102(com.gongwu.wherecollect.activity.AddRemindActivity,long) -> a
     void getRemindDetailsSuccess(com.gongwu.wherecollect.net.entity.response.RemindDetailsBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     long access$100(com.gongwu.wherecollect.activity.AddRemindActivity) -> b
     void setSelectGoods(com.gongwu.wherecollect.net.entity.response.ObjectBean) -> b
+    void showProgressDialog() -> b
     void deteleRemindSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> c
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     void setRemindDoneSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> f
     int getLayoutId() -> h
     void initViews() -> j
@@ -12288,32 +12288,34 @@ com.gongwu.wherecollect.activity.AddSharedPersonActivity -> com.gongwu.wherecoll
     boolean access$302(com.gongwu.wherecollect.activity.AddSharedPersonActivity,boolean) -> a
     com.gongwu.wherecollect.net.entity.response.SharedPersonBean access$802(com.gongwu.wherecollect.activity.AddSharedPersonActivity,com.gongwu.wherecollect.net.entity.response.SharedPersonBean) -> a
     void getShareUserCodeInfoSuccess(com.gongwu.wherecollect.net.entity.response.SharedPersonBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,int) -> a
     void access$100(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> b
     java.lang.String access$1102(com.gongwu.wherecollect.activity.AddSharedPersonActivity,java.lang.String) -> b
     boolean access$402(com.gongwu.wherecollect.activity.AddSharedPersonActivity,boolean) -> b
     void getShareRoomListSuccess(java.util.List) -> b
+    void showProgressDialog() -> b
     android.content.Context access$1200(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> c
     com.gongwu.wherecollect.base.BasePresenter access$1300(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> d
-    void hideProgressDialog() -> d
     android.content.Context access$1400(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> e
-    void showProgressDialog() -> e
-    com.gongwu.wherecollect.base.BasePresenter access$1500(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> f
-    android.content.Context access$200(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> g
-    boolean access$300(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> h
+    android.content.Context access$1500(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> f
+    android.content.Context access$1600(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> g
+    com.gongwu.wherecollect.base.BasePresenter access$1700(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> h
     int getLayoutId() -> h
-    android.content.Context access$500(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> i
+    android.content.Context access$200(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> i
     void getSharePersonOldListSuccess(java.util.List) -> i
-    com.gongwu.wherecollect.base.BasePresenter access$600(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> j
+    boolean access$300(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> j
     void initViews() -> j
-    java.util.List access$700(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> k
+    android.content.Context access$500(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> k
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
     com.gongwu.wherecollect.contract.presenter.AddSharePresenter createPresenter() -> k
     void setShareLocationSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> k
-    com.gongwu.wherecollect.net.entity.response.SharedPersonBean access$800(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> l
-    com.gongwu.wherecollect.net.entity.response.SharedLocationBean access$900(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> m
+    com.gongwu.wherecollect.base.BasePresenter access$600(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> l
+    java.util.List access$700(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> m
     void initData() -> m
+    com.gongwu.wherecollect.net.entity.response.SharedPersonBean access$800(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> n
     void initEvent() -> n
+    com.gongwu.wherecollect.net.entity.response.SharedLocationBean access$900(com.gongwu.wherecollect.activity.AddSharedPersonActivity) -> o
     void onCommitClickListener(java.util.List) -> r
 com.gongwu.wherecollect.activity.AddSharedPersonActivity$1 -> com.gongwu.wherecollect.activity.AddSharedPersonActivity$a:
     com.gongwu.wherecollect.activity.AddSharedPersonActivity this$0 -> a
@@ -12339,8 +12341,8 @@ com.gongwu.wherecollect.activity.AddSharedPersonActivity_ViewBinding$3 -> com.go
 com.gongwu.wherecollect.activity.BindEmailActivity -> com.gongwu.wherecollect.activity.BindEmailActivity:
     com.gongwu.wherecollect.view.Loading loading -> f
     void bindEmailSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> H
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
+    void hideProgressDialog() -> a
+    void showProgressDialog() -> b
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -12363,15 +12365,15 @@ com.gongwu.wherecollect.activity.BuyVIPActivity -> com.gongwu.wherecollect.activ
     void buyVipWXOrAliSuccess(com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean) -> a
     void getUserInfoSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> a
     void getVIPPriceSuccess(com.gongwu.wherecollect.net.entity.response.VIPBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context) -> a
     void startWechatPay(com.gongwu.wherecollect.net.entity.WxPayBean) -> a
     com.gongwu.wherecollect.base.BasePresenter access$100(com.gongwu.wherecollect.activity.BuyVIPActivity) -> b
     void pay(java.lang.String) -> b
+    void showProgressDialog() -> b
     android.os.Handler access$200(com.gongwu.wherecollect.activity.BuyVIPActivity) -> c
     java.lang.String access$300(com.gongwu.wherecollect.activity.BuyVIPActivity) -> d
-    void hideProgressDialog() -> d
     android.content.Context access$400(com.gongwu.wherecollect.activity.BuyVIPActivity) -> e
-    void showProgressDialog() -> e
     com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.activity.BuyVIPActivity) -> f
     android.content.Context access$600(com.gongwu.wherecollect.activity.BuyVIPActivity) -> g
     android.content.Context access$700(com.gongwu.wherecollect.activity.BuyVIPActivity) -> h
@@ -12461,8 +12463,8 @@ com.gongwu.wherecollect.activity.ConfigChangePhoneActivity -> com.gongwu.whereco
     boolean changePhone -> f
     void isRegisteredSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> B
     void getCodeSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> a
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
+    void hideProgressDialog() -> a
+    void showProgressDialog() -> b
     int getLayoutId() -> h
     void changePasswordSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> j
     void initViews() -> j
@@ -12495,62 +12497,16 @@ com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$3 -> com.
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity val$target -> a
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$4 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$d:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity val$target -> a
-com.gongwu.wherecollect.activity.DetailedListActivity -> com.gongwu.wherecollect.activity.DetailedListActivity:
-    java.util.List boxCodes -> r
-    int indexof -> o
-    java.util.List gcCodes -> q
-    java.lang.String family_code -> i
-    java.lang.String userId -> h
-    java.lang.String room_code -> k
-    java.lang.String room_id -> j
-    java.lang.String qrcodeString -> m
-    com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse structure -> g
-    java.lang.String furniture_code -> l
-    java.lang.String PDFpath -> s
-    com.gongwu.wherecollect.view.Loading loading -> f
-    java.util.List views -> n
-    int initCount -> p
-    android.content.Context access$000(com.gongwu.wherecollect.activity.DetailedListActivity) -> a
-    android.graphics.Bitmap getBitmapFromView(android.view.View) -> a
-    void getDetailedListSuccess(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> a
-    void start(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse) -> a
-    java.util.List access$200(com.gongwu.wherecollect.activity.DetailedListActivity) -> b
-    void initData(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> b
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
-    int getLayoutId() -> h
-    void initViews() -> j
-    com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
-    com.gongwu.wherecollect.contract.presenter.DetailedListPresenter createPresenter() -> k
-    java.lang.String access$100() -> m
-    void getPDF() -> n
-com.gongwu.wherecollect.activity.DetailedListActivity$1 -> com.gongwu.wherecollect.activity.DetailedListActivity$a:
-    com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
-    void accept(java.io.File) -> a
-com.gongwu.wherecollect.activity.DetailedListActivity$2 -> com.gongwu.wherecollect.activity.DetailedListActivity$b:
-    com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
-    void accept(java.lang.Throwable) -> a
-com.gongwu.wherecollect.activity.DetailedListActivity$3 -> com.gongwu.wherecollect.activity.DetailedListActivity$c:
-    com.gongwu.wherecollect.activity.DetailedListActivity this$0 -> a
-    void subscribe(io.reactivex.ObservableEmitter) -> a
-com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding -> com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding:
-    android.view.View view7f080073 -> c
-    android.view.View view7f08018b -> b
-    com.gongwu.wherecollect.activity.DetailedListActivity target -> a
-com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$a:
-    com.gongwu.wherecollect.activity.DetailedListActivity val$target -> a
-com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.DetailedListActivity_ViewBinding$b:
-    com.gongwu.wherecollect.activity.DetailedListActivity val$target -> a
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity:
     java.lang.String familyCode -> g
     com.gongwu.wherecollect.net.entity.response.FurnitureBean mFurnitureBean -> h
     com.gongwu.wherecollect.view.Loading loading -> f
     void access$000(com.gongwu.wherecollect.activity.EditFurniturePatternActivity,boolean[]) -> a
+    void hideProgressDialog() -> a
     void setUiStatus(boolean[]) -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.FurnitureBean,java.lang.String) -> a
+    void showProgressDialog() -> b
     void updataFurnitureSuccess(com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> b
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -12603,18 +12559,18 @@ com.gongwu.wherecollect.activity.EditHomeActivity -> com.gongwu.wherecollect.act
     void moveFurnitureSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> I
     java.util.List access$000(com.gongwu.wherecollect.activity.EditHomeActivity) -> a
     void access$400(com.gongwu.wherecollect.activity.EditHomeActivity,com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> a
+    void hideProgressDialog() -> a
     void onSelectItemClick(com.gongwu.wherecollect.net.entity.response.RoomBean,java.util.List) -> a
     void onUpLoadSuccess(java.lang.String) -> a
     void start(android.content.Context,java.lang.String,int) -> a
     android.content.Context access$100(com.gongwu.wherecollect.activity.EditHomeActivity) -> b
     com.gongwu.wherecollect.net.entity.response.FurnitureBean access$902(com.gongwu.wherecollect.activity.EditHomeActivity,com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> b
+    void showProgressDialog() -> b
     void updataFurnitureSuccess(com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> b
     android.content.Context access$1000(com.gongwu.wherecollect.activity.EditHomeActivity) -> c
     com.gongwu.wherecollect.base.BasePresenter access$1100(com.gongwu.wherecollect.activity.EditHomeActivity) -> d
-    void hideProgressDialog() -> d
     void showEditFurnitureNamePopupWindow(com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> d
     void access$1200(com.gongwu.wherecollect.activity.EditHomeActivity) -> e
-    void showProgressDialog() -> e
     android.content.Context access$1300(com.gongwu.wherecollect.activity.EditHomeActivity) -> f
     void getFamilyRoomListSuccess(java.util.List) -> f
     com.gongwu.wherecollect.base.BasePresenter access$1400(com.gongwu.wherecollect.activity.EditHomeActivity) -> g
@@ -12688,15 +12644,15 @@ com.gongwu.wherecollect.activity.EditMoreGoodsActivity -> com.gongwu.wherecollec
     com.gongwu.wherecollect.view.Loading loading -> i
     android.content.Context access$000(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> a
     void access$600(com.gongwu.wherecollect.activity.EditMoreGoodsActivity,boolean) -> a
+    void hideProgressDialog() -> a
     void showEditBtnLayoutUpOrDown(boolean) -> a
     void start(android.content.Context,java.lang.String) -> a
     java.lang.String access$100(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> c
     java.util.List access$300(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> d
-    void hideProgressDialog() -> d
     com.gongwu.wherecollect.adapter.EditMoreGoodsAdapter access$400(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> e
     void delSelectGoodsSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> e
-    void showProgressDialog() -> e
     int access$500(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> f
     int access$508(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> g
     int access$510(com.gongwu.wherecollect.activity.EditMoreGoodsActivity) -> h
@@ -12749,6 +12705,7 @@ com.gongwu.wherecollect.activity.EditRoomActivity -> com.gongwu.wherecollect.act
     int access$1000(com.gongwu.wherecollect.activity.EditRoomActivity) -> a
     java.lang.String access$102(com.gongwu.wherecollect.activity.EditRoomActivity,java.lang.String) -> a
     void addRoomSuccess(com.gongwu.wherecollect.net.entity.response.RoomBean) -> a
+    void hideProgressDialog() -> a
     void onDelClick(int) -> a
     void onItemDismiss(androidx.recyclerview.widget.RecyclerView$ViewHolder) -> a
     boolean onItemMove(androidx.recyclerview.widget.RecyclerView$ViewHolder,androidx.recyclerview.widget.RecyclerView$ViewHolder) -> a
@@ -12756,12 +12713,11 @@ com.gongwu.wherecollect.activity.EditRoomActivity -> com.gongwu.wherecollect.act
     java.util.List access$1100(com.gongwu.wherecollect.activity.EditRoomActivity) -> b
     void onEditNameClick(int) -> b
     void onItemsClick(int,android.view.View) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$1200(com.gongwu.wherecollect.activity.EditRoomActivity) -> c
     void showPopupWindow(com.gongwu.wherecollect.net.entity.response.RoomBean) -> c
     com.gongwu.wherecollect.adapter.EditRoomListAdapter access$1300(com.gongwu.wherecollect.activity.EditRoomActivity) -> d
-    void hideProgressDialog() -> d
     void access$1400(com.gongwu.wherecollect.activity.EditRoomActivity) -> e
-    void showProgressDialog() -> e
     android.content.Context access$200(com.gongwu.wherecollect.activity.EditRoomActivity) -> f
     com.gongwu.wherecollect.base.BasePresenter access$300(com.gongwu.wherecollect.activity.EditRoomActivity) -> g
     android.content.Context access$400(com.gongwu.wherecollect.activity.EditRoomActivity) -> h
@@ -12819,10 +12775,10 @@ com.gongwu.wherecollect.activity.FamilyAdministerActivity -> com.gongwu.wherecol
     com.gongwu.wherecollect.view.Loading loading -> h
     android.content.Context access$000(com.gongwu.wherecollect.activity.FamilyAdministerActivity) -> a
     void getFamilyListSuccess(com.gongwu.wherecollect.net.entity.response.MyFamilyListBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context) -> a
     android.content.Context access$100(com.gongwu.wherecollect.activity.FamilyAdministerActivity) -> b
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
+    void showProgressDialog() -> b
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -12851,19 +12807,21 @@ com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity -> com.gongwu.w
     java.util.List mlist -> l
     com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean detailsBean -> k
     android.content.Context access$000(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> a
-    java.lang.String access$602(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity,java.lang.String) -> a
+    java.lang.String access$802(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity,java.lang.String) -> a
     void getFamilyDetailsSuccess(com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.FamilyBean,boolean) -> a
     java.lang.String access$100(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> b
-    android.content.Context access$200(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> c
-    com.gongwu.wherecollect.base.BasePresenter access$300(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> d
-    void hideProgressDialog() -> d
-    android.content.Context access$400(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> e
-    void showProgressDialog() -> e
-    com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> f
-    android.content.Context access$700(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> g
-    com.gongwu.wherecollect.base.BasePresenter access$800(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> h
+    void showProgressDialog() -> b
+    com.gongwu.wherecollect.base.BasePresenter access$1000(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> c
+    android.content.Context access$200(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> d
+    android.content.Context access$300(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> e
+    android.content.Context access$400(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> f
+    com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> g
+    android.content.Context access$600(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> h
     int getLayoutId() -> h
+    com.gongwu.wherecollect.base.BasePresenter access$700(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> i
+    android.content.Context access$900(com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity) -> j
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
     com.gongwu.wherecollect.contract.presenter.AdministerFamilyDetailsPresenter createPresenter() -> k
@@ -12917,14 +12875,14 @@ com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity -> com.gongwu.wh
     void shareOrCancelShareRoomsSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> N
     com.gongwu.wherecollect.net.entity.response.FamilyBean access$000(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> a
     com.gongwu.wherecollect.net.entity.response.SharedPersonBean access$602(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity,com.gongwu.wherecollect.net.entity.response.SharedPersonBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.FamilyBean) -> a
     android.content.Context access$100(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> b
     void getShareRoomListSuccess(java.util.List) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> c
     android.content.Context access$300(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> d
-    void hideProgressDialog() -> d
     java.util.List access$400(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> e
-    void showProgressDialog() -> e
     com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> f
     android.content.Context access$700(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> g
     com.gongwu.wherecollect.base.BasePresenter access$800(com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity) -> h
@@ -12955,10 +12913,10 @@ com.gongwu.wherecollect.activity.FeedBackActivity -> com.gongwu.wherecollect.act
     com.gongwu.wherecollect.view.Loading loading -> f
     void access$000(com.gongwu.wherecollect.activity.FeedBackActivity) -> a
     void feedBackSuccess(com.gongwu.wherecollect.net.entity.response.FeedbackBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context) -> a
     android.content.Context access$100(com.gongwu.wherecollect.activity.FeedBackActivity) -> b
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
+    void showProgressDialog() -> b
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -12980,9 +12938,9 @@ com.gongwu.wherecollect.activity.FeedBackActivity_ViewBinding$2 -> com.gongwu.wh
     com.gongwu.wherecollect.activity.FeedBackActivity val$target -> a
 com.gongwu.wherecollect.activity.ForgetPWDActivity -> com.gongwu.wherecollect.activity.ForgetPWDActivity:
     void getCodeSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> a
+    void hideProgressDialog() -> a
+    void showProgressDialog() -> b
     void registerSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> c
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -13053,6 +13011,7 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity -> com.gongwu.wherecollec
     void getFurnitureDetailsSuccess(com.gongwu.wherecollect.net.entity.response.RoomFurnitureGoodsBean) -> a
     void getFurnitureLayersOrBoxSuccess(com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse) -> a
     void getImportGoodsListSuccess(com.gongwu.wherecollect.net.entity.response.ImportGoodsBean) -> a
+    void hideProgressDialog() -> a
     void onClickTable(com.gongwu.wherecollect.view.furniture.ChildView) -> a
     void showEditButtonBySelectCount(boolean) -> a
     void showEditNamePopupWindow(boolean,boolean) -> a
@@ -13065,16 +13024,15 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity -> com.gongwu.wherecollec
     void addBoxSuccess(com.gongwu.wherecollect.net.entity.response.RoomBean) -> b
     void postImportGoods(java.lang.String) -> b
     void refreshBoxListView(com.gongwu.wherecollect.net.entity.response.ObjectBean) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$1100(com.gongwu.wherecollect.activity.FurnitureLookActivity) -> c
     void access$2900(com.gongwu.wherecollect.activity.FurnitureLookActivity,java.lang.String) -> c
     com.gongwu.wherecollect.net.entity.response.ObjectBean access$402(com.gongwu.wherecollect.activity.FurnitureLookActivity,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> c
     void refreshListView(java.lang.String) -> c
     com.gongwu.wherecollect.net.entity.response.ObjectBean access$1200(com.gongwu.wherecollect.activity.FurnitureLookActivity) -> d
     void access$500(com.gongwu.wherecollect.activity.FurnitureLookActivity,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> d
-    void hideProgressDialog() -> d
     android.content.Context access$1500(com.gongwu.wherecollect.activity.FurnitureLookActivity) -> e
     void delSelectGoodsSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> e
-    void showProgressDialog() -> e
     com.gongwu.wherecollect.net.entity.response.FurnitureBean access$1600(com.gongwu.wherecollect.activity.FurnitureLookActivity) -> f
     java.lang.String access$1700(com.gongwu.wherecollect.activity.FurnitureLookActivity) -> g
     void resetLayerNameSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> g
@@ -13207,12 +13165,12 @@ com.gongwu.wherecollect.activity.ImportMoreGoodsActivity -> com.gongwu.wherecoll
     com.gongwu.wherecollect.adapter.ImportMoreGoodsAdapter mAdapter -> f
     android.content.Context access$000(com.gongwu.wherecollect.activity.ImportMoreGoodsActivity) -> a
     void getImportGoodsListSuccess(com.gongwu.wherecollect.net.entity.response.ImportGoodsBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,java.lang.String) -> a
     com.gongwu.wherecollect.base.BasePresenter access$100(com.gongwu.wherecollect.activity.ImportMoreGoodsActivity) -> b
+    void showProgressDialog() -> b
     java.util.List access$200(com.gongwu.wherecollect.activity.ImportMoreGoodsActivity) -> c
     com.gongwu.wherecollect.adapter.ImportMoreGoodsAdapter access$300(com.gongwu.wherecollect.activity.ImportMoreGoodsActivity) -> d
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -13233,6 +13191,52 @@ com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$1 -> com.go
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity val$target -> a
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$b:
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity val$target -> a
+com.gongwu.wherecollect.activity.InventoryActivity -> com.gongwu.wherecollect.activity.InventoryActivity:
+    java.util.List boxCodes -> r
+    int indexof -> o
+    java.util.List gcCodes -> q
+    java.lang.String family_code -> i
+    java.lang.String userId -> h
+    java.lang.String room_code -> k
+    java.lang.String room_id -> j
+    java.lang.String qrcodeString -> m
+    com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse structure -> g
+    java.lang.String furniture_code -> l
+    java.lang.String PDFpath -> s
+    com.gongwu.wherecollect.view.Loading loading -> f
+    java.util.List views -> n
+    int initCount -> p
+    android.content.Context access$000(com.gongwu.wherecollect.activity.InventoryActivity) -> a
+    android.graphics.Bitmap getBitmapFromView(android.view.View) -> a
+    void getDetailedListSuccess(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> a
+    void hideProgressDialog() -> a
+    void start(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse) -> a
+    java.util.List access$200(com.gongwu.wherecollect.activity.InventoryActivity) -> b
+    void initData(com.gongwu.wherecollect.net.entity.response.DetailedListBean) -> b
+    void showProgressDialog() -> b
+    int getLayoutId() -> h
+    void initViews() -> j
+    com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
+    com.gongwu.wherecollect.contract.presenter.DetailedListPresenter createPresenter() -> k
+    java.lang.String access$100() -> m
+    void getPDF() -> n
+com.gongwu.wherecollect.activity.InventoryActivity$1 -> com.gongwu.wherecollect.activity.InventoryActivity$a:
+    com.gongwu.wherecollect.activity.InventoryActivity this$0 -> a
+    void accept(java.io.File) -> a
+com.gongwu.wherecollect.activity.InventoryActivity$2 -> com.gongwu.wherecollect.activity.InventoryActivity$b:
+    com.gongwu.wherecollect.activity.InventoryActivity this$0 -> a
+    void accept(java.lang.Throwable) -> a
+com.gongwu.wherecollect.activity.InventoryActivity$3 -> com.gongwu.wherecollect.activity.InventoryActivity$c:
+    com.gongwu.wherecollect.activity.InventoryActivity this$0 -> a
+    void subscribe(io.reactivex.ObservableEmitter) -> a
+com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding -> com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding:
+    android.view.View view7f080073 -> c
+    android.view.View view7f08018b -> b
+    com.gongwu.wherecollect.activity.InventoryActivity target -> a
+com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$a:
+    com.gongwu.wherecollect.activity.InventoryActivity val$target -> a
+com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$b:
+    com.gongwu.wherecollect.activity.InventoryActivity val$target -> a
 com.gongwu.wherecollect.activity.LayerTemplateActivity -> com.gongwu.wherecollect.activity.LayerTemplateActivity:
     java.lang.String familyCode -> f
     com.gongwu.wherecollect.net.entity.response.FurnitureBean furnitureBean -> g
@@ -13241,13 +13245,13 @@ com.gongwu.wherecollect.activity.LayerTemplateActivity -> com.gongwu.wherecollec
     com.gongwu.wherecollect.view.Loading loading -> j
     android.content.Context access$000(com.gongwu.wherecollect.activity.LayerTemplateActivity) -> a
     void getTemplateLayerListSuccess(com.gongwu.wherecollect.net.entity.response.LayerTemplateBean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.FurnitureBean,java.lang.String) -> a
     java.lang.String access$100(com.gongwu.wherecollect.activity.LayerTemplateActivity) -> b
+    void showProgressDialog() -> b
     void updataFurnitureSuccess(com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> b
     com.gongwu.wherecollect.net.entity.response.FurnitureBean access$200(com.gongwu.wherecollect.activity.LayerTemplateActivity) -> c
     com.gongwu.wherecollect.base.BasePresenter access$300(com.gongwu.wherecollect.activity.LayerTemplateActivity) -> d
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -13264,13 +13268,13 @@ com.gongwu.wherecollect.activity.LoginActivity -> com.gongwu.wherecollect.activi
     com.gongwu.wherecollect.view.Loading loading -> f
     com.gongwu.wherecollect.base.BasePresenter access$000(com.gongwu.wherecollect.activity.LoginActivity) -> a
     void getCodeSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> a
+    void hideProgressDialog() -> a
     void logoutTestSuccess(com.gongwu.wherecollect.net.entity.response.ResponseBean) -> a
     void otherLogin(com.umeng.socialize.bean.SHARE_MEDIA) -> a
     void loginbyThirdPartySuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> b
-    void hideProgressDialog() -> d
+    void showProgressDialog() -> b
     void loginPhoneSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> d
     void registerUserTestSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> e
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -13315,12 +13319,12 @@ com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$7 -> com.gongwu.where
 com.gongwu.wherecollect.activity.LoginEmailActivity -> com.gongwu.wherecollect.activity.LoginEmailActivity:
     com.gongwu.wherecollect.view.Loading loading -> f
     void getCodeSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> a
+    void hideProgressDialog() -> a
     void logoutTestSuccess(com.gongwu.wherecollect.net.entity.response.ResponseBean) -> a
     void loginbyThirdPartySuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> b
-    void hideProgressDialog() -> d
+    void showProgressDialog() -> b
     void loginPhoneSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> d
     void registerUserTestSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> e
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -13366,14 +13370,14 @@ com.gongwu.wherecollect.activity.MainActivity -> com.gongwu.wherecollect.activit
     void access$100(com.gongwu.wherecollect.activity.MainActivity,androidx.fragment.app.FragmentActivity,boolean) -> a
     void checkPermissionRequestEach(androidx.fragment.app.FragmentActivity,boolean) -> a
     void getVersionSuccess(com.gongwu.wherecollect.net.entity.response.VersionBean) -> a
+    void hideProgressDialog() -> a
     android.content.Context access$200(com.gongwu.wherecollect.activity.MainActivity) -> b
+    void showProgressDialog() -> b
     android.content.Context access$300(com.gongwu.wherecollect.activity.MainActivity) -> c
     android.content.Context access$400(com.gongwu.wherecollect.activity.MainActivity) -> d
     void dealWithShareRequestSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> d
-    void hideProgressDialog() -> d
     void selectTab(int) -> d
     com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.activity.MainActivity) -> e
-    void showProgressDialog() -> e
     android.content.Context access$600(com.gongwu.wherecollect.activity.MainActivity) -> f
     com.gongwu.wherecollect.base.BasePresenter access$700(com.gongwu.wherecollect.activity.MainActivity) -> g
     int getLayoutId() -> h
@@ -13422,16 +13426,16 @@ com.gongwu.wherecollect.activity.MessageListActivity -> com.gongwu.wherecollect.
     int access$000(com.gongwu.wherecollect.activity.MessageListActivity) -> a
     int access$002(com.gongwu.wherecollect.activity.MessageListActivity,int) -> a
     void access$600(com.gongwu.wherecollect.activity.MessageListActivity,com.gongwu.wherecollect.net.entity.response.MessageBean) -> a
+    void hideProgressDialog() -> a
     void onItemclick(com.gongwu.wherecollect.net.entity.response.MessageBean) -> a
     void start(android.content.Context) -> a
     int access$008(com.gongwu.wherecollect.activity.MessageListActivity) -> b
+    void showProgressDialog() -> b
     android.content.Context access$100(com.gongwu.wherecollect.activity.MessageListActivity) -> c
     com.gongwu.wherecollect.base.BasePresenter access$1000(com.gongwu.wherecollect.activity.MessageListActivity) -> d
     void dealWithShareRequestSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> d
-    void hideProgressDialog() -> d
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.activity.MessageListActivity) -> e
     void getMessagesListSuccess(java.util.List) -> e
-    void showProgressDialog() -> e
     android.content.Context access$300(com.gongwu.wherecollect.activity.MessageListActivity) -> f
     com.gongwu.wherecollect.base.BasePresenter access$400(com.gongwu.wherecollect.activity.MessageListActivity) -> g
     java.util.List access$500(com.gongwu.wherecollect.activity.MessageListActivity) -> h
@@ -13477,14 +13481,14 @@ com.gongwu.wherecollect.activity.PersonActivity -> com.gongwu.wherecollect.activ
     void againTipsUser(com.gongwu.wherecollect.net.entity.request.BindAppReq) -> a
     void bindCheckSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean,com.gongwu.wherecollect.net.entity.request.BindAppReq) -> a
     void getUserInfoSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> a
+    void hideProgressDialog() -> a
     com.gongwu.wherecollect.base.BasePresenter access$1100(com.gongwu.wherecollect.activity.PersonActivity) -> b
+    void showProgressDialog() -> b
     void tipsUser(com.gongwu.wherecollect.net.entity.request.BindAppReq) -> b
     android.content.Context access$1200(com.gongwu.wherecollect.activity.PersonActivity) -> c
     android.content.Context access$1300(com.gongwu.wherecollect.activity.PersonActivity) -> d
-    void hideProgressDialog() -> d
     void upLoadImg(java.io.File) -> d
     android.content.Context access$1400(com.gongwu.wherecollect.activity.PersonActivity) -> e
-    void showProgressDialog() -> e
     com.gongwu.wherecollect.base.BasePresenter access$1500(com.gongwu.wherecollect.activity.PersonActivity) -> f
     android.content.Context access$300(com.gongwu.wherecollect.activity.PersonActivity) -> g
     com.gongwu.wherecollect.base.BasePresenter access$400(com.gongwu.wherecollect.activity.PersonActivity) -> h
@@ -13567,9 +13571,9 @@ com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$9 -> com.gongwu.wher
 com.gongwu.wherecollect.activity.RegisterActivity -> com.gongwu.wherecollect.activity.RegisterActivity:
     com.gongwu.wherecollect.view.Loading loading -> f
     void getCodeSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> a
+    void hideProgressDialog() -> a
+    void showProgressDialog() -> b
     void registerSuccess(com.gongwu.wherecollect.net.entity.response.UserBean) -> c
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -13590,13 +13594,13 @@ com.gongwu.wherecollect.activity.RelationGoodsListActivity -> com.gongwu.whereco
     com.gongwu.wherecollect.adapter.RelationGoodsAdapter mAdapter -> g
     int access$000(com.gongwu.wherecollect.activity.RelationGoodsListActivity) -> a
     int access$002(com.gongwu.wherecollect.activity.RelationGoodsListActivity,int) -> a
+    void hideProgressDialog() -> a
     void onItemClick(int,android.view.View) -> a
     int access$008(com.gongwu.wherecollect.activity.RelationGoodsListActivity) -> b
+    void showProgressDialog() -> b
     android.content.Context access$100(com.gongwu.wherecollect.activity.RelationGoodsListActivity) -> c
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.activity.RelationGoodsListActivity) -> d
-    void hideProgressDialog() -> d
     android.content.Context access$300(com.gongwu.wherecollect.activity.RelationGoodsListActivity) -> e
-    void showProgressDialog() -> e
     com.gongwu.wherecollect.base.BasePresenter access$400(com.gongwu.wherecollect.activity.RelationGoodsListActivity) -> f
     void getRelationGoodsSuccess(java.util.List) -> g
     int getLayoutId() -> h
@@ -13641,12 +13645,12 @@ com.gongwu.wherecollect.activity.SearchActivity -> com.gongwu.wherecollect.activ
     void access$000(com.gongwu.wherecollect.activity.SearchActivity) -> a
     void access$300(com.gongwu.wherecollect.activity.SearchActivity,com.gongwu.wherecollect.net.entity.response.SerchListBean,boolean) -> a
     void getSearchListSuccess(com.gongwu.wherecollect.net.entity.response.SerchListBean) -> a
+    void hideProgressDialog() -> a
     void showOpenBtn(com.gongwu.wherecollect.net.entity.response.SerchListBean,boolean) -> a
     void start(android.content.Context) -> a
     void access$100(com.gongwu.wherecollect.activity.SearchActivity) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.net.entity.response.SerchListBean access$200(com.gongwu.wherecollect.activity.SearchActivity) -> c
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -13714,14 +13718,14 @@ com.gongwu.wherecollect.activity.SharePersonDetailsActivity -> com.gongwu.wherec
     void access$000(com.gongwu.wherecollect.activity.SharePersonDetailsActivity,int) -> a
     android.content.Context access$100(com.gongwu.wherecollect.activity.SharePersonDetailsActivity) -> a
     boolean access$602(com.gongwu.wherecollect.activity.SharePersonDetailsActivity,boolean) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.SharedPersonBean) -> a
     int access$200(com.gongwu.wherecollect.activity.SharePersonDetailsActivity) -> b
+    void showProgressDialog() -> b
     java.util.List access$300(com.gongwu.wherecollect.activity.SharePersonDetailsActivity) -> c
     com.gongwu.wherecollect.net.entity.response.SharedPersonBean access$400(com.gongwu.wherecollect.activity.SharePersonDetailsActivity) -> d
     void closeSpaceDialog(int) -> d
-    void hideProgressDialog() -> d
     com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.activity.SharePersonDetailsActivity) -> e
-    void showProgressDialog() -> e
     android.content.Context access$700(com.gongwu.wherecollect.activity.SharePersonDetailsActivity) -> f
     com.gongwu.wherecollect.base.BasePresenter access$800(com.gongwu.wherecollect.activity.SharePersonDetailsActivity) -> g
     int getLayoutId() -> h
@@ -13761,15 +13765,15 @@ com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity -> com.gongwu.whereco
     void closeShareUserSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> D
     void access$000(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity,int) -> a
     android.content.Context access$100(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.SharedLocationBean) -> a
     com.gongwu.wherecollect.net.entity.response.SharedLocationBean access$1000(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> b
     int access$802(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity,int) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$1100(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> c
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> d
-    void hideProgressDialog() -> d
     void startDialogHintCloseShareUser(int) -> d
     java.util.List access$300(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> e
-    void showProgressDialog() -> e
     android.content.Context access$400(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> f
     java.util.List access$500(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> g
     android.content.Context access$600(com.gongwu.wherecollect.activity.ShareSpaceDetailsActivity) -> h
@@ -14690,10 +14694,10 @@ com.gongwu.wherecollect.base.BaseFragment -> com.gongwu.wherecollect.base.a:
     android.view.View view -> e
     com.gongwu.wherecollect.base.BasePresenter mPresenter -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
-    void clearSelect() -> f
-    com.gongwu.wherecollect.base.BasePresenter getPresenter() -> g
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    void refreshFragment() -> i
+    void clearSelect() -> c
+    com.gongwu.wherecollect.base.BasePresenter getPresenter() -> d
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    void refreshFragment() -> f
 com.gongwu.wherecollect.base.BaseMvpActivity -> com.gongwu.wherecollect.base.BaseMvpActivity:
     com.gongwu.wherecollect.base.BasePresenter presenter -> e
     void initPresenter() -> i
@@ -14706,8 +14710,8 @@ com.gongwu.wherecollect.base.BasePresenter -> com.gongwu.wherecollect.base.b:
     void detachView() -> a
     com.gongwu.wherecollect.base.BaseView getUIView() -> b
 com.gongwu.wherecollect.base.BaseView -> com.gongwu.wherecollect.base.c:
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
+    void hideProgressDialog() -> a
+    void showProgressDialog() -> b
 com.gongwu.wherecollect.contract.AppConstant -> com.gongwu.wherecollect.a.a:
     java.lang.String DEVICE_TOKEN -> a
     java.lang.String COOKIE -> b
@@ -16824,23 +16828,23 @@ com.gongwu.wherecollect.fragment.FamilyRoomFragment -> com.gongwu.wherecollect.f
     boolean access$000(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> a
     void getFurnitureListSuccess(java.util.List) -> a
     com.gongwu.wherecollect.fragment.FamilyRoomFragment getInstance(com.gongwu.wherecollect.net.entity.response.RoomBean,java.lang.String,boolean) -> a
+    void hideProgressDialog() -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     void setSelectItemClickListener(com.gongwu.wherecollect.fragment.FamilyRoomFragment$SelectItemClickListener) -> a
     com.gongwu.wherecollect.fragment.FamilyRoomFragment$SelectItemClickListener access$100(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.net.entity.response.RoomBean access$200(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> c
+    void clearSelect() -> c
     com.gongwu.wherecollect.adapter.FamilyRoomAdapter access$300(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> d
-    void hideProgressDialog() -> d
     java.util.List access$400(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> e
-    void showProgressDialog() -> e
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    com.gongwu.wherecollect.contract.presenter.FamilyPresenter initPresenter() -> e
     android.content.Context access$500(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> f
-    void clearSelect() -> f
+    void refreshFragment() -> f
     java.lang.String access$600(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> g
+    void initUI() -> g
     android.content.Context access$700(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> h
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    com.gongwu.wherecollect.contract.presenter.FamilyPresenter initPresenter() -> h
-    void refreshFragment() -> i
-    void initUI() -> j
-    void isCanLoadData() -> k
+    void isCanLoadData() -> h
 com.gongwu.wherecollect.fragment.FamilyRoomFragment$1 -> com.gongwu.wherecollect.fragment.FamilyRoomFragment$a:
     com.gongwu.wherecollect.fragment.FamilyRoomFragment this$0 -> a
     void onItemClick(int,android.view.View) -> a
@@ -16859,19 +16863,19 @@ com.gongwu.wherecollect.fragment.SharedPersonFragment -> com.gongwu.wherecollect
     boolean initData -> h
     void closeShareUserSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> D
     java.util.List access$000(com.gongwu.wherecollect.fragment.SharedPersonFragment) -> a
+    void hideProgressDialog() -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     android.content.Context access$100(com.gongwu.wherecollect.fragment.SharedPersonFragment) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.fragment.SharedPersonFragment) -> c
     android.content.Context access$300(com.gongwu.wherecollect.fragment.SharedPersonFragment) -> d
-    void hideProgressDialog() -> d
     android.content.Context access$400(com.gongwu.wherecollect.fragment.SharedPersonFragment) -> e
-    void showProgressDialog() -> e
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    com.gongwu.wherecollect.contract.presenter.SharePresenter initPresenter() -> e
     com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.fragment.SharedPersonFragment) -> f
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    com.gongwu.wherecollect.contract.presenter.SharePresenter initPresenter() -> h
-    void initViews() -> j
-    void isCanLoadData() -> k
-    void refreshLayoutFinished() -> l
+    void initViews() -> g
+    void isCanLoadData() -> h
+    void refreshLayoutFinished() -> i
     void getSharedLocationsSuccess(java.util.List) -> u
     void getSharedUsersListSuccess(java.util.List) -> v
 com.gongwu.wherecollect.fragment.SharedPersonFragment$1 -> com.gongwu.wherecollect.fragment.SharedPersonFragment$a:
@@ -16895,19 +16899,19 @@ com.gongwu.wherecollect.fragment.SharedSpaceFragment -> com.gongwu.wherecollect.
     com.gongwu.wherecollect.adapter.ShareSpaceListAdapter mAdapter -> k
     void closeShareUserSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> D
     java.util.List access$000(com.gongwu.wherecollect.fragment.SharedSpaceFragment) -> a
+    void hideProgressDialog() -> a
     android.view.View initView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> a
     android.content.Context access$100(com.gongwu.wherecollect.fragment.SharedSpaceFragment) -> b
+    void showProgressDialog() -> b
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.fragment.SharedSpaceFragment) -> c
     android.content.Context access$300(com.gongwu.wherecollect.fragment.SharedSpaceFragment) -> d
-    void hideProgressDialog() -> d
     android.content.Context access$400(com.gongwu.wherecollect.fragment.SharedSpaceFragment) -> e
-    void showProgressDialog() -> e
+    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> e
+    com.gongwu.wherecollect.contract.presenter.SharePresenter initPresenter() -> e
     com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.fragment.SharedSpaceFragment) -> f
-    com.gongwu.wherecollect.base.BasePresenter initPresenter() -> h
-    com.gongwu.wherecollect.contract.presenter.SharePresenter initPresenter() -> h
-    void initViews() -> j
-    void isCanLoadData() -> k
-    void refreshLayoutFinished() -> l
+    void initViews() -> g
+    void isCanLoadData() -> h
+    void refreshLayoutFinished() -> i
     void getSharedLocationsSuccess(java.util.List) -> u
     void getSharedUsersListSuccess(java.util.List) -> v
 com.gongwu.wherecollect.fragment.SharedSpaceFragment$1 -> com.gongwu.wherecollect.fragment.SharedSpaceFragment$a:
@@ -17065,21 +17069,21 @@ com.gongwu.wherecollect.object.AddGoodsActivity -> com.gongwu.wherecollect.objec
     void editGoodsSuccess(com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     void getCamareImg(java.io.File) -> a
     void getTaobaoInfoSuccess(com.gongwu.wherecollect.net.entity.response.BookBean) -> a
-    void onPhotoClick() -> a
+    void hideProgressDialog() -> a
     void onUpLoadSuccess(java.lang.String) -> a
     void setCommitBtnEnable(boolean) -> a
     void start(android.content.Context,java.lang.String,java.lang.String) -> a
     com.gongwu.wherecollect.net.entity.response.ObjectBean access$200(com.gongwu.wherecollect.object.AddGoodsActivity) -> b
     void getSelectPhotoImg(java.io.File) -> b
-    void onScanClick() -> b
     void removeObjectFromFurnitrueSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> b
+    void showProgressDialog() -> b
     void updateBeanWithBook(com.gongwu.wherecollect.net.entity.response.BookBean) -> b
     com.gongwu.wherecollect.base.BasePresenter access$300(com.gongwu.wherecollect.object.AddGoodsActivity) -> c
     void getBookInfoSuccess(com.gongwu.wherecollect.net.entity.response.BookBean) -> c
     void getCropBitmap(java.io.File) -> c
-    void onCameraClick() -> c
-    void hideProgressDialog() -> d
-    void showProgressDialog() -> e
+    void onPhotoClick() -> c
+    void onScanClick() -> d
+    void onCameraClick() -> e
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -17155,6 +17159,7 @@ com.gongwu.wherecollect.object.AddMoreGoodsActivity -> com.gongwu.wherecollect.o
     void editGoodsSuccess(com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     void getCamareImg(java.io.File) -> a
     void getTaobaoInfoSuccess(com.gongwu.wherecollect.net.entity.response.BookBean) -> a
+    void hideProgressDialog() -> a
     void onItemClick(int,android.view.View) -> a
     void onRightCardExit(java.lang.Object) -> a
     void onScroll(float,float) -> a
@@ -17165,6 +17170,7 @@ com.gongwu.wherecollect.object.AddMoreGoodsActivity -> com.gongwu.wherecollect.o
     void getSelectPhotoImg(java.io.File) -> b
     void onLeftCardExit(java.lang.Object) -> b
     void removeObjectFromFurnitrueSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> b
+    void showProgressDialog() -> b
     void startDialog(com.gongwu.wherecollect.net.entity.response.ObjectBean) -> b
     void updateBeanWithBook(com.gongwu.wherecollect.net.entity.response.BookBean) -> b
     java.util.List access$1100(com.gongwu.wherecollect.object.AddMoreGoodsActivity) -> c
@@ -17172,9 +17178,7 @@ com.gongwu.wherecollect.object.AddMoreGoodsActivity -> com.gongwu.wherecollect.o
     void getCropBitmap(java.io.File) -> c
     void onAdapterAboutToEmpty(int) -> c
     void access$1200(com.gongwu.wherecollect.object.AddMoreGoodsActivity) -> d
-    void hideProgressDialog() -> d
     com.gongwu.wherecollect.util.SelectImgDialog access$1300(com.gongwu.wherecollect.object.AddMoreGoodsActivity) -> e
-    void showProgressDialog() -> e
     void access$1400(com.gongwu.wherecollect.object.AddMoreGoodsActivity) -> f
     com.gongwu.wherecollect.base.BasePresenter access$200(com.gongwu.wherecollect.object.AddMoreGoodsActivity) -> g
     void removeFirstObjectInAdapter() -> g
@@ -17230,14 +17234,14 @@ com.gongwu.wherecollect.object.GoodsDetailsActivity -> com.gongwu.wherecollect.o
     com.gongwu.wherecollect.net.entity.response.RemindBean remindBean -> g
     void delGoodsSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> A
     com.gongwu.wherecollect.net.entity.response.ObjectBean access$000(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> a
+    void hideProgressDialog() -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     void access$100(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> b
     void removeObjectFromFurnitrueSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> b
+    void showProgressDialog() -> b
     android.content.Context access$200(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> c
     com.gongwu.wherecollect.net.entity.response.RemindBean access$300(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> d
-    void hideProgressDialog() -> d
     android.content.Context access$400(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> e
-    void showProgressDialog() -> e
     com.gongwu.wherecollect.base.BasePresenter access$500(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> f
     android.content.Context access$600(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> g
     com.gongwu.wherecollect.base.BasePresenter access$700(com.gongwu.wherecollect.object.GoodsDetailsActivity) -> h
@@ -17279,11 +17283,11 @@ com.gongwu.wherecollect.object.SelectChannelActivity -> com.gongwu.wherecollect.
     java.util.List mList -> i
     com.gongwu.wherecollect.net.entity.response.ObjectBean objectBean -> h
     void addChannelSuccess(com.gongwu.wherecollect.net.entity.response.ChannelBean) -> a
+    void hideProgressDialog() -> a
     void saveCustomSubCateSuccess(com.gongwu.wherecollect.net.entity.response.BaseBean) -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     void back(java.lang.String) -> b
     void getCategoryDetailsSuccess(java.util.List) -> c
-    void hideProgressDialog() -> d
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -17316,10 +17320,10 @@ com.gongwu.wherecollect.object.SelectColorActivity -> com.gongwu.wherecollect.ob
     com.gongwu.wherecollect.net.entity.response.ObjectBean objectBean -> h
     void access$000(com.gongwu.wherecollect.object.SelectColorActivity) -> a
     void addChannelSuccess(com.gongwu.wherecollect.net.entity.response.ChannelBean) -> a
+    void hideProgressDialog() -> a
     void saveCustomSubCateSuccess(com.gongwu.wherecollect.net.entity.response.BaseBean) -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     void getCategoryDetailsSuccess(java.util.List) -> c
-    void hideProgressDialog() -> d
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -17376,10 +17380,10 @@ com.gongwu.wherecollect.object.SelectSortActivity -> com.gongwu.wherecollect.obj
     java.util.List mlist -> i
     com.gongwu.wherecollect.net.entity.response.ChannelBean selectChildBean -> l
     com.gongwu.wherecollect.adapter.SortChildGridAdapter access$000(com.gongwu.wherecollect.object.SelectSortActivity) -> a
+    void hideProgressDialog() -> a
     void onItemClick(int,android.view.View) -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     void getCategoryDetailsSuccess(java.util.List) -> c
-    void hideProgressDialog() -> d
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -17410,11 +17414,11 @@ com.gongwu.wherecollect.object.SelectSortChildActivity -> com.gongwu.wherecollec
     com.gongwu.wherecollect.adapter.SortChildAdapter mAdapter -> g
     java.util.List mlist -> h
     void addChannelSuccess(com.gongwu.wherecollect.net.entity.response.ChannelBean) -> a
+    void hideProgressDialog() -> a
     void onItemClick(int,android.view.View) -> a
     void saveCustomSubCateSuccess(com.gongwu.wherecollect.net.entity.response.BaseBean) -> a
     void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean,boolean) -> a
     void getCategoryDetailsSuccess(java.util.List) -> c
-    void hideProgressDialog() -> d
     int getLayoutId() -> h
     void initViews() -> j
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> k
@@ -17438,6 +17442,7 @@ com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding$3 -> com.gong
     com.gongwu.wherecollect.object.SelectSortChildActivity val$target -> a
 com.gongwu.wherecollect.permission.FloatWindowManager -> com.gongwu.wherecollect.d.a:
     com.gongwu.wherecollect.permission.FloatWindowManager instance -> a
+    boolean isShow -> b
     boolean applyOrShowFloatWindow(android.content.Context) -> a
     com.gongwu.wherecollect.permission.FloatWindowManager getInstance() -> a
     void showConfirmDialog(android.content.Context,com.gongwu.wherecollect.permission.FloatWindowManager$OnConfirmResult) -> a
@@ -18392,9 +18397,9 @@ com.gongwu.wherecollect.view.PopupAddGoods -> com.gongwu.wherecollect.view.Popup
     void setPopupClickListener(com.gongwu.wherecollect.view.PopupAddGoods$AddGoodsPopupClickListener) -> a
     void onViewCreated(android.view.View) -> b
 com.gongwu.wherecollect.view.PopupAddGoods$AddGoodsPopupClickListener -> com.gongwu.wherecollect.view.PopupAddGoods$a:
-    void onPhotoClick() -> a
-    void onScanClick() -> b
-    void onCameraClick() -> c
+    void onPhotoClick() -> c
+    void onScanClick() -> d
+    void onCameraClick() -> e
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding:
     android.view.View view7f08008d -> c
     android.view.View view7f080090 -> b
@@ -21303,7 +21308,7 @@ com.permissionx.guolindev.request.InvisibleFragment -> com.permissionx.guolindev
     void onRequestNormalPermissionsResult(java.lang.String[],int[]) -> a
     void requestAccessBackgroundLocationNow(com.permissionx.guolindev.request.PermissionBuilder,com.permissionx.guolindev.request.ChainTask) -> a
     void requestNow(com.permissionx.guolindev.request.PermissionBuilder,java.util.Set,com.permissionx.guolindev.request.ChainTask) -> a
-    void onRequestBackgroundLocationPermissionResult() -> f
+    void onRequestBackgroundLocationPermissionResult() -> c
 com.permissionx.guolindev.request.PermissionBuilder -> com.permissionx.guolindev.d.f:
     com.permissionx.guolindev.callback.ExplainReasonCallback explainReasonCallback -> l
     java.util.Set normalPermissions -> b
@@ -22193,9 +22198,18 @@ com.tencent.bugly.beta.tinker.TinkerUtils$ScreenState$1 -> com.tencent.bugly.bet
     com.tencent.bugly.beta.tinker.TinkerUtils$ScreenState$IOnScreenOff val$onScreenOffInterface -> a
 com.tencent.bugly.beta.tinker.TinkerUtils$ScreenState$IOnScreenOff -> com.tencent.bugly.beta.tinker.TinkerUtils$ScreenState$b:
     void onScreenOff() -> a
-com.tencent.bugly.beta.ui.a -> com.tencent.bugly.beta.ui.d$a:
-com.tencent.bugly.beta.ui.b -> com.tencent.bugly.beta.ui.d$b:
-com.tencent.bugly.beta.ui.c -> com.tencent.bugly.beta.ui.d$c:
+com.tencent.bugly.beta.ui.BaseDialogFrag$1 -> com.tencent.bugly.beta.ui.BaseDialogFrag$a:
+    com.tencent.bugly.beta.ui.BaseDialogFrag this$0 -> e
+    android.view.View$OnClickListener val$lListener -> b
+    java.lang.String val$lText -> a
+    android.view.View$OnClickListener val$rListener -> d
+    java.lang.String val$rText -> c
+com.tencent.bugly.beta.ui.BaseDialogFrag$2 -> com.tencent.bugly.beta.ui.BaseDialogFrag$b:
+    android.view.animation.Animation val$exitAnim -> a
+    com.tencent.bugly.beta.ui.BaseDialogFrag this$0 -> b
+com.tencent.bugly.beta.ui.BaseDialogFrag$3 -> com.tencent.bugly.beta.ui.BaseDialogFrag$c:
+    com.tencent.bugly.beta.ui.BaseDialogFrag this$0 -> a
+com.tencent.bugly.beta.ui.H5WebView$BaseWebViewClient -> com.tencent.bugly.beta.ui.H5WebView$a:
 com.tencent.bugly.crashreport.a -> com.tencent.bugly.crashreport.CrashReport$a:
 com.tencent.bugly.crashreport.biz.a -> com.tencent.bugly.crashreport.biz.c$a:
 com.tencent.bugly.crashreport.biz.b -> com.tencent.bugly.crashreport.biz.c$b:
@@ -22209,13 +22223,14 @@ com.tencent.bugly.crashreport.common.info.c -> com.tencent.bugly.crashreport.com
 com.tencent.bugly.crashreport.common.strategy.a -> com.tencent.bugly.crashreport.common.strategy.StrategyBean$a:
 com.tencent.bugly.crashreport.common.strategy.b -> com.tencent.bugly.crashreport.common.strategy.c$a:
 com.tencent.bugly.crashreport.crash.a -> com.tencent.bugly.crashreport.crash.BuglyBroadcastReceiver$a:
-com.tencent.bugly.crashreport.crash.anr.b -> com.tencent.bugly.crashreport.crash.anr.g$a:
-com.tencent.bugly.crashreport.crash.anr.c -> com.tencent.bugly.crashreport.crash.anr.g$b:
-com.tencent.bugly.crashreport.crash.anr.d -> com.tencent.bugly.crashreport.crash.anr.g$c:
-com.tencent.bugly.crashreport.crash.anr.e -> com.tencent.bugly.crashreport.crash.anr.g$d:
-com.tencent.bugly.crashreport.crash.anr.f -> com.tencent.bugly.crashreport.crash.anr.g$e:
-com.tencent.bugly.crashreport.crash.anr.h -> com.tencent.bugly.crashreport.crash.anr.TraceFileHelper$c:
-com.tencent.bugly.crashreport.crash.anr.i -> com.tencent.bugly.crashreport.crash.anr.TraceFileHelper$d:
+com.tencent.bugly.crashreport.crash.anr.b -> com.tencent.bugly.crashreport.crash.anr.h$a$a:
+com.tencent.bugly.crashreport.crash.anr.c -> com.tencent.bugly.crashreport.crash.anr.h$a:
+com.tencent.bugly.crashreport.crash.anr.d -> com.tencent.bugly.crashreport.crash.anr.h$b:
+com.tencent.bugly.crashreport.crash.anr.e -> com.tencent.bugly.crashreport.crash.anr.h$c:
+com.tencent.bugly.crashreport.crash.anr.f -> com.tencent.bugly.crashreport.crash.anr.h$d:
+com.tencent.bugly.crashreport.crash.anr.g -> com.tencent.bugly.crashreport.crash.anr.h$e:
+com.tencent.bugly.crashreport.crash.anr.i -> com.tencent.bugly.crashreport.crash.anr.TraceFileHelper$c:
+com.tencent.bugly.crashreport.crash.anr.j -> com.tencent.bugly.crashreport.crash.anr.TraceFileHelper$d:
 com.tencent.bugly.crashreport.crash.c -> com.tencent.bugly.crashreport.crash.CrashDetailBean$a:
 com.tencent.bugly.crashreport.crash.d -> com.tencent.bugly.crashreport.crash.e$a:
 com.tencent.bugly.crashreport.crash.f -> com.tencent.bugly.crashreport.crash.h$a:

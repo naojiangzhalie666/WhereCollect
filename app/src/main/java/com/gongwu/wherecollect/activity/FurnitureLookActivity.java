@@ -40,7 +40,6 @@ import com.gongwu.wherecollect.object.GoodsDetailsActivity;
 import com.gongwu.wherecollect.util.AnimationUtil;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
-import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.PopupEditBox;
@@ -341,7 +340,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     selectView.setEditable(false);
                     selectView = null;
                 }
-                DetailedListActivity.start(mContext, family_code, roomBean.get_id(), roomBean.getCode(), furnitureBean.getCode(), mRoomFurnitureResponse);
+                InventoryActivity.start(mContext, family_code, roomBean.get_id(), roomBean.getCode(), furnitureBean.getCode(), mRoomFurnitureResponse);
                 break;
             default:
                 break;

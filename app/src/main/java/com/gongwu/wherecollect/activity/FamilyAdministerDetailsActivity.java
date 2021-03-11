@@ -117,6 +117,12 @@ public class FamilyAdministerDetailsActivity extends BaseMvpActivity<FamilyAdmin
         sharedSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //vip功能
+                if (!App.getUser(mContext).isIs_vip()) {
+                    BuyVIPActivity.start(mContext);
+                    sharedSwitch.setChecked(false);
+                    return;
+                }
                 if (sharedSwitch.isChecked()) {
                     sharedLayout.setVisibility(View.VISIBLE);
                 } else {

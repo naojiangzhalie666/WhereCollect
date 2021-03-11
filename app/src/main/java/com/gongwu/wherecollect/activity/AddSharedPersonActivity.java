@@ -292,9 +292,13 @@ public class AddSharedPersonActivity extends BaseMvpActivity<AddSharedPersonActi
         DialogUtil.show("", content, "确定", "取消", (Activity) mContext, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
-                getPresenter().setShareLocation(App.getUser(mContext).getId(), App.getSelectFamilyBean().getId()
-                        , App.getSelectFamilyBean().getCode(), roomCodes, selectBean);
+                //vip功能
+                if (!App.getUser(mContext).isIs_vip()) {
+                    BuyVIPActivity.start(mContext);
+                } else {
+                    getPresenter().setShareLocation(App.getUser(mContext).getId(), App.getSelectFamilyBean().getId()
+                            , App.getSelectFamilyBean().getCode(), roomCodes, selectBean);
+                }
             }
         }, null);
 

@@ -303,6 +303,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         if (data != null) {
             SaveDate.getInstence(mContext).setUser(JsonUtils.jsonFromObject(data));
             App.setUser(data);
+            setResult(RESULT_OK);
             finish();
         }
     }

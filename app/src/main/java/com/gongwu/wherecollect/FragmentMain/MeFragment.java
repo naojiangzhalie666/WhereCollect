@@ -1,6 +1,7 @@
 package com.gongwu.wherecollect.FragmentMain;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
@@ -54,6 +55,7 @@ public class MeFragment extends BaseFragment {
 
     private static final String TAG = "MeFragment";
     private final int START_CODE = 1012;
+    private final int START_BUY_VIP_CODE = 1032;
 
     @BindView(R.id.buy_vip_iv)
     ImageView buyVipIv;
@@ -146,7 +148,8 @@ public class MeFragment extends BaseFragment {
                 MessageListActivity.start(mContext);
                 break;
             case R.id.buy_vip_iv:
-                BuyVIPActivity.start(mContext);
+                Intent intent1 = new Intent(mContext, BuyVIPActivity.class);
+                startActivityForResult(intent1, START_BUY_VIP_CODE);
                 break;
             case R.id.feed_back_tv:
                 FeedBackActivity.start(mContext);
@@ -166,6 +169,9 @@ public class MeFragment extends BaseFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == START_BUY_VIP_CODE && resultCode == Activity.RESULT_OK) {
+            refreshUi();
+        }
         if (requestCode == START_CODE && resultCode == CaptureActivity.result) {//扫描的到结果
             String result = data.getStringExtra("result");
             String[] codes = result.split(",");

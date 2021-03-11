@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.AddChangWangGoodActivity;
+import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.EditMoreGoodsActivity;
 import com.gongwu.wherecollect.activity.SearchActivity;
 import com.gongwu.wherecollect.activity.StatisticsActivity;
@@ -40,6 +41,7 @@ import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.StatusBarUtil;
+import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.EmptyView;
 import com.gongwu.wherecollect.view.PopupFamilyList;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -213,16 +215,25 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 AddChangWangGoodActivity.start(getContext(), goodType, changWangCode);
                 break;
             case R.id.statistics_layout:
+                //vip功能
                 if (mList != null && mList.size() > 0) {
                     String type;
                     if (mList.get(selectPosition).getCode().equals(StatisticsActivity.TYPE_ALL)) {
                         type = StatisticsActivity.TYPE_ALL;
                     } else if (mList.get(selectPosition).getName().equals("衣装打扮")) {
                         type = StatisticsActivity.TYPE_CLOTHES;
+                        if (!App.getUser(mContext).isIs_vip()) {
+                            BuyVIPActivity.start(mContext);
+                            return;
+                        }
                     } else if (mList.get(selectPosition).getName().equals("未分类")) {
                         return;
                     } else {
                         type = StatisticsActivity.TYPE_OTHER;
+                        if (!App.getUser(mContext).isIs_vip()) {
+                            BuyVIPActivity.start(mContext);
+                            return;
+                        }
                     }
                     StatisticsActivity.start(mContext, familyBean.getCode(), mList.get(selectPosition).getCode(), type);
                 }
