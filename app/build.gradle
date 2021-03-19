@@ -53,6 +53,9 @@ android {
         ali {
             manifestPlaceholders = [CHANNEL_VALUE: "ali"]
         }
+        p360 {
+            manifestPlaceholders = [CHANNEL_VALUE: "360"]
+        }
     }
     buildTypes {
         release {
