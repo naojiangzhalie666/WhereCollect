@@ -24,7 +24,8 @@ public class AddGoodsPropertyActivity extends BaseActivity {
     TextView mTitleTv;
     @BindView(R.id.goodsInfo_other_view)
     ObjectInfoEditView goodsInfoView;
-
+    @BindView(R.id.title_commit_bg_main_color_tv)
+    TextView editInfoCommitTv;
 
     private ObjectBean objectBean;
 
@@ -35,9 +36,8 @@ public class AddGoodsPropertyActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-
+        editInfoCommitTv.setVisibility(View.VISIBLE);
         if (getIntent().getBooleanExtra("isAddMoreGoods", false)) {
-            goodsInfoView.hintMoreGoodsLayout();
             mTitleTv.setText(R.string.add_more_goods_property);
         } else {
             mTitleTv.setText(R.string.add_goods_property);
@@ -51,13 +51,13 @@ public class AddGoodsPropertyActivity extends BaseActivity {
         goodsInfoView.init(objectBean);
     }
 
-    @OnClick({R.id.back_btn, R.id.commit_btn})
+    @OnClick({R.id.back_btn, R.id.title_commit_bg_main_color_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
                 finish();
                 break;
-            case R.id.commit_btn:
+            case R.id.title_commit_bg_main_color_tv:
                 onClickCommit();
                 break;
 

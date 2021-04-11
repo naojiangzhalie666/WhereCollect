@@ -177,12 +177,14 @@
                 android:textColor="@color/color999"
                 android:textSize="@dimen/f_12" />
 
-            <com.gongwu.wherecollect.view.ObjectInfoLookView
-                android:id="@+id/goodsInfo_view"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/goods_info_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dip_16"
+                android:layout_marginEnd="@dimen/dip_16"
+                android:background="@drawable/shape_white_r10dp"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

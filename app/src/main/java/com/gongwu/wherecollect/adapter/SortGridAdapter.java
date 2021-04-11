@@ -1,6 +1,7 @@
 package com.gongwu.wherecollect.adapter;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
+import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.StringUtils;
 
 import java.util.List;
@@ -84,6 +86,7 @@ public class SortGridAdapter extends RecyclerView.Adapter<SortGridAdapter.Custom
             super(view);
             ButterKnife.bind(this, view);
             view.setOnClickListener(this);
+
         }
 
         @Override

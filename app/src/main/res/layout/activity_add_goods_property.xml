@@ -12,19 +12,7 @@
     <com.gongwu.wherecollect.view.ObjectInfoEditView
         android:id="@+id/goodsInfo_other_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dip_16" />
 
-    <Button
-        android:id="@+id/commit_btn"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="@dimen/dip_240"
-        android:layout_height="@dimen/dip_45"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dip_32"
-        android:layout_marginBottom="@dimen/dip_24"
-        android:background="@drawable/select_maincolor_r4_20dp_bg"
-        android:text="@string/confirm"
-        android:textColor="@color/white"
-        android:textSize="15sp" />
 </LinearLayout>

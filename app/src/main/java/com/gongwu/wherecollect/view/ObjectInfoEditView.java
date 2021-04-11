@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
@@ -42,47 +44,30 @@ import butterknife.OnClick;
  * @since JDK 1.7
  */
 public class ObjectInfoEditView extends LinearLayout {
-    ObjectBean bean;
-    @BindView(R.id.yanse_flow)
-    FlowViewGroup yanseFlow;
-    @BindView(R.id.jijie_flow)
-    FlowViewGroup jijieFlow;
-    @BindView(R.id.qudao_flow)
-    FlowViewGroup qudaoFlow;
-    @BindView(R.id.fenlei_flow)
-    FlowViewGroup fenleiFlow;
+
+    @BindView(R.id.classify_tv)
+    TextView classifyTv;
     @BindView(R.id.rating_star)
     RatingBar ratingStar;
-    @BindView(R.id.star_layout)
-    View starLayout;
-    @BindView(R.id.fenlei_layout)
-    View fenleiLayout;
-    @BindView(R.id.jiage_layout)
-    View jiageLayout;
-    @BindView(R.id.yanse_layout)
-    View yanseLayout;
-    @BindView(R.id.jijie_layout)
-    View jijieLayout;
     @BindView(R.id.qita_tv)
     EditText qitaTv;
-    @BindView(R.id.qita_layout)
-    View qitaLayout;
-    @BindView(R.id.qudao_layout)
-    View qudaoLayout;
-    @BindView(R.id.jiage_edit)
-    EditText jiageEdit;
-    @BindView(R.id.add_goods_count_layout)
-    View addGoodsCountLaytou;
+    @BindView(R.id.price_edit)
+    EditText priceEdit;
     @BindView(R.id.goods_count_edit)
     EditText goodsCountEdit;
     @BindView(R.id.purchase_time_tv)
     TextView purchaseTimeTv;
     @BindView(R.id.expiry_time_tv)
     TextView expiryTimeTv;
-    @BindView(R.id.expiry_time_layout)
-    LinearLayout expiryTimeLayout;
+    @BindView(R.id.season_tv)
+    TextView seasonTv;
+    @BindView(R.id.channel_tv)
+    TextView channelTv;
+    @BindView(R.id.color_tv)
+    TextView colorTv;
 
-    private ChangeListener changeListener;
+    private Context mContext;
+    private ObjectBean bean;
 
     public ObjectInfoEditView(Context context) {
         this(context, null);
@@ -90,130 +75,58 @@ public class ObjectInfoEditView extends LinearLayout {
 
     public ObjectInfoEditView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
         inflate(context, R.layout.layout_goodsinfo_edit, this);
         ButterKnife.bind(this);
-    }
-
-    public void setChangeListener(ChangeListener changeListener) {
-        this.changeListener = changeListener;
+        initView();
     }
 
     public void init(ObjectBean bean) {
         this.bean = bean;
         updataView();
-        initView();
-    }
-
-    private void initView() {
-        ratingStar.setOnRatingChangeListener(new RatingBar.OnRatingChangeListener() {
-            @Override
-            public void onRatingChange(float RatingCount) {
-                bean.setStar((int) RatingCount);
-                if (changeListener != null) {
-                    changeListener.change();
-                }
-            }
-        });
-        //默认两位小数
-        jiageEdit.setFilters(new InputFilter[]{new MoneyValueFilter()});
-        jiageEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(jiageEdit.getText())) {
-                    bean.setPrice(jiageEdit.getText().toString());
-                    if (changeListener != null) {
-                        changeListener.change();
-                    }
-                } else {
-                    bean.setPrice(0 + "");
-                    if (changeListener != null) {
-                        changeListener.change();
-                    }
-                }
-            }
-        });
-        qitaTv.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                bean.setDetail(qitaTv.getText().toString());
-                if (changeListener != null) {
-                    changeListener.change();
-                }
-            }
-        });
-        goodsCountEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (!TextUtils.isEmpty(goodsCountEdit.getText().toString())) {
-                    bean.setCount(Integer.parseInt(goodsCountEdit.getText().toString()));
-                } else {
-                    bean.setCount(0);
-                }
-                if (changeListener != null) {
-                    changeListener.change();
-                }
-            }
-        });
     }
 
     /**
      * 刷新界面
      */
     public void updataView() {
-        setFenlei();//设置分类
+        setClassify();//设置分类
         setGoodsCount();//设置数量
         setPurchaseTime();//设置购买时间
         setExpirytime();//设置到期时间
         setColors();//设置颜色
-        setJijie();//设置季节
-        setQudao();//设置购货渠道
+        setSeason();//设置季节
+        setChannel();//设置购货渠道
         setStar();//设置星级
         setQita();//其他
-        setjjiage();//设置价格
+        setPrice();//设置价格
     }
 
-    private void setjjiage() {
+    /**
+     * 设置价格
+     */
+    private void setPrice() {
         //后台赋值是乱的 列表跟 家具里面的物品 价格参数不一样
-        if (bean.getPrice().equals("0") || bean.getPrice().equals("0.0")) {
-            jiageEdit.setText("");
-        } else {
-            jiageEdit.setText(bean.getPrice());
+        if (!bean.getPrice().equals("0") && !bean.getPrice().equals("0.0")) {
+            priceEdit.setText(bean.getPrice());
         }
     }
 
+    /**
+     * 设置购买时间
+     */
     private void setPurchaseTime() {
         if (!TextUtils.isEmpty(bean.getBuy_date())) {
-            purchaseTimeTv.setText(bean.getBuy_date());
+            setValueText(purchaseTimeTv, bean.getBuy_date());
         }
     }
 
+    /**
+     * 设置过期时间
+     */
     private void setExpirytime() {
         if (!TextUtils.isEmpty(bean.getExpire_date())) {
-            expiryTimeTv.setText(bean.getExpire_date());
+            setValueText(expiryTimeTv, bean.getExpire_date());
         }
     }
 
@@ -246,9 +159,9 @@ public class ObjectInfoEditView extends LinearLayout {
     /**
      * 设置分类
      */
-    private void setFenlei() {
-        fenleiFlow.removeAllViews();
-        if (bean.getCategories() == null) {
+    private void setClassify() {
+        if (bean.getCategories() == null || bean.getCategories().size() == 0) {
+            setHintText(classifyTv, R.string.hint_classify_tv);
             return;
         }
         Collections.sort(bean.getCategories(), new Comparator<BaseBean>() {
@@ -257,110 +170,79 @@ public class ObjectInfoEditView extends LinearLayout {
                 return lhs.getLevel() - rhs.getLevel();
             }
         });
-        for (int i = 0; i < StringUtils.getListSize(bean.getCategories()); i++) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bean.getCategories().size(); i++) {
             if (i == AppConstant.DEFAULT_INDEX_OF) {
                 continue;
             }
-            TextView text = (TextView) View.inflate(getContext(), R.layout.flow_textview, null);
-            fenleiFlow.addView(text);
-            MarginLayoutParams lp = (MarginLayoutParams) text.getLayoutParams();
-            lp.bottomMargin = 5;
-            lp.topMargin = 5;
-            lp.rightMargin = 10;
-            lp.leftMargin = 10;
-            text.setLayoutParams(lp);
-            text.setText(bean.getCategories().get(i).getName());
-            text.setBackgroundResource(R.drawable.shape_goods_property_bg);
+            sb.append(bean.getCategories().get(i).getName()).append("/");
         }
+        if (TextUtils.isEmpty(sb.toString())) return;
+        setValueText(classifyTv, sb.delete(sb.length() - 1, sb.length()).toString());
     }
 
     /**
      * 设置颜色
      */
     private void setColors() {
-        yanseFlow.removeAllViews();
-        if (TextUtils.isEmpty(bean.getColor()))
-            return;
-        String[] colors = bean.getColor().split("、");
-        for (int i = 0; i < colors.length; i++) {
-            TextView text = (TextView) View.inflate(getContext(), R.layout.flow_textview, null);
-            yanseFlow.addView(text);
-            MarginLayoutParams lp = (MarginLayoutParams) text.getLayoutParams();
-            lp.bottomMargin = 5;
-            lp.topMargin = 5;
-            lp.rightMargin = 10;
-            lp.leftMargin = 10;
-            text.setLayoutParams(lp);
-            text.setText(colors[i]);
-            text.setBackgroundResource(R.drawable.shape_goods_property_bg);
+        if (!TextUtils.isEmpty(bean.getColorStr())) {
+            setValueText(colorTv, bean.getColorStr());
+        } else {
+            setHintText(colorTv, R.string.hint_color_tv);
         }
     }
 
     /**
      * 设置季节
      */
-    private void setJijie() {
-        jijieFlow.removeAllViews();
-        if (TextUtils.isEmpty(bean.getSeason()))
-            return;
-        String[] seasons = bean.getSeason().split("、");
-        for (int i = 0; i < seasons.length; i++) {
-            TextView text = (TextView) View.inflate(getContext(), R.layout.flow_textview, null);
-            jijieFlow.addView(text);
-            MarginLayoutParams lp = (MarginLayoutParams) text.getLayoutParams();
-            lp.bottomMargin = 5;
-            lp.topMargin = 5;
-            lp.rightMargin = 10;
-            lp.leftMargin = 10;
-            text.setLayoutParams(lp);
-            text.setText(seasons[i]);
-            text.setBackgroundResource(R.drawable.shape_goods_property_bg);
+    private void setSeason() {
+        if (!TextUtils.isEmpty(bean.getSeason())) {
+            setValueText(seasonTv, bean.getSeason());
+        } else {
+            setHintText(seasonTv, R.string.hint_season_tv);
         }
     }
 
     /**
-     * 设置季节
+     * 设置渠道
      */
-    private void setQudao() {
-        qudaoFlow.removeAllViews();
-        if (TextUtils.isEmpty(bean.getChannel()))
-            return;
-        String[] channel = bean.getChannel().split(">");
-        for (int i = 0; i < channel.length; i++) {
-            TextView text = (TextView) View.inflate(getContext(), R.layout.flow_textview, null);
-            qudaoFlow.addView(text);
-            MarginLayoutParams lp = (MarginLayoutParams) text.getLayoutParams();
-            lp.bottomMargin = 5;
-            lp.topMargin = 5;
-            lp.rightMargin = 10;
-            lp.leftMargin = 10;
-            text.setLayoutParams(lp);
-            text.setText(channel[i]);
-            text.setBackgroundResource(R.drawable.shape_goods_property_bg);
+    private void setChannel() {
+        if (!TextUtils.isEmpty(bean.getChannelStr())) {
+            setValueText(channelTv, bean.getChannelStr());
+        } else {
+            setHintText(channelTv, R.string.hint_channel_tv);
         }
     }
 
-    @OnClick({R.id.fenlei_layout, R.id.yanse_layout, R.id.jijie_layout, R.id.qudao_layout, R.id.qita_layout,
+    private void setValueText(TextView textView, String value) {
+        textView.setTextColor(ContextCompat.getColor(mContext, R.color.color333));
+        textView.setText(value);
+    }
+
+    private void setHintText(TextView textView, int textId) {
+        textView.setTextColor(ContextCompat.getColor(mContext, R.color.colorccc));
+        textView.setText(textId);
+    }
+
+    @OnClick({R.id.classify_layout, R.id.color_layout, R.id.season_layout, R.id.channel_layout,
             R.id.purchase_time_layout, R.id.expiry_time_layout})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fenlei_layout:
+            case R.id.classify_layout:
                 if (bean.getCategories() != null && bean.getCategories().size() > 0) {
                     SelectSortChildActivity.start(getContext(), bean, true);
                 } else {
                     Toast.makeText(getContext(), "请先添加分类", Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case R.id.yanse_layout:
+            case R.id.color_layout:
                 SelectColorActivity.start(getContext(), bean);
                 break;
-            case R.id.jijie_layout:
+            case R.id.season_layout:
                 SelectSeasonActivity.start(getContext(), bean);
                 break;
-            case R.id.qudao_layout:
+            case R.id.channel_layout:
                 SelectChannelActivity.start(getContext(), bean);
-                break;
-            case R.id.qita_layout:
                 break;
             case R.id.purchase_time_layout:
                 String start = "";
@@ -376,20 +258,14 @@ public class ObjectInfoEditView extends LinearLayout {
                     public void result(final int year, final int month, final int day) {
                         String bd = year + "-" + StringUtils.formatIntTime(month) + "-" +
                                 StringUtils.formatIntTime(day);
-                        purchaseTimeTv.setText(bd);
                         bean.setBuy_date(bd);
-                        if (changeListener != null) {
-                            changeListener.change();
-                        }
+                        setValueText(purchaseTimeTv, bd);
                     }
 
                     @Override
                     public void detele() {
-                        purchaseTimeTv.setText("");
+                        setHintText(purchaseTimeTv, R.string.hint_purchase_time_tv);
                         bean.setBuy_date("");
-                        if (changeListener != null) {
-                            changeListener.change();
-                        }
                     }
                 };
                 dialog.setCancelBtnText(TextUtils.isEmpty(bean.getBuy_date()));
@@ -411,18 +287,12 @@ public class ObjectInfoEditView extends LinearLayout {
                                 StringUtils.formatIntTime(day);
                         expiryTimeTv.setText(bd);
                         bean.setExpire_date(bd);
-                        if (changeListener != null) {
-                            changeListener.change();
-                        }
                     }
 
                     @Override
                     public void detele() {
-                        expiryTimeTv.setText("");
+                        setHintText(expiryTimeTv, R.string.hint_expiry_time_tv);
                         bean.setExpire_date("");
-                        if (changeListener != null) {
-                            changeListener.change();
-                        }
                     }
                 };
                 expiryDialog.setCancelBtnText(TextUtils.isEmpty(bean.getExpire_date()));
@@ -431,15 +301,65 @@ public class ObjectInfoEditView extends LinearLayout {
         }
     }
 
-    public static interface ChangeListener {
-        public void change();
+    private void initView() {
+        ratingStar.setOnRatingChangeListener(new RatingBar.OnRatingChangeListener() {
+            @Override
+            public void onRatingChange(float RatingCount) {
+                bean.setStar((int) RatingCount);
+            }
+        });
+        //默认两位小数
+        priceEdit.setFilters(new InputFilter[]{new MoneyValueFilter()});
+        priceEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!TextUtils.isEmpty(priceEdit.getText())) {
+                    bean.setPrice(priceEdit.getText().toString());
+                } else {
+                    bean.setPrice(0 + "");
+                }
+            }
+        });
+        qitaTv.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                bean.setDetail(qitaTv.getText().toString());
+            }
+        });
+        goodsCountEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!TextUtils.isEmpty(goodsCountEdit.getText().toString())) {
+                    bean.setCount(Integer.parseInt(goodsCountEdit.getText().toString()));
+                } else {
+                    bean.setCount(0);
+                }
+            }
+        });
     }
 
-    public void hintMoreGoodsLayout() {
-        starLayout.setVisibility(View.GONE);
-        expiryTimeLayout.setVisibility(View.GONE);
-        addGoodsCountLaytou.setVisibility(View.GONE);
-        qitaLayout.setVisibility(View.GONE);
-        jiageLayout.setVisibility(View.GONE);
-    }
 }

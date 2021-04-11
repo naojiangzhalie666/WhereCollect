@@ -20,6 +20,7 @@ public class BaseBean implements Serializable {
     protected String user_id;
     protected boolean isBeShared;
     protected boolean isSelect;
+    protected boolean is_user;
 
 
     public BaseBean() {
@@ -94,5 +95,13 @@ public class BaseBean implements Serializable {
 
     public void setSelect(boolean select) {
         isSelect = select;
+    }
+
+    public boolean isUser() {
+        return is_user;
+    }
+
+    public void setIs_user(boolean is_user) {
+        this.is_user = is_user;
     }
 }

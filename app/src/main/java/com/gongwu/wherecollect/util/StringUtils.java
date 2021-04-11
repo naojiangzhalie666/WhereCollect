@@ -26,6 +26,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.contract.AppConstant;
+import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -68,6 +69,134 @@ public class StringUtils {
     // url = My +
     // return url;
     // }
+
+    public static final int TYPE_GOODS_COUNT = 0;//数量
+    public static final int TYPE_GOODS_STAR = 1;//评级
+    public static final int TYPE_GOODS_SEASON = 2;//季节
+    public static final int TYPE_GOODS_COLOR = 3;//颜色
+    public static final int TYPE_GOODS_PRICE = 4;//价格
+    public static final int TYPE_GOODS_CHANNEL = 5;//渠道
+    public static final int TYPE_GOODS_PURCHASE_TIME = 6;//购买时间
+    public static final int TYPE_GOODS_EXPIRY_TIME = 7;//到期时间
+    public static final int TYPE_GOODS_CLASSIFY = 8;//分类
+    public static final int TYPE_GOODS_NOTE = 9;//备注
+
+    public static String getGoodsTypeString(int type) {
+        switch (type) {
+            case TYPE_GOODS_COUNT:
+                return "数量";
+            case TYPE_GOODS_STAR:
+                return "重要程度";
+            case TYPE_GOODS_SEASON:
+                return "季节";
+            case TYPE_GOODS_COLOR:
+                return "颜色";
+            case TYPE_GOODS_PRICE:
+                return "价格";
+            case TYPE_GOODS_CHANNEL:
+                return "购货渠道";
+            case TYPE_GOODS_PURCHASE_TIME:
+                return "购买时间";
+            case TYPE_GOODS_EXPIRY_TIME:
+                return "过期时间";
+            case TYPE_GOODS_CLASSIFY:
+                return "子分类";
+            case TYPE_GOODS_NOTE:
+                return "备注";
+        }
+        return "";
+    }
+
+    public static List<GoodsInfoBean> getGoodsInfos(ObjectBean bean) {
+        List<GoodsInfoBean> mList = new ArrayList<>();
+        //数量
+        if (bean.getCount() > 0) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_COUNT);
+            infoBean.setValue(String.valueOf(bean.getCount()));
+            mList.add(infoBean);
+        }
+        //评级
+        if (bean.getStar() > 0) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_STAR);
+            infoBean.setValue(String.valueOf(bean.getStar()));
+            mList.add(infoBean);
+        }
+        //季节
+        if (!TextUtils.isEmpty(bean.getSeason())) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_SEASON);
+            infoBean.setValue(bean.getSeason());
+            mList.add(infoBean);
+        }
+        //颜色
+        if (!TextUtils.isEmpty(bean.getColorStr())) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_COLOR);
+            infoBean.setValue(bean.getColorStr());
+            mList.add(infoBean);
+        }
+        //价格
+        if (!TextUtils.isEmpty(bean.getPrice())) {
+            if (!bean.getPrice().equals("0") && !bean.getPrice().equals("0.0")) {
+                GoodsInfoBean infoBean = new GoodsInfoBean();
+                infoBean.setType(StringUtils.TYPE_GOODS_PRICE);
+                infoBean.setValue(bean.getPrice());
+                mList.add(infoBean);
+            }
+        }
+        //渠道
+        if (!TextUtils.isEmpty(bean.getChannelStr())) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_CHANNEL);
+            infoBean.setValue(bean.getChannelStr());
+            mList.add(infoBean);
+        }
+        //购买时间
+        if (!TextUtils.isEmpty(bean.getBuy_date())) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_PURCHASE_TIME);
+            infoBean.setValue(bean.getBuy_date());
+            mList.add(infoBean);
+        }
+        //到期时间
+        if (!TextUtils.isEmpty(bean.getExpire_date())) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_EXPIRY_TIME);
+            infoBean.setValue(bean.getExpire_date());
+            mList.add(infoBean);
+        }
+        //子分类
+        if (bean.getCategories() != null && bean.getCategories().size() > 1) {
+            Collections.sort(bean.getCategories(), new Comparator<BaseBean>() {
+                @Override
+                public int compare(BaseBean lhs, BaseBean rhs) {
+                    return lhs.getLevel() - rhs.getLevel();
+                }
+            });
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_CLASSIFY);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bean.getCategories().size(); i++) {
+                if (i == AppConstant.DEFAULT_INDEX_OF) {
+                    continue;
+                }
+                sb.append(bean.getCategories().get(i).getName()).append("/");
+            }
+            sb.delete(sb.length() - 1, sb.length());
+            infoBean.setValue(sb.toString());
+            mList.add(infoBean);
+        }
+        //备注
+        if (!TextUtils.isEmpty(bean.getDetail())) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_NOTE);
+            infoBean.setValue(bean.getDetail());
+            mList.add(infoBean);
+        }
+        return mList;
+    }
 
     public static String toString(Context context, int stringId, Object... args) {
         return String.format(context.getString(stringId), args);
@@ -425,13 +554,6 @@ public class StringUtils {
         return false;
     }
 
-    public static String getImei(Context context) {
-        TelephonyManager tm = (TelephonyManager) context.getSystemService(context
-                .TELEPHONY_SERVICE);
-        String imei = tm.getDeviceId();
-        return imei;
-    }
-
     /**
      * @param i
      * @return 输入1返回01
@@ -653,6 +775,14 @@ public class StringUtils {
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    public static void showKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) view.getContext()
+                .getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.showSoftInput(view, 0);
         }
     }
 

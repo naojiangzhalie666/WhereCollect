@@ -93,6 +93,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     private SparseArray<BaseFragment> fragments;
     private DownloadManager manager;
+    private long exitTime;
 
     @Override
     protected void initViews() {
@@ -443,7 +444,12 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        ActivityTaskManager.getInstance().finishAllActivity();
+        if ((System.currentTimeMillis() - exitTime) > 2000) {
+            Toast.makeText(getApplicationContext(), "再按一次退出", Toast.LENGTH_SHORT).show();
+            exitTime = System.currentTimeMillis();
+        } else {
+            super.onBackPressed();
+            ActivityTaskManager.getInstance().finishAllActivity();
+        }
     }
 }

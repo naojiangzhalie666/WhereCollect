@@ -162,6 +162,14 @@ public interface TakeawayApi {
     Call<ResponseBase<BaseBean>> saveCustomCate(@FieldMap Map<String, String> map);
 
     @FormUrlEncoded
+    @POST("api/app/v400/edit/customCate")
+    Call<ResponseBase<RequestSuccessBean>> editCustomCate(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v400/delete/customCate")
+    Call<ResponseBase<RequestSuccessBean>> deleteCustomCate(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
     @POST("api/app/v400/saveCustomSubCate")
     Call<ResponseBase<BaseBean>> saveCustomSubCate(@FieldMap Map<String, String> map);
 

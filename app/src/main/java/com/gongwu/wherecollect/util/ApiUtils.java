@@ -288,6 +288,22 @@ public class ApiUtils {
     }
 
     /**
+     * 编辑自定义
+     */
+    public static <D extends RequestBase> void editCustomCate(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().editCustomCate(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 删除自定义
+     */
+    public static <D extends RequestBase> void deleteCustomCate(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().deleteCustomCate(requestMap).enqueue(callBack);
+    }
+
+    /**
      * 自定义二级分类
      */
     public static <D extends RequestBase> void saveCustomSubCate(D request, ApiCallBack<BaseBean> callBack) {

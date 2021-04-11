@@ -22,9 +22,11 @@ import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IAddGoodsContract;
 import com.gongwu.wherecollect.contract.model.AddGoodsModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
 import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
+import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
@@ -55,6 +57,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -504,5 +508,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         i.putExtra("max", AppConstant.SELECT_PHOTO_COUNT);
         ((Activity) mContext).startActivityForResult(i, REQUST_PHOTOSELECT);
     }
+
+
 
 }

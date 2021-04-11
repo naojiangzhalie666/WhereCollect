@@ -5,17 +5,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.AddRemindActivity;
 import com.gongwu.wherecollect.activity.FurnitureLookActivity;
 import com.gongwu.wherecollect.activity.MainActivity;
+import com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseActivity;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
@@ -23,6 +27,7 @@ import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IGoodsDetailsContract;
 import com.gongwu.wherecollect.contract.presenter.GoodsDetailsPresenter;
+import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
@@ -40,6 +45,8 @@ import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoLookView;
 import com.gongwu.wherecollect.view.ObjectsLookMenuDialog;
+import com.gongwu.wherecollect.view.PopupAddGoods;
+import com.gongwu.wherecollect.view.PopupEditMenuGoods;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -48,6 +55,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import razerdp.basepopup.BasePopupWindow;
 
 public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, GoodsDetailsPresenter> implements IGoodsDetailsContract.IGoodsDetailsView {
     @BindView(R.id.title_tv)
@@ -58,8 +66,8 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     TextView sortTv;
     @BindView(R.id.add_img_view)
     GoodsImageView mImageView;
-    @BindView(R.id.goodsInfo_view)
-    ObjectInfoLookView goodsInfoView;
+    //    @BindView(R.id.goodsInfo_view)
+//    ObjectInfoLookView goodsInfoView;
     @BindView(R.id.image_btn)
     ImageButton imageBtn;
     @BindView(R.id.goods_details_location_tv)
@@ -70,10 +78,16 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     TextView remindNameTv;
     @BindView(R.id.remind_time_tv)
     TextView remindTimeTv;
+    @BindView(R.id.goods_info_view)
+    RecyclerView goodsInfoListView;
+
+    private GoodsInfoViewAdapter mAdapter;
+    private List<GoodsInfoBean> mGoodsInfos = new ArrayList<>();
 
     private ObjectBean objectBean;
     private RemindBean remindBean;
     private Loading loading;
+    private PopupEditMenuGoods popup;
 
     @Override
     protected int getLayoutId() {
@@ -85,13 +99,23 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         mTitleView.setText(R.string.goods_text);
         imageBtn.setVisibility(View.VISIBLE);
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
+        mAdapter = new GoodsInfoViewAdapter(mContext, mGoodsInfos);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3) {
+            @Override
+            public boolean canScrollVertically() {
+                //禁止上下滑动
+                return false;
+            }
+        };
+        goodsInfoListView.setLayoutManager(gridLayoutManager);
+        goodsInfoListView.setAdapter(mAdapter);
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
         initData();
     }
 
     private void initData() {
         if (objectBean != null) {
-            goodsInfoView.init(objectBean);
+            initInfoData();
             if (!TextUtils.isEmpty(objectBean.getNameText())) {
                 goodsNameTv.setText(objectBean.getNameText());
                 goodsNameTv.setTextColor(getResources().getColor(R.color.color333));
@@ -106,8 +130,16 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
             } else {
                 mImageView.setImg(objectBean.getObject_url(), 10);
             }
-            goodsInfoView.showGoodsLayout();
             locationTv.setText(StringUtils.getGoodsLoction(objectBean));
+        }
+    }
+
+    private void initInfoData() {
+        mGoodsInfos.clear();
+        mGoodsInfos.addAll(StringUtils.getGoodsInfos(objectBean));
+        if (mGoodsInfos.size() > 0) {
+            goodsInfoListView.setVisibility(View.VISIBLE);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
@@ -135,34 +167,33 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                 photosDialog.showPhotos(0);
                 break;
             case R.id.image_btn:
-                ObjectsLookMenuDialog dialog = new ObjectsLookMenuDialog(this, objectBean) {
-                    @Override
-                    public void editLocation() {
-                        if (objectBean.getLocations() == null || objectBean.getLocations().size() == 0) {
-                            MainActivity.moveGoodsList = new ArrayList<>();
-                            MainActivity.moveGoodsList.add(objectBean);
-                            EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
-                            finish();
-                        } else {
-                            clearGoodsLocation();
+                if (popup == null) {
+                    popup = new PopupEditMenuGoods(mContext);
+                    popup.setBackground(Color.TRANSPARENT);
+//                    popup.setPopupGravity(BasePopupWindow.GravityMode.ALIGN_TO_ANCHOR_SIDE, Gravity.END | Gravity.BOTTOM);
+                    popup.setPopupClickListener(new PopupEditMenuGoods.EditMenuPopupClickListener() {
+                        @Override
+                        public void onEditGoodsClick() {
+                            Intent intent = new Intent(mContext, AddGoodsActivity.class);
+                            intent.putExtra("objectBean", objectBean);
+                            if (remindBean != null) {
+                                intent.putExtra("remindBean", remindBean);
+                            }
+                            startActivityForResult(intent, AppConstant.REQUEST_CODE);
                         }
-                    }
 
-                    @Override
-                    public void editGoods() {
-                        Intent intent = new Intent(mContext, AddGoodsActivity.class);
-                        intent.putExtra("objectBean", objectBean);
-                        if (remindBean != null) {
-                            intent.putExtra("remindBean", remindBean);
+                        @Override
+                        public void onAddRemingClick() {
+                            AddRemindActivity.start(mContext, objectBean);
                         }
-                        startActivityForResult(intent, AppConstant.REQUEST_CODE);
-                    }
 
-                    @Override
-                    public void deleteGoods() {
-                        getPresenter().delGoods(App.getUser(mContext).getId(), objectBean.get_id());
-                    }
-                };
+                        @Override
+                        public void onDeleteGoodsClick() {
+                            getPresenter().delGoods(App.getUser(mContext).getId(), objectBean.get_id());
+                        }
+                    });
+                }
+                popup.showPopupWindow(imageBtn);
                 break;
             case R.id.goods_details_location_tv:
                 if (locationTv.getText().toString().equals("未归位")) return;

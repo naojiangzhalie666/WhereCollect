@@ -95,6 +95,7 @@
     <color name="color999">#999999</color>
     <color name="color666">#666666</color>
     <color name="color333">#333333</color>
+    <color name="colorccc">#CCCCCC</color>
     <color name="colorf9">#f9f9f9</color>
     <color name="colorf7">#f7f7f7</color>
 
@@ -119,5 +120,7 @@
     <color name="main_tab_un_text_color">#999999</color>
     <color name="main_tab_bg_color">#FAFAFC</color>
     <color name="switch_normal_color">#F4F4F4</color>
+    <color name="start_time_color">#59A6FE</color>
+    <color name="end_time_color">#FE5959</color>
 
 </resources>

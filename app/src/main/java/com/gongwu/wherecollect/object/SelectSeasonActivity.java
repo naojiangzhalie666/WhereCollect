@@ -60,10 +60,10 @@ public class SelectSeasonActivity extends BaseActivity implements MyOnItemClickL
 
     private void initSelect() {
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
-        mlist.add("春季");
-        mlist.add("夏季");
-        mlist.add("秋季");
-        mlist.add("冬季");
+        mlist.add("春");
+        mlist.add("夏");
+        mlist.add("秋");
+        mlist.add("冬");
         if (TextUtils.isEmpty(objectBean.getSeason()))
             return;
         String[] seasons = objectBean.getSeason().split("、");
@@ -91,9 +91,9 @@ public class SelectSeasonActivity extends BaseActivity implements MyOnItemClickL
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < selectList.size(); i++) {
             sb.append(selectList.get(i));
-            if (i != selectList.size() - 1) {
-                sb.append("、");
-            }
+//            if (i != selectList.size() - 1) {
+//                sb.append("、");
+//            }
         }
         objectBean.setSeason(sb.toString());
         Intent intent = new Intent();

@@ -138,6 +138,15 @@
     <string name="not_location_text">未归位</string>
 
     <string name="user_usid_text">ID: %1$s</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_classify_tv">请选择物品分类子标签</string>
+    <string name="hint_purchase_time_tv">请选择物品购买时间</string>
+    <string name="hint_expiry_time_tv">请选择物品过期时间</string>
+    <string name="hint_color_tv">请选择物品所属颜色</string>
+    <string name="hint_season_tv">请选择物品所属季节</string>
+    <string name="hint_channel_tv">请选择物品购货渠道</string>
+    <string name="add_remind_tv">添加提醒</string>
+    <string name="title_sort_customize_tv">自定义分类</string>
+    <string name="customize_text">自定义</string>
+    <string name="search_text">搜索</string>
+    <string name="hint_rename_sort_text">分类名称</string>
 </resources>

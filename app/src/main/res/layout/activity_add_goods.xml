@@ -183,41 +183,65 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dip_18"
-                android:layout_marginTop="@dimen/dip_20"
+                android:layout_marginTop="@dimen/dip_16"
+                android:layout_marginEnd="@dimen/dip_18"
                 android:layout_marginBottom="@dimen/dip_10"
-                android:text="@string/other_content"
-                android:textColor="@color/color999"
-                android:textSize="@dimen/f_12" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/other_content"
+                    android:textColor="@color/color999"
+                    android:textSize="@dimen/f_12" />
+
+                <TextView
+                    android:id="@+id/goods_info_edit_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/shape_white_stroke_black_r4dp"
+                    android:paddingStart="@dimen/dip_16"
+                    android:paddingTop="@dimen/dip_6"
+                    android:paddingEnd="@dimen/dip_16"
+                    android:paddingBottom="@dimen/dip_6"
+                    android:text="编辑"
+                    android:textColor="@color/color999"
+                    android:textSize="@dimen/f_12"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+
 
             <TextView
                 android:id="@+id/add_other_content_tv"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dip_50"
-                android:background="@drawable/select_changheader_btn_other"
-                android:drawableEnd="@drawable/icon_next_black"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/dip_18"
-                android:paddingRight="@dimen/dip_18"
+                android:layout_height="@dimen/dip_110"
+                android:layout_marginStart="@dimen/dip_16"
+                android:layout_marginEnd="@dimen/dip_16"
+                android:background="@drawable/shape_white_r10dp"
+                android:gravity="center"
                 android:text="@string/add_other_content_text"
-                android:textColor="@color/color333"
-                android:textSize="@dimen/f_15" />
+                android:textColor="@color/colorccc"
+                android:textSize="@dimen/f_14" />
 
-
-            <com.gongwu.wherecollect.view.ObjectInfoLookView
-                android:id="@+id/goodsInfo_view"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/goods_info_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dip_16"
+                android:layout_marginEnd="@dimen/dip_16"
+                android:background="@drawable/shape_white_r10dp"
                 android:visibility="gone" />
-
-
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/commit_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_40"
         android:layout_margin="@dimen/dip_16"
@@ -231,7 +255,6 @@
             android:layout_height="@dimen/dip_40"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-
             android:layout_marginBottom="24dp"
             android:layout_weight="1"
             android:background="@drawable/select_white_r4_25dp_bg"

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/dip_100"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/dip_10">
+    android:gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/sort_name_tv"
         android:layout_width="@dimen/dip_100"
         android:layout_height="@dimen/dip_40"
+        android:layout_marginTop="@dimen/dip_5"
+        android:layout_marginBottom="@dimen/dip_5"
         android:background="@drawable/select_sort_item_r4_20dp_bg"
         android:gravity="center"
         android:textColor="@drawable/select_sort_item_text_color"

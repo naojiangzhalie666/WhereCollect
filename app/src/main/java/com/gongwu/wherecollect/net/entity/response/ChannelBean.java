@@ -40,7 +40,6 @@ public class ChannelBean extends BaseBean {
     private String updated_at;
     private String created_at;
     private boolean disabled;
-    private boolean is_user;
     private int object_count;
     private int tag_count;
     private int weight;
@@ -149,14 +148,6 @@ public class ChannelBean extends BaseBean {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
-    }
-
-    public boolean isIs_user() {
-        return is_user;
-    }
-
-    public void setIs_user(boolean is_user) {
-        this.is_user = is_user;
     }
 
     public int getObject_count() {

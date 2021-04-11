@@ -387,6 +387,19 @@ public class ObjectBean implements Serializable {
         }
     }
 
+    public String getChannelStr() {
+        if (!StringUtils.isEmpty(channel)) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < channel.size(); i++) {
+                sb.append(channel.get(i)).append("/");
+            }
+            sb.delete(sb.length() - 1, sb.length());
+            return sb.toString();
+        } else {
+            return "";
+        }
+    }
+
     public void setChannel(List<String> channel) {
         this.channel = channel;
     }
@@ -396,6 +409,19 @@ public class ObjectBean implements Serializable {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < color.size(); i++) {
                 sb.append(color.get(i)).append("、");
+            }
+            sb.delete(sb.length() - 1, sb.length());
+            return sb.toString();
+        } else {
+            return "";
+        }
+    }
+
+    public String getColorStr() {
+        if (!StringUtils.isEmpty(color)) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < color.size(); i++) {
+                sb.append(color.get(i)).append("/");
             }
             sb.delete(sb.length() - 1, sb.length());
             return sb.toString();

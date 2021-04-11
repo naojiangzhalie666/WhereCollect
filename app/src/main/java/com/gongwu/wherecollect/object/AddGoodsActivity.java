@@ -10,16 +10,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.MainActivity;
+import com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IAddGoodsContract;
 import com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter;
+import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -58,8 +64,6 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     TextView mTitleView;
     @BindView(R.id.add_img_view)
     GoodsImageView mImageView;
-    @BindView(R.id.goodsInfo_view)
-    ObjectInfoLookView goodsInfoView;
     //GoodsImageView控件head、name
     @BindView(R.id.head)
     ImageView head;
@@ -83,9 +87,19 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     TextView remindNameTv;
     @BindView(R.id.remind_time_tv)
     TextView remindTimeTv;
+    @BindView(R.id.add_other_content_tv)
+    TextView addInfoView;
+    @BindView(R.id.goods_info_edit_tv)
+    TextView editInfoTv;
+    @BindView(R.id.goods_info_view)
+    RecyclerView goodsInfoListView;
+    @BindView(R.id.commit_layout)
+    LinearLayout commitLayout;
+    @BindView(R.id.title_commit_bg_main_color_tv)
+    TextView editInfoCommitTv;
 
+    private GoodsInfoViewAdapter mAdapter;
     private Loading loading;
-
     private File imgFile;
     private File imgOldFile;
 
@@ -94,6 +108,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     private RemindBean remindBean;
     private PopupAddGoods popup;
     private boolean setGoodsLocation;
+    private List<GoodsInfoBean> mGoodsInfos = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -102,19 +117,34 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
 
     @Override
     protected void initViews() {
-        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
         initEvent();
+        mGoodsInfos.clear();
+        StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
+        mAdapter = new GoodsInfoViewAdapter(mContext, mGoodsInfos);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3) {
+            @Override
+            public boolean canScrollVertically() {
+                //禁止上下滑动
+                return false;
+            }
+        };
+        goodsInfoListView.setLayoutManager(gridLayoutManager);
+        goodsInfoListView.setAdapter(mAdapter);
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
         if (objectBean == null) {
             mTitleView.setText(R.string.add_goods_text);
+            editInfoTv.setVisibility(View.INVISIBLE);
             head.setImageDrawable(getResources().getDrawable(R.drawable.icon_add_goods));
             initData();
         } else {
             mTitleView.setText(R.string.edit_text);
             remindBean = (RemindBean) getIntent().getSerializableExtra("remindBean");
-            mSelectLocationBt.setVisibility(View.GONE);
+            commitLayout.setVisibility(View.GONE);
+            addInfoView.setVisibility(View.GONE);
+            editInfoTv.setVisibility(View.VISIBLE);
+            editInfoCommitTv.setVisibility(View.VISIBLE);
             mCommitBt.setText(R.string.commit_edit);
-            goodsInfoView.init(objectBean);
+            initInfoData();
             if (!TextUtils.isEmpty(objectBean.getNameText())) {
                 mEditText.setText(objectBean.getNameText());
             }
@@ -176,6 +206,14 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         }
     }
 
+    private void initInfoData() {
+        mGoodsInfos.clear();
+        mGoodsInfos.addAll(StringUtils.getGoodsInfos(objectBean));
+        if (mGoodsInfos.size() > 0) {
+            goodsInfoListView.setVisibility(View.VISIBLE);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
 
     /**
      * 控件监听
@@ -195,7 +233,8 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     }
 
     @OnClick({R.id.back_btn, R.id.add_img_view, R.id.add_goods_sort_tv, R.id.add_other_content_tv,
-            R.id.goods_location_tv, R.id.commit_bt, R.id.select_location_bt})
+            R.id.goods_location_tv, R.id.commit_bt, R.id.title_commit_bg_main_color_tv, R.id.select_location_bt,
+            R.id.goods_info_edit_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -214,9 +253,11 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 SelectSortActivity.start(mContext, objectBean);
                 break;
             case R.id.add_other_content_tv:
+            case R.id.goods_info_edit_tv:
                 AddGoodsPropertyActivity.start(mContext, objectBean, false);
                 break;
             case R.id.commit_bt:
+            case R.id.title_commit_bg_main_color_tv:
                 onClickCommit();
                 break;
             case R.id.select_location_bt:
@@ -264,7 +305,9 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 sortNameTv.setText(R.string.add_goods_sort);
                 sortNameTv.setTextColor(getResources().getColor(R.color.divider));
             }
-            goodsInfoView.init(objectBean);
+            addInfoView.setVisibility(View.GONE);
+            editInfoTv.setVisibility(View.VISIBLE);
+            initInfoData();
         } else {
             getPresenter().onActivityResult(mContext, requestCode, resultCode, data);
         }
@@ -347,8 +390,9 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             temp.add(book.getCategory());
             objectBean.setCategories(temp);
         }
-        goodsInfoView.setVisibility(View.VISIBLE);
-        goodsInfoView.init(objectBean);
+//        goodsInfoView.setVisibility(View.VISIBLE);
+//        goodsInfoView.init(objectBean);
+        initInfoData();
     }
 
     @Override

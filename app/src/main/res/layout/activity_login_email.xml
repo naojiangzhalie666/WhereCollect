@@ -34,6 +34,7 @@
                 android:layout_height="@dimen/dip_50"
                 android:background="@color/transparent"
                 android:hint="邮箱"
+                android:imeOptions="actionDone"
                 android:singleLine="true"
                 android:textColor="@color/black_87"
                 android:textSize="@dimen/f_13" />
@@ -49,6 +50,7 @@
                 android:layout_height="@dimen/dip_50"
                 android:background="@color/transparent"
                 android:hint="密码"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textColor="@color/black_87"
@@ -68,11 +70,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/login_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dip_16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

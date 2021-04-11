@@ -327,9 +327,9 @@ public class ObjectInfoLookView extends LinearLayout {
     }
 
     private void showView() {
-        if (this.getVisibility() == View.GONE) {
-            this.setVisibility(View.VISIBLE);
-        }
+//        if (this.getVisibility() == View.GONE) {
+//            this.setVisibility(View.VISIBLE);
+//        }
     }
 
     public void showGoodsLayout() {
