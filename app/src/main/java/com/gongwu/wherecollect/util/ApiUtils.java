@@ -319,6 +319,13 @@ public class ApiUtils {
     }
 
     /**
+     * 根据parentCode获取下一级分类
+     */
+    public static <D extends RequestBase> void getSubCategoryList(String uid, String parentCode, ApiCallBack<List<BaseBean>> callBack) {
+        ApiInstance.getApi().getSubCategoryList(uid, parentCode).enqueue(callBack);
+    }
+
+    /**
      * 根据一级分类 获取物品二级分类
      */
     public static <D extends RequestBase> void getCategoryDetails(String uid, String code, ApiCallBack<List<ChannelBean>> callBack) {

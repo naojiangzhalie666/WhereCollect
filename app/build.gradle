@@ -172,4 +172,5 @@ dependencies {
     implementation project(':camerafragment')
     implementation project(':showcase')
     implementation project(':appupdateX')
+    implementation project(':wheel')
 }

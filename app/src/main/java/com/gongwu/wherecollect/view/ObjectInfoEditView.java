@@ -24,6 +24,7 @@ import com.gongwu.wherecollect.object.SelectColorActivity;
 import com.gongwu.wherecollect.object.SelectSeasonActivity;
 import com.gongwu.wherecollect.object.SelectSortActivity;
 import com.gongwu.wherecollect.object.SelectSortChildActivity;
+import com.gongwu.wherecollect.object.SelectSortChildNewActivity;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
 
@@ -230,7 +231,9 @@ public class ObjectInfoEditView extends LinearLayout {
         switch (view.getId()) {
             case R.id.classify_layout:
                 if (bean.getCategories() != null && bean.getCategories().size() > 0) {
-                    SelectSortChildActivity.start(getContext(), bean, true);
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemSortClick(bean.getCategories().get(AppConstant.DEFAULT_INDEX_OF));
+                    }
                 } else {
                     Toast.makeText(getContext(), "请先添加分类", Toast.LENGTH_SHORT).show();
                 }
@@ -362,4 +365,13 @@ public class ObjectInfoEditView extends LinearLayout {
         });
     }
 
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemSortClick(BaseBean baseBean);
+    }
 }

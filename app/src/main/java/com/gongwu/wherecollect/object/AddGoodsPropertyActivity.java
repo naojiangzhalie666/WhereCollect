@@ -7,16 +7,24 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.gongwu.wherecollect.R;
-import com.gongwu.wherecollect.base.BaseActivity;
+import com.gongwu.wherecollect.base.App;
+import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
+import com.gongwu.wherecollect.contract.IGoodsPropertyContract;
+import com.gongwu.wherecollect.contract.presenter.GoodsPropertyPresenter;
+import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.ObjectInfoEditView;
+import com.gongwu.wherecollect.view.SortChildDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class AddGoodsPropertyActivity extends BaseActivity {
+public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyActivity, GoodsPropertyPresenter> implements IGoodsPropertyContract.IGoodsPropertyView, ObjectInfoEditView.OnItemClickListener {
 
     public static final int REQUEST_CODE = 0x0010;
 
@@ -28,6 +36,11 @@ public class AddGoodsPropertyActivity extends BaseActivity {
     TextView editInfoCommitTv;
 
     private ObjectBean objectBean;
+    private SortChildDialog sortChildDialog;
+    private List<BaseBean> mOneLists = new ArrayList<>();
+    private List<BaseBean> mTwoLists = new ArrayList<>();
+    private List<BaseBean> mThreeLists = new ArrayList<>();
+    private boolean initOne, initTwo;
 
     @Override
     protected int getLayoutId() {
@@ -43,6 +56,7 @@ public class AddGoodsPropertyActivity extends BaseActivity {
             mTitleTv.setText(R.string.add_goods_property);
         }
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
+        goodsInfoView.setOnItemClickListener(this);
         initData();
     }
 
@@ -88,7 +102,103 @@ public class AddGoodsPropertyActivity extends BaseActivity {
     }
 
     @Override
-    protected void initPresenter() {
+    protected GoodsPropertyPresenter createPresenter() {
+        return GoodsPropertyPresenter.getInstance();
+    }
 
+    @Override
+    public void getSubCategoryListSuccess(List<BaseBean> data) {
+        mOneLists.clear();
+        mOneLists.addAll(data);
+        sortChildDialog = new SortChildDialog(mContext) {
+            @Override
+            public void updateTwoData(int currentItem) {
+                if (mOneLists.size() > 0 && mOneLists.size() > currentItem) {
+                    initTwo = false;
+                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(currentItem).getCode());
+                }
+            }
+
+            @Override
+            public void updateThreeData(int currentItem) {
+                if (mTwoLists.size() > 0 && mTwoLists.size() > currentItem) {
+                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(currentItem).getCode());
+                }
+            }
+
+            @Override
+            public void addSortChildClick() {
+                SelectSortChildNewActivity.start(mContext, objectBean, true);
+            }
+
+            @Override
+            public void submitClick(int oneCurrentIndex, int twoCurrentIndex, int threeCurrentIndex) {
+                List<BaseBean> beanList = new ArrayList<>();
+                beanList.add(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF));
+                if (mOneLists.size() > 0) {
+                    beanList.add(mOneLists.get(oneCurrentIndex));
+                }
+                if (mTwoLists.size() > 0) {
+                    beanList.add(mTwoLists.get(twoCurrentIndex));
+                }
+                if (mThreeLists.size() > 0) {
+                    beanList.add(mThreeLists.get(threeCurrentIndex));
+                }
+                objectBean.setCategories(beanList);
+                goodsInfoView.init(objectBean);
+            }
+        };
+        sortChildDialog.initData(mOneLists);
+        if (!initOne && mOneLists.size() > 0) {
+            getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(AppConstant.DEFAULT_INDEX_OF).getCode());
+            initOne = true;
+        }
+    }
+
+    @Override
+    public void getTwoSubCategoryListSuccess(List<BaseBean> data) {
+        mTwoLists.clear();
+        mTwoLists.addAll(data);
+        if (sortChildDialog.isShow()) {
+            sortChildDialog.initTwoData(mTwoLists);
+        }
+        if (!initTwo && mTwoLists.size() > 0) {
+            getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(AppConstant.DEFAULT_INDEX_OF).getCode());
+            initTwo = true;
+        } else {
+            mThreeLists.clear();
+            if (sortChildDialog.isShow()) {
+                sortChildDialog.initThreeData(mThreeLists);
+            }
+        }
+    }
+
+    @Override
+    public void getThreeSubCategoryListSuccess(List<BaseBean> data) {
+        mThreeLists.clear();
+        mThreeLists.addAll(data);
+        if (sortChildDialog.isShow()) {
+            sortChildDialog.initThreeData(mThreeLists);
+        }
+    }
+
+    @Override
+    public void showProgressDialog() {
+
+    }
+
+    @Override
+    public void hideProgressDialog() {
+
+    }
+
+    @Override
+    public void onError(String result) {
+
+    }
+
+    @Override
+    public void onItemSortClick(BaseBean baseBean) {
+        getPresenter().getSubCategoryList(App.getUser(mContext).getId(), baseBean.getCode());
     }
 }

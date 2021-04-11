@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.object;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -39,6 +40,7 @@ import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.ActivityTaskManager;
 import com.gongwu.wherecollect.view.AddSortDialog;
+import com.gongwu.wherecollect.view.DeleteSortTipsDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -220,9 +222,20 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
                 break;
             case R.id.sort_delete_tv:
                 if (selectBaseBean == null) return;
-                getPresenter().deleteCustomize(App.getUser(mContext).getId(), selectBaseBean.get_id(), selectBaseBean.getCode());
+                deleteSortChildPost();
                 break;
         }
+    }
+
+    private void deleteSortChildPost() {
+        DeleteSortTipsDialog dialog = new DeleteSortTipsDialog(mContext) {
+            @Override
+            public void submitSort() {
+                getPresenter().deleteCustomize(App.getUser(mContext).getId(), selectBaseBean.get_id(), selectBaseBean.getCode());
+            }
+        };
+        dialog.show();
+        dialog.setMsgText(R.string.hint_delete_sort_text);
     }
 
     private void hideChildLayout() {

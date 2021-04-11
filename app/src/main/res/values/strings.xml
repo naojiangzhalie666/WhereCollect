@@ -149,4 +149,6 @@
     <string name="customize_text">自定义</string>
     <string name="search_text">搜索</string>
     <string name="hint_rename_sort_text">分类名称</string>
+    <string name="hint_delete_sort_child_text">删除此分类，会删掉\n其相关的所有子分类</string>
+    <string name="hint_delete_sort_text">删除主分类将同时删除该主分\n类下创建的全部分类子标签，\n确认删除？</string>
 </resources>
