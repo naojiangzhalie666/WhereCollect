@@ -374,6 +374,10 @@ public class ObjectBean implements Serializable {
         this.price = price;
     }
 
+    public List<String> getChannelList(){
+        return channel;
+    }
+
     public String getChannel() {
         if (!StringUtils.isEmpty(channel)) {
             StringBuilder sb = new StringBuilder();

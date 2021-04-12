@@ -174,10 +174,10 @@ public interface TakeawayApi {
     Call<ResponseBase<BaseBean>> saveCustomSubCate(@FieldMap Map<String, String> map);
 
     @GET("api/app/v400/firstCategory/list")
-    Call<ResponseBase<List<BaseBean>>> getFirstCategoryList(@Query("uid") String uid);
+    Call<ResponseBase<List<BaseBean>>> getFirstCategoryList(@Query("uid") String uid, @Query("type") String type);
 
     @GET("api/app/v400/subCategory/list")
-    Call<ResponseBase<List<BaseBean>>> getSubCategoryList(@Query("uid") String uid, @Query("parent_code") String parent_code);
+    Call<ResponseBase<List<BaseBean>>> getSubCategoryList(@Query("uid") String uid, @Query("parent_code") String parent_code, @Query("type") String type);
 
     @GET("api/app/v400/rec-category/list")
     Call<ResponseBase<List<ChannelBean>>> getCategoryDetails(@Query("uid") String uid, @Query("code") String code);

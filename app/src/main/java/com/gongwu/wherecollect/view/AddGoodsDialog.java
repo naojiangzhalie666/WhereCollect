@@ -131,6 +131,7 @@ public class AddGoodsDialog extends Dialog {
                 if (imgOldFile != null) {
                     imgOldFile = null;
                 }
+                StringUtils.hideKeyboard(goodsNameEdit);
                 cancel();
                 dismiss();
                 break;

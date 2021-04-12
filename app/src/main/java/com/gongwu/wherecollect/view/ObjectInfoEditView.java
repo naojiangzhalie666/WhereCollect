@@ -245,7 +245,9 @@ public class ObjectInfoEditView extends LinearLayout {
                 SelectSeasonActivity.start(getContext(), bean);
                 break;
             case R.id.channel_layout:
-                SelectChannelActivity.start(getContext(), bean);
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemBuyClick();
+                }
                 break;
             case R.id.purchase_time_layout:
                 String start = "";
@@ -373,5 +375,7 @@ public class ObjectInfoEditView extends LinearLayout {
 
     public interface OnItemClickListener {
         void onItemSortClick(BaseBean baseBean);
+
+        void onItemBuyClick();
     }
 }

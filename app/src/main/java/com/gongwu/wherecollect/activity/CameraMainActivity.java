@@ -129,11 +129,13 @@ public class CameraMainActivity extends BaseActivity {
                 break;
             case R.id.continuous_text:
                 if (continuous) {
+                    addMore = false;
                     continuousText.setText("批量添加");
                     saomaIv.setImageResource(R.drawable.icon_camera_saoma);
                     saomaText.setTextColor(getResources().getColor(R.color.white));
                     cameraSaoma.setEnabled(true);
                 } else {
+                    addMore = true;
                     continuousText.setText("单品添加");
                     saomaIv.setImageResource(R.drawable.icon_camera_saoma_enable);
                     saomaText.setTextColor(getResources().getColor(R.color.color999));

@@ -6,6 +6,7 @@ public class CustomSubCateReq extends RequestBase {
     private String uid;
     private String parent_code;
     private String name;
+    private String type;
 
     public String getUid() {
         return uid;
@@ -29,5 +30,13 @@ public class CustomSubCateReq extends RequestBase {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

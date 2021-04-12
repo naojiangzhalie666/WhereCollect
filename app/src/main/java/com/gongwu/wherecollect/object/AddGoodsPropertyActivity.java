@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.object;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,6 +42,7 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
     private List<BaseBean> mTwoLists = new ArrayList<>();
     private List<BaseBean> mThreeLists = new ArrayList<>();
     private boolean initOne, initTwo;
+    private String type = null;
 
     @Override
     protected int getLayoutId() {
@@ -107,7 +109,16 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
     }
 
     @Override
+    public void getBuyFirstCategoryListSuccess(List<BaseBean> data) {
+        initOneView(data);
+    }
+
+    @Override
     public void getSubCategoryListSuccess(List<BaseBean> data) {
+        initOneView(data);
+    }
+
+    private void initOneView(List<BaseBean> data) {
         mOneLists.clear();
         mOneLists.addAll(data);
         sortChildDialog = new SortChildDialog(mContext) {
@@ -115,26 +126,28 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
             public void updateTwoData(int currentItem) {
                 if (mOneLists.size() > 0 && mOneLists.size() > currentItem) {
                     initTwo = false;
-                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(currentItem).getCode());
+                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(currentItem).getCode(), type);
                 }
             }
 
             @Override
             public void updateThreeData(int currentItem) {
                 if (mTwoLists.size() > 0 && mTwoLists.size() > currentItem) {
-                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(currentItem).getCode());
+                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(currentItem).getCode(), type);
                 }
             }
 
             @Override
             public void addSortChildClick() {
-                SelectSortChildNewActivity.start(mContext, objectBean, true);
+                SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type));
             }
 
             @Override
             public void submitClick(int oneCurrentIndex, int twoCurrentIndex, int threeCurrentIndex) {
                 List<BaseBean> beanList = new ArrayList<>();
-                beanList.add(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF));
+                if (!AppConstant.BUY_TYPE.equals(type)) {
+                    beanList.add(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF));
+                }
                 if (mOneLists.size() > 0) {
                     beanList.add(mOneLists.get(oneCurrentIndex));
                 }
@@ -144,13 +157,22 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
                 if (mThreeLists.size() > 0) {
                     beanList.add(mThreeLists.get(threeCurrentIndex));
                 }
-                objectBean.setCategories(beanList);
+                if (!AppConstant.BUY_TYPE.equals(type)) {
+                    objectBean.setCategories(beanList);
+                } else {
+                    List<String> channels = new ArrayList<>();
+                    for (BaseBean baseBean : beanList) {
+                        channels.add(baseBean.getName());
+                    }
+                    objectBean.setChannel(channels);
+                }
                 goodsInfoView.init(objectBean);
             }
         };
         sortChildDialog.initData(mOneLists);
+        sortChildDialog.setType(type);
         if (!initOne && mOneLists.size() > 0) {
-            getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(AppConstant.DEFAULT_INDEX_OF).getCode());
+            getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(AppConstant.DEFAULT_INDEX_OF).getCode(), type);
             initOne = true;
         }
     }
@@ -163,7 +185,7 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
             sortChildDialog.initTwoData(mTwoLists);
         }
         if (!initTwo && mTwoLists.size() > 0) {
-            getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(AppConstant.DEFAULT_INDEX_OF).getCode());
+            getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(AppConstant.DEFAULT_INDEX_OF).getCode(), type);
             initTwo = true;
         } else {
             mThreeLists.clear();
@@ -199,6 +221,15 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
 
     @Override
     public void onItemSortClick(BaseBean baseBean) {
-        getPresenter().getSubCategoryList(App.getUser(mContext).getId(), baseBean.getCode());
+        type = "";
+        initOne = false;
+        getPresenter().getSubCategoryList(App.getUser(mContext).getId(), baseBean.getCode(), type);
+    }
+
+    @Override
+    public void onItemBuyClick() {
+        type = AppConstant.BUY_TYPE;
+        initOne = false;
+        getPresenter().getBuyFirstCategoryList(App.getUser(mContext).getId());
     }
 }

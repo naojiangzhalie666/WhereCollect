@@ -120,7 +120,7 @@ public class MeFragment extends BaseFragment {
     }
 
     @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.qr_code_tv, R.id.start_share_tv, R.id.user_code_iv,
-            R.id.msg_iv, R.id.buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app, R.id.privacy_policy_tv})
+            R.id.msg_iv, R.id.buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app, R.id.privacy_policy_tv, R.id.guider_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.person_iv:
@@ -159,6 +159,9 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.privacy_policy_tv:
                 WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL);
+                break;
+            case R.id.guider_tv:
+//                WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");

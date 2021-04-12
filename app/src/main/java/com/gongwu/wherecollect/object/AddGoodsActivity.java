@@ -209,10 +209,10 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     private void initInfoData() {
         mGoodsInfos.clear();
         mGoodsInfos.addAll(StringUtils.getGoodsInfos(objectBean));
-        if (mGoodsInfos.size() > 0) {
-            goodsInfoListView.setVisibility(View.VISIBLE);
-            mAdapter.notifyDataSetChanged();
-        }
+        goodsInfoListView.setVisibility(mGoodsInfos.size() > 0 ? View.VISIBLE : View.GONE);
+        mAdapter.notifyDataSetChanged();
+        addInfoView.setVisibility(mGoodsInfos.size() > 0 ? View.GONE : View.VISIBLE);
+        editInfoTv.setVisibility(mGoodsInfos.size() > 0 ? View.VISIBLE : View.GONE);
     }
 
     /**
@@ -305,8 +305,6 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 sortNameTv.setText(R.string.add_goods_sort);
                 sortNameTv.setTextColor(getResources().getColor(R.color.divider));
             }
-            addInfoView.setVisibility(View.GONE);
-            editInfoTv.setVisibility(View.VISIBLE);
             initInfoData();
         } else {
             getPresenter().onActivityResult(mContext, requestCode, resultCode, data);

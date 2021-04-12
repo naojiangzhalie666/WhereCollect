@@ -26,8 +26,29 @@ public class GoodsPropertyPresenter extends BasePresenter<IGoodsPropertyContract
 
 
     @Override
-    public void getSubCategoryList(String uid, String parentCode) {
-        mModel.getSubCategoryList(uid, parentCode, new RequestCallback<List<BaseBean>>() {
+    public void getBuyFirstCategoryList(String uid) {
+        mModel.getBuyFirstCategoryList(uid, new RequestCallback<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getBuyFirstCategoryListSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getSubCategoryList(String uid, String parentCode, String type) {
+        mModel.getSubCategoryList(uid, parentCode, type, new RequestCallback<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 if (getUIView() != null) {
@@ -47,8 +68,8 @@ public class GoodsPropertyPresenter extends BasePresenter<IGoodsPropertyContract
     }
 
     @Override
-    public void getTwoSubCategoryList(String uid, String parentCode) {
-        mModel.getTwoSubCategoryList(uid, parentCode, new RequestCallback<List<BaseBean>>() {
+    public void getTwoSubCategoryList(String uid, String parentCode, String type) {
+        mModel.getTwoSubCategoryList(uid, parentCode, type, new RequestCallback<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 if (getUIView() != null) {
@@ -68,8 +89,8 @@ public class GoodsPropertyPresenter extends BasePresenter<IGoodsPropertyContract
     }
 
     @Override
-    public void getThreeSubCategoryList(String uid, String parentCode) {
-        mModel.getThreeSubCategoryList(uid, parentCode, new RequestCallback<List<BaseBean>>() {
+    public void getThreeSubCategoryList(String uid, String parentCode, String type) {
+        mModel.getThreeSubCategoryList(uid, parentCode, type, new RequestCallback<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 if (getUIView() != null) {

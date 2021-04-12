@@ -44,7 +44,7 @@
         <activity
             android:name=".object.SelectSortChildNewActivity"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
-        <activity android:name=".activity.BindEmailActivity" />
+        <activity android:name=".activity.BindEmailActivity" android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity android:name=".activity.InventoryActivity" />
         <activity android:name=".activity.StatisticsActivity" />
         <activity android:name=".activity.AddChangWangGoodActivity" />

@@ -14,9 +14,9 @@ import java.util.List;
 public class SelectSortChildNewModel implements ISelectSortChildNewContract.ISelectSortChildNewModel {
 
     @Override
-    public void getSubCategoryList(String uid, String parentCode, RequestCallback callback) {
+    public void getBuyFirstCategoryList(String uid, RequestCallback callback) {
         if (callback == null) return;
-        ApiUtils.getSubCategoryList(uid, parentCode, new ApiCallBack<List<BaseBean>>() {
+        ApiUtils.getBuyFirstCategoryList(uid, new ApiCallBack<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 callback.onSuccess(data);
@@ -30,9 +30,9 @@ public class SelectSortChildNewModel implements ISelectSortChildNewContract.ISel
     }
 
     @Override
-    public void getTwoSubCategoryList(String uid, String parentCode, RequestCallback callback) {
+    public void getSubCategoryList(String uid, String parentCode, String type, RequestCallback callback) {
         if (callback == null) return;
-        ApiUtils.getSubCategoryList(uid, parentCode, new ApiCallBack<List<BaseBean>>() {
+        ApiUtils.getSubCategoryList(uid, parentCode, type, new ApiCallBack<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 callback.onSuccess(data);
@@ -46,9 +46,25 @@ public class SelectSortChildNewModel implements ISelectSortChildNewContract.ISel
     }
 
     @Override
-    public void getThreeSubCategoryList(String uid, String parentCode, RequestCallback callback) {
+    public void getTwoSubCategoryList(String uid, String parentCode, String type, RequestCallback callback) {
         if (callback == null) return;
-        ApiUtils.getSubCategoryList(uid, parentCode, new ApiCallBack<List<BaseBean>>() {
+        ApiUtils.getSubCategoryList(uid, parentCode, type, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getThreeSubCategoryList(String uid, String parentCode, String type, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getSubCategoryList(uid, parentCode, type, new ApiCallBack<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 callback.onSuccess(data);

@@ -24,12 +24,16 @@ public class AddressTextAdapter extends AbstractWheelTextAdapter {
 
     @Override
     protected CharSequence getItemText(int index) {
-        return mDatas.get(index).getName();
+        if (mDatas != null && mDatas.size() > 0 && mDatas.size() > index) {
+            return mDatas.get(index).getName();
+        } else {
+            return "";
+        }
     }
 
     @Override
     public int getItemsCount() {
-        return mDatas.size();
+        return mDatas == null ? 0 : mDatas.size();
     }
 
     @Override
@@ -39,7 +43,11 @@ public class AddressTextAdapter extends AbstractWheelTextAdapter {
     }
 
     public String getName(int index) {
-        return mDatas.get(index).getName();
+        if (mDatas != null && mDatas.size() > 0 && mDatas.size() > index) {
+            return mDatas.get(index).getName();
+        } else {
+            return "";
+        }
     }
 
 }

@@ -74,6 +74,8 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
     private String sortCode = null;
     private BaseBean mainBaseBean;
     private DeleteSortTipsDialog dialog;
+    private boolean initSortByType = true;
+    private String type = "";
 
     @Override
     protected int getLayoutId() {
@@ -82,14 +84,10 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
 
     @Override
     protected void initViews() {
-        mTitleTv.setText("添加分类子标签");
         mCommitTv.setVisibility(View.VISIBLE);
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
-        if (objectBean != null && objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
-            mainBaseBean = objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF);
-            mainSortTv.setText(!TextUtils.isEmpty(mainBaseBean.getName()) ? mainBaseBean.getName() : "");
-            getPresenter().getSubCategoryList(App.getUser(mContext).getId(), mainBaseBean.getCode());
-        }
+        initSortByType = getIntent().getBooleanExtra("initSortByType", true);
+        initData();
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
         mOneAdapter = new SelectSortChildAdapter(mContext, mOneLists);
         mOneRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
@@ -119,7 +117,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                     mThreeLists.clear();
                     mThreeAdapter.setSelectBaseBean(null);
                     selectSortChildTv.setText(selectOneChildBean.getName());
-                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode());
+                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode(), type);
                 } else if (!TextUtils.isEmpty(baseBean.getName()) && baseBean.getName().equals("新增")) {
                     if (mainBaseBean == null) return;
                     sortLevel = 1;
@@ -141,14 +139,15 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
             public void onItemClick(int positions, View view) {
                 BaseBean baseBean = mTwoLists.get(positions);
                 if (!TextUtils.isEmpty(baseBean.get_id()) && !TextUtils.isEmpty(baseBean.getCode())) {
-                    if (selectTwoChildBean != null && selectTwoChildBean.getCode().equals(baseBean.getCode())) return;
+                    if (selectTwoChildBean != null && selectTwoChildBean.getCode().equals(baseBean.getCode()))
+                        return;
                     selectTwoChildBean = baseBean;
                     mTwoAdapter.setSelectBaseBean(selectTwoChildBean);
                     mThreeLists.clear();
                     selectThreeChildBean = null;
                     mThreeAdapter.setSelectBaseBean(null);
                     selectSortChildTv.setText(new StringBuilder(selectOneChildBean.getName()).append("/").append(selectTwoChildBean.getName()).toString());
-                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), selectTwoChildBean.getCode());
+                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), selectTwoChildBean.getCode(), type);
                 } else if (!TextUtils.isEmpty(baseBean.getName()) && baseBean.getName().equals("新增")) {
                     if (selectOneChildBean == null) return;
                     sortLevel = 2;
@@ -170,7 +169,8 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
             public void onItemClick(int positions, View view) {
                 BaseBean baseBean = mThreeLists.get(positions);
                 if (!TextUtils.isEmpty(baseBean.get_id()) && !TextUtils.isEmpty(baseBean.getCode())) {
-                    if (selectThreeChildBean != null && selectThreeChildBean.getCode().equals(baseBean.getCode())) return;
+                    if (selectThreeChildBean != null && selectThreeChildBean.getCode().equals(baseBean.getCode()))
+                        return;
                     selectThreeChildBean = baseBean;
                     mThreeAdapter.setSelectBaseBean(selectThreeChildBean);
                     selectSortChildTv.setText(new StringBuilder(selectOneChildBean.getName()).append("/").
@@ -202,6 +202,34 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         });
     }
 
+    private void initData() {
+        StringBuilder sb = new StringBuilder();
+        if (initSortByType && objectBean != null && objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
+            mTitleTv.setText("添加分类子标签");
+            mainBaseBean = objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF);
+            mainSortTv.setText(!TextUtils.isEmpty(mainBaseBean.getName()) ? mainBaseBean.getName() : "");
+            getPresenter().getSubCategoryList(App.getUser(mContext).getId(), mainBaseBean.getCode(), type);
+            for (int i = 0; i < StringUtils.getListSize(objectBean.getCategories()); i++) {
+                sb.append(objectBean.getCategories().get(i).getName());
+                if (i != objectBean.getCategories().size() - 1) {
+                    sb.append("/");
+                }
+            }
+        } else {
+            mTitleTv.setText("添加购货渠道");
+            type = AppConstant.BUY_TYPE;
+            mainSortTv.setVisibility(View.GONE);
+            getPresenter().getBuyFirstCategoryList(App.getUser(mContext).getId());
+            for (int i = 0; i < StringUtils.getListSize(objectBean.getChannelList()); i++) {
+                sb.append(objectBean.getChannelList().get(i));
+                if (i != objectBean.getChannelList().size() - 1) {
+                    sb.append("/");
+                }
+            }
+        }
+        selectSortChildTv.setText(sb.toString());
+    }
+
     @OnClick({R.id.back_btn, R.id.add_sort_childe_submit_tv, R.id.title_commit_bg_main_color_tv})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -213,7 +241,9 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                 break;
             case R.id.title_commit_bg_main_color_tv:
                 List<BaseBean> beanList = new ArrayList<>();
-                beanList.add(mainBaseBean);
+                if (initSortByType) {
+                    beanList.add(mainBaseBean);
+                }
                 if (selectOneChildBean != null) {
                     beanList.add(selectOneChildBean);
                 }
@@ -223,7 +253,15 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                 if (selectThreeChildBean != null) {
                     beanList.add(selectThreeChildBean);
                 }
-                objectBean.setCategories(beanList);
+                if (initSortByType) {
+                    objectBean.setCategories(beanList);
+                } else {
+                    List<String> channels = new ArrayList<>();
+                    for (BaseBean baseBean : beanList) {
+                        channels.add(baseBean.getName());
+                    }
+                    objectBean.setChannel(channels);
+                }
                 Intent intent = new Intent();
                 intent.putExtra("objectBean", objectBean);
                 setResult(RESULT_OK, intent);
@@ -236,7 +274,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
     private void addSortChildPost() {
         if (!TextUtils.isEmpty(addSortEt.getText().toString().trim())) {
             StringUtils.hideKeyboard(addSortEt);
-            getPresenter().saveCustomSubCate(App.getUser(mContext).getId(), addSortEt.getText().toString().trim(), sortCode);
+            getPresenter().saveCustomSubCate(App.getUser(mContext).getId(), addSortEt.getText().toString().trim(), sortCode, type);
             addSortChildeLayout.setVisibility(View.GONE);
         } else {
             ToastUtil.show(mContext, "请输入要添加的子类名称");
@@ -247,7 +285,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         dialog = new DeleteSortTipsDialog(mContext) {
             @Override
             public void submitSort() {
-                getPresenter().deleteCustomize(App.getUser(mContext).getId(), baseBean.get_id(), baseBean.getCode());
+                getPresenter().deleteCustomize(App.getUser(mContext).getId(), baseBean.get_id(), baseBean.getCode(), type);
             }
         };
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -278,7 +316,16 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
     }
 
     @Override
+    public void getBuyFirstCategoryListSuccess(List<BaseBean> data) {
+        initOneView(data);
+    }
+
+    @Override
     public void getSubCategoryListSuccess(List<BaseBean> data) {
+        initOneView(data);
+    }
+
+    private void initOneView(List<BaseBean> data) {
         mOneLists.clear();
         if (data != null && data.size() > 0) {
             mOneLists.addAll(data);
@@ -334,13 +381,13 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         ToastUtil.show(mContext, "添加成功");
         switch (sortLevel) {
             case 1:
-                getPresenter().getSubCategoryList(App.getUser(mContext).getId(), mainBaseBean.getCode());
+                getPresenter().getSubCategoryList(App.getUser(mContext).getId(), mainBaseBean.getCode(), type);
                 break;
             case 2:
-                getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode());
+                getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode(), type);
                 break;
             case 3:
-                getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), selectTwoChildBean.getCode());
+                getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), selectTwoChildBean.getCode(), type);
                 break;
         }
     }
@@ -363,7 +410,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                         mThreeAdapter.setSelectBaseBean(null);
                     }
                     sortLevel = 0;
-                    getPresenter().getSubCategoryList(App.getUser(mContext).getId(), mainBaseBean.getCode());
+                    getPresenter().getSubCategoryList(App.getUser(mContext).getId(), mainBaseBean.getCode(), type);
                     break;
                 case 2:
                     if (selectTwoChildBean != null && selectTwoChildBean.getCode().equals(sortCode)) {
@@ -376,7 +423,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                         mThreeAdapter.setSelectBaseBean(null);
                     }
                     sortLevel = 0;
-                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode());
+                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode(), type);
                     break;
                 case 3:
                     if (selectThreeChildBean != null && selectThreeChildBean.getCode().equals(sortCode)) {
@@ -386,17 +433,20 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                         mThreeAdapter.setSelectBaseBeanNotRefresh(null);
                     }
                     sortLevel = 0;
-                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), selectTwoChildBean.getCode());
+                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), selectTwoChildBean.getCode(), type);
                     break;
             }
 
         }
     }
 
-    public static void start(Context mContext, ObjectBean objectBean, boolean initSortByChild) {
+    /**
+     * @param initSortByType true物品分类,false购买渠道
+     */
+    public static void start(Context mContext, ObjectBean objectBean, boolean initSortByType) {
         Intent intent = new Intent(mContext, SelectSortChildNewActivity.class);
         intent.putExtra("objectBean", objectBean);
-        intent.putExtra("initSortByChild", initSortByChild);
+        intent.putExtra("initSortByType", initSortByType);
         ((Activity) mContext).startActivityForResult(intent, AddGoodsPropertyActivity.REQUEST_CODE);
     }
 

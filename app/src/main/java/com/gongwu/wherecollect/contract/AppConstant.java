@@ -31,6 +31,8 @@ public class AppConstant {
     public final static int LEVEL_FURNITURE = 1;
     public final static int LEVEL_INTERLAYER = 2;
     public final static int LEVEL_BOX = 3;
+    //购货渠道type 用于区分物品分类
+    public final static String BUY_TYPE = "buy";
 
     /**
      * 友盟推送token

@@ -12,24 +12,28 @@ import java.util.List;
 
 public interface IGoodsPropertyContract {
     interface IGoodsPropertyModel {
+        void getBuyFirstCategoryList(String uid, final RequestCallback callback);
 
-        void getSubCategoryList(String uid, String parentCode, final RequestCallback callback);
+        void getSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
 
-        void getTwoSubCategoryList(String uid, String parentCode, final RequestCallback callback);
+        void getTwoSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
 
-        void getThreeSubCategoryList(String uid, String parentCode, final RequestCallback callback);
+        void getThreeSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
     }
 
     interface IGoodsPropertyPresenter {
+        void getBuyFirstCategoryList(String uid);
 
-        void getSubCategoryList(String uid, String parentCode);
+        void getSubCategoryList(String uid, String parentCode, String type);
 
-        void getTwoSubCategoryList(String uid, String parentCode);
+        void getTwoSubCategoryList(String uid, String parentCode, String type);
 
-        void getThreeSubCategoryList(String uid, String parentCode);
+        void getThreeSubCategoryList(String uid, String parentCode, String type);
     }
 
     interface IGoodsPropertyView extends BaseView {
+
+        void getBuyFirstCategoryListSuccess(List<BaseBean> data);
 
         void getSubCategoryListSuccess(List<BaseBean> data);
 

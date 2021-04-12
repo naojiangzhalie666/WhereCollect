@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.adapter.AddMoreGoodsAdapter;
+import com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
 import com.gongwu.wherecollect.adapter.StackAdapter;
 import com.gongwu.wherecollect.base.App;
@@ -24,6 +25,7 @@ import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IAddGoodsContract;
 import com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter;
+import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -32,6 +34,7 @@ import com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.gongwu.wherecollect.util.StatusBarUtil;
+import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.AddGoodsDialog;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoLookView;
@@ -62,10 +65,14 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     Button mSelectLocationBt;
     @BindView(R.id.add_goods_list_sort)
     TextView sortNameTv;
-    @BindView(R.id.goodsInfo_view)
-    ObjectInfoLookView goodsInfoView;
+    @BindView(R.id.goods_info_view)
+    RecyclerView goodsInfoListView;
     @BindView(R.id.content_layout)
     RelativeLayout contentLayout;
+    @BindView(R.id.add_other_content_tv)
+    TextView addInfoView;
+    @BindView(R.id.goods_info_edit_tv)
+    TextView editInfoTv;
 
     private SwipeFlingAdapterView mSwipeView;
     private StackAdapter mStackAdapter;
@@ -81,6 +88,9 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     private List<ObjectBean> mlist;
     private Loading loading;
     private boolean setGoodsLocation;
+
+    private GoodsInfoViewAdapter mInfoAdapter;
+    private List<GoodsInfoBean> mGoodsInfos = new ArrayList<>();
 
     @Override
     protected int getLayoutId() {
@@ -107,6 +117,17 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         bean.set__v(ADD_GOODS_CODE);
         mlist.add(bean);
 
+        mInfoAdapter = new GoodsInfoViewAdapter(mContext, mGoodsInfos);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3) {
+            @Override
+            public boolean canScrollVertically() {
+                //禁止上下滑动
+                return false;
+            }
+        };
+        goodsInfoListView.setLayoutManager(gridLayoutManager);
+        goodsInfoListView.setAdapter(mInfoAdapter);
+
         List<String> list = getIntent().getStringArrayListExtra("imgList");
         if (list != null && list.size() > 0) {
             // 为AdapterViewFlipper设置Adapter
@@ -127,7 +148,8 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         mStackAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.back_btn, R.id.add_goods_list_sort, R.id.add_other_content_tv, R.id.commit_bt, R.id.select_location_bt})
+    @OnClick({R.id.back_btn, R.id.add_goods_list_sort, R.id.add_other_content_tv, R.id.commit_bt,
+            R.id.select_location_bt, R.id.goods_info_edit_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -136,6 +158,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             case R.id.add_goods_list_sort:
                 SelectSortActivity.start(mContext, sortBean);
                 break;
+            case R.id.goods_info_edit_tv:
             case R.id.add_other_content_tv:
                 AddGoodsPropertyActivity.start(mContext, sortBean, true);
                 break;
@@ -337,7 +360,8 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             } else {
                 sortNameTv.setText(R.string.add_goods_sort);
             }
-            goodsInfoView.init(sortBean);
+            initInfoData();
+//            goodsInfoView.init(sortBean);
         }
         if (requestCode == BOOK_CODE && resultCode == CaptureActivity.result) {//扫描的到结果
             String code = data.getStringExtra("result");
@@ -349,6 +373,15 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
                 getPresenter().getBookInfo(App.getUser(mContext).getId(), code);
             }
         }
+    }
+
+    private void initInfoData() {
+        mGoodsInfos.clear();
+        mGoodsInfos.addAll(StringUtils.getGoodsInfos(sortBean));
+        goodsInfoListView.setVisibility(mGoodsInfos.size() > 0 ? View.VISIBLE : View.GONE);
+        mInfoAdapter.notifyDataSetChanged();
+        addInfoView.setVisibility(mGoodsInfos.size() > 0 ? View.GONE : View.VISIBLE);
+        editInfoTv.setVisibility(mGoodsInfos.size() > 0 ? View.VISIBLE : View.GONE);
     }
 
     @Override

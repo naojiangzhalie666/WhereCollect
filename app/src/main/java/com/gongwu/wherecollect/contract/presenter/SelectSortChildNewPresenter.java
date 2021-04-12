@@ -1,5 +1,7 @@
 package com.gongwu.wherecollect.contract.presenter;
 
+import android.text.TextUtils;
+
 import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.ISelectSortChildNewContract;
 import com.gongwu.wherecollect.contract.model.SelectSortChildNewModel;
@@ -24,8 +26,29 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
 
 
     @Override
-    public void getSubCategoryList(String uid, String parentCode) {
-        mModel.getSubCategoryList(uid, parentCode, new RequestCallback<List<BaseBean>>() {
+    public void getBuyFirstCategoryList(String uid) {
+        mModel.getBuyFirstCategoryList(uid, new RequestCallback<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getBuyFirstCategoryListSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getSubCategoryList(String uid, String parentCode, String type) {
+        mModel.getSubCategoryList(uid, parentCode, type, new RequestCallback<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 if (getUIView() != null) {
@@ -45,8 +68,8 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
     }
 
     @Override
-    public void getTwoSubCategoryList(String uid, String parentCode) {
-        mModel.getTwoSubCategoryList(uid, parentCode, new RequestCallback<List<BaseBean>>() {
+    public void getTwoSubCategoryList(String uid, String parentCode, String type) {
+        mModel.getTwoSubCategoryList(uid, parentCode, type, new RequestCallback<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 if (getUIView() != null) {
@@ -66,8 +89,8 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
     }
 
     @Override
-    public void getThreeSubCategoryList(String uid, String parentCode) {
-        mModel.getThreeSubCategoryList(uid, parentCode, new RequestCallback<List<BaseBean>>() {
+    public void getThreeSubCategoryList(String uid, String parentCode, String type) {
+        mModel.getThreeSubCategoryList(uid, parentCode, type, new RequestCallback<List<BaseBean>>() {
             @Override
             public void onSuccess(List<BaseBean> data) {
                 if (getUIView() != null) {
@@ -87,7 +110,7 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
     }
 
     @Override
-    public void saveCustomSubCate(String uid, String name, String parentCode) {
+    public void saveCustomSubCate(String uid, String name, String parentCode, String type) {
         CustomSubCateReq req = new CustomSubCateReq();
         req.setUid(uid);
         req.setName(name);
@@ -112,11 +135,11 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
     }
 
     @Override
-    public void deleteCustomize(String uid, String id, String code) {
+    public void deleteCustomize(String uid, String id, String code, String type) {
         EditCustomizeReq req = new EditCustomizeReq();
         req.setId(id);
         req.setCode(code);
-        req.setType("cate");
+        req.setType(TextUtils.isEmpty(type) ? "cate" : type);
         req.setUser_id(uid);
         mModel.deleteCustomize(req, new RequestCallback<RequestSuccessBean>() {
             @Override

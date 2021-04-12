@@ -14,12 +14,13 @@ import java.util.List;
 
 public interface ISelectSortChildNewContract {
     interface ISelectSortChildNewModel {
+        void getBuyFirstCategoryList(String uid, final RequestCallback callback);
 
-        void getSubCategoryList(String uid, String parentCode, final RequestCallback callback);
+        void getSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
 
-        void getTwoSubCategoryList(String uid, String parentCode, final RequestCallback callback);
+        void getTwoSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
 
-        void getThreeSubCategoryList(String uid, String parentCode, final RequestCallback callback);
+        void getThreeSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
 
         void saveCustomSubCate(CustomSubCateReq req, final RequestCallback callback);
 
@@ -27,19 +28,21 @@ public interface ISelectSortChildNewContract {
     }
 
     interface ISelectSortChildNewPresenter {
+        void getBuyFirstCategoryList(String uid);
 
-        void getSubCategoryList(String uid, String parentCode);
+        void getSubCategoryList(String uid, String parentCode, String type);
 
-        void getTwoSubCategoryList(String uid, String parentCode);
+        void getTwoSubCategoryList(String uid, String parentCode, String type);
 
-        void getThreeSubCategoryList(String uid, String parentCode);
+        void getThreeSubCategoryList(String uid, String parentCode, String type);
 
-        void saveCustomSubCate(String uid, String name, String parentCode);
+        void saveCustomSubCate(String uid, String name, String parentCode, String type);
 
-        void deleteCustomize(String uid, String id, String code);
+        void deleteCustomize(String uid, String id, String code, String type);
     }
 
     interface ISelectSortChildNewView extends BaseView {
+        void getBuyFirstCategoryListSuccess(List<BaseBean> data);
 
         void getSubCategoryListSuccess(List<BaseBean> data);
 

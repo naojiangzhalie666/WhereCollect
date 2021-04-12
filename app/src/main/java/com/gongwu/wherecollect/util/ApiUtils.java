@@ -1,5 +1,6 @@
 package com.gongwu.wherecollect.util;
 
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.ApiInstance;
 import com.gongwu.wherecollect.net.entity.base.RequestBase;
@@ -315,14 +316,21 @@ public class ApiUtils {
      * 获取物品一级分类
      */
     public static <D extends RequestBase> void getFirstCategoryList(String uid, ApiCallBack<List<BaseBean>> callBack) {
-        ApiInstance.getApi().getFirstCategoryList(uid).enqueue(callBack);
+        ApiInstance.getApi().getFirstCategoryList(uid, "").enqueue(callBack);
+    }
+
+    /**
+     * 获取购买渠道一级分类
+     */
+    public static <D extends RequestBase> void getBuyFirstCategoryList(String uid, ApiCallBack<List<BaseBean>> callBack) {
+        ApiInstance.getApi().getFirstCategoryList(uid, AppConstant.BUY_TYPE).enqueue(callBack);
     }
 
     /**
      * 根据parentCode获取下一级分类
      */
-    public static <D extends RequestBase> void getSubCategoryList(String uid, String parentCode, ApiCallBack<List<BaseBean>> callBack) {
-        ApiInstance.getApi().getSubCategoryList(uid, parentCode).enqueue(callBack);
+    public static <D extends RequestBase> void getSubCategoryList(String uid, String parentCode, String type, ApiCallBack<List<BaseBean>> callBack) {
+        ApiInstance.getApi().getSubCategoryList(uid, parentCode, type).enqueue(callBack);
     }
 
     /**

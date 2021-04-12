@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.adapter.AddressTextAdapter;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class SortChildDialog {
     private WheelView mOneListView;
     private WheelView mTwoListView;
     private WheelView mThreeListView;
+    private TextView addChildView;
     private AddressTextAdapter mOneAdapter;
     private AddressTextAdapter mTwoAdapter;
     private AddressTextAdapter mThreeAdapter;
@@ -74,7 +76,7 @@ public class SortChildDialog {
         mOneListView = view.findViewById(R.id.sort_one_wheel_view);
         mTwoListView = view.findViewById(R.id.sort_two_wheel_view);
         mThreeListView = view.findViewById(R.id.sort_three_wheel_view);
-
+        addChildView = view.findViewById(R.id.dialog_add_sort_child_tv);
         mOneListView.setVisibleItems(5);
         mTwoListView.setVisibleItems(5);
         mThreeListView.setVisibleItems(5);
@@ -256,5 +258,13 @@ public class SortChildDialog {
 
     public void submitClick(int oneCurrentIndex, int twoCurrentIndex, int threeCurrentIndex) {
 
+    }
+
+    public void setType(String type) {
+        if (AppConstant.BUY_TYPE.equals(type)) {
+            addChildView.setText("添加渠道");
+        } else {
+            addChildView.setText("添加分类");
+        }
     }
 }
