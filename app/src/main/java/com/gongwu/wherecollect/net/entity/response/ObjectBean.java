@@ -127,6 +127,7 @@ public class ObjectBean implements Serializable {
     private int level;
     private String location_code;
     private int weight;
+    private List<ObjectBean> goodsByBox;
     /**
      * 获取初始尺寸
      *
@@ -818,6 +819,14 @@ public class ObjectBean implements Serializable {
 
     public int getLevel() {
         return level;
+    }
+
+    public List<ObjectBean> getGoodsByBox() {
+        return goodsByBox;
+    }
+
+    public void setGoodsByBox(List<ObjectBean> goodsByBox) {
+        this.goodsByBox = goodsByBox;
     }
 
     public void setLevel(int level) {

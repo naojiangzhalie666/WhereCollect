@@ -117,6 +117,10 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     TextView redNumberTv;
     @BindView(R.id.furniture_cancel_tv)
     TextView cancelTv;
+    @BindView(R.id.strut)
+    View strut;
+    @BindView(R.id.box_img_iv)
+    GoodsImageView boxImageView;
 
     private boolean isDown;
     private boolean isBox;
@@ -168,6 +172,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         tablelayout.setOnItemClickListener(new CustomTableRowLayout.OnItemClickListener() {
             @Override
             public void itemClick(ChildView view) {
+                //点击隔层
                 selectGoodsBean = null;
                 tablelayout.unSelectChildView();
                 onClickTable(view);
@@ -189,13 +194,18 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             @Override
             public void onItemClick(int positions, View view) {
                 selectGoodsBean = null;
+                //点击收纳盒
                 if (mAdapterData.get(positions).getLevel() == AppConstant.LEVEL_BOX) {
-                    gcNameTv.setText(gcNameTv.getText().toString() + "/" + mAdapterData.get(positions).getName());
+                    String boxName = mAdapterData.get(positions).getName();
                     selectGoods = 0;
                     selectBoxBean = mAdapterData.get(positions);
                     refreshBoxListView(selectBoxBean);
                     showSelectBoxButton();
                     isBox = true;
+                    if (selectView != null && selectView.getObjectBean() != null) {
+                        gcNameTv.setText(selectView.getObjectBean().getName() + "/" + boxName);
+                    }
+                    initBoxImg();
                 } else {
                     if (getEditMoveType()) return;
                     ChildView childView = tablelayout.findView(mAdapterData.get(positions));
@@ -215,6 +225,19 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             showMoveBoxButton();
         } else if (MainActivity.moveGoodsList != null && MainActivity.moveGoodsList.size() > 0) {
             showMoveGoodsButton();
+        }
+    }
+
+    private void initBoxImg() {
+        if (selectBoxBean == null) {
+            boxImageView.setVisibility(View.GONE);
+            return;
+        }
+        boxImageView.setVisibility(View.VISIBLE);
+        if (TextUtils.isEmpty(selectBoxBean.getImage_url()) || "null".equals(selectBoxBean.getImage_url())) {
+            boxImageView.head.setImageDrawable(mContext.getDrawable(R.drawable.icon_template_box));
+        } else {
+            boxImageView.setImg(selectBoxBean.getObject_url(), 0);
         }
     }
 
@@ -258,11 +281,14 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             case R.id.furniture_back_tv:
                 //选中收纳盒-后退
                 refreshListView(selectView.getObjectBean().getCode());
-                gcNameTv.setText(getPresenter().getLoction(selectView.getObjectBean()));
+                gcNameTv.setText(selectView.getObjectBean().getName());
                 showSelectLayerButton();
                 //只有在收纳盒内 才有后退
                 isBox = false;
+                //初始化选中物品数量,bean的状态会在添加新的数据时初始化
+                selectGoods = 0;
                 selectBoxBean = null;
+                initBoxImg();
                 break;
             case R.id.furniture_goods_details_tv:
                 //物品详情
@@ -396,6 +422,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         }
         mData.addAll(data.getLocations());
         mBoxlist.addAll(data.getLocations());
+        getPresenter().initBoxData(mBoxlist, data.getObjects());
         mData.addAll(data.getObjects());
         objects.addAll(data.getObjects());
         mRecyclerView.smoothScrollToPosition(AppConstant.DEFAULT_INDEX_OF);
@@ -575,14 +602,20 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     @Override
     public void getFurnitureLayersOrBoxSuccess(RoomFurnitureResponse data) {
         furnitureNameTv.setText(data.getFurniture_name());
-        roomNameTv.setText(data.getRoom_name());
         furnitureBean.setLayers(data.getLayers());
         furnitureBean.setName(data.getFurniture_name());
+        gcNameTv.setText("全部");
         tablelayout.init(data.getLayers(), CustomTableRowLayout.shape_width, R.drawable.shape_geceng1);
         mRoomFurnitureResponse = data;
         if (data.getParents() != null && data.getParents().size() > 0) {
-            RoomFurnitureBean furnitureBean = data.getLayers().get(AppConstant.DEFAULT_INDEX_OF);
-            gcNameTv.setText(getPresenter().getLoction(furnitureBean));
+            StringBuilder sb = new StringBuilder();
+            for (BaseBean bean : data.getParents()) {
+                sb.append(bean.getName()).append("/");
+            }
+            if (sb.toString().length() > 0) {
+                sb.delete(sb.length() - 1, sb.length());
+                roomNameTv.setText(sb.toString());
+            }
         }
     }
 
@@ -613,19 +646,28 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             AnimationUtil.downSlide(goodsLayout, 300, y);
         }
         tabLayout.setVisibility(isDown ? View.GONE : View.VISIBLE);
-
+        strut.setVisibility(isDown ? View.GONE : View.VISIBLE);
         Drawable drawable = getResources().getDrawable(
                 isDown ? R.drawable.icon_look_arrow_down : R.drawable.icon_look_arrow_up);
         // / 这一步必须要做,否则不会显示.
         drawable.setBounds(0, 0, drawable.getMinimumWidth(),
                 drawable.getMinimumHeight());
         gcNameTv.setCompoundDrawables(null, null, drawable, null);
+        if (isDown) {
+            boxImageView.setVisibility(View.GONE);
+        } else {
+            if (selectBoxBean != null) {
+                boxImageView.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
+    /**
+     * 点击隔层
+     */
     private void onClickTable(ChildView view) {
         selectGoods = 0;
         view.setEditable(!view.isEdit());
-        gcNameTv.setText(getPresenter().getLoction(view.getObjectBean()));
         if (selectView != null) {
             selectView.setEditable(false);
             selectView = null;
@@ -634,9 +676,11 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             selectView = view;
             refreshListView(view.getObjectBean().getCode());
             showSelectLayerButton();
+            gcNameTv.setText(view.getObjectBean().getName());
         } else {
             refreshListView(null);
             initButton();
+            gcNameTv.setText("全部");
         }
         moveLayerView.setAlpha(view.isEdit() ? 1.0f : 0.5f);
         moveBoxTv.setAlpha(view.isEdit() ? 1.0f : 0.5f);
@@ -646,6 +690,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         moveGoodsIV.setEnabled(view.isEdit());
         isBox = false;
         selectBoxBean = null;
+        initBoxImg();
     }
 
     private void refreshListView(String location_code) {
@@ -675,7 +720,9 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     private void refreshBoxListView(ObjectBean location) {
         ChildView childView = tablelayout.findView(location);
+        //找到该收纳盒的隔层
         if (childView != null) {
+            tablelayout.unSelectChildView();
             childView.setEditable(!childView.isEdit());
             selectView = childView;
         }

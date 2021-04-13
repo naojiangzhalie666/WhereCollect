@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/img_layout"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_64"
+        android:layout_marginTop="@dimen/dip_4"
+        android:layout_marginBottom="@dimen/dip_4"
+        android:background="@drawable/shape_furniture_look_box_bg"
+        android:orientation="vertical"
+        android:padding="@dimen/dip_2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/img_box_view_one"
+                android:layout_width="@dimen/dip_28"
+                android:layout_height="@dimen/dip_28" />
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/img_box_view_two"
+                android:layout_width="@dimen/dip_28"
+                android:layout_height="@dimen/dip_28"
+                android:layout_marginStart="@dimen/dip_2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/img_box_view_three"
+                android:layout_width="@dimen/dip_28"
+                android:layout_height="@dimen/dip_28" />
+
+            <com.gongwu.wherecollect.view.GoodsImageView
+                android:id="@+id/img_box_view_four"
+                android:layout_width="@dimen/dip_28"
+                android:layout_height="@dimen/dip_28"
+                android:layout_marginStart="@dimen/dip_2" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dip_6"
+        android:layout_marginEnd="@dimen/dip_6"
+        android:layout_marginBottom="@dimen/dip_4"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.gongwu.wherecollect.view.GoodsImageView
+            android:id="@+id/furniture_box_iv"
+            android:layout_width="@dimen/dip_16"
+            android:layout_height="@dimen/dip_16" />
+
+        <TextView
+            android:id="@+id/box_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dip_4"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="123123"
+            android:textColor="@drawable/select_furniture_look_item_text_bg"
+            android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -505,6 +505,7 @@ public class CustomTableRowLayout extends RelativeLayout {
             cancelFind();
             return null;
         } else if (view.isEdit()) {
+            //若该隔层已经是选中状态
             return null;
         }
         view.bringToFront();

@@ -80,6 +80,8 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     TextView remindTimeTv;
     @BindView(R.id.goods_info_view)
     RecyclerView goodsInfoListView;
+    @BindView(R.id.goods_info_tv)
+    TextView goodsInfoTypeTv;
 
     private GoodsInfoViewAdapter mAdapter;
     private List<GoodsInfoBean> mGoodsInfos = new ArrayList<>();
@@ -139,7 +141,10 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         mGoodsInfos.addAll(StringUtils.getGoodsInfos(objectBean));
         if (mGoodsInfos.size() > 0) {
             goodsInfoListView.setVisibility(View.VISIBLE);
+            goodsInfoTypeTv.setVisibility(View.VISIBLE);
             mAdapter.notifyDataSetChanged();
+        } else {
+            goodsInfoTypeTv.setVisibility(View.GONE);
         }
     }
 

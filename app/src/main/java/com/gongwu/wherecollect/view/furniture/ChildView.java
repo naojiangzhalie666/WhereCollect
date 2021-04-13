@@ -71,6 +71,7 @@ public class ChildView extends RelativeLayout {
     }
 
     public void setSelectCount(boolean isSelect) {
+        //判断隔层是否点亮
         if (bean.isSelect()) return;
         if (isSelect) {
             selectCount++;
@@ -82,6 +83,10 @@ public class ChildView extends RelativeLayout {
         } else {
             textView.setBackgroundResource(resID);
         }
+    }
+    //返回的时候需要初始化已经点亮的物品数量
+    public void initSelectCount() {
+        selectCount = 0;
     }
 
     public void setUnSelectCount() {

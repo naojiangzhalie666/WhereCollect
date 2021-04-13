@@ -10,6 +10,7 @@ import com.gongwu.wherecollect.net.entity.request.EditGoodsReq;
 import com.gongwu.wherecollect.net.entity.request.LayerReq;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
+import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
@@ -17,6 +18,7 @@ import com.gongwu.wherecollect.net.entity.response.RoomFurnitureGoodsBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse;
 import com.gongwu.wherecollect.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -380,6 +382,25 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
             sb.append(bean.getName());
         }
         return sb.length() == 0 ? "未归位" : sb.toString();
+    }
+
+    public void initBoxData(List<ObjectBean> boxs, List<ObjectBean> datas) {
+        if (boxs == null || boxs.size() == 0) return;
+        if (datas == null || datas.size() == 0) return;
+        for (ObjectBean box : boxs) {
+            List<ObjectBean> goods = new ArrayList<>();
+            for (ObjectBean bean : datas) {
+                for (int j = 0; j < bean.getLocations().size(); j++) {
+                    if (goods.size() > 3) continue;
+                    if (box.getCode().equals(bean.getLocations().get(j).getCode())) {
+                        goods.add(bean);
+                    }
+                }
+            }
+            if (goods.size() > 0) {
+                box.setGoodsByBox(goods);
+            }
+        }
     }
 
 
