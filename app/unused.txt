@@ -2223,8 +2223,6 @@ androidx.core.view.ViewConfigurationCompat
     public static boolean hasPermanentMenuKey(android.view.ViewConfiguration)
     private void <init>()
     private static final java.lang.String TAG
-com.gongwu.wherecollect.activity.FurnitureLookActivity$7
-    public void onImgClick()
 io.reactivex.internal.operators.flowable.FlowableGroupBy
 com.google.zxing.oned.UPCEANReader
     private static final int MAX_AVG_VARIANCE
@@ -6927,8 +6925,6 @@ io.reactivex.internal.operators.flowable.FlowableThrottleFirstTimed
 kotlin.sequences.SequencesKt___SequencesKt$minus$4$iterator$1
 com.github.florent37.camerafragment.widgets.RecordButton$1
 io.reactivex.internal.operators.observable.ObservableFlatMapCompletable$FlatMapCompletableMainObserver$InnerObserver
-com.gongwu.wherecollect.view.PopupScrollPickerView
-    public void setImg(java.lang.String)
 com.google.android.material.textfield.TextInputEditText
 com.github.florent37.camerafragment.internal.enums.Camera$CameraType
 androidx.media.AudioAttributesImplApi21
@@ -12237,8 +12233,6 @@ cn.forward.androids.utils.cache.DiskLruCache$Entry
 kotlin.ranges.ClosedRange$DefaultImpls
 org.reactivestreams.Publisher
     public abstract void subscribe(org.reactivestreams.Subscriber)
-com.gongwu.wherecollect.view.PopupScrollPickerView$PopupClickListener
-    public abstract void onImgClick()
 io.reactivex.internal.operators.observable.ObservableIgnoreElementsCompletable$IgnoreObservable
 cn.forward.androids.utils.EllipsizeUtils$EllipseListener
 kotlin.math.MathKt__MathHKt

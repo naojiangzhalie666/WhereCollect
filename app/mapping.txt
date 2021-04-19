@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: e3a28e2
+# pg_map_id: 3e7fb93
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -13133,7 +13133,7 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity -> com.gongwu.wherecollec
     com.gongwu.wherecollect.view.PopupScrollPickerView editNamePopup -> E
     int importPosition -> s
     com.gongwu.wherecollect.view.Loading loading -> i
-    boolean isAddBox -> C
+    boolean isEditBox -> C
     java.util.List mBoxlist -> q
     java.util.List mData -> o
     com.gongwu.wherecollect.view.PopupImportGoods importGoodsPopup -> D
@@ -13255,7 +13255,7 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity$6 -> com.gongwu.wherecoll
 com.gongwu.wherecollect.activity.FurnitureLookActivity$7 -> com.gongwu.wherecollect.activity.FurnitureLookActivity$g:
     com.gongwu.wherecollect.activity.FurnitureLookActivity this$0 -> b
     boolean val$isResetBox -> a
-    void onCommitClick(com.gongwu.wherecollect.net.entity.response.FurnitureBean,java.io.File) -> a
+    void onCommitClick(com.gongwu.wherecollect.net.entity.response.FurnitureBean,java.io.File,boolean) -> a
     void onEditNameCommitClick(java.lang.String) -> a
 com.gongwu.wherecollect.activity.FurnitureLookActivity$8 -> com.gongwu.wherecollect.activity.FurnitureLookActivity$h:
     com.gongwu.wherecollect.activity.FurnitureLookActivity this$0 -> a
@@ -18496,6 +18496,7 @@ com.gongwu.wherecollect.util.GlideRoundTransform -> com.gongwu.wherecollect.util
     float radius -> a
     android.graphics.Bitmap roundCrop(com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool,android.graphics.Bitmap) -> a
 com.gongwu.wherecollect.util.ImageLoader -> com.gongwu.wherecollect.util.u:
+    void getBitmap(android.content.Context,java.lang.String,com.gongwu.wherecollect.util.ImageLoader$GlideLoadBitmapCallback) -> a
     int getGLESTextureLimitBelowLollipop() -> a
     void load(android.content.Context,android.widget.ImageView,java.lang.String) -> a
     void load(android.content.Context,android.widget.ImageView,java.lang.String,int) -> a
@@ -18508,6 +18509,10 @@ com.gongwu.wherecollect.util.ImageLoader -> com.gongwu.wherecollect.util.u:
 com.gongwu.wherecollect.util.ImageLoader$1 -> com.gongwu.wherecollect.util.u$a:
     android.content.Context val$context -> a
     android.widget.ImageView val$iv -> b
+com.gongwu.wherecollect.util.ImageLoader$3 -> com.gongwu.wherecollect.util.u$b:
+    com.gongwu.wherecollect.util.ImageLoader$GlideLoadBitmapCallback val$callback -> a
+com.gongwu.wherecollect.util.ImageLoader$GlideLoadBitmapCallback -> com.gongwu.wherecollect.util.u$c:
+    void getBitmapCallback(android.graphics.Bitmap) -> a
 com.gongwu.wherecollect.util.JsonUtils -> com.gongwu.wherecollect.util.v:
     com.google.gson.Gson sGson -> a
     java.lang.String jsonFromObject(java.lang.Object) -> a
@@ -19302,33 +19307,38 @@ com.gongwu.wherecollect.view.PopupMessage -> com.gongwu.wherecollect.view.PopupM
 com.gongwu.wherecollect.view.PopupMessage_ViewBinding -> com.gongwu.wherecollect.view.PopupMessage_ViewBinding:
     com.gongwu.wherecollect.view.PopupMessage target -> a
 com.gongwu.wherecollect.view.PopupScrollPickerView -> com.gongwu.wherecollect.view.PopupScrollPickerView:
+    boolean isEditImgAndName -> m
+    com.gongwu.wherecollect.net.entity.response.ObjectBean boxBean -> l
     com.gongwu.wherecollect.net.entity.response.FurnitureBean bean -> k
-    com.gongwu.wherecollect.view.ChangeHeaderImgDialog changeHeaderdialog -> m
-    boolean isEditImgAndName -> l
-    com.gongwu.wherecollect.view.PopupScrollPickerView$PopupClickListener listener -> o
-    java.io.File imgFile -> n
-    void access$000(com.gongwu.wherecollect.view.PopupScrollPickerView,android.app.Activity,cn.forward.androids.views.BitmapScrollPicker) -> a
+    com.gongwu.wherecollect.view.PopupScrollPickerView$PopupClickListener listener -> p
+    com.gongwu.wherecollect.view.ChangeHeaderImgDialog changeHeaderdialog -> n
+    java.io.File imgFile -> o
+    void access$000(com.gongwu.wherecollect.view.PopupScrollPickerView,android.app.Activity,cn.forward.androids.views.BitmapScrollPicker,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     java.io.File access$102(com.gongwu.wherecollect.view.PopupScrollPickerView,java.io.File) -> a
-    void initData(android.app.Activity,int,java.lang.String,com.gongwu.wherecollect.net.entity.response.FurnitureBean,boolean) -> a
+    void initData(android.app.Activity,int,java.lang.String,com.gongwu.wherecollect.net.entity.response.ObjectBean,boolean) -> a
     void onActivityResult(int,int,android.content.Intent) -> a
     android.view.View onCreateContentView() -> a
-    void setImgPathAndEnabled(int,boolean) -> a
     void setPopupClickListener(com.gongwu.wherecollect.view.PopupScrollPickerView$PopupClickListener) -> a
-    void showSelectImgDialog(android.app.Activity,cn.forward.androids.views.BitmapScrollPicker) -> a
+    void showSelectImgDialog(android.app.Activity,cn.forward.androids.views.BitmapScrollPicker,com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     void onViewCreated(android.view.View) -> b
 com.gongwu.wherecollect.view.PopupScrollPickerView$1 -> com.gongwu.wherecollect.view.PopupScrollPickerView$a:
     com.gongwu.wherecollect.view.PopupScrollPickerView this$0 -> a
 com.gongwu.wherecollect.view.PopupScrollPickerView$2 -> com.gongwu.wherecollect.view.PopupScrollPickerView$b:
-    com.gongwu.wherecollect.view.PopupScrollPickerView this$0 -> b
+    com.gongwu.wherecollect.net.entity.response.ObjectBean val$boxBean -> b
+    com.gongwu.wherecollect.view.PopupScrollPickerView this$0 -> c
     android.app.Activity val$activity -> a
     void onSelected(cn.forward.androids.views.ScrollPickerView,int) -> a
 com.gongwu.wherecollect.view.PopupScrollPickerView$3 -> com.gongwu.wherecollect.view.PopupScrollPickerView$c:
+    com.gongwu.wherecollect.view.PopupScrollPickerView this$0 -> b
+    java.util.concurrent.CopyOnWriteArrayList val$bitmaps -> a
+    void getBitmapCallback(android.graphics.Bitmap) -> a
+com.gongwu.wherecollect.view.PopupScrollPickerView$4 -> com.gongwu.wherecollect.view.PopupScrollPickerView$d:
     android.app.Activity val$activity -> h
     cn.forward.androids.views.BitmapScrollPicker val$mPickerHorizontal -> i
     com.gongwu.wherecollect.view.PopupScrollPickerView this$0 -> j
     void getResult(java.io.File) -> a
-com.gongwu.wherecollect.view.PopupScrollPickerView$PopupClickListener -> com.gongwu.wherecollect.view.PopupScrollPickerView$d:
-    void onCommitClick(com.gongwu.wherecollect.net.entity.response.FurnitureBean,java.io.File) -> a
+com.gongwu.wherecollect.view.PopupScrollPickerView$PopupClickListener -> com.gongwu.wherecollect.view.PopupScrollPickerView$e:
+    void onCommitClick(com.gongwu.wherecollect.net.entity.response.FurnitureBean,java.io.File,boolean) -> a
     void onEditNameCommitClick(java.lang.String) -> a
 com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding -> com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding:
     com.gongwu.wherecollect.view.PopupScrollPickerView target -> a
