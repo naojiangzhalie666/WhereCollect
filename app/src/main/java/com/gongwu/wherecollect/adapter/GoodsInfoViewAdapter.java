@@ -1,6 +1,7 @@
 package com.gongwu.wherecollect.adapter;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.view.PopupMessage;
 
 import java.util.List;
 
@@ -46,14 +48,26 @@ public class GoodsInfoViewAdapter extends RecyclerView.Adapter<GoodsInfoViewAdap
         holder.timeLayout.setVisibility(View.GONE);
         switch (bean.getType()) {
             case StringUtils.TYPE_GOODS_COUNT://数量
+            case StringUtils.TYPE_GOODS_PRICE://价格
+                holder.goodsValueView.setText(bean.getValue());
+                holder.goodsValueView.setVisibility(View.VISIBLE);
+                break;
             case StringUtils.TYPE_GOODS_SEASON://季节
             case StringUtils.TYPE_GOODS_COLOR://颜色
-            case StringUtils.TYPE_GOODS_PRICE://价格
             case StringUtils.TYPE_GOODS_CHANNEL://渠道
             case StringUtils.TYPE_GOODS_CLASSIFY://分类
             case StringUtils.TYPE_GOODS_NOTE://备注
                 holder.goodsValueView.setText(bean.getValue());
                 holder.goodsValueView.setVisibility(View.VISIBLE);
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        PopupMessage popup = new PopupMessage(mContext);
+                        popup.setPopupGravity(Gravity.CENTER);
+                        popup.showPopupWindow();
+                        popup.initData(bean.getValue());
+                    }
+                });
                 break;
             case StringUtils.TYPE_GOODS_STAR://评级
                 holder.infoStar.setVisibility(View.VISIBLE);

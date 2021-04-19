@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/dip_8"
         android:layout_marginBottom="@dimen/dip_10"
-        android:ellipsize="start"
+        android:ellipsize="end"
         android:singleLine="true"
         android:textColor="@color/color333"
         android:textSize="@dimen/f_15"
