@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -24,6 +25,7 @@ import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseActivity;
 import com.gongwu.wherecollect.net.entity.ImageData;
+import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.object.AddGoodsActivity;
 import com.gongwu.wherecollect.object.AddMoreGoodsActivity;
 import com.gongwu.wherecollect.util.FileUtil;
@@ -75,13 +77,15 @@ public class CameraMainActivity extends BaseActivity {
      */
     private boolean continuous = false;
     private boolean addMore;
+    private RoomFurnitureBean locationCode;
     private ArrayList<String> files = new ArrayList<>();
     private final int maxImags = 10;
 
-    public static void start(Context context, boolean addMore) {
+    public static void start(Context context, boolean addMore, RoomFurnitureBean locationCode) {
         Intent intent = new Intent(context, CameraMainActivity.class);
-        if (intent != null) {
-            intent.putExtra("addMore", addMore);
+        intent.putExtra("addMore", addMore);
+        if (locationCode != null) {
+            intent.putExtra("locationCode", locationCode);
         }
         context.startActivity(intent);
     }
@@ -107,6 +111,7 @@ public class CameraMainActivity extends BaseActivity {
 
     private void initView() {
         addMore = getIntent().getBooleanExtra("addMore", false);
+        locationCode = (RoomFurnitureBean) getIntent().getSerializableExtra("locationCode");
         if (addMore) {
             continuous = true;
             continuousText.setVisibility(View.GONE);
@@ -152,7 +157,7 @@ public class CameraMainActivity extends BaseActivity {
                 startActivityForResult(new Intent(mContext, CaptureActivity.class), BOOK_CODE);
                 break;
             case R.id.images_list_layout:
-                AddMoreGoodsActivity.start(mContext, files);
+                AddMoreGoodsActivity.start(mContext, files, locationCode);
                 finish();
                 break;
             default:
@@ -165,13 +170,13 @@ public class CameraMainActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == BOOK_CODE && resultCode == CaptureActivity.result) {//扫描的到结果
             String result = data.getStringExtra("result");
-            AddGoodsActivity.start(mContext, "", result);
+            AddGoodsActivity.start(mContext, "", result, locationCode);
             finish();
         }
         if (requestCode == SelectImgDialog.REQUST_PHOTOSELECT && resultCode == ImageGridActivity.RESULT) {
             List<ImageData> temp = (ArrayList<ImageData>) data.getSerializableExtra("list");
             if (temp.size() == 1 && !continuous) {
-                AddGoodsActivity.start(mContext, FileUtil.compress(new File(temp.get(0).getBigUri()), false).getAbsolutePath(), "");
+                AddGoodsActivity.start(mContext, FileUtil.compress(new File(temp.get(0).getBigUri()), false).getAbsolutePath(), "", locationCode);
                 finish();
             } else if (temp.size() > 0 && continuous) {
                 for (ImageData id : temp) {
@@ -186,7 +191,7 @@ public class CameraMainActivity extends BaseActivity {
                 imagesView.setImageURI(FileUtil.getUriFromFile(mContext, new File(files.get(files.size() - 1))));
                 numText.setText(String.valueOf(files.size()));
                 if (files.size() == maxImags) {
-                    AddMoreGoodsActivity.start(mContext, files);
+                    AddMoreGoodsActivity.start(mContext, files, locationCode);
                     finish();
                 }
             }
@@ -217,12 +222,12 @@ public class CameraMainActivity extends BaseActivity {
                         imagesView.setImageURI(FileUtil.getUriFromFile(mContext, new File(files.get(files.size() - 1))));
                         numText.setText(String.valueOf(files.size()));
                         if (files.size() == maxImags) {
-                            AddMoreGoodsActivity.start(mContext, files);
+                            AddMoreGoodsActivity.start(mContext, files, locationCode);
                             finish();
                         }
                     } else {
                         //单拍
-                        AddGoodsActivity.start(mContext, FileUtil.compress(file, true).getAbsolutePath(), "");
+                        AddGoodsActivity.start(mContext, FileUtil.compress(file, true).getAbsolutePath(), "", locationCode);
                         finish();
                     }
                 }
@@ -237,6 +242,9 @@ public class CameraMainActivity extends BaseActivity {
             intent.setClass(mContext, AddMoreGoodsActivity.class);
         } else {
             intent.setClass(mContext, AddGoodsActivity.class);
+        }
+        if (locationCode!=null) {
+            intent.putExtra("locationCode", locationCode);
         }
         startActivity(intent);
         super.onBackPressed();

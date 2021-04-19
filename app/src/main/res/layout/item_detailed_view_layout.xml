@@ -37,7 +37,7 @@
                 android:textSize="@dimen/f_6"
                 tools:text="鞋柜" />
 
-            <ImageView
+            <com.gongwu.wherecollect.view.GoodsImageView
                 android:id="@+id/detailed_view_type_box"
                 android:layout_width="@dimen/dip_8"
                 android:layout_height="@dimen/dip_8"

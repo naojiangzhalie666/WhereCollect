@@ -29,6 +29,7 @@ import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -742,6 +743,24 @@ public class StringUtils {
                 sb.append("/");
             }
         }
+        return sb.length() == 0 ? "未归位" : sb.toString();
+    }
+
+    public static String getGoodsLoction(RoomFurnitureBean bean) {
+        if (StringUtils.isEmpty(bean.getParents())) {
+            return "未归位";
+        }
+        Collections.sort(bean.getParents(), new Comparator<BaseBean>() {
+            @Override
+            public int compare(BaseBean lhs, BaseBean rhs) {
+                return lhs.getLevel() - rhs.getLevel();
+            }
+        });
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < StringUtils.getListSize(bean.getParents()); i++) {
+            sb.append(bean.getParents().get(i).getName()).append("/");
+        }
+        sb.append(bean.getName());
         return sb.length() == 0 ? "未归位" : sb.toString();
     }
 

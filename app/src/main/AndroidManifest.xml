@@ -41,10 +41,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.ArticleActivity"></activity>
         <activity
             android:name=".object.SelectSortChildNewActivity"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
-        <activity android:name=".activity.BindEmailActivity" android:windowSoftInputMode="adjustResize|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".activity.BindEmailActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".activity.InventoryActivity" />
         <activity android:name=".activity.StatisticsActivity" />
         <activity android:name=".activity.AddChangWangGoodActivity" />

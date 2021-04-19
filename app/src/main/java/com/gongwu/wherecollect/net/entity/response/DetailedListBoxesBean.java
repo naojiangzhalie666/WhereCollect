@@ -5,6 +5,7 @@ import java.util.List;
 public class DetailedListBoxesBean {
     private String box_code;
     private String box_name;
+    private String box_img;
     private List<DetailedGoodsBean> objs;
 
     public String getBox_code() {
@@ -29,5 +30,13 @@ public class DetailedListBoxesBean {
 
     public void setObjs(List<DetailedGoodsBean> objs) {
         this.objs = objs;
+    }
+
+    public String getBox_img() {
+        return box_img;
+    }
+
+    public void setBox_img(String box_img) {
+        this.box_img = box_img;
     }
 }

@@ -30,6 +30,7 @@ import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.SelectImgDialog;
@@ -73,6 +74,10 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     TextView addInfoView;
     @BindView(R.id.goods_info_edit_tv)
     TextView editInfoTv;
+    @BindView(R.id.title_commit_bg_main_color_tv)
+    TextView titleCommitBt;
+    @BindView(R.id.bottom_commit_layout)
+    View bottomCommitBt;
 
     private SwipeFlingAdapterView mSwipeView;
     private StackAdapter mStackAdapter;
@@ -91,6 +96,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
 
     private GoodsInfoViewAdapter mInfoAdapter;
     private List<GoodsInfoBean> mGoodsInfos = new ArrayList<>();
+    private RoomFurnitureBean location;
 
     @Override
     protected int getLayoutId() {
@@ -112,11 +118,13 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     private void initData() {
         //属性bean
         sortBean = new ObjectBean();
+        location = (RoomFurnitureBean) getIntent().getSerializableExtra("locationCode");
+        bottomCommitBt.setVisibility(location != null ? View.GONE : View.VISIBLE);
+        titleCommitBt.setVisibility(location != null ? View.VISIBLE : View.GONE);
         //添加goods的item
         ObjectBean bean = new ObjectBean();
         bean.set__v(ADD_GOODS_CODE);
         mlist.add(bean);
-
         mInfoAdapter = new GoodsInfoViewAdapter(mContext, mGoodsInfos);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3) {
             @Override
@@ -149,7 +157,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     }
 
     @OnClick({R.id.back_btn, R.id.add_goods_list_sort, R.id.add_other_content_tv, R.id.commit_bt,
-            R.id.select_location_bt, R.id.goods_info_edit_tv})
+            R.id.select_location_bt, R.id.goods_info_edit_tv, R.id.title_commit_bg_main_color_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -163,11 +171,12 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
                 AddGoodsPropertyActivity.start(mContext, sortBean, true);
                 break;
             case R.id.commit_bt:
-                getPresenter().addMoreGoods(mContext, mlist, sortBean);
+            case R.id.title_commit_bg_main_color_tv:
+                getPresenter().addMoreGoods(mContext, mlist, sortBean, location);
                 break;
             case R.id.select_location_bt:
                 setGoodsLocation = true;
-                getPresenter().addMoreGoods(mContext, mlist, sortBean);
+                getPresenter().addMoreGoods(mContext, mlist, sortBean, location);
                 break;
         }
     }
@@ -313,6 +322,9 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
             setGoodsLocation = false;
         }
+        if (location != null) {
+            EventBus.getDefault().post(new EventBusMsg.RefreshFurnitureLook());
+        }
         finish();
     }
 
@@ -410,10 +422,13 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         context.startActivity(intent);
     }
 
-    public static void start(Context context, ArrayList<String> lists) {
+    public static void start(Context context, ArrayList<String> lists, RoomFurnitureBean locationCode) {
         Intent intent = new Intent(context, AddMoreGoodsActivity.class);
         if (lists != null) {
             intent.putStringArrayListExtra("imgList", lists);
+        }
+        if (locationCode != null) {
+            intent.putExtra("locationCode", locationCode);
         }
         context.startActivity(intent);
     }

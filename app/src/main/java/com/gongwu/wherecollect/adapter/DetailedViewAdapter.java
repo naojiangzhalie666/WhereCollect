@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,9 +79,14 @@ public class DetailedViewAdapter extends RecyclerView.Adapter<DetailedViewAdapte
             holder.typeNameView.setText("隔层内");
         }
         if (bean.isBoxType()) {
-            holder.typeNameView.setVisibility(bean.isBoxType() ? View.VISIBLE : View.GONE);
-            holder.boxType.setVisibility(bean.isBoxType() ? View.VISIBLE : View.GONE);
+            holder.typeNameView.setVisibility(View.VISIBLE);
+            holder.boxType.setVisibility(View.VISIBLE);
             holder.typeNameView.setText(bean.getBoxName());
+            if (TextUtils.isEmpty(bean.getBoxImg()) || "null".equals(bean.getBoxImg())) {
+                holder.boxType.head.setImageDrawable(mContext.getDrawable(R.drawable.icon_template_box));
+            } else {
+                holder.boxType.setImg(bean.getBoxImg());
+            }
         }
     }
 
@@ -95,7 +101,7 @@ public class DetailedViewAdapter extends RecyclerView.Adapter<DetailedViewAdapte
         @BindView(R.id.detailed_name_tv)
         TextView detailedNameTv;
         @BindView(R.id.detailed_view_type_box)
-        ImageView boxType;
+        GoodsImageView boxType;
         @BindView(R.id.detailed_view_type_name)
         TextView typeNameView;//隔层type
 

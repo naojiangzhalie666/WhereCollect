@@ -1,6 +1,7 @@
 package com.gongwu.wherecollect.net;
 
 import com.gongwu.wherecollect.net.entity.base.ResponseBase;
+import com.gongwu.wherecollect.net.entity.response.ArticleBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean;
@@ -465,9 +466,11 @@ public interface TakeawayApi {
     @GET("api/app/v420/statics6")
     Call<ResponseBase<List<StatisticsBean>>> getGoodsTimeDetails(@Query("uid") String uid, @Query("family_code") String family_code, @Query("code") String code);
 
-
     @GET("api/app/v420/export-furniture")
     Call<ResponseBase<DetailedListBean>> getDetailedList(@Query("uid") String uid, @Query("family_code") String family_code, @Query("room_code") String room_code, @Query("furniture_code") String furniture_code);
+
+    @GET("article/list")
+    Call<ResponseBase<List<ArticleBean>>> getArticList();
 
 
 }

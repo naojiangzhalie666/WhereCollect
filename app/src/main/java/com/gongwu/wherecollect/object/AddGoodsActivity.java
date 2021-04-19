@@ -31,6 +31,7 @@ import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RemindBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.util.DateUtil;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
@@ -109,6 +110,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     private PopupAddGoods popup;
     private boolean setGoodsLocation;
     private List<GoodsInfoBean> mGoodsInfos = new ArrayList<>();
+    private RoomFurnitureBean location;
 
     @Override
     protected int getLayoutId() {
@@ -204,6 +206,14 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 getPresenter().getBookInfo(App.getUser(mContext).getId(), code);
             }
         }
+        location = (RoomFurnitureBean) getIntent().getSerializableExtra("locationCode");
+        if (location != null) {
+            commitLayout.setVisibility(View.GONE);
+            editInfoCommitTv.setVisibility(View.VISIBLE);
+            locationView.setVisibility(View.VISIBLE);
+            locationTv.setText(StringUtils.getGoodsLoction(location));
+        }
+
     }
 
     private void initInfoData() {
@@ -265,6 +275,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 onClickCommit();
                 break;
             case R.id.goods_location_tv:
+                if (location != null) return;
                 editLocation();
                 break;
         }
@@ -317,10 +328,13 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
      *
      * @param mContext
      */
-    public static void start(Context mContext, String filePath, String saomaResult) {
+    public static void start(Context mContext, String filePath, String saomaResult, RoomFurnitureBean locationCode) {
         Intent intent = new Intent(mContext, AddGoodsActivity.class);
         intent.putExtra("filePath", filePath);
         intent.putExtra("saomaResult", saomaResult);
+        if (locationCode != null) {
+            intent.putExtra("locationCode", locationCode);
+        }
         mContext.startActivity(intent);
     }
 
@@ -331,6 +345,9 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             Intent intent = new Intent();
             intent.putExtra("objectBean", data);
             setResult(RESULT_OK, intent);
+            if (location != null) {
+                EventBus.getDefault().post(new EventBusMsg.RefreshFurnitureLook());
+            }
             finish();
         }
     }
@@ -471,6 +488,11 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
 
     private void addOrEditGoods() {
         //调用接口
+        if (location != null) {
+            getPresenter().setLocation(objectBean, location);
+            getPresenter().editGoods(mContext, objectBean, mEditText.getText().toString(), ISBN);
+            return;
+        }
         if (TextUtils.isEmpty(objectBean.get_id())) {
             getPresenter().addObjects(mContext, objectBean, mEditText.getText().toString(), ISBN);
         } else {

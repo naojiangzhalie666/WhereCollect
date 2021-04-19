@@ -7,6 +7,7 @@ public class DetailedGoodsBean {
     private boolean isShowGCType;
     private boolean isBoxType;
     private String boxName;
+    private String boxImg;
 
     public String getName() {
         return name;
@@ -46,5 +47,13 @@ public class DetailedGoodsBean {
 
     public void setBoxName(String boxName) {
         this.boxName = boxName;
+    }
+
+    public String getBoxImg() {
+        return boxImg;
+    }
+
+    public void setBoxImg(String boxImg) {
+        this.boxImg = boxImg;
     }
 }

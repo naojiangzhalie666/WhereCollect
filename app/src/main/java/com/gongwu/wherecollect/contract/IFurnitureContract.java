@@ -58,7 +58,7 @@ public interface IFurnitureContract {
 
         void importGoods(String uid, String location_code, String object_codes, String code);
 
-        void editBoxName(String uid, String location_code, String name);
+        void editBoxName(String uid, String location_code, String name, String path);
 
         void delBox(String uid, String code);
 
@@ -66,7 +66,7 @@ public interface IFurnitureContract {
 
         void resetLayerName(String uid, String name, String layerCode, String furnitureCode);
 
-        void addBox(String uid, String location_code, String location_name);
+        void addBox(String uid, String location_code, String location_name, String path);
     }
 
     interface IFurnitureView extends BaseView {
@@ -92,7 +92,8 @@ public interface IFurnitureContract {
 
         void resetLayerNameSuccess(RequestSuccessBean bean);
 
-
         void addBoxSuccess(RoomBean rooms);
+
+        void onUpLoadSuccess(String path);
     }
 }

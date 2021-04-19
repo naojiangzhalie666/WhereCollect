@@ -222,6 +222,27 @@ public class GoodsImageView extends FrameLayout {
                 });
     }
 
+    public void setImg(String headUrl) {
+        name.setTag(headUrl);
+//        head.setBackground(null);
+        Glide.with(context)
+                .load(headUrl)
+                .asBitmap()
+                .dontAnimate()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.ic_img_error)
+                .dontAnimate()
+                .into(new BitmapImageViewTarget(head) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        if (name.getTag().toString().equals(headUrl)) {
+                            head.setImageBitmap(resource);
+                            name.setVisibility(GONE);
+                        }
+                    }
+                });
+    }
+
     public void setResourceColor(String nickName, int resId, int radius) {
         name.setVisibility(VISIBLE);
         name.setText(getEndNick(nickName));

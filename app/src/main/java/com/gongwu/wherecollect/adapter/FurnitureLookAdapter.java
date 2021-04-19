@@ -102,7 +102,7 @@ public class FurnitureLookAdapter extends RecyclerView.Adapter<RecyclerView.View
             if (TextUtils.isEmpty(tempBean.getImage_url()) || "null".equals(tempBean.getImage_url())) {
                 holder.mBoxIv.head.setImageDrawable(context.getDrawable(R.drawable.icon_template_box));
             } else {
-                holder.mBoxIv.setImg(tempBean.getObject_url(), 3);
+                holder.mBoxIv.setImg(tempBean.getImage_url());
             }
             initImgView(holder.mBoxIvOne);
             initImgView(holder.mBoxIvTwo);

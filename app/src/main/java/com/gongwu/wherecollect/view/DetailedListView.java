@@ -96,6 +96,9 @@ public class DetailedListView extends LinearLayout {
             if (listGoodsBean.getObjs() != null && listGoodsBean.getObjs().size() > 0) {
                 childGoodsCount += listGoodsBean.getObjs().size();
             }
+            //判断是否有收纳盒
+            //有收纳盒将收纳盒内的第一个物品进行设置收纳盒样式
+            //只有第一个物品显示收纳盒属性
             if (listGoodsBean.getBoxes() != null && listGoodsBean.getBoxes().size() > 0) {
                 List<DetailedListBoxesBean> boxesBeans = listGoodsBean.getBoxes();
                 for (int y = 0; y < boxesBeans.size(); y++) {
@@ -103,6 +106,7 @@ public class DetailedListView extends LinearLayout {
                     if (boxesBean.getObjs() != null && boxesBean.getObjs().size() > 0) {
                         boxesBean.getObjs().get(0).setBoxType(true);
                         boxesBean.getObjs().get(0).setBoxName(boxesBean.getBox_name());
+                        boxesBean.getObjs().get(0).setBoxImg(boxesBean.getBox_img());
                         childGoodsCount += boxesBean.getObjs().size();
                     }
                 }
@@ -210,6 +214,7 @@ public class DetailedListView extends LinearLayout {
                         }
                     }
                 }
+                //添加View
                 DetailedView detailedView = new DetailedView(mContext);
                 detailedView.initData(listGoodsBean, structure, gcCodes.contains(listGoodsBean.getLayer_code()));
                 detailedViewLayout.addView(detailedView);

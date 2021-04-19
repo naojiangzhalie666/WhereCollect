@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.azhon.appupdate.utils.ScreenUtil;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.adapter.ImportGoodsAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
@@ -67,14 +68,24 @@ public class PopupImportGoods extends BasePopupWindow {
                 }
             }
         });
+        if (ScreenUtil.checkDeviceHasNavigationBar(getContext())) {
+            setHeight(ScreenUtil.getHeight(getContext()));
+        }
     }
 
-    @OnClick({R.id.look_more_tv})
+    @OnClick({R.id.look_more_tv, R.id.add_more_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.look_more_tv:
                 if (listener != null) {
                     listener.onLookMoreClick();
+                    dismiss();
+                }
+                break;
+            case R.id.add_more_tv:
+                if (listener != null) {
+                    listener.onAddMoreClick();
+                    dismiss();
                 }
                 break;
             default:
@@ -106,6 +117,8 @@ public class PopupImportGoods extends BasePopupWindow {
         void onItemsClick(int position, ObjectBean bean);
 
         void onLookMoreClick();
+
+        void onAddMoreClick();
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

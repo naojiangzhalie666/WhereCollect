@@ -119,6 +119,7 @@
     <string name="administer_family">家庭管理</string>
     <string name="administer_furniture">房间管理</string>
     <string name="look_more">查看更多</string>
+    <string name="add_more">新增物品</string>
     <string name="administer_family_details">%1$s个房间 | %2$s件物品</string>
     <string name="furniture_number">%1$s个家具</string>
     <string name="user_family_name">%1$s的家</string>

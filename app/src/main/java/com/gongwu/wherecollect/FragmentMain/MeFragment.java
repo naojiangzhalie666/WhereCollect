@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.ArticleActivity;
 import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.FeedBackActivity;
 import com.gongwu.wherecollect.activity.FurnitureLookActivity;
@@ -161,7 +162,7 @@ public class MeFragment extends BaseFragment {
                 WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL);
                 break;
             case R.id.guider_tv:
-//                WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL);
+                ArticleActivity.start(mContext);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");

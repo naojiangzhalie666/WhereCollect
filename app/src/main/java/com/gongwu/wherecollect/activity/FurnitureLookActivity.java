@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.azhon.appupdate.utils.ScreenUtil;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.adapter.FurnitureLookAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
@@ -27,6 +29,7 @@ import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IFurnitureContract;
 import com.gongwu.wherecollect.contract.presenter.FurniturePresenter;
+import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
@@ -40,6 +43,7 @@ import com.gongwu.wherecollect.object.GoodsDetailsActivity;
 import com.gongwu.wherecollect.util.AnimationUtil;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
+import com.gongwu.wherecollect.util.PhotosDialog;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.PopupEditBox;
@@ -47,11 +51,15 @@ import com.gongwu.wherecollect.view.PopupEditFurnitureName;
 import com.gongwu.wherecollect.view.PopupEditInterlayer;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.PopupImportGoods;
+import com.gongwu.wherecollect.view.PopupScrollPickerView;
 import com.gongwu.wherecollect.view.furniture.ChildView;
 import com.gongwu.wherecollect.view.furniture.CustomTableRowLayout;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -147,10 +155,11 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     private ObjectBean selectBoxBean;
     private int selectGoods = 0;
     private float y;
-    private String resetName;
+    private String resetName, addBoxName;
     private String family_code;
     //房间结构
     private RoomFurnitureResponse mRoomFurnitureResponse;
+    private boolean isAddBox = false;
 
     @Override
     protected int getLayoutId() {
@@ -159,6 +168,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     @Override
     protected void initViews() {
+        EventBus.getDefault().register(this);
         y = tabLayout.getY();
         family_code = getIntent().getStringExtra("family_code");
         roomBean = (RoomBean) getIntent().getSerializableExtra("roomBean");
@@ -237,13 +247,13 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         if (TextUtils.isEmpty(selectBoxBean.getImage_url()) || "null".equals(selectBoxBean.getImage_url())) {
             boxImageView.head.setImageDrawable(mContext.getDrawable(R.drawable.icon_template_box));
         } else {
-            boxImageView.setImg(selectBoxBean.getObject_url(), 0);
+            boxImageView.setImg(selectBoxBean.getImage_url());
         }
     }
 
     @OnClick({R.id.back_btn, R.id.look_furniture_geceng_tv, R.id.furniture_edit_layer_tv, R.id.furniture_add_box_tv, R.id.furniture_import_tv, R.id.furniture_back_tv,
             R.id.furniture_goods_details_tv, R.id.furniture_del_tv, R.id.furniture_top_tv, R.id.furniture_cancel_tv, R.id.furniture_place_tv, R.id.furniture_move_box_tv,
-            R.id.furniture_remove_tv, R.id.move_goods_iv, R.id.detailed_list_tv})
+            R.id.furniture_remove_tv, R.id.move_goods_iv, R.id.detailed_list_tv, R.id.box_img_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -367,6 +377,17 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     selectView = null;
                 }
                 InventoryActivity.start(mContext, family_code, roomBean.get_id(), roomBean.getCode(), furnitureBean.getCode(), mRoomFurnitureResponse);
+                break;
+            case R.id.box_img_iv:
+                if (TextUtils.isEmpty(selectBoxBean.getImage_url()) || "null".equals(selectBoxBean.getImage_url())) {
+                    return;
+                }
+                List<ImageData> imageDatas = new ArrayList<>();
+                ImageData imageData = new ImageData();
+                imageData.setUrl(selectBoxBean.getImage_url());
+                imageDatas.add(imageData);
+                PhotosDialog photosDialog = new PhotosDialog(this, false, false, imageDatas);
+                photosDialog.showPhotos(0);
                 break;
             default:
                 break;
@@ -548,7 +569,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     public void editBoxNameSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
             StringBuilder sb = new StringBuilder();
-            sb.append(getPresenter().getLoction(selectView.getObjectBean())).append("/").append(resetName);
+            sb.append(selectView.getObjectBean().getName()).append("/").append(resetName);
             gcNameTv.setText(sb.toString());
             for (ObjectBean goods : mData) {
                 if (goods.getCode().equals(selectBoxBean.getCode())) {
@@ -563,8 +584,9 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     @Override
     public void delBoxSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
-            gcNameTv.setText(getPresenter().getLoction(selectView.getObjectBean()));
+            gcNameTv.setText(selectView.getObjectBean().getName());
             selectBoxBean = null;
+            initBoxImg();
             isBox = false;
             //删除盒子后,直接请求新的数据
             showSelectLayerButton();
@@ -623,7 +645,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     public void resetLayerNameSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
             selectView.getObjectBean().setName(resetName);
-            gcNameTv.setText(getPresenter().getLoction(selectView.getObjectBean()));
+            gcNameTv.setText(selectView.getObjectBean().getName());
         }
     }
 
@@ -635,6 +657,15 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                     furnitureBean.getCode(),
                     family_code
             );
+        }
+    }
+
+    @Override
+    public void onUpLoadSuccess(String path) {
+        if (isAddBox) {
+            getPresenter().editBoxName(App.getUser(mContext).getId(), selectBoxBean.getCode(), resetName, path);
+        } else {
+            getPresenter().addBox(App.getUser(mContext).getId(), selectView.getObjectBean().getCode(), addBoxName, path);
         }
     }
 
@@ -757,32 +788,55 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             public void onLookMoreClick() {
                 ImportMoreGoodsActivity.start(mContext, furnitureBean.getCode());
             }
+
+            @Override
+            public void onAddMoreClick() {
+                if (selectView != null && selectView.getObjectBean() != null) {
+                    selectView.getObjectBean().setLevel(AppConstant.LEVEL_INTERLAYER);
+                    CameraMainActivity.start(mContext, false, selectView.getObjectBean());
+                }
+            }
         });
         importGoodsPopup.showPopupWindow();
+        int height = 0;
+        if (ScreenUtil.checkDeviceHasNavigationBar(mContext)) {
+            height = ScreenUtil.getHeight(mContext) - (ScreenUtil.checkDeviceHasNavigationBar(mContext) ? ScreenUtil.getNavigationBarHeight(this) : 0);
+        }
+        importGoodsPopup.update(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, mContext.getResources().getDisplayMetrics()),
+                height);
         importGoodsPopup.initData(beans);
         importGoodsPopup.setLookMoveVisibility(isShowLookMove ? View.VISIBLE : View.GONE);
     }
 
-    private PopupEditFurnitureName editNamePopup;
+    private PopupScrollPickerView editNamePopup;
 
     /**
      * 添加收纳盒或者修改收纳盒名称
      */
     private void showEditNamePopupWindow(boolean isResetName, boolean isResetBox) {
-        editNamePopup = new PopupEditFurnitureName(mContext);
+        editNamePopup = new PopupScrollPickerView(mContext);
         editNamePopup.setPopupGravity(Gravity.CENTER);
-        editNamePopup.setPopupClickListener(new PopupEditFurnitureName.PopupClickListener() {
+        editNamePopup.setPopupClickListener(new PopupScrollPickerView.PopupClickListener() {
             @Override
             public void onImgClick() {
             }
 
             @Override
-            public void onCommitClick(FurnitureBean bean) {
+            public void onCommitClick(FurnitureBean bean, File file) {
+                isAddBox = isResetBox;
                 if (isResetBox) {
                     resetName = bean.getName();
-                    getPresenter().editBoxName(App.getUser(mContext).getId(), selectBoxBean.getCode(), resetName);
                 } else {
-                    getPresenter().addBox(App.getUser(mContext).getId(), selectView.getObjectBean().getCode(), bean.getName());
+                    addBoxName = bean.getName();
+                }
+                if (file != null) {
+                    getPresenter().uploadImg(mContext, file);
+                    return;
+                }
+                if (isResetBox) {
+                    getPresenter().editBoxName(App.getUser(mContext).getId(), selectBoxBean.getCode(), resetName, null);
+                } else {
+                    getPresenter().addBox(App.getUser(mContext).getId(), selectView.getObjectBean().getCode(), bean.getName(), null);
                 }
             }
 
@@ -795,10 +849,10 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         });
         editNamePopup.showPopupWindow();
         if (isResetName) {
-            editNamePopup.initData(R.string.layer_name, selectView.getObjectBean().getName(), null, false);
+            editNamePopup.initData(FurnitureLookActivity.this, R.string.layer_name, selectView.getObjectBean().getName(), null, false);
         } else {
             String name = selectBoxBean != null ? selectBoxBean.getName() : null;
-            editNamePopup.initData(isResetBox ? R.string.edit_box : R.string.add_box, name, null, true);
+            editNamePopup.initData(FurnitureLookActivity.this, isResetBox ? R.string.edit_box : R.string.add_box, name, null, true);
             editNamePopup.setImgPathAndEnabled(R.drawable.icon_template_box, false);
         }
     }
@@ -877,6 +931,9 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (editNamePopup != null) {
+            editNamePopup.onActivityResult(requestCode, resultCode, data);
+        }
         if (AppConstant.REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
             //编辑结构
             furnitureBean = (FurnitureBean) data.getSerializableExtra("furnitureBean");
@@ -1095,5 +1152,15 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.RefreshFurnitureLook msg) {
+        getPresenter().getFurnitureDetails(
+                App.getUser(mContext).getId(),
+                furnitureBean.getCode(),
+                family_code
+        );
     }
 }

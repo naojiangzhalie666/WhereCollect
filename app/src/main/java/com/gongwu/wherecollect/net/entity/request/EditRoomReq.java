@@ -14,6 +14,8 @@ public class EditRoomReq extends RequestBase {
     private String old_family_code;
     private String new_family_code;
     private String new_family_name;
+    private String background_url;
+    private String image_url;
     private List<String> rooms_code;
 
     public String getUid() {
@@ -94,5 +96,21 @@ public class EditRoomReq extends RequestBase {
 
     public void setRooms_code(List<String> rooms_code) {
         this.rooms_code = rooms_code;
+    }
+
+    public String getBackground_url() {
+        return background_url;
+    }
+
+    public void setBackground_url(String background_url) {
+        this.background_url = background_url;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }

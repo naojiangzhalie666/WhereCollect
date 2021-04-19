@@ -173,4 +173,5 @@ dependencies {
     implementation project(':showcase')
     implementation project(':appupdateX')
     implementation project(':wheel')
+    implementation project(':ScrollPicker')
 }

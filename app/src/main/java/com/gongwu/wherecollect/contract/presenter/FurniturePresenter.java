@@ -1,6 +1,10 @@
 package com.gongwu.wherecollect.contract.presenter;
 
+import android.content.Context;
+import android.text.TextUtils;
+
 import com.gongwu.wherecollect.base.BasePresenter;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IFurnitureContract;
 import com.gongwu.wherecollect.contract.model.FurnitureModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
@@ -16,8 +20,10 @@ import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureGoodsBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureResponse;
+import com.gongwu.wherecollect.util.QiNiuUploadUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,6 +39,37 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
 
     private FurniturePresenter() {
         mModel = new FurnitureModel();
+    }
+
+    /**
+     * 上传图片
+     *
+     * @param mContext 上下文
+     * @param file     图片
+     */
+    public void uploadImg(Context mContext, File file) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        QiNiuUploadUtil uploadUtil = QiNiuUploadUtil.getInstance(mContext);
+        uploadUtil.setUpLoadListener(new QiNiuUploadUtil.UpLoadListener() {
+            @Override
+            public void onUpLoadSuccess(String path) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onUpLoadSuccess(path);
+                }
+            }
+
+            @Override
+            public void onUpLoadError(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+        uploadUtil.start(AppConstant.UPLOAD_GOODS_IMG_PATH, file);
     }
 
     @Override
@@ -226,7 +263,7 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
     }
 
     @Override
-    public void editBoxName(String uid, String location_code, String name) {
+    public void editBoxName(String uid, String location_code, String name, String path) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
         }
@@ -234,6 +271,10 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
         req.setUid(uid);
         req.setLocation_code(location_code);
         req.setName(name);
+        if (!TextUtils.isEmpty(path)) {
+            req.setBackground_url(path);
+            req.setImage_url(path);
+        }
         mModel.editBoxName(req, new RequestCallback<RequestSuccessBean>() {
             @Override
             public void onSuccess(RequestSuccessBean data) {
@@ -329,7 +370,7 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
     }
 
     @Override
-    public void addBox(String uid, String location_code, String location_name) {
+    public void addBox(String uid, String location_code, String location_name, String path) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
         }
@@ -337,6 +378,10 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
         roomReq.setUid(uid);
         roomReq.setLocation_code(location_code);
         roomReq.setLocation_name(location_name);
+        if (!TextUtils.isEmpty(path)) {
+            roomReq.setBackground_url(path);
+            roomReq.setImage_url(path);
+        }
         mModel.addBox(roomReq, new RequestCallback<RoomBean>() {
             @Override
             public void onSuccess(RoomBean data) {

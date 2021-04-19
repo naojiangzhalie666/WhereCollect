@@ -10,6 +10,7 @@ import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 
 import java.io.File;
 import java.util.List;
@@ -36,7 +37,7 @@ public interface IAddGoodsContract {
 
         void addObjects(Context context, ObjectBean tempBean, String names, String isbn);
 
-        void addMoreGoods(Context mContext, List<ObjectBean> mlist, ObjectBean common);
+        void addMoreGoods(Context mContext, List<ObjectBean> mlist, ObjectBean common, RoomFurnitureBean location);
 
         void getBookInfo(String uid, String isbn);
 

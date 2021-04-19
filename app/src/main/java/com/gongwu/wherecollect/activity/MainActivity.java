@@ -176,7 +176,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             @Override
             public void onResult(boolean allGranted, List<String> grantedList, List<String> deniedList) {
                 if (allGranted) {
-                    CameraMainActivity.start(mContext, false);
+                    CameraMainActivity.start(mContext, false, null);
                 } else {
                     Toast.makeText(mContext, "您拒绝了如下权限：" + deniedList, Toast.LENGTH_SHORT).show();
                 }

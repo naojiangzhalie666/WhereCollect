@@ -43,6 +43,9 @@ public class EventBusMsg {
     public static class SelectHomeTab {
     }
 
+    public static class RefreshFurnitureLook {
+    }
+
     public static class MainTabMessage {
         public int position;
 

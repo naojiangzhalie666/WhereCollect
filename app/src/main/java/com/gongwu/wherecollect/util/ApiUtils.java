@@ -4,6 +4,7 @@ import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.ApiInstance;
 import com.gongwu.wherecollect.net.entity.base.RequestBase;
+import com.gongwu.wherecollect.net.entity.response.ArticleBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
@@ -930,6 +931,10 @@ public class ApiUtils {
      */
     public static <D extends RequestBase> void getDetailedList(String uid, String family_code, String room_code, String furniture_code, ApiCallBack<DetailedListBean> callBack) {
         ApiInstance.getApi().getDetailedList(uid, family_code, room_code, furniture_code).enqueue(callBack);
+    }
+
+    public static <D extends RequestBase> void getArticList(ApiCallBack<List<ArticleBean>> callBack) {
+        ApiInstance.getApi().getArticList().enqueue(callBack);
     }
 
 }

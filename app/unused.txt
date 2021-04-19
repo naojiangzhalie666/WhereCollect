@@ -2,6 +2,7 @@ androidx.recyclerview.widget.ThreadUtil
 kotlin.collections.EmptyIterator
     public void add(java.lang.Void)
     public void set(java.lang.Void)
+cn.forward.androids.views.EasyAdapter$SelectionItemView
 com.gongwu.wherecollect.net.ApiInstance
     private static final java.lang.String TAG
 kotlin.ranges.UIntProgression
@@ -56,6 +57,8 @@ com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView
     public void swipeLeft(int)
     public void swipeRight(int)
     private static final float SCALE_STEP
+com.gongwu.wherecollect.activity.ArticleActivity_ViewBinding
+    public void <init>(com.gongwu.wherecollect.activity.ArticleActivity)
 com.yanzhenjie.loading.LoadingRenderer
     protected void draw(android.graphics.Canvas,android.graphics.Rect)
     private static final long ANIMATION_DURATION
@@ -64,6 +67,8 @@ io.reactivex.subjects.SingleSubject
 com.gongwu.wherecollect.contract.ILoginContract$ILoginModel
     public abstract void loginEmail(com.gongwu.wherecollect.net.entity.request.LoginReq,java.lang.String,com.gongwu.wherecollect.interfacedef.RequestCallback)
 com.google.android.material.navigation.NavigationView$OnNavigationItemSelectedListener
+cn.forward.androids.views.DragListView
+com.gongwu.wherecollect.contract.IGoodsPropertyContract
 io.reactivex.internal.operators.flowable.AbstractFlowableWithUpstream
 androidx.core.hardware.fingerprint.FingerprintManagerCompat$AuthenticationCallback
 com.gongwu.wherecollect.contract.IEditRoomContract$IEditRoomPresenter
@@ -85,8 +90,10 @@ io.reactivex.internal.operators.parallel.ParallelDoOnNextTry$ParallelDoOnNextCon
 io.reactivex.internal.schedulers.ImmediateThinScheduler$ImmediateThinWorker
 androidx.recyclerview.widget.MessageThreadUtil$1$1
 io.reactivex.internal.operators.observable.ObservableWithLatestFromMany$WithLatestInnerObserver
-kotlin.collections.AbstractMap$toString$1
 com.bigkoo.pickerview.view.WheelOptions
+kotlin.collections.AbstractMap$toString$1
+cn.forward.androids.views.EasyAdapter$OnMultiSelectListener
+cn.forward.androids.views.EasyAdapter
 com.google.zxing.qrcode.decoder.FormatInformation
     private static final int FORMAT_INFO_MASK_QR
 io.reactivex.internal.operators.flowable.FlowableFlatMapCompletableCompletable
@@ -291,6 +298,8 @@ io.reactivex.internal.operators.flowable.FlowableUnsubscribeOn$UnsubscribeSubscr
 io.reactivex.internal.operators.maybe.MaybeFlatMapSingleElement$FlatMapSingleObserver
 anetwork.channel.aidl.ParcelableRequest
     public void <init>(anetwork.channel.Request)
+com.gongwu.wherecollect.contract.IArticleContract$IArticlePresenter
+    public abstract void getArticList()
 androidx.appcompat.view.SupportMenuInflater
     static final java.lang.String LOG_TAG
     private static final java.lang.String XML_MENU
@@ -552,6 +561,7 @@ kotlin.text.StringsKt___StringsJvmKt
 androidx.transition.PathMotion
     public void <init>(android.content.Context,android.util.AttributeSet)
 io.reactivex.processors.ReplayProcessor
+cn.forward.androids.Image.LocalImagerLoader
 androidx.annotation.ArrayRes
 io.reactivex.subjects.ReplaySubject$ReplayBuffer
 com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding
@@ -633,6 +643,9 @@ com.google.zxing.oned.Code128Reader
     private static final int CODE_STOP
 kotlin.random.Random
 io.reactivex.internal.operators.flowable.FlowableRepeatWhen$WhenSourceSubscriber
+com.gongwu.wherecollect.view.SortChildDialog
+    private static final int maxsize
+    private static final int minsize
 io.reactivex.internal.operators.observable.ObservableRepeatUntil
 com.google.android.material.card.MaterialCardViewHelper
 anetwork.channel.aidl.adapter.ParcelableInputStreamImpl
@@ -1040,6 +1053,7 @@ androidx.appcompat.widget.ResourceManagerInternal
     private static final boolean DEBUG
     private static final java.lang.String SKIP_DRAWABLE_TAG
     private static final java.lang.String PLATFORM_VD_CLAZZ
+cn.forward.androids.Image.ImageLoaderConfig$ImageSetter
 io.reactivex.internal.operators.observable.ObservableConcatMap$ConcatMapDelayErrorObserver$DelayErrorInnerObserver
 okhttp3.Cache
     private final void abortQuietly(okhttp3.internal.cache.DiskLruCache$Editor)
@@ -1109,6 +1123,7 @@ androidx.viewpager.widget.PagerTabStrip$1
 androidx.core.content.PermissionChecker$PermissionResult
 io.reactivex.internal.operators.maybe.MaybeFilter
 androidx.appcompat.app.ActionBarDrawerToggle$FrameworkActionBarDelegate
+com.gongwu.wherecollect.contract.presenter.FurniturePresenter$14
 com.google.android.material.snackbar.BaseTransientBottomBar$8
 com.scwang.smartrefresh.header.WaveSwipeHeader$3
 kotlin.jvm.internal.Reflection
@@ -1281,7 +1296,6 @@ com.gongwu.wherecollect.util.iconNum.IconBadgeNumManager
 androidx.customview.widget.ExploreByTouchHelper$2
 com.azhon.appupdate.utils.ScreenUtil
     public void <init>()
-    public static int getHeight(android.content.Context)
 io.reactivex.internal.operators.flowable.FlowableCollect
 kotlin.internal.PlatformDependent
 io.reactivex.internal.operators.flowable.FlowableObserveOn$ObserveOnConditionalSubscriber
@@ -1363,6 +1377,7 @@ io.reactivex.internal.operators.parallel.ParallelMapTry$1
 io.reactivex.internal.operators.completable.CompletableMergeIterable$MergeCompletableObserver
 kotlin.collections.AbstractMap
 kotlin.time.DurationUnitKt__DurationUnitKt
+cn.forward.androids.R
 androidx.appcompat.widget.ActivityChooserModel$ActivitySorter
 io.reactivex.internal.operators.maybe.MaybeFromSingle
 kotlin.collections.ArraysKt___ArraysKt$asSequence$$inlined$Sequence$3
@@ -1750,8 +1765,8 @@ razerdp.util.animation.TranslationConfig$1
 com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding
     public void <init>(com.gongwu.wherecollect.activity.BindEmailActivity)
 com.google.android.material.circularreveal.CircularRevealRelativeLayout
-io.reactivex.internal.operators.flowable.FlowableTakeUntil$TakeUntilMainSubscriber
 androidx.constraintlayout.solver.widgets.ConstraintTableLayout$VerticalSlice
+io.reactivex.internal.operators.flowable.FlowableTakeUntil$TakeUntilMainSubscriber
 com.google.android.material.snackbar.BaseTransientBottomBar
 io.reactivex.internal.operators.flowable.FlowableTake$TakeSubscriber
 okhttp3.internal.platform.ConscryptPlatform
@@ -1817,6 +1832,7 @@ androidx.transition.Transition$EpicenterCallback
     public abstract android.graphics.Rect onGetEpicenter(androidx.transition.Transition)
 io.reactivex.internal.operators.observable.ObservableWithLatestFrom
 io.reactivex.internal.operators.observable.ObservableRepeat
+kankan.wheel.widget.adapters.AdapterWheel
 com.azhon.appupdate.dialog.NumberProgressBar
     public void incrementProgressBy(int)
     private static final java.lang.String INSTANCE_STATE
@@ -2178,6 +2194,7 @@ androidx.constraintlayout.widget.ConstraintSet
     private static final int UNUSED
 anetwork.channel.entity.StringParam
 io.reactivex.internal.operators.flowable.FlowableInternalHelper$SimpleGenerator
+cn.forward.androids.views.EasyAdapter$OnItemLongClickedListener
 io.reactivex.internal.operators.maybe.MaybeToFlowable
     public io.reactivex.MaybeSource source()
     protected void subscribeActual(org.reactivestreams.Subscriber)
@@ -2206,6 +2223,8 @@ androidx.core.view.ViewConfigurationCompat
     public static boolean hasPermanentMenuKey(android.view.ViewConfiguration)
     private void <init>()
     private static final java.lang.String TAG
+com.gongwu.wherecollect.activity.FurnitureLookActivity$7
+    public void onImgClick()
 io.reactivex.internal.operators.flowable.FlowableGroupBy
 com.google.zxing.oned.UPCEANReader
     private static final int MAX_AVG_VARIANCE
@@ -2436,6 +2455,8 @@ retrofit2.Retrofit
 androidx.recyclerview.widget.StaggeredGridLayoutManager$LayoutParams
     public void <init>(androidx.recyclerview.widget.RecyclerView$LayoutParams)
     public static final int INVALID_SPAN_ID
+com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding
+    public void <init>(com.gongwu.wherecollect.view.DeleteSortTipsDialog)
 com.gongwu.wherecollect.activity.MessageListActivity
     private static final java.lang.String TAG
 androidx.recyclerview.widget.DiffUtil
@@ -2764,6 +2785,7 @@ io.reactivex.internal.schedulers.SingleScheduler
 kotlin.LazyKt
     private void <init>()
 kotlin.collections.ShortIterator
+cn.forward.androids.utils.cache.DiskLruCache
 io.reactivex.internal.schedulers.SchedulerWhen
 androidx.transition.FragmentTransitionSupport$4
     public android.graphics.Rect onGetEpicenter(androidx.transition.Transition)
@@ -2823,6 +2845,7 @@ retrofit2.adapter.rxjava2.CallEnqueueObservable
 io.reactivex.internal.operators.mixed.ObservableSwitchMapMaybe$SwitchMapMaybeMainObserver
 androidx.customview.widget.FocusStrategy$SequentialComparator
 io.reactivex.internal.operators.maybe.MaybeFromCallable
+cn.forward.androids.utils.ViewUtil
 anetwork.channel.util.RequestConstant
 io.reactivex.internal.operators.maybe.MaybeZipArray$ZipMaybeObserver
 io.reactivex.annotations.BackpressureSupport
@@ -2845,6 +2868,7 @@ androidx.loader.content.Loader
     public void unregisterOnLoadCanceledListener(androidx.loader.content.Loader$OnLoadCanceledListener)
 kotlin.collections.AbstractList$Companion
 io.reactivex.internal.operators.observable.ObservableReplay$SizeBoundReplayBuffer
+cn.forward.androids.views.MaskImageView
 io.reactivex.internal.operators.flowable.FlowableSequenceEqualSingle
 com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView$2
     public void onItemRangeInserted(int,int)
@@ -2860,6 +2884,7 @@ io.reactivex.internal.operators.observable.ObservableBufferTimed$BufferExactUnbo
 com.gongwu.wherecollect.base.BaseActivity
     protected void startFragment(int,androidx.fragment.app.Fragment)
 kotlin.time.ClockMark
+com.gongwu.wherecollect.contract.ISelectSortChildNewContract
 io.reactivex.internal.operators.flowable.FlowableDebounceTimed$DebounceTimedSubscriber
 com.scwang.smartrefresh.header.BuildConfig
 io.reactivex.internal.operators.observable.ObservableFilter$FilterObserver
@@ -2899,6 +2924,7 @@ org.greenrobot.eventbus.util.ErrorDialogFragmentFactory
     protected abstract java.lang.Object createErrorFragment(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle)
     protected java.lang.String getTitleFor(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle)
     protected java.lang.String getMessageFor(org.greenrobot.eventbus.util.ThrowableFailureEvent,android.os.Bundle)
+cn.forward.androids.views.KeyboardLayout
 androidx.transition.MatrixUtils
 io.reactivex.internal.operators.flowable.FlowableRange$BaseRangeSubscription
 io.reactivex.internal.operators.observable.ObservableWindowBoundarySelector$OperatorWindowBoundaryCloseObserver
@@ -2915,6 +2941,7 @@ okhttp3.internal.http2.Http2Reader$ContinuationSource
     public final int getFlags()
     public final int getStreamId()
     public final int getPadding()
+cn.forward.androids.BuildConfig
 kotlin.io.FileTreeWalk$FileTreeWalkIterator$TopDownDirectoryState
 okio.Utf8
 razerdp.util.animation.TranslationConfig$3
@@ -2931,6 +2958,7 @@ com.gongwu.wherecollect.contract.presenter.AddGoodsPropertyPresenter
     public void getFirstCategoryList(java.lang.String)
     private static final java.lang.String TAG
 io.reactivex.internal.operators.observable.ObservableMergeWithSingle$MergeWithObserver$OtherObserver
+cn.forward.androids.views.EasyAdapter$OnSingleSelectListener
 androidx.annotation.CallSuper
 androidx.core.util.AtomicFile
 androidx.appcompat.app.WindowDecorActionBar$TabImpl
@@ -3006,6 +3034,7 @@ kotlin.collections.AbstractSet
 kotlin.time.Clock
 io.reactivex.internal.operators.observable.ObservableFlatMapSingle
 com.gongwu.wherecollect.contract.IPersonContract
+cn.forward.androids.views.SLinearLayout
 io.reactivex.internal.operators.observable.ObservableFilter
 org.intellij.lang.annotations.JdkConstants$InputEventMask
 androidx.appcompat.widget.ActionMenuPresenter$SavedState$1
@@ -3072,6 +3101,7 @@ io.reactivex.internal.operators.observable.ObservableElementAtSingle
 io.reactivex.internal.operators.observable.ObservableSkipWhile$SkipWhileObserver
 kotlin.coroutines.experimental.SequenceBuilderKt__SequenceBuilderKt$buildSequence$$inlined$Sequence$1
 androidx.core.text.TextUtilsCompat
+cn.forward.androids.views.SRelativeLayout
 razerdp.basepopup.ClearMemoryObject
     public abstract void clear(boolean)
 com.google.android.material.drawable.DrawableUtils
@@ -3081,6 +3111,7 @@ com.bigkoo.pickerview.utils.PickerViewAnimateUtil
 com.gongwu.wherecollect.contract.presenter.AddGoodsPropertyPresenter$Inner
     private void <init>()
 com.gongwu.wherecollect.view.furniture.ChildView
+    public void initSelectCount()
     float x
     float y
     private static final java.lang.String TAG
@@ -3125,6 +3156,7 @@ kotlin.sequences.TakeWhileSequence$iterator$1
 kotlin.jvm.internal.CollectionToArray
     private static final java.lang.Object[] toArrayImpl(java.util.Collection,kotlin.jvm.functions.Function0,kotlin.jvm.functions.Function1,kotlin.jvm.functions.Function2)
     private static final int MAX_SIZE
+kankan.wheel.BuildConfig
 io.reactivex.internal.operators.flowable.FlowableCache$ReplaySubscription
 io.reactivex.internal.operators.observable.ObservableBufferBoundary$BufferBoundaryObserver$BufferOpenObserver
 io.reactivex.internal.operators.flowable.FlowableWindowBoundary$WindowBoundaryInnerSubscriber
@@ -3166,6 +3198,7 @@ io.reactivex.internal.util.BlockingIgnoringReceiver
 io.reactivex.internal.operators.observable.ObservableWindowTimed$WindowSkipObserver$SubjectWork
 androidx.transition.AnimatorUtils
     private void <init>()
+cn.forward.androids.views.SFrameLayout
 kotlin.reflect.KProperty$DefaultImpls
 razerdp.util.animation.TranslationConfig$2
 io.reactivex.processors.ReplayProcessor$ReplayBuffer
@@ -3388,8 +3421,8 @@ kotlin.text.SystemProperties
 io.reactivex.functions.Function7
 com.google.android.material.snackbar.BaseTransientBottomBar$5
 kotlin.collections.AbstractList$ListIteratorImpl
-okhttp3.internal.cache.DiskLruCache$newJournalWriter$faultHidingSink$1
 com.google.android.material.internal.CircularBorderDrawableLollipop
+okhttp3.internal.cache.DiskLruCache$newJournalWriter$faultHidingSink$1
 io.reactivex.internal.operators.single.SingleResumeNext$ResumeMainSingleObserver
 androidx.swiperefreshlayout.widget.CircularProgressDrawable
 androidx.core.app.NotificationCompat$BadgeIconType
@@ -3406,6 +3439,7 @@ io.reactivex.internal.functions.ObjectHelper
     public static io.reactivex.functions.BiPredicate equalsPredicate()
     public static long verifyPositive(long,java.lang.String)
     public static long requireNonNull(long,java.lang.String)
+cn.forward.androids.utils.ImageUtils
 androidx.lifecycle.MediatorLiveData
 androidx.transition.ViewGroupUtilsApi18
     private void <init>()
@@ -3448,6 +3482,7 @@ io.reactivex.internal.operators.flowable.FlowableWithLatestFrom$FlowableWithLate
 io.reactivex.internal.operators.observable.ObservableTakeUntil
 androidx.core.net.DatagramSocketWrapper$DatagramSocketImplWrapper
 androidx.core.graphics.PathSegment
+cn.forward.androids.Image.ImageLoader$ImageLoaderListener
 com.google.zxing.oned.CodaBarReader
     private static final int MAX_ACCEPTABLE
     private static final int PADDING
@@ -3489,6 +3524,7 @@ io.reactivex.internal.operators.observable.ObservableScan
 kotlin.ranges.ULongRange
 com.google.android.material.circularreveal.CircularRevealHelper$Strategy
 io.reactivex.internal.operators.flowable.FlowableOnBackpressureBufferStrategy$1
+cn.forward.androids.views.DragListView$SimpleAnimationDragItemListener
 com.gongwu.wherecollect.util.ImageLoader$2
 com.bigkoo.pickerview.utils.ChinaDate
     public void <init>()
@@ -3518,6 +3554,7 @@ okhttp3.internal.platform.Platform
 io.reactivex.internal.operators.flowable.FlowableDelaySubscriptionOther$DelaySubscriber
 androidx.transition.GhostViewUtils
 com.google.android.material.bottomsheet.BottomSheetBehavior$1
+cn.forward.androids.views.KeyboardLayout$KeyboardOnGlobalChangeListener
 io.reactivex.internal.schedulers.SchedulerWhen$OnCompletedAction
 okhttp3.internal.ws.WebSocketProtocol
 io.reactivex.internal.operators.flowable.FlowableConcatMap$ConcatMapImmediate
@@ -3527,6 +3564,7 @@ kotlin.jvm.internal.TypeReference$asString$args$1
 androidx.recyclerview.widget.MessageThreadUtil$1
 io.reactivex.internal.operators.flowable.FlowableInternalHelper$BufferedTimedReplay
 io.reactivex.internal.operators.flowable.FlowableConcatMapEagerPublisher
+cn.forward.androids.utils.cache.StrictLineReader
 kotlin.concurrent.ThreadsKt
 com.alipay.sdk.tid.a
     private void a(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.Long)
@@ -3561,6 +3599,23 @@ kotlin.internal.ProgressionUtilKt
     private static final long differenceModulo(long,long,long)
     public static final long getProgressionLastElement(long,long,long)
 androidx.lifecycle.MediatorLiveData$Source
+com.gongwu.wherecollect.view.ObjectInfoLookView
+    public void <init>(android.content.Context)
+    public void <init>(android.content.Context,android.util.AttributeSet)
+    private void setPurchaseTime()
+    private void setExpirytime()
+    private void setGoodsCount()
+    private void setjiage()
+    private void setQita()
+    private void setStar()
+    private void setFenlei()
+    private void setColors()
+    private void setJijie()
+    private void setQudao()
+    private void showView()
+    public void init(com.gongwu.wherecollect.net.entity.response.ObjectBean)
+    public void updataView()
+    public void showGoodsLayout()
 okio.HashingSink$Companion
 io.reactivex.internal.operators.observable.ObservableFlatMapCompletable
 kotlin.ranges.IntProgressionIterator
@@ -3721,6 +3776,7 @@ io.reactivex.internal.operators.observable.ObservableTakeLast
 io.reactivex.internal.operators.maybe.MaybeEqualSingle
 kotlin.HashCodeKt
 io.reactivex.internal.operators.observable.ObservableBufferBoundarySupplier$BufferBoundaryObserver
+cn.forward.androids.views.EasyAdapter$OnModeChangedListener
 okhttp3.Dns$Companion
     static final synthetic okhttp3.Dns$Companion $$INSTANCE
 androidx.transition.Slide$GravityFlag
@@ -3759,10 +3815,8 @@ razerdp.basepopup.BasePopupWindow
     public boolean isPopupFadeEnable()
     public void showPopupWindow(int)
     public void showPopupWindow(int,int)
-    public void update()
     public void update(android.view.View)
     public void update(int,int)
-    public void update(float,float)
     public void update(int,int,float,float)
     public razerdp.basepopup.BasePopupWindow setAdjustInputMethod(boolean)
     public razerdp.basepopup.BasePopupWindow setAdjustInputMethod(boolean,int)
@@ -3790,7 +3844,6 @@ razerdp.basepopup.BasePopupWindow
     public android.view.animation.Animation getDismissAnimation()
     public razerdp.basepopup.BasePopupWindow setDismissAnimator(android.animation.Animator)
     public android.animation.Animator getDismissAnimator()
-    public android.view.View getContentView()
     public android.widget.PopupWindow getPopupWindow()
     public int getOffsetX()
     public int getOffsetY()
@@ -3887,6 +3940,8 @@ com.google.zxing.pdf417.decoder.DecodedBitStreamParser
     private static final int PS
     private static final int PAL
 io.reactivex.internal.operators.observable.ObservableRefCount$RefConnection
+com.gongwu.wherecollect.contract.IGoodsDetailsContract$IGoodsDetailsView
+    public abstract void removeObjectFromFurnitrueSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean)
 com.gongwu.wherecollect.contract.IAdministerFamilyDetailsContract
 io.reactivex.internal.operators.observable.ObservableConcatMapEager
 io.reactivex.internal.operators.observable.ObservableSkipUntil
@@ -4149,9 +4204,11 @@ com.gongwu.wherecollect.contract.IBuyVIPContract$IBuyVIPPresenter
     public abstract void notificationServer(java.lang.String,java.lang.String,java.lang.String)
     public abstract void buyVipWXOrAli(java.lang.String,int,java.lang.String,java.lang.String)
 kotlin.collections.unsigned.UArraysKt
+cn.forward.androids.SimpleAsyncTask$AsyncTaskResult
 io.reactivex.observers.DisposableCompletableObserver
 kotlin.collections.IndexedValue
 kotlin.UShortArray
+cn.forward.androids.utils.ColorUtil
 razerdp.util.animation.TranslationConfig$4
 androidx.recyclerview.widget.RecyclerView$Recycler
     public void bindViewToPosition(android.view.View,int)
@@ -4202,6 +4259,7 @@ okio.RealBufferedSource
     public okio.BufferedSource peek()
 androidx.core.app.NotificationBuilderWithBuilderAccessor
     public abstract android.app.Notification$Builder getBuilder()
+cn.forward.androids.views.StringScrollPicker
 androidx.recyclerview.widget.ViewBoundsCheck$Callback
     public abstract int getChildCount()
     public abstract android.view.View getParent()
@@ -4631,6 +4689,7 @@ com.gongwu.wherecollect.view.SwipeMenuLayout
     private android.util.Log LogUtils
     private static final java.lang.String TAG
 io.reactivex.internal.operators.parallel.ParallelMapTry$ParallelMapTryConditionalSubscriber
+cn.forward.androids.SimpleAsyncTask$WorkerRunnable
 kotlin.jvm.functions.Function18
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
 com.gongwu.wherecollect.util.StringUtils
@@ -4651,13 +4710,22 @@ com.gongwu.wherecollect.util.StringUtils
     public static java.lang.String getPath(android.app.Activity,android.net.Uri)
     public static boolean isGoodName(char)
     public static boolean isChinese(char)
-    public static java.lang.String getImei(android.content.Context)
     public static java.lang.String replaceImgUrl(java.lang.String,java.util.List)
     public static boolean isOpen(java.lang.String)
     public static boolean isPad(android.content.Context)
     public static boolean isSoftShowing(android.app.Activity)
     public static int getStatusBarByTop(android.app.Activity)
     public static boolean isTencent(android.content.Context)
+    public static final int TYPE_GOODS_COUNT
+    public static final int TYPE_GOODS_STAR
+    public static final int TYPE_GOODS_SEASON
+    public static final int TYPE_GOODS_COLOR
+    public static final int TYPE_GOODS_PRICE
+    public static final int TYPE_GOODS_CHANNEL
+    public static final int TYPE_GOODS_PURCHASE_TIME
+    public static final int TYPE_GOODS_EXPIRY_TIME
+    public static final int TYPE_GOODS_CLASSIFY
+    public static final int TYPE_GOODS_NOTE
 io.reactivex.internal.operators.maybe.MaybeAmb$AmbMaybeObserver
 okhttp3.internal.Util$execute$1
 kotlin.ranges.UIntRange$Companion
@@ -4865,6 +4933,11 @@ org.jetbrains.annotations.NonNls
 androidx.core.content.SharedPreferencesCompat$EditorCompat$Helper
 com.google.android.material.snackbar.Snackbar$Callback
 kotlin.coroutines.SafeContinuation
+cn.forward.androids.views.BitmapScrollPicker
+    public void setItemScale(float,float)
+    public static final int DRAW_MODE_FULL
+    public static final int DRAW_MODE_CENTER
+    public static final int DRAW_MODE_SPECIFIED_SIZE
 com.google.android.material.chip.ChipGroup$PassThroughHierarchyChangeListener
 io.reactivex.internal.fuseable.HasUpstreamMaybeSource
     public abstract io.reactivex.MaybeSource source()
@@ -4884,6 +4957,7 @@ com.gongwu.wherecollect.contract.presenter.EditHomePresenter$Inner
 com.gongwu.wherecollect.contract.IEditFurniturePatternContract$IEditFurniturePatternPresenter
     public abstract void updataFurniture(java.lang.String,java.lang.String,java.lang.String,java.lang.String,float)
 io.reactivex.internal.operators.observable.ObservableReplay$Node
+cn.forward.androids.utils.AnimatorUtil$AnimatorSetWrap$1
 io.reactivex.internal.operators.observable.ObservableConcatMapEager$ConcatMapEagerMainObserver
 androidx.core.view.accessibility.AccessibilityRecordCompat
     public void <init>(java.lang.Object)
@@ -4942,6 +5016,7 @@ androidx.core.view.accessibility.AccessibilityRecordCompat
     private final android.view.accessibility.AccessibilityRecord mRecord
 com.google.android.material.chip.Chip$ChipTouchHelper
 androidx.versionedparcelable.VersionedParcelStream$FieldBuffer
+cn.forward.androids.views.DragListView$1
 io.reactivex.internal.operators.single.SingleDoOnSubscribe
 com.gongwu.wherecollect.contract.presenter.FamilyPresenter$Inner
 com.alipay.sdk.net.a
@@ -5041,6 +5116,7 @@ kotlin.internal.OnlyInputTypes
 androidx.vectordrawable.graphics.drawable.VectorDrawableCommon
     protected void onBoundsChange(android.graphics.Rect)
 com.gongwu.wherecollect.object.SelectChannelActivity
+    public static void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean)
     public void getFirstCategoryListSuccess(java.util.List)
     public void showProgressDialog()
 io.reactivex.internal.schedulers.SchedulerWhen$ImmediateAction
@@ -5056,10 +5132,12 @@ okhttp3.FormBody
     public final java.lang.String value(int)
 com.google.android.material.chip.Chip
 androidx.legacy.coreutils.R
+cn.forward.androids.utils.cache.DiskLruCache$Editor
 io.reactivex.internal.operators.mixed.MaybeFlatMapPublisher
 kotlin.text.Charsets
     public final java.nio.charset.Charset UTF32()
     private static java.nio.charset.Charset utf_32
+cn.forward.androids.utils.ProcessUtil
 io.reactivex.internal.operators.flowable.FlowableSwitchIfEmpty
 com.alipay.sdk.packet.a
     public void <init>()
@@ -5195,6 +5273,7 @@ com.gongwu.wherecollect.adapter.SwipeCardViewAdapter
     public void add(com.gongwu.wherecollect.net.entity.response.ObjectBean)
     private boolean show
 io.reactivex.internal.operators.mixed.CompletableAndThenPublisher
+cn.forward.androids.TouchGestureDetector$OnTouchGestureListener
 okhttp3.internal.http2.Http2Connection
     public static final synthetic boolean access$getAwaitingPong$p(okhttp3.internal.http2.Http2Connection)
     public static final synthetic long access$getWriteBytesMaximum$p(okhttp3.internal.http2.Http2Connection)
@@ -5211,6 +5290,7 @@ okhttp3.internal.http2.Http2Connection
     public final void start()
     public final void setSettings(okhttp3.internal.http2.Settings)
     public static final int OKHTTP_CLIENT_WINDOW_SIZE
+cn.forward.androids.utils.cache.StrictLineReader$1
 io.reactivex.internal.operators.flowable.FlowableBufferExactBoundary$BufferBoundarySubscriber
 androidx.constraintlayout.solver.widgets.Chain
     void <init>()
@@ -5233,6 +5313,9 @@ androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplBase$1
 kotlin.SuspendKt
 kotlin.jvm.functions.Function9
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+com.gongwu.wherecollect.view.DeleteSortTipsDialog
+    private android.content.Context mContext
+cn.forward.androids.views.KeyboardLayout$1
 com.google.android.material.bottomnavigation.BottomNavigationItemView
 anetwork.channel.download.DownloadManager$b
 org.greenrobot.eventbus.util.ErrorDialogFragments$Support
@@ -5250,6 +5333,8 @@ com.github.florent37.camerafragment.listeners.CameraFragmentResultAdapter
     public void onPhotoTaken(byte[],java.lang.String)
 com.uk.co.senab.photoview.SDK16
     public void <init>()
+com.gongwu.wherecollect.contract.IGoodsDetailsContract$IGoodsDetailsModel
+    public abstract void removeObjectFromFurnitrue(com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq,com.gongwu.wherecollect.interfacedef.RequestCallback)
 io.reactivex.android.MainThreadDisposable
 kotlin.internal.LowPriorityInOverloadResolution
 androidx.localbroadcastmanager.R
@@ -5681,6 +5766,8 @@ io.reactivex.internal.operators.observable.ObservableGroupBy
 io.reactivex.internal.subscribers.QueueDrainSubscriberPad2
 com.gongwu.wherecollect.contract.presenter.ImportMoreGoodsPresenter$Inner
     private void <init>()
+com.gongwu.wherecollect.view.PopupEditFurnitureName
+    public void setImgPathAndEnabled(int,boolean)
 kotlin.reflect.KMutableProperty2
     public abstract void set(java.lang.Object,java.lang.Object,java.lang.Object)
 kotlin.jvm.Strictfp
@@ -5689,6 +5776,7 @@ androidx.lifecycle.ReportFragment
     void setProcessListener(androidx.lifecycle.ReportFragment$ActivityInitializationListener)
     private static final java.lang.String REPORT_FRAGMENT_TAG
 io.reactivex.processors.PublishProcessor$PublishSubscription
+cn.forward.androids.views.PaddingTextView
 io.reactivex.internal.operators.completable.CompletableOnErrorComplete
 io.reactivex.internal.operators.single.SingleDelay$Delay
 com.google.zxing.client.result.GeoParsedResult
@@ -5826,7 +5914,9 @@ io.reactivex.internal.operators.maybe.MaybeContains$ContainsMaybeObserver
 io.reactivex.subjects.ReplaySubject$TimedNode
 androidx.savedstate.R
 com.google.zxing.multi.qrcode.detector.MultiDetector
+cn.forward.androids.views.ShapeImageView
 kotlin.collections.ArraysKt___ArraysKt$asIterable$$inlined$Iterable$6
+cn.forward.androids.utils.ThreadUtil
 kotlin.jvm.functions.Function15
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
 io.reactivex.internal.operators.maybe.MaybeFilter$FilterMaybeObserver
@@ -6044,6 +6134,7 @@ io.reactivex.internal.fuseable.QueueFuseable
     public static final int ASYNC
     public static final int ANY
     public static final int BOUNDARY
+cn.forward.androids.utils.EllipsizeUtils
 io.reactivex.internal.operators.single.SingleHide$HideSingleObserver
 androidx.core.content.pm.ShortcutManagerCompat
 io.reactivex.internal.operators.maybe.MaybeFilterSingle$FilterMaybeObserver
@@ -6687,6 +6778,7 @@ androidx.core.view.GestureDetectorCompat$GestureDetectorCompatImpl
     public abstract void setOnDoubleTapListener(android.view.GestureDetector$OnDoubleTapListener)
 androidx.annotation.LongDef
 kotlin.collections.AbstractMutableList
+kankan.wheel.R
 kotlin.PreconditionsKt__AssertionsJVMKt
 io.reactivex.internal.operators.flowable.FlowableConcatWithSingle$ConcatWithSubscriber
 com.google.android.material.circularreveal.CircularRevealHelper
@@ -6835,6 +6927,8 @@ io.reactivex.internal.operators.flowable.FlowableThrottleFirstTimed
 kotlin.sequences.SequencesKt___SequencesKt$minus$4$iterator$1
 com.github.florent37.camerafragment.widgets.RecordButton$1
 io.reactivex.internal.operators.observable.ObservableFlatMapCompletable$FlatMapCompletableMainObserver$InnerObserver
+com.gongwu.wherecollect.view.PopupScrollPickerView
+    public void setImg(java.lang.String)
 com.google.android.material.textfield.TextInputEditText
 com.github.florent37.camerafragment.internal.enums.Camera$CameraType
 androidx.media.AudioAttributesImplApi21
@@ -6982,6 +7076,7 @@ okhttp3.HttpUrl$Builder
     public final okhttp3.HttpUrl$Builder encodedFragment(java.lang.String)
     public static final java.lang.String INVALID_HOST
 io.reactivex.internal.operators.single.SingleFromPublisher
+cn.forward.androids.Image.ImageLoader
 androidx.core.view.MenuItemCompat$1
 io.reactivex.subscribers.DisposableSubscriber
 androidx.core.view.ViewCompat$4
@@ -7056,14 +7151,15 @@ androidx.recyclerview.widget.RecyclerView$LayoutManager
     public boolean isMeasurementCacheEnabled()
     public void setMeasurementCacheEnabled(boolean)
     public void layoutDecorated(android.view.View,int,int,int,int)
+cn.forward.androids.views.RoundProgressBar
 androidx.core.app.NotificationCompat$CarExtender$UnreadConversation
 kotlin.ranges.ULongProgression
 androidx.appcompat.widget.SwitchCompat$1
 okio.Pipe$source$1
 com.scwang.smartrefresh.header.WaterDropHeader$2
-androidx.media.R
 kotlin.jvm.functions.Function13
     public abstract java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+androidx.media.R
 anetwork.channel.aidl.RemoteNetwork$Stub$Proxy
 io.reactivex.subjects.PublishSubject$PublishDisposable
 com.contrarywind.view.BuildConfig
@@ -7297,6 +7393,7 @@ androidx.constraintlayout.widget.ConstraintSet$Constraint
     static final int UNSET
 okhttp3.internal.ws.WebSocketReader$FrameCallback
 androidx.fragment.app.FragmentTabHost$DummyTabFactory
+cn.forward.androids.utils.DateUtil
 kotlin.collections.ArraysKt___ArraysKt$withIndex$9
 io.reactivex.internal.operators.flowable.FlowableSingle$SingleElementSubscriber
 kotlin.system.TimingKt
@@ -7496,6 +7593,7 @@ com.scwang.smartrefresh.header.waterdrop.Circle
 kotlin.jvm.internal.ArrayFloatIterator
 io.reactivex.internal.operators.observable.ObservableBuffer$BufferExactObserver
 io.reactivex.internal.operators.flowable.FlowableFlatMap$InnerSubscriber
+cn.forward.androids.utils.Util
 androidx.appcompat.app.WindowDecorActionBar
     public void <init>(android.view.View)
     private void ensureTabsExist()
@@ -7680,6 +7778,7 @@ com.gongwu.wherecollect.contract.ISearchContract
 kotlin.KotlinVersion
 androidx.appcompat.widget.SwitchCompat
 androidx.core.os.MessageCompat
+cn.forward.androids.views.EasyAdapter$SelectionViewHolder
 uk.co.deanwild.materialshowcaseview.MaterialShowcaseView$3
 kotlin.jvm.JvmField
 kotlin.jvm.functions.Function12
@@ -7950,8 +8049,6 @@ kotlin.io.FileTreeWalk$FileTreeWalkIterator$SingleFileState
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi28
     public androidx.media.MediaSessionManager$RemoteUserInfo getCurrentBrowserInfo()
 io.reactivex.internal.operators.observable.ObservableSwitchMap$SwitchMapObserver
-com.alipay.sdk.widget.d$a
-    public void onAnimationEnd(android.view.animation.Animation)
 androidx.core.view.NestedScrollingChild
     public abstract void setNestedScrollingEnabled(boolean)
     public abstract boolean startNestedScroll(int)
@@ -7960,6 +8057,8 @@ androidx.core.view.NestedScrollingChild
     public abstract boolean dispatchNestedPreScroll(int,int,int[],int[])
     public abstract boolean dispatchNestedFling(float,float,boolean)
     public abstract boolean dispatchNestedPreFling(float,float)
+com.alipay.sdk.widget.d$a
+    public void onAnimationEnd(android.view.animation.Animation)
 kotlin.UIntKt
 androidx.core.view.animation.PathInterpolatorCompat
 io.reactivex.internal.operators.flowable.FlowableInternalHelper$ReplayCallable
@@ -7987,6 +8086,12 @@ io.reactivex.internal.operators.observable.ObservableInternalHelper$ItemDelayFun
 io.reactivex.internal.operators.maybe.MaybeDetach
 kotlin.collections.ArraysKt___ArraysJvmKt$asList$5
 io.reactivex.internal.util.SorterFunction
+com.gongwu.wherecollect.contract.presenter.GoodsDetailsPresenter$1
+    void <init>(com.gongwu.wherecollect.contract.presenter.GoodsDetailsPresenter)
+    public void onSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean)
+    public void onFailure(java.lang.String)
+    public synthetic bridge void onSuccess(java.lang.Object)
+    final synthetic com.gongwu.wherecollect.contract.presenter.GoodsDetailsPresenter this$0
 kotlin.ULongArray$Iterator
 io.reactivex.internal.operators.observable.ObservableWindowBoundary$WindowBoundaryMainObserver
 com.google.android.material.bottomappbar.BottomAppBar
@@ -8192,6 +8297,23 @@ io.reactivex.internal.util.OpenHashSet
     public int size()
     private static final int INT_PHI
 com.google.android.material.internal.FlowLayout
+kankan.wheel.widget.adapters.AbstractWheelTextAdapter
+    protected void <init>(android.content.Context)
+    protected void <init>(android.content.Context,int)
+    public int getTextColor()
+    public void setTextColor(int)
+    public int getTextSize()
+    public void setTextSize(int)
+    public int getItemResource()
+    public void setItemResource(int)
+    public int getItemTextResource()
+    public int getEmptyItemResource()
+    public void setEmptyItemResource(int)
+    public static final int TEXT_VIEW_ITEM_RESOURCE
+    protected static final int NO_RESOURCE
+    public static final int DEFAULT_TEXT_COLOR
+    public static final int LABEL_COLOR
+    public static final int DEFAULT_TEXT_SIZE
 kotlin.reflect.KProperty$Accessor
     public abstract kotlin.reflect.KProperty getProperty()
 com.google.android.material.bottomsheet.BottomSheetDialog$3
@@ -8248,6 +8370,7 @@ androidx.appcompat.graphics.drawable.StateListDrawable
     private static final boolean DEBUG
 androidx.vectordrawable.graphics.drawable.Animatable2Compat$AnimationCallback$1
 androidx.core.app.NotificationCompat$BigPictureStyle
+cn.forward.androids.PriorityRunnable
 com.contrarywind.view.WheelView
     private static final int VELOCITY_FLING
     private static final float SCALE_CONTENT
@@ -8289,6 +8412,8 @@ androidx.core.app.NotificationCompatJellybean
     private static java.lang.reflect.Field sActionTitleField
     private static java.lang.reflect.Field sActionIntentField
     private static boolean sActionsAccessFailed
+com.gongwu.wherecollect.adapter.ArticleListAdapter
+    public void setOnItemClickListener(com.gongwu.wherecollect.adapter.ArticleListAdapter$OnItemChildClickListener)
 com.google.android.material.bottomappbar.BottomAppBar$7
 io.reactivex.internal.operators.completable.CompletableMerge
 io.reactivex.internal.operators.flowable.FlowableInternalHelper$FlatMapWithCombinerInner
@@ -8456,6 +8581,7 @@ com.google.zxing.qrcode.encoder.MaskUtil
     private static final int N2
     private static final int N3
     private static final int N4
+cn.forward.androids.utils.cache.DiskLruCache$Snapshot
 io.reactivex.internal.operators.maybe.MaybeConcatArray
 okhttp3.internal.http2.Http2
     public static final int INITIAL_MAX_FRAME_SIZE
@@ -8516,6 +8642,7 @@ androidx.core.content.pm.ShortcutManagerCompat$1
 com.gongwu.wherecollect.contract.presenter.SharePresenter
     private static final java.lang.String TAG
 androidx.media.VolumeProviderCompatApi21$1
+cn.forward.androids.Image.ImageLoaderConfig
 kotlin.random.Random$Default
 io.reactivex.internal.operators.flowable.FlowableSkipLastTimed
 io.reactivex.internal.operators.completable.CompletableMergeArray
@@ -10017,6 +10144,7 @@ com.gongwu.wherecollect.contract.AppConstant
     public static final int LEVEL_FURNITURE
     public static final int LEVEL_INTERLAYER
     public static final int LEVEL_BOX
+    public static final java.lang.String BUY_TYPE
     public static final int REQUEST_SUCCESS
     public static final int DEFAULT_PAGE
     public static final int REMIND_FINISH_CODE
@@ -10096,6 +10224,8 @@ io.reactivex.internal.schedulers.TrampolineScheduler$TrampolineWorker
     public boolean isDisposed()
 kotlin.ranges.UIntProgressionIterator
 uk.co.deanwild.materialshowcaseview.MaterialShowcaseView$1
+com.gongwu.wherecollect.contract.presenter.FurniturePresenter
+    public java.lang.String getLoction(com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean)
 io.reactivex.internal.operators.maybe.MaybeDelaySubscriptionOtherPublisher$OtherSubscriber
 kotlin.io.LinesSequence
 io.reactivex.internal.operators.flowable.FlowableIgnoreElementsCompletable$IgnoreElementsSubscriber
@@ -10111,6 +10241,15 @@ okhttp3.Headers$Builder
     public final okhttp3.Headers$Builder set(java.lang.String,java.util.Date)
     public final okhttp3.Headers$Builder set(java.lang.String,java.time.Instant)
     public final java.lang.String get(java.lang.String)
+com.gongwu.wherecollect.view.ObjectsLookMenuDialog
+    public void <init>(android.app.Activity,com.gongwu.wherecollect.net.entity.response.ObjectBean)
+    private void deleteObject()
+    public void editLocation()
+    public void deleteGoods()
+    public void editGoods()
+    android.content.Context context
+    android.app.Dialog dialog
+    com.gongwu.wherecollect.net.entity.response.ObjectBean bean
 com.permissionx.guolindev.BuildConfig
 kotlin.reflect.KParameter
 razerdp.util.animation.AnimationHelper
@@ -10230,6 +10369,7 @@ razerdp.basepopup.BasePopupHelper
 org.intellij.lang.annotations.JdkConstants$HorizontalAlignment
 androidx.transition.ChangeBounds$9
     public void onTransitionCancel(androidx.transition.Transition)
+cn.forward.androids.ScaleGestureDetectorApi27$SimpleOnScaleGestureListener
 retrofit2.OkHttpCall
     public synchronized boolean isExecuted()
     public retrofit2.Response execute()
@@ -10253,6 +10393,7 @@ okhttp3.CertificatePinner
     public final varargs void check(java.lang.String,java.security.cert.Certificate[])
     public static final java.lang.String WILDCARD
 io.reactivex.internal.operators.flowable.FlowableNever
+cn.forward.androids.views.EasyAdapter$OnItemClickedListener
 com.gongwu.wherecollect.swipecardview.LinearRegression
     public double interceptStdErr()
     public double slopeStdErr()
@@ -10447,6 +10588,7 @@ okio.ForwardingSource
     public final okio.Source -deprecated_delegate()
 io.reactivex.SingleOnSubscribe
 com.gongwu.wherecollect.contract.IAddFamilyToSelectRoomsContract
+cn.forward.androids.views.DragListView$DragItemListener
 kotlin.jvm.internal.FloatCompanionObject
 okhttp3.internal.http2.PushObserver$Companion
     static final synthetic okhttp3.internal.http2.PushObserver$Companion $$INSTANCE
@@ -10457,6 +10599,7 @@ com.google.zxing.oned.rss.expanded.decoders.DecodedChar
     static final char FNC1
 okhttp3.internal.ws.RealWebSocket$Message
 io.reactivex.internal.operators.maybe.MaybeFlatMapNotification
+com.gongwu.wherecollect.contract.IArticleContract
 androidx.core.view.LayoutInflaterCompat$Factory2Wrapper
 androidx.appcompat.widget.DropDownListView
     public int lookForSelectablePosition(int,boolean)
@@ -10919,6 +11062,7 @@ okhttp3.Route
 io.reactivex.internal.operators.observable.BlockingObservableIterable$BlockingObservableIterator
 io.reactivex.internal.operators.maybe.MaybeOnErrorReturn
 io.reactivex.internal.operators.completable.CompletableResumeNext
+com.gongwu.wherecollect.contract.model.GoodsDetailsModel$1
 androidx.core.view.ViewCompat$AccessibilityPaneVisibilityManager
     private void unregisterForLayoutCallback(android.view.View)
     void addAccessibilityPane(android.view.View)
@@ -11000,6 +11144,11 @@ androidx.core.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityAction
     private static final java.lang.String TAG
 io.reactivex.internal.operators.completable.CompletableMergeArray$InnerCompletableObserver
 io.reactivex.internal.operators.flowable.FlowableMergeWithMaybe
+cn.forward.androids.views.ScrollPickerView$1
+    void <init>(cn.forward.androids.views.ScrollPickerView,int)
+    public void onAnimationUpdate(android.animation.ValueAnimator)
+    final synthetic int val$end
+    final synthetic cn.forward.androids.views.ScrollPickerView this$0
 io.reactivex.internal.operators.flowable.FlowableMergeWithSingle$MergeWithObserver$OtherObserver
 io.reactivex.internal.operators.flowable.FlowableThrottleLatest
 io.reactivex.internal.operators.completable.CompletableDelay$Delay$OnComplete
@@ -11125,7 +11274,17 @@ okio.-DeprecatedOkio
 razerdp.util.animation.RotationConfig
 androidx.appcompat.widget.ActivityChooserModel$OnChooseActivityListener
 androidx.core.hardware.fingerprint.FingerprintManagerCompat$CryptoObject
+cn.forward.androids.utils.cache.DiskLruUtil
 io.reactivex.internal.util.ObservableQueueDrain
+kankan.wheel.widget.WheelView
+    public void removeChangingListener(kankan.wheel.widget.OnWheelChangedListener)
+    public void removeScrollingListener(kankan.wheel.widget.OnWheelScrollListener)
+    public void addClickingListener(kankan.wheel.widget.OnWheelClickedListener)
+    public void removeClickingListener(kankan.wheel.widget.OnWheelClickedListener)
+    public void stopScrolling()
+    private static final int ITEM_OFFSET_PERCENT
+    private static final int PADDING
+    private static final int DEF_VISIBLE_ITEMS
 com.yalantis.ucrop.R
 com.gongwu.wherecollect.contract.presenter.MessagePresenter$Inner
     private void <init>()
@@ -11164,6 +11323,7 @@ androidx.recyclerview.widget.RecyclerView$RecycledViewPool
     public int getRecycledViewCount(int)
     int size()
     private static final int DEFAULT_MAX_SCRAP
+cn.forward.androids.Image.ImageCache
 io.reactivex.internal.operators.flowable.FlowableInternalHelper$FlatMapIntoIterable
 org.greenrobot.eventbus.util.ErrorDialogConfig
     public void <init>(android.content.res.Resources,int,int)
@@ -11256,6 +11416,7 @@ androidx.fragment.app.DialogFragment
 io.reactivex.internal.util.SuppressAnimalSniffer
 com.gongwu.wherecollect.contract.presenter.AdministerFamilyDetailsPresenter
     private static final java.lang.String TAG
+kankan.wheel.widget.adapters.ArrayWheelAdapter
 okhttp3.Cookie$Builder
 razerdp.blur.thread.ThreadPoolManager
     public void <init>()
@@ -11267,6 +11428,9 @@ uk.co.deanwild.materialshowcaseview.MaterialShowcaseView$UpdateOnGlobalLayout
 androidx.vectordrawable.graphics.drawable.AnimationUtilsCompat
     private void <init>()
 androidx.appcompat.widget.ActivityChooserModel$DefaultSorter
+cn.forward.androids.views.ScrollPickerView$2
+com.gongwu.wherecollect.view.AddSortDialog
+    private android.content.Context mContext
 kotlin.collections.ReversedListReadOnly
 io.reactivex.internal.operators.flowable.FlowableReduce$ReduceSubscriber
 io.reactivex.internal.operators.parallel.ParallelRunOn$BaseRunOnSubscriber
@@ -11305,6 +11469,7 @@ androidx.appcompat.widget.RtlSpacingHelper
 androidx.print.PrintHelper$PrintBitmapAdapter
 kotlin.sequences.SequencesKt___SequencesKt$minus$2$iterator$1
 io.reactivex.internal.operators.flowable.FlowableReplay$MulticastFlowable$DisposableConsumer
+cn.forward.androids.TouchGestureDetector$OnTouchGestureListenerProxy
 kotlin.annotation.Retention
 com.google.zxing.client.result.ISBNParsedResult
     public java.lang.String getISBN()
@@ -11335,6 +11500,7 @@ okhttp3.internal.http2.Http2Stream
     public static final long EMIT_BUFFER_SIZE
 io.reactivex.internal.operators.observable.ObservableFlatMap$MergeObserver
 androidx.transition.ChangeTransform$3
+cn.forward.androids.utils.LogUtil
 io.reactivex.internal.operators.flowable.FlowableWindowTimed
 androidx.core.content.res.ColorStateListInflaterCompat
     private void <init>()
@@ -11408,8 +11574,11 @@ io.reactivex.internal.operators.single.SingleFlatMapIterableFlowable
 com.google.android.material.snackbar.BaseTransientBottomBar$10
 io.reactivex.internal.operators.maybe.MaybeZipIterable
 io.reactivex.internal.operators.mixed.ObservableSwitchMapMaybe$SwitchMapMaybeMainObserver$SwitchMapMaybeObserver
+com.gongwu.wherecollect.view.AddSortDialog_ViewBinding
+    public void <init>(com.gongwu.wherecollect.view.AddSortDialog)
 io.reactivex.internal.operators.maybe.MaybeConcatArrayDelayError
 androidx.media.VolumeProviderCompatApi21
+cn.forward.androids.views.STextView
 io.reactivex.internal.operators.flowable.FlowableWindowTimed$WindowSkipSubscriber
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplBase$3
 io.reactivex.internal.operators.completable.CompletableErrorSupplier
@@ -11476,6 +11645,20 @@ io.reactivex.android.schedulers.AndroidSchedulers$MainHolder
 com.google.android.material.animation.AnimatorSetCompat
     public void <init>()
 com.gongwu.wherecollect.util.PermissionUtil$4
+cn.forward.androids.views.ScrollPickerView
+    public void autoScrollFast(int,long,float,android.view.animation.Interpolator)
+    public void autoScrollFast(int,long)
+    public void autoScrollFast(int,long,float)
+    public void autoScrollToPosition(int,long,android.view.animation.Interpolator)
+    public boolean isInertiaScroll()
+    public boolean isDisallowTouch()
+    public boolean isFling()
+    public boolean isMovingCenter()
+    public boolean isAutoScrolling()
+    public boolean isCanTap()
+    public boolean isVertical()
+    public boolean isDrawAllItem()
+    public int dip2px(float)
 androidx.annotation.IntRange
 retrofit2.converter.gson.package-info
 io.reactivex.internal.operators.observable.ObservableCache
@@ -11493,6 +11676,7 @@ io.reactivex.internal.operators.observable.ObservableWithLatestFromMany
 io.reactivex.internal.functions.Functions$HashSetCallable
 retrofit2.adapter.rxjava2.BodyObservable
 io.reactivex.disposables.SubscriptionDisposable
+cn.forward.androids.utils.StatusBarUtil
 kotlin.comparisons.UComparisonsKt
 com.google.zxing.pdf417.encoder.BarcodeMatrix
 kotlin.comparisons.ComparisonsKt___ComparisonsJvmKt
@@ -11664,11 +11848,14 @@ kotlin.collections.ArraysKt___ArraysJvmKt$asList$7
 com.gongwu.wherecollect.contract.presenter.FeedBackPresenter$Inner
     private void <init>()
 io.reactivex.internal.operators.observable.ObservableFromUnsafeSource
+com.gongwu.wherecollect.contract.model.GoodsDetailsModel
+    public void removeObjectFromFurnitrue(com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq,com.gongwu.wherecollect.interfacedef.RequestCallback)
 io.reactivex.internal.operators.mixed.FlowableSwitchMapCompletable$SwitchMapCompletableObserver
 kotlin.jvm.JvmWildcard
 io.reactivex.internal.operators.flowable.FlowableMergeWithCompletable$MergeWithSubscriber$OtherObserver
 androidx.core.content.res.FontResourcesParserCompat$FetchStrategy
 io.reactivex.processors.ReplayProcessor$SizeBoundReplayBuffer
+cn.forward.androids.SimpleAsyncTask$3
 androidx.core.app.ServiceCompat
 androidx.constraintlayout.solver.widgets.ConstraintAnchor
     private boolean isConnectionToMe(androidx.constraintlayout.solver.widgets.ConstraintWidget,java.util.HashSet)
@@ -11753,6 +11940,7 @@ androidx.core.widget.AutoSizeableTextView
     public abstract int getAutoSizeMinTextSize()
     public abstract int getAutoSizeMaxTextSize()
     public abstract int[] getAutoSizeTextAvailableSizes()
+cn.forward.androids.utils.AnimatorUtil$AnimatorSetWrap
 androidx.appcompat.widget.Toolbar$ExpandedActionViewMenuPresenter
     public androidx.appcompat.view.menu.MenuView getMenuView(android.view.ViewGroup)
     public void setCallback(androidx.appcompat.view.menu.MenuPresenter$Callback)
@@ -11760,6 +11948,7 @@ androidx.appcompat.widget.Toolbar$ExpandedActionViewMenuPresenter
     public android.os.Parcelable onSaveInstanceState()
     public void onRestoreInstanceState(android.os.Parcelable)
 io.reactivex.internal.operators.observable.ObservableDebounce$DebounceObserver
+cn.forward.androids.ScaleGestureDetectorApi27
 androidx.recyclerview.widget.DiffUtil$Callback
 io.reactivex.internal.operators.observable.ObservableBufferExactBoundary$BufferExactBoundaryObserver
 androidx.appcompat.widget.ListPopupWindow$1
@@ -11967,6 +12156,7 @@ kotlin.text.StringsKt__StringsJVMKt
     public static final java.lang.String repeat(java.lang.CharSequence,int)
     public static final java.util.Comparator getCASE_INSENSITIVE_ORDER(kotlin.jvm.internal.StringCompanionObject)
     public void <init>()
+cn.forward.androids.ScaleGestureDetectorApi27$OnScaleGestureListener
 io.reactivex.internal.operators.flowable.FlowableCombineLatest$CombineLatestInnerSubscriber
 io.reactivex.internal.operators.observable.ObservableInterval$IntervalObserver
 androidx.appcompat.widget.Toolbar
@@ -12011,6 +12201,7 @@ androidx.core.view.ViewCompat$FocusRelativeDirection
 kotlin.collections.ArraysKt___ArraysKt$withIndex$1
 io.reactivex.internal.functions.Functions$NotificationOnNext
 io.reactivex.internal.operators.flowable.FlowableReplay$BoundedReplayBuffer
+cn.forward.androids.Image.LocalImagerLoader$ImageLoadTask
 kotlin.io.FilesKt__UtilsKt$copyRecursively$1
 okhttp3.CertificatePinner$Builder
     public final varargs okhttp3.CertificatePinner$Builder add(java.lang.String,java.lang.String[])
@@ -12042,10 +12233,14 @@ androidx.appcompat.widget.MenuPopupWindow
 okhttp3.internal.cache.DiskLruCache$cleanupRunnable$1
 io.reactivex.internal.operators.flowable.FlowableAnySingle
 kotlin.ranges.UIntRange
+cn.forward.androids.utils.cache.DiskLruCache$Entry
 kotlin.ranges.ClosedRange$DefaultImpls
 org.reactivestreams.Publisher
     public abstract void subscribe(org.reactivestreams.Subscriber)
+com.gongwu.wherecollect.view.PopupScrollPickerView$PopupClickListener
+    public abstract void onImgClick()
 io.reactivex.internal.operators.observable.ObservableIgnoreElementsCompletable$IgnoreObservable
+cn.forward.androids.utils.EllipsizeUtils$EllipseListener
 kotlin.math.MathKt__MathHKt
 androidx.transition.ObjectAnimatorUtils
     private void <init>()
@@ -12097,6 +12292,7 @@ com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment
     private static final int ARC_HALF
     private static final int ANGLE_UP
     private static final int ANGLE_LEFT
+cn.forward.androids.SimpleAsyncTask$4
 io.reactivex.internal.operators.maybe.MaybeFilterSingle
 io.reactivex.internal.operators.observable.ObservableDebounceTimed$DebounceTimedObserver
 io.reactivex.internal.operators.single.SingleNever
@@ -12349,6 +12545,7 @@ androidx.loader.content.AsyncTaskLoader
     public void waitForLoader()
     static final java.lang.String TAG
     static final boolean DEBUG
+cn.forward.androids.ScaleGestureDetectorApi27$1
 io.reactivex.internal.operators.observable.ObservableInternalHelper$FlatMapWithCombinerInner
 com.scwang.smartrefresh.header.waveswipe.DropBounceInterpolator
 com.google.zxing.oned.rss.RSSUtils
@@ -12452,6 +12649,8 @@ androidx.appcompat.widget.LinearLayoutCompat$LayoutParams
     public void <init>(int,int,float)
     public void <init>(android.view.ViewGroup$MarginLayoutParams)
     public void <init>(androidx.appcompat.widget.LinearLayoutCompat$LayoutParams)
+com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding
+    public void <init>(com.gongwu.wherecollect.object.SelectSortChildNewActivity)
 androidx.core.graphics.ColorUtils
     private void <init>()
     public static android.graphics.Color compositeColors(android.graphics.Color,android.graphics.Color)
@@ -12520,6 +12719,9 @@ com.google.zxing.client.result.TelParsedResult
     public java.lang.String getNumber()
     public java.lang.String getTelURI()
     public java.lang.String getTitle()
+kankan.wheel.widget.WheelScroller
+    private static final int SCROLLING_DURATION
+    public static final int MIN_DELTA_FOR_SCROLLING
 anetwork.channel.aidl.ParcelableInputStream$Stub$Proxy
     public int available()
     public void close()
@@ -13104,6 +13306,7 @@ okhttp3.internal.http.ExchangeCodec
 io.reactivex.internal.operators.observable.ObservableZipIterable$ZipIterableObserver
 retrofit2.adapter.rxjava2.CallEnqueueObservable$CallCallback
 io.reactivex.internal.operators.completable.CompletableConcatArray
+cn.forward.androids.views.EasyAdapter$3
 com.alipay.sdk.util.j
     public void <init>()
     private static java.lang.String b(android.content.Context)
@@ -13150,6 +13353,7 @@ io.reactivex.android.schedulers.HandlerScheduler$HandlerWorker
 io.reactivex.internal.operators.observable.ObservableCollect
 androidx.activity.R
 androidx.print.PrintHelper$PrintUriAdapter$1
+cn.forward.androids.SimpleAsyncTask$InternalHandler
 kotlin.jvm.internal.CharSpreadBuilder
 io.reactivex.internal.operators.observable.ObservableReplay$ReplayBuffer
 kotlin.jvm.Volatile
@@ -13864,9 +14068,11 @@ io.reactivex.internal.operators.single.SingleZipArray$ZipCoordinator
 com.zsitech.oncon.barcode.core.InactivityTimer
     private static final long INACTIVITY_DELAY_MS
 kotlin.coroutines.experimental.migration.ExperimentalContinuationInterceptorMigration
+cn.forward.androids.Image.AsyncDrawable
 com.google.android.material.chip.ChipGroup
 androidx.core.text.util.LinkifyCompat$1
 io.reactivex.internal.operators.single.SingleAmb$AmbSingleObserver
+cn.forward.androids.views.EasyAdapter$2
 com.alipay.sdk.util.k
     public void <init>()
     public static java.lang.String a(com.alipay.sdk.sys.a,android.content.Context)
@@ -14042,6 +14248,7 @@ com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding
 io.reactivex.internal.operators.mixed.ObservableConcatMapMaybe
 io.reactivex.internal.operators.completable.CompletableMergeDelayErrorIterable
 kotlin.sequences.FilteringSequence
+cn.forward.androids.views.KeyboardLayout$KeyboardLayoutListener
 io.reactivex.internal.operators.mixed.ObservableSwitchMapCompletable$SwitchMapCompletableObserver
 androidx.core.os.ParcelableCompatCreatorCallbacks
 io.reactivex.internal.operators.observable.ObservableSampleWithObservable$SampleMainEmitLast
@@ -14051,6 +14258,7 @@ kotlin.coroutines.intrinsics.IntrinsicsKt
     private void <init>()
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi21$4
 androidx.core.content.pm.ShortcutInfoCompat$Builder
+cn.forward.androids.utils.cache.DiskLruCache$Editor$FaultHidingOutputStream
 io.reactivex.internal.operators.single.SingleFlatMapPublisher
 io.reactivex.internal.operators.flowable.FlowableUnsubscribeOn$UnsubscribeSubscriber$Cancellation
 com.tbruyelle.rxpermissions2.Permission$1
@@ -14084,6 +14292,7 @@ com.scwang.smartrefresh.layout.SmartRefreshLayout$RefreshKernelImpl
     public com.scwang.smartrefresh.layout.api.RefreshKernel requestDefaultTranslationContentFor(com.scwang.smartrefresh.layout.api.RefreshInternal,boolean)
     public com.scwang.smartrefresh.layout.api.RefreshKernel requestRemeasureHeightFor(com.scwang.smartrefresh.layout.api.RefreshInternal)
     public com.scwang.smartrefresh.layout.api.RefreshKernel requestFloorDuration(int)
+cn.forward.androids.views.PaddingImageView
 kotlin.jvm.internal.Ref
 io.reactivex.internal.operators.observable.ObservableReduceSeedSingle
 com.alipay.android.app.IRemoteServiceCallback$Stub$a
@@ -14097,6 +14306,13 @@ kotlin.collections.AbstractCollection
     public boolean isEmpty()
 androidx.viewpager.R
 androidx.appcompat.app.ActionBarDrawerToggleHoneycomb
+com.gongwu.wherecollect.contract.ISelectSortChildNewContract$ISelectSortChildNewPresenter
+    public abstract void getBuyFirstCategoryList(java.lang.String)
+    public abstract void getSubCategoryList(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void getTwoSubCategoryList(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void getThreeSubCategoryList(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void saveCustomSubCate(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    public abstract void deleteCustomize(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 kotlin.reflect.KClass
     public abstract java.lang.String getSimpleName()
     public abstract java.lang.String getQualifiedName()
@@ -14231,6 +14447,7 @@ androidx.appcompat.app.AlertController$AlertParams
     public boolean mForceInverseBackground
 com.google.android.material.bottomnavigation.BottomNavigationPresenter$SavedState
 kotlin.collections.AbstractMap$values$1$iterator$1
+cn.forward.androids.views.RatioImageView
 androidx.core.util.ObjectsCompat
     private void <init>()
     public static int hashCode(java.lang.Object)
@@ -14271,6 +14488,7 @@ com.gongwu.wherecollect.ImageSelect.ImageGridActivity
     public static final java.lang.String EXTRA_IMAGE_LIST
     public static final int RESULT
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity
+    public void showProgressDialog()
     public static final int REQUEST_CODE
 io.reactivex.internal.operators.observable.ObservableReplay$BufferSupplier
 androidx.cardview.R
@@ -14449,6 +14667,7 @@ androidx.recyclerview.widget.LayoutState
     static final int INVALID_LAYOUT
     static final int ITEM_DIRECTION_HEAD
     static final int ITEM_DIRECTION_TAIL
+cn.forward.androids.views.SelectorAttrs
 kotlin.collections.UCollectionsKt___UCollectionsKt
 com.google.android.material.bottomappbar.BottomAppBar$FabAlignmentMode
 io.reactivex.internal.operators.observable.ObservableMaterialize$MaterializeObserver
@@ -14501,6 +14720,7 @@ com.gongwu.wherecollect.contract.presenter.RelationGoodsPresenter$2
 androidx.transition.TransitionUtils
     private void <init>()
     private static final int MAX_IMAGE_SIZE
+kankan.wheel.widget.adapters.NumericWheelAdapter
 com.scwang.smartrefresh.header.DropBoxHeader$1
 androidx.core.view.ViewPropertyAnimatorCompat
     public androidx.core.view.ViewPropertyAnimatorCompat alphaBy(float)
@@ -14595,6 +14815,10 @@ io.reactivex.internal.operators.observable.ObservableAll
 razerdp.widget.QuickPopup
     public razerdp.basepopup.QuickPopupConfig getConfig()
 com.tbruyelle.rxpermissions2.RxPermissions$4$1
+kankan.wheel.widget.adapters.AbstractWheelAdapter
+    public android.view.View getEmptyItem(android.view.View,android.view.ViewGroup)
+    protected void notifyDataChangedEvent()
+    protected void notifyDataInvalidatedEvent()
 androidx.annotation.IntegerRes
 com.tbruyelle.rxpermissions2.Permission$4
 org.greenrobot.eventbus.meta.SubscriberInfo
@@ -14614,6 +14838,7 @@ androidx.transition.PropertyValuesHolderUtils
     private void <init>()
 kotlin.experimental.ExperimentalTypeInference
 com.google.android.material.internal.Experimental
+cn.forward.androids.utils.ThreadUtil$1
 androidx.core.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderApi16
 com.azhon.appupdate.service.DownloadService
     private static final java.lang.String TAG
@@ -14631,6 +14856,46 @@ androidx.transition.ViewOverlayApi18
 kotlin.collections.unsigned.UArraysKt___UArraysKt
 io.reactivex.internal.operators.observable.ObservableElementAt$ElementAtObserver
 kotlin.reflect.KCallable$DefaultImpls
+cn.forward.androids.SimpleAsyncTask
+    private static android.os.Handler getHandler()
+    public static void setDefaultExecutor(java.util.concurrent.Executor)
+    public void <init>()
+    private void postResultIfNotInvoked(java.lang.Object)
+    private java.lang.Object postResult(java.lang.Object)
+    private final varargs cn.forward.androids.SimpleAsyncTask executeOnExecutor(java.util.concurrent.Executor,cn.forward.androids.Priority,java.lang.Object[])
+    public static void execute(java.lang.Runnable)
+    private void finish(java.lang.Object)
+    static synthetic java.util.concurrent.atomic.AtomicBoolean access$400(cn.forward.androids.SimpleAsyncTask)
+    static synthetic java.lang.Object access$500(cn.forward.androids.SimpleAsyncTask,java.lang.Object)
+    static synthetic void access$600(cn.forward.androids.SimpleAsyncTask,java.lang.Object)
+    static synthetic void access$700(cn.forward.androids.SimpleAsyncTask,java.lang.Object)
+    public boolean reset()
+    public final cn.forward.androids.SimpleAsyncTask$Status getStatus()
+    protected varargs abstract java.lang.Object doInBackground(java.lang.Object[])
+    protected void onPreExecute()
+    protected void onPostExecute(java.lang.Object)
+    protected varargs void onProgressUpdate(java.lang.Object[])
+    protected void onCancelled(java.lang.Object)
+    protected void onCancelled()
+    public final boolean isCancelled()
+    public final boolean cancel(boolean)
+    public final java.lang.Object get()
+    public final java.lang.Object get(long,java.util.concurrent.TimeUnit)
+    public final varargs cn.forward.androids.SimpleAsyncTask execute(java.lang.Object[])
+    public final varargs cn.forward.androids.SimpleAsyncTask executeLIFO(java.lang.Object[])
+    public final varargs cn.forward.androids.SimpleAsyncTask executePriority(cn.forward.androids.Priority,java.lang.Object[])
+    public final varargs cn.forward.androids.SimpleAsyncTask executeOnExecutor(java.util.concurrent.Executor,java.lang.Object[])
+    protected final varargs void publishProgress(java.lang.Object[])
+    private final cn.forward.androids.SimpleAsyncTask$WorkerRunnable mWorker
+    private final java.util.concurrent.FutureTask mFuture
+    private volatile cn.forward.androids.SimpleAsyncTask$Status mStatus
+    private final java.util.concurrent.atomic.AtomicBoolean mCancelled
+    private final java.util.concurrent.atomic.AtomicBoolean mTaskInvoked
+    private static final java.lang.String LOG_TAG
+    private static final int KEEP_ALIVE
+    private static final int MESSAGE_POST_RESULT
+    private static final int MESSAGE_POST_PROGRESS
+    private static cn.forward.androids.SimpleAsyncTask$InternalHandler sHandler
 androidx.transition.Styleable
 okhttp3.Cookie
     public static final okhttp3.Cookie parse(okhttp3.HttpUrl,java.lang.String)
@@ -14789,6 +15054,7 @@ androidx.lifecycle.ViewModelProvider
     public void <init>(androidx.lifecycle.ViewModelStoreOwner,androidx.lifecycle.ViewModelProvider$Factory)
     private static final java.lang.String DEFAULT_KEY
 io.reactivex.internal.operators.maybe.MaybeMergeArray$MergeMaybeObserver
+cn.forward.androids.Image.ImageCache$1
 androidx.core.graphics.TypefaceCompatApi26Impl
     private static final java.lang.String TAG
     private static final java.lang.String FONT_FAMILY_CLASS
@@ -14829,6 +15095,7 @@ io.reactivex.internal.operators.single.SingleDelayWithPublisher$OtherSubscriber
 io.reactivex.internal.operators.observable.BlockingObservableLatest
 io.reactivex.observers.ResourceCompletableObserver
 okio.HashingSink
+cn.forward.androids.utils.ThreadUtil$2
 androidx.swiperefreshlayout.R
 io.reactivex.internal.operators.maybe.MaybeUsing$UsingObserver
 androidx.versionedparcelable.VersionedParcel
@@ -15042,6 +15309,7 @@ com.gongwu.wherecollect.permission.FloatWindowManager
     public void showWindow(android.content.Context)
     private static final java.lang.String TAG
 io.reactivex.internal.operators.observable.ObservableOnErrorReturn$OnErrorReturnObserver
+cn.forward.androids.utils.AnimatorUtil
 androidx.recyclerview.widget.RecyclerView$OnFlingListener
     public void <init>()
 io.reactivex.schedulers.SchedulerRunnableIntrospection
@@ -15050,6 +15318,11 @@ androidx.recyclerview.widget.AsyncListDiffer$1$1
 anetwork.channel.Header
 com.google.android.material.shape.RoundedCornerTreatment
 androidx.media.VolumeProviderCompat$ControlType
+com.gongwu.wherecollect.object.GoodsDetailsActivity
+    private void clearGoodsLocation()
+    static synthetic android.content.Context access$600(com.gongwu.wherecollect.object.GoodsDetailsActivity)
+    static synthetic com.gongwu.wherecollect.base.BasePresenter access$700(com.gongwu.wherecollect.object.GoodsDetailsActivity)
+    public void removeObjectFromFurnitrueSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean)
 androidx.cursoradapter.widget.SimpleCursorAdapter$ViewBinder
 io.reactivex.internal.operators.observable.ObservableWindowTimed$WindowExactBoundedObserver$ConsumerIndexHolder
 androidx.annotation.InspectableProperty$EnumEntry
@@ -15105,6 +15378,8 @@ androidx.recyclerview.widget.RecyclerView$EdgeEffectFactory
     public static final int DIRECTION_RIGHT
     public static final int DIRECTION_BOTTOM
 io.reactivex.internal.operators.single.SingleCreate
+com.gongwu.wherecollect.object.SelectSortChildNewActivity
+    public void showProgressDialog()
 okhttp3.Cache$Entry
 com.alipay.sdk.util.f
     public void <init>()
@@ -15182,6 +15457,7 @@ androidx.collection.LruCache
     public final synchronized int putCount()
     public final synchronized int evictionCount()
     public final synchronized java.util.Map snapshot()
+cn.forward.androids.views.RoundProgressBar$RoundProgressBarListener
 androidx.appcompat.widget.ActivityChooserView$5
 androidx.constraintlayout.solver.ArrayLinkedVariables
     boolean hasAtLeastOnePositiveVariable()
@@ -15211,6 +15487,7 @@ com.alipay.sdk.app.PayResultActivity$a
     public void <init>()
 io.reactivex.internal.operators.observable.ObservableAllSingle
 androidx.recyclerview.widget.ListAdapter
+cn.forward.androids.Image.ImageCacheKeyGenerator
 okhttp3.logging.HttpLoggingInterceptor
     public okhttp3.logging.HttpLoggingInterceptor$Level getLevel()
 io.reactivex.internal.operators.flowable.FlowableSampleTimed$SampleTimedNoLast
@@ -15380,9 +15657,13 @@ androidx.constraintlayout.solver.widgets.ConstraintWidgetContainer
 androidx.appcompat.view.menu.SubMenuBuilder
     public void setShortcutsVisible(boolean)
 io.reactivex.internal.operators.observable.ObservableWindowBoundarySelector$OperatorWindowBoundaryOpenObserver
+com.gongwu.wherecollect.view.ObjectInfoLookView$1
 com.gongwu.wherecollect.contract.ISelectSortContract$ISelectSortPresenter
     public abstract void getFirstCategoryList(java.lang.String)
     public abstract void getCategoryDetails(java.lang.String,java.lang.String)
+    public abstract void saveCustomCate(java.lang.String,java.lang.String)
+    public abstract void editCustomizeName(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    public abstract void deleteCustomize(java.lang.String,java.lang.String,java.lang.String)
 io.reactivex.internal.operators.observable.ObservableSampleTimed$SampleTimedObserver
 kotlin.jvm.internal.MagicApiIntrinsics
 androidx.cursoradapter.widget.CursorAdapter
@@ -15401,6 +15682,8 @@ com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding
 okhttp3.internal.http2.Hpack$Reader
     public void <init>(okio.Source,int)
     public final int maxDynamicTableByteCount()
+com.gongwu.wherecollect.activity.ArticleActivity
+    private static final java.lang.String TAG
 kotlin.jvm.PurelyImplements
 androidx.recyclerview.widget.AsyncListUtil
 kotlin.ranges.CharRange
@@ -15608,6 +15891,7 @@ io.reactivex.internal.operators.mixed.ObservableSwitchMapMaybe
 kotlin.jvm.internal.LongCompanionObject
 com.google.android.material.internal.NavigationMenuPresenter$NavigationMenuAdapter
 io.reactivex.internal.operators.flowable.FlowableGroupJoin$LeftRightSubscriber
+com.gongwu.wherecollect.view.ObjectsLookMenuDialog$1
 androidx.appcompat.app.AlertController
     public void setButtonPanelLayoutHint(int)
     public android.widget.Button getButton(int)
@@ -15639,6 +15923,7 @@ com.google.android.material.floatingactionbutton.FloatingActionButton$Size
 com.gongwu.wherecollect.contract.presenter.EditRoomPresenter$Inner
     private void <init>()
 org.greenrobot.eventbus.util.AsyncExecutor$Builder
+cn.forward.androids.utils.cache.DiskLruCache$2
 io.reactivex.internal.operators.parallel.ParallelMap$ParallelMapConditionalSubscriber
 com.gongwu.wherecollect.contract.ISearchContract$ISearchPresenter
     public abstract void getSearchList(java.lang.String,java.lang.String)
@@ -15657,6 +15942,7 @@ com.google.android.material.behavior.SwipeDismissBehavior
     private static final float DEFAULT_ALPHA_START_DISTANCE
     private static final float DEFAULT_ALPHA_END_DISTANCE
 io.reactivex.internal.operators.flowable.FlowablePublish
+cn.forward.androids.views.PaddingViewAttrs
 kotlin.collections.AbstractList
 androidx.appcompat.widget.ThemeUtils
     public static android.content.res.ColorStateList createDisabledStateList(int,int)
@@ -15675,6 +15961,7 @@ razerdp.util.PopupUtils
     public static varargs java.lang.Object cast(java.lang.Object,java.lang.Class,java.lang.Object[])
     public static java.lang.String gravityToString(int)
     public static java.lang.Object requireNonNull(java.lang.Object)
+cn.forward.androids.utils.cache.DiskLruCache$1
 androidx.recyclerview.widget.LinearLayoutManager$LayoutState
     void log()
     static final java.lang.String TAG
@@ -15731,6 +16018,11 @@ io.reactivex.internal.operators.single.SingleDelayWithObservable
 io.reactivex.internal.operators.observable.ObservableAny
 com.github.florent37.camerafragment.configuration.Configuration$DisplayRotation
 com.scwang.smartrefresh.header.WaveSwipeHeader$2
+com.gongwu.wherecollect.contract.IGoodsPropertyContract$IGoodsPropertyPresenter
+    public abstract void getBuyFirstCategoryList(java.lang.String)
+    public abstract void getSubCategoryList(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void getTwoSubCategoryList(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void getThreeSubCategoryList(java.lang.String,java.lang.String,java.lang.String)
 androidx.lifecycle.ViewModelStore
     java.util.Set keys()
 androidx.appcompat.R
@@ -15757,6 +16049,7 @@ androidx.core.content.res.TypedArrayUtils
     public static int getAttr(android.content.Context,int,int)
     private void <init>()
     private static final java.lang.String NAMESPACE
+cn.forward.androids.TouchGestureDetector$IOnTouchGestureListener
 androidx.transition.TransitionInflater
 androidx.recyclerview.widget.DiffUtil$Range
 com.scwang.smartrefresh.header.TaurusHeader
@@ -15837,11 +16130,11 @@ com.gongwu.wherecollect.contract.IFurnitureContract$IFurniturePresenter
     public abstract void moveLayer(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
     public abstract void moveBox(java.lang.String,java.lang.String,java.lang.String)
     public abstract void importGoods(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-    public abstract void editBoxName(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void editBoxName(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
     public abstract void delBox(java.lang.String,java.lang.String)
     public abstract void getFurnitureLayersOrBox(java.lang.String,java.lang.String,float,java.lang.String,java.lang.String)
     public abstract void resetLayerName(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-    public abstract void addBox(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void addBox(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 kotlin.internal.Exact
 androidx.constraintlayout.solver.SolverVariable$1
 kotlin.jvm.internal.TypeIntrinsics
@@ -15900,6 +16193,7 @@ kotlin.collections.AbstractIterator$WhenMappings
 org.intellij.lang.annotations.JdkConstants$CalendarMonth
 kotlin.jvm.internal.ArrayShortIterator
 kotlin.collections.CollectionsKt___CollectionsKt$groupingBy$1
+cn.forward.androids.utils.ReflectUtil
 androidx.media.MediaSessionManagerImplApi28
 kotlin.jvm.Synchronized
 com.uk.co.senab.photoview.Compat
@@ -15917,6 +16211,7 @@ kotlin.collections.AbstractMap$keys$1
 io.reactivex.internal.operators.maybe.MaybeEqualSingle$EqualCoordinator
 io.reactivex.internal.operators.flowable.FlowableRepeatWhen$WhenReceiver
 androidx.recyclerview.widget.MessageThreadUtil$2$1
+cn.forward.androids.Image.ImageLoaderGroup
 io.reactivex.internal.operators.observable.ObservablePublish$PublishObserver
 com.gongwu.wherecollect.base.BasePresenter
     public void addDisposable(io.reactivex.disposables.Disposable)
@@ -15947,6 +16242,7 @@ androidx.media.MediaBrowserServiceCompatApi23
 io.reactivex.internal.operators.mixed.FlowableConcatMapMaybe$ConcatMapMaybeSubscriber$ConcatMapMaybeObserver
 io.reactivex.internal.operators.mixed.FlowableSwitchMapSingle$SwitchMapSingleSubscriber$SwitchMapSingleObserver
 io.reactivex.internal.operators.flowable.FlowableSamplePublisher$SampleMainEmitLast
+cn.forward.androids.TouchGestureDetector
 androidx.annotation.DrawableRes
 com.yalantis.ucrop.model.ExifInfo
     public int getExifOrientation()
@@ -16251,12 +16547,14 @@ androidx.recyclerview.widget.RecyclerView
     static final long FOREVER_NS
 androidx.appcompat.widget.AppCompatCompoundButtonHelper$DirectSetButtonDrawableInterface
 io.reactivex.internal.operators.observable.ObservableCombineLatest
+cn.forward.androids.views.EasyAdapter$1
 com.github.florent37.camerafragment.internal.manager.impl.Camera2Manager$CameraPreviewState
 io.reactivex.observers.DefaultObserver
 io.reactivex.internal.operators.maybe.MaybeFromSingle$FromSingleObserver
 io.reactivex.internal.operators.flowable.FlowableMergeWithMaybe$MergeWithObserver$OtherObserver
 io.reactivex.parallel.ParallelFlowableConverter
 io.reactivex.internal.subscribers.FutureSubscriber
+com.gongwu.wherecollect.object.GoodsDetailsActivity$3
 io.reactivex.internal.functions.ObjectHelper$BiObjectPredicate
     public boolean test(java.lang.Object,java.lang.Object)
 io.reactivex.internal.operators.flowable.FlowableElementAtSingle$ElementAtSubscriber
@@ -16332,6 +16630,7 @@ com.alipay.sdk.widget.a
     public static final java.lang.String a
     public static final java.lang.String b
     public static final java.lang.String c
+cn.forward.androids.utils.AnimatorUtil$AnimatorSetWrap$1$2$1
 okhttp3.internal.ws.RealWebSocket$Close
 com.gongwu.wherecollect.contract.IAddGoodsPropertyContract
 androidx.core.hardware.fingerprint.FingerprintManagerCompat$AuthenticationResult
@@ -16343,6 +16642,7 @@ com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment$7
 kotlin.DslMarker
 com.google.zxing.common.reedsolomon.GenericGF
     private static final int INITIALIZATION_THRESHOLD
+cn.forward.androids.utils.AnimatorUtil$AnimatorSetWrap$1$2
 com.alipay.security.mobile.module.http.constant.a
 io.reactivex.internal.operators.mixed.FlowableConcatMapSingle$ConcatMapSingleSubscriber
 io.reactivex.internal.operators.maybe.MaybeDelayWithCompletable
@@ -16444,6 +16744,7 @@ kotlin.coroutines.experimental.CombinedContext$toString$1
 kotlin.coroutines.experimental.SafeContinuation
 io.reactivex.internal.operators.single.SingleUnsubscribeOn$UnsubscribeOnSingleObserver
 com.gongwu.wherecollect.contract.presenter.GoodsDetailsPresenter
+    public void removeObjectFromFurnitrue(java.lang.String,java.lang.String)
     private static final java.lang.String TAG
 com.gongwu.wherecollect.ImageSelect.NoScrollGridView
 androidx.recyclerview.R
@@ -16696,6 +16997,7 @@ androidx.core.app.JobIntentService$JobServiceEngineImpl
     static final java.lang.String TAG
     static final boolean DEBUG
 io.reactivex.internal.operators.observable.ObservablePublish$InnerDisposable
+kankan.wheel.widget.WheelAdapter
 androidx.appcompat.widget.ActivityChooserModel$PersistHistoryAsyncTask
 retrofit2.adapter.rxjava2.ResultObservable$ResultObserver
 com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment
@@ -16711,6 +17013,7 @@ com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment
     public void setResultListener(com.github.florent37.camerafragment.listeners.CameraFragmentResultListener)
     public static final java.lang.String ARG_CONFIGURATION
     public static final int MIN_VERSION_ICECREAM
+cn.forward.androids.utils.AnimatorUtil$AnimatorSetWrap$1$2$2
 io.reactivex.internal.operators.single.SingleObserveOn
 com.gongwu.wherecollect.util.StatusBarUtil
     public void <init>()
@@ -16735,6 +17038,7 @@ androidx.media.MediaBrowserServiceCompatApi21
 com.github.florent37.camerafragment.internal.ui.BaseAnncaFragment$6
 com.gongwu.wherecollect.util.QiNiuUploadUtil
     private static final java.lang.String TAG
+cn.forward.androids.utils.AnimatorUtil$AnimatorSetWrap$1$1
 kotlin.collections.ReversedList
 androidx.appcompat.app.AppCompatDialogFragment
 com.yalantis.ucrop.util.RotationGestureDetector
@@ -16820,6 +17124,10 @@ com.google.android.material.transformation.ExpandableBehavior
     private static final int STATE_UNINITIALIZED
     private static final int STATE_EXPANDED
     private static final int STATE_COLLAPSED
+com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.view.AddSortDialog_ViewBinding this$0
+com.gongwu.wherecollect.adapter.AddressTextAdapter
+    android.content.Context mContext
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$12
     final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$3
@@ -16838,12 +17146,16 @@ com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$2
     final synthetic com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding this$0
 androidx.media.MediaBrowserServiceCompat$2
     final synthetic androidx.media.MediaBrowserServiceCompat this$0
+com.gongwu.wherecollect.contract.model.SelectSortModel$4
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortModel this$0
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi28
     final synthetic androidx.media.MediaBrowserServiceCompat this$0
 com.alipay.sdk.widget.d$a
     final synthetic com.alipay.sdk.widget.d d
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding this$0
+com.gongwu.wherecollect.object.SelectSortActivity$1
+    final synthetic com.gongwu.wherecollect.object.SelectSortActivity this$0
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$1
@@ -16875,6 +17187,8 @@ razerdp.basepopup.PopupDecorViewProxy$1
     final synthetic razerdp.basepopup.PopupDecorViewProxy this$0
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$7
     final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
+com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding this$0
 androidx.core.app.RemoteInput
     public java.lang.CharSequence getLabel()
     public java.lang.CharSequence[] getChoices()
@@ -16885,6 +17199,10 @@ com.google.android.material.transformation.FabTransformationBehavior$4
     final synthetic com.google.android.material.transformation.FabTransformationBehavior this$0
 com.gongwu.wherecollect.contract.model.BuyVIPModel$2
     final synthetic com.gongwu.wherecollect.contract.model.BuyVIPModel this$0
+kankan.wheel.widget.adapters.AbstractWheelTextAdapter
+    static void <clinit>()
+    private static int maxsize
+    private static int minsize
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$7
     final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding this$0
 okhttp3.internal.connection.RealConnectionPool
@@ -16942,6 +17260,8 @@ com.gongwu.wherecollect.view.GoodsImageView
     private final int substringlength
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$3
     final synthetic com.gongwu.wherecollect.view.PopupEditBox_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.SelectSortModel$3
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortModel this$0
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding this$0
 com.zsitech.oncon.barcode.camera.CameraManager
@@ -17064,6 +17384,8 @@ okhttp3.CipherSuite
     public static final okhttp3.CipherSuite TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256
     public static final okhttp3.CipherSuite TLS_AES_128_CCM_SHA256
     public static final okhttp3.CipherSuite TLS_AES_128_CCM_8_SHA256
+com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.view.AddSortDialog_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.AdministerFamilyDetailsModel$1
     final synthetic com.gongwu.wherecollect.contract.model.AdministerFamilyDetailsModel this$0
 androidx.loader.app.LoaderManagerImpl$LoaderViewModel
@@ -17081,6 +17403,8 @@ com.gongwu.wherecollect.contract.model.EditHomeModel$4
     final synthetic com.gongwu.wherecollect.contract.model.EditHomeModel this$0
 com.gongwu.wherecollect.contract.model.AdministerFamilySharedModel$1
     final synthetic com.gongwu.wherecollect.contract.model.AdministerFamilySharedModel this$0
+com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$3
+    final synthetic com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding this$0
 com.google.android.material.transformation.FabTransformationBehavior$3
     final synthetic com.google.android.material.transformation.FabTransformationBehavior this$0
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$3
@@ -17147,6 +17471,8 @@ okhttp3.internal.cache.CacheInterceptor
     private final okhttp3.Response cacheWritingResponse(okhttp3.internal.cache.CacheRequest,okhttp3.Response)
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding this$0
+com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding this$0
 com.gongwu.wherecollect.adapter.StackAdapter$ViewHolder
     final synthetic com.gongwu.wherecollect.adapter.StackAdapter this$0
 androidx.recyclerview.widget.RecyclerView$ItemAnimator$ItemHolderInfo
@@ -17160,17 +17486,21 @@ com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$3
     final synthetic com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding this$0
 com.gongwu.wherecollect.activity.AddFamilyActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.AddFamilyActivity_ViewBinding this$0
-okhttp3.Headers$Builder
-    public final okhttp3.Headers$Builder addAll(okhttp3.Headers)
 androidx.core.view.ViewPropertyAnimatorCompat$1
     final synthetic androidx.core.view.ViewPropertyAnimatorCompat this$0
+okhttp3.Headers$Builder
+    public final okhttp3.Headers$Builder addAll(okhttp3.Headers)
 androidx.fragment.app.FragmentTransitionCompat21$2
     final synthetic androidx.fragment.app.FragmentTransitionCompat21 this$0
 com.gongwu.wherecollect.contract.model.BuyVIPModel$4
     final synthetic com.gongwu.wherecollect.contract.model.BuyVIPModel this$0
+com.gongwu.wherecollect.adapter.ArticleAdapter$CustomViewHolder
+    final synthetic com.gongwu.wherecollect.adapter.ArticleAdapter this$0
 okhttp3.Cache
     public final void update$okhttp(okhttp3.Response,okhttp3.Response)
     public static final okhttp3.Cache$Companion Companion
+com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding this$0
 com.google.zxing.client.result.EmailAddressParsedResult
     private final java.lang.String mailtoURI
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$5
@@ -17225,6 +17555,8 @@ com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.ShareListActivity$CustomPagerAdapter
     final synthetic com.gongwu.wherecollect.activity.ShareListActivity this$0
+com.gongwu.wherecollect.adapter.ArticleListAdapter$1
+    final synthetic com.gongwu.wherecollect.adapter.ArticleListAdapter this$0
 com.alipay.security.mobile.module.a.a.c
     static void <clinit>()
 okhttp3.Credentials
@@ -17253,6 +17585,8 @@ com.gongwu.wherecollect.activity.AddFamilyActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.AddFamilyActivity_ViewBinding this$0
 androidx.fragment.app.FragmentTransitionCompat21$4
     final synthetic androidx.fragment.app.FragmentTransitionCompat21 this$0
+com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$3
+    final synthetic com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding this$0
 anetwork.channel.cookie.CookieManager
     static void <clinit>()
 com.google.android.material.shape.MaterialShapeDrawable
@@ -17263,8 +17597,6 @@ okio.Buffer
     public static final okio.Buffer$Companion Companion
 com.gongwu.wherecollect.activity.CameraMainActivity
     private final int maxImags
-com.gongwu.wherecollect.contract.presenter.FurniturePresenter$13
-    final synthetic com.gongwu.wherecollect.contract.presenter.FurniturePresenter this$0
 okhttp3.ConnectionSpec
     public static final okhttp3.ConnectionSpec RESTRICTED_TLS
     public static final okhttp3.ConnectionSpec COMPATIBLE_TLS
@@ -17320,6 +17652,8 @@ com.gongwu.wherecollect.object.SelectSortChildActivity$1
     final synthetic com.gongwu.wherecollect.object.SelectSortChildActivity this$0
 com.alipay.security.mobile.module.http.v2.b
     static void <clinit>()
+com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$5
+    final synthetic com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding this$0
 androidx.fragment.app.FragmentManagerImpl$5
     final synthetic androidx.fragment.app.FragmentManagerImpl this$0
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$2
@@ -17329,6 +17663,8 @@ com.github.florent37.camerafragment.internal.ui.model.PhotoQualityOption
     private com.github.florent37.camerafragment.internal.utils.Size size
 razerdp.basepopup.BasePopupHelper$1
     final synthetic razerdp.basepopup.BasePopupHelper this$0
+com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.AddGoodsModel$6
     final synthetic com.gongwu.wherecollect.contract.model.AddGoodsModel this$0
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$2
@@ -17357,8 +17693,6 @@ com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$5
     final synthetic com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.EditMoreGoodsModel$1
     final synthetic com.gongwu.wherecollect.contract.model.EditMoreGoodsModel this$0
-com.gongwu.wherecollect.contract.model.GoodsDetailsModel$1
-    final synthetic com.gongwu.wherecollect.contract.model.GoodsDetailsModel this$0
 androidx.lifecycle.Lifecycle
     java.util.concurrent.atomic.AtomicReference mInternalScopeRef
 com.gongwu.wherecollect.activity.ForgetPWDActivity_ViewBinding$3
@@ -17454,6 +17788,8 @@ com.google.zxing.client.result.AddressBookParsedResult
     private final java.lang.String[] addressTypes
 androidx.fragment.app.FragmentTransitionImpl$1
     final synthetic androidx.fragment.app.FragmentTransitionImpl this$0
+com.gongwu.wherecollect.contract.model.SelectSortChildNewModel$3
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortChildNewModel this$0
 io.reactivex.internal.operators.maybe.MaybeToFlowable
     final io.reactivex.MaybeSource source
 androidx.lifecycle.ViewModel
@@ -17464,6 +17800,8 @@ com.gongwu.wherecollect.contract.model.PersonModel$2
     final synthetic com.gongwu.wherecollect.contract.model.PersonModel this$0
 io.reactivex.internal.operators.flowable.FlowableGroupBy$State
     final java.util.concurrent.atomic.AtomicBoolean once
+com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding this$0
 com.yalantis.ucrop.task.BitmapCropTask
     private final com.yalantis.ucrop.model.ExifInfo mExifInfo
 com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding$1
@@ -17532,6 +17870,10 @@ com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.EditMoreGoodsModel$2
     final synthetic com.gongwu.wherecollect.contract.model.EditMoreGoodsModel this$0
+com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding this$0
+com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$4
+    final synthetic com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding this$0
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$5
     final synthetic com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding this$0
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$4
@@ -17566,6 +17908,8 @@ com.gongwu.wherecollect.activity.FamilyAdministerActivity_ViewBinding$2
 androidx.transition.FragmentTransitionSupport$4
     final synthetic android.graphics.Rect val$epicenter
     final synthetic androidx.transition.FragmentTransitionSupport this$0
+com.gongwu.wherecollect.contract.model.SelectSortChildNewModel$2
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortChildNewModel this$0
 com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding this$0
 com.google.android.material.appbar.ViewUtilsLollipop
@@ -17591,16 +17935,22 @@ androidx.fragment.app.FragmentTransitionImpl$2
     final synthetic androidx.fragment.app.FragmentTransitionImpl this$0
 androidx.media.MediaBrowserServiceCompat$ServiceCallbacks
     public abstract void onConnect(java.lang.String,android.support.v4.media.session.MediaSessionCompat$Token,android.os.Bundle)
+com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding$3
+    final synthetic com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding this$0
 com.google.zxing.client.result.TextParsedResult
     private final java.lang.String language
 com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding$1
     final synthetic com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding this$0
 androidx.recyclerview.widget.ItemTouchHelper$RecoverAnimation
     final int mAnimationType
+com.gongwu.wherecollect.view.ObjectInfoEditView$1
+    final synthetic com.gongwu.wherecollect.view.ObjectInfoEditView this$0
 com.gongwu.wherecollect.adapter.SharePersonDetailsSpaceListAdapter$ViewHolder
     final synthetic com.gongwu.wherecollect.adapter.SharePersonDetailsSpaceListAdapter this$0
 com.gongwu.wherecollect.permission.FloatWindowManager$6
     final synthetic com.gongwu.wherecollect.permission.FloatWindowManager this$0
+com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding this$0
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding this$0
 com.gongwu.wherecollect.adapter.SearchListAdapter$LocationsViewHolder
@@ -17653,6 +18003,8 @@ com.scwang.smartrefresh.layout.header.ClassicsHeader
     static void <clinit>()
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$4
     final synthetic com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.SelectSortChildNewModel$1
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortChildNewModel this$0
 com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding this$0
 androidx.core.app.ActivityCompat$SharedElementCallback21Impl$1
@@ -17710,6 +18062,8 @@ com.zsitech.oncon.barcode.core.CaptureActivity
     private com.zsitech.oncon.barcode.core.CaptureActivity$IntentSource source
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$1
     final synthetic com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.SelectSortModel$5
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortModel this$0
 com.zsitech.oncon.barcode.core.CaptureActivity$1$1
     final synthetic com.zsitech.oncon.barcode.core.CaptureActivity$1 this$1
 okhttp3.internal.connection.RealConnection
@@ -17720,6 +18074,8 @@ com.alipay.sdk.util.a
     static void <clinit>()
 com.gongwu.wherecollect.contract.model.PersonModel$4
     final synthetic com.gongwu.wherecollect.contract.model.PersonModel this$0
+com.gongwu.wherecollect.object.SelectSortActivity$2
+    final synthetic com.gongwu.wherecollect.object.SelectSortActivity this$0
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding this$0
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$2
@@ -17762,10 +18118,14 @@ com.gongwu.wherecollect.contract.model.AddFurnitureModel$2
     final synthetic com.gongwu.wherecollect.contract.model.AddFurnitureModel this$0
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$6
     final synthetic com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding this$0
+com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding this$0
 com.alipay.sdk.net.a$b
     public final java.lang.String b
 androidx.transition.FragmentTransitionSupport$2
     final synthetic androidx.transition.FragmentTransitionSupport this$0
+com.gongwu.wherecollect.object.AddGoodsActivity$1
+    final synthetic com.gongwu.wherecollect.object.AddGoodsActivity this$0
 com.gongwu.wherecollect.contract.model.FeedBackModel$1
     final synthetic com.gongwu.wherecollect.contract.model.FeedBackModel this$0
 io.reactivex.internal.functions.ObjectHelper
@@ -17788,6 +18148,9 @@ com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$5
     final synthetic com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding this$0
 com.google.zxing.client.result.TelParsedResult
     private final java.lang.String telURI
+kankan.wheel.widget.WheelScroller
+    private final int MESSAGE_SCROLL
+    private final int MESSAGE_JUSTIFY
 com.google.android.material.floatingactionbutton.FloatingActionButtonImpl$ElevateToHoveredFocusedTranslationZAnimation
     protected float getTargetShadowSize()
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$4
@@ -17866,6 +18229,8 @@ com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding this$0
 com.readystatesoftware.systembartint.SystemBarTintManager
     private boolean mStatusBarTintEnabled
+com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter$CustomViewHolder
+    final synthetic com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter this$0
 com.gongwu.wherecollect.contract.model.FurnitureModel$3
     final synthetic com.gongwu.wherecollect.contract.model.FurnitureModel this$0
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$13
@@ -17924,6 +18289,9 @@ androidx.appcompat.graphics.drawable.DrawableContainer
     private int mLastIndex
 com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel$5
     final synthetic com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel this$0
+com.gongwu.wherecollect.adapter.FurnitureLookAdapter
+    private final int GOODS_TYPE
+    private final int BOX_TYPE
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$1
     final synthetic com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding this$0
 retrofit2.ParameterHandler$Headers
@@ -17950,6 +18318,8 @@ com.gongwu.wherecollect.adapter.AdministerFamilyListAdapter$CustomViewHolder
     final synthetic com.gongwu.wherecollect.adapter.AdministerFamilyListAdapter this$0
 androidx.appcompat.widget.VectorEnabledTintResources
     static void <clinit>()
+com.gongwu.wherecollect.activity.ArticleActivity_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.activity.ArticleActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$4
     final synthetic com.gongwu.wherecollect.activity.SearchActivity_ViewBinding this$0
 retrofit2.CompletableFutureCallAdapterFactory$ResponseCallAdapter$1
@@ -18023,6 +18393,10 @@ com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$8
     final synthetic com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding this$0
+com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$8
+    final synthetic com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.SelectSortChildNewModel$6
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortChildNewModel this$0
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel$6
@@ -18031,6 +18405,8 @@ okhttp3.Interceptor
     public static final okhttp3.Interceptor$Companion Companion
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$6
     final synthetic com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding this$0
+com.gongwu.wherecollect.activity.ArticleActivity$1
+    final synthetic com.gongwu.wherecollect.activity.ArticleActivity this$0
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding this$0
 retrofit2.Response
@@ -18080,6 +18456,8 @@ com.zsitech.oncon.barcode.core.ViewfinderView
     private java.util.List lastPossibleResultPoints
 com.google.zxing.client.result.ProductParsedResult
     private final java.lang.String normalizedProductID
+com.gongwu.wherecollect.contract.model.ArticleModel$1
+    final synthetic com.gongwu.wherecollect.contract.model.ArticleModel this$0
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$3
     final synthetic com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding this$0
 androidx.core.provider.SelfDestructiveThread$3
@@ -18119,8 +18497,12 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$15
     final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding this$0
 com.google.android.material.transformation.FabTransformationScrimBehavior$1
     final synthetic com.google.android.material.transformation.FabTransformationScrimBehavior this$0
-com.gongwu.wherecollect.view.ObjectInfoEditView$5
-    final synthetic com.gongwu.wherecollect.view.ObjectInfoEditView this$0
+com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$9
+    final synthetic com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.SelectSortChildNewModel$5
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortChildNewModel this$0
+com.gongwu.wherecollect.contract.model.GoodsPropertyModel$4
+    final synthetic com.gongwu.wherecollect.contract.model.GoodsPropertyModel this$0
 anetwork.channel.unified.k$a
     private anet.channel.request.Request c
     private anetwork.channel.interceptor.Callback d
@@ -18145,6 +18527,8 @@ androidx.viewpager.widget.ViewPager
     private boolean mNeedCalculatePageOffsets
 okhttp3.FormBody
     public static final okhttp3.FormBody$Companion Companion
+com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$6
+    final synthetic com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding this$0
 kotlin.text.Charsets
     public static final java.nio.charset.Charset UTF_16
     public static final java.nio.charset.Charset UTF_16BE
@@ -18161,12 +18545,19 @@ com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
 org.greenrobot.eventbus.SubscriberMethodFinder$FindState
     java.lang.Class subscriberClass
+com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$6
+    final synthetic com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.LoginActivity_ViewBinding this$0
 com.gongwu.wherecollect.adapter.ColorContentAdapter
     android.content.Context context
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$5
     final synthetic com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding this$0
+cn.forward.androids.SimpleAsyncTask
+    private static final java.util.concurrent.ThreadFactory sThreadFactory
+    private static final java.util.concurrent.ThreadPoolExecutor EXECUTOR_LIFO
+    private static final java.util.concurrent.ThreadPoolExecutor EXECUTOR_PRIORITY
+    private static volatile java.util.concurrent.Executor sDefaultExecutor
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding this$0
 androidx.appcompat.view.menu.ListMenuItemView
@@ -18216,6 +18607,8 @@ kotlin.sequences.DropSequence$iterator$1
     final synthetic kotlin.sequences.DropSequence this$0
 com.gongwu.wherecollect.permission.FloatWindowManager$1
     final synthetic com.gongwu.wherecollect.permission.FloatWindowManager this$0
+com.gongwu.wherecollect.contract.model.SelectSortChildNewModel$4
+    final synthetic com.gongwu.wherecollect.contract.model.SelectSortChildNewModel this$0
 com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel$8
     final synthetic com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel this$0
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$5
@@ -18230,6 +18623,8 @@ com.gongwu.wherecollect.contract.model.StatisticsModel$3
     final synthetic com.gongwu.wherecollect.contract.model.StatisticsModel this$0
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$3
     final synthetic com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding this$0
+com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$16
+    final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$1
     final synthetic com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding this$0
 retrofit2.ParameterHandler$Body
@@ -18294,6 +18689,8 @@ com.gongwu.wherecollect.contract.model.EditRemindModel$1
     final synthetic com.gongwu.wherecollect.contract.model.EditRemindModel this$0
 androidx.transition.ChangeBounds$7
     final synthetic androidx.transition.ChangeBounds this$0
+com.gongwu.wherecollect.contract.model.GoodsPropertyModel$2
+    final synthetic com.gongwu.wherecollect.contract.model.GoodsPropertyModel this$0
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding this$0
 retrofit2.RequestBuilder
@@ -18317,6 +18714,8 @@ com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge
     android.widget.ImageView mImageView
 com.gongwu.wherecollect.adapter.FurnitureTemplateListAdapter$CustomViewHolder
     final synthetic com.gongwu.wherecollect.adapter.FurnitureTemplateListAdapter this$0
+com.gongwu.wherecollect.object.GoodsDetailsActivity$1
+    final synthetic com.gongwu.wherecollect.object.GoodsDetailsActivity this$0
 androidx.constraintlayout.solver.widgets.ConstraintWidget
     static void <clinit>()
     boolean mIsWidthWrapContent
@@ -18338,8 +18737,6 @@ com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$6
     final synthetic com.gongwu.wherecollect.activity.LoginActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$2
     final synthetic com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding this$0
-com.gongwu.wherecollect.view.ObjectInfoLookView$1
-    final synthetic com.gongwu.wherecollect.view.ObjectInfoLookView this$0
 com.gongwu.wherecollect.activity.EditHomeActivity$5
     final synthetic com.gongwu.wherecollect.activity.EditHomeActivity this$0
 kotlin.collections.SetsKt___SetsKt
@@ -18389,6 +18786,8 @@ com.gongwu.wherecollect.contract.model.ConfigChangeModel$1
     final synthetic com.gongwu.wherecollect.contract.model.ConfigChangeModel this$0
 androidx.transition.ChangeBounds$10
     final synthetic androidx.transition.ChangeBounds this$0
+com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$11
+    final synthetic com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding this$0
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$1
     final synthetic com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding this$0
 com.gongwu.wherecollect.ImageSelect.ImageGridAdapter$Holder
@@ -18445,6 +18844,8 @@ razerdp.util.animation.ScaleConfig
     public static final razerdp.util.animation.ScaleConfig BOTTOM_TO_TOP
 com.gongwu.wherecollect.contract.model.FurnitureModel$8
     final synthetic com.gongwu.wherecollect.contract.model.FurnitureModel this$0
+com.gongwu.wherecollect.contract.model.GoodsPropertyModel$3
+    final synthetic com.gongwu.wherecollect.contract.model.GoodsPropertyModel this$0
 com.gongwu.wherecollect.view.ChangeSexDialog
     android.content.Context context
 kotlin.collections.SetsKt
@@ -18496,6 +18897,8 @@ com.gongwu.wherecollect.contract.model.AddChangWangGoodsModel$1
     final synthetic com.gongwu.wherecollect.contract.model.AddChangWangGoodsModel this$0
 com.gongwu.wherecollect.activity.BuyVIPActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.BuyVIPActivity_ViewBinding this$0
+com.gongwu.wherecollect.object.AddMoreGoodsActivity$1
+    final synthetic com.gongwu.wherecollect.object.AddMoreGoodsActivity this$0
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$10
     final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$2
@@ -18513,6 +18916,8 @@ com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$5
     final synthetic com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.AdministerFamilyDetailsModel$4
     final synthetic com.gongwu.wherecollect.contract.model.AdministerFamilyDetailsModel this$0
+com.gongwu.wherecollect.view.PopupScrollPickerView
+    private android.content.Context mContext
 androidx.transition.Fade$1
     final synthetic androidx.transition.Fade this$0
 com.alipay.sdk.widget.a
@@ -18533,8 +18938,6 @@ com.gongwu.wherecollect.contract.model.MainModel$2
     final synthetic com.gongwu.wherecollect.contract.model.MainModel this$0
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$9
     final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding this$0
-com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$7
-    final synthetic com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding this$0
 androidx.constraintlayout.solver.LinearSystem
     static void <clinit>()
     private androidx.constraintlayout.solver.ArrayRow[] tempClientsCopy
@@ -18634,6 +19037,8 @@ com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$6
     final synthetic com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$4
     final synthetic com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding this$0
+com.gongwu.wherecollect.contract.model.GoodsPropertyModel$1
+    final synthetic com.gongwu.wherecollect.contract.model.GoodsPropertyModel this$0
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding this$0
 androidx.core.view.ViewCompat$AccessibilityViewProperty

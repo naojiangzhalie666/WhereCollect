@@ -19,6 +19,8 @@ public class EditGoodsReq extends RequestBase {
     private String family_code;
     //目标家庭code
     private String target_family_code;
+    private String background_url;
+    private String image_url;
 
     public EditGoodsReq(String uid, String location_code) {
         this.uid = uid;
@@ -115,5 +117,21 @@ public class EditGoodsReq extends RequestBase {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBackground_url() {
+        return background_url;
+    }
+
+    public void setBackground_url(String background_url) {
+        this.background_url = background_url;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }

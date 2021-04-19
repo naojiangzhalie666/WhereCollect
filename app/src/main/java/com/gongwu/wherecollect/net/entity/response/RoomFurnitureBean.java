@@ -20,6 +20,7 @@ public class RoomFurnitureBean  implements Serializable {
     //迁移隔层需要的
     //原始家庭code
     private String family_code;
+    private int level;
 
     public String getFamily_code() {
         return family_code;
@@ -221,5 +222,13 @@ public class RoomFurnitureBean  implements Serializable {
         point.setY(position.getY() + (scale.getY() - 1));
         point.setX(position.getX() + (scale.getX() - 1));
         return point;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

@@ -30,6 +30,7 @@ import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.object.AddGoodsActivity;
 import com.gongwu.wherecollect.object.AddMoreGoodsActivity;
 import com.gongwu.wherecollect.util.DateUtil;
@@ -228,7 +229,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
     }
 
     @Override
-    public void addMoreGoods(Context mContext, List<ObjectBean> mlist, ObjectBean tempBean) {
+    public void addMoreGoods(Context mContext, List<ObjectBean> mlist, ObjectBean tempBean, RoomFurnitureBean location) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
         }
@@ -256,6 +257,9 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         goodsReq.setCount(tempBean.getCount() + "");
         goodsReq.setBuy_date(tempBean.getBuy_date());
         goodsReq.setExpire_date(tempBean.getExpire_date());
+        if (location != null) {
+            goodsReq.setLocation_codes(location.getCode());
+        }
         mModel.addMoreGoods(goodsReq, new RequestCallback<List<ObjectBean>>() {
 
             @Override
@@ -509,6 +513,20 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         ((Activity) mContext).startActivityForResult(i, REQUST_PHOTOSELECT);
     }
 
-
+    public void setLocation(ObjectBean objectBean, RoomFurnitureBean location) {
+        Collections.sort(location.getParents(), new Comparator<BaseBean>() {
+            @Override
+            public int compare(BaseBean lhs, BaseBean rhs) {
+                return lhs.getLevel() - rhs.getLevel();
+            }
+        });
+        List<BaseBean> beanList = new ArrayList<>();
+        beanList.addAll(location.getParents());
+        BaseBean baseBean = new BaseBean();
+        baseBean.setLevel(location.getLevel());
+        baseBean.setCode(location.getCode());
+        beanList.add(baseBean);
+        objectBean.setLocations(beanList);
+    }
 
 }
