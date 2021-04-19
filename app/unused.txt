@@ -3078,7 +3078,7 @@ kotlin.TuplesKt
 com.gongwu.wherecollect.contract.IAddGoodsContract$IAddGoodsPresenter
     public abstract void editGoods(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean,java.lang.String,java.lang.String)
     public abstract void addObjects(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean,java.lang.String,java.lang.String)
-    public abstract void addMoreGoods(android.content.Context,java.util.List,com.gongwu.wherecollect.net.entity.response.ObjectBean)
+    public abstract void addMoreGoods(android.content.Context,java.util.List,com.gongwu.wherecollect.net.entity.response.ObjectBean,com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean)
     public abstract void getBookInfo(java.lang.String,java.lang.String)
     public abstract void getTaobaoInfo(java.lang.String,java.lang.String)
     public abstract void removeObjectFromFurnitrue(java.lang.String,java.lang.String)
@@ -17146,6 +17146,8 @@ com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$2
     final synthetic com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding this$0
 androidx.media.MediaBrowserServiceCompat$2
     final synthetic androidx.media.MediaBrowserServiceCompat this$0
+com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.SelectSortModel$4
     final synthetic com.gongwu.wherecollect.contract.model.SelectSortModel this$0
 androidx.media.MediaBrowserServiceCompat$MediaBrowserServiceImplApi28
@@ -18405,6 +18407,8 @@ okhttp3.Interceptor
     public static final okhttp3.Interceptor$Companion Companion
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$6
     final synthetic com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding this$0
+com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$7
+    final synthetic com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.ArticleActivity$1
     final synthetic com.gongwu.wherecollect.activity.ArticleActivity this$0
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$3
@@ -18936,6 +18940,8 @@ com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding$6
     final synthetic com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.MainModel$2
     final synthetic com.gongwu.wherecollect.contract.model.MainModel this$0
+com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter$12
+    final synthetic com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter this$0
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$9
     final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding this$0
 androidx.constraintlayout.solver.LinearSystem

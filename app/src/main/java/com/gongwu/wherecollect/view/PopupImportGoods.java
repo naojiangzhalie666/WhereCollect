@@ -14,6 +14,7 @@ import com.azhon.appupdate.utils.ScreenUtil;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.adapter.ImportGoodsAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 
 import java.util.ArrayList;
@@ -65,6 +66,9 @@ public class PopupImportGoods extends BasePopupWindow {
                     listener.onItemsClick(positions, mlist.get(positions));
                     mlist.remove(positions);
                     mAdapter.notifyDataSetChanged();
+                    if (mlist.size() == AppConstant.DEFAULT_INDEX_OF) {
+                        dismiss();
+                    }
                 }
             }
         });

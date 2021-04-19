@@ -19,6 +19,7 @@ import com.gongwu.wherecollect.activity.ConfigChangePhoneActivity;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
+import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.umeng.socialize.UMShareAPI;
@@ -48,6 +49,7 @@ public class PopupScrollPickerView extends BasePopupWindow {
 
     private Context mContext;
     private FurnitureBean bean;
+    private ObjectBean boxBean;
     private boolean isEditImgAndName = true;
     private ChangeHeaderImgDialog changeHeaderdialog;
     private File imgFile;
@@ -98,7 +100,23 @@ public class PopupScrollPickerView extends BasePopupWindow {
                 if (listener != null) {
                     if (isEditImgAndName) {
                         bean.setName(mEditText.getText().toString().trim());
-                        listener.onCommitClick(bean, imgFile);
+                        boolean isEdit = false;
+                        //imgFile有值说明重新选择了图片
+                        if (imgFile != null) {
+                            isEdit = true;
+                            boxBean = null;
+                        }
+                        //下标在1的话,说明选择的是默认
+                        if (mPickerHorizontal.getSelectedPosition() == 1) {
+                            imgFile = null;
+                            isEdit = true;
+                        }
+                        //默认图片
+                        if (boxBean == null && imgFile == null && mPickerHorizontal.getSelectedPosition() == AppConstant.DEFAULT_INDEX_OF) {
+                            isEdit = true;
+                        }
+                        //boxBean有值,说明收纳盒原先有设置图片,这次并没有修改
+                        listener.onCommitClick(bean, imgFile, isEdit);
                     } else {
                         listener.onEditNameCommitClick(mEditText.getText().toString().trim());
                     }
@@ -112,9 +130,7 @@ public class PopupScrollPickerView extends BasePopupWindow {
 
     public interface PopupClickListener {
 
-        void onImgClick();
-
-        void onCommitClick(FurnitureBean bean, File file);
+        void onCommitClick(FurnitureBean bean, File file, boolean isEdit);
 
         void onEditNameCommitClick(String name);
     }
@@ -123,59 +139,52 @@ public class PopupScrollPickerView extends BasePopupWindow {
         this.listener = listener;
     }
 
-    public void setImg(String path) {
-//        ImageLoader.load(getContext(), imageView, path);
-//        if (bean != null) {
-//            bean.setBackground_url(path);
-//            bean.setImage_url(path);
-//        }
-    }
-
-    public void initData(Activity activity, int titleId, String editText, FurnitureBean bean, boolean isEditImgAndName) {
+    public void initData(Activity activity, int titleId, String editText, ObjectBean boxBean, boolean isEditImgAndName) {
         imgFile = null;
         titleTv.setText(titleId);
         if (!TextUtils.isEmpty(editText)) {
             mEditText.setText(editText);
             mEditText.setSelection(mEditText.getText().toString().length());
         }
-        if (bean != null) {
-            this.bean = bean;
-            if (!TextUtils.isEmpty(bean.getBackground_url())) {
-//                ImageLoader.load(getContext(), imageView, bean.getBackground_url());
-            }
-            if (!TextUtils.isEmpty(bean.getName())) {
-                mEditText.setText(bean.getName());
-                mEditText.setSelection(mEditText.getText().toString().length());
-                clear.setVisibility(View.VISIBLE);
-            }
-        } else {
-            this.bean = new FurnitureBean();
-        }
+        this.bean = new FurnitureBean();
+        this.boxBean = boxBean;
         this.isEditImgAndName = isEditImgAndName;
         ivLayout.setVisibility(isEditImgAndName ? View.VISIBLE : View.GONE);
         if (isEditImgAndName) {
-            final CopyOnWriteArrayList<Bitmap> bitmaps = new CopyOnWriteArrayList<Bitmap>();
-            //默认两种
-            //拍照
-            bitmaps.add(BitmapFactory.decodeResource(activity.getResources(), R.drawable.icon_add_box_img));
-            //系统默认
-            bitmaps.add(BitmapFactory.decodeResource(activity.getResources(), R.drawable.icon_template_box));
-            mPickerHorizontal.setData(bitmaps);
-            mPickerHorizontal.setSelectedPosition(AppConstant.DEFAULT_INDEX_OF);
             mPickerHorizontal.setIsCirculation(false);
             mPickerHorizontal.setOnSelectedListener(new ScrollPickerView.OnSelectedListener() {
                 @Override
                 public void onSelected(ScrollPickerView scrollPickerView, int position) {
                     if (position == AppConstant.DEFAULT_INDEX_OF) {
-                        showSelectImgDialog(activity, mPickerHorizontal);
+                        showSelectImgDialog(activity, mPickerHorizontal, boxBean);
                     }
                 }
             });
+            final CopyOnWriteArrayList<Bitmap> bitmaps = new CopyOnWriteArrayList<Bitmap>();
+            //系统默认
+            bitmaps.add(BitmapFactory.decodeResource(activity.getResources(), R.drawable.icon_template_box));
+            if (boxBean != null && !TextUtils.isEmpty(boxBean.getImage_url()) && boxBean.getImage_url().contains("http")) {
+                //默认两种
+                ImageLoader.getBitmap(activity, boxBean.getImage_url(), new ImageLoader.GlideLoadBitmapCallback() {
+                    @Override
+                    public void getBitmapCallback(Bitmap bitmap) {
+                        //拍照
+                        bitmaps.add(0, bitmap);
+                        mPickerHorizontal.setData(bitmaps);
+                        mPickerHorizontal.setSelectedPosition(AppConstant.DEFAULT_INDEX_OF);
+                    }
+                });
+            } else {
+                //拍照
+                bitmaps.add(0, BitmapFactory.decodeResource(activity.getResources(), R.drawable.icon_add_box_img));
+                mPickerHorizontal.setData(bitmaps);
+                mPickerHorizontal.setSelectedPosition(AppConstant.DEFAULT_INDEX_OF);
+            }
         }
     }
 
     //拍照dialog
-    private void showSelectImgDialog(Activity activity, BitmapScrollPicker mPickerHorizontal) {
+    private void showSelectImgDialog(Activity activity, BitmapScrollPicker mPickerHorizontal, ObjectBean boxBean) {
         changeHeaderdialog = new ChangeHeaderImgDialog(activity, null, null) {
             @Override
             public void getResult(File file) {
@@ -185,7 +194,6 @@ public class PopupScrollPickerView extends BasePopupWindow {
                 mPickerHorizontal.setData(bitmaps);
                 mPickerHorizontal.setSelectedPosition(AppConstant.DEFAULT_INDEX_OF);
                 imgFile = file;
-//                upLoadImg(file);
             }
         };
     }
@@ -194,10 +202,5 @@ public class PopupScrollPickerView extends BasePopupWindow {
         if (changeHeaderdialog != null) {
             changeHeaderdialog.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    public void setImgPathAndEnabled(int resId, boolean enabled) {
-//        imageView.setImageDrawable(getContext().getDrawable(resId));
-//        imageView.setEnabled(enabled);
     }
 }

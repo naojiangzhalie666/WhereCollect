@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.opengl.GLES10;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.widget.ImageView;
 
@@ -12,7 +13,10 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
 
 import java.io.File;
 
@@ -99,7 +103,7 @@ public class ImageLoader {
                 .into(iv);
     }
 
-    public static void load(Context context, ImageView iv, int radio,  int resId) {
+    public static void load(Context context, ImageView iv, int radio, int resId) {
         Glide.with(context)
                 .load(resId)
                 .dontAnimate()
@@ -177,6 +181,25 @@ public class ImageLoader {
                                         resource);
                         circularBitmapDrawable.setCircular(true);
                         iv.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+    }
+
+    public interface GlideLoadBitmapCallback {
+        public void getBitmapCallback(Bitmap bitmap);
+    }
+
+    public static void getBitmap(Context context, String url, final GlideLoadBitmapCallback callback) {
+        Glide.with(context)
+                .load(url)
+                .asBitmap()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap bitmap, GlideAnimation<? super Bitmap> glideAnimation) {
+                        if (callback != null) {
+                            callback.getBitmapCallback(bitmap);
+                        }
                     }
                 });
     }
