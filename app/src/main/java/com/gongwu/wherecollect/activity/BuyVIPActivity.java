@@ -38,6 +38,7 @@ import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.ShareUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.Loading;
+import com.gongwu.wherecollect.view.SelectVIPChannelDialog;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -69,14 +70,12 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     TextView buyVipOriginal;
     @BindView(R.id.commit_bt)
     Button commitBt;
-    @BindView(R.id.check_wechat)
-    CheckBox wechatCk;
-    @BindView(R.id.check_alipay)
-    CheckBox alipayCk;
 
     private static final String WECHAT = "wechat";
 
     private static final String ALIPAY = "alipay";
+
+    private boolean isWechatCk;
 
     private VIPBean vipBean;
     private Loading loading;
@@ -110,7 +109,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     }
 
 
-    @OnClick({R.id.back_btn, R.id.commit_bt, R.id.buy_vip_original, R.id.alipay_layout, R.id.wechat_layout})
+    @OnClick({R.id.back_btn, R.id.commit_bt, R.id.buy_vip_original})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn://返回
@@ -124,25 +123,34 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                     if (TextUtils.isEmpty(vipBean.getCouponId())) {
                         sharedAPP();
                     } else {
-                        getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+                        showBuyVipSelectChannel();
                     }
                 }
                 break;
             case R.id.buy_vip_original:
                 if (vipBean == null) return;
-                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), wechatCk.isChecked() ? WECHAT : ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+                showBuyVipSelectChannel();
                 break;
-            case R.id.alipay_layout:
-                alipayCk.setChecked(true);
-                wechatCk.setChecked(false);
-                break;
-            case R.id.wechat_layout:
-                alipayCk.setChecked(false);
-                wechatCk.setChecked(true);
-                break;
+
             default:
                 break;
         }
+    }
+
+    private void showBuyVipSelectChannel() {
+        new SelectVIPChannelDialog(this) {
+            @Override
+            public void WECHATClick() {
+                isWechatCk = true;
+                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), WECHAT, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+            }
+
+            @Override
+            public void ALIPAYClick() {
+                isWechatCk = false;
+                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+            }
+        };
     }
 
     private void sharedAPP() {
@@ -242,7 +250,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         if (TextUtils.isEmpty(orderId)) return;
-                        getPresenter().notificationServer(App.getUser(mContext).getId(), wechatCk.isChecked() ? WECHAT : ALIPAY, orderId);
+                        getPresenter().notificationServer(App.getUser(mContext).getId(), isWechatCk ? WECHAT : ALIPAY, orderId);
                         Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
@@ -363,7 +371,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.BuyVipSuccess msg) {
-        getPresenter().notificationServer(App.getUser(mContext).getId(), wechatCk.isChecked() ? WECHAT : ALIPAY, orderId);
+        getPresenter().notificationServer(App.getUser(mContext).getId(), isWechatCk ? WECHAT : ALIPAY, orderId);
     }
 
     @Override

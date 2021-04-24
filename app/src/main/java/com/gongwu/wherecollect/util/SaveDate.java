@@ -56,6 +56,16 @@ public class SaveDate {
         ed.commit();
     }
 
+    public boolean isHintSeal() {
+        return sharedPreferences.getBoolean("seal", false);
+    }
+
+    public void setHintSeal(boolean isOnce) {
+        Editor ed = sharedPreferences.edit();
+        ed.putBoolean("seal", isOnce);
+        ed.commit();
+    }
+
     public String getPhone() {
         return sharedPreferences.getString("phone", "");
     }

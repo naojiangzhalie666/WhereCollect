@@ -206,8 +206,8 @@ public class ApiUtils {
     /**
      * 获取用户物品列表
      */
-    public static <D extends RequestBase> void getUserGoddsList(String uid, String family_code, ApiCallBack<List<MainGoodsBean>> callBack) {
-        ApiInstance.getApi().getUserGoddsList(uid, family_code).enqueue(callBack);
+    public static <D extends RequestBase> void getUserGoddsList(String uid, String family_code, boolean darklayer, ApiCallBack<List<MainGoodsBean>> callBack) {
+        ApiInstance.getApi().getUserGoddsList(uid, family_code, darklayer).enqueue(callBack);
     }
 
     /**
@@ -675,6 +675,22 @@ public class ApiUtils {
     public static <D extends RequestBase> void delSelectGoods(D request, ApiCallBack<RequestSuccessBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().delSelectGoods(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 封存/解封物品
+     */
+    public static <D extends RequestBase> void goodsArchive(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().goodsArchive(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 一键移除所有封存物品
+     */
+    public static <D extends RequestBase> void removeArchiveObjects(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().removeArchiveObjects(requestMap).enqueue(callBack);
     }
 
     /**

@@ -39,10 +39,12 @@ public class MainGoodsSortAdapter extends RecyclerView.Adapter<MainGoodsSortAdap
     private Context context;
     private List<MainGoodsBean> mData;
     private int selectPosition;
+    private boolean darklayer;
 
-    public MainGoodsSortAdapter(Context context, List<MainGoodsBean> list) {
+    public MainGoodsSortAdapter(Context context, List<MainGoodsBean> list, boolean darklayer) {
         this.context = context;
         this.mData = list;
+        this.darklayer = darklayer;
         selectPosition = 0;
     }
 
@@ -72,6 +74,7 @@ public class MainGoodsSortAdapter extends RecyclerView.Adapter<MainGoodsSortAdap
         MainGoodsBean bean = mData.get(i);
         holder.nameTv.setText(bean.getName());
         holder.sortView.setSelected(i == selectPosition);
+        holder.sortView.setBackgroundResource(darklayer ? R.drawable.select_seal_goods_sort_bg : R.drawable.select_main_goods_sort_bg);
         holder.nameTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, i == selectPosition ? 14 : 13);
     }
 

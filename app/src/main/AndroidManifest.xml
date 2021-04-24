@@ -41,7 +41,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ArticleActivity"></activity>
+        <activity android:name=".object.SealGoodsActivity"></activity>
+        <activity android:name=".activity.ArticleActivity" />
         <activity
             android:name=".object.SelectSortChildNewActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />

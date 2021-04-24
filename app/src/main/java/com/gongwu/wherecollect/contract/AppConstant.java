@@ -33,6 +33,7 @@ public class AppConstant {
     public final static int LEVEL_BOX = 3;
     //购货渠道type 用于区分物品分类
     public final static String BUY_TYPE = "buy";
+    public final static String TYPE_SEAL = "type_seal";
 
     /**
      * 友盟推送token

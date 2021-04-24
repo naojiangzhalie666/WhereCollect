@@ -22,6 +22,8 @@ import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.AddChangWangGoodActivity;
 import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.EditMoreGoodsActivity;
+import com.gongwu.wherecollect.activity.FurnitureLookActivity;
+import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.activity.SearchActivity;
 import com.gongwu.wherecollect.activity.StatisticsActivity;
 import com.gongwu.wherecollect.adapter.MainGoodsAdapter;
@@ -31,12 +33,17 @@ import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseFragment;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.ILookContract;
+import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
+import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.MainGoodsBean;
 import com.gongwu.wherecollect.contract.presenter.LookPresenter;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.object.GoodsDetailsActivity;
+import com.gongwu.wherecollect.object.SealGoodsActivity;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.SaveDate;
@@ -44,6 +51,7 @@ import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.EmptyView;
+import com.gongwu.wherecollect.view.MessageDialog;
 import com.gongwu.wherecollect.view.PopupFamilyList;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -97,6 +105,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     private MainGoodsAdapter mAdapter;
     private int selectPosition = AppConstant.DEFAULT_INDEX_OF;
     private String changWangCode, goodType;
+    private MessageDialog messageDialog;
 
     private LookFragment() {
     }
@@ -126,6 +135,33 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         }
         EventBus.getDefault().register(this);
         initStatusBar();
+        initHintSeals();
+    }
+
+    private void initHintSeals() {
+        if (!SaveDate.getInstence(mContext).isHintSeal()) {
+            messageDialog = new MessageDialog(mContext) {
+                @Override
+                public void submit() {
+                    initHintSeal();
+                }
+            };
+            messageDialog.show();
+            messageDialog.setMessage(R.string.seal_hint_one_tv);
+        }
+    }
+
+    private void initHintSeal() {
+        if (!SaveDate.getInstence(mContext).isHintSeal()) {
+            messageDialog = new MessageDialog(mContext) {
+                @Override
+                public void submit() {
+                    SaveDate.getInstence(mContext).setHintSeal(true);
+                }
+            };
+            messageDialog.show();
+            messageDialog.setMessage(R.string.seal_hint_two_tv);
+        }
     }
 
     @Override
@@ -135,8 +171,8 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
     private void initUI() {
-        mSortAdapter = new MainGoodsSortAdapter(getActivity(), mList);
-        mAdapter = new MainGoodsAdapter(getActivity(), mDetailsList);
+        mSortAdapter = new MainGoodsSortAdapter(getActivity(), mList,false);
+        mAdapter = new MainGoodsAdapter(getActivity(), mDetailsList, false);
         mSortRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mSortRecyclerView.setAdapter(mSortAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -144,10 +180,9 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout mRefreshLayout) {
-                getPresenter().getObjectBean(App.getUser(mContext).getId(), familyBean.getCode());
+                getPresenter().getObjectBean(App.getUser(mContext).getId(), familyBean.getCode(), false);
             }
         });
-
         mSortAdapter.setOnItemClickListener(new MyOnItemClickListener() {
             @Override
             public void onItemClick(int positions, View view) {
@@ -155,10 +190,64 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 selectSortGoods(selectPosition);
             }
         });
-        mAdapter.setOnItemClickListener(new MyOnItemClickListener() {
+        mAdapter.setOnItemClickListener(new MainGoodsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int positions, View view) {
-                GoodsDetailsActivity.start(getContext(), mDetailsList.get(positions));
+                GoodsDetailsActivity.start(mContext, mDetailsList.get(positions));
+            }
+
+            @Override
+            public void onDeleteClick(int positions, View view) {
+                getPresenter().delSelectGoods(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
+            }
+
+            @Override
+            public void onLocationClick(int positions, View view) {
+                ObjectBean objectBean = mDetailsList.get(positions);
+                String familyCode = "";
+                FurnitureBean furnitureBean = new FurnitureBean();
+                RoomBean roomBean = new RoomBean();
+                for (BaseBean bean : objectBean.getLocations()) {
+                    if (bean.getLevel() == AppConstant.LEVEL_FAMILY) {
+                        familyCode = bean.getCode();
+                    }
+                    if (bean.getLevel() == AppConstant.LEVEL_ROOM) {
+                        furnitureBean.set_id(bean.get_id());
+                        furnitureBean.setLocation_code(bean.getCode());
+                        roomBean.set_id(bean.get_id());
+                        roomBean.setCode(bean.getCode());
+                    }
+                    if (bean.getLevel() == AppConstant.LEVEL_FURNITURE) {
+                        furnitureBean.setCode(bean.getCode());
+                    }
+                }
+                if (TextUtils.isEmpty(familyCode) ||
+                        TextUtils.isEmpty(furnitureBean.get_id()) ||
+                        TextUtils.isEmpty(furnitureBean.getLocation_code()) ||
+                        TextUtils.isEmpty(furnitureBean.getCode())) {
+                    return;
+                }
+                FurnitureLookActivity.start(mContext, familyCode, furnitureBean, objectBean, roomBean);
+            }
+
+            @Override
+            public void onAddLocationClick(int positions, View view) {
+                ObjectBean objectBean = mDetailsList.get(positions);
+                MainActivity.moveGoodsList = new ArrayList<>();
+                MainActivity.moveGoodsList.add(objectBean);
+                EventBusMsg.SelectHomeTab tab = new EventBusMsg.SelectHomeTab();
+                EventBus.getDefault().post(tab);
+                ((MainActivity) getActivity()).selectTab(AppConstant.DEFAULT_INDEX_OF);
+            }
+
+            @Override
+            public void onLockClick(int positions, View view) {
+                getPresenter().goodsArchive(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
+            }
+
+            @Override
+            public void onUnlickClick(int positions, View view) {
+                getPresenter().goodsArchive(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
             }
         });
     }
@@ -291,6 +380,27 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
     @Override
+    public void delSelectGoodsSuccess(RequestSuccessBean bean) {
+        if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
+    public void goodsArchiveSuccess(RequestSuccessBean bean) {
+        if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
+    public void removeArchiveObjectsSuccess(RequestSuccessBean bean) {
+        if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
     public void getChangWangListSuccess(List<ChangWangBean> changWangBeans) {
         if (changWangBeans != null && changWangBeans.size() > 0) {
             ChangWangBean aiWangBean = changWangBeans.get(0);
@@ -355,5 +465,11 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     public void onDestroyView() {
         super.onDestroyView();
         EventBus.getDefault().unregister(this);
+    }
+
+    public void startSealGoodsActivity() {
+        if (familyBean != null) {
+            SealGoodsActivity.start(mContext, familyBean.getCode());
+        }
     }
 }

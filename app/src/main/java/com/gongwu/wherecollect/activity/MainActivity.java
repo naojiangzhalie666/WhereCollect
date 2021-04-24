@@ -35,6 +35,7 @@ import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.VersionBean;
+import com.gongwu.wherecollect.object.SealGoodsActivity;
 import com.gongwu.wherecollect.permission.FloatWindowManager;
 import com.gongwu.wherecollect.service.TimerService;
 import com.gongwu.wherecollect.util.DialogUtil;
@@ -61,7 +62,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> implements IMainContract.IMainView, RadioGroup.OnCheckedChangeListener {
+public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> implements IMainContract.IMainView {
     private static final String TAG = "MainActivity";
 
     public static RoomFurnitureBean moveLayerBean;
@@ -70,13 +71,14 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     private static final int TAB_SPACE = 0;
     private static final int TAB_LOOK = 1;
-    private static final int TAB_REMIND = 3;
-    private static final int TAB_ME = 4;
+    private static final int TAB_REMIND = 2;
+    private static final int TAB_ME = 3;
     private int current_index_of = -1;
     private boolean initData, initTab;
 
-    @BindView(R.id.main_tab_rg)
-    RadioGroup main_tab_rg;
+
+    @BindView(R.id.main_tab_layout)
+    View mainTabLayout;
     @BindView(R.id.move_layer_layout)
     View moveLayerView;
     @BindView(R.id.main_place_tv)
@@ -89,15 +91,22 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     GoodsImageView moveGoodsIV;
     @BindView(R.id.main_move_goods_number)
     TextView redNumberTv;
+    @BindView(R.id.main_tab_space_tv)
+    TextView tabSpaceTv;
+    @BindView(R.id.main_tab_look_tv)
+    TextView tabLookTv;
+    @BindView(R.id.main_tab_remind_tv)
+    TextView tabRemindTv;
+    @BindView(R.id.main_tab_me_tv)
+    TextView tabMeTv;
 
 
     private SparseArray<BaseFragment> fragments;
     private DownloadManager manager;
-    private long exitTime;
+    private long exitTime, downTime;
 
     @Override
     protected void initViews() {
-        main_tab_rg.setOnCheckedChangeListener(this);
         fragments = new SparseArray<>();
         fragments.put(TAB_SPACE, HomeFragment.getInstance());
         fragments.put(TAB_LOOK, LookFragment.getInstance());
@@ -112,8 +121,26 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         getPresenter().getVersion(StringUtils.getCurrentVersionName(mContext));
     }
 
-    private void selectTab(int indexOf) {
-        ((RadioButton) main_tab_rg.findViewById(main_tab_rg.getChildAt(indexOf).getId())).setChecked(true);
+    public void selectTab(int indexOf) {
+        onCheckedChanged(indexOf);
+        switch (indexOf) {
+            case TAB_SPACE:
+                setSelectView(tabSpaceTv);
+                break;
+            case TAB_LOOK:
+                setSelectView(tabLookTv);
+                break;
+            case TAB_REMIND:
+                setSelectView(tabRemindTv);
+                break;
+            case TAB_ME:
+                setSelectView(tabMeTv);
+                break;
+        }
+        if (initTab) {
+            initTab = false;
+            initEditLayout();
+        }
     }
 
     @Override
@@ -122,9 +149,33 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     }
 
 
-    @OnClick({R.id.add_goods_iv, R.id.main_place_tv, R.id.main_cancel_tv, R.id.main_move_goods_iv})
+    @OnClick({R.id.main_tab_space_tv, R.id.main_tab_look_tv, R.id.main_tab_remind_tv, R.id.main_tab_me_tv,
+            R.id.add_goods_iv, R.id.main_place_tv, R.id.main_cancel_tv, R.id.main_move_goods_iv})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.main_tab_space_tv:
+                setSelectView(tabSpaceTv);
+                onCheckedChanged(TAB_SPACE);
+                break;
+            case R.id.main_tab_look_tv:
+                setSelectView(tabLookTv);
+                onCheckedChanged(TAB_LOOK);
+                if ((System.currentTimeMillis() - downTime) > 1000) {
+                    downTime = System.currentTimeMillis();
+                } else {
+                    if (fragments.size() == 4 && fragments.get(TAB_LOOK) instanceof LookFragment) {
+                        ((LookFragment) fragments.get(TAB_LOOK)).startSealGoodsActivity();
+                    }
+                }
+                break;
+            case R.id.main_tab_remind_tv:
+                setSelectView(tabRemindTv);
+                onCheckedChanged(TAB_REMIND);
+                break;
+            case R.id.main_tab_me_tv:
+                setSelectView(tabMeTv);
+                onCheckedChanged(TAB_ME);
+                break;
             case R.id.add_goods_iv:
                 if (App.getUser(MainActivity.this).isTest()) {
                     DialogUtil.show("注意", "目前为试用账号，登录后将清空试用账号所有数据", "去登录", "知道了", MainActivity.this, new DialogInterface.OnClickListener() {
@@ -136,11 +187,11 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                     }, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            checkPermissionRequestEach(MainActivity.this, true);
+                            checkPermissionRequestEach();
                         }
                     }).setCancelable(true);
                 } else {
-                    checkPermissionRequestEach(MainActivity.this, true);
+                    checkPermissionRequestEach();
                 }
                 break;
             case R.id.main_place_tv:
@@ -151,13 +202,13 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                 MainActivity.moveBoxBean = null;
                 MainActivity.moveGoodsList = null;
                 MainActivity.moveLayerBean = null;
-                main_tab_rg.setVisibility(View.VISIBLE);
+                mainTabLayout.setVisibility(View.VISIBLE);
                 moveLayerView.setVisibility(View.GONE);
                 break;
         }
     }
 
-    private void checkPermissionRequestEach(FragmentActivity activity, boolean start) {
+    private void checkPermissionRequestEach() {
         PermissionX.init(this).permissions(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -185,14 +236,30 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     }
 
+    private void setSelectView(TextView selectView) {
+        initTabView();
+        selectView.setSelected(true);
+    }
+
+    private void initTabView() {
+        tabSpaceTv.setSelected(false);
+        tabLookTv.setSelected(false);
+        tabRemindTv.setSelected(false);
+        tabMeTv.setSelected(false);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+        initEditLayout();
+    }
+
+    private void initEditLayout() {
         if (MainActivity.moveLayerBean != null) {
             moveLayerView.setVisibility(View.VISIBLE);
             moveLayout.setVisibility(View.VISIBLE);
             moveGoodsView.setVisibility(View.GONE);
-            main_tab_rg.setVisibility(View.GONE);
+            mainTabLayout.setVisibility(View.GONE);
             // 使用代码设置drawableTop
             Drawable drawable = getResources().getDrawable(R.drawable.icon_place);
             // 这一步必须要做,否则不会显示.
@@ -202,7 +269,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             moveLayerView.setVisibility(View.VISIBLE);
             moveLayout.setVisibility(View.VISIBLE);
             moveGoodsView.setVisibility(View.GONE);
-            main_tab_rg.setVisibility(View.GONE);
+            mainTabLayout.setVisibility(View.GONE);
             // 使用代码设置drawableTop
             Drawable drawable = getResources().getDrawable(R.drawable.icon_move_box);
             // 这一步必须要做,否则不会显示.
@@ -212,7 +279,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             moveLayerView.setVisibility(View.VISIBLE);
             moveGoodsView.setVisibility(View.VISIBLE);
             moveLayout.setVisibility(View.GONE);
-            main_tab_rg.setVisibility(View.GONE);
+            mainTabLayout.setVisibility(View.GONE);
             moveGoodsIV.setCircle(MainActivity.moveGoodsList.get(MainActivity.moveGoodsList.size() - 1));
             moveGoodsIV.setTextSize(8);
             if (MainActivity.moveGoodsList.size() > 1) {
@@ -225,14 +292,12 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             MainActivity.moveBoxBean = null;
             MainActivity.moveGoodsList = null;
             MainActivity.moveLayerBean = null;
-            main_tab_rg.setVisibility(View.VISIBLE);
+            mainTabLayout.setVisibility(View.VISIBLE);
             moveLayerView.setVisibility(View.GONE);
         }
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        int indexof = group.indexOfChild(group.findViewById(checkedId));
+    private void onCheckedChanged(int indexof) {
         Lg.getInstance().d(TAG, "select tab:" + indexof);
         //避免重复调用
         if (current_index_of == indexof) return;
@@ -332,8 +397,8 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             selectTab(AppConstant.DEFAULT_INDEX_OF);
             initData = false;
         } else if (initTab) {
-            selectTab(AppConstant.DEFAULT_INDEX_OF);
             initTab = false;
+            selectTab(AppConstant.DEFAULT_INDEX_OF);
         }
     }
 

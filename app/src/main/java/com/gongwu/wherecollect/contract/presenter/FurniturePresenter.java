@@ -490,8 +490,12 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
         //收纳盒集合添加盒子信息
         mBoxlist.addAll(data.getLocations());
         if (data.getObjects() != null && data.getObjects().size() > 0) {
-            //物品集合添加物品信息
-            objects.addAll(data.getObjects());
+            for (int i = 0; i < data.getObjects().size(); i++) {
+                if (!data.getObjects().get(i).isIs_archive()) {
+                    //物品集合添加物品信息
+                    objects.add(data.getObjects().get(i));
+                }
+            }
             //填充box item数据最多显示4个
             initBoxData(mBoxlist, objects);
             for (ObjectBean goodsBean : objects) {
@@ -516,6 +520,21 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
                 }
             }
         }
+    }
+
+    //当定位的物品在收纳盒内时,获取收纳盒实体类
+    public ObjectBean getBoxBean(ObjectBean selectGoodsBean, List<ObjectBean> mBoxlist) {
+        String boxCode = null;
+        if (selectGoodsBean.getLocations() != null && selectGoodsBean.getLocations().size() > 0) {
+            boxCode = selectGoodsBean.getLocations().get(selectGoodsBean.getLocations().size() - 1).getCode();
+        }
+        if (TextUtils.isEmpty(boxCode)) return null;
+        for (ObjectBean boxBean : mBoxlist) {
+            if (boxBean.getCode().equals(boxCode)) {
+                return boxBean;
+            }
+        }
+        return null;
     }
 
 }

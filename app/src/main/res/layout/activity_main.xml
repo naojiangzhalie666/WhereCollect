@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RadioGroup
-        android:id="@+id/main_tab_rg"
+    <LinearLayout
+        android:id="@+id/main_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_52"
         android:layout_alignParentBottom="true"
@@ -14,16 +14,27 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <RadioButton
-            style="@style/main_tab_text_style"
+        <TextView
+            android:id="@+id/main_tab_space_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableTop="@drawable/select_main_tab_space_icon"
-            android:text="@string/main_tab_space" />
+            android:gravity="center"
+            android:text="@string/main_tab_space"
+            android:textColor="@drawable/select_main_tab_text_color"
+            android:textSize="@dimen/f_10" />
 
-        <RadioButton
-            style="@style/main_tab_text_style"
+        <TextView
+            android:id="@+id/main_tab_look_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableTop="@drawable/select_main_tab_look_icon"
+            android:gravity="center"
             android:text="@string/main_tab_look"
-            android:textColor="@drawable/select_main_tab_text_color" />
+            android:textColor="@drawable/select_main_tab_text_color"
+            android:textSize="@dimen/f_10" />
 
         <FrameLayout
             android:layout_width="0dp"
@@ -38,26 +49,35 @@
                 android:background="@drawable/icon_main_tab_add" />
         </FrameLayout>
 
-        <RadioButton
-            style="@style/main_tab_text_style"
+        <TextView
+            android:id="@+id/main_tab_remind_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableTop="@drawable/select_main_tab_remind_icon"
+            android:gravity="center"
             android:text="@string/main_tab_remind"
-            android:textColor="@drawable/select_main_tab_text_color" />
+            android:textColor="@drawable/select_main_tab_text_color"
+            android:textSize="@dimen/f_10" />
 
-        <RadioButton
-            style="@style/main_tab_text_style"
+        <TextView
+            android:id="@+id/main_tab_me_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:drawableTop="@drawable/select_main_tab_me_icon"
+            android:gravity="center"
             android:text="@string/main_tab_me"
-            android:textColor="@drawable/select_main_tab_text_color" />
+            android:textColor="@drawable/select_main_tab_text_color"
+            android:textSize="@dimen/f_10" />
 
-    </RadioGroup>
-
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/main_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/main_tab_rg" />
+        android:layout_above="@id/main_tab_layout" />
 
     <View
         android:layout_width="match_parent"

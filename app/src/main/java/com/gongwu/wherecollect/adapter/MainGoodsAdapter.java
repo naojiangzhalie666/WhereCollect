@@ -20,6 +20,7 @@ import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.GoodsImageView;
+import com.gongwu.wherecollect.view.SwipeMenuLayout;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,12 +37,14 @@ import butterknife.ButterKnife;
  * @since JDK 1.7
  */
 public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.CustomViewHolder> {
-    Context context;
-    List<ObjectBean> mlist;
+    private Context context;
+    private List<ObjectBean> mlist;
+    private boolean darklayer;
 
-    public MainGoodsAdapter(Context context, List<ObjectBean> list) {
+    public MainGoodsAdapter(Context context, List<ObjectBean> list, boolean darklayer) {
         this.context = context;
         this.mlist = list;
+        this.darklayer = darklayer;
     }
 
     /**
@@ -76,6 +79,9 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int i) {
+        holder.swipeMenuLayout.setIos(false);//设置是否开启IOS阻塞式交互
+        holder.swipeMenuLayout.setLeftSwipe(true);//true往左滑动,false为往右侧滑动
+        holder.swipeMenuLayout.setSwipeEnable(true);//设置侧滑功能开关
         ObjectBean bean = mlist.get(i);
         holder.mImgView.name.setText(null);
         holder.mImgView.head.setBackground(null);
@@ -87,7 +93,73 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
             holder.mImgView.setResourceColor(bean.getName(), resId, 3);
         }
         holder.nameTv.setText(bean.getName());
-        holder.locationTv.setText(getLoction(bean));
+        holder.locationNameTv.setText(getLoction(bean));
+        if (darklayer) {
+            holder.lockTv.setVisibility(View.GONE);
+            holder.unlockTv.setVisibility(View.VISIBLE);
+        } else {
+            holder.lockTv.setVisibility(View.VISIBLE);
+            holder.unlockTv.setVisibility(View.GONE);
+        }
+        if ("未归位".equals(holder.locationNameTv.getText().toString())) {
+            holder.addLocationTv.setVisibility(View.VISIBLE);
+            holder.locationTv.setVisibility(View.GONE);
+        } else {
+            holder.addLocationTv.setVisibility(View.GONE);
+            holder.locationTv.setVisibility(View.VISIBLE);
+        }
+        holder.deleteTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null) {
+                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
+                    onItemClickListener.onDeleteClick(i, holder.itemView);
+                }
+            }
+        });
+        holder.addLocationTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onAddLocationClick(i, holder.itemView);
+                }
+            }
+        });
+        holder.locationTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null) {
+                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
+                    onItemClickListener.onLocationClick(i, holder.itemView);
+                }
+            }
+        });
+        holder.lockTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null) {
+                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
+                    onItemClickListener.onLockClick(i, holder.itemView);
+                }
+            }
+        });
+        holder.unlockTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null) {
+                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
+                    onItemClickListener.onUnlickClick(i, holder.itemView);
+                }
+            }
+        });
+        holder.itemGoodsView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(i, view);
+                }
+            }
+        });
     }
 
     @Override
@@ -95,32 +167,53 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
         return mlist == null ? 0 : mlist.size();
     }
 
-    public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class CustomViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.goods_content_item)
+        SwipeMenuLayout swipeMenuLayout;
         @BindView(R.id.main_goods_img_view)
         GoodsImageView mImgView;
         @BindView(R.id.name_tv)
         TextView nameTv;
         @BindView(R.id.location_tv)
+        TextView locationNameTv;
+        @BindView(R.id.item_goods_delete_tv)
+        TextView deleteTv;
+        @BindView(R.id.item_goods_location_add_tv)
+        TextView addLocationTv;
+        @BindView(R.id.item_goods_location_tv)
         TextView locationTv;
+        @BindView(R.id.item_goods_lock_tv)
+        TextView lockTv;
+        @BindView(R.id.item_goods_unlock_tv)
+        TextView unlockTv;
+        @BindView(R.id.item_goods_rl)
+        View itemGoodsView;
 
         public CustomViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             itemView.setTag(this);
-            itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View view) {
-            if (onItemClickListener != null) {
-                onItemClickListener.onItemClick(getLayoutPosition(), view);
-            }
-        }
     }
 
-    public MyOnItemClickListener onItemClickListener;
+    public interface OnItemClickListener {
+        public void onItemClick(int positions, View view);
 
-    public void setOnItemClickListener(MyOnItemClickListener listener) {
+        public void onDeleteClick(int positions, View view);
+
+        public void onLocationClick(int positions, View view);
+
+        public void onAddLocationClick(int positions, View view);
+
+        public void onLockClick(int positions, View view);
+
+        public void onUnlickClick(int positions, View view);
+    }
+
+    public OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
 }

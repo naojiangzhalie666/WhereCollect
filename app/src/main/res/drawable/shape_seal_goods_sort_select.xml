@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:dither="true"
+            android:shape="rectangle">
+            <solid android:color="#ffffff" />
+        </shape>
+    </item>
+
+    <item
+        android:bottom="@dimen/dip_14"
+        android:right="@dimen/dip_78"
+        android:top="@dimen/dip_14">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/seal_goods_title_bg" />
+            <size
+                android:width="2dp"
+                android:height="@dimen/dip_15" />
+        </shape>
+    </item>
+</layer-list>

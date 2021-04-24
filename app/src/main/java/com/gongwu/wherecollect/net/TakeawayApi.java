@@ -121,7 +121,7 @@ public interface TakeawayApi {
     Call<ResponseBase<List<ChangWangBean>>> getCangWangList(@FieldMap Map<String, String> map);
 
     @GET("api/app/v400/objectList")
-    Call<ResponseBase<List<MainGoodsBean>>> getUserGoddsList(@Query("uid") String uid, @Query("family_code") String key);
+    Call<ResponseBase<List<MainGoodsBean>>> getUserGoddsList(@Query("uid") String uid, @Query("family_code") String key, @Query("darklayer") boolean darklayer);
 
     @GET("api/app/v400/furniture/layersOrBox")
     Call<ResponseBase<RoomFurnitureResponse>> getFurnitureLayersOrBox(@Query("uid") String uid, @Query("location_code") String location_code, @Query("level") float level, @Query("family_code") String family_code, @Query("room_id") String room_id);
@@ -129,6 +129,14 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v400/update/layerName")
     Call<ResponseBase<RequestSuccessBean>> resetLayerName(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v400/objectArchive")
+    Call<ResponseBase<RequestSuccessBean>> goodsArchive(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v400/removeArchiveObjects")
+    Call<ResponseBase<RequestSuccessBean>> removeArchiveObjects(@FieldMap Map<String, String> map);
 
     @FormUrlEncoded
     @POST("api/app/v300/location/furniture-list")

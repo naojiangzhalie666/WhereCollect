@@ -449,6 +449,21 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             mAdapterData.clear();
             mAdapterData.addAll(mData);
             if (selectGoodsBean != null) {
+                //如果物品在收纳盒内
+                if (selectGoodsBean.getLocations() != null && selectGoodsBean.getLocations().size() > 4) {
+                    //获取收纳盒实体类
+                    selectBoxBean = getPresenter().getBoxBean(selectGoodsBean, mBoxlist);
+                    if (selectBoxBean != null) {
+                        isBox = true;
+                        //显示收纳盒编辑按钮
+                        showSelectBoxButton();
+                        refreshBoxListView(selectBoxBean);
+                        initBoxImg();
+                        if (selectView != null && selectView.getObjectBean() != null) {
+                            gcNameTv.setText(selectView.getObjectBean().getName() + "/" + selectBoxBean.getName());
+                        }
+                    }
+                }
                 for (int i = 0; i < mAdapterData.size(); i++) {
                     ObjectBean bean = mAdapterData.get(i);
                     if (bean.get_id().equals(selectGoodsBean.get_id())) {
@@ -718,6 +733,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
 
     private void refreshBoxListView(ObjectBean location) {
+        if (location == null) return;
         ChildView childView = tablelayout.findView(location);
         //找到该收纳盒的隔层
         if (childView != null) {

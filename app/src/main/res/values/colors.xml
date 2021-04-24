@@ -123,5 +123,6 @@
     <color name="switch_normal_color">#F4F4F4</color>
     <color name="start_time_color">#59A6FE</color>
     <color name="end_time_color">#FE5959</color>
+    <color name="seal_goods_title_bg">#4BA4DD</color>
 
 </resources>
