@@ -20,6 +20,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -30,6 +31,7 @@ import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
+import com.gongwu.wherecollect.view.PopupMessage;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -898,5 +900,12 @@ public class StringUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static void showMessage(Context mContext, int StringId) {
+        PopupMessage popup = new PopupMessage(mContext);
+        popup.setPopupGravity(Gravity.CENTER);
+        popup.showPopupWindow();
+        popup.initData(mContext.getString(StringId));
     }
 }

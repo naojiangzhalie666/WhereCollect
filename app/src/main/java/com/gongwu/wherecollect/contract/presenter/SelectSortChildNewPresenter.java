@@ -115,7 +115,33 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
         req.setUid(uid);
         req.setName(name);
         req.setParent_code(parentCode);
+        req.setType(type);
         mModel.saveCustomSubCate(req, new RequestCallback<BaseBean>() {
+            @Override
+            public void onSuccess(BaseBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().saveCustomSubCateSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void saveCustomCate(String uid, String name, String type) {
+        CustomSubCateReq req = new CustomSubCateReq();
+        req.setUid(uid);
+        req.setName(name);
+        req.setType(type);
+        mModel.saveCustomCate(req, new RequestCallback<BaseBean>() {
             @Override
             public void onSuccess(BaseBean data) {
                 if (getUIView() != null) {

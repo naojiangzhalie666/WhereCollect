@@ -94,6 +94,22 @@ public class SelectSortChildNewModel implements ISelectSortChildNewContract.ISel
     }
 
     @Override
+    public void saveCustomCate(CustomSubCateReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.saveCustomCate(req, new ApiCallBack<BaseBean>() {
+            @Override
+            public void onSuccess(BaseBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void deleteCustomize(EditCustomizeReq req, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.deleteCustomCate(req, new ApiCallBack<RequestSuccessBean>() {

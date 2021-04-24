@@ -89,11 +89,17 @@ public class SelectSeasonActivity extends BaseActivity implements MyOnItemClickL
 
     private void commit() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < selectList.size(); i++) {
-            sb.append(selectList.get(i));
-//            if (i != selectList.size() - 1) {
-//                sb.append("、");
-//            }
+        if (selectList.contains("春")) {
+            sb.append("春");
+        }
+        if (selectList.contains("夏")) {
+            sb.append("夏");
+        }
+        if (selectList.contains("秋")) {
+            sb.append("秋");
+        }
+        if (selectList.contains("冬")) {
+            sb.append("冬");
         }
         objectBean.setSeason(sb.toString());
         Intent intent = new Intent();

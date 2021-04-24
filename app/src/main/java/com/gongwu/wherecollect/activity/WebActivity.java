@@ -45,6 +45,7 @@ public class WebActivity extends BaseActivity {
         webSettings.setJavaScriptEnabled(true);
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setLoadsImagesAutomatically(true);
+        webSettings.setTextZoom(getIntent().getIntExtra("textSize", 100));
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
@@ -99,6 +100,14 @@ public class WebActivity extends BaseActivity {
         Intent intent = new Intent(context, WebActivity.class);
         intent.putExtra("title", title);
         intent.putExtra("url", url);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, String title, String url, int textSize) {
+        Intent intent = new Intent(context, WebActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("url", url);
+        intent.putExtra("textSize", textSize);
         context.startActivity(intent);
     }
 

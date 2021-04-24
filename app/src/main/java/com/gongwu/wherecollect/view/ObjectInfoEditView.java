@@ -290,7 +290,7 @@ public class ObjectInfoEditView extends LinearLayout {
                     public void result(final int year, final int month, final int day) {
                         String bd = year + "-" + StringUtils.formatIntTime(month) + "-" +
                                 StringUtils.formatIntTime(day);
-                        expiryTimeTv.setText(bd);
+                        setValueText(expiryTimeTv, bd);
                         bean.setExpire_date(bd);
                     }
 

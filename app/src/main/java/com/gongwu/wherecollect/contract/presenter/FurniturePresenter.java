@@ -448,5 +448,74 @@ public class FurniturePresenter extends BasePresenter<IFurnitureContract.IFurnit
         }
     }
 
+    //判断是否为收纳盒内数据
+    //是,遍历所有物品数据进行添加(物品数据是所有的物品)
+    //不是,遍历总数据集合根据location_code添加(总数据不含收纳盒内物品)
+    public void initRoomDataOrBoxData(ObjectBean selectBoxBean, String location_code, List<ObjectBean> objects, List<ObjectBean> mData, List<ObjectBean> mAdapterData) {
+        if (selectBoxBean != null) {
+            //物品信息,筛选收纳盒内的物品
+            for (int i = 0; i < objects.size(); i++) {
+                ObjectBean bean = objects.get(i);
+                if (bean.getLocations() == null || bean.getLocations().size() <= 0) {
+                    continue;
+                }
+                for (int j = 0; j < bean.getLocations().size(); j++) {
+                    if (location_code.equals(bean.getLocations().get(j).getCode())) {
+                        bean.setSelect(false);
+                        mAdapterData.add(bean);
+                    }
+                }
+            }
+        } else {
+            //筛选隔层内的收纳盒和物品
+            for (int i = 0; i < mData.size(); i++) {
+                ObjectBean bean = mData.get(i);
+                if (bean.getLocations() == null || bean.getLocations().size() <= 0) {
+                    continue;
+                }
+                for (int j = 0; j < bean.getLocations().size(); j++) {
+                    if (location_code.equals(bean.getLocations().get(j).getCode())) {
+                        bean.setSelect(false);
+                        mAdapterData.add(bean);
+                    }
+                }
+            }
+        }
+    }
+
+    //初始化所有数据
+    public void initData(RoomFurnitureGoodsBean data, List<ObjectBean> mData, List<ObjectBean> mBoxlist, List<ObjectBean> objects) {
+        //总数据添加收纳盒
+        mData.addAll(data.getLocations());
+        //收纳盒集合添加盒子信息
+        mBoxlist.addAll(data.getLocations());
+        if (data.getObjects() != null && data.getObjects().size() > 0) {
+            //物品集合添加物品信息
+            objects.addAll(data.getObjects());
+            //填充box item数据最多显示4个
+            initBoxData(mBoxlist, objects);
+            for (ObjectBean goodsBean : objects) {
+                if (goodsBean.getLocations() != null && goodsBean.getLocations().size() <= 4) {
+                    //总数据添加物品信息,当物品是收纳盒内的,不进行添加
+                    mData.add(goodsBean);
+                }
+            }
+        }
+    }
+
+    //初始化总数据
+    public void initRoomData(List<ObjectBean> mData, List<ObjectBean> mBoxlist, List<ObjectBean> objects) {
+        mData.clear();
+        //总数据添加收纳盒
+        mData.addAll(mBoxlist);
+        if (objects != null && objects.size() > 0) {
+            for (ObjectBean goodsBean : objects) {
+                if (goodsBean.getLocations() != null && goodsBean.getLocations().size() <= 4) {
+                    //总数据添加物品信息,当物品是收纳盒内的,不进行添加
+                    mData.add(goodsBean);
+                }
+            }
+        }
+    }
 
 }

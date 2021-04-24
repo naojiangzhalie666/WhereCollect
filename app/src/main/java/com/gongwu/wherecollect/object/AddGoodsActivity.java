@@ -357,8 +357,22 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         if (setGoodsLocation) {
             MainActivity.moveGoodsList = new ArrayList<>();
             MainActivity.moveGoodsList.addAll(data);
-            EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+            EventBusMsg.SelectHomeTab tab = new EventBusMsg.SelectHomeTab();
+            if (data != null && data.size() > 0) {
+                if (!TextUtils.isEmpty(data.get(AppConstant.DEFAULT_INDEX_OF).getExpire_date())) {
+                    tab.isShowEndTimeHint = true;
+                }
+            }
+            EventBus.getDefault().post(tab);
             setGoodsLocation = false;
+        } else {
+            if (data != null && data.size() > 0) {
+                if (!TextUtils.isEmpty(data.get(AppConstant.DEFAULT_INDEX_OF).getExpire_date())) {
+                    EventBusMsg.LookGoodsAct tab = new EventBusMsg.LookGoodsAct();
+                    tab.isShowEndTimeHint = true;
+                    EventBus.getDefault().post(tab);
+                }
+            }
         }
         finish();
     }

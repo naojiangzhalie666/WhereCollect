@@ -57,7 +57,13 @@ public class GoodsInfoViewAdapter extends RecyclerView.Adapter<GoodsInfoViewAdap
             case StringUtils.TYPE_GOODS_CHANNEL://渠道
             case StringUtils.TYPE_GOODS_CLASSIFY://分类
             case StringUtils.TYPE_GOODS_NOTE://备注
-                holder.goodsValueView.setText(bean.getValue());
+                String value = bean.getValue();
+                if (StringUtils.TYPE_GOODS_NOTE == bean.getType()) {
+                    if (bean.getValue().contains("\n")) {
+                        value = bean.getValue().split("\n")[0];
+                    }
+                }
+                holder.goodsValueView.setText(value);
                 holder.goodsValueView.setVisibility(View.VISIBLE);
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

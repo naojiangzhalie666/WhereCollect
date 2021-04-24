@@ -290,16 +290,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 getPresenter().getImportGoodsList(App.getUser(mContext).getId(), furnitureBean.getLocation_code());
                 break;
             case R.id.furniture_back_tv:
-                //选中收纳盒-后退
-                refreshListView(selectView.getObjectBean().getCode());
-                gcNameTv.setText(selectView.getObjectBean().getName());
-                showSelectLayerButton();
-                //只有在收纳盒内 才有后退
-                isBox = false;
-                //初始化选中物品数量,bean的状态会在添加新的数据时初始化
-                selectGoods = 0;
-                selectBoxBean = null;
-                initBoxImg();
+                selectBoxToLayer();
                 break;
             case R.id.furniture_goods_details_tv:
                 //物品详情
@@ -322,12 +313,8 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 //退出放置隔层
                 MainActivity.moveBoxBean = null;
                 MainActivity.moveLayerBean = null;
-                if (MainActivity.moveGoodsList != null) {
-                    mData.clear();
-                    mData.addAll(mBoxlist);
-                    mData.addAll(objects);
-                    MainActivity.moveGoodsList = null;
-                }
+                MainActivity.moveGoodsList = null;
+                getPresenter().initRoomData(mData, mBoxlist, objects);
                 if (selectView == null) {
                     initButton();
                 } else {
@@ -395,6 +382,19 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         }
     }
 
+    private void selectBoxToLayer() {
+        //初始化选中物品数量,bean的状态会在添加新的数据时初始化
+        selectGoods = 0;
+        selectBoxBean = null;
+        //选中收纳盒-后退
+        refreshListView(selectView.getObjectBean().getCode());
+        gcNameTv.setText(selectView.getObjectBean().getName());
+        showSelectLayerButton();
+        //只有在收纳盒内 才有后退
+        isBox = false;
+        initBoxImg();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -442,11 +442,8 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                 }
             });
         }
-        mData.addAll(data.getLocations());
-        mBoxlist.addAll(data.getLocations());
-        getPresenter().initBoxData(mBoxlist, data.getObjects());
-        mData.addAll(data.getObjects());
-        objects.addAll(data.getObjects());
+        getPresenter().initData(data, mData, mBoxlist, objects);
+        //默认滑动至顶部
         mRecyclerView.smoothScrollToPosition(AppConstant.DEFAULT_INDEX_OF);
         if (selectView == null) {
             mAdapterData.clear();
@@ -476,7 +473,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         if (bean != null && bean.getItems() != null && bean.getItems().size() > 0) {
             showImportGoodsPopup(bean.getItems(), true);
         } else {
-            ToastUtil.show(mContext,"没有未归位的物品");
+            ToastUtil.show(mContext, "没有未归位的物品");
         }
     }
 
@@ -513,46 +510,12 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             //刷新首页房间数据
             EventBus.getDefault().post(new EventBusMsg.RefreshRoomsFragment());
             if (importBean != null) {
-                List<BaseBean> locations = new ArrayList<>();
-                if (isBox) {
-                    locations.addAll(selectBoxBean.getLocations());
-                    BaseBean baseBean = new BaseBean();
-                    baseBean.setCode(selectBoxBean.getCode());
-                    baseBean.setName(selectBoxBean.getName());
-                    baseBean.setLevel(selectBoxBean.getLevel());
-                    locations.add(baseBean);
-                } else {
-                    locations.addAll(selectView.getObjectBean().getParents());
-                    BaseBean baseBean = new BaseBean();
-                    baseBean.setCode(selectView.getObjectBean().getCode());
-                    baseBean.setName(selectView.getObjectBean().getName());
-                    baseBean.setLevel(2);
-                    locations.add(baseBean);
-                }
-                //设置导入物品新的层级
-                importBean.setLocations(locations);
-                //重新导入后删除原先物品的数据然后再次添加
-                String id = importBean.get_id();
-                //删除总数据
-                for (int j = 0; j < mData.size(); j++) {
-                    if (id.equals(mData.get(j).get_id())) {
-                        mData.remove(j);
-                        break;
-                    }
-                }
-                //删除物品list
-                for (int a = 0; a < objects.size(); a++) {
-                    if (id.equals(objects.get(a).get_id())) {
-                        objects.remove(a);
-                        break;
-                    }
-                }
-                //boxCount判断盒子有几个,将物品移到盒子后面
-                mData.add(boxCount, importBean);
-                //将物品添加到物品集合第一个位置
-                objects.add(AppConstant.DEFAULT_INDEX_OF, importBean);
-                String code = isBox ? selectBoxBean.getCode() : selectView.getObjectBean().getCode();
-                refreshListView(code);
+                //重新请求
+                getPresenter().getFurnitureDetails(
+                        App.getUser(mContext).getId(),
+                        furnitureBean.getCode(),
+                        family_code
+                );
                 importBean = null;
                 if (moveGoodsView.getVisibility() == View.VISIBLE
                         && importPosition >= 0 && MainActivity.moveGoodsList != null
@@ -740,6 +703,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     private void refreshListView(String location_code) {
         mAdapterData.clear();
+        //location_code为空表示显示房间内所有收纳盒与物品
         if (TextUtils.isEmpty(location_code)) {
             for (ObjectBean bean : mData) {
                 bean.setSelect(false);
@@ -748,20 +712,10 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
             mAdapter.notifyDataSetChanged();
             return;
         }
-        for (int i = 0; i < mData.size(); i++) {
-            ObjectBean bean = mData.get(i);
-            if (bean.getLocations() == null || bean.getLocations().size() <= 0) {
-                continue;
-            }
-            for (int j = 0; j < bean.getLocations().size(); j++) {
-                if (location_code.equals(bean.getLocations().get(j).getCode())) {
-                    bean.setSelect(false);
-                    mAdapterData.add(bean);
-                }
-            }
-        }
+        getPresenter().initRoomDataOrBoxData(selectBoxBean, location_code, objects, mData, mAdapterData);
         mAdapter.notifyDataSetChanged();
     }
+
 
     private void refreshBoxListView(ObjectBean location) {
         ChildView childView = tablelayout.findView(location);
@@ -874,6 +828,9 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     private PopupEditInterlayer popup;
 
+    /**
+     * 隔层编辑
+     */
     private void showPopupWindow() {
         //只选一个才显示编辑模式
         popup = new PopupEditInterlayer(mContext);
@@ -905,6 +862,9 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     private PopupEditBox boxPopup;
 
+    /**
+     * 收纳盒编辑
+     */
     private void showEditBoxPopup() {
         //只选一个才显示编辑模式
         boxPopup = new PopupEditBox(mContext);
@@ -924,7 +884,17 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
                         ObjectBean objectBean = new ObjectBean();
                         objectBean.setCode(selectBoxBean.getCode());
                         MainActivity.moveBoxBean = objectBean;
-                        refreshListView(selectView.getObjectBean().getCode());
+                        //移除掉迁移收纳盒
+                        for (int i = 0; i < mData.size(); i++) {
+                            ObjectBean data = mData.get(i);
+                            if (objectBean.getCode().equals(data.getCode())) {
+                                mData.remove(i);
+                                break;
+                            }
+                        }
+                        //返回隔层
+                        selectBoxToLayer();
+                        //显示迁移按钮
                         showMoveBoxButton();
                     }
                 }, null);

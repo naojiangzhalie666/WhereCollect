@@ -219,7 +219,7 @@
                 android:gravity="center_vertical"
                 android:hint="请填写物品价格"
                 android:imeOptions="actionDone"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:maxLines="1"
                 android:paddingTop="1dp"
                 android:singleLine="true"
@@ -329,11 +329,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dip_80"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:minHeight="@dimen/dip_80"
         android:orientation="vertical"
-        android:paddingStart="@dimen/dip_16"
-        android:paddingEnd="@dimen/dip_16">
+        android:padding="@dimen/dip_16">
 
         <TextView
             android:layout_width="wrap_content"
@@ -347,11 +347,8 @@
             android:id="@+id/qita_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/qita_textview"
             android:background="@color/trans"
             android:hint="备注信息..."
-            android:imeOptions="actionDone"
-            android:singleLine="true"
             android:textColor="@color/black_54"
             android:textColorHint="@color/black_26"
             android:textSize="@dimen/f_15" />

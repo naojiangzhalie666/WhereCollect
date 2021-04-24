@@ -24,6 +24,8 @@ public interface ISelectSortChildNewContract {
 
         void saveCustomSubCate(CustomSubCateReq req, final RequestCallback callback);
 
+        void saveCustomCate(CustomSubCateReq req, final RequestCallback callback);
+
         void deleteCustomize(EditCustomizeReq req, final RequestCallback callback);
     }
 
@@ -37,6 +39,8 @@ public interface ISelectSortChildNewContract {
         void getThreeSubCategoryList(String uid, String parentCode, String type);
 
         void saveCustomSubCate(String uid, String name, String parentCode, String type);
+
+        void saveCustomCate(String uid, String name, String type);
 
         void deleteCustomize(String uid, String id, String code, String type);
     }

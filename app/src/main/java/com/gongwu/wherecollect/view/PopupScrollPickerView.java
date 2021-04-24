@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.ConfigChangePhoneActivity;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.contract.AppConstant;
@@ -155,8 +156,12 @@ public class PopupScrollPickerView extends BasePopupWindow {
             mPickerHorizontal.setOnSelectedListener(new ScrollPickerView.OnSelectedListener() {
                 @Override
                 public void onSelected(ScrollPickerView scrollPickerView, int position) {
-                    if (position == AppConstant.DEFAULT_INDEX_OF) {
-                        showSelectImgDialog(activity, mPickerHorizontal, boxBean);
+                    if (App.getUser(mContext).isIs_vip()) {
+                        if (position == AppConstant.DEFAULT_INDEX_OF) {
+                            showSelectImgDialog(activity, mPickerHorizontal, boxBean);
+                        }
+                    } else {
+                        BuyVIPActivity.start(mContext);
                     }
                 }
             });
@@ -178,7 +183,7 @@ public class PopupScrollPickerView extends BasePopupWindow {
                 //拍照
                 bitmaps.add(0, BitmapFactory.decodeResource(activity.getResources(), R.drawable.icon_add_box_img));
                 mPickerHorizontal.setData(bitmaps);
-                mPickerHorizontal.setSelectedPosition(AppConstant.DEFAULT_INDEX_OF);
+                mPickerHorizontal.setSelectedPosition(bitmaps.size());
             }
         }
     }

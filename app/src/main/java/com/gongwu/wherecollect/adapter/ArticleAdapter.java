@@ -52,7 +52,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WebActivity.start(mContext, bean.getTitle(), new StringBuilder(Config.BASE_URL).append("article?identifier=").append(bean.getIdentifier()).toString());
+                WebActivity.start(mContext, bean.getTitle(), new StringBuilder(Config.BASE_URL).append("article?identifier=").append(bean.getIdentifier()).toString(), 50);
             }
         });
         holder.splitView.setVisibility(position == (mList.size() - 1) ? View.GONE : View.VISIBLE);

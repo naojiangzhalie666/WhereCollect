@@ -41,6 +41,11 @@ public class EventBusMsg {
     }
 
     public static class SelectHomeTab {
+        public boolean isShowEndTimeHint;
+    }
+
+    public static class LookGoodsAct {
+        public boolean isShowEndTimeHint;
     }
 
     public static class RefreshFurnitureLook {

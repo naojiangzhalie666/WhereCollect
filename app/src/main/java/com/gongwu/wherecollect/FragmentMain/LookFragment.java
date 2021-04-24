@@ -41,6 +41,7 @@ import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.StatusBarUtil;
+import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.EmptyView;
 import com.gongwu.wherecollect.view.PopupFamilyList;
@@ -48,6 +49,8 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +124,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             initUI();
             init = true;
         }
+        EventBus.getDefault().register(this);
         initStatusBar();
     }
 
@@ -340,4 +344,16 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         mRefreshLayout.finishRefresh(true);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.LookGoodsAct msg) {
+        if (msg.isShowEndTimeHint) {
+            StringUtils.showMessage(mContext, R.string.add_end_time_hint_text);
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
 }

@@ -320,6 +320,9 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.SelectHomeTab msg) {
         initTab = true;
+        if (msg.isShowEndTimeHint) {
+            StringUtils.showMessage(mContext, R.string.add_end_time_hint_text);
+        }
     }
 
     @Override

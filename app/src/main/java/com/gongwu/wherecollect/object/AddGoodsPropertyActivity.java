@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
@@ -139,7 +140,11 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
 
             @Override
             public void addSortChildClick() {
-                SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type));
+                if (App.getUser(mContext).isIs_vip()) {
+                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type));
+                } else {
+                    BuyVIPActivity.start(mContext);
+                }
             }
 
             @Override

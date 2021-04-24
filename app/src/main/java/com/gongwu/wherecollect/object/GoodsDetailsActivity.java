@@ -47,6 +47,7 @@ import com.gongwu.wherecollect.view.ObjectInfoLookView;
 import com.gongwu.wherecollect.view.ObjectsLookMenuDialog;
 import com.gongwu.wherecollect.view.PopupAddGoods;
 import com.gongwu.wherecollect.view.PopupEditMenuGoods;
+import com.gongwu.wherecollect.view.PopupMessage;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -311,7 +312,10 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (AppConstant.REQUEST_CODE == requestCode && resultCode == RESULT_OK) {
-            objectBean = (ObjectBean) data.getSerializableExtra("objectBean");
+            ObjectBean newBean = (ObjectBean) data.getSerializableExtra("objectBean");
+            if (!newBean.getExpire_date().equals(objectBean.getExpire_date())) {
+                StringUtils.showMessage(mContext, R.string.add_end_time_hint_text);
+            }
             initData();
         } else if (AppConstant.REQUEST_CODE == requestCode && resultCode == AddGoodsActivity.RESULT_FINISH) {
             finish();
