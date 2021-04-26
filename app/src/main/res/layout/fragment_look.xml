@@ -65,8 +65,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/dip_16"
                 android:layout_marginStart="@dimen/dip_2"
+                android:layout_marginEnd="@dimen/dip_16"
                 android:text="不用翻箱倒柜"
                 android:textColor="@color/main_tab_un_text_color"
                 android:textSize="@dimen/f_12" />
@@ -77,17 +77,17 @@
         android:id="@+id/add_changwang_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_40"
+        android:layout_below="@id/look_fm_title_layout"
         android:background="@color/maincolor"
         android:drawableStart="@drawable/ymy_icon"
         android:drawableEnd="@drawable/go_icon"
         android:drawablePadding="@dimen/dip_6"
         android:gravity="center_vertical"
         android:padding="@dimen/dip_4"
-        android:layout_below="@id/look_fm_title_layout"
         android:text="常忘备余物快速添加,看看“有没有”"
         android:textColor="@color/white"
         android:textSize="@dimen/f_12"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
             android:layout_weight="2"
             android:background="@color/activity_bg" />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="7"
@@ -180,7 +180,8 @@
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
                 android:id="@+id/refresh_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_below="@id/statistics_layout">
 
                 <com.scwang.smartrefresh.layout.header.ClassicsHeader
                     android:layout_width="match_parent"
@@ -192,14 +193,16 @@
                     android:layout_height="match_parent" />
 
             </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-        </LinearLayout>
+
+            <com.gongwu.wherecollect.view.EmptyView
+                android:id="@+id/empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+        </RelativeLayout>
 
 
     </LinearLayout>
 
-    <com.gongwu.wherecollect.view.EmptyView
-        android:id="@+id/empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+
 </RelativeLayout>

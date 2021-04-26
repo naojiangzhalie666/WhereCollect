@@ -159,4 +159,7 @@
     <string name="goods_unlock">还原</string>
     <string name="seal_hint_one_tv">双击底栏“查看”图标可以进入暗格</string>
     <string name="seal_hint_two_tv">被封存的物品只在暗格中可以查看，不在位置和查看页显示</string>
+    <string name="seal_hint_vip_tv">封存为高级账户功能,需内购升级才可试用</string>
+    <string name="seal_buy_vip_btn">升级为高级账户</string>
+    <string name="seal_cancel_vip_btn">移出暗格内物品,暂不升级</string>
 </resources>

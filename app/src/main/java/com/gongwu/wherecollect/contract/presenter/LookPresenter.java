@@ -153,7 +153,7 @@ public class LookPresenter extends BasePresenter<ILookContract.ILookView> implem
         }
         GoodsDetailsReq req = new GoodsDetailsReq();
         req.setUid(uid);
-        mModel.goodsArchive(req, new RequestCallback<RequestSuccessBean>() {
+        mModel.removeArchiveObjects(req, new RequestCallback<RequestSuccessBean>() {
             @Override
             public void onSuccess(RequestSuccessBean data) {
                 if (getUIView() != null) {

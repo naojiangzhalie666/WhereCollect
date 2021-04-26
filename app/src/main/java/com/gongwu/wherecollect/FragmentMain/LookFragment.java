@@ -2,10 +2,12 @@ package com.gongwu.wherecollect.FragmentMain;
 
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,6 +46,7 @@ import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.object.GoodsDetailsActivity;
 import com.gongwu.wherecollect.object.SealGoodsActivity;
+import com.gongwu.wherecollect.util.AnimationUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.SaveDate;
@@ -52,6 +55,7 @@ import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.EmptyView;
 import com.gongwu.wherecollect.view.MessageDialog;
+import com.gongwu.wherecollect.view.MessageTwoBtnDialog;
 import com.gongwu.wherecollect.view.PopupFamilyList;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -98,6 +102,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     TextView addCWGoodView;
 
     private FamilyBean familyBean;
+    private List<ChangWangBean> changWangBeans;
     private List<FamilyBean> mFamilylist = new ArrayList<>();
     private List<MainGoodsBean> mList = new ArrayList<>();
     private List<ObjectBean> mDetailsList = new ArrayList<>();
@@ -171,7 +176,9 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
     private void initUI() {
-        mSortAdapter = new MainGoodsSortAdapter(getActivity(), mList,false);
+        emptyImg.setVisibility(View.VISIBLE);
+        emptyImg.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.icon_no_goods_default));
+        mSortAdapter = new MainGoodsSortAdapter(getActivity(), mList, false);
         mAdapter = new MainGoodsAdapter(getActivity(), mDetailsList, false);
         mSortRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         mSortRecyclerView.setAdapter(mSortAdapter);
@@ -292,7 +299,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
 
-    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout, R.id.add_changwang_tv, R.id.statistics_layout})
+    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout, R.id.empty_img, R.id.add_changwang_tv, R.id.statistics_layout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.look_family_name:
@@ -304,7 +311,9 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             case R.id.fm_search_layout:
                 SearchActivity.start(mContext);
                 break;
+            case R.id.empty_img:
             case R.id.add_changwang_tv:
+                if (TextUtils.isEmpty(goodType) || TextUtils.isEmpty(changWangCode)) return;
                 AddChangWangGoodActivity.start(getContext(), goodType, changWangCode);
                 break;
             case R.id.statistics_layout:
@@ -377,6 +386,13 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             selectPosition = AppConstant.DEFAULT_INDEX_OF;
         }
         selectSortGoods(selectPosition);
+        if (mList != null && mList.size() > 0 && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects() != null
+                && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects().size() > 0) {
+            empty.setVisibility(View.GONE);
+        } else {
+            empty.setVisibility(View.VISIBLE);
+        }
+        initChangWang();
     }
 
     @Override
@@ -403,22 +419,40 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     @Override
     public void getChangWangListSuccess(List<ChangWangBean> changWangBeans) {
         if (changWangBeans != null && changWangBeans.size() > 0) {
-            ChangWangBean aiWangBean = changWangBeans.get(0);
-            //name=爱忘爆款
-            if (aiWangBean.getObject_count() > aiWangBean.getComplete()) {
-                goodType = aiWangBean.getName();
-                changWangCode = aiWangBean.getCode();
+            this.changWangBeans = changWangBeans;
+        }
+    }
+
+    private void initChangWang() {
+        ChangWangBean aiWangBean = changWangBeans.get(0);
+        //name=爱忘爆款
+        if (aiWangBean.getObject_count() > aiWangBean.getComplete()) {
+            goodType = aiWangBean.getName();
+            changWangCode = aiWangBean.getCode();
+            if (mList != null && mList.size() > 0 && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects() != null
+                    && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects().size() > 0) {
+                AnimationUtil.downSlide(addCWGoodView, 1000);
                 addCWGoodView.setVisibility(View.VISIBLE);
-            } else if (changWangBeans.size() > 1) {
-                //name=热门备余物
-                ChangWangBean reMenBean = changWangBeans.get(1);
-                if (reMenBean.getObject_count() > reMenBean.getComplete()) {
-                    goodType = reMenBean.getName();
-                    changWangCode = reMenBean.getCode();
+            } else {
+                AnimationUtil.upSlide(addCWGoodView, 1000);
+                addCWGoodView.setVisibility(View.GONE);
+            }
+        } else if (changWangBeans.size() > 1) {
+            //name=热门备余物
+            ChangWangBean reMenBean = changWangBeans.get(1);
+            if (reMenBean.getObject_count() > reMenBean.getComplete()) {
+                goodType = reMenBean.getName();
+                changWangCode = reMenBean.getCode();
+                if (mList != null && mList.size() > 0 && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects() != null
+                        && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects().size() > 0) {
+                    AnimationUtil.downSlide(addCWGoodView, 1000);
                     addCWGoodView.setVisibility(View.VISIBLE);
                 } else {
-                    changWangCode = null;
+                    AnimationUtil.upSlide(addCWGoodView, 1000);
+                    addCWGoodView.setVisibility(View.GONE);
                 }
+            } else {
+                changWangCode = null;
             }
         }
     }
@@ -468,6 +502,21 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
     public void startSealGoodsActivity() {
+        if (!App.getUser(mContext).isIs_vip()) {
+            MessageTwoBtnDialog dialog = new MessageTwoBtnDialog(mContext) {
+                @Override
+                public void submit() {
+                    BuyVIPActivity.start(mContext);
+                }
+
+                @Override
+                public void cancel() {
+                    getPresenter().removeArchiveObjects(App.getUser(mContext).getId());
+                }
+            };
+            dialog.show();
+            return;
+        }
         if (familyBean != null) {
             SealGoodsActivity.start(mContext, familyBean.getCode());
         }
