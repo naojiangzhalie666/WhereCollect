@@ -499,7 +499,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         //是否能调整裁剪框
         //        options.setAspectRatioOptions(5,new AspectRatio("1:1",1f,1f),new AspectRatio("1:1",1f,1f));
         //是否隐藏底部容器，默认显示
-        options.setHideBottomControls(true);
+        options.setHideBottomControls(false);
         options.setFreeStyleCropEnabled(false);
         uCrop.withOptions(options).withMaxResultSize(720, 720);
         //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）

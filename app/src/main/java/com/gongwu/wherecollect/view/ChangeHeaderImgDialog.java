@@ -127,8 +127,8 @@ public class ChangeHeaderImgDialog {
         dialog.show();
         //        WindowManager.LayoutParams params =
         //                this.getWindow().getAttributes();
-        //        params.width = (int) (MainActivity.getScreenWidth(getContext()));
-        //        params.height = (int) (MainActivity.getScreenHeigth(getContext()));
+        //        params.width = (int) (CameraActivity.getScreenWidth(getContext()));
+        //        params.height = (int) (CameraActivity.getScreenHeigth(getContext()));
         //        this.getWindow().setAttributes(params);
     }
 

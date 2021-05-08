@@ -62,8 +62,11 @@ public class Camera1Manager extends BaseCameraManager<Integer, SurfaceHolder.Cal
             public void run() {
                 try {
                     camera = Camera.open(cameraId);
+                    Camera.Parameters parameters = camera.getParameters();
+                    parameters.setZoom(0);
+                    camera.setParameters(parameters);
                     prepareCameraOutputs();
-                    if(futurFlashMode != null) {
+                    if (futurFlashMode != null) {
                         setFlashMode(futurFlashMode);
                         futurFlashMode = null;
                     }

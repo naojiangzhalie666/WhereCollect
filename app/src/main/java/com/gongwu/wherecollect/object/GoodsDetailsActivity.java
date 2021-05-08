@@ -129,9 +129,9 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
             }
             if (objectBean.getObject_url().contains("#")) {
                 int resId = Color.parseColor(objectBean.getObject_url());
-                mImageView.setResourceColor(objectBean.getName(), resId, 10);
+                mImageView.setResourceColor(objectBean.getName(), resId, 3);
             } else {
-                mImageView.setImg(objectBean.getObject_url(), 10);
+                mImageView.setImg(objectBean.getObject_url(), 3);
             }
             locationTv.setText(StringUtils.getGoodsLoction(objectBean));
         }
@@ -313,9 +313,10 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         super.onActivityResult(requestCode, resultCode, data);
         if (AppConstant.REQUEST_CODE == requestCode && resultCode == RESULT_OK) {
             ObjectBean newBean = (ObjectBean) data.getSerializableExtra("objectBean");
-            if (!newBean.getExpire_date().equals(objectBean.getExpire_date())) {
+            if (newBean != null && !TextUtils.isEmpty(newBean.getExpire_date()) && !newBean.getExpire_date().equals(objectBean.getExpire_date())) {
                 StringUtils.showMessage(mContext, R.string.add_end_time_hint_text);
             }
+            objectBean = newBean;
             initData();
         } else if (AppConstant.REQUEST_CODE == requestCode && resultCode == AddGoodsActivity.RESULT_FINISH) {
             finish();

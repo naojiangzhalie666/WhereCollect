@@ -50,7 +50,8 @@ public class SortGridAdapter extends RecyclerView.Adapter<SortGridAdapter.Custom
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
         holder.sortNameTv.setText(mlist.get(position).getName());
-        holder.sortNameTv.setSelected((selectBaseBean != null && selectBaseBean.getCode() == mlist.get(position).getCode()));
+        boolean isSelect = (selectBaseBean != null && selectBaseBean.getCode().equals(mlist.get(position).getCode()));
+        holder.sortNameTv.setSelected(isSelect);
     }
 
     @Override

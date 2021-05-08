@@ -485,11 +485,7 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
 
     @Override
     public void getImportGoodsListSuccess(ImportGoodsBean bean) {
-        if (bean != null && bean.getItems() != null && bean.getItems().size() > 0) {
-            showImportGoodsPopup(bean.getItems(), true);
-        } else {
-            ToastUtil.show(mContext, "没有未归位的物品");
-        }
+        showImportGoodsPopup(bean.getItems(), true);
     }
 
     @Override

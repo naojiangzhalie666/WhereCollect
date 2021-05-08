@@ -189,6 +189,23 @@ public class SelectColorActivity extends BaseMvpActivity<SelectColorActivity, Ad
     }
 
     private void commit() {
+        //如果没有按回车键，直接输入并点左上角的勾先判断有没有输入
+        String editText = addEdit.getText().toString().replace(" ", "");
+        if (!TextUtils.isEmpty(editText) && (!selectList.contains(editText)
+        )) {
+            selectList.add(addEdit.getText().toString());
+            addEdit.setText("");
+            contentAdapter.notifyDataSetChanged();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (selectList.size() > 0) {
+                        contentList.smoothScrollToPosition(selectList.size() - 1);
+                    }
+                }
+            }, 100);
+            colorAdapter.notifyDataSetChanged();
+        }
         objectBean.setColor(selectList);
         Intent intent = new Intent();
         intent.putExtra("objectBean", objectBean);

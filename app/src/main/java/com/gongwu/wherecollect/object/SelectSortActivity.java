@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
 import com.gongwu.wherecollect.adapter.SortChildGridAdapter;
 import com.gongwu.wherecollect.adapter.SortGridAdapter;
@@ -87,6 +88,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
     private List<ChannelBean> mChildList;
     private BaseBean selectBaseBean;
     private ChannelBean selectChildBean;
+    private boolean saveCustomCateSuccess;
 
     @Override
     protected int getLayoutId() {
@@ -143,7 +145,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
                 if (selectBaseBean == null) {
                     selectBaseBean = mlist.get(positions);
                 } else {
-                    selectBaseBean = mlist.get(positions).getCode() == selectBaseBean.getCode() ? null : mlist.get(positions);
+                    selectBaseBean = mlist.get(positions).getCode().equals(selectBaseBean.getCode()) ? null : mlist.get(positions);
                 }
                 mAdapter.setSelectBaseBean(selectBaseBean);
                 mCustomizeAdapter.setSelectBaseBean(selectBaseBean);
@@ -161,7 +163,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
                 if (selectBaseBean == null) {
                     selectBaseBean = mCustomizeList.get(positions);
                 } else {
-                    selectBaseBean = mCustomizeList.get(positions).getCode() == selectBaseBean.getCode() ? null : mCustomizeList.get(positions);
+                    selectBaseBean = mCustomizeList.get(positions).getCode().equals(selectBaseBean.getCode()) ? null : mCustomizeList.get(positions);
                 }
                 mAdapter.setSelectBaseBean(selectBaseBean);
                 mCustomizeAdapter.setSelectBaseBean(selectBaseBean);
@@ -175,7 +177,7 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
                 if (selectChildBean == null) {
                     selectChildBean = mChildList.get(positions);
                 } else {
-                    selectChildBean = mChildList.get(positions).getCode() == selectChildBean.getCode() ? null : mChildList.get(positions);
+                    selectChildBean = mChildList.get(positions).getCode().equals(selectBaseBean.getCode()) ? null : mChildList.get(positions);
                 }
                 mChildAdapter.setSelectBaseBean(selectChildBean);
             }
@@ -197,6 +199,10 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
                 SelectSortChildActivity.start(mContext, sortBean, false);
                 break;
             case R.id.sort_add_tv:
+                if (!App.getUser(mContext).isIs_vip()) {
+                    BuyVIPActivity.start(mContext);
+                    return;
+                }
                 sortDialog = new AddSortDialog(mContext) {
                     @Override
                     public void submitSortName(String value) {
@@ -300,7 +306,9 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
     public void getFirstCategoryListSuccess(List<BaseBean> data) {
         mlist.clear();
         mCustomizeList.clear();
-        selectBaseBean = null;
+        if (!saveCustomCateSuccess) {
+            selectBaseBean = null;
+        }
         selectChildBean = null;
         if (data != null && data.size() > 0) {
             for (BaseBean baseBean : data) {
@@ -314,7 +322,14 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
             mSortCustomizeListView.setVisibility(mCustomizeList.size() > 0 ? View.VISIBLE : View.GONE);
         }
         mAdapter.notifyDataSetChanged();
-        mCustomizeAdapter.notifyDataSetChanged();
+        if (saveCustomCateSuccess && selectBaseBean != null) {
+            mCustomizeAdapter.setSelectBaseBean(selectBaseBean);
+            showEditView();
+            hideChildLayout();
+            saveCustomCateSuccess = false;
+        } else {
+            mCustomizeAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -331,6 +346,8 @@ public class SelectSortActivity extends BaseMvpActivity<SelectColorActivity, Sel
 
     @Override
     public void saveCustomCateSuccess(BaseBean bean) {
+        selectBaseBean = bean;
+        saveCustomCateSuccess = true;
         getPresenter().getFirstCategoryList(App.getUser(mContext).getId());
     }
 

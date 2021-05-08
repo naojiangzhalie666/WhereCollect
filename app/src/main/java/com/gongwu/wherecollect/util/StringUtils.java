@@ -35,6 +35,7 @@ import com.gongwu.wherecollect.view.PopupMessage;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -907,5 +908,20 @@ public class StringUtils {
         popup.setPopupGravity(Gravity.CENTER);
         popup.showPopupWindow();
         popup.initData(mContext.getString(StringId));
+    }
+
+    public static boolean fileIsExists(String strFile) {
+        try {
+            File f = new File(strFile);
+            if (!f.exists()) {
+                return false;
+            }
+            if (f.length() <= 0) {
+                return false;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

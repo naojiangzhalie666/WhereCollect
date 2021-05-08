@@ -22,25 +22,30 @@
             android:textColor="@color/color333"
             android:textSize="@dimen/f_15" />
 
-        <EditText
-            android:id="@+id/dialog_sort_name_tv"
+        <FrameLayout
             android:layout_width="@dimen/dip_220"
             android:layout_height="@dimen/dip_45"
-            android:layout_gravity="center"
             android:background="@color/activity_bg"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:gravity="center"
-            android:hint="@string/hint_rename_sort_text"
-            android:imeOptions="actionDone"
-            android:lines="1"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:singleLine="true"
-            android:textColor="@color/color333"
-            android:textColorHint="@color/color333"
-            android:textSize="@dimen/f_15"
-            android:theme="@style/MyEditText" />
+            android:paddingRight="16dp">
+
+            <EditText
+                android:id="@+id/dialog_sort_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dip_45"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="@string/hint_rename_sort_text"
+                android:imeOptions="actionDone"
+                android:lines="1"
+                android:singleLine="true"
+                android:textColor="@color/color333"
+                android:textColorHint="@color/color999"
+                android:textSize="@dimen/f_15"
+                android:theme="@style/MyEditText" />
+        </FrameLayout>
     </LinearLayout>
 
     <View

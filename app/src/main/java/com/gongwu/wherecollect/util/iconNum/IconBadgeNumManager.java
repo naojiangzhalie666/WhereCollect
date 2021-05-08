@@ -83,7 +83,7 @@ public class IconBadgeNumManager {
     public Notification setIconHuaWeiBadgeNum(@NonNull Application context, Notification notification, int count) throws Exception {
         Bundle bunlde = new Bundle();
         bunlde.putString("package", context.getPackageName()); // com.test.badge is your package name
-        bunlde.putString("class", Utils.getInstance().getLaunchIntentForPackage(context)); // com.test. badge.MainActivity is your apk main activity
+        bunlde.putString("class", Utils.getInstance().getLaunchIntentForPackage(context)); // com.test. badge.CameraActivity is your apk main activity
         bunlde.putInt("badgenumber", count);
         context.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", null, bunlde);
         return notification;
@@ -98,7 +98,7 @@ public class IconBadgeNumManager {
         Intent intent = new Intent("android.intent.action.BADGE_COUNT_UPDATE");
         intent.putExtra("badge_count", count);
         intent.putExtra("badge_count_package_name", context.getPackageName());
-        intent.putExtra("badge_count_class_name", Utils.getInstance().getLaunchIntentForPackage(context)); // com.test. badge.MainActivity is your apk main activity
+        intent.putExtra("badge_count_class_name", Utils.getInstance().getLaunchIntentForPackage(context)); // com.test. badge.CameraActivity is your apk main activity
         context.sendBroadcast(intent);
         return notification;
     }

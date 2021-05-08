@@ -2,8 +2,10 @@ package com.gongwu.wherecollect.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
+import androidx.core.app.ActivityCompat;
 
 import com.github.florent37.camerafragment.CameraFragment;
 import com.github.florent37.camerafragment.CameraFragmentApi;
@@ -30,9 +33,12 @@ import com.gongwu.wherecollect.object.AddGoodsActivity;
 import com.gongwu.wherecollect.object.AddMoreGoodsActivity;
 import com.gongwu.wherecollect.util.FileUtil;
 import com.gongwu.wherecollect.util.SelectImgDialog;
+import com.yalantis.ucrop.UCrop;
+import com.yalantis.ucrop.UCropActivity;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -176,8 +182,7 @@ public class CameraMainActivity extends BaseActivity {
         if (requestCode == SelectImgDialog.REQUST_PHOTOSELECT && resultCode == ImageGridActivity.RESULT) {
             List<ImageData> temp = (ArrayList<ImageData>) data.getSerializableExtra("list");
             if (temp.size() == 1 && !continuous) {
-                AddGoodsActivity.start(mContext, FileUtil.compress(new File(temp.get(0).getBigUri()), false).getAbsolutePath(), "", locationCode);
-                finish();
+                startCropBitmap(mContext, new File(temp.get(0).getBigUri()));
             } else if (temp.size() > 0 && continuous) {
                 for (ImageData id : temp) {
                     files.add(FileUtil.compress(new File(id.getBigUri()), false).getAbsolutePath());
@@ -195,6 +200,12 @@ public class CameraMainActivity extends BaseActivity {
                     finish();
                 }
             }
+        }
+        //裁剪界面返回的照片
+        if (requestCode == UCrop.REQUEST_CROP) {
+            //单拍
+            AddGoodsActivity.start(mContext, mOutputFile.exists() ? (mOutputFile.length() > 0 ? mOutputFile.getAbsolutePath() : null) : null, "", locationCode);
+            finish();
         }
     }
 
@@ -226,12 +237,10 @@ public class CameraMainActivity extends BaseActivity {
                             finish();
                         }
                     } else {
-                        //单拍
-                        AddGoodsActivity.start(mContext, FileUtil.compress(file, true).getAbsolutePath(), "", locationCode);
-                        finish();
+                        startCropBitmap(mContext, file);
                     }
                 }
-            }, App.CACHEPATH, System.currentTimeMillis() + ".png");
+            }, App.CACHEPATH, String.valueOf(System.currentTimeMillis()));
         }
     }
 
@@ -243,7 +252,7 @@ public class CameraMainActivity extends BaseActivity {
         } else {
             intent.setClass(mContext, AddGoodsActivity.class);
         }
-        if (locationCode!=null) {
+        if (locationCode != null) {
             intent.putExtra("locationCode", locationCode);
         }
         startActivity(intent);
@@ -297,5 +306,43 @@ public class CameraMainActivity extends BaseActivity {
 
     private CameraFragmentApi getCameraFragment() {
         return (CameraFragmentApi) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
+    }
+
+    private File mOutputFile;
+    private File mImgFile;
+
+    private void startCropBitmap(Context mContext, File imgOldFile) {
+        mImgFile = imgOldFile;
+        mOutputFile = new File(App.CACHEPATH, System.currentTimeMillis() + ".jpg");
+        try {
+            mOutputFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //裁剪界面
+        cropBitmap(mContext, imgOldFile, mOutputFile);
+    }
+
+    // 剪切界面
+    private void cropBitmap(Context context, File imgFile, File mOutputFile) {
+        UCrop uCrop = UCrop.of(Uri.fromFile(imgFile), Uri.fromFile(mOutputFile));
+        //初始化UCrop配置
+        UCrop.Options options = new UCrop.Options();
+        //设置裁剪图片可操作的手势
+        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.NONE);
+        //设置toolbar颜色
+        options.setToolbarColor(ActivityCompat.getColor(context, R.color.black));
+        options.setToolbarWidgetColor(ActivityCompat.getColor(context, R.color.white));
+        //设置状态栏颜色
+        options.setStatusBarColor(ActivityCompat.getColor(context, R.color.black));
+        //是否能调整裁剪框
+        //        options.setAspectRatioOptions(5,new AspectRatio("1:1",1f,1f),new AspectRatio("1:1",1f,1f));
+        //是否隐藏底部容器，默认显示
+        options.setHideBottomControls(false);
+        options.setFreeStyleCropEnabled(false);
+        uCrop.withOptions(options).withMaxResultSize(720, 720);
+        //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）
+        uCrop.withAspectRatio(1, 1);
+        uCrop.start(((Activity) context));
     }
 }

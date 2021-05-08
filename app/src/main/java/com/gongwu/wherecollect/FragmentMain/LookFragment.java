@@ -140,33 +140,6 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         }
         EventBus.getDefault().register(this);
         initStatusBar();
-        initHintSeals();
-    }
-
-    private void initHintSeals() {
-        if (!SaveDate.getInstence(mContext).isHintSeal()) {
-            messageDialog = new MessageDialog(mContext) {
-                @Override
-                public void submit() {
-                    initHintSeal();
-                }
-            };
-            messageDialog.show();
-            messageDialog.setMessage(R.string.seal_hint_one_tv);
-        }
-    }
-
-    private void initHintSeal() {
-        if (!SaveDate.getInstence(mContext).isHintSeal()) {
-            messageDialog = new MessageDialog(mContext) {
-                @Override
-                public void submit() {
-                    SaveDate.getInstence(mContext).setHintSeal(true);
-                }
-            };
-            messageDialog.show();
-            messageDialog.setMessage(R.string.seal_hint_two_tv);
-        }
     }
 
     @Override
@@ -431,11 +404,14 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             changWangCode = aiWangBean.getCode();
             if (mList != null && mList.size() > 0 && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects() != null
                     && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects().size() > 0) {
-                AnimationUtil.downSlide(addCWGoodView, 1000);
-                addCWGoodView.setVisibility(View.VISIBLE);
+                if (addCWGoodView.getVisibility() == View.GONE) {
+                    AnimationUtil.downSlide(addCWGoodView, 1000);
+                    addCWGoodView.setVisibility(View.VISIBLE);
+                }
             } else {
-                AnimationUtil.upSlide(addCWGoodView, 1000);
-                addCWGoodView.setVisibility(View.GONE);
+                if (addCWGoodView.getVisibility() == View.VISIBLE) {
+                    addCWGoodView.setVisibility(View.GONE);
+                }
             }
         } else if (changWangBeans.size() > 1) {
             //name=热门备余物
@@ -445,11 +421,14 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 changWangCode = reMenBean.getCode();
                 if (mList != null && mList.size() > 0 && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects() != null
                         && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects().size() > 0) {
-                    AnimationUtil.downSlide(addCWGoodView, 1000);
-                    addCWGoodView.setVisibility(View.VISIBLE);
+                    if (addCWGoodView.getVisibility() == View.GONE) {
+                        AnimationUtil.downSlide(addCWGoodView, 1000);
+                        addCWGoodView.setVisibility(View.VISIBLE);
+                    }
                 } else {
-                    AnimationUtil.upSlide(addCWGoodView, 1000);
-                    addCWGoodView.setVisibility(View.GONE);
+                    if (addCWGoodView.getVisibility() == View.VISIBLE) {
+                        addCWGoodView.setVisibility(View.GONE);
+                    }
                 }
             } else {
                 changWangCode = null;
@@ -502,6 +481,39 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
     public void startSealGoodsActivity() {
+        initHintSeals();
+    }
+
+    private void initHintSeals() {
+        if (!SaveDate.getInstence(mContext).isHintSeal()) {
+            messageDialog = new MessageDialog(mContext) {
+                @Override
+                public void submit() {
+                    initHintSeal();
+                }
+            };
+            messageDialog.show();
+            messageDialog.setMessage(R.string.seal_hint_one_tv);
+        } else {
+            startSealActivity();
+        }
+    }
+
+    private void initHintSeal() {
+        if (!SaveDate.getInstence(mContext).isHintSeal()) {
+            messageDialog = new MessageDialog(mContext) {
+                @Override
+                public void submit() {
+                    SaveDate.getInstence(mContext).setHintSeal(true);
+                    startSealActivity();
+                }
+            };
+            messageDialog.show();
+            messageDialog.setMessage(R.string.seal_hint_two_tv);
+        }
+    }
+
+    private void startSealActivity() {
         if (!App.getUser(mContext).isIs_vip()) {
             MessageTwoBtnDialog dialog = new MessageTwoBtnDialog(mContext) {
                 @Override

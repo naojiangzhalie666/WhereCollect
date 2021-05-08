@@ -33,11 +33,13 @@ public class Loading extends Dialog {
         if (loading == null) {
             loading = Loading.createDialog(context);
         } else {
-            loading.dismiss();
+            if (loading.isShowing()) {
+                return loading;
+            }
         }
         loading.setMessage(text);
         loading.setCancelable(true);
-        loading.setCanceledOnTouchOutside(false);
+        loading.setCanceledOnTouchOutside(true);
         try {
             loading.show();
         } catch (Exception e) {
@@ -50,7 +52,9 @@ public class Loading extends Dialog {
         if (loading == null) {
             loading = Loading.createDialog(context);
         } else {
-            loading.dismiss();
+            if (loading.isShowing()) {
+                return loading;
+            }
         }
         loading.setMessage(context.getString(R.string.loading_text));
         try {

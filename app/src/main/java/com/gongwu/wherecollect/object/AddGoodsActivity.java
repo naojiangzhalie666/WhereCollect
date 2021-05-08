@@ -189,7 +189,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         objectBean = new ObjectBean();
         //添加物品的时候，拍照获取照片
         String path = getIntent().getStringExtra("filePath");
-        if (!TextUtils.isEmpty(path)) {
+        if (!TextUtils.isEmpty(path) && StringUtils.fileIsExists(path)) {
             imgFile = new File(path);
             imgOldFile = new File(path);
             mImageView.setHead(IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
@@ -437,10 +437,12 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
 
     @Override
     public void getCropBitmap(File file) {
-        imgFile = file;
-        mImageView.setHead(IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
-        objectBean.setObject_url(imgFile.getAbsolutePath());
-        setCommitBtnEnable(true);
+        if (StringUtils.fileIsExists(file.getAbsolutePath())) {
+            imgFile = file;
+            mImageView.setHead(IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
+            objectBean.setObject_url(imgFile.getAbsolutePath());
+            setCommitBtnEnable(true);
+        }
     }
 
     @Override
