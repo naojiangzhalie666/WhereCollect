@@ -32,8 +32,8 @@ public class FamilyPresenter extends BasePresenter<IFamilyContract.IFamilyView> 
 
 
     @Override
-    public void getFurnitureList(String uid, String location_code, String familyCode) {
-        if (getUIView() != null) {
+    public void getFurnitureList(String uid, String location_code, String familyCode, boolean isShowLoading) {
+        if (getUIView() != null && isShowLoading) {
             getUIView().showProgressDialog();
         }
         FurnitureReq req = new FurnitureReq();

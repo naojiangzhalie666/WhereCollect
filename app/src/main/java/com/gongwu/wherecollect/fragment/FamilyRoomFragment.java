@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,8 @@ public class FamilyRoomFragment extends BaseFragment<FamilyPresenter> implements
     RecyclerView mRecyclerView;
     @BindView(R.id.empty_view)
     EmptyView mEmptyView;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mRefreshLayout;
 
     private String familyCode;
     private RoomBean roomBean;
@@ -151,6 +154,13 @@ public class FamilyRoomFragment extends BaseFragment<FamilyPresenter> implements
                 }
             }
         });
+        mRefreshLayout.setColorSchemeResources(R.color.maincolor);
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getPresenter().getFurnitureList(App.getUser(mContext).getId(), roomBean.getCode(), familyCode, false);
+            }
+        });
     }
 
     /*
@@ -158,7 +168,7 @@ public class FamilyRoomFragment extends BaseFragment<FamilyPresenter> implements
      */
     private void isCanLoadData() {
         if (isViewInitiated && isVisibleToUser && !initData) {
-            getPresenter().getFurnitureList(App.getUser(mContext).getId(), roomBean.getCode(), familyCode);
+            getPresenter().getFurnitureList(App.getUser(mContext).getId(), roomBean.getCode(), familyCode, true);
             // 加载过数据后，将isViewInitiated和isVisibleToUser设置成false，防止重复加载数据
             isViewInitiated = false;
             isVisibleToUser = false;
@@ -174,18 +184,24 @@ public class FamilyRoomFragment extends BaseFragment<FamilyPresenter> implements
 
     @Override
     public void hideProgressDialog() {
-        if (loading != null) {
+        if (loading != null && loading.isShowing()) {
             loading.dismiss();
         }
     }
 
     @Override
     public void onError(String result) {
+        if (mRefreshLayout != null && mRefreshLayout.isRefreshing()) {
+            mRefreshLayout.setRefreshing(false);
+        }
         Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void getFurnitureListSuccess(List<FurnitureBean> data) {
+        if (mRefreshLayout != null && mRefreshLayout.isRefreshing()) {
+            mRefreshLayout.setRefreshing(false);
+        }
         if (mRecyclerView != null && mAdapter != null) {
             mlist.clear();
             if (data != null && data.size() > 0) {
@@ -221,6 +237,6 @@ public class FamilyRoomFragment extends BaseFragment<FamilyPresenter> implements
 
     @Override
     public void refreshFragment() {
-        getPresenter().getFurnitureList(App.getUser(mContext).getId(), roomBean.getCode(), familyCode);
+        getPresenter().getFurnitureList(App.getUser(mContext).getId(), roomBean.getCode(), familyCode, true);
     }
 }

@@ -351,7 +351,6 @@ androidx.transition.Transition$ArrayListManager
 io.reactivex.internal.operators.observable.ObservableFromPublisher
 androidx.transition.TransitionListenerAdapter
     public void onTransitionEnd(androidx.transition.Transition)
-    public void onTransitionCancel(androidx.transition.Transition)
 io.reactivex.internal.operators.observable.ObservableWithLatestFromMany$SingletonArrayFunc
 androidx.core.view.inputmethod.InputContentInfoCompat$InputContentInfoCompatBaseImpl
 com.gongwu.wherecollect.contract.IMainContract
@@ -517,10 +516,10 @@ kotlin.jvm.internal.LongSpreadBuilder
 androidx.transition.ViewUtilsBase
     public void setAnimationMatrix(android.view.View,android.graphics.Matrix)
     private float[] mMatrixValues
+    private static final java.lang.String TAG
+    private static final int VISIBILITY_MASK
 androidx.appcompat.widget.AppCompatPopupWindow
     public void <init>(android.content.Context,android.util.AttributeSet,int)
-androidx.transition.ViewUtilsApi19
-    private static final java.lang.String TAG
 androidx.recyclerview.widget.ChildHelper$Bucket
     static final int BITS_PER_WORD
     static final long LAST_BIT
@@ -539,7 +538,10 @@ com.zsitech.oncon.barcode.camera.CameraManager
 androidx.core.text.TextDirectionHeuristicsCompat
 io.reactivex.internal.operators.flowable.FlowableFlatMapCompletable$FlatMapCompletableMainSubscriber
 androidx.transition.ViewGroupUtils
+    static int getChildDrawingOrder(android.view.ViewGroup,int)
     private void <init>()
+    private static java.lang.reflect.Method sGetChildDrawingOrderMethod
+    private static boolean sGetChildDrawingOrderMethodFetched
 kotlin.collections.ArraysKt__ArraysJVMKt
     public static final synthetic java.lang.Object[] orEmpty(java.lang.Object[])
     private static final java.lang.String toString(byte[],java.nio.charset.Charset)
@@ -821,6 +823,7 @@ okhttp3.internal.cache.CacheStrategy$Factory
     public final okhttp3.Request getRequest$okhttp()
 io.reactivex.internal.observers.QueueDrainSubscriberWip
 com.gongwu.wherecollect.view.furniture.FurnitureDrawerView
+com.yalantis.ucrop.UCropFragment$GestureTypes
 androidx.collection.CircularIntArray
 io.reactivex.internal.operators.observable.ObservableDelay$DelayObserver$OnNext
 io.reactivex.internal.operators.flowable.FlowableDebounceTimed
@@ -834,6 +837,7 @@ androidx.core.app.AlarmManagerCompat
 io.reactivex.internal.operators.maybe.MaybeFlatMapBiSelector$FlatMapBiMainObserver
 io.reactivex.internal.operators.completable.CompletableConcat$CompletableConcatSubscriber
 io.reactivex.internal.operators.flowable.FlowableToList
+androidx.transition.GhostViewPlatform
 io.reactivex.internal.operators.flowable.FlowableBufferTimed$BufferSkipBoundedSubscriber$RemoveFromBuffer
 androidx.core.os.ParcelableCompat
 androidx.appcompat.widget.AppCompatSeekBar
@@ -971,6 +975,8 @@ okhttp3.internal.cache.CacheInterceptor
     public final okhttp3.Cache getCache$okhttp()
 androidx.viewpager.widget.PagerTabStrip$2
 kotlin.text.StringsKt___StringsKt$windowedSequence$2
+androidx.transition.ViewUtilsApi29
+    public void setAnimationMatrix(android.view.View,android.graphics.Matrix)
 androidx.appcompat.widget.ActionMenuPresenter
     public void setWidthLimit(int,boolean)
     public void setItemLimit(int)
@@ -1046,7 +1052,6 @@ kotlin.collections.MapsKt___MapsKt
     public void <init>()
 kotlin.sequences.IndexingSequence$iterator$1
 io.reactivex.internal.operators.flowable.FlowableBufferBoundary$BufferCloseSubscriber
-androidx.transition.GhostViewApi14
 io.reactivex.internal.operators.flowable.FlowableInternalHelper$ZipIterableFunction
 androidx.appcompat.widget.ResourceManagerInternal
     private void removeDelegate(java.lang.String,androidx.appcompat.widget.ResourceManagerInternal$InflateDelegate)
@@ -1228,6 +1233,7 @@ kotlin.collections.CollectionsKt__IterablesKt
     public static final kotlin.Pair unzip(java.lang.Iterable)
     public void <init>()
 com.gongwu.wherecollect.contract.IEditFurniturePatternContract
+androidx.transition.GhostViewPort$1
 com.yanzhenjie.recyclerview.swipe.SwipeSwitch
     public abstract boolean isLeftMenuOpen()
     public abstract boolean isRightMenuOpen()
@@ -1806,7 +1812,6 @@ io.reactivex.internal.operators.completable.CompletableCache$InnerCompletableCac
 kotlin.UShortArray$Iterator
 io.reactivex.internal.subscribers.BasicFuseableConditionalSubscriber
 io.reactivex.internal.operators.observable.ObservableZip$ZipObserver
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$1
 io.reactivex.internal.fuseable.HasUpstreamSingleSource
 com.yanzhenjie.recyclerview.swipe.widget.DefaultItemDecoration
 androidx.core.content.PermissionChecker
@@ -1861,7 +1866,7 @@ anetwork.channel.aidl.ParcelableInputStream$Stub
     static final int TRANSACTION_skip
     static final int TRANSACTION_length
 com.gongwu.wherecollect.contract.IFamilyContract$IFamilyPresenter
-    public abstract void getFurnitureList(java.lang.String,java.lang.String,java.lang.String)
+    public abstract void getFurnitureList(java.lang.String,java.lang.String,java.lang.String,boolean)
 io.reactivex.internal.functions.Functions$JustValue
 com.gongwu.wherecollect.fragment.FamilyRoomFragment
     private static final java.lang.String TAG
@@ -1934,8 +1939,6 @@ io.reactivex.internal.operators.observable.ObservablePublishSelector$SourceObser
 io.reactivex.internal.operators.maybe.MaybeTimeoutMaybe$TimeoutOtherMaybeObserver
 com.google.android.material.bottomnavigation.BottomNavigationPresenter$SavedState$1
 io.reactivex.internal.operators.single.SingleLift
-androidx.transition.FragmentTransitionSupport$3
-    public void onTransitionCancel(androidx.transition.Transition)
 com.gongwu.wherecollect.util.JsonUtils$1
 io.reactivex.internal.operators.mixed.FlowableSwitchMapMaybe$SwitchMapMaybeSubscriber
 io.reactivex.internal.fuseable.HasUpstreamCompletableSource
@@ -2221,6 +2224,7 @@ retrofit2.Retrofit$Builder
     public retrofit2.Retrofit$Builder validateEagerly(boolean)
 io.reactivex.internal.operators.flowable.FlowableGroupBy$State
     public void subscribe(org.reactivestreams.Subscriber)
+androidx.transition.GhostView
 org.reactivestreams.Processor
 androidx.core.view.ViewConfigurationCompat
     public static int getScaledPagingTouchSlop(android.view.ViewConfiguration)
@@ -2709,8 +2713,6 @@ androidx.core.view.ActionProvider
     public void refreshVisibility()
     public void subUiVisibilityChanged(boolean)
     private static final java.lang.String TAG
-androidx.transition.Visibility$DisappearListener
-    public void onTransitionCancel(androidx.transition.Transition)
 com.google.android.material.shape.InterpolateOnScrollPositionChangeHelper$1
 io.reactivex.internal.operators.observable.ObservableFlatMapCompletableCompletable$FlatMapCompletableMainObserver$InnerObserver
 androidx.core.app.NotificationManagerCompat
@@ -2769,7 +2771,6 @@ io.reactivex.internal.operators.observable.ObservableDoOnLifecycle
 io.reactivex.internal.operators.observable.ObservableGroupJoin$LeftRightObserver
 io.reactivex.internal.operators.flowable.FlowableCache
 androidx.core.text.TextDirectionHeuristicsCompat$FirstStrong
-androidx.transition.GhostViewImpl
 kotlin.properties.Delegates
 com.google.android.material.expandable.ExpandableTransformationWidget
     public abstract int getExpandedComponentIdHint()
@@ -2883,7 +2884,6 @@ io.reactivex.internal.schedulers.ExecutorScheduler$ExecutorWorker
 com.tbruyelle.rxpermissions2.Permission
 kotlin.sequences.TransformingIndexedSequence$iterator$1
 io.reactivex.internal.operators.maybe.MaybeFromRunnable
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$3
 io.reactivex.internal.operators.observable.ObservableBufferTimed$BufferExactUnboundedObserver
 com.gongwu.wherecollect.base.BaseActivity
     protected void startFragment(int,androidx.fragment.app.Fragment)
@@ -2895,7 +2895,6 @@ io.reactivex.internal.operators.observable.ObservableFilter$FilterObserver
 com.google.zxing.common.GridSampler
     public static void setGridSampler(com.google.zxing.common.GridSampler)
 androidx.core.widget.ListViewCompat
-    public static boolean canScrollList(android.widget.ListView,int)
     private void <init>()
 okio.Pipe$sink$1
 kotlin.coroutines.experimental.migration.ContextMigration$Key
@@ -3132,6 +3131,11 @@ com.gongwu.wherecollect.view.GoodsImageView$GlideListener
     public abstract void onError()
 io.reactivex.internal.operators.flowable.FlowableFlatMapCompletable$FlatMapCompletableMainSubscriber$InnerConsumer
 androidx.core.view.animation.PathInterpolatorApi14
+androidx.exifinterface.media.ExifInterface$ExifAttribute
+    public static androidx.exifinterface.media.ExifInterface$ExifAttribute createSLong(int,java.nio.ByteOrder)
+    public static androidx.exifinterface.media.ExifInterface$ExifAttribute createSRational(androidx.exifinterface.media.ExifInterface$Rational,java.nio.ByteOrder)
+    public static androidx.exifinterface.media.ExifInterface$ExifAttribute createDouble(double,java.nio.ByteOrder)
+    public static final long BYTES_OFFSET_UNKNOWN
 io.reactivex.processors.AsyncProcessor$AsyncSubscription
 io.reactivex.internal.operators.observable.ObservableFlatMapCompletableCompletable$FlatMapCompletableMainObserver
 com.scwang.smartrefresh.layout.header.FalsifyHeader
@@ -3176,7 +3180,6 @@ com.google.android.material.internal.TextScale
 kotlin.jvm.internal.ShortCompanionObject
 androidx.core.content.pm.PackageInfoCompat
 okhttp3.Cache$CacheResponseBody$1
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$2
 com.gongwu.wherecollect.contract.IDetailedListContract
 io.reactivex.internal.operators.flowable.FlowableIgnoreElementsCompletable
 androidx.swiperefreshlayout.widget.CircularProgressDrawable$ProgressDrawableSize
@@ -3263,6 +3266,13 @@ io.reactivex.internal.operators.observable.ObservableDelaySubscriptionOther
 org.intellij.lang.annotations.JdkConstants$TitledBorderJustification
 kotlin.jvm.JvmOverloads
 androidx.swiperefreshlayout.widget.CircleImageView
+    public void setBackgroundColorRes(int)
+    private static final int KEY_SHADOW_COLOR
+    private static final int FILL_SHADOW_COLOR
+    private static final float X_OFFSET
+    private static final float Y_OFFSET
+    private static final float SHADOW_RADIUS
+    private static final int SHADOW_ELEVATION
 com.google.android.material.floatingactionbutton.FloatingActionButtonImplLollipop$AlwaysStatefulGradientDrawable
 kotlin.contracts.ExperimentalContracts
 io.reactivex.internal.functions.Functions$Array2Func
@@ -3419,8 +3429,6 @@ androidx.recyclerview.widget.ViewInfoStore$InfoRecord
 androidx.recyclerview.widget.DiffUtil$Snake
 io.reactivex.internal.operators.flowable.FlowableOnErrorNext$OnErrorNextSubscriber
 io.reactivex.internal.operators.flowable.FlowableGroupJoin
-androidx.transition.FragmentTransitionSupport$2
-    public void onTransitionCancel(androidx.transition.Transition)
 kotlin.text.SystemProperties
 io.reactivex.functions.Function7
 com.google.android.material.snackbar.BaseTransientBottomBar$5
@@ -3429,6 +3437,40 @@ com.google.android.material.internal.CircularBorderDrawableLollipop
 okhttp3.internal.cache.DiskLruCache$newJournalWriter$faultHidingSink$1
 io.reactivex.internal.operators.single.SingleResumeNext$ResumeMainSingleObserver
 androidx.swiperefreshlayout.widget.CircularProgressDrawable
+    private float getRotation()
+    public float getStrokeWidth()
+    public float getCenterRadius()
+    public void setCenterRadius(float)
+    public void setStrokeCap(android.graphics.Paint$Cap)
+    public android.graphics.Paint$Cap getStrokeCap()
+    public float getArrowWidth()
+    public float getArrowHeight()
+    public void setArrowDimensions(float,float)
+    public boolean getArrowEnabled()
+    public float getArrowScale()
+    public float getStartTrim()
+    public float getEndTrim()
+    public float getProgressRotation()
+    public int getBackgroundColor()
+    public void setBackgroundColor(int)
+    public int[] getColorSchemeColors()
+    public static final int LARGE
+    private static final float CENTER_RADIUS_LARGE
+    private static final float STROKE_WIDTH_LARGE
+    private static final int ARROW_WIDTH_LARGE
+    private static final int ARROW_HEIGHT_LARGE
+    public static final int DEFAULT
+    private static final float CENTER_RADIUS
+    private static final float STROKE_WIDTH
+    private static final int ARROW_WIDTH
+    private static final int ARROW_HEIGHT
+    private static final float COLOR_CHANGE_OFFSET
+    private static final float SHRINK_OFFSET
+    private static final int ANIMATION_DURATION
+    private static final float GROUP_FULL_ROTATION
+    private static final float MAX_PROGRESS_ARC
+    private static final float MIN_PROGRESS_ARC
+    private static final float RING_ROTATION
 androidx.core.app.NotificationCompat$BadgeIconType
 androidx.recyclerview.widget.MessageThreadUtil$SyncQueueItem
 androidx.appcompat.widget.Toolbar$LayoutParams
@@ -3445,9 +3487,6 @@ io.reactivex.internal.functions.ObjectHelper
     public static long requireNonNull(long,java.lang.String)
 cn.forward.androids.utils.ImageUtils
 androidx.lifecycle.MediatorLiveData
-androidx.transition.ViewGroupUtilsApi18
-    private void <init>()
-    private static final java.lang.String TAG
 okhttp3.MediaType$Companion
     public final okhttp3.MediaType -deprecated_get(java.lang.String)
     public final okhttp3.MediaType -deprecated_parse(java.lang.String)
@@ -3704,7 +3743,6 @@ okio.AsyncTimeout
     public static final synthetic long access$getTimeoutAt$p(okio.AsyncTimeout)
     private static final int TIMEOUT_WRITE_SIZE
 com.scwang.smartrefresh.header.internal.MaterialProgressDrawable$2
-androidx.transition.GhostViewApi21
 io.reactivex.internal.fuseable.FuseToFlowable
 io.reactivex.internal.observers.QueueDrainObserver
 com.gongwu.wherecollect.util.DateUtil
@@ -3789,7 +3827,6 @@ androidx.core.widget.TintableCompoundDrawablesView
     public abstract android.content.res.ColorStateList getSupportCompoundDrawablesTintList()
     public abstract android.graphics.PorterDuff$Mode getSupportCompoundDrawablesTintMode()
 io.reactivex.internal.operators.completable.CompletableFromSingle
-androidx.swiperefreshlayout.widget.CircularProgressDrawable$1
 androidx.recyclerview.widget.LinearSnapHelper
 io.reactivex.internal.operators.maybe.MaybeMergeArray
 androidx.recyclerview.widget.AsyncListUtil$DataCallback
@@ -3954,8 +3991,6 @@ io.reactivex.internal.operators.observable.ObservableAmb
 kotlin.ranges.CharRange$Companion
 androidx.annotation.VisibleForTesting
 io.reactivex.internal.operators.maybe.MaybeDoAfterSuccess$DoAfterObserver
-androidx.transition.ViewUtilsApi22
-    private static final java.lang.String TAG
 androidx.appcompat.app.TwilightCalculator
     public static final int DAY
     public static final int NIGHT
@@ -4031,7 +4066,6 @@ com.permissionx.guolindev.request.InvisibleFragment
     public static final int FORWARD_TO_SETTINGS
 androidx.core.os.HandlerCompat
 io.reactivex.internal.operators.flowable.FlowableWithLatestFromMany$SingletonArrayFunc
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$5
 com.google.zxing.qrcode.QRCodeReader
     protected com.google.zxing.qrcode.decoder.Decoder getDecoder()
     public com.google.zxing.Result decode(com.google.zxing.BinaryBitmap)
@@ -4054,10 +4088,13 @@ com.yalantis.ucrop.UCrop$Options
     public void setCropGridColumnCount(int)
     public void setCropGridColor(int)
     public void setCropGridStrokeWidth(int)
-    public void setActiveWidgetColor(int)
+    public void setActiveControlsWidgetColor(int)
     public void setToolbarTitle(java.lang.String)
+    public void setToolbarCancelDrawable(int)
+    public void setToolbarCropDrawable(int)
     public void setLogoColor(int)
     public varargs void setAspectRatioOptions(int,com.yalantis.ucrop.model.AspectRatio[])
+    public void setRootViewBackgroundColor(int)
     public void withAspectRatio(float,float)
     public void useSourceImageAspectRatio()
     public void withMaxResultSize(int,int)
@@ -4079,14 +4116,17 @@ com.yalantis.ucrop.UCrop$Options
     public static final java.lang.String EXTRA_CROP_GRID_STROKE_WIDTH
     public static final java.lang.String EXTRA_TOOL_BAR_COLOR
     public static final java.lang.String EXTRA_STATUS_BAR_COLOR
-    public static final java.lang.String EXTRA_UCROP_COLOR_WIDGET_ACTIVE
+    public static final java.lang.String EXTRA_UCROP_COLOR_CONTROLS_WIDGET_ACTIVE
     public static final java.lang.String EXTRA_UCROP_WIDGET_COLOR_TOOLBAR
     public static final java.lang.String EXTRA_UCROP_TITLE_TEXT_TOOLBAR
+    public static final java.lang.String EXTRA_UCROP_WIDGET_CANCEL_DRAWABLE
+    public static final java.lang.String EXTRA_UCROP_WIDGET_CROP_DRAWABLE
     public static final java.lang.String EXTRA_UCROP_LOGO_COLOR
     public static final java.lang.String EXTRA_HIDE_BOTTOM_CONTROLS
     public static final java.lang.String EXTRA_FREE_STYLE_CROP
     public static final java.lang.String EXTRA_ASPECT_RATIO_SELECTED_BY_DEFAULT
     public static final java.lang.String EXTRA_ASPECT_RATIO_OPTIONS
+    public static final java.lang.String EXTRA_UCROP_ROOT_VIEW_BACKGROUND_COLOR
 kotlin.contracts.ContractBuilder
 io.reactivex.subscribers.DefaultSubscriber
 razerdp.basepopup.PopupDecorViewProxy
@@ -4162,7 +4202,6 @@ okhttp3.Cache$Entry$Companion
 com.scwang.smartrefresh.layout.SmartRefreshLayout$9$2
 androidx.transition.TransitionPropagation
     public void <init>()
-androidx.swiperefreshlayout.widget.CircularProgressDrawable$2
 io.reactivex.subjects.ReplaySubject$SizeAndTimeBoundReplayBuffer
 kotlin.collections.State
 io.reactivex.internal.operators.flowable.FlowableZip
@@ -4460,6 +4499,7 @@ okhttp3.HttpUrl
     public static final java.lang.String FORM_ENCODE_SET
     public static final java.lang.String FRAGMENT_ENCODE_SET
     public static final java.lang.String FRAGMENT_ENCODE_SET_URI
+androidx.transition.GhostViewPort
 io.reactivex.internal.operators.flowable.FlowableTakePublisher
 io.reactivex.internal.operators.observable.ObservableMergeWithSingle$MergeWithObserver
 io.reactivex.internal.operators.flowable.FlowableLift
@@ -4509,7 +4549,6 @@ androidx.fragment.app.FragmentTransaction
     public static final int TRANSIT_FRAGMENT_OPEN
     public static final int TRANSIT_FRAGMENT_CLOSE
     public static final int TRANSIT_FRAGMENT_FADE
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$4
 kotlin.collections.CollectionsKt__IterablesKt$Iterable$1
 io.reactivex.internal.observers.QueueDrainSubscriberPad2
 anetwork.channel.IBodyHandler
@@ -4641,6 +4680,7 @@ io.reactivex.internal.operators.flowable.FlowableDistinct$DistinctSubscriber
 kotlin.js.JsName
 io.reactivex.parallel.ParallelTransformer
 io.reactivex.internal.operators.completable.CompletableSubscribeOn
+com.yalantis.ucrop.view.OverlayView$FreestyleMode
 kotlin.coroutines.experimental.SafeContinuation$Fail
 com.bigkoo.pickerview.view.WheelOptions$3
 com.google.android.material.appbar.AppBarLayout$BaseBehavior
@@ -4951,7 +4991,6 @@ com.squareup.leakcanary.RefWatcher
     public void watch(java.lang.Object)
     public void watch(java.lang.Object,java.lang.String)
 okhttp3.internal.ws.RealWebSocket$connect$1
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$7
 io.reactivex.internal.operators.flowable.FlowableCreate$1
 io.reactivex.internal.operators.observable.BlockingObservableIterable
 io.reactivex.internal.operators.observable.ObservableOnErrorReturn
@@ -5054,7 +5093,6 @@ androidx.transition.Transition
     public androidx.transition.Transition excludeTarget(java.lang.Class,boolean)
     public androidx.transition.Transition excludeChildren(java.lang.Class,boolean)
     void forceToEnd(android.view.ViewGroup)
-    protected void cancel()
     public android.graphics.Rect getEpicenter()
     androidx.transition.Transition setSceneRoot(android.view.ViewGroup)
     void setCanRemoveViews(boolean)
@@ -5384,7 +5422,6 @@ com.yalantis.ucrop.util.BitmapLoadUtils
 retrofit2.adapter.rxjava2.Result
 androidx.transition.Slide$6
 androidx.appcompat.app.AppCompatDelegate$NightMode
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$6
 androidx.appcompat.view.menu.MenuItemImpl
     java.lang.Runnable getCallback()
     public android.view.MenuItem setCallback(java.lang.Runnable)
@@ -5407,11 +5444,7 @@ androidx.transition.ChangeTransform$1
 io.reactivex.internal.operators.maybe.MaybeFlatMapIterableFlowable$FlatMapIterableObserver
 io.reactivex.internal.operators.flowable.FlowableTakeWhile$TakeWhileSubscriber
 androidx.transition.ViewUtilsApi21
-    private void fetchSetAnimationMatrix()
     public void setAnimationMatrix(android.view.View,android.graphics.Matrix)
-    private static final java.lang.String TAG
-    private static java.lang.reflect.Method sSetAnimationMatrixMethod
-    private static boolean sSetAnimationMatrixMethodFetched
 kotlin.jvm.internal.ArrayLongIterator
 io.reactivex.internal.operators.maybe.MaybeUnsubscribeOn
 kotlin.sequences.TransformingIndexedSequence
@@ -6038,10 +6071,10 @@ androidx.savedstate.SavedStateRegistry
 okhttp3.internal.platform.OpenJSSEPlatform
     public javax.net.ssl.X509TrustManager trustManager(javax.net.ssl.SSLSocketFactory)
 com.github.florent37.camerafragment.internal.enums.Flash$FlashMode
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$8
 androidx.slidingpanelayout.widget.SlidingPaneLayout$DragHelperCallback
 com.yalantis.ucrop.task.BitmapLoadTask
     private static final java.lang.String TAG
+    private static final int MAX_BITMAP_SIZE
 kotlin.StandardKt
 io.reactivex.internal.operators.observable.ObservableSkip
 androidx.appcompat.widget.AppCompatSpinner
@@ -6108,10 +6141,13 @@ androidx.annotation.XmlRes
 io.reactivex.internal.operators.mixed.FlowableConcatMapMaybe$ConcatMapMaybeSubscriber
 com.yalantis.ucrop.view.OverlayView
     public boolean isFreestyleCropEnabled()
+    public static final int FREESTYLE_CROP_MODE_DISABLE
+    public static final int FREESTYLE_CROP_MODE_ENABLE
+    public static final int FREESTYLE_CROP_MODE_ENABLE_WITH_PASS_THROUGH
     public static final boolean DEFAULT_SHOW_CROP_FRAME
     public static final boolean DEFAULT_SHOW_CROP_GRID
     public static final boolean DEFAULT_CIRCLE_DIMMED_LAYER
-    public static final boolean DEFAULT_FREESTYLE_CROP_ENABLED
+    public static final int DEFAULT_FREESTYLE_CROP_MODE
     public static final int DEFAULT_CROP_GRID_ROW_COUNT
     public static final int DEFAULT_CROP_GRID_COLUMN_COUNT
 okhttp3.Dispatcher
@@ -6227,8 +6263,6 @@ okio.Segment
     public static final int SIZE
     public static final int SHARE_MINIMUM
 androidx.transition.ViewOverlayApi14$OverlayViewGroup
-    public void clear()
-    public void invalidateChildFast(android.view.View,android.graphics.Rect)
     protected android.view.ViewParent invalidateChildInParentFast(int,int,android.graphics.Rect)
 io.reactivex.internal.operators.maybe.MaybeTakeUntilPublisher$TakeUntilMainMaybeObserver$TakeUntilOtherMaybeObserver
 io.reactivex.internal.operators.flowable.FlowableSkip$SkipSubscriber
@@ -6241,6 +6275,18 @@ io.reactivex.subscribers.TestSubscriber
 org.jetbrains.annotations.Nullable
 io.reactivex.internal.operators.observable.ObservableSequenceEqual$EqualObserver
 androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring
+    void setStrokeCap(android.graphics.Paint$Cap)
+    android.graphics.Paint$Cap getStrokeCap()
+    float getArrowWidth()
+    float getArrowHeight()
+    int[] getColors()
+    void setBackgroundColor(int)
+    int getBackgroundColor()
+    float getStrokeWidth()
+    float getRotation()
+    float getCenterRadius()
+    boolean getShowArrow()
+    float getArrowScale()
 io.reactivex.internal.operators.flowable.FlowableScanSeed$ScanSeedSubscriber
 com.google.android.material.navigation.NavigationView$1
 kotlin.WasExperimental
@@ -6877,7 +6923,6 @@ androidx.appcompat.app.AppCompatDelegate
     public static androidx.appcompat.app.AppCompatDelegate create(android.content.Context,android.view.Window,androidx.appcompat.app.AppCompatCallback)
     public static androidx.appcompat.app.AppCompatDelegate create(android.content.Context,android.app.Activity,androidx.appcompat.app.AppCompatCallback)
     public static void setDefaultNightMode(int)
-    public static void setCompatVectorFromResourcesEnabled(boolean)
     public static boolean isCompatVectorFromResourcesEnabled()
     private static void applyDayNightToActiveDelegates()
     public abstract androidx.appcompat.app.ActionBarDrawerToggle$Delegate getDrawerToggleDelegate()
@@ -7305,6 +7350,8 @@ kotlin.collections.CollectionsKt__ReversedViewsKt
     public static final synthetic int access$reverseElementIndex(java.util.List,int)
     public static final synthetic int access$reversePositionIndex(java.util.List,int)
     public void <init>()
+com.yalantis.ucrop.view.UCropView
+    public void resetCropImageView()
 com.google.android.material.bottomnavigation.BottomNavigationPresenter
 io.reactivex.internal.operators.observable.ObservableSampleTimed$SampleTimedNoLast
 com.tbruyelle.rxpermissions2.BuildConfig
@@ -10204,8 +10251,10 @@ io.reactivex.internal.operators.observable.BlockingObservableLatest$BlockingObse
 io.reactivex.processors.UnicastProcessor$UnicastQueueSubscription
 kotlin.reflect.KDeclarationContainer
     public abstract java.util.Collection getMembers()
+com.yalantis.ucrop.UCropFragment$UCropResult
 kotlin.collections.AbstractMap$values$1
 androidx.appcompat.widget.LinearLayoutCompat$OrientationMode
+androidx.transition.CanvasUtils
 uk.co.deanwild.materialshowcaseview.CircularRevealAnimationFactory$2
 io.reactivex.internal.functions.Functions$EqualsPredicate
 com.gongwu.wherecollect.contract.IDetailedListContract$IDetailedListPresenter
@@ -10370,8 +10419,6 @@ razerdp.basepopup.BasePopupHelper
     void onAnchorTop()
     void onAnchorBottom()
 org.intellij.lang.annotations.JdkConstants$HorizontalAlignment
-androidx.transition.ChangeBounds$9
-    public void onTransitionCancel(androidx.transition.Transition)
 cn.forward.androids.ScaleGestureDetectorApi27$SimpleOnScaleGestureListener
 retrofit2.OkHttpCall
     public synchronized boolean isExecuted()
@@ -10499,8 +10546,8 @@ io.reactivex.internal.schedulers.ComputationScheduler
     static final java.lang.String KEY_MAX_THREADS
     private static final java.lang.String KEY_COMPUTATION_PRIORITY
 com.gongwu.wherecollect.contract.IAdministerFamilySharedContract
-org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment
 io.reactivex.internal.operators.maybe.MaybeJust
+org.greenrobot.eventbus.util.ErrorDialogManager$SupportManagerFragment
 io.reactivex.internal.operators.single.SingleDetach
 com.gongwu.wherecollect.activity.FeedBackActivity_ViewBinding
     public void <init>(com.gongwu.wherecollect.activity.FeedBackActivity)
@@ -11166,7 +11213,6 @@ androidx.recyclerview.widget.RecyclerView$LayoutManager$1
     public int getChildCount()
     public android.view.View getParent()
 androidx.documentfile.provider.RawDocumentFile
-androidx.swiperefreshlayout.widget.CircleImageView$OvalShadow
 androidx.core.content.ContentResolverCompat
     private void <init>()
 androidx.lifecycle.viewmodel.R
@@ -11357,7 +11403,13 @@ io.reactivex.internal.operators.single.SingleCreate$Emitter
 io.reactivex.internal.operators.completable.CompletableHide
 com.yalantis.ucrop.util.FileUtils
     private void <init>()
-    static final java.lang.String TAG
+    public static boolean isExternalStorageDocument(android.net.Uri)
+    public static boolean isDownloadsDocument(android.net.Uri)
+    public static boolean isMediaDocument(android.net.Uri)
+    public static boolean isGooglePhotosUri(android.net.Uri)
+    public static java.lang.String getDataColumn(android.content.Context,android.net.Uri,java.lang.String,java.lang.String[])
+    public static java.lang.String getPath(android.content.Context,android.net.Uri)
+    private static final java.lang.String TAG
 kotlin.collections.unsigned.UArraysKt___UArraysKt$withIndex$3
 io.reactivex.internal.operators.observable.ObservableDistinct
 okhttp3.internal.http.StatusLine
@@ -11384,8 +11436,6 @@ androidx.appcompat.view.menu.ActionMenuItem
 com.larvalabs.svgandroid.BuildConfig
 kotlin.io.TerminateException
 io.reactivex.internal.operators.flowable.FlowableCreate$BaseEmitter
-androidx.transition.ViewGroupOverlayApi18
-    public void clear()
 io.reactivex.subscribers.SafeSubscriber
 com.google.android.material.shape.EdgeTreatment
     public void <init>()
@@ -11499,6 +11549,7 @@ okhttp3.internal.http2.Http2Stream
     public final void enqueueTrailers(okhttp3.Headers)
     public final okio.Source getSource()
     public static final long EMIT_BUFFER_SIZE
+androidx.exifinterface.media.ExifInterface$IfdType
 io.reactivex.internal.operators.observable.ObservableFlatMap$MergeObserver
 androidx.transition.ChangeTransform$3
 cn.forward.androids.utils.LogUtil
@@ -12610,13 +12661,13 @@ androidx.core.app.NotificationCompat$Builder
 io.reactivex.internal.operators.observable.ObservableSampleTimed
 io.reactivex.internal.operators.observable.ObservableCreate$SerializedEmitter
 kotlin.text.MatchResult$DefaultImpls
-androidx.transition.ViewOverlayApi14$OverlayViewGroup$TouchInterceptor
 androidx.appcompat.widget.AppCompatDrawableManager
     synchronized android.graphics.drawable.Drawable onDrawableLoadedFromResources(android.content.Context,androidx.appcompat.widget.VectorEnabledTintResources,int)
     boolean tintDrawableUsingColorFilter(android.content.Context,int,android.graphics.drawable.Drawable)
     private static final java.lang.String TAG
     private static final boolean DEBUG
 kotlin.properties.ReadWriteProperty
+com.yalantis.ucrop.UCropFragment
 io.reactivex.internal.operators.flowable.FlowableWithLatestFrom
 io.reactivex.internal.operators.single.SingleFlatMapIterableObservable
 com.gongwu.wherecollect.util.iconNum.Utils
@@ -12636,7 +12687,6 @@ io.reactivex.internal.operators.maybe.MaybeTakeUntilPublisher$TakeUntilMainMaybe
 com.google.zxing.common.detector.MathUtils
     private void <init>()
 com.github.florent37.camerafragment.configuration.Configuration$FlashMode
-androidx.transition.GhostViewApi14$1
 io.reactivex.internal.util.ExceptionHelper
     private void <init>()
     public static java.util.List flatten(java.lang.Throwable)
@@ -12870,7 +12920,6 @@ kotlin.text.StringsKt__StringsKt
     static synthetic java.util.List split$default(java.lang.CharSequence,kotlin.text.Regex,int,int,java.lang.Object)
     public void <init>()
 io.reactivex.internal.operators.flowable.FlowableConcatWithMaybe$ConcatWithSubscriber
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$OnChildScrollUpCallback
 androidx.appcompat.view.menu.BaseMenuPresenter
     public boolean flagActionItems()
     public int getId()
@@ -13035,7 +13084,6 @@ androidx.transition.ViewUtils
     static void setAnimationMatrix(android.view.View,android.graphics.Matrix)
     private void <init>()
     private static final java.lang.String TAG
-    private static final int VISIBILITY_MASK
 com.gongwu.wherecollect.contract.presenter.LookPresenter
     private static final java.lang.String TAG
 io.reactivex.internal.operators.single.SingleDoOnError
@@ -13063,8 +13111,6 @@ com.google.android.material.internal.ThemeEnforcement
     private static final java.lang.String APPCOMPAT_THEME_NAME
     private static final java.lang.String MATERIAL_THEME_NAME
 io.reactivex.internal.operators.flowable.FlowableOnBackpressureBufferStrategy$OnBackpressureBufferStrategySubscriber
-androidx.transition.ViewOverlayImpl
-    public abstract void clear()
 retrofit2.KotlinExtensions
     private static final java.lang.Object create(retrofit2.Retrofit)
 com.azhon.appupdate.utils.NotificationUtil
@@ -13239,6 +13285,7 @@ kotlin.jvm.JvmClassMappingKt
 io.reactivex.internal.operators.single.SingleZipArray$ZipSingleObserver
 androidx.core.os.EnvironmentCompat
 androidx.legacy.app.ActionBarDrawerToggle$SetIndicatorInfo
+com.yalantis.ucrop.UCropFragment$8
 com.google.android.material.button.MaterialButtonHelper
     private static final float CORNER_RADIUS_ADJUSTMENT
     private static final int DEFAULT_BACKGROUND_COLOR
@@ -13473,7 +13520,6 @@ io.reactivex.internal.operators.completable.CompletableToSingle
 com.google.zxing.pdf417.encoder.PDF417
 com.gongwu.wherecollect.contract.IRegisterContract
 androidx.appcompat.widget.VectorEnabledTintResources
-    public static void setCompatVectorFromResourcesEnabled(boolean)
     public static final int MAX_SDK_WHERE_REQUIRED
 okhttp3.Cache$urls$1
 kotlin.jvm.internal.markers.KMutableSet
@@ -14008,6 +14054,7 @@ kotlin.coroutines.experimental.migration.ContinuationInterceptorMigration
 androidx.annotation.StyleRes
 com.gongwu.wherecollect.contract.presenter.BuyVIPPresenter$Inner
     private void <init>()
+com.yalantis.ucrop.UCropFragment$7
 androidx.appcompat.widget.ActivityChooserView
 io.reactivex.internal.operators.flowable.FlowableSubscribeOn$SubscribeOnSubscriber$Request
 io.reactivex.internal.operators.observable.ObservableReduceMaybe
@@ -14514,6 +14561,7 @@ io.reactivex.internal.operators.flowable.FlowableTimeoutTimed$TimeoutTask
 com.google.android.material.internal.NavigationMenuPresenter$NormalViewHolder
 io.reactivex.internal.operators.flowable.FlowableSequenceEqual$EqualSubscriber
 androidx.drawerlayout.widget.DrawerLayout$SavedState$1
+com.yalantis.ucrop.UCropFragment$6
 androidx.transition.Slide$CalculateSlideVertical
 androidx.core.hardware.fingerprint.FingerprintManagerCompat
 com.yanzhenjie.recyclerview.swipe.SwipeAdapterWrapper
@@ -14851,11 +14899,10 @@ androidx.core.graphics.TypefaceCompatApi24Impl
     private static final java.lang.String CREATE_FROM_FAMILIES_WITH_DEFAULT_METHOD
 com.gongwu.wherecollect.adapter.ColorContentAdapter
     public void setOnItemClickListener(com.gongwu.wherecollect.adapter.MyOnItemClickListener)
-androidx.transition.ViewOverlayApi18
-    public void clear()
 kotlin.collections.unsigned.UArraysKt___UArraysKt
 io.reactivex.internal.operators.observable.ObservableElementAt$ElementAtObserver
 kotlin.reflect.KCallable$DefaultImpls
+com.yalantis.ucrop.UCropFragment$5
 cn.forward.androids.SimpleAsyncTask
     private static android.os.Handler getHandler()
     public static void setDefaultExecutor(java.util.concurrent.Executor)
@@ -14960,9 +15007,27 @@ androidx.appcompat.widget.AppCompatSpinner$SpinnerPopup
     public abstract int getHorizontalOriginalOffset()
 io.reactivex.internal.operators.flowable.FlowableAny$AnySubscriber
 kotlin.internal.UProgressionUtilKt
-androidx.transition.ImageViewUtils$1
 io.reactivex.internal.operators.maybe.MaybeCreate$Emitter
 androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    public void setProgressViewOffset(boolean,int,int)
+    public void setProgressViewEndTarget(boolean,int)
+    public static final int LARGE
+    public static final int DEFAULT
+    public static final int DEFAULT_SLINGSHOT_DISTANCE
+    static final int CIRCLE_DIAMETER
+    static final int CIRCLE_DIAMETER_LARGE
+    private static final int MAX_ALPHA
+    private static final int STARTING_PROGRESS_ALPHA
+    private static final float DECELERATE_INTERPOLATION_FACTOR
+    private static final int INVALID_POINTER
+    private static final float DRAG_RATE
+    private static final float MAX_PROGRESS_ANGLE
+    private static final int SCALE_DOWN_DURATION
+    private static final int ALPHA_ANIMATION_DURATION
+    private static final int ANIMATE_TO_TRIGGER_DURATION
+    private static final int ANIMATE_TO_START_DURATION
+    private static final int CIRCLE_BG_LIGHT
+    private static final int DEFAULT_CIRCLE_TARGET
 androidx.constraintlayout.solver.LinearSystem$Row
     public abstract boolean isEmpty()
 com.gongwu.wherecollect.contract.presenter.PersonPresenter$Inner
@@ -15074,6 +15139,7 @@ kotlin.collections.CollectionsKt__IteratorsKt
 io.reactivex.internal.operators.maybe.MaybeToSingle$ToSingleMaybeSubscriber
 androidx.annotation.RequiresPermission$Write
 com.google.android.material.bottomnavigation.BottomNavigationMenu
+com.yalantis.ucrop.UCropFragment$4
 androidx.core.view.inputmethod.InputConnectionCompat$OnCommitContentListener
 com.tbruyelle.rxpermissions2.RxPermissions
 kotlin.sequences.TakeSequence$iterator$1
@@ -15095,6 +15161,7 @@ io.reactivex.internal.operators.single.SingleDelayWithPublisher$OtherSubscriber
 io.reactivex.internal.operators.observable.BlockingObservableLatest
 io.reactivex.observers.ResourceCompletableObserver
 okio.HashingSink
+androidx.transition.GhostViewHolder
 cn.forward.androids.utils.ThreadUtil$2
 androidx.swiperefreshlayout.R
 io.reactivex.internal.operators.maybe.MaybeUsing$UsingObserver
@@ -15458,6 +15525,7 @@ androidx.collection.LruCache
     public final synchronized int evictionCount()
     public final synchronized java.util.Map snapshot()
 cn.forward.androids.views.RoundProgressBar$RoundProgressBarListener
+com.yalantis.ucrop.UCropFragment$3
 androidx.appcompat.widget.ActivityChooserView$5
 androidx.constraintlayout.solver.ArrayLinkedVariables
     boolean hasAtLeastOnePositiveVariable()
@@ -15509,6 +15577,7 @@ androidx.core.view.ViewParentCompat
 com.github.florent37.camerafragment.widgets.CameraSwitchView
 io.reactivex.internal.operators.observable.ObservableTakeUntilPredicate$TakeUntilPredicateObserver
 com.scwang.smartrefresh.header.flyrefresh.MountainSceneView
+com.yalantis.ucrop.UCropFragmentCallback
 com.google.android.material.textfield.TextInputLayout$BoxBackgroundMode
 androidx.appcompat.view.menu.CascadingMenuPopup
     public android.os.Parcelable onSaveInstanceState()
@@ -15873,6 +15942,7 @@ com.yalantis.ucrop.UCropActivity
     public static final int ROTATE
     public static final int ALL
     private static final java.lang.String TAG
+    private static final long CONTROLS_ANIMATION_DURATION
     private static final int TABS_COUNT
     private static final int SCALE_WIDGET_SENSITIVITY_COEFFICIENT
     private static final int ROTATE_WIDGET_SENSITIVITY_COEFFICIENT
@@ -15994,6 +16064,7 @@ com.google.android.material.floatingactionbutton.FloatingActionButtonImpl
     private static final float SHOW_SCALE
     private static final float SHOW_ICON_SCALE
 com.yanzhenjie.recyclerview.swipe.widget.DefaultLoadMoreView
+com.yalantis.ucrop.UCropFragment$2
 androidx.vectordrawable.animated.R
 kotlin.sequences.MergingSequence$iterator$1
 com.google.zxing.oned.rss.expanded.BitArrayBuilder
@@ -16002,6 +16073,423 @@ androidx.appcompat.widget.ActivityChooserView$4
 androidx.coordinatorlayout.R
 io.reactivex.internal.operators.parallel.ParallelFilter
 io.reactivex.internal.operators.maybe.MaybeFlatMapIterableFlowable
+androidx.exifinterface.media.ExifInterface
+    public void <init>(java.io.File)
+    public void <init>(java.io.FileDescriptor)
+    public void <init>(java.io.InputStream)
+    private boolean updateAttribute(java.lang.String,androidx.exifinterface.media.ExifInterface$ExifAttribute)
+    private static long parseDateTime(java.lang.String,java.lang.String)
+    private static double convertRationalLatLonToDouble(java.lang.String,java.lang.String)
+    private java.lang.String convertDecimalDegree(double)
+    public int getAttributeInt(java.lang.String,int)
+    public double getAttributeDouble(java.lang.String,double)
+    public void resetOrientation()
+    public void rotate(int)
+    public void flipVertically()
+    public void flipHorizontally()
+    public boolean isFlipped()
+    public int getRotationDegrees()
+    public boolean hasThumbnail()
+    public boolean hasAttribute(java.lang.String)
+    public android.graphics.Bitmap getThumbnailBitmap()
+    public boolean isThumbnailCompressed()
+    public long[] getThumbnailRange()
+    public long[] getAttributeRange(java.lang.String)
+    public byte[] getAttributeBytes(java.lang.String)
+    public boolean getLatLong(float[])
+    public double[] getLatLong()
+    public void setGpsInfo(android.location.Location)
+    public void setLatLong(double,double)
+    public double getAltitude(double)
+    public void setAltitude(double)
+    public void setDateTime(long)
+    public long getDateTime()
+    public long getDateTimeDigitized()
+    public long getDateTimeOriginal()
+    public long getGpsDateTime()
+    private static final java.lang.String TAG
+    public static final java.lang.String TAG_IMAGE_WIDTH
+    public static final java.lang.String TAG_IMAGE_LENGTH
+    public static final java.lang.String TAG_BITS_PER_SAMPLE
+    public static final java.lang.String TAG_COMPRESSION
+    public static final java.lang.String TAG_PHOTOMETRIC_INTERPRETATION
+    public static final java.lang.String TAG_ORIENTATION
+    public static final java.lang.String TAG_SAMPLES_PER_PIXEL
+    public static final java.lang.String TAG_PLANAR_CONFIGURATION
+    public static final java.lang.String TAG_Y_CB_CR_SUB_SAMPLING
+    public static final java.lang.String TAG_Y_CB_CR_POSITIONING
+    public static final java.lang.String TAG_X_RESOLUTION
+    public static final java.lang.String TAG_Y_RESOLUTION
+    public static final java.lang.String TAG_RESOLUTION_UNIT
+    public static final java.lang.String TAG_STRIP_OFFSETS
+    public static final java.lang.String TAG_ROWS_PER_STRIP
+    public static final java.lang.String TAG_STRIP_BYTE_COUNTS
+    public static final java.lang.String TAG_JPEG_INTERCHANGE_FORMAT
+    public static final java.lang.String TAG_JPEG_INTERCHANGE_FORMAT_LENGTH
+    public static final java.lang.String TAG_TRANSFER_FUNCTION
+    public static final java.lang.String TAG_WHITE_POINT
+    public static final java.lang.String TAG_PRIMARY_CHROMATICITIES
+    public static final java.lang.String TAG_Y_CB_CR_COEFFICIENTS
+    public static final java.lang.String TAG_REFERENCE_BLACK_WHITE
+    public static final java.lang.String TAG_DATETIME
+    public static final java.lang.String TAG_IMAGE_DESCRIPTION
+    public static final java.lang.String TAG_MAKE
+    public static final java.lang.String TAG_MODEL
+    public static final java.lang.String TAG_SOFTWARE
+    public static final java.lang.String TAG_ARTIST
+    public static final java.lang.String TAG_COPYRIGHT
+    public static final java.lang.String TAG_EXIF_VERSION
+    public static final java.lang.String TAG_FLASHPIX_VERSION
+    public static final java.lang.String TAG_COLOR_SPACE
+    public static final java.lang.String TAG_GAMMA
+    public static final java.lang.String TAG_PIXEL_X_DIMENSION
+    public static final java.lang.String TAG_PIXEL_Y_DIMENSION
+    public static final java.lang.String TAG_COMPONENTS_CONFIGURATION
+    public static final java.lang.String TAG_COMPRESSED_BITS_PER_PIXEL
+    public static final java.lang.String TAG_MAKER_NOTE
+    public static final java.lang.String TAG_USER_COMMENT
+    public static final java.lang.String TAG_RELATED_SOUND_FILE
+    public static final java.lang.String TAG_DATETIME_ORIGINAL
+    public static final java.lang.String TAG_DATETIME_DIGITIZED
+    public static final java.lang.String TAG_SUBSEC_TIME
+    public static final java.lang.String TAG_SUBSEC_TIME_ORIGINAL
+    public static final java.lang.String TAG_SUBSEC_TIME_DIGITIZED
+    public static final java.lang.String TAG_EXPOSURE_TIME
+    public static final java.lang.String TAG_F_NUMBER
+    public static final java.lang.String TAG_EXPOSURE_PROGRAM
+    public static final java.lang.String TAG_SPECTRAL_SENSITIVITY
+    public static final java.lang.String TAG_ISO_SPEED_RATINGS
+    public static final java.lang.String TAG_PHOTOGRAPHIC_SENSITIVITY
+    public static final java.lang.String TAG_OECF
+    public static final java.lang.String TAG_SENSITIVITY_TYPE
+    public static final java.lang.String TAG_STANDARD_OUTPUT_SENSITIVITY
+    public static final java.lang.String TAG_RECOMMENDED_EXPOSURE_INDEX
+    public static final java.lang.String TAG_ISO_SPEED
+    public static final java.lang.String TAG_ISO_SPEED_LATITUDE_YYY
+    public static final java.lang.String TAG_ISO_SPEED_LATITUDE_ZZZ
+    public static final java.lang.String TAG_SHUTTER_SPEED_VALUE
+    public static final java.lang.String TAG_APERTURE_VALUE
+    public static final java.lang.String TAG_BRIGHTNESS_VALUE
+    public static final java.lang.String TAG_EXPOSURE_BIAS_VALUE
+    public static final java.lang.String TAG_MAX_APERTURE_VALUE
+    public static final java.lang.String TAG_SUBJECT_DISTANCE
+    public static final java.lang.String TAG_METERING_MODE
+    public static final java.lang.String TAG_LIGHT_SOURCE
+    public static final java.lang.String TAG_FLASH
+    public static final java.lang.String TAG_SUBJECT_AREA
+    public static final java.lang.String TAG_FOCAL_LENGTH
+    public static final java.lang.String TAG_FLASH_ENERGY
+    public static final java.lang.String TAG_SPATIAL_FREQUENCY_RESPONSE
+    public static final java.lang.String TAG_FOCAL_PLANE_X_RESOLUTION
+    public static final java.lang.String TAG_FOCAL_PLANE_Y_RESOLUTION
+    public static final java.lang.String TAG_FOCAL_PLANE_RESOLUTION_UNIT
+    public static final java.lang.String TAG_SUBJECT_LOCATION
+    public static final java.lang.String TAG_EXPOSURE_INDEX
+    public static final java.lang.String TAG_SENSING_METHOD
+    public static final java.lang.String TAG_FILE_SOURCE
+    public static final java.lang.String TAG_SCENE_TYPE
+    public static final java.lang.String TAG_CFA_PATTERN
+    public static final java.lang.String TAG_CUSTOM_RENDERED
+    public static final java.lang.String TAG_EXPOSURE_MODE
+    public static final java.lang.String TAG_WHITE_BALANCE
+    public static final java.lang.String TAG_DIGITAL_ZOOM_RATIO
+    public static final java.lang.String TAG_FOCAL_LENGTH_IN_35MM_FILM
+    public static final java.lang.String TAG_SCENE_CAPTURE_TYPE
+    public static final java.lang.String TAG_GAIN_CONTROL
+    public static final java.lang.String TAG_CONTRAST
+    public static final java.lang.String TAG_SATURATION
+    public static final java.lang.String TAG_SHARPNESS
+    public static final java.lang.String TAG_DEVICE_SETTING_DESCRIPTION
+    public static final java.lang.String TAG_SUBJECT_DISTANCE_RANGE
+    public static final java.lang.String TAG_IMAGE_UNIQUE_ID
+    public static final java.lang.String TAG_CAMARA_OWNER_NAME
+    public static final java.lang.String TAG_CAMERA_OWNER_NAME
+    public static final java.lang.String TAG_BODY_SERIAL_NUMBER
+    public static final java.lang.String TAG_LENS_SPECIFICATION
+    public static final java.lang.String TAG_LENS_MAKE
+    public static final java.lang.String TAG_LENS_MODEL
+    public static final java.lang.String TAG_LENS_SERIAL_NUMBER
+    public static final java.lang.String TAG_GPS_VERSION_ID
+    public static final java.lang.String TAG_GPS_LATITUDE_REF
+    public static final java.lang.String TAG_GPS_LATITUDE
+    public static final java.lang.String TAG_GPS_LONGITUDE_REF
+    public static final java.lang.String TAG_GPS_LONGITUDE
+    public static final java.lang.String TAG_GPS_ALTITUDE_REF
+    public static final java.lang.String TAG_GPS_ALTITUDE
+    public static final java.lang.String TAG_GPS_TIMESTAMP
+    public static final java.lang.String TAG_GPS_SATELLITES
+    public static final java.lang.String TAG_GPS_STATUS
+    public static final java.lang.String TAG_GPS_MEASURE_MODE
+    public static final java.lang.String TAG_GPS_DOP
+    public static final java.lang.String TAG_GPS_SPEED_REF
+    public static final java.lang.String TAG_GPS_SPEED
+    public static final java.lang.String TAG_GPS_TRACK_REF
+    public static final java.lang.String TAG_GPS_TRACK
+    public static final java.lang.String TAG_GPS_IMG_DIRECTION_REF
+    public static final java.lang.String TAG_GPS_IMG_DIRECTION
+    public static final java.lang.String TAG_GPS_MAP_DATUM
+    public static final java.lang.String TAG_GPS_DEST_LATITUDE_REF
+    public static final java.lang.String TAG_GPS_DEST_LATITUDE
+    public static final java.lang.String TAG_GPS_DEST_LONGITUDE_REF
+    public static final java.lang.String TAG_GPS_DEST_LONGITUDE
+    public static final java.lang.String TAG_GPS_DEST_BEARING_REF
+    public static final java.lang.String TAG_GPS_DEST_BEARING
+    public static final java.lang.String TAG_GPS_DEST_DISTANCE_REF
+    public static final java.lang.String TAG_GPS_DEST_DISTANCE
+    public static final java.lang.String TAG_GPS_PROCESSING_METHOD
+    public static final java.lang.String TAG_GPS_AREA_INFORMATION
+    public static final java.lang.String TAG_GPS_DATESTAMP
+    public static final java.lang.String TAG_GPS_DIFFERENTIAL
+    public static final java.lang.String TAG_GPS_H_POSITIONING_ERROR
+    public static final java.lang.String TAG_INTEROPERABILITY_INDEX
+    public static final java.lang.String TAG_THUMBNAIL_IMAGE_LENGTH
+    public static final java.lang.String TAG_THUMBNAIL_IMAGE_WIDTH
+    public static final java.lang.String TAG_THUMBNAIL_ORIENTATION
+    public static final java.lang.String TAG_DNG_VERSION
+    public static final java.lang.String TAG_DEFAULT_CROP_SIZE
+    public static final java.lang.String TAG_ORF_THUMBNAIL_IMAGE
+    public static final java.lang.String TAG_ORF_PREVIEW_IMAGE_START
+    public static final java.lang.String TAG_ORF_PREVIEW_IMAGE_LENGTH
+    public static final java.lang.String TAG_ORF_ASPECT_FRAME
+    public static final java.lang.String TAG_RW2_SENSOR_BOTTOM_BORDER
+    public static final java.lang.String TAG_RW2_SENSOR_LEFT_BORDER
+    public static final java.lang.String TAG_RW2_SENSOR_RIGHT_BORDER
+    public static final java.lang.String TAG_RW2_SENSOR_TOP_BORDER
+    public static final java.lang.String TAG_RW2_ISO
+    public static final java.lang.String TAG_RW2_JPG_FROM_RAW
+    public static final java.lang.String TAG_XMP
+    public static final java.lang.String TAG_NEW_SUBFILE_TYPE
+    public static final java.lang.String TAG_SUBFILE_TYPE
+    private static final java.lang.String TAG_EXIF_IFD_POINTER
+    private static final java.lang.String TAG_GPS_INFO_IFD_POINTER
+    private static final java.lang.String TAG_INTEROPERABILITY_IFD_POINTER
+    private static final java.lang.String TAG_SUB_IFD_POINTER
+    private static final java.lang.String TAG_ORF_CAMERA_SETTINGS_IFD_POINTER
+    private static final java.lang.String TAG_ORF_IMAGE_PROCESSING_IFD_POINTER
+    private static final java.lang.String TAG_HAS_THUMBNAIL
+    private static final java.lang.String TAG_THUMBNAIL_OFFSET
+    private static final java.lang.String TAG_THUMBNAIL_LENGTH
+    private static final java.lang.String TAG_THUMBNAIL_DATA
+    private static final int MAX_THUMBNAIL_SIZE
+    public static final int ORIENTATION_UNDEFINED
+    public static final int ORIENTATION_NORMAL
+    public static final int ORIENTATION_FLIP_HORIZONTAL
+    public static final int ORIENTATION_ROTATE_180
+    public static final int ORIENTATION_FLIP_VERTICAL
+    public static final int ORIENTATION_TRANSPOSE
+    public static final int ORIENTATION_ROTATE_90
+    public static final int ORIENTATION_TRANSVERSE
+    public static final int ORIENTATION_ROTATE_270
+    public static final short FORMAT_CHUNKY
+    public static final short FORMAT_PLANAR
+    public static final short Y_CB_CR_POSITIONING_CENTERED
+    public static final short Y_CB_CR_POSITIONING_CO_SITED
+    public static final short RESOLUTION_UNIT_INCHES
+    public static final short RESOLUTION_UNIT_CENTIMETERS
+    public static final int COLOR_SPACE_S_RGB
+    public static final int COLOR_SPACE_UNCALIBRATED
+    public static final short EXPOSURE_PROGRAM_NOT_DEFINED
+    public static final short EXPOSURE_PROGRAM_MANUAL
+    public static final short EXPOSURE_PROGRAM_NORMAL
+    public static final short EXPOSURE_PROGRAM_APERTURE_PRIORITY
+    public static final short EXPOSURE_PROGRAM_SHUTTER_PRIORITY
+    public static final short EXPOSURE_PROGRAM_CREATIVE
+    public static final short EXPOSURE_PROGRAM_ACTION
+    public static final short EXPOSURE_PROGRAM_PORTRAIT_MODE
+    public static final short EXPOSURE_PROGRAM_LANDSCAPE_MODE
+    public static final short SENSITIVITY_TYPE_UNKNOWN
+    public static final short SENSITIVITY_TYPE_SOS
+    public static final short SENSITIVITY_TYPE_REI
+    public static final short SENSITIVITY_TYPE_ISO_SPEED
+    public static final short SENSITIVITY_TYPE_SOS_AND_REI
+    public static final short SENSITIVITY_TYPE_SOS_AND_ISO
+    public static final short SENSITIVITY_TYPE_REI_AND_ISO
+    public static final short SENSITIVITY_TYPE_SOS_AND_REI_AND_ISO
+    public static final short METERING_MODE_UNKNOWN
+    public static final short METERING_MODE_AVERAGE
+    public static final short METERING_MODE_CENTER_WEIGHT_AVERAGE
+    public static final short METERING_MODE_SPOT
+    public static final short METERING_MODE_MULTI_SPOT
+    public static final short METERING_MODE_PATTERN
+    public static final short METERING_MODE_PARTIAL
+    public static final short METERING_MODE_OTHER
+    public static final short LIGHT_SOURCE_UNKNOWN
+    public static final short LIGHT_SOURCE_DAYLIGHT
+    public static final short LIGHT_SOURCE_FLUORESCENT
+    public static final short LIGHT_SOURCE_TUNGSTEN
+    public static final short LIGHT_SOURCE_FLASH
+    public static final short LIGHT_SOURCE_FINE_WEATHER
+    public static final short LIGHT_SOURCE_CLOUDY_WEATHER
+    public static final short LIGHT_SOURCE_SHADE
+    public static final short LIGHT_SOURCE_DAYLIGHT_FLUORESCENT
+    public static final short LIGHT_SOURCE_DAY_WHITE_FLUORESCENT
+    public static final short LIGHT_SOURCE_COOL_WHITE_FLUORESCENT
+    public static final short LIGHT_SOURCE_WHITE_FLUORESCENT
+    public static final short LIGHT_SOURCE_WARM_WHITE_FLUORESCENT
+    public static final short LIGHT_SOURCE_STANDARD_LIGHT_A
+    public static final short LIGHT_SOURCE_STANDARD_LIGHT_B
+    public static final short LIGHT_SOURCE_STANDARD_LIGHT_C
+    public static final short LIGHT_SOURCE_D55
+    public static final short LIGHT_SOURCE_D65
+    public static final short LIGHT_SOURCE_D75
+    public static final short LIGHT_SOURCE_D50
+    public static final short LIGHT_SOURCE_ISO_STUDIO_TUNGSTEN
+    public static final short LIGHT_SOURCE_OTHER
+    public static final short FLAG_FLASH_FIRED
+    public static final short FLAG_FLASH_RETURN_LIGHT_NOT_DETECTED
+    public static final short FLAG_FLASH_RETURN_LIGHT_DETECTED
+    public static final short FLAG_FLASH_MODE_COMPULSORY_FIRING
+    public static final short FLAG_FLASH_MODE_COMPULSORY_SUPPRESSION
+    public static final short FLAG_FLASH_MODE_AUTO
+    public static final short FLAG_FLASH_NO_FLASH_FUNCTION
+    public static final short FLAG_FLASH_RED_EYE_SUPPORTED
+    public static final short SENSOR_TYPE_NOT_DEFINED
+    public static final short SENSOR_TYPE_ONE_CHIP
+    public static final short SENSOR_TYPE_TWO_CHIP
+    public static final short SENSOR_TYPE_THREE_CHIP
+    public static final short SENSOR_TYPE_COLOR_SEQUENTIAL
+    public static final short SENSOR_TYPE_TRILINEAR
+    public static final short SENSOR_TYPE_COLOR_SEQUENTIAL_LINEAR
+    public static final short FILE_SOURCE_OTHER
+    public static final short FILE_SOURCE_TRANSPARENT_SCANNER
+    public static final short FILE_SOURCE_REFLEX_SCANNER
+    public static final short FILE_SOURCE_DSC
+    public static final short SCENE_TYPE_DIRECTLY_PHOTOGRAPHED
+    public static final short RENDERED_PROCESS_NORMAL
+    public static final short RENDERED_PROCESS_CUSTOM
+    public static final short EXPOSURE_MODE_AUTO
+    public static final short EXPOSURE_MODE_MANUAL
+    public static final short EXPOSURE_MODE_AUTO_BRACKET
+    public static final int WHITEBALANCE_AUTO
+    public static final int WHITEBALANCE_MANUAL
+    public static final short WHITE_BALANCE_AUTO
+    public static final short WHITE_BALANCE_MANUAL
+    public static final short SCENE_CAPTURE_TYPE_STANDARD
+    public static final short SCENE_CAPTURE_TYPE_LANDSCAPE
+    public static final short SCENE_CAPTURE_TYPE_PORTRAIT
+    public static final short SCENE_CAPTURE_TYPE_NIGHT
+    public static final short GAIN_CONTROL_NONE
+    public static final short GAIN_CONTROL_LOW_GAIN_UP
+    public static final short GAIN_CONTROL_HIGH_GAIN_UP
+    public static final short GAIN_CONTROL_LOW_GAIN_DOWN
+    public static final short GAIN_CONTROL_HIGH_GAIN_DOWN
+    public static final short CONTRAST_NORMAL
+    public static final short CONTRAST_SOFT
+    public static final short CONTRAST_HARD
+    public static final short SATURATION_NORMAL
+    public static final short SATURATION_LOW
+    public static final short SATURATION_HIGH
+    public static final short SHARPNESS_NORMAL
+    public static final short SHARPNESS_SOFT
+    public static final short SHARPNESS_HARD
+    public static final short SUBJECT_DISTANCE_RANGE_UNKNOWN
+    public static final short SUBJECT_DISTANCE_RANGE_MACRO
+    public static final short SUBJECT_DISTANCE_RANGE_CLOSE_VIEW
+    public static final short SUBJECT_DISTANCE_RANGE_DISTANT_VIEW
+    public static final java.lang.String LATITUDE_NORTH
+    public static final java.lang.String LATITUDE_SOUTH
+    public static final java.lang.String LONGITUDE_EAST
+    public static final java.lang.String LONGITUDE_WEST
+    public static final short ALTITUDE_ABOVE_SEA_LEVEL
+    public static final short ALTITUDE_BELOW_SEA_LEVEL
+    public static final java.lang.String GPS_MEASUREMENT_IN_PROGRESS
+    public static final java.lang.String GPS_MEASUREMENT_INTERRUPTED
+    public static final java.lang.String GPS_MEASUREMENT_2D
+    public static final java.lang.String GPS_MEASUREMENT_3D
+    public static final java.lang.String GPS_SPEED_KILOMETERS_PER_HOUR
+    public static final java.lang.String GPS_SPEED_MILES_PER_HOUR
+    public static final java.lang.String GPS_SPEED_KNOTS
+    public static final java.lang.String GPS_DIRECTION_TRUE
+    public static final java.lang.String GPS_DIRECTION_MAGNETIC
+    public static final java.lang.String GPS_DISTANCE_KILOMETERS
+    public static final java.lang.String GPS_DISTANCE_MILES
+    public static final java.lang.String GPS_DISTANCE_NAUTICAL_MILES
+    public static final short GPS_MEASUREMENT_NO_DIFFERENTIAL
+    public static final short GPS_MEASUREMENT_DIFFERENTIAL_CORRECTED
+    public static final int DATA_UNCOMPRESSED
+    public static final int DATA_HUFFMAN_COMPRESSED
+    public static final int DATA_JPEG
+    public static final int DATA_JPEG_COMPRESSED
+    public static final int DATA_DEFLATE_ZIP
+    public static final int DATA_PACK_BITS_COMPRESSED
+    public static final int DATA_LOSSY_JPEG
+    public static final int PHOTOMETRIC_INTERPRETATION_WHITE_IS_ZERO
+    public static final int PHOTOMETRIC_INTERPRETATION_BLACK_IS_ZERO
+    public static final int PHOTOMETRIC_INTERPRETATION_RGB
+    public static final int PHOTOMETRIC_INTERPRETATION_YCBCR
+    public static final int ORIGINAL_RESOLUTION_IMAGE
+    public static final int REDUCED_RESOLUTION_IMAGE
+    private static final int SIGNATURE_CHECK_SIZE
+    private static final java.lang.String RAF_SIGNATURE
+    private static final int RAF_OFFSET_TO_JPEG_IMAGE_OFFSET
+    private static final int RAF_INFO_SIZE
+    private static final int RAF_JPEG_LENGTH_VALUE_SIZE
+    private static final short ORF_SIGNATURE_1
+    private static final short ORF_SIGNATURE_2
+    private static final int ORF_MAKER_NOTE_HEADER_1_SIZE
+    private static final int ORF_MAKER_NOTE_HEADER_2_SIZE
+    private static final short RW2_SIGNATURE
+    private static final java.lang.String PEF_SIGNATURE
+    private static final int PEF_MAKER_NOTE_SKIP_SIZE
+    static final short BYTE_ALIGN_II
+    static final short BYTE_ALIGN_MM
+    static final byte START_CODE
+    private static final int IFD_OFFSET
+    private static final int IFD_FORMAT_BYTE
+    private static final int IFD_FORMAT_STRING
+    private static final int IFD_FORMAT_USHORT
+    private static final int IFD_FORMAT_ULONG
+    private static final int IFD_FORMAT_URATIONAL
+    private static final int IFD_FORMAT_SBYTE
+    private static final int IFD_FORMAT_UNDEFINED
+    private static final int IFD_FORMAT_SSHORT
+    private static final int IFD_FORMAT_SLONG
+    private static final int IFD_FORMAT_SRATIONAL
+    private static final int IFD_FORMAT_SINGLE
+    private static final int IFD_FORMAT_DOUBLE
+    private static final int IFD_FORMAT_IFD
+    static final int IFD_TYPE_PRIMARY
+    private static final int IFD_TYPE_EXIF
+    private static final int IFD_TYPE_GPS
+    private static final int IFD_TYPE_INTEROPERABILITY
+    static final int IFD_TYPE_THUMBNAIL
+    static final int IFD_TYPE_PREVIEW
+    private static final int IFD_TYPE_ORF_MAKER_NOTE
+    private static final int IFD_TYPE_ORF_CAMERA_SETTINGS
+    private static final int IFD_TYPE_ORF_IMAGE_PROCESSING
+    private static final int IFD_TYPE_PEF
+    static final byte MARKER
+    private static final byte MARKER_SOI
+    private static final byte MARKER_SOF0
+    private static final byte MARKER_SOF1
+    private static final byte MARKER_SOF2
+    private static final byte MARKER_SOF3
+    private static final byte MARKER_SOF5
+    private static final byte MARKER_SOF6
+    private static final byte MARKER_SOF7
+    private static final byte MARKER_SOF9
+    private static final byte MARKER_SOF10
+    private static final byte MARKER_SOF11
+    private static final byte MARKER_SOF13
+    private static final byte MARKER_SOF14
+    private static final byte MARKER_SOF15
+    private static final byte MARKER_SOS
+    static final byte MARKER_APP1
+    private static final byte MARKER_COM
+    static final byte MARKER_EOI
+    private static final int IMAGE_TYPE_UNKNOWN
+    private static final int IMAGE_TYPE_ARW
+    private static final int IMAGE_TYPE_CR2
+    private static final int IMAGE_TYPE_DNG
+    private static final int IMAGE_TYPE_JPEG
+    private static final int IMAGE_TYPE_NEF
+    private static final int IMAGE_TYPE_NRW
+    private static final int IMAGE_TYPE_ORF
+    private static final int IMAGE_TYPE_PEF
+    private static final int IMAGE_TYPE_RAF
+    private static final int IMAGE_TYPE_RW2
+    private static final int IMAGE_TYPE_SRW
+    private static final int IMAGE_TYPE_HEIF
 de.hdodenhof.circleimageview.BuildConfig
 com.google.android.material.resources.MaterialResources
     private void <init>()
@@ -16295,12 +16783,15 @@ io.reactivex.internal.operators.completable.CompletableTimeout$DisposeTask
 io.reactivex.internal.operators.observable.ObservableConcatMap
 com.yalantis.ucrop.UCrop
     public static android.net.Uri getOutput(android.content.Intent)
+    public static int getOutputImageWidth(android.content.Intent)
+    public static int getOutputImageHeight(android.content.Intent)
     public static float getOutputCropAspectRatio(android.content.Intent)
     public com.yalantis.ucrop.UCrop useSourceImageAspectRatio()
-    public void start(android.content.Context,android.app.Fragment)
-    public void start(android.content.Context,android.app.Fragment,int)
+    public com.yalantis.ucrop.UCropFragment getFragment()
+    public com.yalantis.ucrop.UCropFragment getFragment(android.os.Bundle)
     public static final int REQUEST_CROP
     public static final int RESULT_ERROR
+    public static final int MIN_SIZE
     private static final java.lang.String EXTRA_PREFIX
     public static final java.lang.String EXTRA_INPUT_URI
     public static final java.lang.String EXTRA_OUTPUT_URI
@@ -16316,6 +16807,7 @@ com.yalantis.ucrop.UCrop
     public static final java.lang.String EXTRA_MAX_SIZE_Y
 io.reactivex.internal.schedulers.SchedulerMultiWorkerSupport
     public abstract void createWorkers(int,io.reactivex.internal.schedulers.SchedulerMultiWorkerSupport$WorkerCallback)
+androidx.exifinterface.R
 razerdp.util.animation.RotationConfig$1
 io.reactivex.subjects.ReplaySubject$Node
 io.reactivex.internal.operators.observable.ObservableSampleTimed$SampleTimedEmitLast
@@ -16507,6 +16999,7 @@ androidx.appcompat.app.ActionBar
     public static final int DISPLAY_SHOW_TITLE
     public static final int DISPLAY_SHOW_CUSTOM
 io.reactivex.internal.operators.parallel.ParallelCollect$ParallelCollectSubscriber
+com.yalantis.ucrop.UCropFragment$1
 io.reactivex.internal.operators.single.SingleInternalHelper$ToObservable
 androidx.recyclerview.widget.RecyclerView
     public boolean hasFixedSize()
@@ -16585,7 +17078,6 @@ com.gongwu.wherecollect.contract.IAddShareContract$IAddSharePresenter
     public abstract void getShareUserCodeInfo(java.lang.String,java.lang.String)
     public abstract void setShareLocation(java.lang.String,java.lang.String,java.lang.String,java.util.List,com.gongwu.wherecollect.net.entity.response.SharedPersonBean)
     public abstract void getShareRoomList(java.lang.String,java.lang.String,java.lang.String)
-androidx.swiperefreshlayout.widget.SwipeRefreshLayout$OnRefreshListener
 io.reactivex.internal.operators.observable.ObservableWindowBoundarySupplier$WindowBoundaryInnerObserver
 okio.ByteString$Companion
     public static synthetic bridge okio.ByteString encodeString$default(okio.ByteString$Companion,java.lang.String,java.nio.charset.Charset,int,java.lang.Object)
@@ -16718,19 +17210,12 @@ kotlin.internal.PureReifiable
 com.google.zxing.oned.Code39Reader
     public void <init>(boolean,boolean)
     static final java.lang.String ALPHABET_STRING
-androidx.transition.Transition$TransitionListener
-    public abstract void onTransitionCancel(androidx.transition.Transition)
 com.gongwu.wherecollect.view.ChangeHeaderImgDialog
     public boolean isClip()
     public void setClip(boolean)
     public void setAspectXY(int,int)
     public void onSave(android.os.Bundle)
     android.graphics.Bitmap bm
-androidx.transition.ViewOverlayApi14
-    private void <init>()
-    android.view.ViewGroup getOverlayView()
-    public void clear()
-    boolean isEmpty()
 androidx.fragment.app.FragmentManagerViewModel
     void restoreFromSnapshot(androidx.fragment.app.FragmentManagerNonConfig)
     androidx.fragment.app.FragmentManagerNonConfig getSnapshot()
@@ -17275,12 +17760,16 @@ com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$3
     final synthetic com.gongwu.wherecollect.view.PopupEditBox_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.SelectSortModel$3
     final synthetic com.gongwu.wherecollect.contract.model.SelectSortModel this$0
+androidx.transition.ViewUtilsApi19
+    static void <clinit>()
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding this$0
 com.zsitech.oncon.barcode.camera.CameraManager
     static void <clinit>()
 anetwork.channel.entity.d
     final synthetic anetwork.channel.entity.c d
+androidx.transition.ViewGroupUtils
+    static void <clinit>()
 com.alipay.security.mobile.module.d.d
     static void <clinit>()
 com.gongwu.wherecollect.contract.model.BuyVIPModel$1
@@ -17566,6 +18055,8 @@ com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$2
     final synthetic com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding this$0
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$2
     final synthetic com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding this$0
+com.gongwu.wherecollect.fragment.FamilyRoomFragment$3
+    final synthetic com.gongwu.wherecollect.fragment.FamilyRoomFragment this$0
 com.gongwu.wherecollect.contract.model.EditRemindModel$3
     final synthetic com.gongwu.wherecollect.contract.model.EditRemindModel this$0
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$2
@@ -17616,6 +18107,7 @@ okio.Buffer
     public static final okio.Buffer$Companion Companion
 com.gongwu.wherecollect.activity.CameraMainActivity
     private final int maxImags
+    private java.io.File mImgFile
 okhttp3.ConnectionSpec
     public static final okhttp3.ConnectionSpec RESTRICTED_TLS
     public static final okhttp3.ConnectionSpec COMPATIBLE_TLS
@@ -17686,8 +18178,6 @@ com.gongwu.wherecollect.contract.model.AddGoodsModel$6
     final synthetic com.gongwu.wherecollect.contract.model.AddGoodsModel this$0
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.PersonActivity_ViewBinding this$0
-com.gongwu.wherecollect.fragment.FamilyRoomFragment$2
-    final synthetic com.gongwu.wherecollect.fragment.FamilyRoomFragment this$0
 com.gongwu.wherecollect.contract.model.PersonModel$3
     final synthetic com.gongwu.wherecollect.contract.model.PersonModel this$0
 retrofit2.Utils
@@ -18006,8 +18496,6 @@ okhttp3.internal.http.RetryAndFollowUpInterceptor
     public static final okhttp3.internal.http.RetryAndFollowUpInterceptor$Companion Companion
 com.gongwu.wherecollect.activity.FurnitureLookActivity$5
     final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity this$0
-androidx.transition.Visibility$1
-    final synthetic androidx.transition.Visibility this$0
 com.alipay.sdk.cons.a
     static void <clinit>()
 retrofit2.ParameterHandler$HeaderMap
@@ -18051,6 +18539,8 @@ com.gongwu.wherecollect.view.furniture.ChildView
     android.content.Context context
 com.gongwu.wherecollect.contract.model.LoginModel$2
     final synthetic com.gongwu.wherecollect.contract.model.LoginModel this$0
+androidx.exifinterface.media.ExifInterface$ExifAttribute
+    public final long bytesOffset
 com.gongwu.wherecollect.activity.SplashActivity$4
     final synthetic com.gongwu.wherecollect.activity.SplashActivity this$0
 com.gongwu.wherecollect.contract.model.LayerTemplateModel$2
@@ -18229,6 +18719,8 @@ com.gongwu.wherecollect.view.ObjectInfoLookView
     private boolean locationIsShow
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$2
     final synthetic com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding this$0
+androidx.transition.ViewUtilsApi23
+    static void <clinit>()
 com.alipay.sdk.app.PayTask$a
     final synthetic com.alipay.sdk.app.PayTask a
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$1
@@ -18291,6 +18783,8 @@ com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$7
     final synthetic com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$6
     final synthetic com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding this$0
+androidx.transition.ViewUtilsApi22
+    static void <clinit>()
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$4
     final synthetic com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding this$0
 io.reactivex.internal.functions.Functions
@@ -18470,6 +18964,8 @@ com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.activity.SearchActivity_ViewBinding this$0
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding this$0
+androidx.exifinterface.media.ExifInterface$1
+    final synthetic androidx.exifinterface.media.ExifInterface this$0
 com.gongwu.wherecollect.contract.model.EditMoreGoodsModel$3
     final synthetic com.gongwu.wherecollect.contract.model.EditMoreGoodsModel this$0
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$10
@@ -18644,6 +19140,9 @@ com.gongwu.wherecollect.permission.FloatWindowManager$1
     final synthetic com.gongwu.wherecollect.permission.FloatWindowManager this$0
 com.gongwu.wherecollect.contract.model.SelectSortChildNewModel$4
     final synthetic com.gongwu.wherecollect.contract.model.SelectSortChildNewModel this$0
+androidx.transition.ViewUtilsApi21
+    static void <clinit>()
+    private static boolean sTryHiddenSetAnimationMatrix
 com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel$8
     final synthetic com.gongwu.wherecollect.contract.model.AddGoodsPropertyModel this$0
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$5
@@ -18678,6 +19177,8 @@ razerdp.blur.BlurImageView$CacheAction
     long delay
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$6
     final synthetic com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding this$0
+com.yalantis.ucrop.view.widget.AspectRatioTextView
+    private final float MARGIN_MULTIPLIER
 com.gongwu.wherecollect.contract.model.RegisterModel$2
     final synthetic com.gongwu.wherecollect.contract.model.RegisterModel this$0
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$1
@@ -18839,6 +19340,12 @@ com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$1
     final synthetic com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.BuyVIPModel$5
     final synthetic com.gongwu.wherecollect.contract.model.BuyVIPModel this$0
+androidx.exifinterface.media.ExifInterface
+    private boolean mModified
+    private static final java.util.List ROTATION_ORDER
+    private static final java.util.List FLIPPED_ROTATION_ORDER
+    public static final int[] BITS_PER_SAMPLE_GREYSCALE_1
+    private static final java.util.regex.Pattern sNonZeroTimePattern
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$4
     final synthetic com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding this$0
 com.gongwu.wherecollect.ImageSelect.AlbumHelper

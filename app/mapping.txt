@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: 3fe2f4c
+# pg_map_id: 89fa74c
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -292,6 +292,7 @@ androidx.appcompat.app.AppCompatDelegate -> androidx.appcompat.app.e:
     void markStarted(androidx.appcompat.app.AppCompatDelegate) -> a
     void onConfigurationChanged(android.content.res.Configuration) -> a
     void onCreate(android.os.Bundle) -> a
+    void setCompatVectorFromResourcesEnabled(boolean) -> a
     void setContentView(android.view.View) -> a
     void setSupportActionBar(androidx.appcompat.widget.Toolbar) -> a
     void setTitle(java.lang.CharSequence) -> a
@@ -374,7 +375,6 @@ androidx.appcompat.app.AppCompatDelegateImpl -> androidx.appcompat.app.f:
     void throwFeatureRequestIfSubDecorInstalled() -> E
     androidx.appcompat.app.AppCompatActivity tryUnwrapContext() -> F
     void addContentView(android.view.View,android.view.ViewGroup$LayoutParams) -> a
-    boolean applyDayNight(boolean) -> a
     void attachBaseContext(android.content.Context) -> a
     void attachToWindow(android.view.Window) -> a
     void callOnPanelClosed(int,androidx.appcompat.app.AppCompatDelegateImpl$PanelFeatureState,android.view.Menu) -> a
@@ -400,6 +400,7 @@ androidx.appcompat.app.AppCompatDelegateImpl -> androidx.appcompat.app.f:
     void setTitle(java.lang.CharSequence) -> a
     boolean shouldInheritContext(android.view.ViewParent) -> a
     androidx.appcompat.view.ActionMode startSupportActionMode(androidx.appcompat.view.ActionMode$Callback) -> a
+    boolean applyDayNight(boolean) -> b
     void checkCloseActionMenu(androidx.appcompat.view.menu.MenuBuilder) -> b
     android.view.MenuInflater getMenuInflater() -> b
     boolean initializePanelDecor(androidx.appcompat.app.AppCompatDelegateImpl$PanelFeatureState) -> b
@@ -3025,6 +3026,7 @@ androidx.appcompat.widget.VectorEnabledTintResources -> androidx.appcompat.widge
     java.lang.ref.WeakReference mContextRef -> a
     boolean sCompatVectorFromResourcesEnabled -> b
     boolean isCompatVectorFromResourcesEnabled() -> a
+    void setCompatVectorFromResourcesEnabled(boolean) -> a
     android.graphics.drawable.Drawable superGetDrawable(int) -> a
     boolean shouldBeUsed() -> b
 androidx.appcompat.widget.ViewStubCompat -> androidx.appcompat.widget.ViewStubCompat:
@@ -5721,7 +5723,8 @@ androidx.core.widget.ListViewAutoScrollHelper -> androidx.core.widget.f:
     void scrollTargetBy(int,int) -> a
     boolean canTargetScrollVertically(int) -> b
 androidx.core.widget.ListViewCompat -> androidx.core.widget.g:
-    void scrollListBy(android.widget.ListView,int) -> a
+    boolean canScrollList(android.widget.ListView,int) -> a
+    void scrollListBy(android.widget.ListView,int) -> b
 androidx.core.widget.NestedScrollView -> androidx.core.widget.NestedScrollView:
     boolean mSmoothScrollingEnabled -> m
     int mTouchSlop -> n
@@ -5965,6 +5968,157 @@ androidx.customview.widget.ViewDragHelper$Callback -> androidx.customview.b.a$c:
     void onEdgeTouched(int,int) -> b
     boolean tryCaptureView(android.view.View,int) -> b
     void onViewDragStateChanged(int) -> c
+androidx.exifinterface.media.ExifInterface -> c.d.a.a:
+    int mThumbnailCompression -> l
+    androidx.exifinterface.media.ExifInterface$ExifTag JPEG_INTERCHANGE_FORMAT_TAG -> R
+    java.nio.ByteOrder mExifByteOrder -> g
+    java.util.regex.Pattern sGpsTimestampPattern -> a0
+    int mMimeType -> d
+    byte[] HEIF_BRAND_HEIC -> y
+    androidx.exifinterface.media.ExifInterface$ExifTag[] ORF_MAKER_NOTE_TAGS -> L
+    java.lang.String mFilename -> a
+    boolean mHasThumbnail -> h
+    androidx.exifinterface.media.ExifInterface$ExifTag[] IFD_GPS_TAGS -> H
+    int mRw2JpgFromRawOffset -> q
+    java.util.HashMap[] sExifTagMapsForWriting -> U
+    int mExifOffset -> m
+    androidx.exifinterface.media.ExifInterface$ExifTag[] EXIF_POINTER_TAGS -> Q
+    int mThumbnailOffset -> i
+    byte[] ORF_MAKER_NOTE_HEADER_1 -> z
+    byte[] IDENTIFIER_EXIF_APP1 -> Y
+    boolean mIsSupportedFile -> r
+    byte[] JPEG_SIGNATURE -> v
+    java.lang.String[] IFD_FORMAT_NAMES -> C
+    java.util.HashMap[] mAttributes -> e
+    int[] IFD_FORMAT_BYTES_PER_FORMAT -> D
+    android.content.res.AssetManager$AssetInputStream mAssetInputStream -> c
+    androidx.exifinterface.media.ExifInterface$ExifTag[] ORF_CAMERA_SETTINGS_TAGS -> M
+    java.nio.charset.Charset ASCII -> X
+    androidx.exifinterface.media.ExifInterface$ExifTag[] IFD_INTEROPERABILITY_TAGS -> I
+    int mOrfMakerNoteOffset -> n
+    androidx.exifinterface.media.ExifInterface$ExifTag[] ORF_IMAGE_PROCESSING_TAGS -> N
+    int mThumbnailLength -> j
+    java.util.HashMap[] sExifTagMapsForReading -> T
+    byte[] mThumbnailBytes -> k
+    int[] BITS_PER_SAMPLE_GREYSCALE_2 -> u
+    byte[] HEIF_TYPE_FTYP -> w
+    byte[] IDENTIFIER_XMP_APP1 -> Z
+    boolean DEBUG -> s
+    java.text.SimpleDateFormat sFormatter -> B
+    byte[] ORF_MAKER_NOTE_HEADER_2 -> A
+    java.util.HashMap sExifPointerTagMap -> W
+    java.io.FileDescriptor mSeekableFileDescriptor -> b
+    androidx.exifinterface.media.ExifInterface$ExifTag[] IFD_THUMBNAIL_TAGS -> J
+    androidx.exifinterface.media.ExifInterface$ExifTag[] IFD_TIFF_TAGS -> F
+    byte[] EXIF_ASCII_PREFIX -> E
+    int mOrfThumbnailOffset -> o
+    androidx.exifinterface.media.ExifInterface$ExifTag[][] EXIF_TAGS -> P
+    androidx.exifinterface.media.ExifInterface$ExifTag[] PEF_TAGS -> O
+    int[] BITS_PER_SAMPLE_RGB -> t
+    androidx.exifinterface.media.ExifInterface$ExifTag JPEG_INTERCHANGE_FORMAT_LENGTH_TAG -> S
+    byte[] HEIF_BRAND_MIF1 -> x
+    java.util.Set mAttributesOffsets -> f
+    java.util.HashSet sTagSetForCompatibility -> V
+    androidx.exifinterface.media.ExifInterface$ExifTag[] IFD_EXIF_TAGS -> G
+    int mOrfThumbnailLength -> p
+    androidx.exifinterface.media.ExifInterface$ExifTag TAG_RAF_IMAGE_SIZE -> K
+    void closeFileDescriptor(java.io.FileDescriptor) -> a
+    void closeQuietly(java.io.Closeable) -> a
+    long[] convertToLongArray(java.lang.Object) -> a
+    int copy(java.io.InputStream,java.io.OutputStream) -> a
+    java.lang.String getAttribute(java.lang.String) -> a
+    void getHeifAttributes(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> a
+    void getJpegAttributes(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,int,int) -> a
+    int getMimeType(java.io.BufferedInputStream) -> a
+    byte[] getThumbnail() -> a
+    void handleThumbnailFromJfif(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,java.util.HashMap) -> a
+    boolean isHeifFormat(byte[]) -> a
+    boolean isSupportedDataType(java.util.HashMap) -> a
+    void loadAttributes(java.io.InputStream) -> a
+    void parseTiffHeaders(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,int) -> a
+    void readExifSegment(byte[],int) -> a
+    void setAttribute(java.lang.String,java.lang.String) -> a
+    boolean startsWith(byte[],byte[]) -> a
+    void swapBasedOnImageSize(int,int) -> a
+    int writeExifSegment(androidx.exifinterface.media.ExifInterface$ByteOrderedDataOutputStream,int) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute getExifAttribute(java.lang.String) -> b
+    void getOrfAttributes(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> b
+    byte[] getThumbnailBytes() -> b
+    void handleThumbnailFromStrips(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,java.util.HashMap) -> b
+    boolean isJpegFormat(byte[]) -> b
+    boolean isSeekableFD(java.io.FileDescriptor) -> b
+    boolean isThumbnail(java.util.HashMap) -> b
+    void readImageFileDirectory(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,int) -> b
+    void saveJpegAttributes(java.io.InputStream,java.io.OutputStream) -> b
+    void validateImages(java.io.InputStream) -> b
+    void getRafAttributes(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> c
+    android.util.Pair guessDataFormat(java.lang.String) -> c
+    boolean isOrfFormat(byte[]) -> c
+    void retrieveJpegImageSize(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,int) -> c
+    void saveAttributes() -> c
+    void addDefaultValuesForCompatibility() -> d
+    void getRawAttributes(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> d
+    void initForFilename(java.lang.String) -> d
+    boolean isRafFormat(byte[]) -> d
+    void updateImageSizeValues(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream,int) -> d
+    void getRw2Attributes(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> e
+    boolean isRw2Format(byte[]) -> e
+    void printAttributes() -> e
+    void removeAttribute(java.lang.String) -> e
+    java.nio.ByteOrder readByteOrder(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> f
+    void setThumbnailData(androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream) -> g
+androidx.exifinterface.media.ExifInterface$1 -> c.d.a.a$a:
+    long mPosition -> a
+    androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream val$in -> b
+androidx.exifinterface.media.ExifInterface$ByteOrderedDataInputStream -> c.d.a.a$b:
+    java.io.DataInputStream mDataInputStream -> a
+    java.nio.ByteOrder LITTLE_ENDIAN -> e
+    int mPosition -> d
+    java.nio.ByteOrder BIG_ENDIAN -> f
+    int mLength -> c
+    java.nio.ByteOrder mByteOrder -> b
+    void setByteOrder(java.nio.ByteOrder) -> a
+    void seek(long) -> g
+    int getLength() -> h
+    int peek() -> i
+    long readUnsignedInt() -> j
+androidx.exifinterface.media.ExifInterface$ByteOrderedDataOutputStream -> c.d.a.a$c:
+    java.io.OutputStream mOutputStream -> a
+    java.nio.ByteOrder mByteOrder -> b
+    void setByteOrder(java.nio.ByteOrder) -> a
+    void writeShort(short) -> a
+    void writeUnsignedShort(int) -> a
+    void writeUnsignedInt(long) -> g
+androidx.exifinterface.media.ExifInterface$ExifAttribute -> c.d.a.a$d:
+    int numberOfComponents -> b
+    byte[] bytes -> c
+    int format -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createByte(java.lang.String) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createDouble(double[],java.nio.ByteOrder) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createSLong(int[],java.nio.ByteOrder) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createSRational(androidx.exifinterface.media.ExifInterface$Rational[],java.nio.ByteOrder) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createULong(long,java.nio.ByteOrder) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createULong(long[],java.nio.ByteOrder) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createURational(androidx.exifinterface.media.ExifInterface$Rational,java.nio.ByteOrder) -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createUShort(int,java.nio.ByteOrder) -> a
+    double getDoubleValue(java.nio.ByteOrder) -> a
+    int size() -> a
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createString(java.lang.String) -> b
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createURational(androidx.exifinterface.media.ExifInterface$Rational[],java.nio.ByteOrder) -> b
+    androidx.exifinterface.media.ExifInterface$ExifAttribute createUShort(int[],java.nio.ByteOrder) -> b
+    int getIntValue(java.nio.ByteOrder) -> b
+    java.lang.String getStringValue(java.nio.ByteOrder) -> c
+    java.lang.Object getValue(java.nio.ByteOrder) -> d
+androidx.exifinterface.media.ExifInterface$ExifTag -> c.d.a.a$e:
+    int secondaryFormat -> d
+    java.lang.String name -> b
+    int primaryFormat -> c
+    int number -> a
+    boolean isFormatCompatible(int) -> a
+androidx.exifinterface.media.ExifInterface$Rational -> c.d.a.a$f:
+    long denominator -> b
+    long numerator -> a
+    double calculate() -> a
 androidx.fragment.app.BackStackRecord -> androidx.fragment.app.a:
     androidx.fragment.app.FragmentManagerImpl mManager -> r
     int mIndex -> t
@@ -6639,16 +6793,16 @@ androidx.fragment.app.FragmentViewLifecycleOwner -> androidx.fragment.app.s:
     void initialize() -> a
     boolean isInitialized() -> b
 androidx.fragment.app.SuperNotCalledException -> androidx.fragment.app.t:
-androidx.interpolator.view.animation.FastOutLinearInInterpolator -> c.d.a.a.a:
+androidx.interpolator.view.animation.FastOutLinearInInterpolator -> c.e.a.a.a:
     float[] VALUES -> c
-androidx.interpolator.view.animation.FastOutSlowInInterpolator -> c.d.a.a.b:
+androidx.interpolator.view.animation.FastOutSlowInInterpolator -> c.e.a.a.b:
     float[] VALUES -> c
-androidx.interpolator.view.animation.LinearOutSlowInInterpolator -> c.d.a.a.c:
+androidx.interpolator.view.animation.LinearOutSlowInInterpolator -> c.e.a.a.c:
     float[] VALUES -> c
-androidx.interpolator.view.animation.LookupTableInterpolator -> c.d.a.a.d:
+androidx.interpolator.view.animation.LookupTableInterpolator -> c.e.a.a.d:
     float mStepSize -> b
     float[] mValues -> a
-androidx.legacy.widget.Space -> c.e.a.a:
+androidx.legacy.widget.Space -> c.f.a.a:
     int getDefaultSize2(int,int) -> a
 androidx.lifecycle.ClassesInfoCache -> androidx.lifecycle.a:
     java.util.Map mCallbackMap -> a
@@ -9007,6 +9161,180 @@ androidx.savedstate.SavedStateRegistryController -> androidx.savedstate.a:
     void performRestore(android.os.Bundle) -> a
     void performSave(android.os.Bundle) -> b
 androidx.savedstate.SavedStateRegistryOwner -> androidx.savedstate.b:
+androidx.swiperefreshlayout.widget.CircleImageView -> androidx.swiperefreshlayout.widget.a:
+    android.view.animation.Animation$AnimationListener mListener -> a
+    int mShadowRadius -> b
+    boolean elevationSupported() -> a
+    void setAnimationListener(android.view.animation.Animation$AnimationListener) -> a
+androidx.swiperefreshlayout.widget.CircleImageView$OvalShadow -> androidx.swiperefreshlayout.widget.a$a:
+    androidx.swiperefreshlayout.widget.CircleImageView this$0 -> c
+    android.graphics.Paint mShadowPaint -> b
+    android.graphics.RadialGradient mRadialGradient -> a
+    void updateRadialGradient(int) -> a
+androidx.swiperefreshlayout.widget.CircularProgressDrawable -> androidx.swiperefreshlayout.widget.b:
+    androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring mRing -> a
+    int[] COLORS -> i
+    android.animation.Animator mAnimator -> d
+    float mRotationCount -> e
+    boolean mFinishing -> f
+    android.view.animation.Interpolator LINEAR_INTERPOLATOR -> g
+    float mRotation -> b
+    android.view.animation.Interpolator MATERIAL_INTERPOLATOR -> h
+    android.content.res.Resources mResources -> c
+    void applyTransformation(float,androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring,boolean) -> a
+    int evaluateColorChange(float,int,int) -> a
+    void setArrowEnabled(boolean) -> a
+    void setArrowScale(float) -> a
+    void setColorSchemeColors(int[]) -> a
+    void setSizeParameters(float,float,float,float) -> a
+    void setStartEndTrim(float,float) -> a
+    void setStyle(int) -> a
+    void setupAnimators() -> a
+    void updateRingColor(float,androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring) -> a
+    void applyFinishTranslation(float,androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring) -> b
+    void setProgressRotation(float) -> b
+    void setStrokeWidth(float) -> c
+    void setRotation(float) -> d
+androidx.swiperefreshlayout.widget.CircularProgressDrawable$1 -> androidx.swiperefreshlayout.widget.b$a:
+    androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring val$ring -> a
+    androidx.swiperefreshlayout.widget.CircularProgressDrawable this$0 -> b
+androidx.swiperefreshlayout.widget.CircularProgressDrawable$2 -> androidx.swiperefreshlayout.widget.b$b:
+    androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring val$ring -> a
+    androidx.swiperefreshlayout.widget.CircularProgressDrawable this$0 -> b
+androidx.swiperefreshlayout.widget.CircularProgressDrawable$Ring -> androidx.swiperefreshlayout.widget.b$c:
+    float mStartingEndTrim -> l
+    float mStartingStartTrim -> k
+    boolean mShowArrow -> n
+    android.graphics.RectF mTempBounds -> a
+    float mStrokeWidth -> h
+    int mColorIndex -> j
+    float mRotation -> g
+    float mEndTrim -> f
+    float mStartTrim -> e
+    android.graphics.Path mArrow -> o
+    int[] mColors -> i
+    android.graphics.Paint mCirclePaint -> d
+    android.graphics.Paint mArrowPaint -> c
+    android.graphics.Paint mPaint -> b
+    int mAlpha -> t
+    float mRingCenterRadius -> q
+    int mCurrentColor -> u
+    float mArrowScale -> p
+    int mArrowWidth -> r
+    int mArrowHeight -> s
+    float mStartingRotation -> m
+    void draw(android.graphics.Canvas,android.graphics.Rect) -> a
+    void drawTriangle(android.graphics.Canvas,float,float,android.graphics.RectF) -> a
+    int getAlpha() -> a
+    void setAlpha(int) -> a
+    void setArrowDimensions(float,float) -> a
+    void setArrowScale(float) -> a
+    void setColorFilter(android.graphics.ColorFilter) -> a
+    void setColors(int[]) -> a
+    void setShowArrow(boolean) -> a
+    float getEndTrim() -> b
+    void setCenterRadius(float) -> b
+    void setColor(int) -> b
+    int getNextColor() -> c
+    void setColorIndex(int) -> c
+    void setEndTrim(float) -> c
+    int getNextColorIndex() -> d
+    void setRotation(float) -> d
+    float getStartTrim() -> e
+    void setStartTrim(float) -> e
+    int getStartingColor() -> f
+    void setStrokeWidth(float) -> f
+    float getStartingEndTrim() -> g
+    float getStartingRotation() -> h
+    float getStartingStartTrim() -> i
+    void goToNextColor() -> j
+    void resetOriginals() -> k
+    void storeOriginals() -> l
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout:
+    android.view.animation.Animation mAlphaMaxAnimation -> F
+    int mMediumAnimationDuration -> l
+    int[] LAYOUT_ATTRS -> R
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout$OnRefreshListener mListener -> b
+    boolean mUsingCustomStart -> J
+    boolean mNestedScrollInProgress -> k
+    float mTotalDragDistance -> e
+    androidx.core.view.NestedScrollingParentHelper mNestedScrollingParentHelper -> g
+    android.view.animation.Animation mScaleDownAnimation -> D
+    int mCircleDiameter -> I
+    android.view.animation.Animation mAnimateToStartPosition -> N
+    java.lang.String LOG_TAG -> Q
+    int mTouchSlop -> d
+    android.view.animation.DecelerateInterpolator mDecelerateInterpolator -> t
+    boolean mReturningToStart -> s
+    androidx.swiperefreshlayout.widget.CircleImageView mCircleView -> u
+    int mCustomSlingshotDistance -> A
+    android.view.animation.Animation$AnimationListener mRefreshListener -> L
+    int mOriginalOffsetTop -> y
+    android.view.View mTarget -> a
+    int mFrom -> w
+    int[] mParentOffsetInWindow -> j
+    float mInitialDownY -> o
+    int mActivePointerId -> q
+    android.view.animation.Animation mAlphaStartAnimation -> E
+    android.view.animation.Animation mScaleDownToStartAnimation -> G
+    int mCurrentTargetOffsetTop -> m
+    boolean mIsBeingDragged -> p
+    float mTotalUnconsumed -> f
+    android.view.animation.Animation mScaleAnimation -> C
+    android.view.animation.Animation mAnimateToCorrectPosition -> M
+    androidx.core.view.NestedScrollingChildHelper mNestedScrollingChildHelper -> h
+    boolean mScale -> r
+    int[] mParentScrollConsumed -> i
+    androidx.swiperefreshlayout.widget.CircularProgressDrawable mProgress -> B
+    float mStartingScale -> x
+    int mSpinnerOffsetEnd -> z
+    int mCircleViewIndex -> v
+    boolean mNotify -> H
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout$OnChildScrollUpCallback mChildScrollUpCallback -> K
+    boolean mRefreshing -> c
+    float mInitialMotionY -> n
+    void animateOffsetToCorrectPosition(int,android.view.animation.Animation$AnimationListener) -> a
+    boolean canChildScrollUp() -> a
+    boolean isAnimationRunning(android.view.animation.Animation) -> a
+    void moveToStart(float) -> a
+    void onSecondaryPointerUp(android.view.MotionEvent) -> a
+    void setRefreshing(boolean,boolean) -> a
+    android.view.animation.Animation startAlphaAnimation(int,int) -> a
+    void startScaleDownAnimation(android.view.animation.Animation$AnimationListener) -> a
+    void animateOffsetToStartPosition(int,android.view.animation.Animation$AnimationListener) -> b
+    void finishSpinner(float) -> b
+    boolean isRefreshing() -> b
+    void startScaleUpAnimation(android.view.animation.Animation$AnimationListener) -> b
+    void moveSpinner(float) -> c
+    void reset() -> c
+    void startScaleDownReturnToStartAnimation(int,android.view.animation.Animation$AnimationListener) -> c
+    void createProgressView() -> d
+    void startDragging(float) -> d
+    void ensureTarget() -> e
+    void startProgressAlphaMaxAnimation() -> f
+    void startProgressAlphaStartAnimation() -> g
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$1 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$a:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$2 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$b:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$3 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$c:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$4 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$d:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> c
+    int val$endingAlpha -> b
+    int val$startingAlpha -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$5 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$e:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$6 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$f:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$7 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$g:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$8 -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$h:
+    androidx.swiperefreshlayout.widget.SwipeRefreshLayout this$0 -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$OnChildScrollUpCallback -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$i:
+    boolean canChildScrollUp(androidx.swiperefreshlayout.widget.SwipeRefreshLayout,android.view.View) -> a
+androidx.swiperefreshlayout.widget.SwipeRefreshLayout$OnRefreshListener -> androidx.swiperefreshlayout.widget.SwipeRefreshLayout$j:
+    void onRefresh() -> a
 androidx.transition.AnimatorUtils -> androidx.transition.a:
     void addPauseListener(android.animation.Animator,android.animation.AnimatorListenerAdapter) -> a
     void pause(android.animation.Animator) -> a
@@ -9069,9 +9397,10 @@ androidx.transition.ChangeBounds$8 -> androidx.transition.c$i:
 androidx.transition.ChangeBounds$9 -> androidx.transition.c$j:
     android.view.ViewGroup val$parent -> b
     boolean mCanceled -> a
-    void onTransitionPause(androidx.transition.Transition) -> b
-    void onTransitionResume(androidx.transition.Transition) -> c
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionCancel(androidx.transition.Transition) -> b
+    void onTransitionPause(androidx.transition.Transition) -> c
+    void onTransitionResume(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.ChangeBounds$ViewBounds -> androidx.transition.c$k:
     int mTopLeftCalls -> f
     int mBottomRightCalls -> g
@@ -9091,7 +9420,7 @@ androidx.transition.Fade -> androidx.transition.d:
     void captureStartValues(androidx.transition.TransitionValues) -> c
 androidx.transition.Fade$1 -> androidx.transition.d$a:
     android.view.View val$view -> a
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.Fade$FadeAnimatorListener -> androidx.transition.d$b:
     android.view.View mView -> a
     boolean mLayerTypeChanged -> b
@@ -9118,9 +9447,10 @@ androidx.transition.FragmentTransitionSupport$2 -> androidx.transition.e$b:
     android.view.View val$fragmentView -> a
     java.util.ArrayList val$exitingViews -> b
     void onTransitionStart(androidx.transition.Transition) -> a
-    void onTransitionPause(androidx.transition.Transition) -> b
-    void onTransitionResume(androidx.transition.Transition) -> c
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionCancel(androidx.transition.Transition) -> b
+    void onTransitionPause(androidx.transition.Transition) -> c
+    void onTransitionResume(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.FragmentTransitionSupport$3 -> androidx.transition.e$c:
     androidx.transition.FragmentTransitionSupport this$0 -> g
     java.lang.Object val$sharedElementTransition -> e
@@ -9130,9 +9460,7 @@ androidx.transition.FragmentTransitionSupport$3 -> androidx.transition.e$c:
     java.util.ArrayList val$exitingViews -> d
     java.util.ArrayList val$enteringViews -> b
     void onTransitionStart(androidx.transition.Transition) -> a
-    void onTransitionPause(androidx.transition.Transition) -> b
-    void onTransitionResume(androidx.transition.Transition) -> c
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.FragmentTransitionSupport$4 -> androidx.transition.e$d:
 androidx.transition.ObjectAnimatorUtils -> androidx.transition.f:
     android.animation.ObjectAnimator ofPointF(java.lang.Object,android.util.Property,android.graphics.Path) -> a
@@ -9155,8 +9483,8 @@ androidx.transition.Scene -> androidx.transition.k:
     android.view.ViewGroup mSceneRoot -> a
     java.lang.Runnable mExitAction -> b
     void exit() -> a
-    androidx.transition.Scene getCurrentScene(android.view.View) -> a
-    void setCurrentScene(android.view.View,androidx.transition.Scene) -> a
+    androidx.transition.Scene getCurrentScene(android.view.ViewGroup) -> a
+    void setCurrentScene(android.view.ViewGroup,androidx.transition.Scene) -> a
 androidx.transition.Transition -> androidx.transition.l:
     androidx.transition.TransitionValuesMaps mStartValues -> p
     int[] mMatchOrder -> s
@@ -9261,13 +9589,15 @@ androidx.transition.Transition$AnimationInfo -> androidx.transition.l$d:
 androidx.transition.Transition$EpicenterCallback -> androidx.transition.l$e:
 androidx.transition.Transition$TransitionListener -> androidx.transition.l$f:
     void onTransitionStart(androidx.transition.Transition) -> a
-    void onTransitionPause(androidx.transition.Transition) -> b
-    void onTransitionResume(androidx.transition.Transition) -> c
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionCancel(androidx.transition.Transition) -> b
+    void onTransitionPause(androidx.transition.Transition) -> c
+    void onTransitionResume(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.TransitionListenerAdapter -> androidx.transition.m:
     void onTransitionStart(androidx.transition.Transition) -> a
-    void onTransitionPause(androidx.transition.Transition) -> b
-    void onTransitionResume(androidx.transition.Transition) -> c
+    void onTransitionCancel(androidx.transition.Transition) -> b
+    void onTransitionPause(androidx.transition.Transition) -> c
+    void onTransitionResume(androidx.transition.Transition) -> d
 androidx.transition.TransitionManager -> androidx.transition.n:
     java.lang.ThreadLocal sRunningTransitions -> b
     androidx.transition.Transition sDefaultTransition -> a
@@ -9283,7 +9613,7 @@ androidx.transition.TransitionManager$MultiListener -> androidx.transition.n$a:
 androidx.transition.TransitionManager$MultiListener$1 -> androidx.transition.n$a$a:
     androidx.collection.ArrayMap val$runningTransitions -> a
     androidx.transition.TransitionManager$MultiListener this$0 -> b
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.TransitionPropagation -> androidx.transition.o:
     void captureValues(androidx.transition.TransitionValues) -> a
     java.lang.String[] getPropagationProperties() -> a
@@ -9310,6 +9640,7 @@ androidx.transition.TransitionSet -> androidx.transition.p:
     void setPathMotion(androidx.transition.PathMotion) -> a
     void setPropagation(androidx.transition.TransitionPropagation) -> a
     java.lang.String toString(java.lang.String) -> a
+    void addTransitionInternal(androidx.transition.Transition) -> b
     void capturePropagationValues(androidx.transition.TransitionValues) -> b
     androidx.transition.Transition removeListener(androidx.transition.Transition$TransitionListener) -> b
     androidx.transition.TransitionSet removeListener(androidx.transition.Transition$TransitionListener) -> b
@@ -9326,11 +9657,11 @@ androidx.transition.TransitionSet -> androidx.transition.p:
     void setupStartEndListeners() -> q
 androidx.transition.TransitionSet$1 -> androidx.transition.p$a:
     androidx.transition.Transition val$nextTransition -> a
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.TransitionSet$TransitionSetListener -> androidx.transition.p$b:
     androidx.transition.TransitionSet mTransitionSet -> a
     void onTransitionStart(androidx.transition.Transition) -> a
-    void onTransitionEnd(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
 androidx.transition.TransitionUtils -> androidx.transition.q:
     boolean HAS_IS_ATTACHED_TO_WINDOW -> a
     boolean HAS_OVERLAY -> b
@@ -9361,8 +9692,10 @@ androidx.transition.ViewGroupOverlayImpl -> androidx.transition.v:
     void add(android.view.View) -> a
     void remove(android.view.View) -> b
 androidx.transition.ViewGroupUtils -> androidx.transition.w:
+    boolean sTryHiddenSuppressLayout -> a
     androidx.transition.ViewGroupOverlayImpl getOverlay(android.view.ViewGroup) -> a
-    void suppressLayout(android.view.ViewGroup,boolean) -> a
+    void hiddenSuppressLayout(android.view.ViewGroup,boolean) -> a
+    void suppressLayout(android.view.ViewGroup,boolean) -> b
 androidx.transition.ViewGroupUtilsApi14 -> androidx.transition.x:
     boolean sCancelMethodFetched -> e
     java.lang.reflect.Method sCancelMethod -> d
@@ -9372,42 +9705,36 @@ androidx.transition.ViewGroupUtilsApi14 -> androidx.transition.x:
     void cancelLayoutTransition(android.animation.LayoutTransition) -> a
     void suppressLayout(android.view.ViewGroup,boolean) -> a
 androidx.transition.ViewGroupUtilsApi14$1 -> androidx.transition.x$a:
-androidx.transition.ViewGroupUtilsApi18 -> androidx.transition.y:
-    boolean sSuppressLayoutMethodFetched -> b
-    java.lang.reflect.Method sSuppressLayoutMethod -> a
-    void fetchSuppressLayoutMethod() -> a
-    void suppressLayout(android.view.ViewGroup,boolean) -> a
-androidx.transition.ViewOverlayApi14 -> androidx.transition.z:
+androidx.transition.ViewOverlayApi14 -> androidx.transition.y:
     androidx.transition.ViewOverlayApi14$OverlayViewGroup mOverlayViewGroup -> a
     void add(android.graphics.drawable.Drawable) -> a
     void remove(android.graphics.drawable.Drawable) -> b
     androidx.transition.ViewOverlayApi14 createFrom(android.view.View) -> c
     android.view.ViewGroup getContentView(android.view.View) -> d
-androidx.transition.ViewOverlayApi14$OverlayViewGroup -> androidx.transition.z$a:
+androidx.transition.ViewOverlayApi14$OverlayViewGroup -> androidx.transition.y$a:
     android.view.ViewGroup mHostView -> a
     androidx.transition.ViewOverlayApi14 mViewOverlay -> d
+    boolean mDisposed -> e
     android.view.View mRequestingView -> b
     java.util.ArrayList mDrawables -> c
     void add(android.graphics.drawable.Drawable) -> a
     void add(android.view.View) -> a
+    void assertNotDisposed() -> a
     void getOffset(int[]) -> a
-    boolean isEmpty() -> a
+    void disposeIfEmpty() -> b
     void remove(android.graphics.drawable.Drawable) -> b
     void remove(android.view.View) -> b
-androidx.transition.ViewOverlayApi18 -> androidx.transition.a0:
+androidx.transition.ViewOverlayApi18 -> androidx.transition.z:
     android.view.ViewOverlay mViewOverlay -> a
     void add(android.graphics.drawable.Drawable) -> a
     void remove(android.graphics.drawable.Drawable) -> b
-androidx.transition.ViewOverlayImpl -> androidx.transition.b0:
+androidx.transition.ViewOverlayImpl -> androidx.transition.a0:
     void add(android.graphics.drawable.Drawable) -> a
     void remove(android.graphics.drawable.Drawable) -> b
-androidx.transition.ViewUtils -> androidx.transition.c0:
-    android.util.Property TRANSITION_ALPHA -> d
+androidx.transition.ViewUtils -> androidx.transition.b0:
     androidx.transition.ViewUtilsBase IMPL -> a
-    java.lang.reflect.Field sViewFlagsField -> b
-    boolean sViewFlagsFieldFetched -> c
+    android.util.Property TRANSITION_ALPHA -> b
     void clearNonTransitionAlpha(android.view.View) -> a
-    void fetchViewFlagsField() -> a
     void setLeftTopRightBottom(android.view.View,int,int,int,int) -> a
     void setTransitionAlpha(android.view.View,float) -> a
     void setTransitionVisibility(android.view.View,int) -> a
@@ -9417,46 +9744,51 @@ androidx.transition.ViewUtils -> androidx.transition.c0:
     float getTransitionAlpha(android.view.View) -> c
     androidx.transition.WindowIdImpl getWindowId(android.view.View) -> d
     void saveNonTransitionAlpha(android.view.View) -> e
-androidx.transition.ViewUtils$1 -> androidx.transition.c0$a:
+androidx.transition.ViewUtils$1 -> androidx.transition.b0$a:
     java.lang.Float get(android.view.View) -> a
     void set(android.view.View,java.lang.Float) -> a
-androidx.transition.ViewUtils$2 -> androidx.transition.c0$b:
+androidx.transition.ViewUtils$2 -> androidx.transition.b0$b:
     android.graphics.Rect get(android.view.View) -> a
     void set(android.view.View,android.graphics.Rect) -> a
-androidx.transition.ViewUtilsApi19 -> androidx.transition.d0:
-    java.lang.reflect.Method sGetTransitionAlphaMethod -> c
-    boolean sSetTransitionAlphaMethodFetched -> b
-    java.lang.reflect.Method sSetTransitionAlphaMethod -> a
-    boolean sGetTransitionAlphaMethodFetched -> d
+androidx.transition.ViewUtilsApi19 -> androidx.transition.c0:
+    boolean sTryHiddenTransitionAlpha -> e
     void clearNonTransitionAlpha(android.view.View) -> a
-    void fetchGetTransitionAlphaMethod() -> a
     void setTransitionAlpha(android.view.View,float) -> a
-    void fetchSetTransitionAlphaMethod() -> b
     float getTransitionAlpha(android.view.View) -> b
     void saveNonTransitionAlpha(android.view.View) -> c
-androidx.transition.ViewUtilsApi21 -> androidx.transition.e0:
-    java.lang.reflect.Method sTransformMatrixToLocalMethod -> g
-    boolean sTransformMatrixToGlobalMethodFetched -> f
-    java.lang.reflect.Method sTransformMatrixToGlobalMethod -> e
-    boolean sTransformMatrixToLocalMethodFetched -> h
-    void fetchTransformMatrixToGlobalMethod() -> a
+androidx.transition.ViewUtilsApi21 -> androidx.transition.d0:
+    boolean sTryHiddenTransformMatrixToGlobal -> f
+    boolean sTryHiddenTransformMatrixToLocal -> g
     void transformMatrixToGlobal(android.view.View,android.graphics.Matrix) -> a
-    void fetchTransformMatrixToLocalMethod() -> b
     void transformMatrixToLocal(android.view.View,android.graphics.Matrix) -> b
-androidx.transition.ViewUtilsApi22 -> androidx.transition.f0:
-    boolean sSetLeftTopRightBottomMethodFetched -> j
-    java.lang.reflect.Method sSetLeftTopRightBottomMethod -> i
-    void fetchSetLeftTopRightBottomMethod() -> a
+androidx.transition.ViewUtilsApi22 -> androidx.transition.e0:
+    boolean sTryHiddenSetLeftTopRightBottom -> h
     void setLeftTopRightBottom(android.view.View,int,int,int,int) -> a
-androidx.transition.ViewUtilsBase -> androidx.transition.g0:
-    void clearNonTransitionAlpha(android.view.View) -> a
+androidx.transition.ViewUtilsApi23 -> androidx.transition.f0:
+    boolean sTryHiddenSetTransitionVisibility -> i
+    void setTransitionVisibility(android.view.View,int) -> a
+androidx.transition.ViewUtilsApi29 -> androidx.transition.g0:
     void setLeftTopRightBottom(android.view.View,int,int,int,int) -> a
     void setTransitionAlpha(android.view.View,float) -> a
+    void setTransitionVisibility(android.view.View,int) -> a
     void transformMatrixToGlobal(android.view.View,android.graphics.Matrix) -> a
     float getTransitionAlpha(android.view.View) -> b
     void transformMatrixToLocal(android.view.View,android.graphics.Matrix) -> b
+androidx.transition.ViewUtilsBase -> androidx.transition.h0:
+    java.lang.reflect.Field sViewFlagsField -> c
+    boolean sSetFrameFetched -> b
+    java.lang.reflect.Method sSetFrameMethod -> a
+    boolean sViewFlagsFieldFetched -> d
+    void clearNonTransitionAlpha(android.view.View) -> a
+    void fetchSetFrame() -> a
+    void setLeftTopRightBottom(android.view.View,int,int,int,int) -> a
+    void setTransitionAlpha(android.view.View,float) -> a
+    void setTransitionVisibility(android.view.View,int) -> a
+    void transformMatrixToGlobal(android.view.View,android.graphics.Matrix) -> a
+    float getTransitionAlpha(android.view.View) -> b
+    void transformMatrixToLocal(android.view.View,android.graphics.Matrix) -> b
     void saveNonTransitionAlpha(android.view.View) -> c
-androidx.transition.Visibility -> androidx.transition.h0:
+androidx.transition.Visibility -> androidx.transition.i0:
     int mMode -> J
     java.lang.String[] sTransitionProperties -> K
     void captureEndValues(androidx.transition.TransitionValues) -> a
@@ -9471,10 +9803,15 @@ androidx.transition.Visibility -> androidx.transition.h0:
     void captureStartValues(androidx.transition.TransitionValues) -> c
     void captureValues(androidx.transition.TransitionValues) -> d
     java.lang.String[] getTransitionProperties() -> m
-androidx.transition.Visibility$1 -> androidx.transition.h0$a:
-    androidx.transition.ViewGroupOverlayImpl val$overlay -> a
+androidx.transition.Visibility$1 -> androidx.transition.i0$a:
+    android.view.ViewGroup val$overlayHost -> a
+    androidx.transition.Visibility this$0 -> d
+    android.view.View val$startView -> c
     android.view.View val$finalOverlayView -> b
-androidx.transition.Visibility$DisappearListener -> androidx.transition.h0$b:
+    void onTransitionPause(androidx.transition.Transition) -> c
+    void onTransitionResume(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
+androidx.transition.Visibility$DisappearListener -> androidx.transition.i0$b:
     android.view.ViewGroup mParent -> c
     android.view.View mView -> a
     boolean mLayoutSuppressed -> e
@@ -9484,21 +9821,22 @@ androidx.transition.Visibility$DisappearListener -> androidx.transition.h0$b:
     void hideViewWhenNotCanceled() -> a
     void onTransitionStart(androidx.transition.Transition) -> a
     void suppressLayout(boolean) -> a
-    void onTransitionPause(androidx.transition.Transition) -> b
-    void onTransitionResume(androidx.transition.Transition) -> c
-    void onTransitionEnd(androidx.transition.Transition) -> d
-androidx.transition.Visibility$VisibilityInfo -> androidx.transition.h0$c:
+    void onTransitionCancel(androidx.transition.Transition) -> b
+    void onTransitionPause(androidx.transition.Transition) -> c
+    void onTransitionResume(androidx.transition.Transition) -> d
+    void onTransitionEnd(androidx.transition.Transition) -> e
+androidx.transition.Visibility$VisibilityInfo -> androidx.transition.i0$c:
     android.view.ViewGroup mEndParent -> f
     android.view.ViewGroup mStartParent -> e
     int mEndVisibility -> d
     boolean mVisibilityChange -> a
     boolean mFadeIn -> b
     int mStartVisibility -> c
-androidx.transition.WindowIdApi14 -> androidx.transition.i0:
+androidx.transition.WindowIdApi14 -> androidx.transition.j0:
     android.os.IBinder mToken -> a
-androidx.transition.WindowIdApi18 -> androidx.transition.j0:
+androidx.transition.WindowIdApi18 -> androidx.transition.k0:
     android.view.WindowId mWindowId -> a
-androidx.transition.WindowIdImpl -> androidx.transition.k0:
+androidx.transition.WindowIdImpl -> androidx.transition.l0:
 androidx.vectordrawable.graphics.drawable.AndroidResources -> androidx.vectordrawable.a.a.a:
     int[] STYLEABLE_ANIMATED_VECTOR_DRAWABLE_TARGET -> f
     int[] STYLEABLE_ANIMATOR -> g
@@ -11887,8 +12225,8 @@ com.gongwu.wherecollect.FragmentMain.HomeFragment$2 -> com.gongwu.wherecollect.F
     int compare(com.gongwu.wherecollect.net.entity.response.RoomBean,com.gongwu.wherecollect.net.entity.response.RoomBean) -> a
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding:
     com.gongwu.wherecollect.FragmentMain.HomeFragment target -> a
-    android.view.View view7f080104 -> c
-    android.view.View view7f08013a -> b
+    android.view.View view7f080106 -> c
+    android.view.View view7f08013c -> b
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.HomeFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$b:
@@ -11981,13 +12319,13 @@ com.gongwu.wherecollect.FragmentMain.LookFragment$7 -> com.gongwu.wherecollect.F
     com.gongwu.wherecollect.FragmentMain.LookFragment this$0 -> a
     void submit() -> a
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding:
-    android.view.View view7f080203 -> c
-    android.view.View view7f080129 -> b
+    android.view.View view7f080205 -> c
+    android.view.View view7f08012b -> b
     android.view.View view7f080081 -> e
     com.gongwu.wherecollect.FragmentMain.LookFragment target -> a
     android.view.View view7f080047 -> d
-    android.view.View view7f080365 -> g
-    android.view.View view7f08014a -> f
+    android.view.View view7f080366 -> g
+    android.view.View view7f08014c -> f
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.LookFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$b:
@@ -12011,18 +12349,18 @@ com.gongwu.wherecollect.FragmentMain.MeFragment -> com.gongwu.wherecollect.Fragm
 com.gongwu.wherecollect.FragmentMain.MeFragment$1 -> com.gongwu.wherecollect.FragmentMain.MeFragment$a:
     com.gongwu.wherecollect.FragmentMain.MeFragment this$0 -> a
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding:
-    android.view.View view7f08022a -> i
-    android.view.View view7f0803e2 -> h
-    android.view.View view7f0803e6 -> k
-    android.view.View view7f08013f -> j
-    android.view.View view7f080191 -> l
+    android.view.View view7f08022c -> i
+    android.view.View view7f0803e4 -> h
+    android.view.View view7f0803e8 -> k
+    android.view.View view7f080141 -> j
+    android.view.View view7f080193 -> l
     com.gongwu.wherecollect.FragmentMain.MeFragment target -> a
-    android.view.View view7f08025e -> c
+    android.view.View view7f080260 -> c
     android.view.View view7f080091 -> b
-    android.view.View view7f08025d -> e
-    android.view.View view7f08027e -> d
-    android.view.View view7f080361 -> g
-    android.view.View view7f08028d -> f
+    android.view.View view7f08025f -> e
+    android.view.View view7f080280 -> d
+    android.view.View view7f080362 -> g
+    android.view.View view7f08028f -> f
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$c:
     com.gongwu.wherecollect.FragmentMain.MeFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$10 -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$a:
@@ -12099,9 +12437,9 @@ com.gongwu.wherecollect.FragmentMain.RemindFragment$4 -> com.gongwu.wherecollect
     void onItemEditFinishedClick(int,android.view.View) -> c
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding:
     com.gongwu.wherecollect.FragmentMain.RemindFragment target -> a
-    android.view.View view7f0802a8 -> c
-    android.view.View view7f0802c2 -> b
-    android.view.View view7f0803a3 -> d
+    android.view.View view7f0802aa -> c
+    android.view.View view7f0802c4 -> b
+    android.view.View view7f0803a5 -> d
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.RemindFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$b:
@@ -12138,7 +12476,7 @@ com.gongwu.wherecollect.ImageSelect.ImageGridActivity$2 -> com.gongwu.wherecolle
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding:
     com.gongwu.wherecollect.ImageSelect.ImageGridActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803a2 -> b
+    android.view.View view7f0803a4 -> b
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$1 -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$a:
     com.gongwu.wherecollect.ImageSelect.ImageGridActivity val$target -> a
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$2 -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$b:
@@ -12232,9 +12570,9 @@ com.gongwu.wherecollect.activity.AddChangWangGoodActivity -> com.gongwu.wherecol
     void initView() -> p
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding:
     com.gongwu.wherecollect.activity.AddChangWangGoodActivity target -> a
-    android.view.View view7f08023a -> c
-    android.view.View view7f0801a6 -> b
-    android.view.View view7f080404 -> e
+    android.view.View view7f08023c -> c
+    android.view.View view7f0801a8 -> b
+    android.view.View view7f080406 -> e
     android.view.View view7f080079 -> d
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddChangWangGoodActivity val$target -> a
@@ -12282,7 +12620,7 @@ com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity$1 -> com.gongwu.
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803a1 -> b
+    android.view.View view7f0803a3 -> b
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity val$target -> a
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$b:
@@ -12353,15 +12691,15 @@ com.gongwu.wherecollect.activity.AddFurnitureActivity$5 -> com.gongwu.wherecolle
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding:
-    android.view.View view7f080172 -> i
-    android.view.View view7f08016f -> h
-    android.view.View view7f080384 -> c
-    android.view.View view7f0803a1 -> b
+    android.view.View view7f080173 -> i
+    android.view.View view7f080170 -> h
+    android.view.View view7f080385 -> c
+    android.view.View view7f0803a3 -> b
     com.gongwu.wherecollect.activity.AddFurnitureActivity target -> a
-    android.view.View view7f080386 -> e
-    android.view.View view7f080385 -> d
+    android.view.View view7f080387 -> e
+    android.view.View view7f080386 -> d
     android.view.View view7f080078 -> g
-    android.view.View view7f0800fc -> f
+    android.view.View view7f0800fe -> f
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddFurnitureActivity val$target -> a
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$b:
@@ -12415,14 +12753,14 @@ com.gongwu.wherecollect.activity.AddRemindActivity$4 -> com.gongwu.wherecollect.
     com.gongwu.wherecollect.activity.AddRemindActivity this$0 -> a
     void onTimeSelect(java.util.Date,android.view.View) -> a
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding:
-    android.view.View view7f080118 -> i
-    android.view.View view7f0802b7 -> h
-    android.view.View view7f0802ad -> c
-    android.view.View view7f0803a3 -> b
-    android.view.View view7f080183 -> e
-    android.view.View view7f08011a -> d
+    android.view.View view7f08011a -> i
+    android.view.View view7f0802b9 -> h
+    android.view.View view7f0802af -> c
+    android.view.View view7f0803a5 -> b
+    android.view.View view7f080185 -> e
+    android.view.View view7f08011c -> d
     com.gongwu.wherecollect.activity.AddRemindActivity target -> a
-    android.view.View view7f0802bb -> g
+    android.view.View view7f0802bd -> g
     android.view.View view7f080078 -> f
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddRemindActivity val$target -> a
@@ -12500,7 +12838,7 @@ com.gongwu.wherecollect.activity.AddSharedPersonActivity$4 -> com.gongwu.whereco
 com.gongwu.wherecollect.activity.AddSharedPersonActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddSharedPersonActivity_ViewBinding:
     com.gongwu.wherecollect.activity.AddSharedPersonActivity target -> a
     android.view.View view7f08005b -> c
-    android.view.View view7f0800dd -> b
+    android.view.View view7f0800df -> b
     android.view.View view7f080061 -> d
 com.gongwu.wherecollect.activity.AddSharedPersonActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddSharedPersonActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddSharedPersonActivity val$target -> a
@@ -12536,7 +12874,7 @@ com.gongwu.wherecollect.activity.BindEmailActivity -> com.gongwu.wherecollect.ac
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> l
     com.gongwu.wherecollect.contract.presenter.BindEmailPresenter createPresenter() -> l
 com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding -> com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding:
-    android.view.View view7f08036c -> c
+    android.view.View view7f08036d -> c
     com.gongwu.wherecollect.activity.BindEmailActivity target -> a
     android.view.View view7f080078 -> b
 com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$a:
@@ -12641,11 +12979,11 @@ com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding -> com.gongwu.wh
     android.view.View view7f08007c -> h
     com.gongwu.wherecollect.activity.CameraMainActivity target -> a
     android.view.View view7f0800d0 -> c
-    android.view.View view7f080297 -> b
+    android.view.View view7f080299 -> b
     android.view.View view7f080095 -> e
-    android.view.View view7f0801af -> d
-    android.view.View view7f0803ec -> g
-    android.view.View view7f0802ce -> f
+    android.view.View view7f0801b1 -> d
+    android.view.View view7f0803ee -> g
+    android.view.View view7f0802d0 -> f
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.CameraMainActivity val$target -> a
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$b:
@@ -12685,11 +13023,11 @@ com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$1 -> com.gongwu.where
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$2 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$b:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity this$0 -> a
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding:
-    android.view.View view7f08030f -> c
+    android.view.View view7f080310 -> c
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity target -> a
-    android.view.View view7f0801b7 -> b
+    android.view.View view7f0801b9 -> b
     android.view.View view7f080078 -> e
-    android.view.View view7f08036c -> d
+    android.view.View view7f08036d -> d
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity val$target -> a
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$b:
@@ -12719,12 +13057,12 @@ com.gongwu.wherecollect.activity.EditFurniturePatternActivity$1 -> com.gongwu.wh
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding:
     android.view.View view7f080078 -> h
     com.gongwu.wherecollect.activity.EditFurniturePatternActivity target -> a
-    android.view.View view7f080117 -> c
-    android.view.View view7f08011d -> b
-    android.view.View view7f080122 -> e
-    android.view.View view7f080103 -> d
-    android.view.View view7f0803a3 -> g
-    android.view.View view7f0800fd -> f
+    android.view.View view7f080119 -> c
+    android.view.View view7f08011f -> b
+    android.view.View view7f080124 -> e
+    android.view.View view7f080105 -> d
+    android.view.View view7f0803a5 -> g
+    android.view.View view7f0800ff -> f
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditFurniturePatternActivity val$target -> a
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$b:
@@ -12815,14 +13153,14 @@ com.gongwu.wherecollect.activity.EditHomeActivity$6 -> com.gongwu.wherecollect.a
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding:
-    android.view.View view7f0801a7 -> h
-    android.view.View view7f08015c -> c
+    android.view.View view7f0801a9 -> h
+    android.view.View view7f08015d -> c
     com.gongwu.wherecollect.activity.EditHomeActivity target -> a
-    android.view.View view7f080150 -> b
-    android.view.View view7f080157 -> e
-    android.view.View view7f080168 -> d
+    android.view.View view7f080151 -> b
+    android.view.View view7f080158 -> e
+    android.view.View view7f080169 -> d
     android.view.View view7f080078 -> g
-    android.view.View view7f080170 -> f
+    android.view.View view7f080171 -> f
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditHomeActivity val$target -> a
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$b:
@@ -12877,10 +13215,10 @@ com.gongwu.wherecollect.activity.EditMoreGoodsActivity$3 -> com.gongwu.wherecoll
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity this$0 -> a
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity target -> a
-    android.view.View view7f08010c -> c
+    android.view.View view7f08010e -> c
     android.view.View view7f080078 -> b
-    android.view.View view7f080111 -> e
-    android.view.View view7f08010f -> d
+    android.view.View view7f080113 -> e
+    android.view.View view7f080111 -> d
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity val$target -> a
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$b:
@@ -12952,12 +13290,12 @@ com.gongwu.wherecollect.activity.EditRoomActivity$4 -> com.gongwu.wherecollect.a
 com.gongwu.wherecollect.activity.EditRoomActivity$MyHandler -> com.gongwu.wherecollect.activity.EditRoomActivity$e:
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding:
     com.gongwu.wherecollect.activity.EditRoomActivity target -> a
-    android.view.View view7f0802d5 -> c
-    android.view.View view7f0803a3 -> b
-    android.view.View view7f0802cf -> e
-    android.view.View view7f0802d2 -> d
+    android.view.View view7f0802d7 -> c
+    android.view.View view7f0803a5 -> b
+    android.view.View view7f0802d1 -> e
+    android.view.View view7f0802d4 -> d
     android.view.View view7f080078 -> g
-    android.view.View view7f0802d0 -> f
+    android.view.View view7f0802d2 -> f
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditRoomActivity val$target -> a
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$b:
@@ -13048,11 +13386,11 @@ com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity$5 -> com.gongwu
     void onImgClick() -> a
 com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding -> com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity target -> a
-    android.view.View view7f0803e3 -> c
-    android.view.View view7f0803a0 -> b
-    android.view.View view7f08032a -> e
+    android.view.View view7f0803e5 -> c
+    android.view.View view7f0803a2 -> b
+    android.view.View view7f08032b -> e
     android.view.View view7f080066 -> d
-    android.view.View view7f0800de -> g
+    android.view.View view7f0800e0 -> g
     android.view.View view7f080078 -> f
 com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity val$target -> a
@@ -13104,7 +13442,7 @@ com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity$2 -> com.gongwu.
     void onItemsClick(int,android.view.View) -> b
 com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding -> com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding:
     android.view.View view7f080078 -> c
-    android.view.View view7f0803a0 -> b
+    android.view.View view7f0803a2 -> b
     com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity target -> a
 com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity val$target -> a
@@ -13159,8 +13497,8 @@ com.gongwu.wherecollect.activity.ForgetPWDActivity$2 -> com.gongwu.wherecollect.
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.lang.String) -> b
 com.gongwu.wherecollect.activity.ForgetPWDActivity_ViewBinding -> com.gongwu.wherecollect.activity.ForgetPWDActivity_ViewBinding:
-    android.view.View view7f080310 -> c
-    android.view.View view7f0801b7 -> b
+    android.view.View view7f080311 -> c
+    android.view.View view7f0801b9 -> b
     android.view.View view7f0800c7 -> e
     android.view.View view7f080078 -> d
     com.gongwu.wherecollect.activity.ForgetPWDActivity target -> a
@@ -13327,22 +13665,22 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity$9$2 -> com.gongwu.whereco
     com.gongwu.wherecollect.activity.FurnitureLookActivity$9 this$1 -> a
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding:
     com.gongwu.wherecollect.activity.FurnitureLookActivity target -> a
-    android.view.View view7f0800e8 -> q
-    android.view.View view7f08016d -> p
+    android.view.View view7f0800ea -> q
+    android.view.View view7f08016e -> p
     android.view.View view7f080078 -> i
     android.view.View view7f08008a -> h
-    android.view.View view7f080160 -> k
-    android.view.View view7f08014e -> j
-    android.view.View view7f08015d -> m
-    android.view.View view7f080151 -> l
-    android.view.View view7f080170 -> o
-    android.view.View view7f080157 -> n
-    android.view.View view7f080159 -> c
-    android.view.View view7f080205 -> b
-    android.view.View view7f080163 -> e
-    android.view.View view7f08016b -> d
-    android.view.View view7f080154 -> g
-    android.view.View view7f080226 -> f
+    android.view.View view7f080161 -> k
+    android.view.View view7f08014f -> j
+    android.view.View view7f08015e -> m
+    android.view.View view7f080152 -> l
+    android.view.View view7f080171 -> o
+    android.view.View view7f080158 -> n
+    android.view.View view7f08015a -> c
+    android.view.View view7f080207 -> b
+    android.view.View view7f080164 -> e
+    android.view.View view7f08016c -> d
+    android.view.View view7f080155 -> g
+    android.view.View view7f080228 -> f
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$h:
     com.gongwu.wherecollect.activity.FurnitureLookActivity val$target -> a
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$10 -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$a:
@@ -13400,7 +13738,7 @@ com.gongwu.wherecollect.activity.ImportMoreGoodsActivity$2 -> com.gongwu.whereco
     void onItemClick(int,android.view.View) -> a
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity target -> a
-    android.view.View view7f08039d -> c
+    android.view.View view7f08039f -> c
     android.view.View view7f080078 -> b
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity val$target -> a
@@ -13446,7 +13784,7 @@ com.gongwu.wherecollect.activity.InventoryActivity$3 -> com.gongwu.wherecollect.
     void subscribe(io.reactivex.ObservableEmitter) -> a
 com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding -> com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding:
     android.view.View view7f080078 -> c
-    android.view.View view7f0801a7 -> b
+    android.view.View view7f0801a9 -> b
     com.gongwu.wherecollect.activity.InventoryActivity target -> a
 com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.InventoryActivity val$target -> a
@@ -13509,14 +13847,14 @@ com.gongwu.wherecollect.activity.LoginActivity$3 -> com.gongwu.wherecollect.acti
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.lang.String) -> b
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding:
-    android.view.View view7f0801ff -> h
+    android.view.View view7f080201 -> h
     com.gongwu.wherecollect.activity.LoginActivity target -> a
-    android.view.View view7f0801b7 -> c
-    android.view.View view7f0803a0 -> b
-    android.view.View view7f080201 -> e
-    android.view.View view7f080310 -> d
+    android.view.View view7f0801b9 -> c
+    android.view.View view7f0803a2 -> b
+    android.view.View view7f080203 -> e
+    android.view.View view7f080311 -> d
     android.view.View view7f08006d -> g
-    android.view.View view7f080202 -> f
+    android.view.View view7f080204 -> f
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.LoginActivity val$target -> a
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$b:
@@ -13547,12 +13885,12 @@ com.gongwu.wherecollect.activity.LoginEmailActivity -> com.gongwu.wherecollect.a
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding:
     android.view.View view7f08006d -> h
     com.gongwu.wherecollect.activity.LoginEmailActivity target -> a
-    android.view.View view7f080202 -> c
+    android.view.View view7f080204 -> c
     android.view.View view7f080078 -> b
-    android.view.View view7f0803bc -> e
-    android.view.View view7f0803c2 -> d
-    android.view.View view7f080200 -> g
-    android.view.View view7f080201 -> f
+    android.view.View view7f0803be -> e
+    android.view.View view7f0803c4 -> d
+    android.view.View view7f080202 -> g
+    android.view.View view7f080203 -> f
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.LoginEmailActivity val$target -> a
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$b:
@@ -13623,15 +13961,15 @@ com.gongwu.wherecollect.activity.MainActivity$7 -> com.gongwu.wherecollect.activ
     com.gongwu.wherecollect.activity.MainActivity this$0 -> b
     com.gongwu.wherecollect.net.entity.response.MessageBean val$messageBean -> a
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding:
-    android.view.View view7f080208 -> i
+    android.view.View view7f08020a -> i
     android.view.View view7f08004e -> h
     com.gongwu.wherecollect.activity.MainActivity target -> a
-    android.view.View view7f08020d -> c
-    android.view.View view7f080212 -> b
-    android.view.View view7f080215 -> e
-    android.view.View view7f080218 -> d
-    android.view.View view7f080216 -> g
-    android.view.View view7f080217 -> f
+    android.view.View view7f08020f -> c
+    android.view.View view7f080214 -> b
+    android.view.View view7f080217 -> e
+    android.view.View view7f08021a -> d
+    android.view.View view7f080218 -> g
+    android.view.View view7f080219 -> f
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.MainActivity val$target -> a
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding$b:
@@ -13764,19 +14102,19 @@ com.gongwu.wherecollect.activity.PersonActivity$8 -> com.gongwu.wherecollect.act
     com.gongwu.wherecollect.activity.PersonActivity this$0 -> e
     void result(int,int,int) -> a
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding:
-    android.view.View view7f0803b6 -> i
-    android.view.View view7f080262 -> h
-    android.view.View view7f080239 -> k
+    android.view.View view7f0803b8 -> i
+    android.view.View view7f080264 -> h
+    android.view.View view7f08023b -> k
     android.view.View view7f080078 -> j
     android.view.View view7f080085 -> m
-    android.view.View view7f080313 -> l
-    android.view.View view7f0803be -> c
-    android.view.View view7f080197 -> b
+    android.view.View view7f080314 -> l
+    android.view.View view7f0803c0 -> c
+    android.view.View view7f080199 -> b
     com.gongwu.wherecollect.activity.PersonActivity target -> a
-    android.view.View view7f0803f4 -> e
-    android.view.View view7f0803ff -> d
-    android.view.View view7f080124 -> g
-    android.view.View view7f08028b -> f
+    android.view.View view7f0803f6 -> e
+    android.view.View view7f080401 -> d
+    android.view.View view7f080126 -> g
+    android.view.View view7f08028d -> f
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$d:
     com.gongwu.wherecollect.activity.PersonActivity val$target -> a
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$10 -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$a:
@@ -13814,7 +14152,7 @@ com.gongwu.wherecollect.activity.RegisterActivity -> com.gongwu.wherecollect.act
     void userRegister() -> n
     void forgetPWDSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> s
 com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding -> com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding:
-    android.view.View view7f08029b -> c
+    android.view.View view7f08029d -> c
     android.view.View view7f080078 -> b
     com.gongwu.wherecollect.activity.RegisterActivity target -> a
 com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding$a:
@@ -13864,7 +14202,7 @@ com.gongwu.wherecollect.activity.RemindRemarksActivity$1 -> com.gongwu.wherecoll
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding:
     com.gongwu.wherecollect.activity.RemindRemarksActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803a2 -> b
+    android.view.View view7f0803a4 -> b
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.RemindRemarksActivity val$target -> a
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$b:
@@ -13904,8 +14242,8 @@ com.gongwu.wherecollect.activity.SearchActivity$4 -> com.gongwu.wherecollect.act
     com.gongwu.wherecollect.activity.SearchActivity this$0 -> b
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding -> com.gongwu.wherecollect.activity.SearchActivity_ViewBinding:
     android.view.View view7f0800b3 -> c
-    android.view.View view7f0802ed -> b
-    android.view.View view7f080311 -> e
+    android.view.View view7f0802ee -> b
+    android.view.View view7f080312 -> e
     android.view.View view7f080078 -> d
     com.gongwu.wherecollect.activity.SearchActivity target -> a
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$a:
@@ -13934,7 +14272,7 @@ com.gongwu.wherecollect.activity.ShareListActivity$CustomPagerAdapter -> com.gon
     long getItemId(int) -> b
 com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding -> com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding:
     com.gongwu.wherecollect.activity.ShareListActivity target -> a
-    android.view.View view7f080314 -> c
+    android.view.View view7f080315 -> c
     android.view.View view7f080056 -> b
 com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ShareListActivity val$target -> a
@@ -13978,7 +14316,7 @@ com.gongwu.wherecollect.activity.SharePersonDetailsActivity$3 -> com.gongwu.wher
 com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding -> com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.SharePersonDetailsActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0801a7 -> b
+    android.view.View view7f0801a9 -> b
     android.view.View view7f08006a -> d
 com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.SharePersonDetailsActivity val$target -> a
@@ -16850,7 +17188,7 @@ com.gongwu.wherecollect.contract.presenter.EditRoomPresenter$Inner -> com.gongwu
     com.gongwu.wherecollect.contract.presenter.EditRoomPresenter access$000() -> a
 com.gongwu.wherecollect.contract.presenter.FamilyPresenter -> com.gongwu.wherecollect.a.s3.t:
     com.gongwu.wherecollect.contract.IFamilyContract$IFamilyModel mModel -> c
-    void getFurnitureList(java.lang.String,java.lang.String,java.lang.String) -> a
+    void getFurnitureList(java.lang.String,java.lang.String,java.lang.String,boolean) -> a
     com.gongwu.wherecollect.contract.presenter.FamilyPresenter getInstance() -> c
 com.gongwu.wherecollect.contract.presenter.FamilyPresenter$1 -> com.gongwu.wherecollect.a.s3.t$a:
     com.gongwu.wherecollect.contract.presenter.FamilyPresenter this$0 -> a
@@ -17463,12 +17801,17 @@ com.gongwu.wherecollect.fragment.FamilyRoomFragment -> com.gongwu.wherecollect.f
     void initUI() -> g
     android.content.Context access$700(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> h
     void isCanLoadData() -> h
+    android.content.Context access$800(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> i
+    com.gongwu.wherecollect.base.BasePresenter access$900(com.gongwu.wherecollect.fragment.FamilyRoomFragment) -> j
 com.gongwu.wherecollect.fragment.FamilyRoomFragment$1 -> com.gongwu.wherecollect.fragment.FamilyRoomFragment$a:
     com.gongwu.wherecollect.fragment.FamilyRoomFragment this$0 -> a
     void onItemClick(int,android.view.View) -> a
 com.gongwu.wherecollect.fragment.FamilyRoomFragment$2 -> com.gongwu.wherecollect.fragment.FamilyRoomFragment$b:
+    com.gongwu.wherecollect.fragment.FamilyRoomFragment this$0 -> a
+    void onRefresh() -> a
+com.gongwu.wherecollect.fragment.FamilyRoomFragment$3 -> com.gongwu.wherecollect.fragment.FamilyRoomFragment$c:
     int compare(com.gongwu.wherecollect.net.entity.response.FurnitureBean,com.gongwu.wherecollect.net.entity.response.FurnitureBean) -> a
-com.gongwu.wherecollect.fragment.FamilyRoomFragment$SelectItemClickListener -> com.gongwu.wherecollect.fragment.FamilyRoomFragment$c:
+com.gongwu.wherecollect.fragment.FamilyRoomFragment$SelectItemClickListener -> com.gongwu.wherecollect.fragment.FamilyRoomFragment$d:
     void onSelectItemClick(com.gongwu.wherecollect.net.entity.response.RoomBean,java.util.List) -> a
 com.gongwu.wherecollect.fragment.FamilyRoomFragment_ViewBinding -> com.gongwu.wherecollect.fragment.FamilyRoomFragment_ViewBinding:
     com.gongwu.wherecollect.fragment.FamilyRoomFragment target -> a
@@ -17730,16 +18073,16 @@ com.gongwu.wherecollect.object.AddGoodsActivity$2 -> com.gongwu.wherecollect.obj
 com.gongwu.wherecollect.object.AddGoodsActivity$3 -> com.gongwu.wherecollect.object.AddGoodsActivity$c:
     com.gongwu.wherecollect.object.AddGoodsActivity this$0 -> a
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding -> com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding:
-    android.view.View view7f08039f -> i
-    android.view.View view7f08017e -> h
+    android.view.View view7f0803a1 -> i
+    android.view.View view7f080180 -> h
     android.view.View view7f080078 -> j
     com.gongwu.wherecollect.object.AddGoodsActivity target -> a
     android.view.View view7f080050 -> c
     android.view.View view7f080051 -> b
-    android.view.View view7f080308 -> e
+    android.view.View view7f080309 -> e
     android.view.View view7f0800c4 -> d
     android.view.View view7f080057 -> g
-    android.view.View view7f080185 -> f
+    android.view.View view7f080187 -> f
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.AddGoodsActivity val$target -> a
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$b:
@@ -17804,7 +18147,7 @@ com.gongwu.wherecollect.object.AddGoodsPropertyActivity$1 -> com.gongwu.wherecol
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding -> com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding:
     com.gongwu.wherecollect.object.AddGoodsPropertyActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f08039f -> b
+    android.view.View view7f0803a1 -> b
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.AddGoodsPropertyActivity val$target -> a
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$b:
@@ -17890,13 +18233,13 @@ com.gongwu.wherecollect.object.AddMoreGoodsActivity$4 -> com.gongwu.wherecollect
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding:
     android.view.View view7f080078 -> h
-    android.view.View view7f080308 -> c
+    android.view.View view7f080309 -> c
     android.view.View view7f0800c4 -> b
     android.view.View view7f080057 -> e
     android.view.View view7f08004f -> d
     com.gongwu.wherecollect.object.AddMoreGoodsActivity target -> a
-    android.view.View view7f08039f -> g
-    android.view.View view7f08017e -> f
+    android.view.View view7f0803a1 -> g
+    android.view.View view7f080180 -> f
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.AddMoreGoodsActivity val$target -> a
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$b:
@@ -17944,11 +18287,11 @@ com.gongwu.wherecollect.object.GoodsDetailsActivity$2 -> com.gongwu.wherecollect
     void onEditGoodsClick() -> c
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.object.GoodsDetailsActivity target -> a
-    android.view.View view7f0801a7 -> c
+    android.view.View view7f0801a9 -> c
     android.view.View view7f080051 -> b
     android.view.View view7f080078 -> e
-    android.view.View view7f08017d -> d
-    android.view.View view7f0802af -> f
+    android.view.View view7f08017f -> d
+    android.view.View view7f0802b1 -> f
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.GoodsDetailsActivity val$target -> a
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$b:
@@ -18041,8 +18384,8 @@ com.gongwu.wherecollect.object.SelectChannelActivity -> com.gongwu.wherecollect.
     void getChannelListSuccess(java.util.List) -> x
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding:
     android.view.View view7f0800b2 -> c
-    android.view.View view7f0803a1 -> b
-    android.view.View view7f080193 -> e
+    android.view.View view7f0803a3 -> b
+    android.view.View view7f080195 -> e
     android.view.View view7f080078 -> d
     com.gongwu.wherecollect.object.SelectChannelActivity target -> a
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$a:
@@ -18084,10 +18427,12 @@ com.gongwu.wherecollect.object.SelectColorActivity$2 -> com.gongwu.wherecollect.
     void onItemClick(int,android.view.View) -> a
 com.gongwu.wherecollect.object.SelectColorActivity$2$1 -> com.gongwu.wherecollect.object.SelectColorActivity$b$a:
     com.gongwu.wherecollect.object.SelectColorActivity$2 this$1 -> a
+com.gongwu.wherecollect.object.SelectColorActivity$3 -> com.gongwu.wherecollect.object.SelectColorActivity$c:
+    com.gongwu.wherecollect.object.SelectColorActivity this$0 -> a
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding:
     android.view.View view7f080078 -> c
     com.gongwu.wherecollect.object.SelectColorActivity target -> a
-    android.view.View view7f0803a1 -> b
+    android.view.View view7f0803a3 -> b
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectColorActivity val$target -> a
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$b:
@@ -18107,7 +18452,7 @@ com.gongwu.wherecollect.object.SelectSeasonActivity -> com.gongwu.wherecollect.o
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding:
     com.gongwu.wherecollect.object.SelectSeasonActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803a1 -> b
+    android.view.View view7f0803a3 -> b
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSeasonActivity val$target -> a
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$b:
@@ -18186,13 +18531,13 @@ com.gongwu.wherecollect.object.SelectSortActivity$8 -> com.gongwu.wherecollect.o
 com.gongwu.wherecollect.object.SelectSortActivity$9 -> com.gongwu.wherecollect.object.SelectSortActivity$i:
     com.gongwu.wherecollect.object.SelectSortActivity this$0 -> a
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding:
-    android.view.View view7f080339 -> c
-    android.view.View view7f0803a1 -> b
-    android.view.View view7f08034a -> e
-    android.view.View view7f08034b -> d
+    android.view.View view7f08033a -> c
+    android.view.View view7f0803a3 -> b
+    android.view.View view7f08034b -> e
+    android.view.View view7f08034c -> d
     android.view.View view7f080078 -> g
     com.gongwu.wherecollect.object.SelectSortActivity target -> a
-    android.view.View view7f080344 -> f
+    android.view.View view7f080345 -> f
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSortActivity val$target -> a
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$b:
@@ -18230,7 +18575,7 @@ com.gongwu.wherecollect.object.SelectSortChildActivity$1 -> com.gongwu.wherecoll
 com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding:
     com.gongwu.wherecollect.object.SelectSortChildActivity target -> a
     android.view.View view7f0800b2 -> c
-    android.view.View view7f0800dc -> b
+    android.view.View view7f0800de -> b
     android.view.View view7f080078 -> d
 com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSortChildActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSortChildActivity val$target -> a
@@ -18321,7 +18666,7 @@ com.gongwu.wherecollect.object.SelectSortChildNewActivity$6 -> com.gongwu.wherec
 com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding:
     com.gongwu.wherecollect.object.SelectSortChildNewActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f08039f -> b
+    android.view.View view7f0803a1 -> b
     android.view.View view7f080069 -> d
 com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSortChildNewActivity val$target -> a
@@ -18868,14 +19213,14 @@ com.gongwu.wherecollect.util.SelectImgDialog -> com.gongwu.wherecollect.util.Sel
 com.gongwu.wherecollect.util.SelectImgDialog$2 -> com.gongwu.wherecollect.util.SelectImgDialog$a:
     com.gongwu.wherecollect.util.SelectImgDialog this$0 -> a
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding -> com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding:
-    android.view.View view7f080107 -> i
-    android.view.View view7f0802d7 -> h
+    android.view.View view7f080109 -> i
+    android.view.View view7f0802d9 -> h
     com.gongwu.wherecollect.util.SelectImgDialog target -> a
-    android.view.View view7f080303 -> c
+    android.view.View view7f080304 -> c
     android.view.View view7f080093 -> b
-    android.view.View view7f0801bc -> e
-    android.view.View view7f08028c -> d
-    android.view.View view7f0801f3 -> g
+    android.view.View view7f0801be -> e
+    android.view.View view7f08028e -> d
+    android.view.View view7f0801f5 -> g
     android.view.View view7f080097 -> f
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$1 -> com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$a:
     com.gongwu.wherecollect.util.SelectImgDialog val$target -> a
@@ -18905,17 +19250,18 @@ com.gongwu.wherecollect.util.StatusBarUtil -> com.gongwu.wherecollect.util.f0:
 com.gongwu.wherecollect.util.StringUtils -> com.gongwu.wherecollect.util.g0:
     java.text.SimpleDateFormat dateFormat -> a
     int convertDipToPixels(android.content.Context,int) -> a
+    boolean fileIsExists(java.lang.String) -> a
     java.lang.String formatIntTime(int) -> a
     java.lang.String getCurrentVersionName(android.content.Context) -> a
     java.lang.String getGoodsClassify(com.gongwu.wherecollect.net.entity.response.ObjectBean) -> a
     java.lang.String getGoodsLoction(com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean) -> a
     int getListSize(java.util.List) -> a
     void hideKeyboard(android.view.View) -> a
-    boolean isEmail(java.lang.String) -> a
     java.lang.String toString(android.content.Context,int,java.lang.Object[]) -> a
     java.util.List getGoodsInfos(com.gongwu.wherecollect.net.entity.response.ObjectBean) -> b
     java.lang.String getGoodsTypeString(int) -> b
     int getStatusBarByReflex(android.content.Context) -> b
+    boolean isEmail(java.lang.String) -> b
     boolean isEmpty(java.util.List) -> b
     void showKeyboard(android.view.View) -> b
     void showMessage(android.content.Context,int) -> b
@@ -18998,7 +19344,7 @@ com.gongwu.wherecollect.view.AddGoodsDialog$2 -> com.gongwu.wherecollect.view.Ad
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding -> com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding:
-    android.view.View view7f08036d -> c
+    android.view.View view7f08036e -> c
     com.gongwu.wherecollect.view.AddGoodsDialog target -> a
     android.view.View view7f08004e -> b
     android.view.View view7f08009b -> e
@@ -19018,8 +19364,8 @@ com.gongwu.wherecollect.view.AddSortDialog$1 -> com.gongwu.wherecollect.view.Add
     com.gongwu.wherecollect.view.AddSortDialog this$0 -> a
 com.gongwu.wherecollect.view.AddSortDialog_ViewBinding -> com.gongwu.wherecollect.view.AddSortDialog_ViewBinding:
     com.gongwu.wherecollect.view.AddSortDialog target -> a
-    android.view.View view7f08034c -> c
-    android.view.View view7f08033a -> b
+    android.view.View view7f08034d -> c
+    android.view.View view7f08033b -> b
 com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.AddSortDialog val$target -> a
 com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$2 -> com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$b:
@@ -19068,11 +19414,11 @@ com.gongwu.wherecollect.view.ChangeSexDialog -> com.gongwu.wherecollect.view.Cha
     void getResult(java.lang.String) -> a
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding:
     com.gongwu.wherecollect.view.ChangeSexDialog target -> a
-    android.view.View view7f080140 -> c
-    android.view.View view7f080219 -> b
-    android.view.View view7f0801f3 -> e
+    android.view.View view7f080142 -> c
+    android.view.View view7f08021b -> b
+    android.view.View view7f0801f5 -> e
     android.view.View view7f080097 -> d
-    android.view.View view7f0802d7 -> f
+    android.view.View view7f0802d9 -> f
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.ChangeSexDialog val$target -> a
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$2 -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$b:
@@ -19103,8 +19449,8 @@ com.gongwu.wherecollect.view.DeleteSortTipsDialog -> com.gongwu.wherecollect.vie
     void submitSort() -> a
 com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding -> com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding:
     com.gongwu.wherecollect.view.DeleteSortTipsDialog target -> a
-    android.view.View view7f08034c -> c
-    android.view.View view7f08033a -> b
+    android.view.View view7f08034d -> c
+    android.view.View view7f08033b -> b
 com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.DeleteSortTipsDialog val$target -> a
 com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$2 -> com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$b:
@@ -19203,20 +19549,23 @@ com.gongwu.wherecollect.view.Loading -> com.gongwu.wherecollect.view.j:
     com.gongwu.wherecollect.view.Loading setMessage(java.lang.String) -> a
     com.gongwu.wherecollect.view.Loading show(com.gongwu.wherecollect.view.Loading,android.content.Context) -> a
     com.gongwu.wherecollect.view.Loading show(com.gongwu.wherecollect.view.Loading,android.content.Context,java.lang.String) -> a
+com.gongwu.wherecollect.view.MaxHeightScrollView -> com.gongwu.wherecollect.view.MaxHeightScrollView:
+    android.content.Context mContext -> a
+    void init(android.content.Context) -> a
 com.gongwu.wherecollect.view.MessageDialog -> com.gongwu.wherecollect.view.MessageDialog:
     android.content.Context context -> a
     void setMessage(int) -> a
     void submit() -> a
 com.gongwu.wherecollect.view.MessageDialog_ViewBinding -> com.gongwu.wherecollect.view.MessageDialog_ViewBinding:
     com.gongwu.wherecollect.view.MessageDialog target -> a
-    android.view.View view7f08022b -> b
+    android.view.View view7f08022d -> b
 com.gongwu.wherecollect.view.MessageDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.MessageDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.MessageDialog val$target -> a
 com.gongwu.wherecollect.view.MessageTwoBtnDialog -> com.gongwu.wherecollect.view.MessageTwoBtnDialog:
     void submit() -> a
 com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding -> com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding:
-    android.view.View view7f080228 -> c
-    android.view.View view7f08022b -> b
+    android.view.View view7f08022a -> c
+    android.view.View view7f08022d -> b
     com.gongwu.wherecollect.view.MessageTwoBtnDialog target -> a
 com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.MessageTwoBtnDialog val$target -> a
@@ -19273,9 +19622,9 @@ com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding -> com.gongwu.wherec
     com.gongwu.wherecollect.view.ObjectInfoEditView target -> a
     android.view.View view7f0800b0 -> b
     android.view.View view7f0800a4 -> e
-    android.view.View view7f080300 -> d
-    android.view.View view7f080136 -> g
-    android.view.View view7f080285 -> f
+    android.view.View view7f080301 -> d
+    android.view.View view7f080138 -> g
+    android.view.View view7f080287 -> f
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectInfoEditView val$target -> a
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$2 -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$b:
@@ -19292,17 +19641,17 @@ com.gongwu.wherecollect.view.ObjectInfoLookView -> com.gongwu.wherecollect.view.
     com.gongwu.wherecollect.net.entity.response.ObjectBean bean -> a
 com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding -> com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding:
     com.gongwu.wherecollect.view.ObjectInfoLookView target -> a
-    android.view.View view7f0801fa -> b
+    android.view.View view7f0801fc -> b
 com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectInfoLookView val$target -> a
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding:
-    android.view.View view7f0802d7 -> h
+    android.view.View view7f0802d9 -> h
     com.gongwu.wherecollect.view.ObjectsLookMenuDialog target -> a
-    android.view.View view7f080102 -> c
-    android.view.View view7f08010b -> b
-    android.view.View view7f0800e1 -> e
+    android.view.View view7f080104 -> c
+    android.view.View view7f08010d -> b
+    android.view.View view7f0800e3 -> e
     android.view.View view7f08005a -> d
-    android.view.View view7f0801f3 -> g
+    android.view.View view7f0801f5 -> g
     android.view.View view7f080097 -> f
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectsLookMenuDialog val$target -> a
@@ -19341,8 +19690,8 @@ com.gongwu.wherecollect.view.PopupAddGoods$AddGoodsPopupClickListener -> com.gon
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding:
     android.view.View view7f080096 -> c
     android.view.View view7f080099 -> b
-    android.view.View view7f0802e1 -> e
-    android.view.View view7f080265 -> d
+    android.view.View view7f0802e2 -> e
+    android.view.View view7f080267 -> d
     com.gongwu.wherecollect.view.PopupAddGoods target -> a
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupAddGoods val$target -> a
@@ -19366,8 +19715,8 @@ com.gongwu.wherecollect.view.PopupAddShareSpace$PopupCommitClickListener -> com.
     void onCommitClickListener(java.util.List) -> J
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding:
     com.gongwu.wherecollect.view.PopupAddShareSpace target -> a
-    android.view.View view7f080270 -> c
-    android.view.View view7f08026f -> b
+    android.view.View view7f080272 -> c
+    android.view.View view7f080271 -> b
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupAddShareSpace val$target -> a
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$b:
@@ -19383,9 +19732,9 @@ com.gongwu.wherecollect.view.PopupEditBox$EditInterlayerClickListener -> com.gon
     void onDelClick() -> c
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditBox target -> a
-    android.view.View view7f08011b -> c
-    android.view.View view7f08011c -> b
-    android.view.View view7f0800fe -> d
+    android.view.View view7f08011d -> c
+    android.view.View view7f08011e -> b
+    android.view.View view7f080100 -> d
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditBox val$target -> a
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$b:
@@ -19409,9 +19758,9 @@ com.gongwu.wherecollect.view.PopupEditFurnitureName$PopupClickListener -> com.go
     void onImgClick() -> a
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding -> com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditFurnitureName target -> a
-    android.view.View view7f08026c -> c
+    android.view.View view7f08026e -> c
     android.view.View view7f0800b2 -> b
-    android.view.View view7f08026b -> e
+    android.view.View view7f08026d -> e
     android.view.View view7f080099 -> d
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditFurnitureName val$target -> a
@@ -19432,8 +19781,8 @@ com.gongwu.wherecollect.view.PopupEditInterlayer$EditInterlayerClickListener -> 
     void onFirstClick() -> b
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditInterlayer target -> a
-    android.view.View view7f080100 -> c
-    android.view.View view7f080108 -> b
+    android.view.View view7f080102 -> c
+    android.view.View view7f08010a -> b
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditInterlayer val$target -> a
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$b:
@@ -19448,10 +19797,10 @@ com.gongwu.wherecollect.view.PopupEditMenuGoods$EditMenuPopupClickListener -> co
     void onAddRemingClick() -> b
     void onEditGoodsClick() -> c
 com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding:
-    android.view.View view7f08021c -> c
+    android.view.View view7f08021e -> c
     com.gongwu.wherecollect.view.PopupEditMenuGoods target -> a
-    android.view.View view7f08021f -> b
-    android.view.View view7f08021e -> d
+    android.view.View view7f080221 -> b
+    android.view.View view7f080220 -> d
 com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditMenuGoods val$target -> a
 com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$b:
@@ -19493,8 +19842,8 @@ com.gongwu.wherecollect.view.PopupEditMoveFurniture$PopupClickListener -> com.go
     void onCommitClick(java.lang.String,java.lang.String) -> a
     void onMoveRoomClick(com.gongwu.wherecollect.net.entity.response.FamilyBean) -> a
 com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding -> com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding:
-    android.view.View view7f08026a -> c
-    android.view.View view7f08026b -> b
+    android.view.View view7f08026c -> c
+    android.view.View view7f08026d -> b
     android.view.View view7f080099 -> d
     com.gongwu.wherecollect.view.PopupEditMoveFurniture target -> a
 com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding$a:
@@ -19543,7 +19892,7 @@ com.gongwu.wherecollect.view.PopupImportGoods$OnItemClickListener -> com.gongwu.
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding:
     com.gongwu.wherecollect.view.PopupImportGoods target -> a
     android.view.View view7f080055 -> c
-    android.view.View view7f080207 -> b
+    android.view.View view7f080209 -> b
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupImportGoods val$target -> a
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$b:
@@ -19594,7 +19943,7 @@ com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding -> com.gongwu.whe
     com.gongwu.wherecollect.view.PopupScrollPickerView target -> a
     android.view.View view7f080099 -> c
     android.view.View view7f0800b2 -> b
-    android.view.View view7f08026b -> d
+    android.view.View view7f08026d -> d
 com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupScrollPickerView val$target -> a
 com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$b:
@@ -23528,33 +23877,37 @@ com.yalantis.ucrop.UCrop$Options -> com.yalantis.ucrop.a$a:
     void setToolbarColor(int) -> b
     void setToolbarWidgetColor(int) -> c
 com.yalantis.ucrop.UCropActivity -> com.yalantis.ucrop.UCropActivity:
-    android.view.ViewGroup mLayoutAspectRatio -> q
-    android.graphics.Bitmap$CompressFormat mCompressFormat -> x
-    android.view.ViewGroup mLayoutScale -> s
-    boolean mShowBottomControls -> i
-    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mImageListener -> A
-    int mLogoColor -> h
-    java.util.List mCropAspectRatioViews -> t
-    int mActiveWidgetColor -> f
-    android.view.View$OnClickListener mStateClickListener -> B
-    android.widget.TextView mTextViewScalePercent -> v
+    boolean mShowLoader -> m
+    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mImageListener -> E
+    android.view.ViewGroup mWrapperStateAspectRatio -> q
+    android.view.ViewGroup mWrapperStateScale -> s
+    android.view.View mBlockingView -> z
+    int mToolbarCropDrawable -> j
+    android.view.ViewGroup mLayoutRotate -> u
+    int mRootViewBackgroundColor -> h
+    int mActiveControlsWidgetColor -> f
     int mToolbarColor -> d
-    com.yalantis.ucrop.view.GestureCropImageView mGestureCropImageView -> l
-    int mCompressQuality -> y
+    android.widget.TextView mTextViewRotateAngle -> x
+    android.view.View$OnClickListener mStateClickListener -> F
+    int mCompressQuality -> C
+    androidx.transition.Transition mControlsTransition -> A
+    android.graphics.Bitmap$CompressFormat mCompressFormat -> B
     java.lang.String mToolbarTitle -> c
-    com.yalantis.ucrop.view.OverlayView mOverlayView -> m
-    android.view.ViewGroup mWrapperStateAspectRatio -> n
-    android.view.ViewGroup mWrapperStateScale -> p
-    android.view.ViewGroup mLayoutRotate -> r
-    boolean mShowLoader -> j
-    android.widget.TextView mTextViewRotateAngle -> u
+    com.yalantis.ucrop.view.UCropView mUCropView -> n
+    android.view.ViewGroup mWrapperStateRotate -> r
+    android.view.ViewGroup mLayoutAspectRatio -> t
+    android.view.ViewGroup mLayoutScale -> v
+    int mLogoColor -> k
+    int mToolbarCancelDrawable -> i
+    boolean mShowBottomControls -> l
     int mToolbarWidgetColor -> g
+    android.widget.TextView mTextViewScalePercent -> y
     int mStatusBarColor -> e
-    int[] mAllowedGestures -> z
-    android.view.View mBlockingView -> w
-    android.graphics.Bitmap$CompressFormat DEFAULT_COMPRESS_FORMAT -> C
-    com.yalantis.ucrop.view.UCropView mUCropView -> k
-    android.view.ViewGroup mWrapperStateRotate -> o
+    java.util.List mCropAspectRatioViews -> w
+    com.yalantis.ucrop.view.GestureCropImageView mGestureCropImageView -> o
+    android.graphics.Bitmap$CompressFormat DEFAULT_COMPRESS_FORMAT -> G
+    int[] mAllowedGestures -> D
+    com.yalantis.ucrop.view.OverlayView mOverlayView -> p
     void access$000(com.yalantis.ucrop.UCropActivity,float) -> a
     com.yalantis.ucrop.view.UCropView access$200(com.yalantis.ucrop.UCropActivity) -> a
     boolean access$402(com.yalantis.ucrop.UCropActivity,boolean) -> a
@@ -23571,12 +23924,15 @@ com.yalantis.ucrop.UCropActivity -> com.yalantis.ucrop.UCropActivity:
     java.util.List access$600(com.yalantis.ucrop.UCropActivity) -> d
     void setImageData(android.content.Intent) -> d
     void access$700(com.yalantis.ucrop.UCropActivity) -> e
-    void rotateByAngle(int) -> e
+    void changeSelectedTab(int) -> e
     void setupAspectRatioWidget(android.content.Intent) -> e
-    void setAllowedGestures(int) -> f
+    void rotateByAngle(int) -> f
     void setupViews(android.content.Intent) -> f
-    void setStatusBarColor(int) -> g
-    void setWidgetState(int) -> h
+    void setAllowedGestures(int) -> g
+    void setAngleTextColor(int) -> h
+    void setScaleTextColor(int) -> i
+    void setStatusBarColor(int) -> j
+    void setWidgetState(int) -> k
     void cropAndSaveImage() -> m
     void addBlockingView() -> n
     void initiateRootViews() -> o
@@ -23690,6 +24046,7 @@ com.yalantis.ucrop.task.BitmapLoadTask -> com.yalantis.ucrop.d.b:
     com.yalantis.ucrop.callback.BitmapLoadCallback mBitmapLoadCallback -> f
     android.net.Uri mOutputUri -> c
     android.net.Uri mInputUri -> b
+    boolean checkSize(android.graphics.Bitmap,android.graphics.BitmapFactory$Options) -> a
     void copyFile(android.net.Uri,android.net.Uri) -> a
     com.yalantis.ucrop.task.BitmapLoadTask$BitmapWorkerResult doInBackground(java.lang.Void[]) -> a
     void onPostExecute(com.yalantis.ucrop.task.BitmapLoadTask$BitmapWorkerResult) -> a
@@ -23725,18 +24082,12 @@ com.yalantis.ucrop.util.FastBitmapDrawable -> com.yalantis.ucrop.e.d:
     void setBitmap(android.graphics.Bitmap) -> a
 com.yalantis.ucrop.util.FileUtils -> com.yalantis.ucrop.e.e:
     void copyFile(java.lang.String,java.lang.String) -> a
-    java.lang.String getDataColumn(android.content.Context,android.net.Uri,java.lang.String,java.lang.String[]) -> a
-    java.lang.String getPath(android.content.Context,android.net.Uri) -> a
-    boolean isDownloadsDocument(android.net.Uri) -> a
-    boolean isExternalStorageDocument(android.net.Uri) -> b
-    boolean isGooglePhotosUri(android.net.Uri) -> c
-    boolean isMediaDocument(android.net.Uri) -> d
 com.yalantis.ucrop.util.ImageHeaderParser -> com.yalantis.ucrop.e.f:
     byte[] JPEG_EXIF_SEGMENT_PREAMBLE_BYTES -> b
     int[] BYTES_PER_FORMAT -> c
     com.yalantis.ucrop.util.ImageHeaderParser$Reader reader -> a
     int calcTagOffset(int,int) -> a
-    void copyExif(android.media.ExifInterface,int,int,java.lang.String) -> a
+    void copyExif(androidx.exifinterface.media.ExifInterface,int,int,java.lang.String) -> a
     int getOrientation() -> a
     boolean handles(int) -> a
     boolean hasJpegExifPreamble(byte[],int) -> a
@@ -23783,18 +24134,18 @@ com.yalantis.ucrop.util.RotationGestureDetector$SimpleOnRotationGestureListener 
 com.yalantis.ucrop.util.SelectedStateListDrawable -> com.yalantis.ucrop.e.i:
     int mSelectionColor -> a
 com.yalantis.ucrop.view.CropImageView -> com.yalantis.ucrop.view.a:
-    android.graphics.RectF mCropRect -> p
-    java.lang.Runnable mWrapCropBoundsRunnable -> u
-    float mMinScale -> x
-    int mMaxResultImageSizeY -> z
-    com.yalantis.ucrop.callback.CropBoundsChangeListener mCropBoundsChangeListener -> t
-    float mMaxScale -> w
-    java.lang.Runnable mZoomImageToPositionRunnable -> v
-    int mMaxResultImageSizeX -> y
-    float mMaxScaleMultiplier -> s
-    long mImageToWrapCropBoundsAnimDuration -> A
-    float mTargetAspectRatio -> r
-    android.graphics.Matrix mTempMatrix -> q
+    android.graphics.RectF mCropRect -> r
+    float mMinScale -> z
+    float mMaxScale -> y
+    java.lang.Runnable mZoomImageToPositionRunnable -> x
+    java.lang.Runnable mWrapCropBoundsRunnable -> w
+    float mMaxScaleMultiplier -> u
+    android.graphics.Matrix mTempMatrix -> s
+    float mTargetAspectRatio -> t
+    com.yalantis.ucrop.callback.CropBoundsChangeListener mCropBoundsChangeListener -> v
+    long mImageToWrapCropBoundsAnimDuration -> C
+    int mMaxResultImageSizeY -> B
+    int mMaxResultImageSizeX -> A
     android.graphics.RectF access$000(com.yalantis.ucrop.view.CropImageView) -> a
     void cropAndSaveImage(android.graphics.Bitmap$CompressFormat,int,com.yalantis.ucrop.callback.BitmapCropCallback) -> a
     boolean isImageWrapCropBounds(float[]) -> a
@@ -23802,18 +24153,18 @@ com.yalantis.ucrop.view.CropImageView -> com.yalantis.ucrop.view.a:
     void processStyledAttributes(android.content.res.TypedArray) -> a
     void zoomImageToPosition(float,float,float,long) -> a
     void calculateImageScaleBounds(float,float) -> b
-    void onImageLaidOut() -> b
     void postScale(float,float,float) -> b
     void zoomInImage(float) -> b
-    void cancelAllAnimations() -> c
     void setupInitialImagePosition(float,float) -> c
     void zoomInImage(float,float,float) -> c
     void zoomOutImage(float) -> c
-    boolean isImageWrapCropBounds() -> d
+    void onImageLaidOut() -> d
     void zoomOutImage(float,float,float) -> d
-    void setImageToWrapCropBounds() -> e
-    float[] calculateImageIndents() -> f
-    void calculateImageScaleBounds() -> g
+    void cancelAllAnimations() -> e
+    boolean isImageWrapCropBounds() -> f
+    void setImageToWrapCropBounds() -> g
+    float[] calculateImageIndents() -> h
+    void calculateImageScaleBounds() -> i
 com.yalantis.ucrop.view.CropImageView$WrapCropBoundsRunnable -> com.yalantis.ucrop.view.a$a:
     float mDeltaScale -> i
     float mOldScale -> h
@@ -23834,18 +24185,18 @@ com.yalantis.ucrop.view.CropImageView$ZoomImageToPosition -> com.yalantis.ucrop.
     java.lang.ref.WeakReference mCropImageView -> a
     long mStartTime -> c
 com.yalantis.ucrop.view.GestureCropImageView -> com.yalantis.ucrop.view.GestureCropImageView:
-    float mMidPntY -> F
-    float mMidPntX -> E
-    int mDoubleTapScaleSteps -> I
-    android.view.GestureDetector mGestureDetector -> D
-    boolean mIsRotateEnabled -> G
-    boolean mIsScaleEnabled -> H
-    android.view.ScaleGestureDetector mScaleDetector -> B
-    com.yalantis.ucrop.util.RotationGestureDetector mRotateDetector -> C
+    float mMidPntY -> H
+    boolean mIsRotateEnabled -> I
+    float mMidPntX -> G
+    boolean mIsScaleEnabled -> J
+    int mDoubleTapScaleSteps -> K
+    android.view.GestureDetector mGestureDetector -> F
+    android.view.ScaleGestureDetector mScaleDetector -> D
+    com.yalantis.ucrop.util.RotationGestureDetector mRotateDetector -> E
     float access$300(com.yalantis.ucrop.view.GestureCropImageView) -> a
     void init() -> a
     float access$400(com.yalantis.ucrop.view.GestureCropImageView) -> b
-    void setupGestureListeners() -> f
+    void setupGestureListeners() -> h
 com.yalantis.ucrop.view.GestureCropImageView$1 -> com.yalantis.ucrop.view.GestureCropImageView$a:
 com.yalantis.ucrop.view.GestureCropImageView$GestureListener -> com.yalantis.ucrop.view.GestureCropImageView$b:
     com.yalantis.ucrop.view.GestureCropImageView this$0 -> a
@@ -23856,31 +24207,31 @@ com.yalantis.ucrop.view.GestureCropImageView$ScaleListener -> com.yalantis.ucrop
     com.yalantis.ucrop.view.GestureCropImageView this$0 -> a
 com.yalantis.ucrop.view.OverlayView -> com.yalantis.ucrop.view.OverlayView:
     android.graphics.RectF mTempRect -> b
-    boolean mCircleDimmedLayer -> i
-    int mDimmedColor -> j
-    float mTargetAspectRatio -> e
-    float[] mGridPoints -> f
-    int mCropGridColumnCount -> d
-    android.graphics.Paint mCropFramePaint -> n
-    android.graphics.Paint mDimmedStrokePaint -> l
+    boolean mShowCropGrid -> k
+    int mCropGridRowCount -> f
+    android.graphics.Paint mCropFrameCornersPaint -> r
+    int mThisHeight -> d
+    android.graphics.Paint mCropGridPaint -> p
+    android.graphics.Path mCircularPath -> n
     float mPreviousTouchY -> u
     int mCropRectCornerTouchAreaLineLength -> y
     int mTouchPointThreshold -> w
-    boolean mShowCropGrid -> h
     boolean mShouldSetupCropBounds -> A
-    int mThisHeight -> q
+    int mFreestyleCropMode -> s
     android.graphics.RectF mCropViewRect -> a
-    android.graphics.Paint mCropFrameCornersPaint -> o
-    int mCropGridRowCount -> c
-    android.graphics.Paint mCropGridPaint -> m
-    boolean mIsFreestyleCropEnabled -> r
-    android.graphics.Path mCircularPath -> k
+    int mDimmedColor -> m
+    float mTargetAspectRatio -> h
+    float[] mGridPoints -> i
+    boolean mShowCropFrame -> j
+    boolean mCircleDimmedLayer -> l
+    float[] mCropGridCorners -> e
+    int mCropGridColumnCount -> g
+    android.graphics.Paint mCropFramePaint -> q
+    android.graphics.Paint mDimmedStrokePaint -> o
+    int mThisWidth -> c
     int mCropRectMinSize -> x
     float mPreviousTouchX -> t
     int mCurrentTouchCornerIndex -> v
-    boolean mShowCropFrame -> g
-    float[] mCropGridCorners -> s
-    int mThisWidth -> p
     com.yalantis.ucrop.callback.OverlayViewChangeListener mCallback -> z
     void drawCropGrid(android.graphics.Canvas) -> a
     int getCurrentTouchIndex(float,float) -> a
@@ -23893,21 +24244,21 @@ com.yalantis.ucrop.view.OverlayView -> com.yalantis.ucrop.view.OverlayView:
     void initCropGridStyle(android.content.res.TypedArray) -> c
     void updateGridPoints() -> c
 com.yalantis.ucrop.view.TransformImageView -> com.yalantis.ucrop.view.b:
-    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mTransformImageListener -> g
-    int mMaxBitmapSize -> l
-    float[] mInitialImageCenter -> i
-    boolean mBitmapDecoded -> j
-    boolean mBitmapLaidOut -> k
-    java.lang.String mImageInputPath -> m
-    float[] mInitialImageCorners -> h
-    int mThisHeight -> f
-    java.lang.String mImageOutputPath -> n
-    float[] mMatrixValues -> c
-    int mThisWidth -> e
-    float[] mCurrentImageCorners -> a
-    float[] mCurrentImageCenter -> b
-    com.yalantis.ucrop.model.ExifInfo mExifInfo -> o
-    android.graphics.Matrix mCurrentImageMatrix -> d
+    boolean mBitmapLaidOut -> m
+    int mMaxBitmapSize -> n
+    float[] mInitialImageCenter -> k
+    float[] mInitialImageCorners -> j
+    android.graphics.Matrix mCurrentImageMatrix -> f
+    int mThisHeight -> h
+    boolean mBitmapDecoded -> l
+    float[] mMatrixValues -> e
+    java.lang.String mImageInputPath -> o
+    int mThisWidth -> g
+    float[] mCurrentImageCorners -> c
+    float[] mCurrentImageCenter -> d
+    java.lang.String mImageOutputPath -> p
+    com.yalantis.ucrop.model.ExifInfo mExifInfo -> q
+    com.yalantis.ucrop.view.TransformImageView$TransformImageListener mTransformImageListener -> i
     java.lang.String access$002(com.yalantis.ucrop.view.TransformImageView,java.lang.String) -> a
     com.yalantis.ucrop.model.ExifInfo access$202(com.yalantis.ucrop.view.TransformImageView,com.yalantis.ucrop.model.ExifInfo) -> a
     float getMatrixAngle(android.graphics.Matrix) -> a
@@ -23918,9 +24269,9 @@ com.yalantis.ucrop.view.TransformImageView -> com.yalantis.ucrop.view.b:
     void setImageUri(android.net.Uri,android.net.Uri) -> a
     java.lang.String access$102(com.yalantis.ucrop.view.TransformImageView,java.lang.String) -> b
     float getMatrixScale(android.graphics.Matrix) -> b
-    void onImageLaidOut() -> b
     void postScale(float,float,float) -> b
-    void updateCurrentImagePoints() -> c
+    void onImageLaidOut() -> d
+    void updateCurrentImagePoints() -> e
 com.yalantis.ucrop.view.TransformImageView$1 -> com.yalantis.ucrop.view.b$a:
     com.yalantis.ucrop.view.TransformImageView this$0 -> a
     void onBitmapLoaded(android.graphics.Bitmap,com.yalantis.ucrop.model.ExifInfo,java.lang.String,java.lang.String) -> a
@@ -23934,6 +24285,7 @@ com.yalantis.ucrop.view.UCropView -> com.yalantis.ucrop.view.UCropView:
     com.yalantis.ucrop.view.OverlayView mViewOverlay -> b
     com.yalantis.ucrop.view.GestureCropImageView mGestureCropImageView -> a
     com.yalantis.ucrop.view.OverlayView access$000(com.yalantis.ucrop.view.UCropView) -> a
+    void setListenersToViews() -> a
     com.yalantis.ucrop.view.GestureCropImageView access$100(com.yalantis.ucrop.view.UCropView) -> b
 com.yalantis.ucrop.view.UCropView$1 -> com.yalantis.ucrop.view.UCropView$a:
     com.yalantis.ucrop.view.UCropView this$0 -> a
@@ -23942,28 +24294,29 @@ com.yalantis.ucrop.view.UCropView$2 -> com.yalantis.ucrop.view.UCropView$b:
     com.yalantis.ucrop.view.UCropView this$0 -> a
     void onCropRectUpdated(android.graphics.RectF) -> a
 com.yalantis.ucrop.view.widget.AspectRatioTextView -> com.yalantis.ucrop.view.widget.AspectRatioTextView:
-    float mAspectRatioY -> g
-    float mAspectRatioX -> f
-    android.graphics.Paint mDotPaint -> b
-    float mAspectRatio -> d
-    int mDotSize -> c
-    android.graphics.Rect mCanvasClipBounds -> a
-    java.lang.String mAspectRatioTitle -> e
+    float mAspectRatioY -> k
+    java.lang.String mAspectRatioTitle -> i
+    float mAspectRatioX -> j
+    android.graphics.Paint mDotPaint -> f
+    float mAspectRatio -> h
+    int mDotSize -> g
+    android.graphics.Rect mCanvasClipBounds -> e
     void applyActiveColor(int) -> a
     float getAspectRatio(boolean) -> a
     void init(android.content.res.TypedArray) -> a
-    void setTitle() -> a
-    void toggleAspectRatio() -> b
+    void setTitle() -> d
+    void toggleAspectRatio() -> e
 com.yalantis.ucrop.view.widget.HorizontalProgressWheelView -> com.yalantis.ucrop.view.widget.HorizontalProgressWheelView:
-    float mTotalScrollDistance -> i
-    int mMiddleLineColor -> j
+    float mTotalScrollDistance -> j
+    boolean mScrollStarted -> i
+    android.graphics.Paint mProgressMiddleLinePaint -> e
+    int mMiddleLineColor -> k
     android.graphics.Paint mProgressLinePaint -> d
-    int mProgressLineHeight -> f
+    int mProgressLineMargin -> h
+    int mProgressLineWidth -> f
     com.yalantis.ucrop.view.widget.HorizontalProgressWheelView$ScrollingListener mScrollingListener -> b
     float mLastTouchedPosition -> c
-    int mProgressLineMargin -> g
-    int mProgressLineWidth -> e
-    boolean mScrollStarted -> h
+    int mProgressLineHeight -> g
     android.graphics.Rect mCanvasClipBounds -> a
     void init() -> a
     void onScrollEvent(android.view.MotionEvent,float) -> a

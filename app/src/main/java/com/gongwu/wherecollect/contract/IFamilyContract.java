@@ -14,7 +14,7 @@ public interface IFamilyContract {
     }
 
     interface IFamilyPresenter {
-        void getFurnitureList(String uid, String location_code, String familyCode);
+        void getFurnitureList(String uid, String location_code, String familyCode, boolean isShowLoading);
     }
 
     interface IFamilyView extends BaseView {

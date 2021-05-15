@@ -221,15 +221,19 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
             ToastUtil.show(mContext, getResources().getString(R.string.add_remind_time_hint_two), Toast.LENGTH_SHORT);
             return;
         }
+        String description = remarksTv.getText().toString().trim();
+        if (TextUtils.isEmpty(description) && selectGoods != null) {
+            description = selectGoods.getName();
+        }
         if (detailsBean != null) {
             getPresenter().updateRemind(App.getUser(mContext).getId(), mEditText.getText().toString().trim(),
-                    remarksTv.getText().toString().trim(), selectTime + "",
+                    description, selectTime + "",
                     mFirstSwitch.isChecked() ? "1" : "0", mOverdueTimeSwitch.isChecked() ? "1" : "0",
                     selectGoods != null ? selectGoods.getId() : "", selectGoods != null ? selectGoods.getObject_url() : "",
                     AppConstant.DEVICE_TOKEN, detailsBean.get_id());
         } else {
             getPresenter().addRemind(App.getUser(mContext).getId(), mEditText.getText().toString().trim(),
-                    remarksTv.getText().toString().trim(), selectTime + "",
+                    description, selectTime + "",
                     mFirstSwitch.isChecked() ? "1" : "0", mOverdueTimeSwitch.isChecked() ? "1" : "0",
                     selectGoods != null ? selectGoods.getId() : "", selectGoods != null ? selectGoods.getObject_url() : "",
                     AppConstant.DEVICE_TOKEN);
@@ -250,18 +254,18 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
             @Override
             public void onTimeSelect(Date date, View v) {
                 editSubmitBtEnable();
-                selectTime = date.getTime();
+//                selectTime = date.getTime();
                 //去掉分
-//                selectTime = date.getTime() / 1000 / (60 * 60) * (60 * 60) * 1000;
+                selectTime = date.getTime() / 1000 / (60 * 60) * (60 * 60) * 1000;
                 selectTimeTv.setText(DateUtil.dateToString(new Date(selectTime), DateUtil.DatePattern.ONLY_MINUTE));
             }
-        }).setType(new boolean[]{true, true, true, true, true, false})
+        }).setType(new boolean[]{true, true, true, true, false, false})
                 .setCancelText("取消")//取消按钮文字
                 .setSubmitText("确定")//确认按钮文字
                 .isCyclic(false)
                 .setDate(selectDate)
                 .setRangDate(startDate, null)
-                .setLabel("年", "月", "日", "时", "分", "")
+                .setLabel("年", "月", "日", "时", "", "")
                 .build();
         pvTime.show();
     }
