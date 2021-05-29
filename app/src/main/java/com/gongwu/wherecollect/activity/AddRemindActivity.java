@@ -36,6 +36,7 @@ import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.EditTextWatcher;
+import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.Loading;
 
 import java.util.Calendar;
@@ -69,8 +70,6 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
     RelativeLayout addRemindGoodsLayout;
     @BindView(R.id.remind_goods_details_layout)
     RelativeLayout remindGoodsDetailsLayout;
-    @BindView(R.id.goods_iv)
-    ImageView goodsIv;
     @BindView(R.id.goods_name_tv)
     TextView goodsNameTv;
     @BindView(R.id.goods_classify_tv)
@@ -83,8 +82,8 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
     TextView editSubmitTv;
     @BindView(R.id.goods_location_btn)
     ImageView locationIv;
-    @BindView(R.id.no_url_img_tv)
-    TextView imgTv;
+    @BindView(R.id.remind_goods_img_view)
+    GoodsImageView mGoodsImageView;
 
     private Loading loading;
     private long selectTime = 0;
@@ -377,8 +376,6 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
      * 初始化关联物品数据
      */
     private void setSelectGoods(ObjectBean selectGoods) {
-        //图片文字
-        imgTv.setVisibility(View.GONE);
         //关联物品跳转按钮
         addRemindGoodsLayout.setVisibility(View.GONE);
         //显示物品布局
@@ -391,15 +388,11 @@ public class AddRemindActivity extends BaseMvpActivity<AddRemindActivity, EditRe
         //分类
         goodsClassifyTv.setText(String.format(getString(R.string.remind_goods_classify_text), StringUtils.getGoodsClassify(selectGoods)));
         //判断图片类型 是网络图片还是默认颜色
-        if (!TextUtils.isEmpty(selectGoods.getObjectUrl()) && selectGoods.getObjectUrl().contains("http")) {
-            ImageLoader.load(mContext, goodsIv, selectGoods.getObject_url());
-        } else if (!TextUtils.isEmpty(selectGoods.getObject_url()) && !selectGoods.getObject_url().contains("/")) {
-            goodsIv.setBackgroundResource(0);
-            goodsIv.setBackgroundColor(Color.parseColor(selectGoods.getObject_url()));
-            imgTv.setVisibility(View.VISIBLE);
-            imgTv.setText(selectGoods.getName());
+        if (selectGoods.getObject_url().contains("#")) {
+            int resId = Color.parseColor(selectGoods.getObject_url());
+            mGoodsImageView.setResourceColor(selectGoods.getName(), resId, 3);
         } else {
-            goodsIv.setBackgroundColor(getResources().getColor(R.color.colorf9));
+            mGoodsImageView.setImg(selectGoods.getObject_url(), 3);
         }
         //标题
         if (TextUtils.isEmpty(mEditText.getText().toString().trim())) {
