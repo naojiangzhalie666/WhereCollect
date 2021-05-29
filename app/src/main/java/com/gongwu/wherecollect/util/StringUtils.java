@@ -35,7 +35,12 @@ import com.gongwu.wherecollect.view.PopupMessage;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -923,5 +928,21 @@ public class StringUtils {
             return false;
         }
         return true;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> List<T> deepCopyList(List<T> src) {
+        List<T> dest = null;
+        try {
+            ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+            ObjectOutputStream out = new ObjectOutputStream(byteOut);
+            out.writeObject(src);
+            ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray());
+            ObjectInputStream in = new ObjectInputStream(byteIn);
+            dest = (List<T>) in.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dest;
     }
 }

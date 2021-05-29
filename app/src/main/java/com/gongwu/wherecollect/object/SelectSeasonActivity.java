@@ -14,6 +14,7 @@ import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
 import com.gongwu.wherecollect.adapter.SelectSeasonAdapter;
 import com.gongwu.wherecollect.base.BaseActivity;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 
@@ -121,7 +122,7 @@ public class SelectSeasonActivity extends BaseActivity implements MyOnItemClickL
     public static void start(Context mContext, ObjectBean objectBean) {
         Intent intent = new Intent(mContext, SelectSeasonActivity.class);
         intent.putExtra("objectBean", objectBean);
-        ((Activity) mContext).startActivityForResult(intent, AddGoodsPropertyActivity.REQUEST_CODE);
+        ((Activity) mContext).startActivityForResult(intent, AppConstant.START_GOODS_INFO_CODE);
     }
 
     @Override

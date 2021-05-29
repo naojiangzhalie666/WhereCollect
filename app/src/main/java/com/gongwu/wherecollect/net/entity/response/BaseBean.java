@@ -10,7 +10,7 @@ import java.util.List;
  * @author zhaojin
  * @since JDK 1.7
  */
-public class BaseBean implements Serializable {
+public class BaseBean implements Serializable, Cloneable {
 
     protected String _id;
     protected String id;
@@ -103,5 +103,16 @@ public class BaseBean implements Serializable {
 
     public void setIs_user(boolean is_user) {
         this.is_user = is_user;
+    }
+
+    @Override
+    public Object clone() {
+        BaseBean bean = null;
+        try {
+            bean = (BaseBean) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return bean;
     }
 }

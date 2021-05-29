@@ -6,6 +6,7 @@ import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
 import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
+import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
@@ -102,6 +103,70 @@ public class AddGoodsModel implements IAddGoodsContract.IAddGoodsModel {
         ApiUtils.removeObjectFromFurnitrue(req, new ApiCallBack<RequestSuccessBean>() {
             @Override
             public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getBuyFirstCategoryList(String uid, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getBuyFirstCategoryList(uid, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getSubCategoryList(String uid, String parentCode, String type, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getSubCategoryList(uid, parentCode, type, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getTwoSubCategoryList(String uid, String parentCode, String type, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getSubCategoryList(uid, parentCode, type, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getThreeSubCategoryList(String uid, String parentCode, String type, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getSubCategoryList(uid, parentCode, type, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
                 callback.onSuccess(data);
             }
 

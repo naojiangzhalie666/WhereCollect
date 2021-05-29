@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/title_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_hight"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/title_hight">
+
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="@dimen/title_hight"
+        android:layout_height="@dimen/title_hight"
+        android:background="@drawable/select_activity_bg"
+        android:scaleType="centerInside"
+        android:src="@drawable/back_icon" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:textColor="@color/black_txt"
+        android:textSize="@dimen/f_17"
+        tools:text="标题" />
+
+    <TextView
+        android:id="@+id/title_save_tv"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_30"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_12"
+        android:background="@drawable/select_maincolor_r4_15dp_bg"
+        android:elevation="@dimen/dip_2"
+        android:gravity="center"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/title_canle_tv"
+        android:layout_width="@dimen/dip_64"
+        android:layout_height="@dimen/dip_30"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/dip_14"
+        android:background="@drawable/shape_remind_add_bg"
+        android:elevation="@dimen/dip_2"
+        android:gravity="center"
+        android:text="@string/cancel_text"
+        android:textColor="@color/remind_add_text_color"
+        android:textSize="@dimen/f_15"
+        android:visibility="gone" />
+
+
+    <ImageButton
+        android:id="@+id/image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/dip_16"
+        android:background="@drawable/select_activity_bg"
+        android:scaleType="centerInside"
+        android:src="@drawable/icon_menu" />
+
+</RelativeLayout>

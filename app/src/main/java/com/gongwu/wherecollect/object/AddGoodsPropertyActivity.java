@@ -28,8 +28,6 @@ import butterknife.OnClick;
 
 public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyActivity, GoodsPropertyPresenter> implements IGoodsPropertyContract.IGoodsPropertyView, ObjectInfoEditView.OnItemClickListener {
 
-    public static final int REQUEST_CODE = 0x0010;
-
     @BindView(R.id.title_tv)
     TextView mTitleTv;
     @BindView(R.id.goodsInfo_other_view)
@@ -91,7 +89,7 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (REQUEST_CODE == requestCode && RESULT_OK == resultCode) {
+        if (AppConstant.START_GOODS_INFO_CODE == requestCode && RESULT_OK == resultCode) {
             objectBean = (ObjectBean) data.getSerializableExtra("objectBean");
             goodsInfoView.init(objectBean);
         }

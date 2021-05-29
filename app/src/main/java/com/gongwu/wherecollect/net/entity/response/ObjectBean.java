@@ -19,7 +19,7 @@ import java.util.List;
  * @author zhaojin
  * @since JDK 1.7
  */
-public class ObjectBean implements Serializable {
+public class ObjectBean implements Serializable, Cloneable {
     /**
      * _id : 59e7fb1d31391929e7ed83e7
      * search_tags :
@@ -128,6 +128,7 @@ public class ObjectBean implements Serializable {
     private String location_code;
     private int weight;
     private List<ObjectBean> goodsByBox;
+
     /**
      * 获取初始尺寸
      *
@@ -367,6 +368,8 @@ public class ObjectBean implements Serializable {
     public String getPrice() {
         //越来越乱 = =
         if (TextUtils.isEmpty(price) && price_max == 0) return "";
+        if ("0".equals(price)) return "";
+        if ("0.0".equals(price)) return "";
         String str = TextUtils.isEmpty(price) ? price_max + "" : price;
         return str.replaceAll("元", "").replaceAll("CNY ", "");
     }
@@ -375,7 +378,7 @@ public class ObjectBean implements Serializable {
         this.price = price;
     }
 
-    public List<String> getChannelList(){
+    public List<String> getChannelList() {
         return channel;
     }
 
@@ -435,7 +438,7 @@ public class ObjectBean implements Serializable {
         }
     }
 
-    public List<String> getColors(){
+    public List<String> getColors() {
         return color;
     }
 
@@ -802,7 +805,7 @@ public class ObjectBean implements Serializable {
             return false;
         } else if (!TextUtils.isEmpty(detail)) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
@@ -847,5 +850,17 @@ public class ObjectBean implements Serializable {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public Object clone() {
+        ObjectBean bean = null;
+        try {
+            bean = (ObjectBean) super.clone();
+            bean.setCategories(StringUtils.deepCopyList(bean.getCategories()));
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return bean;
     }
 }

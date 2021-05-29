@@ -47,6 +47,7 @@
     <string name="barcode_msg_fail">扫描失败！</string>
     <string name="scan_tips">将二维码图片对准扫描框即可自动扫描</string>
     <string name="confirm">确定</string>
+    <string name="save">保存</string>
     <string name="scaning">扫描二维码</string>
     <string name="add_more_text">批量添加</string>
     <string name="add_goods_text">添加</string>
@@ -60,6 +61,7 @@
     <string name="base_content">基本属性</string>
     <string name="other_content">其他属性</string>
     <string name="reminds_content">提醒</string>
+    <string name="location_content">位置信息</string>
     <string name="add_goods_sort">分类</string>
     <string name="hint_goods_name">名称</string>
     <string name="goods_text">物品</string>
@@ -100,6 +102,7 @@
     <string name="edit_furniture">家具编辑</string>
     <string name="user_add_furniture">自定义家具</string>
     <string name="edit_text">编辑</string>
+    <string name="stop_text">收起</string>
     <string name="edit_family">管理</string>
     <string name="edit_layer">编辑结构</string>
     <string name="edit_box">编辑收纳盒</string>
@@ -144,7 +147,9 @@
     <string name="hint_expiry_time_tv">请选择物品过期时间</string>
     <string name="hint_color_tv">请选择物品所属颜色</string>
     <string name="hint_season_tv">请选择物品所属季节</string>
+    <string name="hint_ascription_tv">请选择归属人</string>
     <string name="hint_channel_tv">请选择物品购货渠道</string>
+    <string name="hint_detail_tv">填写备注</string>
     <string name="add_remind_tv">添加提醒</string>
     <string name="title_sort_customize_tv">自定义分类</string>
     <string name="customize_text">自定义</string>

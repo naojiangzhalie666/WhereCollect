@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter;
 import com.gongwu.wherecollect.base.App;
@@ -37,11 +38,13 @@ import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.view.ObjectInfoEditView;
 import com.gongwu.wherecollect.view.PopupAddGoods;
 import com.gongwu.wherecollect.view.EditTextWatcher;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoLookView;
+import com.gongwu.wherecollect.view.SortChildDialog;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -57,7 +60,7 @@ import razerdp.basepopup.BasePopupWindow;
 /**
  * 添加物品界面
  */
-public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoodsPresenter> implements IAddGoodsContract.IAddGoodsView, PopupAddGoods.AddGoodsPopupClickListener {
+public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoodsPresenter> implements IAddGoodsContract.IAddGoodsView, PopupAddGoods.AddGoodsPopupClickListener, ObjectInfoEditView.OnItemClickListener {
     private static final String TAG = AddGoodsActivity.class.getSimpleName();
     public static final int BOOK_CODE = 0x112;
     public static final int RESULT_FINISH = 0x193;
@@ -88,29 +91,28 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     TextView remindNameTv;
     @BindView(R.id.remind_time_tv)
     TextView remindTimeTv;
-    @BindView(R.id.add_other_content_tv)
-    TextView addInfoView;
-    @BindView(R.id.goods_info_edit_tv)
-    TextView editInfoTv;
-    @BindView(R.id.goods_info_view)
-    RecyclerView goodsInfoListView;
     @BindView(R.id.commit_layout)
     LinearLayout commitLayout;
     @BindView(R.id.title_commit_bg_main_color_tv)
     TextView editInfoCommitTv;
+    @BindView(R.id.add_goods_info_view)
+    ObjectInfoEditView addGoodsInfotView;
 
-    private GoodsInfoViewAdapter mAdapter;
     private Loading loading;
     private File imgFile;
     private File imgOldFile;
 
     private final String IMG_COLOR_CODE = "0";//默认图片颜色的值
     private ObjectBean objectBean;
-    private RemindBean remindBean;
     private PopupAddGoods popup;
     private boolean setGoodsLocation;
-    private List<GoodsInfoBean> mGoodsInfos = new ArrayList<>();
     private RoomFurnitureBean location;
+    private SortChildDialog sortChildDialog;
+    private List<BaseBean> mOneLists = new ArrayList<>();
+    private List<BaseBean> mTwoLists = new ArrayList<>();
+    private List<BaseBean> mThreeLists = new ArrayList<>();
+    private boolean initOne, initTwo;
+    private String type = null;
 
     @Override
     protected int getLayoutId() {
@@ -120,60 +122,10 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     @Override
     protected void initViews() {
         initEvent();
-        mGoodsInfos.clear();
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
-        mAdapter = new GoodsInfoViewAdapter(mContext, mGoodsInfos);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 3) {
-            @Override
-            public boolean canScrollVertically() {
-                //禁止上下滑动
-                return false;
-            }
-        };
-        goodsInfoListView.setLayoutManager(gridLayoutManager);
-        goodsInfoListView.setAdapter(mAdapter);
-        objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
-        if (objectBean == null) {
-            mTitleView.setText(R.string.add_goods_text);
-            editInfoTv.setVisibility(View.INVISIBLE);
-            head.setImageDrawable(getResources().getDrawable(R.drawable.icon_add_goods));
-            initData();
-        } else {
-            mTitleView.setText(R.string.edit_text);
-            remindBean = (RemindBean) getIntent().getSerializableExtra("remindBean");
-            commitLayout.setVisibility(View.GONE);
-            addInfoView.setVisibility(View.GONE);
-            editInfoTv.setVisibility(View.VISIBLE);
-            editInfoCommitTv.setVisibility(View.VISIBLE);
-            mCommitBt.setText(R.string.commit_edit);
-            initInfoData();
-            if (!TextUtils.isEmpty(objectBean.getNameText())) {
-                mEditText.setText(objectBean.getNameText());
-            }
-            if (objectBean.getCategories() != null && objectBean.getCategories().size() > 0) {
-                sortNameTv.setText(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
-                sortNameTv.setTextColor(getResources().getColor(R.color.color333));
-            }
-            if (objectBean.getObject_url().contains("#")) {
-                int resId = Color.parseColor(objectBean.getObject_url());
-                mImageView.setResourceColor(objectBean.getName(), resId, 10);
-            } else {
-                mImageView.setImg(objectBean.getObject_url(), 10);
-            }
-            locationView.setVisibility(View.VISIBLE);
-            locationTv.setText(StringUtils.getGoodsLoction(objectBean));
-            if (remindBean != null) {
-                remindLayout.setVisibility(View.VISIBLE);
-                //标题
-                remindNameTv.setText(remindBean.getTitle());
-                //时间
-                if (remindBean.getTips_time() != 0) {
-                    remindTimeTv.setText(DateUtil.dateToString(remindBean.getTips_time(), DateUtil.DatePattern.ONLY_MINUTE));
-                }
-            } else {
-                remindLayout.setVisibility(View.GONE);
-            }
-        }
+        mTitleView.setText(R.string.add_goods_text);
+        head.setImageDrawable(getResources().getDrawable(R.drawable.icon_add_goods));
+        initData();
     }
 
     @Override
@@ -213,16 +165,8 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             locationView.setVisibility(View.VISIBLE);
             locationTv.setText(StringUtils.getGoodsLoction(location));
         }
-
-    }
-
-    private void initInfoData() {
-        mGoodsInfos.clear();
-        mGoodsInfos.addAll(StringUtils.getGoodsInfos(objectBean));
-        goodsInfoListView.setVisibility(mGoodsInfos.size() > 0 ? View.VISIBLE : View.GONE);
-        mAdapter.notifyDataSetChanged();
-        addInfoView.setVisibility(mGoodsInfos.size() > 0 ? View.GONE : View.VISIBLE);
-        editInfoTv.setVisibility(mGoodsInfos.size() > 0 ? View.VISIBLE : View.GONE);
+        addGoodsInfotView.init(objectBean);
+        addGoodsInfotView.setOnItemClickListener(this);
     }
 
     /**
@@ -242,9 +186,8 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         });
     }
 
-    @OnClick({R.id.back_btn, R.id.add_img_view, R.id.add_goods_sort_tv, R.id.add_other_content_tv,
-            R.id.goods_location_tv, R.id.commit_bt, R.id.title_commit_bg_main_color_tv, R.id.select_location_bt,
-            R.id.goods_info_edit_tv})
+    @OnClick({R.id.back_btn, R.id.add_img_view, R.id.add_goods_sort_tv, R.id.goods_location_tv, R.id.commit_bt,
+            R.id.title_commit_bg_main_color_tv, R.id.select_location_bt})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn:
@@ -262,10 +205,10 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             case R.id.add_goods_sort_tv:
                 SelectSortActivity.start(mContext, objectBean);
                 break;
-            case R.id.add_other_content_tv:
-            case R.id.goods_info_edit_tv:
-                AddGoodsPropertyActivity.start(mContext, objectBean, false);
-                break;
+//            case R.id.add_other_content_tv:
+//            case R.id.goods_info_edit_tv:
+//                AddGoodsPropertyActivity.start(mContext, objectBean, false);
+//                break;
             case R.id.commit_bt:
             case R.id.title_commit_bg_main_color_tv:
                 onClickCommit();
@@ -316,9 +259,16 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 sortNameTv.setText(R.string.add_goods_sort);
                 sortNameTv.setTextColor(getResources().getColor(R.color.divider));
             }
-            initInfoData();
+            addGoodsInfotView.init(objectBean);
         } else {
             getPresenter().onActivityResult(mContext, requestCode, resultCode, data);
+        }
+        if (AppConstant.START_GOODS_INFO_CODE == requestCode && RESULT_OK == resultCode) {
+            ObjectBean newBean = (ObjectBean) data.getSerializableExtra("objectBean");
+            if (newBean != null) {
+                objectBean = newBean;
+                addGoodsInfotView.init(objectBean);
+            }
         }
     }
 
@@ -421,7 +371,6 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         }
 //        goodsInfoView.setVisibility(View.VISIBLE);
 //        goodsInfoView.init(objectBean);
-        initInfoData();
     }
 
     @Override
@@ -462,6 +411,106 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     public void onUpLoadSuccess(String path) {
         objectBean.setObject_url(path);
         addOrEditGoods();
+    }
+
+    @Override
+    public void getBuyFirstCategoryListSuccess(List<BaseBean> data) {
+        initOneView(data);
+    }
+
+    @Override
+    public void getSubCategoryListSuccess(List<BaseBean> data) {
+        initOneView(data);
+    }
+
+    private void initOneView(List<BaseBean> data) {
+        mOneLists.clear();
+        mOneLists.addAll(data);
+        sortChildDialog = new SortChildDialog(mContext) {
+            @Override
+            public void updateTwoData(int currentItem) {
+                if (mOneLists.size() > 0 && mOneLists.size() > currentItem) {
+                    initTwo = false;
+                    getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(currentItem).getCode(), type);
+                }
+            }
+
+            @Override
+            public void updateThreeData(int currentItem) {
+                if (mTwoLists.size() > 0 && mTwoLists.size() > currentItem) {
+                    getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(currentItem).getCode(), type);
+                }
+            }
+
+            @Override
+            public void addSortChildClick() {
+                if (App.getUser(mContext).isIs_vip()) {
+                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type));
+                } else {
+                    BuyVIPActivity.start(mContext);
+                }
+            }
+
+            @Override
+            public void submitClick(int oneCurrentIndex, int twoCurrentIndex, int threeCurrentIndex) {
+                List<BaseBean> beanList = new ArrayList<>();
+                if (!AppConstant.BUY_TYPE.equals(type)) {
+                    beanList.add(objectBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF));
+                }
+                if (mOneLists.size() > 0) {
+                    beanList.add(mOneLists.get(oneCurrentIndex));
+                }
+                if (mTwoLists.size() > 0) {
+                    beanList.add(mTwoLists.get(twoCurrentIndex));
+                }
+                if (mThreeLists.size() > 0) {
+                    beanList.add(mThreeLists.get(threeCurrentIndex));
+                }
+                if (!AppConstant.BUY_TYPE.equals(type)) {
+                    objectBean.setCategories(beanList);
+                } else {
+                    List<String> channels = new ArrayList<>();
+                    for (BaseBean baseBean : beanList) {
+                        channels.add(baseBean.getName());
+                    }
+                    objectBean.setChannel(channels);
+                }
+                addGoodsInfotView.init(objectBean);
+            }
+        };
+        sortChildDialog.initData(mOneLists);
+        sortChildDialog.setType(type);
+        if (!initOne && mOneLists.size() > 0) {
+            getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), mOneLists.get(AppConstant.DEFAULT_INDEX_OF).getCode(), type);
+            initOne = true;
+        }
+    }
+
+    @Override
+    public void getTwoSubCategoryListSuccess(List<BaseBean> data) {
+        mTwoLists.clear();
+        mTwoLists.addAll(data);
+        if (sortChildDialog.isShow()) {
+            sortChildDialog.initTwoData(mTwoLists);
+        }
+        if (!initTwo && mTwoLists.size() > 0) {
+            getPresenter().getThreeSubCategoryList(App.getUser(mContext).getId(), mTwoLists.get(AppConstant.DEFAULT_INDEX_OF).getCode(), type);
+            initTwo = true;
+        } else {
+            mThreeLists.clear();
+            if (sortChildDialog.isShow()) {
+                sortChildDialog.initThreeData(mThreeLists);
+            }
+        }
+    }
+
+    @Override
+    public void getThreeSubCategoryListSuccess(List<BaseBean> data) {
+        mThreeLists.clear();
+        mThreeLists.addAll(data);
+        if (sortChildDialog.isShow()) {
+            sortChildDialog.initThreeData(mThreeLists);
+        }
     }
 
     @Override
@@ -534,5 +583,19 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     @Override
     public void onScanClick() {
         startActivityForResult(new Intent(mContext, CaptureActivity.class), BOOK_CODE);
+    }
+
+    @Override
+    public void onItemSortClick(BaseBean baseBean) {
+        type = "";
+        initOne = false;
+        getPresenter().getSubCategoryList(App.getUser(mContext).getId(), baseBean.getCode(), type);
+    }
+
+    @Override
+    public void onItemBuyClick() {
+        type = AppConstant.BUY_TYPE;
+        initOne = false;
+        getPresenter().getBuyFirstCategoryList(App.getUser(mContext).getId());
     }
 }

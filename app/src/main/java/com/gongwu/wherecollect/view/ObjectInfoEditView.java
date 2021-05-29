@@ -51,7 +51,7 @@ public class ObjectInfoEditView extends LinearLayout {
     @BindView(R.id.rating_star)
     RatingBar ratingStar;
     @BindView(R.id.qita_tv)
-    EditText qitaTv;
+    TextView qitaTv;
     @BindView(R.id.price_edit)
     EditText priceEdit;
     @BindView(R.id.goods_count_edit)
@@ -85,6 +85,10 @@ public class ObjectInfoEditView extends LinearLayout {
     public void init(ObjectBean bean) {
         this.bean = bean;
         updataView();
+    }
+
+    public ObjectBean getGoodsInfoBean() {
+        return bean;
     }
 
     /**
@@ -146,7 +150,7 @@ public class ObjectInfoEditView extends LinearLayout {
      */
     private void setQita() {
         if (!TextUtils.isEmpty(bean.getDetail())) {
-            qitaTv.setText(bean.getDetail());
+            setValueText(qitaTv, bean.getDetail());
         }
     }
 
@@ -226,7 +230,10 @@ public class ObjectInfoEditView extends LinearLayout {
     }
 
     @OnClick({R.id.classify_layout, R.id.color_layout, R.id.season_layout, R.id.channel_layout,
-            R.id.purchase_time_layout, R.id.expiry_time_layout})
+            R.id.purchase_time_layout, R.id.expiry_time_layout, R.id.qita_tv,
+            R.id.classify_edit_iv, R.id.goods_count_edit_iv, R.id.rating_star_edit_iv, R.id.purchase_time_edit_iv,
+            R.id.expiry_time_edit_iv, R.id.price_edit_iv, R.id.color_edit_iv, R.id.season_edit_iv, R.id.channel_edit_iv,
+            R.id.ascription_edit_iv, R.id.qita_edit_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.classify_layout:
@@ -265,12 +272,18 @@ public class ObjectInfoEditView extends LinearLayout {
                                 StringUtils.formatIntTime(day);
                         bean.setBuy_date(bd);
                         setValueText(purchaseTimeTv, bd);
+                        if (onEditListener != null) {
+                            onEditListener.change();
+                        }
                     }
 
                     @Override
                     public void detele() {
                         setHintText(purchaseTimeTv, R.string.hint_purchase_time_tv);
                         bean.setBuy_date("");
+                        if (onEditListener != null) {
+                            onEditListener.change();
+                        }
                     }
                 };
                 dialog.setCancelBtnText(TextUtils.isEmpty(bean.getBuy_date()));
@@ -292,16 +305,101 @@ public class ObjectInfoEditView extends LinearLayout {
                                 StringUtils.formatIntTime(day);
                         setValueText(expiryTimeTv, bd);
                         bean.setExpire_date(bd);
+                        if (onEditListener != null) {
+                            onEditListener.change();
+                        }
                     }
 
                     @Override
                     public void detele() {
                         setHintText(expiryTimeTv, R.string.hint_expiry_time_tv);
                         bean.setExpire_date("");
+                        if (onEditListener != null) {
+                            onEditListener.change();
+                        }
                     }
                 };
                 expiryDialog.setCancelBtnText(TextUtils.isEmpty(bean.getExpire_date()));
                 expiryDialog.show();
+                break;
+            case R.id.qita_tv:
+                break;
+            case R.id.classify_edit_iv:
+                if (bean.getCategories() != null && bean.getCategories().size() > 1) {
+                    bean.getCategories().subList(1, bean.getCategories().size()).clear();
+                }
+                setHintText(classifyTv, R.string.hint_classify_tv);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.goods_count_edit_iv:
+                bean.setCount(0);
+                goodsCountEdit.setText("");
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.rating_star_edit_iv:
+                bean.setStar(0);
+                ratingStar.setStar(0);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.purchase_time_edit_iv:
+                bean.setBuy_date("");
+                setHintText(purchaseTimeTv, R.string.hint_purchase_time_tv);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.expiry_time_edit_iv:
+                bean.setExpire_date("");
+                setHintText(expiryTimeTv, R.string.hint_expiry_time_tv);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.price_edit_iv:
+                bean.setPrice("");
+                priceEdit.setText("");
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.color_edit_iv:
+                bean.setColor(null);
+                setHintText(colorTv, R.string.hint_color_tv);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.season_edit_iv:
+                bean.setSeason("");
+                setHintText(seasonTv, R.string.hint_season_tv);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.channel_edit_iv:
+                bean.setChannel(null);
+                setHintText(channelTv, R.string.hint_channel_tv);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.ascription_edit_iv:
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
+                break;
+            case R.id.qita_edit_iv:
+                bean.setDetail("");
+                setHintText(qitaTv, R.string.hint_detail_tv);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
                 break;
         }
     }
@@ -311,6 +409,9 @@ public class ObjectInfoEditView extends LinearLayout {
             @Override
             public void onRatingChange(float RatingCount) {
                 bean.setStar((int) RatingCount);
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
             }
         });
         //默认两位小数
@@ -331,20 +432,9 @@ public class ObjectInfoEditView extends LinearLayout {
                 } else {
                     bean.setPrice(0 + "");
                 }
-            }
-        });
-        qitaTv.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                bean.setDetail(qitaTv.getText().toString());
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
             }
         });
         goodsCountEdit.addTextChangedListener(new TextWatcher() {
@@ -363,11 +453,15 @@ public class ObjectInfoEditView extends LinearLayout {
                 } else {
                     bean.setCount(0);
                 }
+                if (onEditListener != null) {
+                    onEditListener.change();
+                }
             }
         });
     }
 
     private OnItemClickListener onItemClickListener;
+    private OnEditListener onEditListener;
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
@@ -377,5 +471,13 @@ public class ObjectInfoEditView extends LinearLayout {
         void onItemSortClick(BaseBean baseBean);
 
         void onItemBuyClick();
+    }
+
+    public void setOnEditListener(OnEditListener listener) {
+        this.onEditListener = listener;
+    }
+
+    public interface OnEditListener {
+        void change();
     }
 }

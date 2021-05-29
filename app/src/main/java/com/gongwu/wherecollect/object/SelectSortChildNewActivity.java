@@ -515,7 +515,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         Intent intent = new Intent(mContext, SelectSortChildNewActivity.class);
         intent.putExtra("objectBean", objectBean);
         intent.putExtra("initSortByType", initSortByType);
-        ((Activity) mContext).startActivityForResult(intent, AddGoodsPropertyActivity.REQUEST_CODE);
+        ((Activity) mContext).startActivityForResult(intent, AppConstant.START_GOODS_INFO_CODE);
     }
 
     @Override

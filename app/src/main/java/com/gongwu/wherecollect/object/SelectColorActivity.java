@@ -23,6 +23,7 @@ import com.gongwu.wherecollect.adapter.ColorGridAdapter;
 import com.gongwu.wherecollect.adapter.MyOnItemClickListener;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IAddGoodsPropertyContract;
 import com.gongwu.wherecollect.contract.presenter.AddGoodsPropertyPresenter;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
@@ -216,7 +217,7 @@ public class SelectColorActivity extends BaseMvpActivity<SelectColorActivity, Ad
     public static void start(Context mContext, ObjectBean objectBean) {
         Intent intent = new Intent(mContext, SelectColorActivity.class);
         intent.putExtra("objectBean", objectBean);
-        ((Activity) mContext).startActivityForResult(intent, AddGoodsPropertyActivity.REQUEST_CODE);
+        ((Activity) mContext).startActivityForResult(intent, AppConstant.START_GOODS_INFO_CODE);
     }
 
     @Override

@@ -7,6 +7,7 @@ import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
 import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
+import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
@@ -30,6 +31,14 @@ public interface IAddGoodsContract {
         void getTaobaoInfo(AddGoodsReq req, final RequestCallback callback);
 
         void removeObjectFromFurnitrue(GoodsDetailsReq req, final RequestCallback callback);
+
+        void getBuyFirstCategoryList(String uid, final RequestCallback callback);
+
+        void getSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
+
+        void getTwoSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
+
+        void getThreeSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
     }
 
     interface IAddGoodsPresenter {
@@ -44,6 +53,14 @@ public interface IAddGoodsContract {
         void getTaobaoInfo(String uid, String key);
 
         void removeObjectFromFurnitrue(String uid, String code);
+
+        void getBuyFirstCategoryList(String uid);
+
+        void getSubCategoryList(String uid, String parentCode, String type);
+
+        void getTwoSubCategoryList(String uid, String parentCode, String type);
+
+        void getThreeSubCategoryList(String uid, String parentCode, String type);
     }
 
     interface IAddGoodsView extends BaseView {
@@ -98,5 +115,13 @@ public interface IAddGoodsContract {
         void getCropBitmap(File file);
 
         void removeObjectFromFurnitrueSuccess(RequestSuccessBean data);
+
+        void getBuyFirstCategoryListSuccess(List<BaseBean> data);
+
+        void getSubCategoryListSuccess(List<BaseBean> data);
+
+        void getTwoSubCategoryListSuccess(List<BaseBean> data);
+
+        void getThreeSubCategoryListSuccess(List<BaseBean> data);
     }
 }

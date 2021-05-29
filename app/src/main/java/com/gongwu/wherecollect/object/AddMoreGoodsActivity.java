@@ -513,4 +513,24 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     public void removeObjectFromFurnitrueSuccess(RequestSuccessBean data) {
 
     }
+
+    @Override
+    public void getBuyFirstCategoryListSuccess(List<BaseBean> data) {
+        //无用
+    }
+
+    @Override
+    public void getSubCategoryListSuccess(List<BaseBean> data) {
+        //无用
+    }
+
+    @Override
+    public void getTwoSubCategoryListSuccess(List<BaseBean> data) {
+        //无用
+    }
+
+    @Override
+    public void getThreeSubCategoryListSuccess(List<BaseBean> data) {
+        //无用
+    }
 }

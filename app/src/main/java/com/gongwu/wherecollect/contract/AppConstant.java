@@ -46,6 +46,8 @@ public class AppConstant {
     public static final int DEFAULT_PAGE = 1;
     public static final int REMIND_FINISH_CODE = 1;
     public static final int START_FURNITURE_LOOK_ACT_CODE = 0x956;
+
+    public static final int START_GOODS_INFO_CODE = 0x0210;
     public static String BASE_CODE;
 
     public static boolean isShowMsg;
