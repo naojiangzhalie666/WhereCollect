@@ -46,6 +46,7 @@ public class GoodsInfoViewAdapter extends RecyclerView.Adapter<GoodsInfoViewAdap
         holder.goodsValueView.setVisibility(View.GONE);
         holder.infoStar.setVisibility(View.GONE);
         holder.timeLayout.setVisibility(View.GONE);
+        holder.itemView.setOnClickListener(null);
         switch (bean.getType()) {
             case StringUtils.TYPE_GOODS_COUNT://数量
             case StringUtils.TYPE_GOODS_PRICE://价格

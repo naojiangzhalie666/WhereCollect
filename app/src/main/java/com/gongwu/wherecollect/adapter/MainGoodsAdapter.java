@@ -109,6 +109,7 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
+        holder.itemView.setOnClickListener(null);
         if (holder instanceof HeadViewHolder) {
             HeadViewHolder headHolder = (HeadViewHolder) holder;
             ObjectBean headBean = mlist.get(i);

@@ -195,21 +195,13 @@
                 android:textColor="@color/color999"
                 android:textSize="@dimen/f_12" />
 
-            <FrameLayout
-                android:id="@+id/goods_info_edit_layout"
+            <com.gongwu.wherecollect.view.ObjectInfoEditView
+                android:id="@+id/add_goods_info_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dip_16"
                 android:layout_marginEnd="@dimen/dip_16"
-                android:layout_marginBottom="@dimen/dip_8"
-                android:background="@drawable/shape_white_r10dp">
-
-                <com.gongwu.wherecollect.view.ObjectInfoEditView
-                    android:id="@+id/add_goods_info_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
-
+                android:layout_marginBottom="@dimen/dip_8" />
         </LinearLayout>
     </ScrollView>
 

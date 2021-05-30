@@ -70,6 +70,8 @@ public class ObjectInfoEditView extends LinearLayout {
     TextView colorTv;
     @BindView(R.id.belonger_tv)
     TextView belongerTv;
+    @BindView(R.id.edit_goods_info_view)
+    View goodsInfoView;
 
     private Context mContext;
     private ObjectBean bean;
@@ -504,5 +506,9 @@ public class ObjectInfoEditView extends LinearLayout {
 
     public interface OnEditListener {
         void change();
+    }
+
+    public void setViewBackground(int resId) {
+        goodsInfoView.setBackground(mContext.getDrawable(resId));
     }
 }

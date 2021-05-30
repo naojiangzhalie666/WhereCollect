@@ -90,8 +90,6 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     RecyclerView goodsInfoListView;
     @BindView(R.id.goods_info_tv)
     TextView goodsInfoTypeTv;
-    @BindView(R.id.goods_info_edit_layout)
-    View goodsInfoEditLayout;
     @BindView(R.id.goods_info_edit_view)
     ObjectInfoEditView goodsInfoEditView;
     @BindView(R.id.goods_info_edit_tv)
@@ -149,6 +147,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
         oldBean = (ObjectBean) objectBean.clone();
         initData();
+        goodsInfoEditView.setViewBackground(R.drawable.shape_white_r10dp);
         goodsInfoEditView.setOnItemClickListener(this);
         goodsInfoEditView.setOnEditListener(new ObjectInfoEditView.OnEditListener() {
             @Override
@@ -200,14 +199,14 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         if (!isEditGoodsInfo) {
             if (mGoodsInfos.size() > 0) {
                 goodsInfoListView.setVisibility(View.VISIBLE);
-                goodsInfoEditLayout.setVisibility(View.GONE);
+                goodsInfoEditView.setVisibility(View.GONE);
                 goodsInfoEmptyView.setVisibility(View.GONE);
                 goodsInfoEditTypeView.setVisibility(View.VISIBLE);
                 goodsInfoEditTypeView.setText(isEditGoodsInfo ? R.string.stop_text : R.string.edit_text);
                 mAdapter.notifyDataSetChanged();
             } else {
                 goodsInfoListView.setVisibility(View.GONE);
-                goodsInfoEditLayout.setVisibility(View.GONE);
+                goodsInfoEditView.setVisibility(View.GONE);
                 goodsInfoEmptyView.setVisibility(View.VISIBLE);
                 goodsInfoEditTypeView.setVisibility(View.GONE);
             }
@@ -359,13 +358,13 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                 isEditGoodsInfo = true;
                 goodsInfoEmptyView.setVisibility(View.GONE);
                 goodsInfoEditTypeView.setText(isEditGoodsInfo ? R.string.stop_text : R.string.edit_text);
-                goodsInfoEditLayout.setVisibility(isEditGoodsInfo ? View.VISIBLE : View.GONE);
+                goodsInfoEditView.setVisibility(isEditGoodsInfo ? View.VISIBLE : View.GONE);
                 goodsInfoListView.setVisibility(isEditGoodsInfo ? View.GONE : View.VISIBLE);
                 break;
             case R.id.goods_info_edit_tv:
                 isEditGoodsInfo = !isEditGoodsInfo;
                 goodsInfoEditTypeView.setText(isEditGoodsInfo ? R.string.stop_text : R.string.edit_text);
-                goodsInfoEditLayout.setVisibility(isEditGoodsInfo ? View.VISIBLE : View.GONE);
+                goodsInfoEditView.setVisibility(isEditGoodsInfo ? View.VISIBLE : View.GONE);
                 goodsInfoListView.setVisibility(isEditGoodsInfo ? View.GONE : View.VISIBLE);
                 if (isEditGoodsInfo) {
                     goodsInfoEditView.init(objectBean);
@@ -416,6 +415,9 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
             isEditGoodsInfo = false;
             setTitleViewState(false);
             initData();
+            if (objectBean != null) {
+                getPresenter().getGoodsRemindsById(App.getUser(mContext).getId(), objectBean.get_id());
+            }
         }
     }
 

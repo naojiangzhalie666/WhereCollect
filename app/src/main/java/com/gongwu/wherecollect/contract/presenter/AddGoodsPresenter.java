@@ -142,6 +142,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         goodsReq.setBuy_date(tempBean.getBuy_date());
         goodsReq.setExpire_date(tempBean.getExpire_date());
         goodsReq.setCode(tempBean.get_id());
+        goodsReq.setBelonger(tempBean.getBelonger());
         if (tempBean.getCategories() != null && tempBean.getCategories().size() > 0) {
             StringBuilder ca = new StringBuilder();
             for (int i = 0; i < StringUtils.getListSize(tempBean.getCategories()); i++) {
@@ -207,6 +208,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         goodsReq.setCount(tempBean.getCount() + "");
         goodsReq.setBuy_date(tempBean.getBuy_date());
         goodsReq.setExpire_date(tempBean.getExpire_date());
+        goodsReq.setBelonger(tempBean.getBelonger());
         mModel.addObjects(goodsReq, new RequestCallback<List<ObjectBean>>() {
 
             @Override

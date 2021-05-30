@@ -115,7 +115,11 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
         SortBelongerDialog belongerDialog = new SortBelongerDialog(mContext) {
             @Override
             public void addSortChildClick() {
-
+                if (App.getUser(mContext).isIs_vip()) {
+                    SelectSortChildNewActivity.start(mContext, objectBean, false, true);
+                } else {
+                    BuyVIPActivity.start(mContext);
+                }
             }
 
             @Override

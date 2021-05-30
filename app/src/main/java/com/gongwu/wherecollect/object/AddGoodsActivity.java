@@ -165,6 +165,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             locationView.setVisibility(View.VISIBLE);
             locationTv.setText(StringUtils.getGoodsLoction(location));
         }
+        addGoodsInfotView.setViewBackground(R.drawable.shape_white_r10dp);
         addGoodsInfotView.init(objectBean);
         addGoodsInfotView.setOnItemClickListener(this);
     }
@@ -415,7 +416,11 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         SortBelongerDialog belongerDialog = new SortBelongerDialog(mContext) {
             @Override
             public void addSortChildClick() {
-
+                if (App.getUser(mContext).isIs_vip()) {
+                    SelectSortChildNewActivity.start(mContext, objectBean, false, true);
+                } else {
+                    BuyVIPActivity.start(mContext);
+                }
             }
 
             @Override

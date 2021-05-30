@@ -222,9 +222,9 @@
                     android:background="@drawable/shape_remind_add_bg"
                     android:gravity="center"
                     android:text="@string/edit_text"
-                    android:visibility="gone"
                     android:textColor="@color/color999"
-                    android:textSize="@dimen/f_12" />
+                    android:textSize="@dimen/f_12"
+                    android:visibility="gone" />
             </RelativeLayout>
 
 
@@ -237,21 +237,13 @@
                 android:background="@drawable/shape_white_r10dp"
                 android:visibility="gone" />
 
-            <FrameLayout
-                android:id="@+id/goods_info_edit_layout"
+            <com.gongwu.wherecollect.view.ObjectInfoEditView
+                android:id="@+id/goods_info_edit_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dip_16"
                 android:layout_marginEnd="@dimen/dip_16"
-                android:layout_marginBottom="@dimen/dip_16"
-                android:background="@drawable/shape_white_r10dp"
-                android:visibility="gone">
-
-                <com.gongwu.wherecollect.view.ObjectInfoEditView
-                    android:id="@+id/goods_info_edit_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </FrameLayout>
+                android:layout_marginBottom="@dimen/dip_16" />
 
             <FrameLayout
                 android:id="@+id/goods_info_empty_view"
