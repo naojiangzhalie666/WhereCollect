@@ -18,6 +18,7 @@ import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.ObjectInfoEditView;
+import com.gongwu.wherecollect.view.SortBelongerDialog;
 import com.gongwu.wherecollect.view.SortChildDialog;
 
 import java.util.ArrayList;
@@ -108,6 +109,26 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
     }
 
     @Override
+    public void getBelongerListSuccess(List<BaseBean> data) {
+        mOneLists.clear();
+        mOneLists.addAll(data);
+        SortBelongerDialog belongerDialog = new SortBelongerDialog(mContext) {
+            @Override
+            public void addSortChildClick() {
+
+            }
+
+            @Override
+            public void submitClick(int currentIndex) {
+                objectBean.setBelonger(mOneLists.get(currentIndex).getName());
+                goodsInfoView.init(objectBean);
+            }
+        };
+        belongerDialog.initData(mOneLists);
+        belongerDialog.setTitle(R.string.add_belonger_tv);
+    }
+
+    @Override
     public void getBuyFirstCategoryListSuccess(List<BaseBean> data) {
         initOneView(data);
     }
@@ -139,7 +160,7 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
             @Override
             public void addSortChildClick() {
                 if (App.getUser(mContext).isIs_vip()) {
-                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type));
+                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type), false);
                 } else {
                     BuyVIPActivity.start(mContext);
                 }
@@ -234,5 +255,10 @@ public class AddGoodsPropertyActivity extends BaseMvpActivity<AddGoodsPropertyAc
         type = AppConstant.BUY_TYPE;
         initOne = false;
         getPresenter().getBuyFirstCategoryList(App.getUser(mContext).getId());
+    }
+
+    @Override
+    public void onItemBelongerClick() {
+        getPresenter().getBelongerList(App.getUser(mContext).getId());
     }
 }

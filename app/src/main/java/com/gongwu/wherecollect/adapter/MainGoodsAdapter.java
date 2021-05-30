@@ -22,6 +22,7 @@ import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.SwipeMenuLayout;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -36,7 +37,11 @@ import butterknife.ButterKnife;
  * @author zhaojin
  * @since JDK 1.7
  */
-public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.CustomViewHolder> {
+public class MainGoodsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private final int HEAD_TYPE = 0;
+    private final int GOODS_TYPE = 1;
+
     private Context context;
     private List<ObjectBean> mlist;
     private boolean darklayer;
@@ -70,101 +75,164 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
         return sb.length() == 0 ? "未归位" : sb.toString();
     }
 
+    /**
+     * 可以返回不同类型加载不同布局
+     *
+     * @param position
+     * @return
+     */
+    @Override
+    public int getItemViewType(int position) {
+        if (mlist != null && mlist.size() > 0) {
+            if (mlist.get(position).isHead()) {
+                return HEAD_TYPE;
+            } else {
+                return GOODS_TYPE;
+            }
+        }
+        return super.getItemViewType(position);
+    }
+
     @NonNull
     @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_main_goods_layout, viewGroup, false);
-        return new CustomViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view;
+        if (HEAD_TYPE == viewType) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.head_look_goods_list_layout, parent, false);
+            return new HeadViewHolder(view);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_goods_layout, parent, false);
+            return new CustomViewHolder(view);
+        }
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int i) {
-        holder.swipeMenuLayout.setIos(false);//设置是否开启IOS阻塞式交互
-        holder.swipeMenuLayout.setLeftSwipe(true);//true往左滑动,false为往右侧滑动
-        holder.swipeMenuLayout.setSwipeEnable(true);//设置侧滑功能开关
-        ObjectBean bean = mlist.get(i);
-        holder.mImgView.name.setText(null);
-        holder.mImgView.head.setBackground(null);
-        holder.mImgView.head.setImageDrawable(null);
-        if (bean.getObject_url().contains("http")) {
-            holder.mImgView.setImg(bean.getObject_url(), 3);
-        } else {
-            int resId = Color.parseColor(bean.getObject_url());
-            holder.mImgView.setResourceColor(bean.getName(), resId, 3);
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int i) {
+        if (holder instanceof HeadViewHolder) {
+            HeadViewHolder headHolder = (HeadViewHolder) holder;
+            ObjectBean headBean = mlist.get(i);
+            if (headBean.isHead()) {
+                headHolder.toalTv.setText(String.valueOf(headBean.getTotal()));
+                headHolder.noLocationTv.setText(String.valueOf(headBean.getNoLocation()));
+            } else {
+                headHolder.toalTv.setText("");
+                headHolder.noLocationTv.setText("");
+            }
+            headHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(i, view);
+                    }
+                }
+            });
+        } else if (holder instanceof CustomViewHolder) {
+            CustomViewHolder goodsHolder = (CustomViewHolder) holder;
+            goodsHolder.swipeMenuLayout.setIos(false);//设置是否开启IOS阻塞式交互
+            goodsHolder.swipeMenuLayout.setLeftSwipe(true);//true往左滑动,false为往右侧滑动
+            goodsHolder.swipeMenuLayout.setSwipeEnable(true);//设置侧滑功能开关
+            ObjectBean bean = mlist.get(i);
+            goodsHolder.mImgView.name.setText(null);
+            goodsHolder.mImgView.head.setBackground(null);
+            goodsHolder.mImgView.head.setImageDrawable(null);
+            if (bean.getObject_url().contains("http")) {
+                goodsHolder.mImgView.setImg(bean.getObject_url(), 3);
+            } else {
+                int resId = Color.parseColor(bean.getObject_url());
+                goodsHolder.mImgView.setResourceColor(bean.getName(), resId, 3);
+            }
+            goodsHolder.nameTv.setText(bean.getName());
+            goodsHolder.locationNameTv.setText(getLoction(bean));
+            if (darklayer) {
+                goodsHolder.topTv.setVisibility(View.GONE);
+                goodsHolder.unlockTv.setVisibility(View.VISIBLE);
+            } else {
+                goodsHolder.topTv.setVisibility(View.VISIBLE);
+                goodsHolder.unlockTv.setVisibility(View.GONE);
+            }
+            if ("未归位".equals(goodsHolder.locationNameTv.getText().toString())) {
+                goodsHolder.addLocationTv.setVisibility(View.VISIBLE);
+                goodsHolder.locationTv.setVisibility(View.GONE);
+            } else {
+                goodsHolder.addLocationTv.setVisibility(View.GONE);
+                goodsHolder.locationTv.setVisibility(View.VISIBLE);
+            }
+            goodsHolder.deleteTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        if (goodsHolder.swipeMenuLayout != null)
+                            goodsHolder.swipeMenuLayout.smoothClose();
+                        onItemClickListener.onDeleteClick(i, goodsHolder.itemView);
+                    }
+                }
+            });
+            goodsHolder.addLocationTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onAddLocationClick(i, goodsHolder.itemView);
+                    }
+                }
+            });
+            goodsHolder.locationTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        if (goodsHolder.swipeMenuLayout != null)
+                            goodsHolder.swipeMenuLayout.smoothClose();
+                        onItemClickListener.onLocationClick(i, goodsHolder.itemView);
+                    }
+                }
+            });
+            goodsHolder.topTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        if (goodsHolder.swipeMenuLayout != null)
+                            goodsHolder.swipeMenuLayout.smoothClose();
+                        onItemClickListener.onTopClick(i, goodsHolder.itemView);
+                    }
+                }
+            });
+            goodsHolder.unlockTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        if (goodsHolder.swipeMenuLayout != null)
+                            goodsHolder.swipeMenuLayout.smoothClose();
+                        onItemClickListener.onUnlickClick(i, goodsHolder.itemView);
+                    }
+                }
+            });
+            goodsHolder.itemGoodsView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(i, view);
+                    }
+                }
+            });
         }
-        holder.nameTv.setText(bean.getName());
-        holder.locationNameTv.setText(getLoction(bean));
-        if (darklayer) {
-            holder.lockTv.setVisibility(View.GONE);
-            holder.unlockTv.setVisibility(View.VISIBLE);
-        } else {
-            holder.lockTv.setVisibility(View.VISIBLE);
-            holder.unlockTv.setVisibility(View.GONE);
-        }
-        if ("未归位".equals(holder.locationNameTv.getText().toString())) {
-            holder.addLocationTv.setVisibility(View.VISIBLE);
-            holder.locationTv.setVisibility(View.GONE);
-        } else {
-            holder.addLocationTv.setVisibility(View.GONE);
-            holder.locationTv.setVisibility(View.VISIBLE);
-        }
-        holder.deleteTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
-                    onItemClickListener.onDeleteClick(i, holder.itemView);
-                }
-            }
-        });
-        holder.addLocationTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onAddLocationClick(i, holder.itemView);
-                }
-            }
-        });
-        holder.locationTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
-                    onItemClickListener.onLocationClick(i, holder.itemView);
-                }
-            }
-        });
-        holder.lockTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
-                    onItemClickListener.onLockClick(i, holder.itemView);
-                }
-            }
-        });
-        holder.unlockTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    if (holder.swipeMenuLayout != null) holder.swipeMenuLayout.smoothClose();
-                    onItemClickListener.onUnlickClick(i, holder.itemView);
-                }
-            }
-        });
-        holder.itemGoodsView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(i, view);
-                }
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
         return mlist == null ? 0 : mlist.size();
+    }
+
+    public class HeadViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.goods_number_tv)
+        TextView toalTv;
+        @BindView(R.id.goods_not_location_tv)
+        TextView noLocationTv;
+
+        public HeadViewHolder(View view) {
+            super(view);
+            ButterKnife.bind(this, view);
+        }
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -182,8 +250,8 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
         TextView addLocationTv;
         @BindView(R.id.item_goods_location_tv)
         TextView locationTv;
-        @BindView(R.id.item_goods_lock_tv)
-        TextView lockTv;
+        @BindView(R.id.item_goods_top_tv)
+        TextView topTv;
         @BindView(R.id.item_goods_unlock_tv)
         TextView unlockTv;
         @BindView(R.id.item_goods_rl)
@@ -206,7 +274,7 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<MainGoodsAdapter.Cust
 
         public void onAddLocationClick(int positions, View view);
 
-        public void onLockClick(int positions, View view);
+        public void onTopClick(int positions, View view);
 
         public void onUnlickClick(int positions, View view);
     }

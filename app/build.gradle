@@ -18,8 +18,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         //Config.VERSION 也需要修改
-        versionCode 14
-        versionName "4.3.0"
+        versionCode 15
+        versionName "4.3.2"
         flavorDimensions "13"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {

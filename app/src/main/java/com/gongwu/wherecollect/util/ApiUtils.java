@@ -290,6 +290,14 @@ public class ApiUtils {
     }
 
     /**
+     * 自定义归属人
+     */
+    public static <D extends RequestBase> void saveBelonger(D request, ApiCallBack<BaseBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().saveBelonger(requestMap).enqueue(callBack);
+    }
+
+    /**
      * 编辑自定义
      */
     public static <D extends RequestBase> void editCustomCate(D request, ApiCallBack<RequestSuccessBean> callBack) {
@@ -305,12 +313,24 @@ public class ApiUtils {
         ApiInstance.getApi().deleteCustomCate(requestMap).enqueue(callBack);
     }
 
+    public static <D extends RequestBase> void deleteBelonger(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().deleteBelonger(requestMap).enqueue(callBack);
+    }
+
     /**
      * 自定义二级分类
      */
     public static <D extends RequestBase> void saveCustomSubCate(D request, ApiCallBack<BaseBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().saveCustomSubCate(requestMap).enqueue(callBack);
+    }
+
+    /**
+     * 获取归属人列表
+     */
+    public static <D extends RequestBase> void getBelongerList(String uid, ApiCallBack<List<BaseBean>> callBack) {
+        ApiInstance.getApi().getBelongerList(uid).enqueue(callBack);
     }
 
     /**
@@ -898,6 +918,11 @@ public class ApiUtils {
     public static <D extends RequestBase> void setCangWangDetail(D request, ApiCallBack<ChangWangDetailBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().setCangWangDetail(requestMap).enqueue(callBack);
+    }
+
+    public static <D extends RequestBase> void setGoodsWeight(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().setGoodsWeight(requestMap).enqueue(callBack);
     }
 
     /**

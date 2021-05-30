@@ -113,14 +113,14 @@
             android:background="@color/divider" />
 
         <TextView
-            android:id="@+id/item_goods_lock_tv"
+            android:id="@+id/item_goods_top_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawableTop="@drawable/icon_goods_lock"
+            android:drawableTop="@drawable/icon_goods_top"
             android:drawablePadding="@dimen/dip_6"
             android:gravity="center"
-            android:text="@string/goods_lock"
+            android:text="@string/goods_top"
             android:textColor="@color/color333"
             android:textSize="@dimen/f_12" />
 

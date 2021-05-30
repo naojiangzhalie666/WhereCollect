@@ -127,7 +127,7 @@ public class SealGoodsActivity extends BaseMvpActivity<SealGoodsActivity, LookPr
             }
 
             @Override
-            public void onLockClick(int positions, View view) {
+            public void onTopClick(int positions, View view) {
                 getPresenter().goodsArchive(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
             }
 
@@ -178,6 +178,13 @@ public class SealGoodsActivity extends BaseMvpActivity<SealGoodsActivity, LookPr
 
     @Override
     public void delSelectGoodsSuccess(RequestSuccessBean bean) {
+        if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
+    public void setGoodsWeightSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
             mRefreshLayout.autoRefresh();
         }

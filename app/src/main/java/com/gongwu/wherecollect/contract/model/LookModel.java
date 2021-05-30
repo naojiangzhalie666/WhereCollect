@@ -85,6 +85,22 @@ public class LookModel implements ILookContract.ILookModel {
     }
 
     @Override
+    public void setGoodsWeight(EditGoodsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.setGoodsWeight(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void goodsArchive(GoodsDetailsReq req, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.goodsArchive(req, new ApiCallBack<RequestSuccessBean>() {

@@ -75,6 +75,33 @@ public class GoodsDetailsPresenter extends BasePresenter<IGoodsDetailsContract.I
     }
 
     @Override
+    public void goodsArchive(String uid, String goodsId) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        GoodsDetailsReq req = new GoodsDetailsReq();
+        req.setUid(uid);
+        req.setObject_id(goodsId);
+        mModel.goodsArchive(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().goodsArchiveSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
     public void editGoods(Context context, ObjectBean tempBean, String names, String isbn) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
@@ -95,6 +122,7 @@ public class GoodsDetailsPresenter extends BasePresenter<IGoodsDetailsContract.I
         goodsReq.setBuy_date(tempBean.getBuy_date());
         goodsReq.setExpire_date(tempBean.getExpire_date());
         goodsReq.setCode(tempBean.get_id());
+        goodsReq.setBelonger(tempBean.getBelonger());
         if (tempBean.getCategories() != null && tempBean.getCategories().size() > 0) {
             StringBuilder ca = new StringBuilder();
             for (int i = 0; i < StringUtils.getListSize(tempBean.getCategories()); i++) {
@@ -197,6 +225,27 @@ public class GoodsDetailsPresenter extends BasePresenter<IGoodsDetailsContract.I
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getGoodsRemindsByIdSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getBelongerList(String uid) {
+        mModel.getBelongerList(uid, new RequestCallback<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getBelongerListSuccess(data);
                 }
             }
 
@@ -371,6 +420,14 @@ public class GoodsDetailsPresenter extends BasePresenter<IGoodsDetailsContract.I
         } else if (TextUtils.isEmpty(newBean.getDetail()) && !TextUtils.isEmpty(oldBean.getDetail())) {
             return true;
         } else if (!TextUtils.isEmpty(newBean.getDetail()) && !TextUtils.isEmpty(oldBean.getDetail()) && !newBean.getDetail().equals(oldBean.getDetail())) {
+            return true;
+        }
+        //归属人
+        if (!TextUtils.isEmpty(newBean.getBelonger()) && TextUtils.isEmpty(oldBean.getBelonger())) {
+            return true;
+        } else if (TextUtils.isEmpty(newBean.getBelonger()) && !TextUtils.isEmpty(oldBean.getBelonger())) {
+            return true;
+        } else if (!TextUtils.isEmpty(newBean.getBelonger()) && !TextUtils.isEmpty(oldBean.getBelonger()) && !newBean.getBelonger().equals(oldBean.getBelonger())) {
             return true;
         }
         return false;

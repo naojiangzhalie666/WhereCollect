@@ -1,5 +1,7 @@
 package com.gongwu.wherecollect.net.entity.response;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -98,6 +100,11 @@ public class BaseBean implements Serializable, Cloneable {
     }
 
     public boolean isUser() {
+        if (!is_user) {
+            if (!TextUtils.isEmpty(user_id) && !user_id.contains("system")) {
+                return true;
+            }
+        }
         return is_user;
     }
 

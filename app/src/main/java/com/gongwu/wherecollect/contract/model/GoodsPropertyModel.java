@@ -10,6 +10,22 @@ import java.util.List;
 
 public class GoodsPropertyModel implements IGoodsPropertyContract.IGoodsPropertyModel {
     @Override
+    public void getBelongerList(String uid, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getBelongerList(uid, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void getBuyFirstCategoryList(String uid, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.getBuyFirstCategoryList(uid, new ApiCallBack<List<BaseBean>>() {

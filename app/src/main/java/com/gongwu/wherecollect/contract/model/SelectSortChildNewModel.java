@@ -14,6 +14,22 @@ import java.util.List;
 public class SelectSortChildNewModel implements ISelectSortChildNewContract.ISelectSortChildNewModel {
 
     @Override
+    public void getBelongerList(String uid, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getBelongerList(uid, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void getBuyFirstCategoryList(String uid, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.getBuyFirstCategoryList(uid, new ApiCallBack<List<BaseBean>>() {
@@ -110,9 +126,41 @@ public class SelectSortChildNewModel implements ISelectSortChildNewContract.ISel
     }
 
     @Override
+    public void saveBelonger(CustomSubCateReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.saveBelonger(req, new ApiCallBack<BaseBean>() {
+            @Override
+            public void onSuccess(BaseBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void deleteCustomize(EditCustomizeReq req, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.deleteCustomCate(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void deleteBelonger(EditCustomizeReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.deleteBelonger(req, new ApiCallBack<RequestSuccessBean>() {
             @Override
             public void onSuccess(RequestSuccessBean data) {
                 callback.onSuccess(data);

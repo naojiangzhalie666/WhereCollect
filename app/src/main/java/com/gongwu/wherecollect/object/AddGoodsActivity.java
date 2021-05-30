@@ -44,6 +44,7 @@ import com.gongwu.wherecollect.view.EditTextWatcher;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoLookView;
+import com.gongwu.wherecollect.view.SortBelongerDialog;
 import com.gongwu.wherecollect.view.SortChildDialog;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
 
@@ -102,7 +103,6 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     private File imgFile;
     private File imgOldFile;
 
-    private final String IMG_COLOR_CODE = "0";//默认图片颜色的值
     private ObjectBean objectBean;
     private PopupAddGoods popup;
     private boolean setGoodsLocation;
@@ -144,7 +144,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         if (!TextUtils.isEmpty(path) && StringUtils.fileIsExists(path)) {
             imgFile = new File(path);
             imgOldFile = new File(path);
-            mImageView.setHead(IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
+            mImageView.setHead(AppConstant.IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
             objectBean.setObject_url(imgFile.getAbsolutePath());
             setCommitBtnEnable(true);
         }
@@ -205,10 +205,6 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             case R.id.add_goods_sort_tv:
                 SelectSortActivity.start(mContext, objectBean);
                 break;
-//            case R.id.add_other_content_tv:
-//            case R.id.goods_info_edit_tv:
-//                AddGoodsPropertyActivity.start(mContext, objectBean, false);
-//                break;
             case R.id.commit_bt:
             case R.id.title_commit_bg_main_color_tv:
                 onClickCommit();
@@ -269,6 +265,11 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 objectBean = newBean;
                 addGoodsInfotView.init(objectBean);
             }
+        }
+        if (AppConstant.START_GOODS_REMARKS_CODE == requestCode && RESULT_OK == resultCode) {
+            String remarks = data.getStringExtra("remind_remarks");
+            objectBean.setDetail(remarks);
+            addGoodsInfotView.init(objectBean);
         }
     }
 
@@ -351,7 +352,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         ISBN = book.getIsbnCode();
         if (book.getImageFile() != null) {
             imgOldFile = book.getImageFile();
-            mImageView.setHead(IMG_COLOR_CODE, "", imgOldFile.getAbsolutePath());
+            mImageView.setHead(AppConstant.IMG_COLOR_CODE, "", imgOldFile.getAbsolutePath());
             objectBean.setObject_url(imgOldFile.getAbsolutePath());
             setCommitBtnEnable(true);
         }
@@ -388,7 +389,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     public void getCropBitmap(File file) {
         if (StringUtils.fileIsExists(file.getAbsolutePath())) {
             imgFile = file;
-            mImageView.setHead(IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
+            mImageView.setHead(AppConstant.IMG_COLOR_CODE, "", imgFile.getAbsolutePath());
             objectBean.setObject_url(imgFile.getAbsolutePath());
             setCommitBtnEnable(true);
         }
@@ -405,6 +406,26 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             setResult(RESULT_FINISH);
             finish();
         }
+    }
+
+    @Override
+    public void getBelongerListSuccess(List<BaseBean> data) {
+        mOneLists.clear();
+        mOneLists.addAll(data);
+        SortBelongerDialog belongerDialog = new SortBelongerDialog(mContext) {
+            @Override
+            public void addSortChildClick() {
+
+            }
+
+            @Override
+            public void submitClick(int currentIndex) {
+                objectBean.setBelonger(mOneLists.get(currentIndex).getName());
+                addGoodsInfotView.init(objectBean);
+            }
+        };
+        belongerDialog.initData(mOneLists);
+        belongerDialog.setTitle(R.string.add_belonger_tv);
     }
 
     @Override
@@ -445,7 +466,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             @Override
             public void addSortChildClick() {
                 if (App.getUser(mContext).isIs_vip()) {
-                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type));
+                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type), false);
                 } else {
                     BuyVIPActivity.start(mContext);
                 }
@@ -597,5 +618,10 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         type = AppConstant.BUY_TYPE;
         initOne = false;
         getPresenter().getBuyFirstCategoryList(App.getUser(mContext).getId());
+    }
+
+    @Override
+    public void onItemBelongerClick() {
+        getPresenter().getBelongerList(App.getUser(mContext).getId());
     }
 }

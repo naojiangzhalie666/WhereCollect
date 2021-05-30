@@ -22,6 +22,7 @@ public class AddGoodsReq extends RequestBase {
     private String key;
     private String code;
     private String location_codes;
+    private String belonger;
 
     public String getKey() {
         return key;
@@ -173,5 +174,13 @@ public class AddGoodsReq extends RequestBase {
 
     public void setLocation_codes(String location_codes) {
         this.location_codes = location_codes;
+    }
+
+    public String getBelonger() {
+        return belonger;
+    }
+
+    public void setBelonger(String belonger) {
+        this.belonger = belonger;
     }
 }

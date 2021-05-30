@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,9 +23,7 @@ import com.gongwu.wherecollect.activity.FurnitureLookActivity;
 import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter;
 import com.gongwu.wherecollect.base.App;
-import com.gongwu.wherecollect.base.BaseActivity;
 import com.gongwu.wherecollect.base.BaseMvpActivity;
-import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IGoodsDetailsContract;
 import com.gongwu.wherecollect.contract.presenter.GoodsDetailsPresenter;
@@ -41,28 +38,27 @@ import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.util.DateUtil;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
+import com.gongwu.wherecollect.util.FileUtil;
 import com.gongwu.wherecollect.util.PhotosDialog;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.view.EditGoodsImgDialog;
 import com.gongwu.wherecollect.view.EditTextWatcher;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoEditView;
-import com.gongwu.wherecollect.view.ObjectInfoLookView;
-import com.gongwu.wherecollect.view.ObjectsLookMenuDialog;
-import com.gongwu.wherecollect.view.PopupAddGoods;
 import com.gongwu.wherecollect.view.PopupEditMenuGoods;
-import com.gongwu.wherecollect.view.PopupMessage;
+import com.gongwu.wherecollect.view.SortBelongerDialog;
 import com.gongwu.wherecollect.view.SortChildDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import razerdp.basepopup.BasePopupWindow;
 
 public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, GoodsDetailsPresenter> implements IGoodsDetailsContract.IGoodsDetailsView, ObjectInfoEditView.OnItemClickListener {
 
@@ -118,11 +114,13 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     private boolean isEditGoodsInfo = false;
 
     private SortChildDialog sortChildDialog;
+    private EditGoodsImgDialog imgDialog;
     private List<BaseBean> mOneLists = new ArrayList<>();
     private List<BaseBean> mTwoLists = new ArrayList<>();
     private List<BaseBean> mThreeLists = new ArrayList<>();
     private boolean initOne, initTwo;
     private String type = null;
+
     /**
      * 图书扫描后修改公共属性
      */
@@ -185,9 +183,9 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                 int resId = Color.parseColor(objectBean.getObject_url());
                 mImageView.setResourceColor(objectBean.getName(), resId, 3);
             } else {
-                mImageView.setImg(objectBean.getObject_url(), 3);
+                mImageView.setImg(objectBean.getObject_url(), 3, true);
             }
-            if (locationTv.getText().toString().equals("未归位")) {
+            if (StringUtils.getGoodsLoction(objectBean).equals("未归位")) {
                 locationLayout.setVisibility(View.GONE);
             } else {
                 locationLayout.setVisibility(View.VISIBLE);
@@ -265,13 +263,27 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                 onClickCommit();
                 break;
             case R.id.add_img_view:
-                if (objectBean.getObject_url().contains("#")) return;
-                List<ImageData> imageDatas = new ArrayList<>();
-                ImageData imageData = new ImageData();
-                imageData.setUrl(objectBean.getObject_url());
-                imageDatas.add(imageData);
-                PhotosDialog photosDialog = new PhotosDialog(this, false, false, imageDatas);
-                photosDialog.showPhotos(0);
+                imgDialog = new EditGoodsImgDialog(this, objectBean) {
+                    @Override
+                    public void getResult(File file) {
+                        objectBean.setObject_url(file.getAbsolutePath());
+                        mImageView.setImg(objectBean.getObject_url(), 3);
+                        setTitleViewState(true);
+                    }
+
+                    @Override
+                    public void editImg() {
+                        if (objectBean.getObject_url().contains("http")) {
+                            if (mImageView.getBitmap() != null) {
+                                imgDialog.cropBitmap(FileUtil.getFile(mImageView.getBitmap(), System.currentTimeMillis() + ".jpg"));
+                            }
+                        } else if (!TextUtils.isEmpty(objectBean.getObjectUrl())) {
+                            //图片有地址 直接传
+                            imgDialog.cropBitmap(objectBean.getObjectFiles());
+                        }
+
+                    }
+                };
                 break;
             case R.id.add_goods_sort_tv:
                 SelectSortActivity.start(mContext, objectBean);
@@ -283,13 +295,14 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
 //                    popup.setPopupGravity(BasePopupWindow.GravityMode.ALIGN_TO_ANCHOR_SIDE, Gravity.END | Gravity.BOTTOM);
                     popup.setPopupClickListener(new PopupEditMenuGoods.EditMenuPopupClickListener() {
                         @Override
-                        public void onEditGoodsClick() {
-                            Intent intent = new Intent(mContext, AddGoodsActivity.class);
-                            intent.putExtra("objectBean", objectBean);
-                            if (remindBean != null) {
-                                intent.putExtra("remindBean", remindBean);
+                        public void onEditGoodsLocationClick() {
+                            if (locationLayout.getVisibility() == View.VISIBLE) {
+                                clearGoodsLocation();
+                            } else {
+                                if (StringUtils.getGoodsLoction(objectBean).equals("未归位")) {
+                                    selectLocation();
+                                }
                             }
-                            startActivityForResult(intent, AppConstant.REQUEST_CODE);
                         }
 
                         @Override
@@ -300,6 +313,11 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                         @Override
                         public void onDeleteGoodsClick() {
                             getPresenter().delGoods(App.getUser(mContext).getId(), objectBean.get_id());
+                        }
+
+                        @Override
+                        public void onLockClick() {
+                            getPresenter().goodsArchive(App.getUser(mContext).getId(), objectBean.get_id());
                         }
                     });
                 }
@@ -382,6 +400,14 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     }
 
     @Override
+    public void goodsArchiveSuccess(RequestSuccessBean bean) {
+        if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            Toast.makeText(mContext, "封存成功", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
+    @Override
     public void editGoodsSuccess(ObjectBean data) {
         if (data != null) {
             Toast.makeText(mContext, "保存成功", Toast.LENGTH_SHORT).show();
@@ -396,12 +422,19 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     @Override
     public void removeObjectFromFurnitrueSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
-            MainActivity.moveGoodsList = new ArrayList<>();
-            MainActivity.moveGoodsList.add(objectBean);
-            EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
-            EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
-            finish();
+            selectLocation();
         }
+    }
+
+    private void selectLocation() {
+        if (MainActivity.moveGoodsList == null) {
+            MainActivity.moveGoodsList = new ArrayList<>();
+        }
+        MainActivity.moveGoodsList.clear();
+        MainActivity.moveGoodsList.add(objectBean);
+        EventBus.getDefault().post(new EventBusMsg.SelectHomeTab());
+        EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
+        finish();
     }
 
     @Override
@@ -426,6 +459,31 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         } else {
             remindLayout.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void getBelongerListSuccess(List<BaseBean> data) {
+        mOneLists.clear();
+        mOneLists.addAll(data);
+        SortBelongerDialog belongerDialog = new SortBelongerDialog(mContext) {
+            @Override
+            public void addSortChildClick() {
+                if (App.getUser(mContext).isIs_vip()) {
+                    SelectSortChildNewActivity.start(mContext, objectBean, false, true);
+                } else {
+                    BuyVIPActivity.start(mContext);
+                }
+            }
+
+            @Override
+            public void submitClick(int currentIndex) {
+                objectBean.setBelonger(mOneLists.get(currentIndex).getName());
+                setTitleViewState(getPresenter().goodsInfosIsEdit(objectBean, oldBean));
+                goodsInfoEditView.init(objectBean);
+            }
+        };
+        belongerDialog.initData(mOneLists);
+        belongerDialog.setTitle(R.string.add_belonger_tv);
     }
 
     @Override
@@ -493,7 +551,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
             @Override
             public void addSortChildClick() {
                 if (App.getUser(mContext).isIs_vip()) {
-                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type));
+                    SelectSortChildNewActivity.start(mContext, objectBean, TextUtils.isEmpty(type), false);
                 } else {
                     BuyVIPActivity.start(mContext);
                 }
@@ -523,6 +581,7 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                     }
                     objectBean.setChannel(channels);
                 }
+                setTitleViewState(getPresenter().goodsInfosIsEdit(objectBean, oldBean));
                 goodsInfoEditView.init(objectBean);
             }
         };
@@ -580,6 +639,15 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
                 initData();
             }
         }
+        if (AppConstant.START_GOODS_REMARKS_CODE == requestCode && RESULT_OK == resultCode) {
+            String remarks = data.getStringExtra("remind_remarks");
+            objectBean.setDetail(remarks);
+            setTitleViewState(getPresenter().goodsInfosIsEdit(objectBean, oldBean));
+            initData();
+        }
+        if (imgDialog != null) {
+            imgDialog.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
     @Override
@@ -594,5 +662,10 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
         type = AppConstant.BUY_TYPE;
         initOne = false;
         getPresenter().getBuyFirstCategoryList(App.getUser(mContext).getId());
+    }
+
+    @Override
+    public void onItemBelongerClick() {
+        getPresenter().getBelongerList(App.getUser(mContext).getId());
     }
 }

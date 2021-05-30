@@ -171,6 +171,14 @@ public interface TakeawayApi {
     Call<ResponseBase<BaseBean>> saveCustomCate(@FieldMap Map<String, String> map);
 
     @FormUrlEncoded
+    @POST("api/app/v430/belonger/add")
+    Call<ResponseBase<BaseBean>> saveBelonger(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v430/belonger/delete")
+    Call<ResponseBase<RequestSuccessBean>> deleteBelonger(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
     @POST("api/app/v400/edit/customCate")
     Call<ResponseBase<RequestSuccessBean>> editCustomCate(@FieldMap Map<String, String> map);
 
@@ -184,6 +192,9 @@ public interface TakeawayApi {
 
     @GET("api/app/v400/firstCategory/list")
     Call<ResponseBase<List<BaseBean>>> getFirstCategoryList(@Query("uid") String uid, @Query("type") String type);
+
+    @GET("api/app/v430/belonger/list")
+    Call<ResponseBase<List<BaseBean>>> getBelongerList(@Query("uid") String uid);
 
     @GET("api/app/v400/subCategory/list")
     Call<ResponseBase<List<BaseBean>>> getSubCategoryList(@Query("uid") String uid, @Query("parent_code") String parent_code, @Query("type") String type);
@@ -455,6 +466,10 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v350/object-recommend-option")
     Call<ResponseBase<ChangWangDetailBean>> setCangWangDetail(@FieldMap Map<String, String> map);
+
+    @FormUrlEncoded
+    @POST("api/app/v430/object/setWeight")
+    Call<ResponseBase<RequestSuccessBean>> setGoodsWeight(@FieldMap Map<String, String> map);
 
     @GET("api/app/v420/statics1")
     Call<ResponseBase<List<StatisticsBean>>> getGoodsReturnDetails(@Query("uid") String uid, @Query("family_code") String family_code, @Query("code") String code);

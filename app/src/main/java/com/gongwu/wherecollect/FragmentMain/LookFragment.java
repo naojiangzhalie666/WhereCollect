@@ -92,10 +92,6 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     RecyclerView mRecyclerView;
     @BindView(R.id.sort_list_view)
     RecyclerView mSortRecyclerView;
-    @BindView(R.id.goods_number_tv)
-    TextView goodsNumberTv;
-    @BindView(R.id.goods_not_location_tv)
-    TextView goodsNotLocationTv;
     @BindView(R.id.family_type_iv)
     ImageView familyTypeIv;
     @BindView(R.id.add_changwang_tv)
@@ -173,7 +169,11 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         mAdapter.setOnItemClickListener(new MainGoodsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int positions, View view) {
-                GoodsDetailsActivity.start(mContext, mDetailsList.get(positions));
+                if (positions == AppConstant.DEFAULT_INDEX_OF) {
+                    startStatistics();
+                } else {
+                    GoodsDetailsActivity.start(mContext, mDetailsList.get(positions));
+                }
             }
 
             @Override
@@ -221,8 +221,8 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             }
 
             @Override
-            public void onLockClick(int positions, View view) {
-                getPresenter().goodsArchive(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
+            public void onTopClick(int positions, View view) {
+                getPresenter().setGoodsWeight(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
             }
 
             @Override
@@ -272,7 +272,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
     }
 
 
-    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout, R.id.empty_img, R.id.add_changwang_tv, R.id.statistics_layout})
+    @OnClick({R.id.look_family_name, R.id.batch_edit_iv, R.id.fm_search_layout, R.id.empty_img, R.id.add_changwang_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.look_family_name:
@@ -289,33 +289,34 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 if (TextUtils.isEmpty(goodType) || TextUtils.isEmpty(changWangCode)) return;
                 AddChangWangGoodActivity.start(getContext(), goodType, changWangCode);
                 break;
-            case R.id.statistics_layout:
-                //vip功能
-                if (mList != null && mList.size() > 0) {
-                    String type;
-                    if (mList.get(selectPosition).getCode().equals(StatisticsActivity.TYPE_ALL)) {
-                        type = StatisticsActivity.TYPE_ALL;
-                    } else if (mList.get(selectPosition).getName().equals("衣装打扮")) {
-                        type = StatisticsActivity.TYPE_CLOTHES;
-                        if (!App.getUser(mContext).isIs_vip()) {
-                            BuyVIPActivity.start(mContext);
-                            return;
-                        }
-                    } else if (mList.get(selectPosition).getName().equals("未分类")) {
-                        return;
-                    } else {
-                        type = StatisticsActivity.TYPE_OTHER;
-                        if (!App.getUser(mContext).isIs_vip()) {
-                            BuyVIPActivity.start(mContext);
-                            return;
-                        }
-                    }
-                    StatisticsActivity.start(mContext, familyBean.getCode(), mList.get(selectPosition).getCode(), type);
-                }
-                break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
                 break;
+        }
+    }
+
+    private void startStatistics() {
+        //vip功能
+        if (mList != null && mList.size() > 0) {
+            String type;
+            if (mList.get(selectPosition).getCode().equals(StatisticsActivity.TYPE_ALL)) {
+                type = StatisticsActivity.TYPE_ALL;
+            } else if (mList.get(selectPosition).getName().equals("衣装打扮")) {
+                type = StatisticsActivity.TYPE_CLOTHES;
+                if (!App.getUser(mContext).isIs_vip()) {
+                    BuyVIPActivity.start(mContext);
+                    return;
+                }
+            } else if (mList.get(selectPosition).getName().equals("未分类")) {
+                return;
+            } else {
+                type = StatisticsActivity.TYPE_OTHER;
+                if (!App.getUser(mContext).isIs_vip()) {
+                    BuyVIPActivity.start(mContext);
+                    return;
+                }
+            }
+            StatisticsActivity.start(mContext, familyBean.getCode(), mList.get(selectPosition).getCode(), type);
         }
     }
 
@@ -370,6 +371,13 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
 
     @Override
     public void delSelectGoodsSuccess(RequestSuccessBean bean) {
+        if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            mRefreshLayout.autoRefresh();
+        }
+    }
+
+    @Override
+    public void setGoodsWeightSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
             mRefreshLayout.autoRefresh();
         }
@@ -440,8 +448,11 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         mSortAdapter.setSelectPosition(indexOf);
         mDetailsList.clear();
         MainGoodsBean mainGoodsBean = mList.get(mSortAdapter.getSelectPosition());
-        goodsNumberTv.setText(String.valueOf(mainGoodsBean.getTotal()));
-        goodsNotLocationTv.setText(String.valueOf(mainGoodsBean.getNoLocation()));
+        ObjectBean headBean = new ObjectBean();
+        headBean.setHead(true);
+        headBean.setTotal(mainGoodsBean.getTotal());
+        headBean.setNoLocation(mainGoodsBean.getNoLocation());
+        mDetailsList.add(headBean);
         mDetailsList.addAll(mainGoodsBean.getObjects());
         mAdapter.notifyDataSetChanged();
         mRecyclerView.smoothScrollToPosition(AppConstant.DEFAULT_INDEX_OF);

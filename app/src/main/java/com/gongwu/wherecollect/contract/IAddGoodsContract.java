@@ -32,6 +32,8 @@ public interface IAddGoodsContract {
 
         void removeObjectFromFurnitrue(GoodsDetailsReq req, final RequestCallback callback);
 
+        void getBelongerList(String uid, final RequestCallback callback);
+
         void getBuyFirstCategoryList(String uid, final RequestCallback callback);
 
         void getSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
@@ -53,6 +55,8 @@ public interface IAddGoodsContract {
         void getTaobaoInfo(String uid, String key);
 
         void removeObjectFromFurnitrue(String uid, String code);
+
+        void getBelongerList(String uid);
 
         void getBuyFirstCategoryList(String uid);
 
@@ -115,6 +119,8 @@ public interface IAddGoodsContract {
         void getCropBitmap(File file);
 
         void removeObjectFromFurnitrueSuccess(RequestSuccessBean data);
+
+        void getBelongerListSuccess(List<BaseBean> data);
 
         void getBuyFirstCategoryListSuccess(List<BaseBean> data);
 

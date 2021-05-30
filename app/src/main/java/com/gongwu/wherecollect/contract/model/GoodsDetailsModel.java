@@ -15,6 +15,22 @@ import java.util.List;
 
 public class GoodsDetailsModel implements IGoodsDetailsContract.IGoodsDetailsModel {
     @Override
+    public void goodsArchive(GoodsDetailsReq req, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.goodsArchive(req, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
     public void editGoods(AddGoodsReq req, RequestCallback callback) {
         if (callback == null) return;
         ApiUtils.editGoods(req, new ApiCallBack<ObjectBean>() {
@@ -77,6 +93,23 @@ public class GoodsDetailsModel implements IGoodsDetailsContract.IGoodsDetailsMod
             }
         });
     }
+
+    @Override
+    public void getBelongerList(String uid, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getBelongerList(uid, new ApiCallBack<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
     @Override
     public void getBuyFirstCategoryList(String uid, RequestCallback callback) {
         if (callback == null) return;

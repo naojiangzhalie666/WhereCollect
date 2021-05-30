@@ -12,17 +12,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/dip_16"
+        android:layout_marginEnd="@dimen/dip_16"
         android:background="#00000000"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/look_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/select_changheader_top_btn_bg"
+            android:gravity="center"
+            android:text="查看大图"
+            android:textColor="@color/black_87"
+            android:textScaleX="1.05"
+            android:textSize="@dimen/f_15" />
+
+        <View
+            android:id="@+id/look_img_split"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/split_color" />
+
+        <TextView
+            android:id="@+id/edit_img_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:background="@drawable/select_changheader_btn"
+            android:gravity="center"
+            android:text="编 辑"
+            android:textColor="@color/black_87"
+            android:textScaleX="1.05"
+            android:textSize="@dimen/f_15" />
+
+        <View
+            android:id="@+id/edit_img_split"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/split_color" />
 
         <TextView
             android:id="@+id/camare"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dip_40"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/select_changheader_top_btn_bg"
+            android:background="@drawable/select_changheader_btn"
             android:gravity="center"
             android:text="拍 照"
             android:textColor="@color/black_87"
@@ -32,38 +66,12 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:background="@color/split_color" />
-
-        <TextView
-            android:id="@+id/camare_video"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dip_40"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/select_changheader_btn"
-            android:gravity="center"
-            android:text="录 像"
-            android:textColor="@color/black_87"
-            android:textScaleX="1.05"
-            android:textSize="@dimen/f_15"
-            android:visibility="gone" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@color/split_color"
-            android:visibility="gone" />
 
         <TextView
             android:id="@+id/select"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dip_40"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/select_changheader_bottom_btn_bg"
             android:gravity="center"
@@ -72,12 +80,11 @@
             android:textScaleX="1.05"
             android:textSize="@dimen/f_15" />
 
+
         <TextView
             android:id="@+id/cancel"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dip_40"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/select_changheader_btn_bg"
             android:gravity="center"

@@ -33,7 +33,9 @@ public class AppConstant {
     public final static int LEVEL_BOX = 3;
     //购货渠道type 用于区分物品分类
     public final static String BUY_TYPE = "buy";
+    public final static String BELONGER_TYPE = "belonger_type";
     public final static String TYPE_SEAL = "type_seal";
+    public final static String IMG_COLOR_CODE = "0";
 
     /**
      * 友盟推送token
@@ -48,6 +50,7 @@ public class AppConstant {
     public static final int START_FURNITURE_LOOK_ACT_CODE = 0x956;
 
     public static final int START_GOODS_INFO_CODE = 0x0210;
+    public static final int START_GOODS_REMARKS_CODE = 0x0310;
     public static String BASE_CODE;
 
     public static boolean isShowMsg;

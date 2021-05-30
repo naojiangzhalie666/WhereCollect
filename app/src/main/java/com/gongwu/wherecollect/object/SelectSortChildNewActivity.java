@@ -75,6 +75,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
     private BaseBean mainBaseBean;
     private DeleteSortTipsDialog dialog;
     private boolean initSortByType = true;
+    private boolean initBelonger = false;
     private String type = "";
     private String addSortStr;
 
@@ -88,6 +89,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         mCommitTv.setVisibility(View.VISIBLE);
         objectBean = (ObjectBean) getIntent().getSerializableExtra("objectBean");
         initSortByType = getIntent().getBooleanExtra("initSortByType", true);
+        initBelonger = getIntent().getBooleanExtra("initBelonger", false);
         initData();
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.white));
         mOneAdapter = new SelectSortChildAdapter(mContext, mOneLists);
@@ -106,8 +108,8 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
             @Override
             public void onItemClick(int positions, View view) {
                 BaseBean baseBean = mOneLists.get(positions);
-                if (!TextUtils.isEmpty(baseBean.get_id()) && !TextUtils.isEmpty(baseBean.getCode())) {
-                    if (selectOneChildBean != null && selectOneChildBean.getCode().equals(baseBean.getCode()))
+                if (!TextUtils.isEmpty(baseBean.get_id()) && (initBelonger || !TextUtils.isEmpty(baseBean.getCode()))) {
+                    if (selectOneChildBean != null && !TextUtils.isEmpty(selectOneChildBean.get_id()) && selectOneChildBean.get_id().equals(baseBean.get_id()))
                         return;
                     selectOneData(baseBean);
                 } else if (!TextUtils.isEmpty(baseBean.getName()) && baseBean.getName().equals("新增")) {
@@ -133,7 +135,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
             public void onItemClick(int positions, View view) {
                 BaseBean baseBean = mTwoLists.get(positions);
                 if (!TextUtils.isEmpty(baseBean.get_id()) && !TextUtils.isEmpty(baseBean.getCode())) {
-                    if (selectTwoChildBean != null && selectTwoChildBean.getCode().equals(baseBean.getCode()))
+                    if (selectTwoChildBean != null && !TextUtils.isEmpty(selectTwoChildBean.getCode()) && selectTwoChildBean.getCode().equals(baseBean.getCode()))
                         return;
                     selectTWOData(baseBean);
                 } else if (!TextUtils.isEmpty(baseBean.getName()) && baseBean.getName().equals("新增")) {
@@ -157,7 +159,7 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
             public void onItemClick(int positions, View view) {
                 BaseBean baseBean = mThreeLists.get(positions);
                 if (!TextUtils.isEmpty(baseBean.get_id()) && !TextUtils.isEmpty(baseBean.getCode())) {
-                    if (selectThreeChildBean != null && selectThreeChildBean.getCode().equals(baseBean.getCode()))
+                    if (selectThreeChildBean != null && !TextUtils.isEmpty(selectThreeChildBean.getCode()) && selectThreeChildBean.getCode().equals(baseBean.getCode()))
                         return;
                     selectThreeData(baseBean);
                 } else if (!TextUtils.isEmpty(baseBean.getName()) && baseBean.getName().equals("新增")) {
@@ -200,6 +202,11 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                     sb.append("/");
                 }
             }
+        } else if (initBelonger && !initSortByType) {
+            mTitleTv.setText("添加归属人");
+            type = AppConstant.BELONGER_TYPE;
+            mainSortTv.setVisibility(View.GONE);
+            getPresenter().getBelongerList(App.getUser(mContext).getId());
         } else {
             mTitleTv.setText("添加购货渠道");
             type = AppConstant.BUY_TYPE;
@@ -226,27 +233,36 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
                 addSortChildPost();
                 break;
             case R.id.title_commit_bg_main_color_tv:
-                List<BaseBean> beanList = new ArrayList<>();
-                if (initSortByType) {
-                    beanList.add(mainBaseBean);
-                }
-                if (selectOneChildBean != null) {
-                    beanList.add(selectOneChildBean);
-                }
-                if (selectTwoChildBean != null) {
-                    beanList.add(selectTwoChildBean);
-                }
-                if (selectThreeChildBean != null) {
-                    beanList.add(selectThreeChildBean);
-                }
-                if (initSortByType) {
-                    objectBean.setCategories(beanList);
-                } else {
-                    List<String> channels = new ArrayList<>();
-                    for (BaseBean baseBean : beanList) {
-                        channels.add(baseBean.getName());
+                if (initBelonger) {
+                    if (selectOneChildBean != null) {
+                        objectBean.setBelonger(selectOneChildBean.getName());
+                    } else {
+                        ToastUtil.show(mContext, "请选择归属人");
+                        return;
                     }
-                    objectBean.setChannel(channels);
+                } else {
+                    List<BaseBean> beanList = new ArrayList<>();
+                    if (initSortByType) {
+                        beanList.add(mainBaseBean);
+                    }
+                    if (selectOneChildBean != null) {
+                        beanList.add(selectOneChildBean);
+                    }
+                    if (selectTwoChildBean != null) {
+                        beanList.add(selectTwoChildBean);
+                    }
+                    if (selectThreeChildBean != null) {
+                        beanList.add(selectThreeChildBean);
+                    }
+                    if (initSortByType) {
+                        objectBean.setCategories(beanList);
+                    } else {
+                        List<String> channels = new ArrayList<>();
+                        for (BaseBean baseBean : beanList) {
+                            channels.add(baseBean.getName());
+                        }
+                        objectBean.setChannel(channels);
+                    }
                 }
                 Intent intent = new Intent();
                 intent.putExtra("objectBean", objectBean);
@@ -267,12 +283,16 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
             if (!TextUtils.isEmpty(sortCode)) {
                 getPresenter().saveCustomSubCate(App.getUser(mContext).getId(), addSortEt.getText().toString().trim(), sortCode, type);
             } else {
-                getPresenter().saveCustomCate(App.getUser(mContext).getId(), addSortEt.getText().toString().trim(), type);
+                if (initBelonger) {
+                    getPresenter().saveBelonger(App.getUser(mContext).getId(), addSortEt.getText().toString().trim());
+                } else {
+                    getPresenter().saveCustomCate(App.getUser(mContext).getId(), addSortEt.getText().toString().trim(), type);
+                }
             }
             addSortChildeLayout.setVisibility(View.GONE);
             addSortEt.setText("");
         } else {
-            ToastUtil.show(mContext, "请输入要添加的子类名称");
+            ToastUtil.show(mContext, "请输入要添加的名称");
         }
     }
 
@@ -280,7 +300,15 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         dialog = new DeleteSortTipsDialog(mContext) {
             @Override
             public void submitSort() {
-                getPresenter().deleteCustomize(App.getUser(mContext).getId(), baseBean.get_id(), baseBean.getCode(), type);
+                if (initBelonger) {
+                    if (selectOneChildBean != null && selectOneChildBean.get_id().equals(baseBean.get_id())) {
+                        selectOneChildBean = null;
+                        selectSortChildTv.setText("");
+                    }
+                    getPresenter().deleteBelonger(App.getUser(mContext).getId(), baseBean.get_id());
+                } else {
+                    getPresenter().deleteCustomize(App.getUser(mContext).getId(), baseBean.get_id(), baseBean.getCode(), type);
+                }
             }
         };
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -290,6 +318,9 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
             }
         });
         dialog.show();
+        if (initBelonger) {
+            dialog.setMsgText(R.string.hint_delete_text);
+        }
     }
 
     private void showAddSortChildLayout() {
@@ -311,6 +342,11 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
     }
 
     @Override
+    public void getBelongerListSuccess(List<BaseBean> data) {
+        initOneView(data);
+    }
+
+    @Override
     public void getBuyFirstCategoryListSuccess(List<BaseBean> data) {
         initOneView(data);
     }
@@ -328,11 +364,11 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         BaseBean baseBean = new BaseBean();
         baseBean.setName("新增");
         mOneLists.add(baseBean);
-        if (sortLevel > 0) {
-            selectBean(addSortStr, mOneLists);
-        }
         mOneAdapter.notifyDataSetChanged();
-        mOneRecyclerView.smoothScrollToPosition(mOneLists.size() - 1);
+        if (sortLevel > 0 && !TextUtils.isEmpty(addSortStr)) {
+            selectBean(addSortStr, mOneLists);
+            mOneRecyclerView.smoothScrollToPosition(mOneLists.size() - 1);
+        }
     }
 
     @Override
@@ -344,11 +380,11 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         BaseBean baseBean = new BaseBean();
         baseBean.setName("新增");
         mTwoLists.add(baseBean);
-        if (sortLevel > 0) {
-            selectBean(addSortStr, mTwoLists);
-        }
         mTwoAdapter.notifyDataSetChanged();
-        mTwoRecyclerView.smoothScrollToPosition(mTwoLists.size() - 1);
+        if (sortLevel > 0 && !TextUtils.isEmpty(addSortStr)) {
+            selectBean(addSortStr, mTwoLists);
+            mTwoRecyclerView.smoothScrollToPosition(mTwoLists.size() - 1);
+        }
     }
 
     @Override
@@ -360,11 +396,11 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         BaseBean baseBean = new BaseBean();
         baseBean.setName("新增");
         mThreeLists.add(baseBean);
-        if (sortLevel > 0) {
-            selectBean(addSortStr, mThreeLists);
-        }
         mThreeAdapter.notifyDataSetChanged();
-        mThreeRecyclerView.smoothScrollToPosition(mThreeLists.size() - 1);
+        if (sortLevel > 0 && !TextUtils.isEmpty(addSortStr)) {
+            selectBean(addSortStr, mThreeLists);
+            mThreeRecyclerView.smoothScrollToPosition(mThreeLists.size() - 1);
+        }
     }
 
     @Override
@@ -373,6 +409,14 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         ToastUtil.show(mContext, "添加成功");
         //重新请求添加的那一级列表数据
         initLevelList(sortLevel);
+    }
+
+    @Override
+    public void saveBelongerSuccess(BaseBean bean) {
+        if (bean == null) return;
+        ToastUtil.show(mContext, "添加成功");
+        //重新请求添加的那一级列表数据
+        getPresenter().getBelongerList(App.getUser(mContext).getId());
     }
 
     private void initLevelList(int level) {
@@ -442,6 +486,14 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         }
     }
 
+    @Override
+    public void deleteBelongerSuccess(RequestSuccessBean bean) {
+        if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
+            ToastUtil.show(mContext, "删除成功");
+            getPresenter().getBelongerList(App.getUser(mContext).getId());
+        }
+    }
+
     /**
      * 高亮新增的item
      */
@@ -482,7 +534,9 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
         mThreeLists.clear();
         mThreeAdapter.setSelectBaseBean(null);
         selectSortChildTv.setText(selectOneChildBean.getName());
-        getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode(), type);
+        if (!type.equals(AppConstant.BELONGER_TYPE)) {
+            getPresenter().getTwoSubCategoryList(App.getUser(mContext).getId(), selectOneChildBean.getCode(), type);
+        }
     }
 
     /**
@@ -511,10 +565,11 @@ public class SelectSortChildNewActivity extends BaseMvpActivity<SelectSortChildN
     /**
      * @param initSortByType true物品分类,false购买渠道
      */
-    public static void start(Context mContext, ObjectBean objectBean, boolean initSortByType) {
+    public static void start(Context mContext, ObjectBean objectBean, boolean initSortByType, boolean initBelonger) {
         Intent intent = new Intent(mContext, SelectSortChildNewActivity.class);
         intent.putExtra("objectBean", objectBean);
         intent.putExtra("initSortByType", initSortByType);
+        intent.putExtra("initBelonger", initBelonger);
         ((Activity) mContext).startActivityForResult(intent, AppConstant.START_GOODS_INFO_CODE);
     }
 

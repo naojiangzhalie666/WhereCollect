@@ -24,6 +24,26 @@ public class GoodsPropertyPresenter extends BasePresenter<IGoodsPropertyContract
         return new GoodsPropertyPresenter();
     }
 
+    @Override
+    public void getBelongerList(String uid) {
+        mModel.getBelongerList(uid, new RequestCallback<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getBelongerListSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
 
     @Override
     public void getBuyFirstCategoryList(String uid) {

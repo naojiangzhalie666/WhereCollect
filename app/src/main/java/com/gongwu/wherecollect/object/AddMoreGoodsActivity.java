@@ -70,8 +70,8 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     RecyclerView goodsInfoListView;
     @BindView(R.id.content_layout)
     RelativeLayout contentLayout;
-    @BindView(R.id.add_other_content_tv)
-    TextView addInfoView;
+    @BindView(R.id.more_goods_info_empty_view)
+    View addInfoView;
     @BindView(R.id.goods_info_edit_tv)
     TextView editInfoTv;
     @BindView(R.id.title_commit_bg_main_color_tv)
@@ -156,7 +156,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         mStackAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.back_btn, R.id.add_goods_list_sort, R.id.add_other_content_tv, R.id.commit_bt,
+    @OnClick({R.id.back_btn, R.id.add_goods_list_sort, R.id.more_goods_info_empty_view, R.id.commit_bt,
             R.id.select_location_bt, R.id.goods_info_edit_tv, R.id.title_commit_bg_main_color_tv})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -167,7 +167,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
                 SelectSortActivity.start(mContext, sortBean);
                 break;
             case R.id.goods_info_edit_tv:
-            case R.id.add_other_content_tv:
+            case R.id.more_goods_info_empty_view:
                 AddGoodsPropertyActivity.start(mContext, sortBean, true);
                 break;
             case R.id.commit_bt:
@@ -512,6 +512,11 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     @Override
     public void removeObjectFromFurnitrueSuccess(RequestSuccessBean data) {
 
+    }
+
+    @Override
+    public void getBelongerListSuccess(List<BaseBean> data) {
+        //无用
     }
 
     @Override

@@ -91,6 +91,8 @@
     <string name="remind_goods_location_text">位置: %1$s</string>
     <string name="remind_remarks_title_text">说明备注</string>
     <string name="remind_remarks_hint_text">说明备注描述</string>
+    <string name="goods_remarks_hint_text">其他描述</string>
+    <string name="goods_remarks_title_text">其他</string>
     <string name="remind_remarks_num_text">%1$s/150</string>
     <string name="select_room">选择房间</string>
     <string name="pop_edit_furniture_name">编辑名称图片</string>
@@ -147,13 +149,15 @@
     <string name="hint_expiry_time_tv">请选择物品过期时间</string>
     <string name="hint_color_tv">请选择物品所属颜色</string>
     <string name="hint_season_tv">请选择物品所属季节</string>
-    <string name="hint_ascription_tv">请选择归属人</string>
+    <string name="hint_belonger_tv">请选择归属人</string>
     <string name="hint_channel_tv">请选择物品购货渠道</string>
     <string name="hint_detail_tv">填写备注</string>
     <string name="add_remind_tv">添加提醒</string>
+    <string name="add_belonger_tv">添加归属人</string>
     <string name="title_sort_customize_tv">自定义分类</string>
     <string name="customize_text">自定义</string>
     <string name="search_text">搜索</string>
+    <string name="hint_delete_text">确认删除？</string>
     <string name="hint_rename_sort_text">分类名称</string>
     <string name="hint_delete_sort_child_text">删除此分类，会删掉\n其相关的所有子分类</string>
     <string name="hint_delete_sort_text">删除主分类将同时删除该主分\n类下创建的全部分类子标签，\n确认删除？</string>
@@ -161,6 +165,7 @@
     <string name="goods_add_location">添加位置</string>
     <string name="goods_location">查看位置</string>
     <string name="goods_lock">封存</string>
+    <string name="goods_top">置顶</string>
     <string name="goods_unlock">还原</string>
     <string name="seal_hint_one_tv">双击底栏“查看”图标可以进入暗格</string>
     <string name="seal_hint_two_tv">被封存的物品只在暗格中可以查看，不在位置和查看页显示</string>

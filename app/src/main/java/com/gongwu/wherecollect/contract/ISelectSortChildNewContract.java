@@ -14,6 +14,8 @@ import java.util.List;
 
 public interface ISelectSortChildNewContract {
     interface ISelectSortChildNewModel {
+        void getBelongerList(String uid, final RequestCallback callback);
+
         void getBuyFirstCategoryList(String uid, final RequestCallback callback);
 
         void getSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
@@ -26,10 +28,16 @@ public interface ISelectSortChildNewContract {
 
         void saveCustomCate(CustomSubCateReq req, final RequestCallback callback);
 
+        void saveBelonger(CustomSubCateReq req, final RequestCallback callback);
+
         void deleteCustomize(EditCustomizeReq req, final RequestCallback callback);
+
+        void deleteBelonger(EditCustomizeReq req, final RequestCallback callback);
     }
 
     interface ISelectSortChildNewPresenter {
+        void getBelongerList(String uid);
+
         void getBuyFirstCategoryList(String uid);
 
         void getSubCategoryList(String uid, String parentCode, String type);
@@ -42,10 +50,16 @@ public interface ISelectSortChildNewContract {
 
         void saveCustomCate(String uid, String name, String type);
 
+        void saveBelonger(String uid, String name);
+
         void deleteCustomize(String uid, String id, String code, String type);
+
+        void deleteBelonger(String uid, String id);
     }
 
     interface ISelectSortChildNewView extends BaseView {
+        void getBelongerListSuccess(List<BaseBean> data);
+
         void getBuyFirstCategoryListSuccess(List<BaseBean> data);
 
         void getSubCategoryListSuccess(List<BaseBean> data);
@@ -56,6 +70,10 @@ public interface ISelectSortChildNewContract {
 
         void saveCustomSubCateSuccess(BaseBean bean);
 
+        void saveBelongerSuccess(BaseBean bean);
+
         void deleteCustomizeSuccess(RequestSuccessBean bean);
+
+        void deleteBelongerSuccess(RequestSuccessBean bean);
     }
 }

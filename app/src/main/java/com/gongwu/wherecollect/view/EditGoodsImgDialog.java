@@ -1,4 +1,5 @@
 package com.gongwu.wherecollect.view;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -14,6 +15,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -22,34 +24,36 @@ import androidx.loader.content.CursorLoader;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.App;
+import com.gongwu.wherecollect.net.entity.ImageData;
+import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.PermissionUtil;
+import com.gongwu.wherecollect.util.PhotosDialog;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by zhaojin on 15/11/16.
  */
-public class ChangeHeaderImgDialog {
+public class EditGoodsImgDialog {
     public final int REQUST_CAMARE = 0x02;
     public final int REQUST_PHOTOSELECT = 0x03;
+
     File mOutputFile;
-    Bitmap bm;
     Activity context;
-    ImageView headerIv;
-    Fragment fragment;
     private boolean isClip = true;
     private int aspectX = 1;
     private int aspectY = 1;
-    private boolean isCanChangeAspect=false;
+    private boolean isCanChangeAspect = false;
 
-    public ChangeHeaderImgDialog(Activity context, final Fragment fragment, ImageView headerIv) {
-        this.headerIv = headerIv;
+    public EditGoodsImgDialog(Activity context, ObjectBean objectBean) {
         this.context = context;
-        this.fragment = fragment;
         String sdPath = App.CACHEPATH;
         File file = new File(sdPath);
         if (!file.exists()) {
@@ -60,7 +64,34 @@ public class ChangeHeaderImgDialog {
                 R.style.Transparent2);
         dialog.setCanceledOnTouchOutside(true);
         View view = View.inflate(context,
-                R.layout.layout_selectheader, null);
+                R.layout.layout_edit_goods_img, null);
+        if (objectBean.getObject_url().contains("#")) {
+            view.findViewById(R.id.look_img).setVisibility(View.GONE);
+            view.findViewById(R.id.look_img_split).setVisibility(View.GONE);
+            view.findViewById(R.id.edit_img_tv).setVisibility(View.GONE);
+            view.findViewById(R.id.edit_img_split).setVisibility(View.GONE);
+            view.findViewById(R.id.camare).setBackground(context.getDrawable(R.drawable.select_changheader_top_btn_bg));
+        } else {
+            view.findViewById(R.id.look_img).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    List<ImageData> imageDatas = new ArrayList<>();
+                    ImageData imageData = new ImageData();
+                    imageData.setUrl(objectBean.getObject_url());
+                    imageDatas.add(imageData);
+                    PhotosDialog photosDialog = new PhotosDialog(context, false, false, imageDatas);
+                    photosDialog.showPhotos(0);
+                    dialog.dismiss();
+                }
+            });
+            view.findViewById(R.id.edit_img_tv).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    editImg();
+                    dialog.dismiss();
+                }
+            });
+        }
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,14 +113,9 @@ public class ChangeHeaderImgDialog {
                                     MediaStore.ACTION_IMAGE_CAPTURE);
                             newIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                                     Uri.fromFile(mOutputFile));
-                            if (fragment == null) {
-                                ChangeHeaderImgDialog.this.context
-                                        .startActivityForResult(newIntent,
-                                                REQUST_CAMARE);
-                            } else {
-                                fragment.startActivityForResult(newIntent,
-                                        REQUST_CAMARE);
-                            }
+                            EditGoodsImgDialog.this.context
+                                    .startActivityForResult(newIntent,
+                                            REQUST_CAMARE);
                             // ##############################
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -108,16 +134,12 @@ public class ChangeHeaderImgDialog {
                             Intent i = new Intent(
                                     Intent.ACTION_PICK,
                                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            if (fragment == null) {
-                                ChangeHeaderImgDialog.this.context
-                                        .startActivityForResult(i, REQUST_PHOTOSELECT);
-                            } else {
-                                fragment.startActivityForResult(i, REQUST_PHOTOSELECT);
-                            }
+                            EditGoodsImgDialog.this.context
+                                    .startActivityForResult(i, REQUST_PHOTOSELECT);
                             // ###############################
                         } catch (ActivityNotFoundException e) {
                             e.printStackTrace();
-                            Toast.makeText(ChangeHeaderImgDialog.this.context, "未找到系统相册,请选择拍照", Toast.LENGTH_SHORT)
+                            Toast.makeText(EditGoodsImgDialog.this.context, "未找到系统相册,请选择拍照", Toast.LENGTH_SHORT)
                                     .show();
                         }
                         dialog.dismiss();
@@ -168,17 +190,44 @@ public class ChangeHeaderImgDialog {
         //是否能调整裁剪框
         //        options.setAspectRatioOptions(5,new AspectRatio("1:1",1f,1f),new AspectRatio("1:1",1f,1f));
         //是否隐藏底部容器，默认显示
-        options.setHideBottomControls(true);
+        options.setHideBottomControls(false);
+        options.setFreeStyleCropEnabled(false);
         options.setFreeStyleCropEnabled(isCanChangeAspect);
         uCrop.withOptions(options)
-        .withMaxResultSize(720, 720);
+                .withMaxResultSize(720, 720);
         //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）
         uCrop.withAspectRatio(aspectX, aspectY);
-        if (fragment != null) {
-            uCrop.start(context, fragment);
-        }else{
-            uCrop.start(context);
+        uCrop.start(context);
+    }
+
+    // 剪切界面
+    public void cropBitmap(File imgFile) {
+        mOutputFile = new File(App.CACHEPATH, System.currentTimeMillis() + ".jpg");
+        try {
+            mOutputFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        UCrop uCrop = UCrop.of(Uri.fromFile(imgFile), Uri.fromFile(mOutputFile));
+        //初始化UCrop配置
+        UCrop.Options options = new UCrop.Options();
+        //设置裁剪图片可操作的手势
+        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.NONE);
+        //设置toolbar颜色
+        options.setToolbarColor(ActivityCompat.getColor(context, R.color.black));
+        options.setToolbarWidgetColor(ActivityCompat.getColor(context, R.color.white));
+        //设置状态栏颜色
+        options.setStatusBarColor(ActivityCompat.getColor(context, R.color.black));
+        //是否能调整裁剪框
+        //        options.setAspectRatioOptions(5,new AspectRatio("1:1",1f,1f),new AspectRatio("1:1",1f,1f));
+        //是否隐藏底部容器，默认显示
+        options.setHideBottomControls(false);
+        options.setFreeStyleCropEnabled(false);
+        uCrop.withOptions(options).withMaxResultSize(720, 720);
+        //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）
+        uCrop.withAspectRatio(1, 1);
+        uCrop.start(((Activity) context));
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -203,7 +252,7 @@ public class ChangeHeaderImgDialog {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else if (requestCode == REQUST_CAMARE) {
+        } else if (requestCode == REQUST_CAMARE) {
             Uri uri = Uri.fromFile(mOutputFile);
             if (mOutputFile.length() > 0 && uri != null) {
                 if (isClip) {
@@ -216,6 +265,9 @@ public class ChangeHeaderImgDialog {
     }
 
     public void getResult(File file) {
+    }
+
+    public void editImg() {
     }
 
     public void onSave(Bundle outState) {

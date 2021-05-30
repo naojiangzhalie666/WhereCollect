@@ -109,79 +109,10 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/statistics_layout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dip_60"
-                android:layout_marginStart="@dimen/dip_14"
-                android:layout_marginTop="@dimen/dip_10"
-                android:layout_marginEnd="@dimen/dip_14"
-                android:layout_marginBottom="@dimen/dip_10"
-                android:background="@drawable/shape_goods_percentage_bg"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/goods_number_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_15"
-                        tools:text="48" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="全部"
-                        android:textColor="#698DA9"
-                        android:textSize="@dimen/f_12" />
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/goods_percentage_iv"
-                    android:layout_width="@dimen/dip_22"
-                    android:layout_height="@dimen/dip_22"
-                    android:src="@drawable/icon_goods_percentage" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/goods_not_location_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color333"
-                        android:textSize="@dimen/f_15"
-                        tools:text="48" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="未标记位置"
-                        android:textColor="#698DA9"
-                        android:textSize="@dimen/f_12" />
-                </LinearLayout>
-
-
-            </LinearLayout>
-
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
                 android:id="@+id/refresh_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/statistics_layout">
+                android:layout_height="match_parent">
 
                 <com.scwang.smartrefresh.layout.header.ClassicsHeader
                     android:layout_width="match_parent"

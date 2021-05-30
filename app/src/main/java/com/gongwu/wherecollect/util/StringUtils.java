@@ -89,6 +89,7 @@ public class StringUtils {
     public static final int TYPE_GOODS_EXPIRY_TIME = 7;//到期时间
     public static final int TYPE_GOODS_CLASSIFY = 8;//分类
     public static final int TYPE_GOODS_NOTE = 9;//备注
+    public static final int TYPE_GOODS_BELONGER = 10;//归属人
 
     public static String getGoodsTypeString(int type) {
         switch (type) {
@@ -112,6 +113,8 @@ public class StringUtils {
                 return "子分类";
             case TYPE_GOODS_NOTE:
                 return "备注";
+            case TYPE_GOODS_BELONGER:
+                return "归属人";
         }
         return "";
     }
@@ -174,6 +177,13 @@ public class StringUtils {
             GoodsInfoBean infoBean = new GoodsInfoBean();
             infoBean.setType(StringUtils.TYPE_GOODS_EXPIRY_TIME);
             infoBean.setValue(bean.getExpire_date());
+            mList.add(infoBean);
+        }
+        //归属人
+        if (!TextUtils.isEmpty(bean.getBelonger())) {
+            GoodsInfoBean infoBean = new GoodsInfoBean();
+            infoBean.setType(StringUtils.TYPE_GOODS_BELONGER);
+            infoBean.setValue(bean.getBelonger());
             mList.add(infoBean);
         }
         //子分类

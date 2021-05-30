@@ -128,6 +128,38 @@ public class ObjectBean implements Serializable, Cloneable {
     private String location_code;
     private int weight;
     private List<ObjectBean> goodsByBox;
+    //归属人
+    private String belonger;
+    //lookfragment
+    //区分头部
+    private boolean isHead;
+    private int noLocation;
+    private int total;
+
+
+    public boolean isHead() {
+        return isHead;
+    }
+
+    public void setHead(boolean head) {
+        isHead = head;
+    }
+
+    public int getNoLocation() {
+        return noLocation;
+    }
+
+    public void setNoLocation(int noLocation) {
+        this.noLocation = noLocation;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     /**
      * 获取初始尺寸
@@ -850,6 +882,14 @@ public class ObjectBean implements Serializable, Cloneable {
 
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public String getBelonger() {
+        return belonger;
+    }
+
+    public void setBelonger(String belonger) {
+        this.belonger = belonger;
     }
 
     @Override

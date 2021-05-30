@@ -19,6 +19,8 @@ import java.util.List;
 
 public interface IGoodsDetailsContract {
     interface IGoodsDetailsModel {
+        void goodsArchive(GoodsDetailsReq req, final RequestCallback callback);
+
         void editGoods(AddGoodsReq req, final RequestCallback callback);
 
         void removeObjectFromFurnitrue(GoodsDetailsReq req, final RequestCallback callback);
@@ -26,6 +28,8 @@ public interface IGoodsDetailsContract {
         void delGoods(GoodsDetailsReq req, final RequestCallback callback);
 
         void getGoodsRemindsById(String uid, String obj_id, final RequestCallback callback);
+
+        void getBelongerList(String uid, final RequestCallback callback);
 
         void getBuyFirstCategoryList(String uid, final RequestCallback callback);
 
@@ -37,6 +41,8 @@ public interface IGoodsDetailsContract {
     }
 
     interface IGoodsDetailsPresenter {
+        void goodsArchive(String uid, String goodsId);
+
         void editGoods(Context context, ObjectBean tempBean, String names, String isbn);
 
         void removeObjectFromFurnitrue(String uid, String code);
@@ -44,6 +50,8 @@ public interface IGoodsDetailsContract {
         void delGoods(String uid, String object_id);
 
         void getGoodsRemindsById(String uid, String obj_id);
+
+        void getBelongerList(String uid);
 
         void getBuyFirstCategoryList(String uid);
 
@@ -55,6 +63,8 @@ public interface IGoodsDetailsContract {
     }
 
     interface IGoodsDetailsView extends BaseView {
+        void goodsArchiveSuccess(RequestSuccessBean bean);
+
         /**
          * 编辑物品
          */
@@ -65,6 +75,8 @@ public interface IGoodsDetailsContract {
         void delGoodsSuccess(RequestSuccessBean data);
 
         void getGoodsRemindsByIdSuccess(List<RemindBean> data);
+
+        void getBelongerListSuccess(List<BaseBean> data);
 
         void getBuyFirstCategoryListSuccess(List<BaseBean> data);
 

@@ -1,5 +1,6 @@
 package com.gongwu.wherecollect.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.RemindRemarksActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -66,6 +68,8 @@ public class ObjectInfoEditView extends LinearLayout {
     TextView channelTv;
     @BindView(R.id.color_tv)
     TextView colorTv;
+    @BindView(R.id.belonger_tv)
+    TextView belongerTv;
 
     private Context mContext;
     private ObjectBean bean;
@@ -105,6 +109,15 @@ public class ObjectInfoEditView extends LinearLayout {
         setStar();//设置星级
         setQita();//其他
         setPrice();//设置价格
+        setBelonger();//设置归属人
+    }
+
+    private void setBelonger() {
+        if (!TextUtils.isEmpty(bean.getBelonger())) {
+            setValueText(belongerTv, bean.getBelonger());
+        } else {
+            setHintText(belongerTv, R.string.hint_belonger_tv);
+        }
     }
 
     /**
@@ -114,6 +127,8 @@ public class ObjectInfoEditView extends LinearLayout {
         //后台赋值是乱的 列表跟 家具里面的物品 价格参数不一样
         if (!bean.getPrice().equals("0") && !bean.getPrice().equals("0.0")) {
             priceEdit.setText(bean.getPrice());
+        } else {
+            priceEdit.setText("");
         }
     }
 
@@ -123,6 +138,8 @@ public class ObjectInfoEditView extends LinearLayout {
     private void setPurchaseTime() {
         if (!TextUtils.isEmpty(bean.getBuy_date())) {
             setValueText(purchaseTimeTv, bean.getBuy_date());
+        } else {
+            setHintText(purchaseTimeTv, R.string.hint_purchase_time_tv);
         }
     }
 
@@ -132,6 +149,8 @@ public class ObjectInfoEditView extends LinearLayout {
     private void setExpirytime() {
         if (!TextUtils.isEmpty(bean.getExpire_date())) {
             setValueText(expiryTimeTv, bean.getExpire_date());
+        } else {
+            setHintText(expiryTimeTv, R.string.hint_expiry_time_tv);
         }
     }
 
@@ -140,8 +159,10 @@ public class ObjectInfoEditView extends LinearLayout {
      */
     private void setGoodsCount() {
         if (bean.getCount() > 0) {
-            goodsCountEdit.setText(bean.getCount() + "");
+            goodsCountEdit.setText(String.valueOf(bean.getCount()));
             goodsCountEdit.setSelection(goodsCountEdit.getText().toString().length());
+        } else {
+            goodsCountEdit.setText("");
         }
     }
 
@@ -151,6 +172,8 @@ public class ObjectInfoEditView extends LinearLayout {
     private void setQita() {
         if (!TextUtils.isEmpty(bean.getDetail())) {
             setValueText(qitaTv, bean.getDetail());
+        } else {
+            setHintText(qitaTv, R.string.hint_detail_tv);
         }
     }
 
@@ -230,10 +253,10 @@ public class ObjectInfoEditView extends LinearLayout {
     }
 
     @OnClick({R.id.classify_layout, R.id.color_layout, R.id.season_layout, R.id.channel_layout,
-            R.id.purchase_time_layout, R.id.expiry_time_layout, R.id.qita_tv,
+            R.id.purchase_time_layout, R.id.expiry_time_layout, R.id.qita_tv, R.id.belonger_tv,
             R.id.classify_edit_iv, R.id.goods_count_edit_iv, R.id.rating_star_edit_iv, R.id.purchase_time_edit_iv,
             R.id.expiry_time_edit_iv, R.id.price_edit_iv, R.id.color_edit_iv, R.id.season_edit_iv, R.id.channel_edit_iv,
-            R.id.ascription_edit_iv, R.id.qita_edit_iv})
+            R.id.belonger_edit_iv, R.id.qita_edit_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.classify_layout:
@@ -322,7 +345,16 @@ public class ObjectInfoEditView extends LinearLayout {
                 expiryDialog.setCancelBtnText(TextUtils.isEmpty(bean.getExpire_date()));
                 expiryDialog.show();
                 break;
+            case R.id.belonger_tv:
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemBelongerClick();
+                }
+                break;
             case R.id.qita_tv:
+                Intent intent = new Intent(mContext, RemindRemarksActivity.class);
+                intent.putExtra("remind_remarks", bean.getDetail());
+                intent.putExtra("isGoodsRemarks", true);
+                ((Activity) mContext).startActivityForResult(intent, AppConstant.START_GOODS_REMARKS_CODE);
                 break;
             case R.id.classify_edit_iv:
                 if (bean.getCategories() != null && bean.getCategories().size() > 1) {
@@ -389,7 +421,9 @@ public class ObjectInfoEditView extends LinearLayout {
                     onEditListener.change();
                 }
                 break;
-            case R.id.ascription_edit_iv:
+            case R.id.belonger_edit_iv:
+                bean.setBelonger("");
+                setHintText(belongerTv, R.string.hint_belonger_tv);
                 if (onEditListener != null) {
                     onEditListener.change();
                 }
@@ -416,44 +450,33 @@ public class ObjectInfoEditView extends LinearLayout {
         });
         //默认两位小数
         priceEdit.setFilters(new InputFilter[]{new MoneyValueFilter()});
-        priceEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
+        priceEdit.addTextChangedListener(new EditTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+                super.onTextChanged(s, start, before, count);
+                boolean change = !s.toString().equals(bean.getPrice());
                 if (!TextUtils.isEmpty(priceEdit.getText())) {
                     bean.setPrice(priceEdit.getText().toString());
                 } else {
-                    bean.setPrice(0 + "");
+                    bean.setPrice("0");
                 }
-                if (onEditListener != null) {
+                if (onEditListener != null && change) {
                     onEditListener.change();
                 }
             }
         });
-        goodsCountEdit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
+        goodsCountEdit.addTextChangedListener(new EditTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+                super.onTextChanged(s, start, before, count);
+                int gcount = !TextUtils.isEmpty(s.toString()) ? Integer.parseInt(s.toString()) : 0;
+                boolean change = gcount != bean.getCount();
                 if (!TextUtils.isEmpty(goodsCountEdit.getText().toString())) {
                     bean.setCount(Integer.parseInt(goodsCountEdit.getText().toString()));
                 } else {
                     bean.setCount(0);
                 }
-                if (onEditListener != null) {
+                if (onEditListener != null && change) {
                     onEditListener.change();
                 }
             }
@@ -471,6 +494,8 @@ public class ObjectInfoEditView extends LinearLayout {
         void onItemSortClick(BaseBean baseBean);
 
         void onItemBuyClick();
+
+        void onItemBelongerClick();
     }
 
     public void setOnEditListener(OnEditListener listener) {

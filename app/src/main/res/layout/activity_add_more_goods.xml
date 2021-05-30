@@ -92,17 +92,20 @@
                         android:visibility="invisible" />
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/add_other_content_tv"
+                <FrameLayout
+                    android:id="@+id/more_goods_info_empty_view"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dip_110"
                     android:layout_marginStart="@dimen/dip_16"
                     android:layout_marginEnd="@dimen/dip_16"
-                    android:background="@drawable/shape_white_r10dp"
-                    android:gravity="center"
-                    android:text="@string/add_other_content_text"
-                    android:textColor="@color/colorccc"
-                    android:textSize="@dimen/f_14" />
+                    android:background="@drawable/shape_white_r10dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_goods_info_empty" />
+                </FrameLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/goods_info_view"

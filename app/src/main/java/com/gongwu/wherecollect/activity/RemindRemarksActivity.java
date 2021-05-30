@@ -27,6 +27,10 @@ public class RemindRemarksActivity extends BaseActivity {
     TextView numTv;
     @BindView(R.id.title_commit_tv_color_maincolor)
     TextView commitTv;
+    @BindView(R.id.remind_remarks_tv)
+    TextView remarksTypeView;
+
+    private boolean isGoodsRemarks = false;
 
     @Override
     protected int getLayoutId() {
@@ -35,9 +39,11 @@ public class RemindRemarksActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        titleTv.setText(R.string.remind_remarks_title_text);
         commitTv.setVisibility(View.VISIBLE);
         String text = getIntent().getStringExtra("remind_remarks");
+        isGoodsRemarks = getIntent().getBooleanExtra("isGoodsRemarks", false);
+        titleTv.setText(isGoodsRemarks ? R.string.goods_remarks_title_text : R.string.remind_remarks_title_text);
+        remarksTypeView.setText(isGoodsRemarks ? R.string.goods_remarks_hint_text : R.string.remind_remarks_hint_text);
         mEditText.setText(text);
         numTv.setText(String.format(getString(R.string.remind_remarks_num_text), String.valueOf(mEditText.getText().toString().trim().length())));
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));

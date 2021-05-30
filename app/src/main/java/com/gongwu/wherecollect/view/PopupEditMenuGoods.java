@@ -28,18 +28,24 @@ public class PopupEditMenuGoods extends BasePopupWindow {
         ButterKnife.bind(this, contentView);
     }
 
-    @OnClick({R.id.menu_edit_tv, R.id.menu_add_remind_tv, R.id.menu_delete_tv})
+    @OnClick({R.id.menu_edit_goods_location_tv, R.id.menu_add_remind_tv, R.id.menu_lock_tv, R.id.menu_delete_tv})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.menu_edit_tv:
+            case R.id.menu_edit_goods_location_tv:
                 if (listener != null) {
-                    listener.onEditGoodsClick();
+                    listener.onEditGoodsLocationClick();
                 }
                 dismiss();
                 break;
             case R.id.menu_add_remind_tv:
                 if (listener != null) {
                     listener.onAddRemingClick();
+                }
+                dismiss();
+                break;
+            case R.id.menu_lock_tv:
+                if (listener != null) {
+                    listener.onLockClick();
                 }
                 dismiss();
                 break;
@@ -55,11 +61,13 @@ public class PopupEditMenuGoods extends BasePopupWindow {
     private EditMenuPopupClickListener listener;
 
     public interface EditMenuPopupClickListener {
-        void onEditGoodsClick();
+        void onEditGoodsLocationClick();
 
         void onAddRemingClick();
 
         void onDeleteGoodsClick();
+
+        void onLockClick();
     }
 
     public void setPopupClickListener(EditMenuPopupClickListener listener) {

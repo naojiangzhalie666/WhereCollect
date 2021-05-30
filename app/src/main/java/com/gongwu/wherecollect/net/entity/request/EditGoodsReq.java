@@ -22,6 +22,8 @@ public class EditGoodsReq extends RequestBase {
     private String background_url;
     private String image_url;
 
+    private String objectId;
+
     public EditGoodsReq(String uid, String location_code) {
         this.uid = uid;
         this.location_code = location_code;
@@ -133,5 +135,13 @@ public class EditGoodsReq extends RequestBase {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 }

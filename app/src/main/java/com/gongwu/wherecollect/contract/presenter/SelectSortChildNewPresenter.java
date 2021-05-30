@@ -26,6 +26,27 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
 
 
     @Override
+    public void getBelongerList(String uid) {
+        mModel.getBelongerList(uid, new RequestCallback<List<BaseBean>>() {
+            @Override
+            public void onSuccess(List<BaseBean> data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getBelongerListSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
     public void getBuyFirstCategoryList(String uid) {
         mModel.getBuyFirstCategoryList(uid, new RequestCallback<List<BaseBean>>() {
             @Override
@@ -161,6 +182,30 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
     }
 
     @Override
+    public void saveBelonger(String uid, String name) {
+        CustomSubCateReq req = new CustomSubCateReq();
+        req.setUid(uid);
+        req.setName(name);
+        mModel.saveBelonger(req, new RequestCallback<BaseBean>() {
+            @Override
+            public void onSuccess(BaseBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().saveBelongerSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
     public void deleteCustomize(String uid, String id, String code, String type) {
         EditCustomizeReq req = new EditCustomizeReq();
         req.setId(id);
@@ -173,6 +218,30 @@ public class SelectSortChildNewPresenter extends BasePresenter<ISelectSortChildN
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().deleteCustomizeSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void deleteBelonger(String uid, String id) {
+        EditCustomizeReq req = new EditCustomizeReq();
+        req.setId(id);
+        req.setUser_id(uid);
+        mModel.deleteBelonger(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().deleteBelongerSuccess(data);
                 }
             }
 

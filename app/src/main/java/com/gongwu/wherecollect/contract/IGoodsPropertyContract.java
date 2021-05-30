@@ -12,6 +12,8 @@ import java.util.List;
 
 public interface IGoodsPropertyContract {
     interface IGoodsPropertyModel {
+        void getBelongerList(String uid, final RequestCallback callback);
+
         void getBuyFirstCategoryList(String uid, final RequestCallback callback);
 
         void getSubCategoryList(String uid, String parentCode, String type, final RequestCallback callback);
@@ -22,6 +24,8 @@ public interface IGoodsPropertyContract {
     }
 
     interface IGoodsPropertyPresenter {
+        void getBelongerList(String uid);
+
         void getBuyFirstCategoryList(String uid);
 
         void getSubCategoryList(String uid, String parentCode, String type);
@@ -32,6 +36,7 @@ public interface IGoodsPropertyContract {
     }
 
     interface IGoodsPropertyView extends BaseView {
+        void getBelongerListSuccess(List<BaseBean> data);
 
         void getBuyFirstCategoryListSuccess(List<BaseBean> data);
 

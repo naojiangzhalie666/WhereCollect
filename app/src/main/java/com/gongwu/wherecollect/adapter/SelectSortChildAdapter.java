@@ -59,8 +59,8 @@ public class SelectSortChildAdapter extends RecyclerView.Adapter<SelectSortChild
         holder.sortNameTv.setTextColor(ContextCompat.getColor(mContext, R.color.color555));
         holder.sortTypeView.setOnClickListener(null);
         if (selectBaseBean != null) {
-            if (!TextUtils.isEmpty(baseBean.get_id()) && !TextUtils.isEmpty(baseBean.getCode())) {
-                if (baseBean.get_id().equals(selectBaseBean.get_id()) && baseBean.getCode().equals(selectBaseBean.getCode())) {
+            if (!TextUtils.isEmpty(baseBean.get_id())) {
+                if (baseBean.get_id().equals(selectBaseBean.get_id())) {
                     holder.sortNameTv.setTextColor(ContextCompat.getColor(mContext, R.color.maincolor));
                 }
             }

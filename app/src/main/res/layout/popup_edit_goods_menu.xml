@@ -7,11 +7,11 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/menu_edit_tv"
+        android:id="@+id/menu_edit_goods_location_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_50"
         android:gravity="center"
-        android:text="@string/edit_text"
+        android:text="@string/edit_goods_location"
         android:textColor="@color/color333"
         android:textSize="@dimen/f_17" />
 
@@ -34,6 +34,19 @@
         android:layout_height="1px"
         android:background="@color/split_color" />
 
+    <TextView
+        android:id="@+id/menu_lock_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_50"
+        android:gravity="center"
+        android:text="@string/goods_lock"
+        android:textColor="@color/color333"
+        android:textSize="@dimen/f_17" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/split_color" />
 
     <TextView
         android:id="@+id/menu_delete_tv"
