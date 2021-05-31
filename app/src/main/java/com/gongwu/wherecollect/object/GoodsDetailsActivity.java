@@ -670,4 +670,12 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
     public void onItemBelongerClick() {
         getPresenter().getBelongerList(App.getUser(mContext).getId());
     }
+
+    @Override
+    protected void onDestroy() {
+        if (mImageView != null) {
+            mImageView.clear();
+        }
+        super.onDestroy();
+    }
 }

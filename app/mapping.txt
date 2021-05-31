@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 1.5.69
 # min_api: 21
-# pg_map_id: 2eb425f
+# pg_map_id: e1bd7c4
 $r8$java8methods$utility$Boolean$hashCode$IZ -> a:
     int hashCode(boolean) -> a
 $r8$java8methods$utility$Long$hashCode$IJ -> b:
@@ -12225,8 +12225,8 @@ com.gongwu.wherecollect.FragmentMain.HomeFragment$2 -> com.gongwu.wherecollect.F
     int compare(com.gongwu.wherecollect.net.entity.response.RoomBean,com.gongwu.wherecollect.net.entity.response.RoomBean) -> a
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding:
     com.gongwu.wherecollect.FragmentMain.HomeFragment target -> a
-    android.view.View view7f080110 -> c
-    android.view.View view7f080149 -> b
+    android.view.View view7f080111 -> c
+    android.view.View view7f08014a -> b
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.HomeFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.HomeFragment_ViewBinding$b:
@@ -12322,12 +12322,12 @@ com.gongwu.wherecollect.FragmentMain.LookFragment$7 -> com.gongwu.wherecollect.F
     com.gongwu.wherecollect.FragmentMain.LookFragment this$0 -> a
     void submit() -> a
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding:
-    android.view.View view7f080218 -> c
-    android.view.View view7f080136 -> b
+    android.view.View view7f080219 -> c
+    android.view.View view7f080137 -> b
     android.view.View view7f080081 -> e
     com.gongwu.wherecollect.FragmentMain.LookFragment target -> a
     android.view.View view7f080047 -> d
-    android.view.View view7f080159 -> f
+    android.view.View view7f08015a -> f
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.LookFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.LookFragment_ViewBinding$b:
@@ -12349,18 +12349,18 @@ com.gongwu.wherecollect.FragmentMain.MeFragment -> com.gongwu.wherecollect.Fragm
 com.gongwu.wherecollect.FragmentMain.MeFragment$1 -> com.gongwu.wherecollect.FragmentMain.MeFragment$a:
     com.gongwu.wherecollect.FragmentMain.MeFragment this$0 -> a
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding:
-    android.view.View view7f080243 -> i
-    android.view.View view7f080407 -> h
-    android.view.View view7f08040b -> k
-    android.view.View view7f08014e -> j
-    android.view.View view7f0801a5 -> l
+    android.view.View view7f080244 -> i
+    android.view.View view7f080408 -> h
+    android.view.View view7f08040c -> k
+    android.view.View view7f08014f -> j
+    android.view.View view7f0801a6 -> l
     com.gongwu.wherecollect.FragmentMain.MeFragment target -> a
-    android.view.View view7f080277 -> c
+    android.view.View view7f080278 -> c
     android.view.View view7f080095 -> b
-    android.view.View view7f080276 -> e
-    android.view.View view7f080299 -> d
-    android.view.View view7f080383 -> g
-    android.view.View view7f0802ac -> f
+    android.view.View view7f080277 -> e
+    android.view.View view7f08029a -> d
+    android.view.View view7f080384 -> g
+    android.view.View view7f0802ad -> f
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$c:
     com.gongwu.wherecollect.FragmentMain.MeFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$10 -> com.gongwu.wherecollect.FragmentMain.MeFragment_ViewBinding$a:
@@ -12437,9 +12437,9 @@ com.gongwu.wherecollect.FragmentMain.RemindFragment$4 -> com.gongwu.wherecollect
     void onItemEditFinishedClick(int,android.view.View) -> c
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding:
     com.gongwu.wherecollect.FragmentMain.RemindFragment target -> a
-    android.view.View view7f0802c9 -> c
-    android.view.View view7f0802e3 -> b
-    android.view.View view7f0803c7 -> d
+    android.view.View view7f0802ca -> c
+    android.view.View view7f0802e4 -> b
+    android.view.View view7f0803c8 -> d
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$1 -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$a:
     com.gongwu.wherecollect.FragmentMain.RemindFragment val$target -> a
 com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$2 -> com.gongwu.wherecollect.FragmentMain.RemindFragment_ViewBinding$b:
@@ -12476,7 +12476,7 @@ com.gongwu.wherecollect.ImageSelect.ImageGridActivity$2 -> com.gongwu.wherecolle
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding:
     com.gongwu.wherecollect.ImageSelect.ImageGridActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803c6 -> b
+    android.view.View view7f0803c7 -> b
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$1 -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$a:
     com.gongwu.wherecollect.ImageSelect.ImageGridActivity val$target -> a
 com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$2 -> com.gongwu.wherecollect.ImageSelect.ImageGridActivity_ViewBinding$b:
@@ -12570,9 +12570,9 @@ com.gongwu.wherecollect.activity.AddChangWangGoodActivity -> com.gongwu.wherecol
     void initView() -> q
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding:
     com.gongwu.wherecollect.activity.AddChangWangGoodActivity target -> a
-    android.view.View view7f080253 -> c
-    android.view.View view7f0801ba -> b
-    android.view.View view7f080429 -> e
+    android.view.View view7f080254 -> c
+    android.view.View view7f0801bb -> b
+    android.view.View view7f08042a -> e
     android.view.View view7f080079 -> d
 com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddChangWangGoodActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddChangWangGoodActivity val$target -> a
@@ -12620,7 +12620,7 @@ com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity$1 -> com.gongwu.
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803c5 -> b
+    android.view.View view7f0803c6 -> b
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity val$target -> a
 com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.AddFamilyToSelectRoomsActivity_ViewBinding$b:
@@ -12691,13 +12691,13 @@ com.gongwu.wherecollect.activity.AddFurnitureActivity$5 -> com.gongwu.wherecolle
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding:
-    android.view.View view7f080180 -> i
-    android.view.View view7f08017d -> h
-    android.view.View view7f0803a6 -> c
-    android.view.View view7f0803c5 -> b
+    android.view.View view7f080181 -> i
+    android.view.View view7f08017e -> h
+    android.view.View view7f0803a7 -> c
+    android.view.View view7f0803c6 -> b
     com.gongwu.wherecollect.activity.AddFurnitureActivity target -> a
-    android.view.View view7f0803a8 -> e
-    android.view.View view7f0803a7 -> d
+    android.view.View view7f0803a9 -> e
+    android.view.View view7f0803a8 -> d
     android.view.View view7f080078 -> g
     android.view.View view7f080108 -> f
 com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddFurnitureActivity_ViewBinding$a:
@@ -12753,14 +12753,14 @@ com.gongwu.wherecollect.activity.AddRemindActivity$4 -> com.gongwu.wherecollect.
     com.gongwu.wherecollect.activity.AddRemindActivity this$0 -> a
     void onTimeSelect(java.util.Date,android.view.View) -> a
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding -> com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding:
-    android.view.View view7f080125 -> i
-    android.view.View view7f0802d8 -> h
-    android.view.View view7f0802ce -> c
-    android.view.View view7f0803c7 -> b
-    android.view.View view7f080197 -> e
-    android.view.View view7f080127 -> d
+    android.view.View view7f080126 -> i
+    android.view.View view7f0802d9 -> h
+    android.view.View view7f0802cf -> c
+    android.view.View view7f0803c8 -> b
+    android.view.View view7f080198 -> e
+    android.view.View view7f080128 -> d
     com.gongwu.wherecollect.activity.AddRemindActivity target -> a
-    android.view.View view7f0802dc -> g
+    android.view.View view7f0802dd -> g
     android.view.View view7f080078 -> f
 com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.AddRemindActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.AddRemindActivity val$target -> a
@@ -12874,7 +12874,7 @@ com.gongwu.wherecollect.activity.BindEmailActivity -> com.gongwu.wherecollect.ac
     com.gongwu.wherecollect.base.BasePresenter createPresenter() -> m
     com.gongwu.wherecollect.contract.presenter.BindEmailPresenter createPresenter() -> m
 com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding -> com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding:
-    android.view.View view7f08038e -> c
+    android.view.View view7f08038f -> c
     com.gongwu.wherecollect.activity.BindEmailActivity target -> a
     android.view.View view7f080078 -> b
 com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.BindEmailActivity_ViewBinding$a:
@@ -12979,11 +12979,11 @@ com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding -> com.gongwu.wh
     android.view.View view7f08007c -> h
     com.gongwu.wherecollect.activity.CameraMainActivity target -> a
     android.view.View view7f0800da -> c
-    android.view.View view7f0802b8 -> b
+    android.view.View view7f0802b9 -> b
     android.view.View view7f080099 -> e
-    android.view.View view7f0801c3 -> d
-    android.view.View view7f080411 -> g
-    android.view.View view7f0802ef -> f
+    android.view.View view7f0801c4 -> d
+    android.view.View view7f080412 -> g
+    android.view.View view7f0802f0 -> f
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.CameraMainActivity val$target -> a
 com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.CameraMainActivity_ViewBinding$b:
@@ -13023,11 +13023,11 @@ com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$1 -> com.gongwu.where
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$2 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity$b:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity this$0 -> a
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding:
-    android.view.View view7f080331 -> c
+    android.view.View view7f080332 -> c
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity target -> a
-    android.view.View view7f0801cb -> b
+    android.view.View view7f0801cc -> b
     android.view.View view7f080078 -> e
-    android.view.View view7f08038e -> d
+    android.view.View view7f08038f -> d
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ConfigChangePhoneActivity val$target -> a
 com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.ConfigChangePhoneActivity_ViewBinding$b:
@@ -13057,11 +13057,11 @@ com.gongwu.wherecollect.activity.EditFurniturePatternActivity$1 -> com.gongwu.wh
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding:
     android.view.View view7f080078 -> h
     com.gongwu.wherecollect.activity.EditFurniturePatternActivity target -> a
-    android.view.View view7f080124 -> c
-    android.view.View view7f08012a -> b
-    android.view.View view7f08012f -> e
-    android.view.View view7f08010f -> d
-    android.view.View view7f0803c7 -> g
+    android.view.View view7f080125 -> c
+    android.view.View view7f08012b -> b
+    android.view.View view7f080130 -> e
+    android.view.View view7f080110 -> d
+    android.view.View view7f0803c8 -> g
     android.view.View view7f080109 -> f
 com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditFurniturePatternActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditFurniturePatternActivity val$target -> a
@@ -13153,14 +13153,14 @@ com.gongwu.wherecollect.activity.EditHomeActivity$6 -> com.gongwu.wherecollect.a
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding:
-    android.view.View view7f0801bb -> h
-    android.view.View view7f08016a -> c
+    android.view.View view7f0801bc -> h
+    android.view.View view7f08016b -> c
     com.gongwu.wherecollect.activity.EditHomeActivity target -> a
-    android.view.View view7f08015e -> b
-    android.view.View view7f080165 -> e
-    android.view.View view7f080176 -> d
+    android.view.View view7f08015f -> b
+    android.view.View view7f080166 -> e
+    android.view.View view7f080177 -> d
     android.view.View view7f080078 -> g
-    android.view.View view7f08017e -> f
+    android.view.View view7f08017f -> f
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditHomeActivity val$target -> a
 com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditHomeActivity_ViewBinding$b:
@@ -13215,10 +13215,10 @@ com.gongwu.wherecollect.activity.EditMoreGoodsActivity$3 -> com.gongwu.wherecoll
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity this$0 -> a
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity target -> a
-    android.view.View view7f080119 -> c
+    android.view.View view7f08011a -> c
     android.view.View view7f080078 -> b
-    android.view.View view7f08011e -> e
-    android.view.View view7f08011c -> d
+    android.view.View view7f08011f -> e
+    android.view.View view7f08011d -> d
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditMoreGoodsActivity val$target -> a
 com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditMoreGoodsActivity_ViewBinding$b:
@@ -13290,12 +13290,12 @@ com.gongwu.wherecollect.activity.EditRoomActivity$4 -> com.gongwu.wherecollect.a
 com.gongwu.wherecollect.activity.EditRoomActivity$MyHandler -> com.gongwu.wherecollect.activity.EditRoomActivity$e:
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding:
     com.gongwu.wherecollect.activity.EditRoomActivity target -> a
-    android.view.View view7f0802f6 -> c
-    android.view.View view7f0803c7 -> b
-    android.view.View view7f0802f0 -> e
-    android.view.View view7f0802f3 -> d
+    android.view.View view7f0802f7 -> c
+    android.view.View view7f0803c8 -> b
+    android.view.View view7f0802f1 -> e
+    android.view.View view7f0802f4 -> d
     android.view.View view7f080078 -> g
-    android.view.View view7f0802f1 -> f
+    android.view.View view7f0802f2 -> f
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.EditRoomActivity val$target -> a
 com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.EditRoomActivity_ViewBinding$b:
@@ -13386,9 +13386,9 @@ com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity$5 -> com.gongwu
     void onImgClick() -> a
 com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding -> com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.FamilyAdministerDetailsActivity target -> a
-    android.view.View view7f080408 -> c
-    android.view.View view7f0803c4 -> b
-    android.view.View view7f08034c -> e
+    android.view.View view7f080409 -> c
+    android.view.View view7f0803c5 -> b
+    android.view.View view7f08034d -> e
     android.view.View view7f080066 -> d
     android.view.View view7f0800ea -> g
     android.view.View view7f080078 -> f
@@ -13442,7 +13442,7 @@ com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity$2 -> com.gongwu.
     void onItemsClick(int,android.view.View) -> b
 com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding -> com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding:
     android.view.View view7f080078 -> c
-    android.view.View view7f0803c4 -> b
+    android.view.View view7f0803c5 -> b
     com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity target -> a
 com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.FamilyAdministerSharedActivity val$target -> a
@@ -13497,8 +13497,8 @@ com.gongwu.wherecollect.activity.ForgetPWDActivity$2 -> com.gongwu.wherecollect.
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.lang.String) -> b
 com.gongwu.wherecollect.activity.ForgetPWDActivity_ViewBinding -> com.gongwu.wherecollect.activity.ForgetPWDActivity_ViewBinding:
-    android.view.View view7f080332 -> c
-    android.view.View view7f0801cb -> b
+    android.view.View view7f080333 -> c
+    android.view.View view7f0801cc -> b
     android.view.View view7f0800d1 -> e
     android.view.View view7f080078 -> d
     com.gongwu.wherecollect.activity.ForgetPWDActivity target -> a
@@ -13666,21 +13666,21 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity$9$2 -> com.gongwu.whereco
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding:
     com.gongwu.wherecollect.activity.FurnitureLookActivity target -> a
     android.view.View view7f0800f4 -> q
-    android.view.View view7f08017b -> p
+    android.view.View view7f08017c -> p
     android.view.View view7f080078 -> i
     android.view.View view7f08008e -> h
-    android.view.View view7f08016e -> k
-    android.view.View view7f08015c -> j
-    android.view.View view7f08016b -> m
-    android.view.View view7f08015f -> l
-    android.view.View view7f08017e -> o
-    android.view.View view7f080165 -> n
-    android.view.View view7f080167 -> c
-    android.view.View view7f08021a -> b
-    android.view.View view7f080171 -> e
-    android.view.View view7f080179 -> d
-    android.view.View view7f080162 -> g
-    android.view.View view7f08023f -> f
+    android.view.View view7f08016f -> k
+    android.view.View view7f08015d -> j
+    android.view.View view7f08016c -> m
+    android.view.View view7f080160 -> l
+    android.view.View view7f08017f -> o
+    android.view.View view7f080166 -> n
+    android.view.View view7f080168 -> c
+    android.view.View view7f08021b -> b
+    android.view.View view7f080172 -> e
+    android.view.View view7f08017a -> d
+    android.view.View view7f080163 -> g
+    android.view.View view7f080240 -> f
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$h:
     com.gongwu.wherecollect.activity.FurnitureLookActivity val$target -> a
 com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$10 -> com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$a:
@@ -13738,7 +13738,7 @@ com.gongwu.wherecollect.activity.ImportMoreGoodsActivity$2 -> com.gongwu.whereco
     void onItemClick(int,android.view.View) -> a
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity target -> a
-    android.view.View view7f0803c0 -> c
+    android.view.View view7f0803c1 -> c
     android.view.View view7f080078 -> b
 com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ImportMoreGoodsActivity val$target -> a
@@ -13784,7 +13784,7 @@ com.gongwu.wherecollect.activity.InventoryActivity$3 -> com.gongwu.wherecollect.
     void subscribe(io.reactivex.ObservableEmitter) -> a
 com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding -> com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding:
     android.view.View view7f080078 -> c
-    android.view.View view7f0801bb -> b
+    android.view.View view7f0801bc -> b
     com.gongwu.wherecollect.activity.InventoryActivity target -> a
 com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.InventoryActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.InventoryActivity val$target -> a
@@ -13847,14 +13847,14 @@ com.gongwu.wherecollect.activity.LoginActivity$3 -> com.gongwu.wherecollect.acti
     void onSuccess(java.lang.Object) -> a
     void onSuccess(java.lang.String) -> b
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding:
-    android.view.View view7f080214 -> h
+    android.view.View view7f080215 -> h
     com.gongwu.wherecollect.activity.LoginActivity target -> a
-    android.view.View view7f0801cb -> c
-    android.view.View view7f0803c4 -> b
-    android.view.View view7f080216 -> e
-    android.view.View view7f080332 -> d
+    android.view.View view7f0801cc -> c
+    android.view.View view7f0803c5 -> b
+    android.view.View view7f080217 -> e
+    android.view.View view7f080333 -> d
     android.view.View view7f08006d -> g
-    android.view.View view7f080217 -> f
+    android.view.View view7f080218 -> f
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.LoginActivity val$target -> a
 com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$b:
@@ -13885,12 +13885,12 @@ com.gongwu.wherecollect.activity.LoginEmailActivity -> com.gongwu.wherecollect.a
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding:
     android.view.View view7f08006d -> h
     com.gongwu.wherecollect.activity.LoginEmailActivity target -> a
-    android.view.View view7f080217 -> c
+    android.view.View view7f080218 -> c
     android.view.View view7f080078 -> b
-    android.view.View view7f0803e1 -> e
-    android.view.View view7f0803e7 -> d
-    android.view.View view7f080215 -> g
-    android.view.View view7f080216 -> f
+    android.view.View view7f0803e2 -> e
+    android.view.View view7f0803e8 -> d
+    android.view.View view7f080216 -> g
+    android.view.View view7f080217 -> f
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.LoginEmailActivity val$target -> a
 com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$b:
@@ -13961,15 +13961,15 @@ com.gongwu.wherecollect.activity.MainActivity$7 -> com.gongwu.wherecollect.activ
     com.gongwu.wherecollect.activity.MainActivity this$0 -> b
     com.gongwu.wherecollect.net.entity.response.MessageBean val$messageBean -> a
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding:
-    android.view.View view7f08021f -> i
+    android.view.View view7f080220 -> i
     android.view.View view7f08004f -> h
     com.gongwu.wherecollect.activity.MainActivity target -> a
-    android.view.View view7f080224 -> c
-    android.view.View view7f080229 -> b
-    android.view.View view7f08022c -> e
-    android.view.View view7f08022f -> d
-    android.view.View view7f08022d -> g
-    android.view.View view7f08022e -> f
+    android.view.View view7f080225 -> c
+    android.view.View view7f08022a -> b
+    android.view.View view7f08022d -> e
+    android.view.View view7f080230 -> d
+    android.view.View view7f08022e -> g
+    android.view.View view7f08022f -> f
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.MainActivity val$target -> a
 com.gongwu.wherecollect.activity.MainActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.MainActivity_ViewBinding$b:
@@ -14102,19 +14102,19 @@ com.gongwu.wherecollect.activity.PersonActivity$8 -> com.gongwu.wherecollect.act
     com.gongwu.wherecollect.activity.PersonActivity this$0 -> e
     void result(int,int,int) -> a
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding:
-    android.view.View view7f0803db -> i
-    android.view.View view7f08027b -> h
-    android.view.View view7f080252 -> k
+    android.view.View view7f0803dc -> i
+    android.view.View view7f08027c -> h
+    android.view.View view7f080253 -> k
     android.view.View view7f080078 -> j
     android.view.View view7f080089 -> m
-    android.view.View view7f080335 -> l
-    android.view.View view7f0803e3 -> c
-    android.view.View view7f0801ab -> b
+    android.view.View view7f080336 -> l
+    android.view.View view7f0803e4 -> c
+    android.view.View view7f0801ac -> b
     com.gongwu.wherecollect.activity.PersonActivity target -> a
-    android.view.View view7f080419 -> e
-    android.view.View view7f080424 -> d
-    android.view.View view7f080131 -> g
-    android.view.View view7f0802aa -> f
+    android.view.View view7f08041a -> e
+    android.view.View view7f080425 -> d
+    android.view.View view7f080132 -> g
+    android.view.View view7f0802ab -> f
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$d:
     com.gongwu.wherecollect.activity.PersonActivity val$target -> a
 com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$10 -> com.gongwu.wherecollect.activity.PersonActivity_ViewBinding$a:
@@ -14152,7 +14152,7 @@ com.gongwu.wherecollect.activity.RegisterActivity -> com.gongwu.wherecollect.act
     void userRegister() -> o
     void forgetPWDSuccess(com.gongwu.wherecollect.net.entity.response.RequestSuccessBean) -> t
 com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding -> com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding:
-    android.view.View view7f0802bc -> c
+    android.view.View view7f0802bd -> c
     android.view.View view7f080078 -> b
     com.gongwu.wherecollect.activity.RegisterActivity target -> a
 com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.RegisterActivity_ViewBinding$a:
@@ -14203,7 +14203,7 @@ com.gongwu.wherecollect.activity.RemindRemarksActivity$1 -> com.gongwu.wherecoll
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding:
     com.gongwu.wherecollect.activity.RemindRemarksActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803c6 -> b
+    android.view.View view7f0803c7 -> b
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.RemindRemarksActivity val$target -> a
 com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$2 -> com.gongwu.wherecollect.activity.RemindRemarksActivity_ViewBinding$b:
@@ -14243,8 +14243,8 @@ com.gongwu.wherecollect.activity.SearchActivity$4 -> com.gongwu.wherecollect.act
     com.gongwu.wherecollect.activity.SearchActivity this$0 -> b
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding -> com.gongwu.wherecollect.activity.SearchActivity_ViewBinding:
     android.view.View view7f0800bb -> c
-    android.view.View view7f08030d -> b
-    android.view.View view7f080333 -> e
+    android.view.View view7f08030e -> b
+    android.view.View view7f080334 -> e
     android.view.View view7f080078 -> d
     com.gongwu.wherecollect.activity.SearchActivity target -> a
 com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.SearchActivity_ViewBinding$a:
@@ -14273,7 +14273,7 @@ com.gongwu.wherecollect.activity.ShareListActivity$CustomPagerAdapter -> com.gon
     long getItemId(int) -> b
 com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding -> com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding:
     com.gongwu.wherecollect.activity.ShareListActivity target -> a
-    android.view.View view7f080336 -> c
+    android.view.View view7f080337 -> c
     android.view.View view7f080057 -> b
 com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.ShareListActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.ShareListActivity val$target -> a
@@ -14317,7 +14317,7 @@ com.gongwu.wherecollect.activity.SharePersonDetailsActivity$3 -> com.gongwu.wher
 com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding -> com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding:
     com.gongwu.wherecollect.activity.SharePersonDetailsActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0801bb -> b
+    android.view.View view7f0801bc -> b
     android.view.View view7f08006a -> d
 com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding$1 -> com.gongwu.wherecollect.activity.SharePersonDetailsActivity_ViewBinding$a:
     com.gongwu.wherecollect.activity.SharePersonDetailsActivity val$target -> a
@@ -18378,10 +18378,10 @@ com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding -> com.gongwu.wherec
     com.gongwu.wherecollect.object.AddGoodsActivity target -> a
     android.view.View view7f080051 -> c
     android.view.View view7f080052 -> b
-    android.view.View view7f08032a -> e
+    android.view.View view7f08032b -> e
     android.view.View view7f0800ce -> d
-    android.view.View view7f0803c3 -> g
-    android.view.View view7f080199 -> f
+    android.view.View view7f0803c4 -> g
+    android.view.View view7f08019a -> f
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.AddGoodsActivity val$target -> a
 com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.AddGoodsActivity_ViewBinding$b:
@@ -18451,7 +18451,7 @@ com.gongwu.wherecollect.object.AddGoodsPropertyActivity$2 -> com.gongwu.wherecol
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding -> com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding:
     com.gongwu.wherecollect.object.AddGoodsPropertyActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803c3 -> b
+    android.view.View view7f0803c4 -> b
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.AddGoodsPropertyActivity val$target -> a
 com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.AddGoodsPropertyActivity_ViewBinding$b:
@@ -18542,13 +18542,13 @@ com.gongwu.wherecollect.object.AddMoreGoodsActivity$4 -> com.gongwu.wherecollect
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding -> com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding:
     android.view.View view7f080078 -> h
-    android.view.View view7f08032a -> c
+    android.view.View view7f08032b -> c
     android.view.View view7f0800ce -> b
-    android.view.View view7f08023e -> e
+    android.view.View view7f08023f -> e
     android.view.View view7f080050 -> d
     com.gongwu.wherecollect.object.AddMoreGoodsActivity target -> a
-    android.view.View view7f0803c3 -> g
-    android.view.View view7f080190 -> f
+    android.view.View view7f0803c4 -> g
+    android.view.View view7f080191 -> f
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.AddMoreGoodsActivity val$target -> a
 com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.AddMoreGoodsActivity_ViewBinding$b:
@@ -18673,15 +18673,15 @@ com.gongwu.wherecollect.object.GoodsDetailsActivity$8 -> com.gongwu.wherecollect
     void updateThreeData(int) -> a
     void updateTwoData(int) -> b
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding:
-    android.view.View view7f080190 -> i
-    android.view.View view7f08018e -> h
-    android.view.View view7f0802d0 -> k
-    android.view.View view7f080192 -> j
+    android.view.View view7f080191 -> i
+    android.view.View view7f08018f -> h
+    android.view.View view7f0802d1 -> k
+    android.view.View view7f080193 -> j
     com.gongwu.wherecollect.object.GoodsDetailsActivity target -> a
-    android.view.View view7f0801bb -> c
+    android.view.View view7f0801bc -> c
     android.view.View view7f080078 -> b
-    android.view.View view7f0803c2 -> e
-    android.view.View view7f0803ca -> d
+    android.view.View view7f0803c3 -> e
+    android.view.View view7f0803cb -> d
     android.view.View view7f080052 -> g
     android.view.View view7f080051 -> f
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$b:
@@ -18787,8 +18787,8 @@ com.gongwu.wherecollect.object.SelectChannelActivity -> com.gongwu.wherecollect.
     void getChannelListSuccess(java.util.List) -> y
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding:
     android.view.View view7f0800ba -> c
-    android.view.View view7f0803c5 -> b
-    android.view.View view7f0801a7 -> e
+    android.view.View view7f0803c6 -> b
+    android.view.View view7f0801a8 -> e
     android.view.View view7f080078 -> d
     com.gongwu.wherecollect.object.SelectChannelActivity target -> a
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding$a:
@@ -18835,7 +18835,7 @@ com.gongwu.wherecollect.object.SelectColorActivity$3 -> com.gongwu.wherecollect.
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding:
     android.view.View view7f080078 -> c
     com.gongwu.wherecollect.object.SelectColorActivity target -> a
-    android.view.View view7f0803c5 -> b
+    android.view.View view7f0803c6 -> b
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectColorActivity val$target -> a
 com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectColorActivity_ViewBinding$b:
@@ -18855,7 +18855,7 @@ com.gongwu.wherecollect.object.SelectSeasonActivity -> com.gongwu.wherecollect.o
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding:
     com.gongwu.wherecollect.object.SelectSeasonActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803c5 -> b
+    android.view.View view7f0803c6 -> b
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSeasonActivity val$target -> a
 com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectSeasonActivity_ViewBinding$b:
@@ -18934,13 +18934,13 @@ com.gongwu.wherecollect.object.SelectSortActivity$8 -> com.gongwu.wherecollect.o
 com.gongwu.wherecollect.object.SelectSortActivity$9 -> com.gongwu.wherecollect.object.SelectSortActivity$i:
     com.gongwu.wherecollect.object.SelectSortActivity this$0 -> a
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding:
-    android.view.View view7f08035b -> c
-    android.view.View view7f0803c5 -> b
-    android.view.View view7f08036c -> e
-    android.view.View view7f08036d -> d
+    android.view.View view7f08035c -> c
+    android.view.View view7f0803c6 -> b
+    android.view.View view7f08036d -> e
+    android.view.View view7f08036e -> d
     android.view.View view7f080078 -> g
     com.gongwu.wherecollect.object.SelectSortActivity target -> a
-    android.view.View view7f080366 -> f
+    android.view.View view7f080367 -> f
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSortActivity val$target -> a
 com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$2 -> com.gongwu.wherecollect.object.SelectSortActivity_ViewBinding$b:
@@ -19077,7 +19077,7 @@ com.gongwu.wherecollect.object.SelectSortChildNewActivity$6 -> com.gongwu.wherec
 com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding -> com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding:
     com.gongwu.wherecollect.object.SelectSortChildNewActivity target -> a
     android.view.View view7f080078 -> c
-    android.view.View view7f0803c3 -> b
+    android.view.View view7f0803c4 -> b
     android.view.View view7f080069 -> d
 com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding$1 -> com.gongwu.wherecollect.object.SelectSortChildNewActivity_ViewBinding$a:
     com.gongwu.wherecollect.object.SelectSortChildNewActivity val$target -> a
@@ -19629,14 +19629,14 @@ com.gongwu.wherecollect.util.SelectImgDialog -> com.gongwu.wherecollect.util.Sel
 com.gongwu.wherecollect.util.SelectImgDialog$2 -> com.gongwu.wherecollect.util.SelectImgDialog$a:
     com.gongwu.wherecollect.util.SelectImgDialog this$0 -> a
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding -> com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding:
-    android.view.View view7f080114 -> i
-    android.view.View view7f0802f8 -> h
+    android.view.View view7f080115 -> i
+    android.view.View view7f0802f9 -> h
     com.gongwu.wherecollect.util.SelectImgDialog target -> a
-    android.view.View view7f080325 -> c
+    android.view.View view7f080326 -> c
     android.view.View view7f080097 -> b
-    android.view.View view7f0801d0 -> e
-    android.view.View view7f0802ab -> d
-    android.view.View view7f080207 -> g
+    android.view.View view7f0801d1 -> e
+    android.view.View view7f0802ac -> d
+    android.view.View view7f080208 -> g
     android.view.View view7f08009b -> f
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$1 -> com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$a:
     com.gongwu.wherecollect.util.SelectImgDialog val$target -> a
@@ -19761,7 +19761,7 @@ com.gongwu.wherecollect.view.AddGoodsDialog$2 -> com.gongwu.wherecollect.view.Ad
     void getResult(java.util.List) -> a
     void resultFile(java.io.File) -> b
 com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding -> com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding:
-    android.view.View view7f08038f -> c
+    android.view.View view7f080390 -> c
     com.gongwu.wherecollect.view.AddGoodsDialog target -> a
     android.view.View view7f08004f -> b
     android.view.View view7f08009f -> e
@@ -19781,8 +19781,8 @@ com.gongwu.wherecollect.view.AddSortDialog$1 -> com.gongwu.wherecollect.view.Add
     com.gongwu.wherecollect.view.AddSortDialog this$0 -> a
 com.gongwu.wherecollect.view.AddSortDialog_ViewBinding -> com.gongwu.wherecollect.view.AddSortDialog_ViewBinding:
     com.gongwu.wherecollect.view.AddSortDialog target -> a
-    android.view.View view7f08036e -> c
-    android.view.View view7f08035c -> b
+    android.view.View view7f08036f -> c
+    android.view.View view7f08035d -> b
 com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.AddSortDialog val$target -> a
 com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$2 -> com.gongwu.wherecollect.view.AddSortDialog_ViewBinding$b:
@@ -19831,11 +19831,11 @@ com.gongwu.wherecollect.view.ChangeSexDialog -> com.gongwu.wherecollect.view.Cha
     void getResult(java.lang.String) -> a
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding:
     com.gongwu.wherecollect.view.ChangeSexDialog target -> a
-    android.view.View view7f08014f -> c
-    android.view.View view7f080230 -> b
-    android.view.View view7f080207 -> e
+    android.view.View view7f080150 -> c
+    android.view.View view7f080231 -> b
+    android.view.View view7f080208 -> e
     android.view.View view7f08009b -> d
-    android.view.View view7f0802f8 -> f
+    android.view.View view7f0802f9 -> f
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.ChangeSexDialog val$target -> a
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$2 -> com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$b:
@@ -19866,8 +19866,8 @@ com.gongwu.wherecollect.view.DeleteSortTipsDialog -> com.gongwu.wherecollect.vie
     void submitSort() -> a
 com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding -> com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding:
     com.gongwu.wherecollect.view.DeleteSortTipsDialog target -> a
-    android.view.View view7f08036e -> c
-    android.view.View view7f08035c -> b
+    android.view.View view7f08036f -> c
+    android.view.View view7f08035d -> b
 com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.DeleteSortTipsDialog val$target -> a
 com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$2 -> com.gongwu.wherecollect.view.DeleteSortTipsDialog_ViewBinding$b:
@@ -20012,14 +20012,14 @@ com.gongwu.wherecollect.view.MessageDialog -> com.gongwu.wherecollect.view.Messa
     void submit() -> a
 com.gongwu.wherecollect.view.MessageDialog_ViewBinding -> com.gongwu.wherecollect.view.MessageDialog_ViewBinding:
     com.gongwu.wherecollect.view.MessageDialog target -> a
-    android.view.View view7f080244 -> b
+    android.view.View view7f080245 -> b
 com.gongwu.wherecollect.view.MessageDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.MessageDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.MessageDialog val$target -> a
 com.gongwu.wherecollect.view.MessageTwoBtnDialog -> com.gongwu.wherecollect.view.MessageTwoBtnDialog:
     void submit() -> a
 com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding -> com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding:
-    android.view.View view7f080241 -> c
-    android.view.View view7f080244 -> b
+    android.view.View view7f080242 -> c
+    android.view.View view7f080245 -> b
     com.gongwu.wherecollect.view.MessageTwoBtnDialog target -> a
 com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.MessageTwoBtnDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.MessageTwoBtnDialog val$target -> a
@@ -20076,26 +20076,26 @@ com.gongwu.wherecollect.view.ObjectInfoEditView$OnItemClickListener -> com.gongw
     void onItemBelongerClick() -> d
     void onItemSortClick(com.gongwu.wherecollect.net.entity.response.BaseBean) -> d
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding:
-    android.view.View view7f080320 -> q
+    android.view.View view7f080321 -> q
     android.view.View view7f0800c9 -> p
     android.view.View view7f080083 -> s
     android.view.View view7f0800a8 -> r
-    android.view.View view7f0802a5 -> t
-    android.view.View view7f080144 -> i
-    android.view.View view7f0802a1 -> h
-    android.view.View view7f08018c -> k
+    android.view.View view7f0802a6 -> t
+    android.view.View view7f080145 -> i
+    android.view.View view7f0802a2 -> h
+    android.view.View view7f08018d -> k
     android.view.View view7f0800b6 -> j
-    android.view.View view7f0802a0 -> m
-    android.view.View view7f0802b4 -> l
-    android.view.View view7f080297 -> o
-    android.view.View view7f080143 -> n
+    android.view.View view7f0802a1 -> m
+    android.view.View view7f0802b5 -> l
+    android.view.View view7f080298 -> o
+    android.view.View view7f080144 -> n
     android.view.View view7f080085 -> c
     com.gongwu.wherecollect.view.ObjectInfoEditView target -> a
-    android.view.View view7f0802a8 -> b
+    android.view.View view7f0802a9 -> b
     android.view.View view7f0800ca -> e
     android.view.View view7f0800b7 -> d
     android.view.View view7f0800a9 -> g
-    android.view.View view7f080321 -> f
+    android.view.View view7f080322 -> f
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$k:
     com.gongwu.wherecollect.view.ObjectInfoEditView val$target -> a
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$10 -> com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$a:
@@ -20138,17 +20138,17 @@ com.gongwu.wherecollect.view.ObjectInfoLookView -> com.gongwu.wherecollect.view.
     com.gongwu.wherecollect.net.entity.response.ObjectBean bean -> a
 com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding -> com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding:
     com.gongwu.wherecollect.view.ObjectInfoLookView target -> a
-    android.view.View view7f08020e -> b
+    android.view.View view7f08020f -> b
 com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectInfoLookView_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectInfoLookView val$target -> a
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding:
-    android.view.View view7f0802f8 -> h
+    android.view.View view7f0802f9 -> h
     com.gongwu.wherecollect.view.ObjectsLookMenuDialog target -> a
     android.view.View view7f08010e -> c
-    android.view.View view7f080118 -> b
+    android.view.View view7f080119 -> b
     android.view.View view7f0800ed -> e
     android.view.View view7f08005a -> d
-    android.view.View view7f080207 -> g
+    android.view.View view7f080208 -> g
     android.view.View view7f08009b -> f
 com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$1 -> com.gongwu.wherecollect.view.ObjectsLookMenuDialog_ViewBinding$a:
     com.gongwu.wherecollect.view.ObjectsLookMenuDialog val$target -> a
@@ -20187,8 +20187,8 @@ com.gongwu.wherecollect.view.PopupAddGoods$AddGoodsPopupClickListener -> com.gon
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding:
     android.view.View view7f08009a -> c
     android.view.View view7f08009d -> b
-    android.view.View view7f080301 -> e
-    android.view.View view7f08027e -> d
+    android.view.View view7f080302 -> e
+    android.view.View view7f08027f -> d
     com.gongwu.wherecollect.view.PopupAddGoods target -> a
 com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupAddGoods val$target -> a
@@ -20212,8 +20212,8 @@ com.gongwu.wherecollect.view.PopupAddShareSpace$PopupCommitClickListener -> com.
     void onCommitClickListener(java.util.List) -> K
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding:
     com.gongwu.wherecollect.view.PopupAddShareSpace target -> a
-    android.view.View view7f080289 -> c
-    android.view.View view7f080288 -> b
+    android.view.View view7f08028a -> c
+    android.view.View view7f080289 -> b
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupAddShareSpace val$target -> a
 com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupAddShareSpace_ViewBinding$b:
@@ -20229,8 +20229,8 @@ com.gongwu.wherecollect.view.PopupEditBox$EditInterlayerClickListener -> com.gon
     void onDelClick() -> c
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditBox target -> a
-    android.view.View view7f080128 -> c
-    android.view.View view7f080129 -> b
+    android.view.View view7f080129 -> c
+    android.view.View view7f08012a -> b
     android.view.View view7f08010a -> d
 com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditBox_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditBox val$target -> a
@@ -20255,9 +20255,9 @@ com.gongwu.wherecollect.view.PopupEditFurnitureName$PopupClickListener -> com.go
     void onImgClick() -> a
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding -> com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditFurnitureName target -> a
-    android.view.View view7f080285 -> c
+    android.view.View view7f080286 -> c
     android.view.View view7f0800ba -> b
-    android.view.View view7f080284 -> e
+    android.view.View view7f080285 -> e
     android.view.View view7f08009d -> d
 com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditFurnitureName_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditFurnitureName val$target -> a
@@ -20279,7 +20279,7 @@ com.gongwu.wherecollect.view.PopupEditInterlayer$EditInterlayerClickListener -> 
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding:
     com.gongwu.wherecollect.view.PopupEditInterlayer target -> a
     android.view.View view7f08010c -> c
-    android.view.View view7f080115 -> b
+    android.view.View view7f080116 -> b
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditInterlayer val$target -> a
 com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupEditInterlayer_ViewBinding$b:
@@ -20295,11 +20295,11 @@ com.gongwu.wherecollect.view.PopupEditMenuGoods$EditMenuPopupClickListener -> co
     void onEditGoodsLocationClick() -> c
     void onLockClick() -> d
 com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding:
-    android.view.View view7f080233 -> c
+    android.view.View view7f080234 -> c
     com.gongwu.wherecollect.view.PopupEditMenuGoods target -> a
-    android.view.View view7f080236 -> b
-    android.view.View view7f080235 -> e
-    android.view.View view7f080238 -> d
+    android.view.View view7f080237 -> b
+    android.view.View view7f080236 -> e
+    android.view.View view7f080239 -> d
 com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupEditMenuGoods val$target -> a
 com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupEditMenuGoods_ViewBinding$b:
@@ -20343,8 +20343,8 @@ com.gongwu.wherecollect.view.PopupEditMoveFurniture$PopupClickListener -> com.go
     void onCommitClick(java.lang.String,java.lang.String) -> a
     void onMoveRoomClick(com.gongwu.wherecollect.net.entity.response.FamilyBean) -> a
 com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding -> com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding:
-    android.view.View view7f080283 -> c
-    android.view.View view7f080284 -> b
+    android.view.View view7f080284 -> c
+    android.view.View view7f080285 -> b
     android.view.View view7f08009d -> d
     com.gongwu.wherecollect.view.PopupEditMoveFurniture target -> a
 com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupEditMoveFurniture_ViewBinding$a:
@@ -20393,7 +20393,7 @@ com.gongwu.wherecollect.view.PopupImportGoods$OnItemClickListener -> com.gongwu.
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding:
     com.gongwu.wherecollect.view.PopupImportGoods target -> a
     android.view.View view7f080056 -> c
-    android.view.View view7f08021e -> b
+    android.view.View view7f08021f -> b
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupImportGoods val$target -> a
 com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupImportGoods_ViewBinding$b:
@@ -20444,7 +20444,7 @@ com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding -> com.gongwu.whe
     com.gongwu.wherecollect.view.PopupScrollPickerView target -> a
     android.view.View view7f08009d -> c
     android.view.View view7f0800ba -> b
-    android.view.View view7f080284 -> d
+    android.view.View view7f080285 -> d
 com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$1 -> com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$a:
     com.gongwu.wherecollect.view.PopupScrollPickerView val$target -> a
 com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$2 -> com.gongwu.wherecollect.view.PopupScrollPickerView_ViewBinding$b:

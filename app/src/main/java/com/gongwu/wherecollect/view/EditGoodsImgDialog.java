@@ -22,12 +22,15 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.CursorLoader;
 
+import com.gongwu.wherecollect.ImageSelect.ImageGridActivity;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.App;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.util.PermissionUtil;
 import com.gongwu.wherecollect.util.PhotosDialog;
+import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
@@ -130,18 +133,7 @@ public class EditGoodsImgDialog {
                     @Override
                     public void onClick(View v) {
                         // ######### 调到图片选择界面##########
-                        try {
-                            Intent i = new Intent(
-                                    Intent.ACTION_PICK,
-                                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            EditGoodsImgDialog.this.context
-                                    .startActivityForResult(i, REQUST_PHOTOSELECT);
-                            // ###############################
-                        } catch (ActivityNotFoundException e) {
-                            e.printStackTrace();
-                            Toast.makeText(EditGoodsImgDialog.this.context, "未找到系统相册,请选择拍照", Toast.LENGTH_SHORT)
-                                    .show();
-                        }
+                        select();
                         dialog.dismiss();
                     }
                 });
@@ -154,6 +146,13 @@ public class EditGoodsImgDialog {
         WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
         lp.width = (int) (display.getWidth()); //设置宽度
         dialog.getWindow().setAttributes(lp);
+    }
+
+    private void select() {
+        // ######### 调到图片选择界面##########
+        Intent i = new Intent(context, ImageGridActivity.class);
+        i.putExtra("max", 1);
+        context.startActivityForResult(i, REQUST_PHOTOSELECT);
     }
 
     public boolean isClip() {
@@ -227,7 +226,6 @@ public class EditGoodsImgDialog {
         //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）
         uCrop.withAspectRatio(1, 1);
         uCrop.start(((Activity) context));
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -240,12 +238,12 @@ public class EditGoodsImgDialog {
         }
         if (requestCode == REQUST_PHOTOSELECT) {
             try {
-                Uri uri = data.getData();
-                if (uri != null) {
+                List<ImageData> temp = (ArrayList<ImageData>) data.getSerializableExtra("list");
+                if (temp != null && temp.size() > 0) {
                     if (isClip) {
-                        cropBitmap(uri);
+                        cropBitmap(new File(temp.get(AppConstant.DEFAULT_INDEX_OF).getBigUri()));
                     } else {
-                        mOutputFile = new File(getRealPathFromURI(uri));
+                        mOutputFile = new File(temp.get(AppConstant.DEFAULT_INDEX_OF).getBigUri());
                         getResult(mOutputFile);
                     }
                 }

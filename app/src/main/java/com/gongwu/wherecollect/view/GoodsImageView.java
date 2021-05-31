@@ -67,8 +67,6 @@ public class GoodsImageView extends FrameLayout {
 
     public void setImageResource(int id) {
         name.setVisibility(GONE);
-        head.setImageDrawable(null);
-        head.setBackground(null);
         head.setImageResource(id);
         Glide.with(context)
                 .load(id)
@@ -95,8 +93,6 @@ public class GoodsImageView extends FrameLayout {
      */
     public void setHead(final String userId, String nickName, String headUrl) {
         name.setVisibility(VISIBLE);
-        head.setImageDrawable(null);
-        head.setBackground(null);
         nickName = TextUtils.isEmpty(nickName) ? userId : nickName;
         name.setText(getEndNick(nickName));
         name.setTag(userId);
@@ -136,8 +132,6 @@ public class GoodsImageView extends FrameLayout {
 
     public void setHead(final String userId, String nickName, String headUrl, int radius) {
         name.setVisibility(VISIBLE);
-        head.setImageDrawable(null);
-        head.setBackground(null);
         nickName = TextUtils.isEmpty(nickName) ? userId : nickName;
         name.setText(getEndNick(nickName));
         name.setTag(userId);
@@ -187,8 +181,6 @@ public class GoodsImageView extends FrameLayout {
 
     public void loadCircle(String url) {
         name.setTag(url);
-        head.setImageDrawable(null);
-        head.setBackground(null);
         Glide.with(context)
                 .load(url)
                 .asBitmap()
@@ -213,9 +205,6 @@ public class GoodsImageView extends FrameLayout {
 
     public void setImg(String headUrl, int radius) {
         name.setTag(headUrl);
-        head.setImageDrawable(null);
-        head.setBackground(null);
-//        head.setBackground(null);
         Glide.with(context)
                 .load(headUrl)
                 .asBitmap()
@@ -238,9 +227,6 @@ public class GoodsImageView extends FrameLayout {
     public void setImg(String headUrl, int radius, boolean save) {
         isInitBitmap = false;
         name.setTag(headUrl);
-        head.setImageDrawable(null);
-        head.setBackground(null);
-//        head.setBackground(null);
         Glide.with(context)
                 .load(headUrl)
                 .asBitmap()
@@ -273,9 +259,6 @@ public class GoodsImageView extends FrameLayout {
 
     public void setImg(String headUrl) {
         name.setTag(headUrl);
-        head.setImageDrawable(null);
-        head.setBackground(null);
-//        head.setBackground(null);
         Glide.with(context)
                 .load(headUrl)
                 .asBitmap()
@@ -297,8 +280,6 @@ public class GoodsImageView extends FrameLayout {
     public void setResourceColor(String nickName, int resId, int radius) {
         name.setVisibility(VISIBLE);
         name.setText(getEndNick(nickName));
-        head.setImageDrawable(null);
-        head.setBackground(null);
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setCornerRadius(StringUtils.convertDipToPixels(getContext(), radius));
@@ -309,8 +290,6 @@ public class GoodsImageView extends FrameLayout {
     public void setResourceCircle(String nickName, int resId) {
         name.setVisibility(VISIBLE);
         name.setText(getEndNick(nickName));
-        head.setImageDrawable(null);
-        head.setBackground(null);
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.OVAL);
         drawable.setColor(resId);

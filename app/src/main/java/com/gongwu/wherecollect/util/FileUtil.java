@@ -464,7 +464,8 @@ public class FileUtil {
             bos.flush();
             bos.close();
             Lg.getInstance().e(TAG, "bitmap:" + bitmap.getWidth() + "--" + bitmap.getHeight());
-            bitmap.recycle();
+            //这里不能recycle,需要手动去recycle,不然复用会报错
+//            bitmap.recycle();
         } catch (IOException e) {
             e.printStackTrace();
         }
