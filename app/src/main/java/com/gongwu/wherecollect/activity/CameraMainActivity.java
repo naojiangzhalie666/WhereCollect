@@ -1,28 +1,37 @@
 package com.gongwu.wherecollect.activity;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.text.TextUtils;
+import android.util.Log;
+import android.util.Size;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresPermission;
+import androidx.camera.core.Camera;
+import androidx.camera.core.CameraSelector;
+import androidx.camera.core.FocusMeteringAction;
+import androidx.camera.core.ImageAnalysis;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.ImageCaptureException;
+import androidx.camera.core.Preview;
+import androidx.camera.core.impl.utils.executor.CameraXExecutors;
+import androidx.camera.extensions.BeautyPreviewExtender;
+import androidx.camera.extensions.NightImageCaptureExtender;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import com.github.florent37.camerafragment.CameraFragment;
-import com.github.florent37.camerafragment.CameraFragmentApi;
-import com.github.florent37.camerafragment.configuration.Configuration;
-import com.github.florent37.camerafragment.listeners.CameraFragmentControlsAdapter;
-import com.github.florent37.camerafragment.listeners.CameraFragmentResultAdapter;
 import com.gongwu.wherecollect.ImageSelect.ImageGridActivity;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.App;
@@ -33,6 +42,7 @@ import com.gongwu.wherecollect.object.AddGoodsActivity;
 import com.gongwu.wherecollect.object.AddMoreGoodsActivity;
 import com.gongwu.wherecollect.util.FileUtil;
 import com.gongwu.wherecollect.util.SelectImgDialog;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
@@ -41,6 +51,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,7 +88,14 @@ public class CameraMainActivity extends BaseActivity {
     ImageView selectImgIv;
     @BindView(R.id.select_img_tv)
     TextView selectImgTv;
+    @BindView(R.id.view_finder)
+    PreviewView mPreviewView;
 
+    private ProcessCameraProvider mCameraProvider;
+    private Preview mPreview;
+    private Camera mCamera;
+    private ImageCapture mImageCapture;
+    private ImageAnalysis mImageAnalysis;
     /**
      * 判断单拍还是连拍
      */
@@ -86,6 +104,7 @@ public class CameraMainActivity extends BaseActivity {
     private RoomFurnitureBean locationCode;
     private ArrayList<String> files = new ArrayList<>();
     private final int maxImags = 10;
+    private boolean isBack = true;
 
     public static void start(Context context, boolean addMore, RoomFurnitureBean locationCode) {
         Intent intent = new Intent(context, CameraMainActivity.class);
@@ -106,8 +125,9 @@ public class CameraMainActivity extends BaseActivity {
         //去除状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ButterKnife.bind(this);
+        setupCamera(mPreviewView);
         initView();
-        addCamera();
+        files.clear();
     }
 
     @Override
@@ -125,6 +145,19 @@ public class CameraMainActivity extends BaseActivity {
             saomaText.setTextColor(getResources().getColor(R.color.color999));
             cameraSaoma.setEnabled(false);
         }
+        mPreviewView.setOnTouchListener((v, event) -> {
+            FocusMeteringAction action = new FocusMeteringAction.Builder(
+                    mPreviewView.getMeteringPointFactory()
+                            .createPoint(event.getX(), event.getY())).build();
+            try {
+                showTapView((int) event.getX(), (int) event.getY());
+                Log.d("Camera", "Focus camera");
+                mCamera.getCameraControl().startFocusAndMetering(action);
+            } catch (Exception e) {
+                Log.e("Camera", "Error focus camera");
+            }
+            return false;
+        });
     }
 
     /**
@@ -132,7 +165,8 @@ public class CameraMainActivity extends BaseActivity {
      *
      * @param view view
      */
-    @OnClick({R.id.video_switch_flash_layout, R.id.back_view, R.id.continuous_text, R.id.images_list_layout, R.id.camera_select_img_layout, R.id.rl_camera_saoma})
+    @OnClick({R.id.video_switch_flash_layout, R.id.back_view, R.id.continuous_text, R.id.images_list_layout,
+            R.id.camera_select_img_layout, R.id.rl_camera_saoma, R.id.record_button})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_view:
@@ -166,6 +200,9 @@ public class CameraMainActivity extends BaseActivity {
                 AddMoreGoodsActivity.start(mContext, files, locationCode);
                 finish();
                 break;
+            case R.id.record_button:
+                takenPictureInternal(true);
+                break;
             default:
                 break;
         }
@@ -177,6 +214,15 @@ public class CameraMainActivity extends BaseActivity {
         if (requestCode == BOOK_CODE && resultCode == CaptureActivity.result) {//扫描的到结果
             String result = data.getStringExtra("result");
             AddGoodsActivity.start(mContext, "", result, locationCode);
+            finish();
+        }
+        //裁剪界面返回的照片
+        if (requestCode == UCrop.REQUEST_CROP) {
+            //单拍
+            if (mImgFile!=null&&mImgFile.exists()){
+                mImgFile.delete();
+            }
+            AddGoodsActivity.start(mContext, mOutputFile.exists() ? (mOutputFile.length() > 0 ? mOutputFile.getAbsolutePath() : null) : null, "", locationCode);
             finish();
         }
         if (requestCode == SelectImgDialog.REQUST_PHOTOSELECT && resultCode == ImageGridActivity.RESULT) {
@@ -201,47 +247,6 @@ public class CameraMainActivity extends BaseActivity {
                 }
             }
         }
-        //裁剪界面返回的照片
-        if (requestCode == UCrop.REQUEST_CROP) {
-            //单拍
-            AddGoodsActivity.start(mContext, mOutputFile.exists() ? (mOutputFile.length() > 0 ? mOutputFile.getAbsolutePath() : null) : null, "", locationCode);
-            finish();
-        }
-    }
-
-    @OnClick(R.id.record_button)
-    public void onRecordButtonClicked() {
-        final CameraFragmentApi cameraFragment = getCameraFragment();
-        if (cameraFragment != null) {
-            cameraFragment.takePhotoOrCaptureVideo(new CameraFragmentResultAdapter() {
-                @Override
-                public void onVideoRecorded(String filePath) {
-                }
-
-                @Override
-                public void onPhotoTaken(byte[] bytes, String filePath) {
-                    File file = new File(filePath);
-                    //批量
-                    if (continuous) {
-                        selectImgIv.setImageResource(R.drawable.icon_camera_img_enable);
-                        selectImgTv.setTextColor(getResources().getColor(R.color.color999));
-                        selectImgView.setEnabled(false);
-                        cameraSaoma.setVisibility(View.GONE);
-                        imagesLayout.setVisibility(View.VISIBLE);
-                        continuousText.setVisibility(View.GONE);
-                        files.add(FileUtil.compress(file, true).getAbsolutePath());
-                        imagesView.setImageURI(FileUtil.getUriFromFile(mContext, new File(files.get(files.size() - 1))));
-                        numText.setText(String.valueOf(files.size()));
-                        if (files.size() == maxImags) {
-                            AddMoreGoodsActivity.start(mContext, files, locationCode);
-                            finish();
-                        }
-                    } else {
-                        startCropBitmap(mContext, file);
-                    }
-                }
-            }, App.CACHEPATH, String.valueOf(System.currentTimeMillis()));
-        }
     }
 
     @Override
@@ -259,54 +264,6 @@ public class CameraMainActivity extends BaseActivity {
         super.onBackPressed();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults.length != 0) {
-            addCamera();
-        }
-    }
-
-    @RequiresPermission(Manifest.permission.CAMERA)
-    public void addCamera() {
-
-        final CameraFragment cameraFragment = CameraFragment.newInstance(new Configuration.Builder()
-                .setCamera(Configuration.CAMERA_FACE_REAR).build());
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content, cameraFragment, FRAGMENT_TAG)
-                .commitAllowingStateLoss();
-
-        if (cameraFragment != null) {
-            cameraFragment.setControlsListener(new CameraFragmentControlsAdapter() {
-                @Override
-                public void lockControls() {
-                    recordButton.setEnabled(false);
-                }
-
-                @Override
-                public void unLockControls() {
-                    recordButton.setEnabled(true);
-                }
-
-                @Override
-                public void allowCameraSwitching(boolean allow) {
-                }
-
-                @Override
-                public void allowRecord(boolean allow) {
-                    recordButton.setEnabled(allow);
-                }
-
-                @Override
-                public void setMediaActionSwitchVisible(boolean visible) {
-                }
-            });
-        }
-    }
-
-    private CameraFragmentApi getCameraFragment() {
-        return (CameraFragmentApi) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
-    }
 
     private File mOutputFile;
     private File mImgFile;
@@ -344,5 +301,124 @@ public class CameraMainActivity extends BaseActivity {
         //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）
         uCrop.withAspectRatio(1, 1);
         uCrop.start(((Activity) context));
+    }
+
+    private void setupCamera(PreviewView previewView) {
+        ListenableFuture<ProcessCameraProvider> cameraProviderFuture =
+                ProcessCameraProvider.getInstance(this);
+        cameraProviderFuture.addListener(() -> {
+            try {
+                mCameraProvider = cameraProviderFuture.get();
+                bindPreview(mCameraProvider, previewView);
+            } catch (ExecutionException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }, ContextCompat.getMainExecutor(this));
+    }
+
+    private void showTapView(int x, int y) {
+        Log.d("Camera", "Tap x:" + x + " y:" + y);
+        PopupWindow popupWindow = new PopupWindow(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        // popupWindow.setBackgroundDrawable(getDrawable(android.R.color.holo_blue_bright));
+        ImageView imageView = new ImageView(this);
+        imageView.setImageResource(R.drawable.ic_focus_view);
+        popupWindow.setContentView(imageView);
+        // popupWindow.showAtLocation(binding.previewView, Gravity.CENTER, x, y);
+        popupWindow.showAsDropDown(mPreviewView, x, y);
+        mPreviewView.postDelayed(popupWindow::dismiss, 600);
+        // binding.previewView.playSoundEffect(SoundEffectConstants.CLICK);
+    }
+
+    private void takenPictureInternal(boolean isExternal) {
+        Log.d("Camera", "takenPictureInternal isExternal:" + isExternal);
+        File dir = new File(App.CACHEPATH);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        //创建文件
+        File file = new File(App.CACHEPATH, System.currentTimeMillis() + ".jpg");
+        if (file.exists()) {
+            file.delete();
+        }
+        //创建包文件的数据，比如创建文件
+        ImageCapture.OutputFileOptions outputFileOptions = new ImageCapture.OutputFileOptions.Builder(file).build();
+        if (mImageCapture != null) {
+            mImageCapture.takePicture(outputFileOptions, CameraXExecutors.mainThreadExecutor(),
+                    new ImageCapture.OnImageSavedCallback() {
+                        @Override
+                        public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                            if (!continuous) {
+                                startCropBitmap(mContext, file);
+                            } else {
+                                files.add(FileUtil.compress(file, true).getAbsolutePath());
+                                selectImgIv.setImageResource(R.drawable.icon_camera_img_enable);
+                                selectImgTv.setTextColor(getResources().getColor(R.color.color999));
+                                selectImgView.setEnabled(false);
+                                cameraSaoma.setVisibility(View.GONE);
+                                imagesLayout.setVisibility(View.VISIBLE);
+                                continuousText.setVisibility(View.GONE);
+                                imagesView.setImageURI(FileUtil.getUriFromFile(mContext, new File(files.get(files.size() - 1))));
+                                numText.setText(String.valueOf(files.size()));
+                                if (files.size() == maxImags) {
+                                    AddMoreGoodsActivity.start(mContext, files, locationCode);
+                                    finish();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onError(@NonNull ImageCaptureException exception) {
+                            Log.d("Camera", "onError:" + exception.getImageCaptureError());
+                        }
+                    });
+        }
+    }
+
+    private void bindPreview(@NonNull ProcessCameraProvider cameraProvider,
+                             PreviewView previewView) {
+        Preview.Builder previewBuilder = new Preview.Builder();
+        ImageCapture.Builder captureBuilder = new ImageCapture.Builder()
+                .setTargetRotation(previewView.getDisplay().getRotation());
+        CameraSelector cameraSelector = isBack ? CameraSelector.DEFAULT_BACK_CAMERA
+                : CameraSelector.DEFAULT_FRONT_CAMERA;
+        mImageAnalysis = new ImageAnalysis.Builder()
+                .setTargetRotation(previewView.getDisplay().getRotation())
+                .setTargetResolution(new Size(720, 1440))
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .build();
+        setPreviewExtender(previewBuilder, cameraSelector);
+        mPreview = previewBuilder.build();
+
+        setCaptureExtender(captureBuilder, cameraSelector);
+        mImageCapture = captureBuilder.build();
+
+        cameraProvider.unbindAll();
+        mCamera = cameraProvider.bindToLifecycle(this, cameraSelector,
+                mPreview, mImageCapture, mImageAnalysis);
+        mPreview.setSurfaceProvider(previewView.getSurfaceProvider());
+    }
+
+    private void setPreviewExtender(Preview.Builder builder, CameraSelector cameraSelector) {
+        BeautyPreviewExtender beautyPreviewExtender = BeautyPreviewExtender.create(builder);
+        if (beautyPreviewExtender.isExtensionAvailable(cameraSelector)) {
+            // Enable the extension if available.
+            Log.d("Camera", "beauty preview extension enable");
+            beautyPreviewExtender.enableExtension(cameraSelector);
+        } else {
+            Log.d("Camera", "beauty preview extension not available");
+        }
+    }
+
+    private void setCaptureExtender(ImageCapture.Builder builder, CameraSelector cameraSelector) {
+        NightImageCaptureExtender nightImageCaptureExtender = NightImageCaptureExtender.create(builder);
+        if (nightImageCaptureExtender.isExtensionAvailable(cameraSelector)) {
+            // Enable the extension if available.
+            Log.d("Camera", "night capture extension enable");
+            nightImageCaptureExtender.enableExtension(cameraSelector);
+        } else {
+            Log.d("Camera", "night capture extension not available");
+        }
+
     }
 }

@@ -1,5 +1,4 @@
 include ':app'
-include ':camerafragment'
 include ':recyclerview-swipe'
 include ':showcase'
 include ':wheel'
