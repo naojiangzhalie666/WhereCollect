@@ -36,6 +36,7 @@ import com.gongwu.wherecollect.ImageSelect.ImageGridActivity;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseActivity;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.object.AddGoodsActivity;
@@ -64,6 +65,8 @@ import butterknife.OnClick;
 public class CameraMainActivity extends BaseActivity {
 
     public static final String FRAGMENT_TAG = "camera";
+    public static final String CAMERA_TAG = "camera_tag";
+    public static final int CAMERA_CODE = 0x1252;
     private static final int BOOK_CODE = 0x123;
 
     @BindView(R.id.record_button)
@@ -101,6 +104,7 @@ public class CameraMainActivity extends BaseActivity {
      */
     private boolean continuous = false;
     private boolean addMore;
+    private boolean isShowRightBtn;
     private RoomFurnitureBean locationCode;
     private ArrayList<String> files = new ArrayList<>();
     private final int maxImags = 10;
@@ -113,6 +117,12 @@ public class CameraMainActivity extends BaseActivity {
             intent.putExtra("locationCode", locationCode);
         }
         context.startActivity(intent);
+    }
+
+    public static void start(Context context, boolean isShowRightBtn) {
+        Intent intent = new Intent(context, CameraMainActivity.class);
+        intent.putExtra("isShowRightBtn", isShowRightBtn);
+        ((Activity) context).startActivityForResult(intent, CameraMainActivity.CAMERA_CODE);
     }
 
     @Override
@@ -137,6 +147,7 @@ public class CameraMainActivity extends BaseActivity {
 
     private void initView() {
         addMore = getIntent().getBooleanExtra("addMore", false);
+        isShowRightBtn = getIntent().getBooleanExtra("isShowRightBtn", true);
         locationCode = (RoomFurnitureBean) getIntent().getSerializableExtra("locationCode");
         if (addMore) {
             continuous = true;
@@ -144,6 +155,10 @@ public class CameraMainActivity extends BaseActivity {
             saomaIv.setImageResource(R.drawable.icon_camera_saoma_enable);
             saomaText.setTextColor(getResources().getColor(R.color.color999));
             cameraSaoma.setEnabled(false);
+        }
+        if (!isShowRightBtn) {
+            continuous = false;
+            continuousText.setVisibility(View.GONE);
         }
         mPreviewView.setOnTouchListener((v, event) -> {
             FocusMeteringAction action = new FocusMeteringAction.Builder(
@@ -219,10 +234,16 @@ public class CameraMainActivity extends BaseActivity {
         //裁剪界面返回的照片
         if (requestCode == UCrop.REQUEST_CROP) {
             //单拍
-            if (mImgFile!=null&&mImgFile.exists()){
+            if (mImgFile != null && mImgFile.exists()) {
                 mImgFile.delete();
             }
-            AddGoodsActivity.start(mContext, mOutputFile.exists() ? (mOutputFile.length() > 0 ? mOutputFile.getAbsolutePath() : null) : null, "", locationCode);
+            if (!isShowRightBtn) {
+                Intent intent = new Intent();
+                intent.putExtra(CAMERA_TAG, mOutputFile.exists() ? (mOutputFile.length() > 0 ? mOutputFile.getAbsolutePath() : "") : "");
+                setResult(RESULT_OK, intent);
+            } else {
+                AddGoodsActivity.start(mContext, mOutputFile.exists() ? (mOutputFile.length() > 0 ? mOutputFile.getAbsolutePath() : null) : null, "", locationCode);
+            }
             finish();
         }
         if (requestCode == SelectImgDialog.REQUST_PHOTOSELECT && resultCode == ImageGridActivity.RESULT) {
@@ -251,16 +272,20 @@ public class CameraMainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent();
-        if (addMore) {
-            intent.setClass(mContext, AddMoreGoodsActivity.class);
+        if (isShowRightBtn) {
+            Intent intent = new Intent();
+            if (addMore) {
+                intent.setClass(mContext, AddMoreGoodsActivity.class);
+            } else {
+                intent.setClass(mContext, AddGoodsActivity.class);
+            }
+            if (locationCode != null) {
+                intent.putExtra("locationCode", locationCode);
+            }
+            startActivity(intent);
         } else {
-            intent.setClass(mContext, AddGoodsActivity.class);
+            finish();
         }
-        if (locationCode != null) {
-            intent.putExtra("locationCode", locationCode);
-        }
-        startActivity(intent);
         super.onBackPressed();
     }
 
@@ -379,11 +404,11 @@ public class CameraMainActivity extends BaseActivity {
                              PreviewView previewView) {
         Preview.Builder previewBuilder = new Preview.Builder();
         ImageCapture.Builder captureBuilder = new ImageCapture.Builder()
-                .setTargetRotation(previewView.getDisplay().getRotation());
+                .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation());
         CameraSelector cameraSelector = isBack ? CameraSelector.DEFAULT_BACK_CAMERA
                 : CameraSelector.DEFAULT_FRONT_CAMERA;
         mImageAnalysis = new ImageAnalysis.Builder()
-                .setTargetRotation(previewView.getDisplay().getRotation())
+                .setTargetRotation(getWindowManager().getDefaultDisplay().getRotation())
                 .setTargetResolution(new Size(720, 1440))
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build();

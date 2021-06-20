@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat;
 import com.bumptech.glide.Glide;
 import com.gongwu.wherecollect.ImageSelect.ImageGridActivity;
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.CameraMainActivity;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseActivity;
 import com.gongwu.wherecollect.base.BasePresenter;
@@ -495,9 +496,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
             @Override
             public void onResult(boolean allGranted, List<String> grantedList, List<String> deniedList) {
                 if (allGranted) {
-                    Intent newIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    newIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mOutputFile));
-                    ((BaseActivity) mContext).startActivityForResult(newIntent, REQUST_CAMARE);
+                    CameraMainActivity.start(mContext, false);
                 } else {
                     Toast.makeText(mContext, "您拒绝了如下权限：" + deniedList, Toast.LENGTH_SHORT).show();
                 }
@@ -543,15 +542,12 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
 
     public void onActivityResult(Context mContext, int requestCode, int resultCode, Intent data) {
         //拍照的原照片
-        if (requestCode == REQUST_CAMARE) {
-            Uri uri = Uri.fromFile(mOutputFile);
-            if (mOutputFile.length() > 0 && uri != null) {
-                File imgOldFile = new File(mOutputFile.getAbsolutePath());
-                //原照片
+        if (requestCode == CameraMainActivity.CAMERA_CODE) {
+            String path = data.getStringExtra(CameraMainActivity.CAMERA_TAG);
+            if (!TextUtils.isEmpty(path)) {
                 if (getUIView() != null) {
-                    getUIView().getCamareImg(imgOldFile);
+                    getUIView().getCropBitmap(new File(path));
                 }
-                startCropBitmap(mContext, imgOldFile);
             }
         }
         if (requestCode == REQUST_PHOTOSELECT && resultCode == ImageGridActivity.RESULT) {

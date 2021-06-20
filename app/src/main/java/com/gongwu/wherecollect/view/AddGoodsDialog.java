@@ -111,11 +111,6 @@ public class AddGoodsDialog extends Dialog {
         this.setCancelable(false);
         this.setCanceledOnTouchOutside(false);
         ButterKnife.bind(this);
-        if (goodsCount >= goodsMaxCount) {
-            submit_tv.setTextColor(context.getResources().getColor(R.color.black_other_one));
-        } else {
-            submit_tv.setTextColor(context.getResources().getColor(R.color.maincolor));
-        }
     }
 
     @OnClick({R.id.add_goods_iv, R.id.code_layout, R.id.cancel_tv, R.id.submit_tv})
@@ -136,7 +131,7 @@ public class AddGoodsDialog extends Dialog {
                 dismiss();
                 break;
             case R.id.submit_tv:
-                if (goodsCount >= goodsMaxCount) {
+                if (goodsCount >= goodsMaxCount && !bean.isSelect()) {
                     ToastUtil.show(context, "一次最多添加9个物品", Toast.LENGTH_SHORT);
                     return;
                 }

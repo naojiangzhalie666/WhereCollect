@@ -61,7 +61,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
         getPresenter().setUmAuthListener(this);
     }
 
-    @OnClick({R.id.back_btn, R.id.login_wechat_iv, R.id.tv_regist, R.id.tv_forgetPWD, R.id.login_tv, R.id.login_phone_iv, R.id.agree})
+    @OnClick({R.id.back_btn, R.id.login_wechat_iv, R.id.tv_regist, R.id.tv_forgetPWD, R.id.login_tv, R.id.login_phone_iv, R.id.agree_tv, R.id.privacy_tv})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -87,8 +87,11 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
                 }
                 getPresenter().loginEmail(emailEdit.getText().toString().trim(), pwdEdit.getText().toString().trim(), StringUtils.getCurrentVersionName(mContext));
                 break;
-            case R.id.agree:
-                WebActivity.start(mContext, Config.WEB_SERVICE_NAME, Config.WEB_SERVICE_URL);
+            case R.id.agree_tv:
+                WebActivity.start(mContext, Config.WEB_SERVICE_NAME, Config.WEB_SERVICE_URL,50);
+                break;
+            case R.id.privacy_tv:
+                WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL,50);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -99,7 +102,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
 
     @Override
     public void loginbyThirdPartySuccess(UserBean data) {
-        getPresenter().startMainActivity(this, data,true);
+        getPresenter().startMainActivity(this, data, true);
     }
 
     @Override
@@ -108,7 +111,7 @@ public class LoginEmailActivity extends BaseMvpActivity<LoginEmailActivity, Logi
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         if (START_CODE == requestCode && RESULT_OK == resultCode) {
             UserBean userBean = (UserBean) data.getSerializableExtra("user");
-            getPresenter().startMainActivity(this, userBean,true);
+            getPresenter().startMainActivity(this, userBean, true);
         }
     }
 

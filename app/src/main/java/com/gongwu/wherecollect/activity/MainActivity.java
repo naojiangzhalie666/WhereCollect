@@ -323,6 +323,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     String cancelStr;
     String cancelUrl;
     AlertDialog alertDialog;
+    boolean isShow;
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.GetMessageList msg) {
@@ -351,11 +352,13 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             Lg.getInstance().e(TAG, "消息没有buttons");
             return;
         }
-        if (alertDialog != null && alertDialog.isShowing()) return;
+        if (alertDialog != null && alertDialog.isShowing() && !isShow) return;
+        isShow = true;
         alertDialog = DialogUtil.showMsg("", messageBean.getContent(), okStr, cancelStr, MainActivity.this, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 AppConstant.isShowMsg = false;
+                isShow = false;
                 if (!messageBean.isIs_read()) {
                     getPresenter().dealWithShareRequest(App.getUser(mContext).getId(), okUrl);
                 }
@@ -364,6 +367,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 AppConstant.isShowMsg = false;
+                isShow = false;
                 if (!messageBean.isIs_read()) {
                     getPresenter().dealWithShareRequest(App.getUser(mContext).getId(), cancelUrl);
                 }

@@ -36,6 +36,7 @@ import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.AddGoodsDialog;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.ObjectInfoLookView;
@@ -183,6 +184,10 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
 
     @Override
     public void onItemClick(int positions, View view) {
+        if (mlist.size() >= 10) {
+            ToastUtil.show(mContext, "一次最多添加9个物品", Toast.LENGTH_SHORT);
+            return;
+        }
         ObjectBean objectBean = mlist.get(positions);
         startDialog(ADD_GOODS_CODE == objectBean.get__v() ? null : objectBean);
     }

@@ -323,10 +323,4 @@ public class GoodsImageView extends FrameLayout {
 
         public void onError();
     }
-
-    public void clear() {
-        if (bitmap != null && !bitmap.isRecycled()) {
-            bitmap.recycle();
-        }
-    }
 }

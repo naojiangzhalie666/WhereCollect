@@ -296,4 +296,25 @@ public class SaveDate {
     public int getGoodsNum(String uid) {
         return sharedPreferences.getInt(String.format("goodsnum%s", uid), 0);
     }
+
+    /**
+     * 对比版本号进行显示隐私弹框
+     * *
+     *
+     * @return
+     */
+    public int getCacheVersion() {
+        return sharedPreferences.getInt("wc_version", 0);
+    }
+
+    /**
+     * 对比版本号进行显示隐私弹框
+     *
+     * @return
+     */
+    public void setCacheVersion(int version) {
+        Editor ed = sharedPreferences.edit();
+        ed.putInt("wc_version", version);
+        ed.commit();
+    }
 }

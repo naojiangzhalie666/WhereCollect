@@ -11,9 +11,7 @@ package com.gongwu.wherecollect.net;
  */
 public class Config {
     public static final boolean IS_TEST = true;
-    //线上环境
-//    public static final String BASE_URL = "https://www.shouner.com/";
-    //测试环境
+    //网络环境
     public static final String BASE_URL = IS_TEST ? "http://www.shouner.com:9202/" : "https://www.shouner.com/";
 
     public static final String SHARE_URL = IS_TEST ? "http://std.shouner.com/popularize/" : "https://rg.shouner.com/";
@@ -21,14 +19,14 @@ public class Config {
     public static final String CONTENT_TYPE_KEY = "Content-Type";
     public static final String CONTENT_TYPE_VALUE = "application/x-www-form-urlencoded; charset=UTF-8";
 
-    public static final String WEB_SERVICE_NAME = "收哪儿服务条款";
-    public static final String WEB_SERVICE_URL = "http://www.shouner.com/privacy";
+    public static final String WEB_SERVICE_NAME = "收哪儿服务使用协议";
+    public static final String WEB_SERVICE_URL = BASE_URL + "article?identifier=xy-fw";
 
     public static final String WEB_PRIVACY_NAME = "收哪儿隐私保护政策";
-    public static final String WEB_PRIVACY_URL = "http://www.shouner.com/privacy";
+    public static final String WEB_PRIVACY_URL = BASE_URL + "article?identifier=xy-ys";
     public static final String WEB_GUIDER_NAME = "帮助与引导";
     public static final String WEB_GUIDER_URL = IS_TEST ? "http://std.shouner.com/popularize/" : "https://rg.shouner.com/";
     //个人详情 显示小版本,发一个测试版本就加一,好让测试区别 测试版本
-    public static final String VERSION = "74";
+    public static final int VERSION = 77;
 
 }

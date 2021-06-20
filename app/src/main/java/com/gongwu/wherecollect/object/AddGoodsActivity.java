@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.BuyVIPActivity;
+import com.gongwu.wherecollect.activity.CameraMainActivity;
 import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.adapter.GoodsInfoViewAdapter;
 import com.gongwu.wherecollect.base.App;

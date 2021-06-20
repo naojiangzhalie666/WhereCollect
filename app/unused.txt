@@ -144,6 +144,7 @@ com.bigkoo.pickerview.configure.PickerOptions
     public static final int TYPE_PICKER_TIME
 kotlin.collections.ArraysKt___ArraysKt$asSequence$$inlined$Sequence$6
 com.gongwu.wherecollect.object.AddGoodsActivity
+    public void getCamareImg(java.io.File)
     public static final int BOOK_CODE
     public static final int RESULT_FINISH
 io.reactivex.internal.operators.flowable.FlowableTakeUntilPredicate$InnerSubscriber
@@ -1656,6 +1657,8 @@ androidx.camera.extensions.AutoImageCaptureExtender$1
 androidx.camera.core.impl.LiveDataObservable$1
 com.gongwu.wherecollect.activity.CameraMainActivity
     public static final java.lang.String FRAGMENT_TAG
+    public static final java.lang.String CAMERA_TAG
+    public static final int CAMERA_CODE
     private static final int BOOK_CODE
 androidx.core.internal.view.SupportMenu
     public abstract void setGroupDividerEnabled(boolean)
@@ -2940,6 +2943,8 @@ androidx.camera.core.ImageCapture$Builder
     public synthetic bridge java.lang.Object setTargetRotation(int)
     public synthetic bridge java.lang.Object setTargetAspectRatio(int)
     public synthetic bridge java.lang.Object setIoExecutor(java.util.concurrent.Executor)
+com.gongwu.wherecollect.contract.IAddGoodsContract$IAddGoodsView
+    public abstract void getCamareImg(java.io.File)
 androidx.camera.camera2.internal.compat.params.InputConfigurationCompat$InputConfigurationCompatBaseImpl
 androidx.appcompat.widget.ButtonBarLayout
     private static final int PEEK_BUTTON_DP
@@ -11827,6 +11832,8 @@ androidx.core.view.ViewCompat$AccessibilityPaneVisibilityManager
     void addAccessibilityPane(android.view.View)
     void removeAccessibilityPane(android.view.View)
 io.reactivex.CompletableSource
+com.gongwu.wherecollect.view.PrivacyDialog
+    public void setMessage(int)
 kotlin.sequences.SequencesKt__SequencesKt
     private static final kotlin.sequences.Sequence Sequence(kotlin.jvm.functions.Function0)
     public static final kotlin.sequences.Sequence asSequence(java.util.Iterator)
@@ -14204,6 +14211,7 @@ androidx.appcompat.app.AppCompatDelegateImpl$PanelFeatureState$SavedState$1
 com.google.android.material.snackbar.BaseTransientBottomBar$6$1
 com.gongwu.wherecollect.object.AddMoreGoodsActivity
     public static void start(android.content.Context,com.gongwu.wherecollect.net.entity.response.ObjectBean)
+    public void getCamareImg(java.io.File)
     private static final int spanCount
     public static final int ADD_GOODS_CODE
 io.reactivex.internal.operators.completable.CompletableFromUnsafeSource
@@ -16754,6 +16762,8 @@ androidx.cursoradapter.widget.CursorAdapter
     protected android.widget.FilterQueryProvider mFilterQueryProvider
     public static final int FLAG_AUTO_REQUERY
     public static final int FLAG_REGISTER_CONTENT_OBSERVER
+androidx.camera.core.ImageCapture$OutputFileResults
+    public android.net.Uri getSavedUri()
 com.gongwu.wherecollect.object.SelectChannelActivity_ViewBinding
     public void <init>(com.gongwu.wherecollect.object.SelectChannelActivity)
 androidx.camera.extensions.HdrPreviewExtender
@@ -18371,6 +18381,7 @@ androidx.loader.content.ModernAsyncTask
     private static final int MESSAGE_POST_RESULT
     private static final int MESSAGE_POST_PROGRESS
 androidx.core.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListener
+com.gongwu.wherecollect.view.AutoSplitTextView
 io.reactivex.internal.operators.flowable.FlowableReplay$ReplaySubscriber
 io.reactivex.internal.operators.flowable.FlowableRefCount$RefCountSubscriber
 io.reactivex.internal.operators.flowable.FlowableMergeWithSingle$MergeWithObserver
@@ -18542,6 +18553,8 @@ org.greenrobot.eventbus.EventBusBuilder
     java.util.List skipMethodVerificationForClasses
 androidx.transition.TransitionUtils$MatrixEvaluator
 androidx.recyclerview.widget.DividerItemDecoration
+com.gongwu.wherecollect.view.PrivacyDialog_ViewBinding
+    public void <init>(com.gongwu.wherecollect.view.PrivacyDialog)
 io.reactivex.annotations.Experimental
 androidx.camera.core.ImageCapture$OutputFileOptions$Builder
     public void <init>(android.content.ContentResolver,android.net.Uri,android.content.ContentValues)
@@ -18753,6 +18766,8 @@ com.google.android.material.bottomappbar.BottomAppBar
     static synthetic com.google.android.material.shape.MaterialShapeDrawable access$200(com.google.android.material.bottomappbar.BottomAppBar)
 com.gongwu.wherecollect.object.AddGoodsActivity
     private static final java.lang.String TAG
+com.gongwu.wherecollect.view.PrivacyDialog_ViewBinding$2
+    final synthetic com.gongwu.wherecollect.view.PrivacyDialog_ViewBinding this$0
 com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding$2
     final synthetic com.gongwu.wherecollect.view.ChangeSexDialog_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.LoginModel$4
@@ -19207,7 +19222,6 @@ okio.Buffer
     public static final okio.Buffer$Companion Companion
 com.gongwu.wherecollect.activity.CameraMainActivity
     private final int maxImags
-    private java.io.File mImgFile
 okhttp3.ConnectionSpec
     public static final okhttp3.ConnectionSpec RESTRICTED_TLS
     public static final okhttp3.ConnectionSpec COMPATIBLE_TLS
@@ -19578,6 +19592,8 @@ com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding$1
     final synthetic com.gongwu.wherecollect.view.AddGoodsDialog_ViewBinding this$0
 androidx.recyclerview.widget.ItemTouchHelper$RecoverAnimation
     final int mAnimationType
+com.gongwu.wherecollect.activity.SplashActivity$5
+    final synthetic com.gongwu.wherecollect.activity.SplashActivity this$0
 com.gongwu.wherecollect.view.ObjectInfoEditView$1
     final synthetic com.gongwu.wherecollect.view.ObjectInfoEditView this$0
 com.gongwu.wherecollect.adapter.SharePersonDetailsSpaceListAdapter$ViewHolder
@@ -19818,8 +19834,6 @@ androidx.appcompat.view.menu.BaseMenuPresenter
     private int mId
 com.gongwu.wherecollect.contract.model.LoginModel$1
     final synthetic com.gongwu.wherecollect.contract.model.LoginModel this$0
-com.gongwu.wherecollect.activity.SplashActivity$3
-    final synthetic com.gongwu.wherecollect.activity.SplashActivity this$0
 com.gongwu.wherecollect.adapter.DetailedViewAdapter$CustomViewHolder
     final synthetic com.gongwu.wherecollect.adapter.DetailedViewAdapter this$0
 org.greenrobot.eventbus.util.ErrorDialogFragments
@@ -20445,6 +20459,8 @@ com.yanzhenjie.recyclerview.swipe.SwipeMenuBridge
     private final android.view.View mViewRoot
     android.widget.TextView mTextView
     android.widget.ImageView mImageView
+com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding$8
+    final synthetic com.gongwu.wherecollect.activity.LoginEmailActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$11
     final synthetic com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding this$0
 com.gongwu.wherecollect.adapter.FurnitureTemplateListAdapter$CustomViewHolder
@@ -20477,6 +20493,8 @@ com.gongwu.wherecollect.view.PopupAddGoods_ViewBinding$2
 com.gongwu.wherecollect.activity.EditHomeActivity$5
     final synthetic com.gongwu.wherecollect.activity.EditHomeActivity this$0
 kotlin.collections.SetsKt___SetsKt
+androidx.camera.core.ImageCapture$OutputFileResults
+    private android.net.Uri mSavedUri
 com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding$7
     final synthetic com.gongwu.wherecollect.util.SelectImgDialog_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.LookModel$4
@@ -20698,6 +20716,8 @@ com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding$9
     final synthetic com.gongwu.wherecollect.activity.FurnitureLookActivity_ViewBinding this$0
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$7
     final synthetic com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding this$0
+com.gongwu.wherecollect.activity.LoginActivity_ViewBinding$8
+    final synthetic com.gongwu.wherecollect.activity.LoginActivity_ViewBinding this$0
 com.gongwu.wherecollect.contract.model.GoodsDetailsModel$7
     final synthetic com.gongwu.wherecollect.contract.model.GoodsDetailsModel this$0
 androidx.constraintlayout.solver.LinearSystem
@@ -20762,6 +20782,8 @@ com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding$2
     final synthetic com.gongwu.wherecollect.activity.ImportMoreGoodsActivity_ViewBinding this$0
 okio.BufferedSink
     public abstract okio.BufferedSink emitCompleteSegments()
+com.gongwu.wherecollect.view.PrivacyDialog_ViewBinding$1
+    final synthetic com.gongwu.wherecollect.view.PrivacyDialog_ViewBinding this$0
 okhttp3.internal.http1.Http1ExchangeCodec
     public static final okhttp3.internal.http1.Http1ExchangeCodec$Companion Companion
 androidx.camera.core.impl.utils.executor.HandlerScheduledExecutorService
@@ -20818,6 +20840,8 @@ com.gongwu.wherecollect.contract.model.GoodsPropertyModel$1
     final synthetic com.gongwu.wherecollect.contract.model.GoodsPropertyModel this$0
 com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding$3
     final synthetic com.gongwu.wherecollect.object.GoodsDetailsActivity_ViewBinding this$0
+com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter$13
+    final synthetic com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter this$0
 com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding$8
     final synthetic com.gongwu.wherecollect.view.ObjectInfoEditView_ViewBinding this$0
 androidx.core.view.ViewCompat$AccessibilityViewProperty

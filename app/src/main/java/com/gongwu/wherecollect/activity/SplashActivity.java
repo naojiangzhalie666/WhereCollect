@@ -2,13 +2,24 @@ package com.gongwu.wherecollect.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+
+import com.azhon.appupdate.utils.ApkUtil;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.BaseActivity;
+import com.gongwu.wherecollect.net.Config;
 import com.gongwu.wherecollect.util.SaveDate;
+import com.gongwu.wherecollect.view.PrivacyDialog;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.ExplainReasonCallback;
 import com.permissionx.guolindev.callback.ForwardToSettingsCallback;
@@ -20,17 +31,33 @@ import java.util.List;
 
 public class SplashActivity extends BaseActivity {
 
-    private long time;
     private boolean init;
 
     @Override
     protected void initPresenter() {
-
     }
 
     @Override
     protected void initViews() {
+        //判断缓存的版本与当前版本是否一致,不一致弹隐私提示
+        int cacheVersion = SaveDate.getInstence(mContext).getCacheVersion();
+        if (cacheVersion > 0 && cacheVersion == Config.VERSION) {
+            checkPermissionRequestEach();
+        } else {
+            PrivacyDialog dialog = new PrivacyDialog(mContext) {
+                @Override
+                public void submit() {
+                    SaveDate.getInstence(mContext).setCacheVersion(ApkUtil.getVersionCode(mContext));
+                    checkPermissionRequestEach();
+                }
 
+                @Override
+                public void cancel() {
+                    finish();
+                }
+            };
+            dialog.show();
+        }
     }
 
     @Override
@@ -38,20 +65,7 @@ public class SplashActivity extends BaseActivity {
         return R.layout.activity_splash;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        time = System.currentTimeMillis();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        checkPermissionRequestEach();
-    }
-
     private void startMainActivity() {
-        long endTime = System.currentTimeMillis() - time > 1500 ? 0 : 1500 - (System.currentTimeMillis() - time);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -64,7 +78,7 @@ public class SplashActivity extends BaseActivity {
                 }
                 finish();
             }
-        }, endTime);
+        }, 1500);
     }
 
     private void checkPermissionRequestEach() {

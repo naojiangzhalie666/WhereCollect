@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,6 +19,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.gongwu.wherecollect.ImageSelect.ImageGridActivity;
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.CameraMainActivity;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.ImageData;
@@ -134,12 +136,10 @@ public class SelectImgDialog {
                 mlist.add(new File(id.getBigUri()));
             }
             getResult(mlist);
-        } else if (requestCode == REQUST_CAMARE) {
-            Uri uri = Uri.fromFile(mOutputFile);
-            if (mOutputFile.length() > 0 && uri != null) {
-                List<File> list = new ArrayList<>();
-                list.add(mOutputFile);
-                getResult(list);
+        } else if (requestCode == CameraMainActivity.CAMERA_CODE) {
+            String path = data.getStringExtra(CameraMainActivity.CAMERA_TAG);
+            if (!TextUtils.isEmpty(path)) {
+                resultFile(new File(path));
             }
         } else if (resultCode == Activity.RESULT_OK && requestCode == VIDEO_CAPTURE) {
             Uri uri = data.getData();
@@ -269,19 +269,20 @@ public class SelectImgDialog {
      * 拍照
      */
     private void camare() {
-        try {
-            if (!PermissionUtil.cameraIsCanUse()) {
-                new PermissionUtil(SelectImgDialog.this.context, SelectImgDialog.this.context.getResources().getString(R.string.permission_capture));
-                return;
-            }
-            Intent newIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            newIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mOutputFile));
-            SelectImgDialog.this.context.startActivityForResult(newIntent, REQUST_CAMARE);
-            // ##############################
-        } catch (Exception e) {
-            e.printStackTrace();
-            new PermissionUtil(SelectImgDialog.this.context, SelectImgDialog.this.context.getResources().getString(R.string.permission_capture));
-        }
+//        try {
+//            if (!PermissionUtil.cameraIsCanUse()) {
+//                new PermissionUtil(SelectImgDialog.this.context, SelectImgDialog.this.context.getResources().getString(R.string.permission_capture));
+//                return;
+//            }
+//            Intent newIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//            newIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mOutputFile));
+//            SelectImgDialog.this.context.startActivityForResult(newIntent, REQUST_CAMARE);
+//            // ##############################
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            new PermissionUtil(SelectImgDialog.this.context, SelectImgDialog.this.context.getResources().getString(R.string.permission_capture));
+//        }
+        CameraMainActivity.start(context, false);
         dialog.dismiss();
     }
 

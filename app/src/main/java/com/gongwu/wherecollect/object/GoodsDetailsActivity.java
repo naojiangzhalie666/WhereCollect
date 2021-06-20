@@ -673,9 +673,6 @@ public class GoodsDetailsActivity extends BaseMvpActivity<GoodsDetailsActivity, 
 
     @Override
     protected void onDestroy() {
-        if (mImageView != null) {
-            mImageView.clear();
-        }
         super.onDestroy();
     }
 }

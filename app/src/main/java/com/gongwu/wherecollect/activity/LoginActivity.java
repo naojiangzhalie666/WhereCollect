@@ -85,7 +85,7 @@ public class LoginActivity extends BaseMvpActivity<LoginActivity, LoginPresenter
         return R.layout.activity_login;
     }
 
-    @OnClick({R.id.login_tv, R.id.send_msg_tv, R.id.img_code_iv, R.id.login_wechat_iv, R.id.title_commit_maincolor_tv, R.id.agree, R.id.login_mail_iv})
+    @OnClick({R.id.login_tv, R.id.send_msg_tv, R.id.img_code_iv, R.id.login_wechat_iv, R.id.title_commit_maincolor_tv, R.id.agree_tv, R.id.login_mail_iv, R.id.privacy_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_tv:
@@ -110,8 +110,11 @@ public class LoginActivity extends BaseMvpActivity<LoginActivity, LoginPresenter
                     finish();
                 }
                 break;
-            case R.id.agree:
-                WebActivity.start(mContext, Config.WEB_SERVICE_NAME, Config.WEB_SERVICE_URL);
+            case R.id.agree_tv:
+                WebActivity.start(mContext, Config.WEB_SERVICE_NAME, Config.WEB_SERVICE_URL,50);
+                break;
+            case R.id.privacy_tv:
+                WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL,50);
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -154,14 +157,14 @@ public class LoginActivity extends BaseMvpActivity<LoginActivity, LoginPresenter
         if (data != null) {
             //设置为试用用户
             data.setTest(true);
-            getPresenter().startMainActivity(this, data,false);
+            getPresenter().startMainActivity(this, data, false);
         }
     }
 
 
     @Override
     public void loginbyThirdPartySuccess(UserBean data) {
-        getPresenter().startMainActivity(this, data,true);
+        getPresenter().startMainActivity(this, data, true);
     }
 
     @Override
@@ -205,12 +208,12 @@ public class LoginActivity extends BaseMvpActivity<LoginActivity, LoginPresenter
     @Override
     public void loginPhoneSuccess(UserBean data) {
         if (TextUtils.isEmpty(data.getMax_version())) {
-            getPresenter().startMainActivity(this, data,true);
+            getPresenter().startMainActivity(this, data, true);
         } else {
             DialogUtil.show("提示", TextUtils.isEmpty(data.getLogin_messag()) ? "您的帐号已经在高版本使用过,请使用IOS版" : data.getLogin_messag(), "继续", "取消", LoginActivity.this, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    getPresenter().startMainActivity(LoginActivity.this, data,true);
+                    getPresenter().startMainActivity(LoginActivity.this, data, true);
                 }
             }, null);
         }
