@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.ActivityTaskManager;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.message.PushAgent;
 
 import butterknife.ButterKnife;
 
@@ -37,6 +38,7 @@ public abstract class BaseActivity extends FragmentActivity {
         initPresenter();
         initViews();
         ActivityTaskManager.getInstance().putActivity(this);
+        PushAgent.getInstance(mContext).onAppStart();
     }
 
     @Override

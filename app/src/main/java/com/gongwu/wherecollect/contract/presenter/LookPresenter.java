@@ -146,6 +146,32 @@ public class LookPresenter extends BasePresenter<ILookContract.ILookView> implem
     }
 
     @Override
+    public void setGoodsNoWeight(String uid, String goodsId) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        EditGoodsReq req = new EditGoodsReq(uid, null);
+        req.setObject_id(goodsId);
+        mModel.setGoodsNoWeight(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().setGoodsNoWeightSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
     public void goodsArchive(String uid, String goodsId) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();

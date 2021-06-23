@@ -4,6 +4,8 @@ package com.gongwu.wherecollect.base;
 import android.app.Application;
 import android.app.Notification;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -11,6 +13,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.os.Vibrator;
+
+import androidx.core.content.ContextCompat;
 
 import com.gongwu.wherecollect.BuildConfig;
 import com.gongwu.wherecollect.contract.AppConstant;
@@ -25,10 +29,6 @@ import com.squareup.leakcanary.LeakCanary;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.commonsdk.UMConfigure;
-import com.umeng.message.IUmengRegisterCallback;
-import com.umeng.message.PushAgent;
-import com.umeng.message.UmengMessageHandler;
-import com.umeng.message.entity.UMessage;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -74,7 +74,8 @@ public class App extends Application {
         LitePalApplication.initialize(this);
         IWXAPI api = WXAPIFactory.createWXAPI(this, AppConstant.WX_APP_ID);
         api.registerApp(AppConstant.WX_APP_ID);
-        initUM();
+//        UMConfigure.setLogEnabled(true);
+        UMConfigure.preInit(this, "5a2de126f43e484ca70000ef", null);
         initCache();
         try {//必须加上/否则剪切照片可能会出错
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -101,8 +102,18 @@ public class App extends Application {
         }
     }
 
-    private void initUM() {
-        Config.DEBUG = BuildConfig.LOGSHOW;
+    public static void initUM(Context mContext) {
+        // 初始化SDK
+//        参数1:上下文，必须的参数，不能为空。
+//        参数2:【友盟+】 AppKey，非必须参数，如果Manifest文件中已配置AppKey，该参数可以传空，则使用Manifest中配置的AppKey，否则该参数必须传入。
+//        参数3:【友盟+】 Channel，非必须参数，如果Manifest文件中已配置Channel，该参数可以传空，则使用Manifest中配置的Channel，否则该参数必须传入，Channel命名请详见Channel渠道命名规范。
+//        参数4:设备类型，必须参数，传参数为UMConfigure.DEVICE_TYPE_PHONE则表示手机；传参数为UMConfigure.DEVICE_TYPE_BOX则表示盒子；默认为手机。
+//        参数5:Push推送业务的secret，需要集成Push功能时必须传入Push的secret，否则传空。
+        UMConfigure.init(mContext.getApplicationContext(), "5a2de126f43e484ca70000ef", "",
+                UMConfigure.DEVICE_TYPE_PHONE, "de26ade0140020dd98cc6999598a4ff6");
+        // 选用LEGACY_AUTO页面采集模式
+        MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.LEGACY_AUTO);
+
         PlatformConfig.setWeixin(AppConstant.WX_APP_ID, "e1777498993b4eecbc20e9ef8c520c5d");
 //        PlatformConfig.setQQZone("1105780975", "YtsbvRT5V9PUaG8X1");
         PlatformConfig.setQQZone("1106091663", "DknG4bIDrqPOQPSa");
@@ -111,67 +122,7 @@ public class App extends Application {
         MobclickAgent.setCatchUncaughtExceptions(true);
         UMShareConfig config = new UMShareConfig();
         config.isNeedAuthOnGetUserInfo(true);
-        UMShareAPI.get(this).setShareConfig(config);
-        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "de26ade0140020dd98cc6999598a4ff6");
-        //获取消息推送代理示例
-        //注册推送服务，每次调用register方法都会回调该接口
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        //设置通知栏显示数量
-        mPushAgent.setDisplayNotificationNumber(5);
-        mPushAgent.register(new IUmengRegisterCallback() {
-            @Override
-            public void onSuccess(String deviceToken) {
-                //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
-                AppConstant.DEVICE_TOKEN = deviceToken;
-//                LogUtil.e("PushAgent register Success:" + deviceToken);
-            }
-
-            @Override
-            public void onFailure(String s, String s1) {
-            }
-        });
-        UmengMessageHandler messageHandler = new UmengMessageHandler() {
-            @Override
-            public Notification getNotification(Context context, UMessage msg) {
-                //收到推送
-                EventBus.getDefault().postSticky(new EventBusMsg.RefreshFragment());
-                systemMode();
-                return super.getNotification(context, msg);
-            }
-        };
-        mPushAgent.setMessageHandler(messageHandler);
-    }
-
-    private void systemMode() {
-        //获取声音管理器
-        AudioManager audio = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-        switch (audio.getRingerMode()) {//获取系统设置的铃声模式
-            case AudioManager.RINGER_MODE_VIBRATE:
-                startVibrator();
-                break;
-            case AudioManager.RINGER_MODE_NORMAL://声音模式   系统提示音
-                startVibrator();
-                MediaPlayer mp = new MediaPlayer();
-                try {
-                    mp.setDataSource(this, RingtoneManager
-                            .getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
-                    mp.prepare();
-                    mp.start();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-        }
-    }
-
-    //震动
-    private void startVibrator() {
-        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-        long[] pattern = {100, 400, 100, 400}; // 停止 开启 停止 开启
-        //第二个参数表示使用pattern第几个参数作为震动时间重复震动，如果是-1就震动一次   0一直震动
-        if (vibrator != null) {
-            vibrator.vibrate(pattern, -1);
-        }
+        UMShareAPI.get(mContext.getApplicationContext()).setShareConfig(config);
     }
 
     public static UserBean getUser(Context context) {

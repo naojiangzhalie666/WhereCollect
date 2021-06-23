@@ -2,27 +2,23 @@ package com.gongwu.wherecollect.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.text.TextUtils;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gongwu.wherecollect.R;
-import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
-import com.gongwu.wherecollect.net.entity.response.MainGoodsDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
-import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.GoodsImageView;
 import com.gongwu.wherecollect.view.SwipeMenuLayout;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -145,12 +141,24 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
             goodsHolder.nameTv.setText(bean.getName());
             goodsHolder.locationNameTv.setText(getLoction(bean));
+            //封存
             if (darklayer) {
                 goodsHolder.topTv.setVisibility(View.GONE);
                 goodsHolder.unlockTv.setVisibility(View.VISIBLE);
             } else {
                 goodsHolder.topTv.setVisibility(View.VISIBLE);
                 goodsHolder.unlockTv.setVisibility(View.GONE);
+                if (bean.getWeight() > 0) {
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.icon_untop);
+                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getMinimumHeight());
+                    goodsHolder.topTv.setCompoundDrawables(null, drawable, null, null);
+                    goodsHolder.topTv.setText(R.string.goods_untop);
+                } else {
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.icon_goods_top);
+                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getMinimumHeight());
+                    goodsHolder.topTv.setCompoundDrawables(null, drawable, null, null);
+                    goodsHolder.topTv.setText(R.string.goods_top);
+                }
             }
             if ("未归位".equals(goodsHolder.locationNameTv.getText().toString())) {
                 goodsHolder.addLocationTv.setVisibility(View.VISIBLE);

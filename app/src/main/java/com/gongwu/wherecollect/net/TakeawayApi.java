@@ -471,6 +471,10 @@ public interface TakeawayApi {
     @POST("api/app/v430/object/setWeight")
     Call<ResponseBase<RequestSuccessBean>> setGoodsWeight(@FieldMap Map<String, String> map);
 
+    @FormUrlEncoded
+    @POST("api/app/v440/object/untop")
+    Call<ResponseBase<RequestSuccessBean>> setGoodsNoWeight(@FieldMap Map<String, String> map);
+
     @GET("api/app/v420/statics1")
     Call<ResponseBase<List<StatisticsBean>>> getGoodsReturnDetails(@Query("uid") String uid, @Query("family_code") String family_code, @Query("code") String code);
 

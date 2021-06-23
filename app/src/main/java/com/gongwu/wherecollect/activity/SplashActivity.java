@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.azhon.appupdate.utils.ApkUtil;
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.base.BaseActivity;
 import com.gongwu.wherecollect.net.Config;
 import com.gongwu.wherecollect.util.SaveDate;
@@ -47,7 +48,7 @@ public class SplashActivity extends BaseActivity {
             PrivacyDialog dialog = new PrivacyDialog(mContext) {
                 @Override
                 public void submit() {
-                    SaveDate.getInstence(mContext).setCacheVersion(ApkUtil.getVersionCode(mContext));
+                    SaveDate.getInstence(mContext).setCacheVersion(Config.VERSION);
                     checkPermissionRequestEach();
                 }
 
@@ -102,6 +103,7 @@ public class SplashActivity extends BaseActivity {
             public void onResult(boolean allGranted, List<String> grantedList, List<String> deniedList) {
                 //框架BUG 这里会调用2次 可能是 读取一次，相机一起
                 if (allGranted && deniedList.size() == 0 && !init) {
+                    App.initUM(mContext);
                     startMainActivity();
                     init = true;
                 } else if (deniedList.size() > 0) {

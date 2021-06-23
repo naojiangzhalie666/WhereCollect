@@ -925,6 +925,11 @@ public class ApiUtils {
         ApiInstance.getApi().setGoodsWeight(requestMap).enqueue(callBack);
     }
 
+    public static <D extends RequestBase> void setGoodsNoWeight(D request, ApiCallBack<RequestSuccessBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().setGoodsNoWeight(requestMap).enqueue(callBack);
+    }
+
     /**
      * 归位统计
      */

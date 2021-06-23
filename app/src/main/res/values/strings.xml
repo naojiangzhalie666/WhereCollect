@@ -166,6 +166,7 @@
     <string name="goods_location">查看位置</string>
     <string name="goods_lock">封存</string>
     <string name="goods_top">置顶</string>
+    <string name="goods_untop">取消置顶</string>
     <string name="goods_unlock">还原</string>
     <string name="seal_hint_one_tv">双击底栏“查看”图标可以进入暗格</string>
     <string name="seal_hint_two_tv">被封存的物品只在暗格中可以查看，不在位置和查看页显示</string>

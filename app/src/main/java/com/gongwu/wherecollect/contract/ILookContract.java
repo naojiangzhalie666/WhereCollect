@@ -24,6 +24,8 @@ public interface ILookContract {
 
         void setGoodsWeight(EditGoodsReq req, final RequestCallback callback);
 
+        void setGoodsNoWeight(EditGoodsReq req, final RequestCallback callback);
+
         void goodsArchive(GoodsDetailsReq req, final RequestCallback callback);
 
         void removeArchiveObjects(GoodsDetailsReq req, final RequestCallback callback);
@@ -40,6 +42,8 @@ public interface ILookContract {
 
         void setGoodsWeight(String uid, String goodsId);
 
+        void setGoodsNoWeight(String uid, String goodsId);
+
         void goodsArchive(String uid, String goodsId);
 
         void removeArchiveObjects(String uid);
@@ -55,6 +59,8 @@ public interface ILookContract {
         void delSelectGoodsSuccess(RequestSuccessBean bean);
 
         void setGoodsWeightSuccess(RequestSuccessBean bean);
+
+        void setGoodsNoWeightSuccess(RequestSuccessBean bean);
 
         void goodsArchiveSuccess(RequestSuccessBean bean);
 

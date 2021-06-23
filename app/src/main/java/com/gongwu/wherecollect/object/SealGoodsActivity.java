@@ -191,6 +191,11 @@ public class SealGoodsActivity extends BaseMvpActivity<SealGoodsActivity, LookPr
     }
 
     @Override
+    public void setGoodsNoWeightSuccess(RequestSuccessBean bean) {
+
+    }
+
+    @Override
     public void goodsArchiveSuccess(RequestSuccessBean bean) {
         if (bean.getOk() == AppConstant.REQUEST_SUCCESS) {
             mRefreshLayout.autoRefresh();

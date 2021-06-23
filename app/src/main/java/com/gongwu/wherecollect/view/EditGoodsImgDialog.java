@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,6 +25,7 @@ import androidx.loader.content.CursorLoader;
 
 import com.gongwu.wherecollect.ImageSelect.ImageGridActivity;
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.activity.CameraMainActivity;
 import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.ImageData;
@@ -106,25 +108,7 @@ public class EditGoodsImgDialog {
                     @Override
                     public void onClick(View v) {
                         // ##########拍照##########
-                        try {
-                            if (!PermissionUtil.cameraIsCanUse()) {
-                                new PermissionUtil((Activity) v.getContext(), v.getContext().getResources
-                                        ().getString(R.string.permission_capture));
-                                return;
-                            }
-                            Intent newIntent = new Intent(
-                                    MediaStore.ACTION_IMAGE_CAPTURE);
-                            newIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                                    Uri.fromFile(mOutputFile));
-                            EditGoodsImgDialog.this.context
-                                    .startActivityForResult(newIntent,
-                                            REQUST_CAMARE);
-                            // ##############################
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            new PermissionUtil((Activity) v.getContext(), v.getContext().getResources
-                                    ().getString(R.string.permission_capture));
-                        }
+                        CameraMainActivity.start(context, false);
                         dialog.dismiss();
                     }
                 });
@@ -250,14 +234,11 @@ public class EditGoodsImgDialog {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (requestCode == REQUST_CAMARE) {
-            Uri uri = Uri.fromFile(mOutputFile);
-            if (mOutputFile.length() > 0 && uri != null) {
-                if (isClip) {
-                    cropBitmap(Uri.fromFile(mOutputFile));
-                } else {
-                    getResult(mOutputFile);
-                }
+        } else if (requestCode == CameraMainActivity.CAMERA_CODE) {
+            String path = data.getStringExtra(CameraMainActivity.CAMERA_TAG);
+            if (!TextUtils.isEmpty(path)) {
+                mOutputFile = new File(path);
+                getResult(mOutputFile);
             }
         }
     }
