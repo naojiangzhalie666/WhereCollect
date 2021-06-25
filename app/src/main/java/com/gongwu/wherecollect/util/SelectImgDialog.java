@@ -136,7 +136,7 @@ public class SelectImgDialog {
                 mlist.add(new File(id.getBigUri()));
             }
             getResult(mlist);
-        } else if (requestCode == CameraMainActivity.CAMERA_CODE) {
+        } else if (data != null && requestCode == CameraMainActivity.CAMERA_CODE) {
             String path = data.getStringExtra(CameraMainActivity.CAMERA_TAG);
             if (!TextUtils.isEmpty(path)) {
                 resultFile(new File(path));

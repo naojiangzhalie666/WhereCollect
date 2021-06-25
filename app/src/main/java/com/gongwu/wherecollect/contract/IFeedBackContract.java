@@ -1,6 +1,8 @@
 package com.gongwu.wherecollect.contract;
 
 
+import android.content.Context;
+
 import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.request.FeedBackReq;
@@ -13,7 +15,7 @@ public interface IFeedBackContract {
     }
 
     interface IFeedBackPresenter {
-        void feedBack(String uid, String title, String content);
+        void feedBack(String uid, String title, String content, Context mContext);
     }
 
     interface IFeedBackView extends BaseView {

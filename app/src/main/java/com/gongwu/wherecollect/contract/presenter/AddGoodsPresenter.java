@@ -542,7 +542,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
 
     public void onActivityResult(Context mContext, int requestCode, int resultCode, Intent data) {
         //拍照的原照片
-        if (requestCode == CameraMainActivity.CAMERA_CODE) {
+        if (data != null && requestCode == CameraMainActivity.CAMERA_CODE) {
             String path = data.getStringExtra(CameraMainActivity.CAMERA_TAG);
             if (!TextUtils.isEmpty(path)) {
                 if (getUIView() != null) {

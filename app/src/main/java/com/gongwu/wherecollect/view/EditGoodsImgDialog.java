@@ -234,7 +234,7 @@ public class EditGoodsImgDialog {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (requestCode == CameraMainActivity.CAMERA_CODE) {
+        } else if (data != null && requestCode == CameraMainActivity.CAMERA_CODE) {
             String path = data.getStringExtra(CameraMainActivity.CAMERA_TAG);
             if (!TextUtils.isEmpty(path)) {
                 mOutputFile = new File(path);

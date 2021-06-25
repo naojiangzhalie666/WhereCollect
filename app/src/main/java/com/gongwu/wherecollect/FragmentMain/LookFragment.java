@@ -222,11 +222,12 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
 
             @Override
             public void onTopClick(int positions, View view) {
-                if (mDetailsList.get(positions).getWeight() > 0) {
-                    getPresenter().setGoodsNoWeight(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
-                } else {
-                    getPresenter().setGoodsWeight(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
-                }
+//                if (mDetailsList.get(positions).getWeight() > 0) {
+//                    getPresenter().setGoodsNoWeight(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
+//                } else {
+//                    getPresenter().setGoodsWeight(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
+//                }
+                getPresenter().setGoodsWeight(App.getUser(mContext).getId(), mDetailsList.get(positions).get_id());
             }
 
             @Override

@@ -1,11 +1,15 @@
 package com.gongwu.wherecollect.contract.presenter;
 
+import android.content.Context;
+
+import com.azhon.appupdate.utils.ApkUtil;
 import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.IFeedBackContract;
 import com.gongwu.wherecollect.contract.model.FeedBackModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.request.FeedBackReq;
 import com.gongwu.wherecollect.net.entity.response.FeedbackBean;
+import com.gongwu.wherecollect.util.FileUtil;
 
 public class FeedBackPresenter extends BasePresenter<IFeedBackContract.IFeedBackView> implements IFeedBackContract.IFeedBackPresenter {
     private static final String TAG = "FeedBackPresenter";
@@ -26,7 +30,7 @@ public class FeedBackPresenter extends BasePresenter<IFeedBackContract.IFeedBack
 
 
     @Override
-    public void feedBack(String uid, String title, String content) {
+    public void feedBack(String uid, String title, String content, Context mContext) {
         if (getUIView() != null) {
             getUIView().showProgressDialog();
         }
@@ -34,6 +38,7 @@ public class FeedBackPresenter extends BasePresenter<IFeedBackContract.IFeedBack
         req.setUid(uid);
         req.setTitle(title);
         req.setContent(content);
+        req.setShortVersion(ApkUtil.getVersionName(mContext));
         mModel.feedBack(req, new RequestCallback<FeedbackBean>() {
             @Override
             public void onSuccess(FeedbackBean data) {

@@ -42,6 +42,7 @@ import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.object.AddGoodsActivity;
 import com.gongwu.wherecollect.object.AddMoreGoodsActivity;
 import com.gongwu.wherecollect.util.FileUtil;
+import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.yalantis.ucrop.UCrop;
@@ -260,7 +261,9 @@ public class CameraMainActivity extends BaseActivity {
                 cameraSaoma.setVisibility(View.GONE);
                 imagesLayout.setVisibility(View.VISIBLE);
                 continuousText.setVisibility(View.GONE);
-                imagesView.setImageURI(FileUtil.getUriFromFile(mContext, new File(files.get(files.size() - 1))));
+                if (files != null && files.size() > 0) {
+                    ImageLoader.load(mContext, imagesView, files.get(files.size() - 1));
+                }
                 numText.setText(String.valueOf(files.size()));
                 if (files.size() == maxImags) {
                     AddMoreGoodsActivity.start(mContext, files, locationCode);
@@ -383,7 +386,9 @@ public class CameraMainActivity extends BaseActivity {
                                 cameraSaoma.setVisibility(View.GONE);
                                 imagesLayout.setVisibility(View.VISIBLE);
                                 continuousText.setVisibility(View.GONE);
-                                imagesView.setImageURI(FileUtil.getUriFromFile(mContext, new File(files.get(files.size() - 1))));
+                                if (files != null && files.size() > 0) {
+                                    ImageLoader.load(mContext, imagesView, files.get(files.size() - 1));
+                                }
                                 numText.setText(String.valueOf(files.size()));
                                 if (files.size() == maxImags) {
                                     AddMoreGoodsActivity.start(mContext, files, locationCode);

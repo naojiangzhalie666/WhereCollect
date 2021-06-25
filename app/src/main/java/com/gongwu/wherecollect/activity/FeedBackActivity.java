@@ -99,7 +99,7 @@ public class FeedBackActivity extends BaseMvpActivity<FeedBackActivity, FeedBack
 
     private void feedBack() {
         getPresenter().feedBack(App.getUser(mContext).getId(), title.getText().toString(),
-                String.format("%s\n%s", info.getText().toString(), "联系方式：" + phone.getText().toString()));
+                String.format("%s\n%s", info.getText().toString(), "联系方式：" + phone.getText().toString()), mContext);
     }
 
     @Override

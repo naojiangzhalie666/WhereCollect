@@ -6,6 +6,7 @@ public class FeedBackReq extends RequestBase {
     private String uid;
     private String title;
     private String content;
+    private String shortVersion;
 
     public String getUid() {
         return uid;
@@ -29,5 +30,13 @@ public class FeedBackReq extends RequestBase {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getShortVersion() {
+        return shortVersion;
+    }
+
+    public void setShortVersion(String shortVersion) {
+        this.shortVersion = shortVersion;
     }
 }
