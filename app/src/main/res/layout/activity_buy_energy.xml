@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_bg"
+    android:orientation="vertical"
+    tools:context=".activity.BuyEnergyActivity">
+
+    <include layout="@layout/layout_title_all" />
+
+    <TextView
+        android:id="@+id/user_energy_num_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dip_10"
+        android:gravity="center"
+        android:text="我的能量值:20"
+        android:textColor="@color/color333"
+        android:textSize="@dimen/f_15" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dip_16"
+        android:layout_marginTop="@dimen/dip_20"
+        android:layout_marginEnd="@dimen/dip_16"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout style="@style/buy_energy_item_style">
+
+                <TextView
+                    style="@style/buy_energy_item_title_style"
+                    android:text="1元补充20点，6元补充160点" />
+
+                <TextView
+                    android:id="@+id/buy_energy_tv"
+                    style="@style/buy_energy_item_btn_style"
+                    android:text="立即购买" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/buy_energy_item_style">
+
+                <TextView
+                    style="@style/buy_energy_item_title_style"
+                    android:text="升级高级会员立送60点" />
+
+                <TextView
+                    android:id="@+id/buy_vip_tv"
+                    style="@style/buy_energy_item_btn_style"
+                    android:text="立即升级" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/buy_energy_item_style">
+
+                <TextView
+                    style="@style/buy_energy_item_title_style"
+                    android:text="高级会员购买充能加量25%" />
+
+                <TextView
+                    android:id="@+id/vip_buy_energy_tv"
+                    style="@style/buy_energy_item_btn_style"
+                    android:text="立即购买" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/buy_energy_item_style">
+
+                <TextView
+                    style="@style/buy_energy_item_title_style"
+                    android:text="推荐新会员注册，各领20点" />
+
+                <TextView
+                    android:id="@+id/share_app_tv"
+                    style="@style/buy_energy_item_btn_style"
+                    android:text="推荐给好友" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/buy_energy_item_style">
+
+                <TextView
+                    style="@style/buy_energy_item_title_style"
+                    android:text="领取码领取" />
+
+                <TextView
+                    android:id="@+id/input_barcode"
+                    style="@style/buy_energy_item_btn_style"
+                    android:text="输入领取码" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dip_16"
+                android:layout_marginBottom="@dimen/dip_16"
+                android:text="更多福利活动更新中..."
+                android:textColor="#C7C7C7"
+                android:textSize="@dimen/f_14" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

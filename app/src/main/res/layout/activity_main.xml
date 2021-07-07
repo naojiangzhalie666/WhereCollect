@@ -77,7 +77,8 @@
         android:id="@+id/main_frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/main_tab_layout" />
+        android:layout_above="@id/main_tab_layout"
+        android:layout_marginBottom="2dp" />
 
     <View
         android:layout_width="match_parent"
@@ -173,4 +174,153 @@
                 tools:text="2" />
         </RelativeLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/hint_add_goods_or_energy_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dip_200"
+        android:layout_above="@id/main_tab_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/dip_24"
+        android:layout_marginEnd="@dimen/dip_24"
+        android:layout_marginBottom="@dimen/dip_8"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/icon_add_new_goods_hint" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dip_10"
+            android:background="@drawable/shape_maincolor_r10dp"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dip_21"
+            android:paddingTop="@dimen/dip_24"
+            android:paddingEnd="@dimen/dip_21">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="物品添加方式新增："
+                android:textColor="@color/white"
+                android:textSize="@dimen/f_15" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_16"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1. 图书扫条码添加（消耗 "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_15" />
+
+                <ImageView
+                    android:layout_width="@dimen/dip_16"
+                    android:layout_height="@dimen/dip_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_energy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 1点能量）"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2. 物品扫条码添加（消耗 "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_15" />
+
+                <ImageView
+                    android:layout_width="@dimen/dip_16"
+                    android:layout_height="@dimen/dip_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_energy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 1点能量）"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dip_4"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3. 淘口令导入（消耗 "
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_15" />
+
+                <ImageView
+                    android:layout_width="@dimen/dip_16"
+                    android:layout_height="@dimen/dip_16"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_energy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 1点能量）"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_15" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/start_energy_act"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="什么是能量值？"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_12" />
+
+                <TextView
+                    android:id="@+id/energy_i_know"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dip_20"
+                    android:layout_toEndOf="@id/start_energy_act"
+                    android:background="@drawable/shape_white_r2dp"
+                    android:padding="@dimen/dip_4"
+                    android:text="我知道了"
+                    android:textColor="@color/maincolor"
+                    android:textSize="@dimen/f_15" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

@@ -64,12 +64,21 @@ public class UserBean implements Serializable {
     private String usid;
     private String max_version;
     private String login_messag;
+    private int energy_value;
 
     private boolean has_password;
 
     private boolean is_vip;
 
     private boolean isTest;
+
+    public int getEnergy_value() {
+        return energy_value;
+    }
+
+    public void setEnergy_value(int energy_value) {
+        this.energy_value = energy_value;
+    }
 
     public String getUsid() {
         return usid;

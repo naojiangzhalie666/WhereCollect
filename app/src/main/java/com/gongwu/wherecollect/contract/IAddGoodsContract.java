@@ -5,8 +5,11 @@ import android.content.Context;
 
 import com.gongwu.wherecollect.base.BaseView;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.BarcodeBean;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
 import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
+import com.gongwu.wherecollect.net.entity.request.UserReq;
+import com.gongwu.wherecollect.net.entity.response.BarcodeResultBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -29,6 +32,10 @@ public interface IAddGoodsContract {
         void getBookInfo(AddGoodsReq req, final RequestCallback callback);
 
         void getTaobaoInfo(AddGoodsReq req, final RequestCallback callback);
+
+        void getGoodsByBarcode(BarcodeBean barcodeBean, final RequestCallback callback);
+
+        void getGoodsByTBbarcode(BarcodeBean barcodeBean, final RequestCallback callback);
 
         void removeObjectFromFurnitrue(GoodsDetailsReq req, final RequestCallback callback);
 
@@ -53,6 +60,10 @@ public interface IAddGoodsContract {
         void getBookInfo(String uid, String isbn);
 
         void getTaobaoInfo(String uid, String key);
+
+        void getGoodsByBarcode(String uid, String key, String type);
+
+        void getGoodsByTBbarcode(String uid, String tkey);
 
         void removeObjectFromFurnitrue(String uid, String code);
 
@@ -94,6 +105,16 @@ public interface IAddGoodsContract {
         void getTaobaoInfoSuccess(BookBean data);
 
         /**
+         * 物品及图书扫码
+         */
+        void getGoodsByBarcodeSuccess(BarcodeResultBean data);
+
+        /**
+         * 物淘口令
+         */
+        void getGoodsByTBbarcodeSuccess(BarcodeResultBean data);
+
+        /**
          * 上传图片成功
          */
         void onUpLoadSuccess(String path);
@@ -102,21 +123,6 @@ public interface IAddGoodsContract {
          * 网络获取扫码物品信息，下载图片成功后回调
          */
         void updateBeanWithBook(BookBean bookBean);
-
-        /**
-         * 相机拍照原图
-         */
-        void getCamareImg(File file);
-
-        /**
-         * 相册选择
-         */
-        void getSelectPhotoImg(File file);
-
-        /**
-         * 裁剪图片返回
-         */
-        void getCropBitmap(File file);
 
         void removeObjectFromFurnitrueSuccess(RequestSuccessBean data);
 

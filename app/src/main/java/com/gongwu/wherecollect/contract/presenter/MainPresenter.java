@@ -5,6 +5,7 @@ import com.gongwu.wherecollect.contract.IMainContract;
 import com.gongwu.wherecollect.contract.model.MainModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VersionBean;
 
 
@@ -56,6 +57,27 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getVersionSuccess(bean);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getUserInfo(String uid) {
+        mModel.getUserInfo(uid, new RequestCallback<UserBean>() {
+            @Override
+            public void onSuccess(UserBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getUserInfoSuccess(data);
                 }
             }
 

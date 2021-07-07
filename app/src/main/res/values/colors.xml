@@ -124,5 +124,6 @@
     <color name="start_time_color">#59A6FE</color>
     <color name="end_time_color">#FE5959</color>
     <color name="seal_goods_title_bg">#4BA4DD</color>
+    <color name="dialog_hint_energy_bg">#007AFF</color>
 
 </resources>

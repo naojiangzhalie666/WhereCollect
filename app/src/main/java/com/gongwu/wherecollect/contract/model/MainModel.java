@@ -5,6 +5,7 @@ import com.gongwu.wherecollect.contract.IMainContract;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
+import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VersionBean;
 import com.gongwu.wherecollect.util.ApiUtils;
 
@@ -33,6 +34,22 @@ public class MainModel implements IMainContract.IMainModel {
         ApiUtils.getVersion(app_version, new ApiCallBack<VersionBean>() {
             @Override
             public void onSuccess(VersionBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
+
+    @Override
+    public void getUserInfo(String uid, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getUserInfo(uid, new ApiCallBack<UserBean>() {
+            @Override
+            public void onSuccess(UserBean data) {
                 callback.onSuccess(data);
             }
 

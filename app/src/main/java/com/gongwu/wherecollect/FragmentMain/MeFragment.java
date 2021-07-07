@@ -1,19 +1,26 @@
 package com.gongwu.wherecollect.FragmentMain;
 
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,9 +30,11 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.activity.ArticleActivity;
+import com.gongwu.wherecollect.activity.BuyEnergyActivity;
 import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.FeedBackActivity;
 import com.gongwu.wherecollect.activity.FurnitureLookActivity;
+import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.activity.MessageListActivity;
 import com.gongwu.wherecollect.activity.PersonActivity;
 import com.gongwu.wherecollect.activity.ShareListActivity;
@@ -37,12 +46,15 @@ import com.gongwu.wherecollect.net.Config;
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
 import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
+import com.gongwu.wherecollect.util.AnimationUtil;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.ShareUtil;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
+import com.gongwu.wherecollect.view.HintEnergyDialog;
+import com.gongwu.wherecollect.view.InputPasswordDialog;
 import com.gongwu.wherecollect.view.UserCodeDialog;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
 
@@ -57,8 +69,9 @@ public class MeFragment extends BaseFragment {
     private static final String TAG = "MeFragment";
     private final int START_CODE = 1012;
     private final int START_BUY_VIP_CODE = 1032;
+    private final int ANIMATION_TIME = 500;
 
-    @BindView(R.id.buy_vip_iv)
+    @BindView(R.id.user_buy_vip_iv)
     ImageView buyVipIv;
     @BindView(R.id.person_iv)
     ImageView personIv;
@@ -70,9 +83,13 @@ public class MeFragment extends BaseFragment {
     TextView userId;
     @BindView(R.id.privacy_policy_tv)
     TextView privacyPolicyTv;
+    @BindView(R.id.user_energy_num_tv)
+    TextView userEnergyNumTv;
+    @BindView(R.id.view_content)
+    View viewContent;
 
     private UserBean user;
-    private boolean init;
+    private int vipViewHeight;
 
     private MeFragment() {
     }
@@ -90,18 +107,47 @@ public class MeFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (!isAdded()) return;
-        initUI();
+        buyVipIv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                vipViewHeight = buyVipIv.getMeasuredHeight();
+                buyVipIv.setVisibility(View.GONE);
+                buyVipIv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+            }
+        });
     }
 
     private void initUI() {
-        StatusBarUtil.setStatusBarColor(getActivity(), getResources().getColor(R.color.activity_bg));
-        StatusBarUtil.setLightStatusBar(getActivity(), true);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getActivity().getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+            decorView.setSystemUiVisibility(option);
+            getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
     public void onStart() {
         super.onStart();
         refreshUi();
+        initUI();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!user.isIs_vip()) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
+                    AnimationUtil.StartTranslateOutside(buyVipIv, true);
+                }
+            }, 500);
+        }
+
     }
 
     /**
@@ -114,14 +160,15 @@ public class MeFragment extends BaseFragment {
         ImageLoader.loadCircle(getActivity(), personIv, user.getAvatar(), R.drawable.ic_user_error);
         userName.setText(user.getNickname());
         userId.setText(String.format(getString(R.string.user_usid_text), user.getUsid()));
-        buyVipIv.setVisibility(user.isIs_vip() ? View.GONE : View.VISIBLE);
+        userEnergyNumTv.setText(String.format(getString(R.string.definition_energy), String.valueOf(user.getEnergy_value())));
         privacyPolicyTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 //        privacyPolicyTv.setVisibility(StringUtils.isTencent(mContext) ? View.VISIBLE : View.GONE);
         privacyPolicyTv.setVisibility(View.GONE);
     }
 
     @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.qr_code_tv, R.id.start_share_tv, R.id.user_code_iv,
-            R.id.msg_iv, R.id.buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app, R.id.privacy_policy_tv, R.id.guider_tv})
+            R.id.msg_iv, R.id.user_buy_vip_iv, R.id.feed_back_tv, R.id.user_share_app, R.id.privacy_policy_tv,
+            R.id.guider_tv, R.id.user_energy_num_tv, R.id.collection_code_tv, R.id.replenish_energy_tv, R.id.user_energy_num_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.person_iv:
@@ -148,7 +195,7 @@ public class MeFragment extends BaseFragment {
             case R.id.msg_iv:
                 MessageListActivity.start(mContext);
                 break;
-            case R.id.buy_vip_iv:
+            case R.id.user_buy_vip_iv:
                 Intent intent1 = new Intent(mContext, BuyVIPActivity.class);
                 startActivityForResult(intent1, START_BUY_VIP_CODE);
                 break;
@@ -163,6 +210,16 @@ public class MeFragment extends BaseFragment {
                 break;
             case R.id.guider_tv:
                 ArticleActivity.start(mContext);
+                break;
+            case R.id.user_energy_num_tv:
+            case R.id.user_energy_num_iv:
+                BuyEnergyActivity.start(mContext);
+                break;
+            case R.id.collection_code_tv:
+                new InputPasswordDialog((Activity) mContext, "请输入领取码", "【如何获取领取码?】", Config.WEB_COLLECTION_NAME, Config.WEB_COLLECTION_URL);
+                break;
+            case R.id.replenish_energy_tv:
+                new HintEnergyDialog((Activity) mContext, App.getUser(mContext).isIs_vip());
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -206,6 +263,15 @@ public class MeFragment extends BaseFragment {
                 furnitureBean.setCode(furniture_code);
                 FurnitureLookActivity.start(mContext, family_code, furnitureBean, null, roomBean);
             }
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (!user.isIs_vip()) {
+            AnimationUtil.upSlide(viewContent, ANIMATION_TIME, buyVipIv.getHeight());
+            AnimationUtil.StartTranslateOutside(buyVipIv, false);
         }
     }
 

@@ -14,13 +14,13 @@ import java.util.List;
 
 public interface IMessageContract {
     interface IMessageModel {
-        void getMessagesList(MsgReq req, final RequestCallback callback);
+        void getMessagesList(String uid, int page, String content_type, final RequestCallback callback);
 
         void dealWithShareRequest(String uid, String url, final RequestCallback callback);
     }
 
     interface IMessagePresenter {
-        void getMessagesList(String uid, int page);
+        void getMessagesList(String uid, int page, String msgType);
 
         void dealWithShareRequest(String uid, String url);
     }

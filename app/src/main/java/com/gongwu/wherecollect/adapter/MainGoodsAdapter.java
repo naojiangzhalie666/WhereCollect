@@ -148,17 +148,17 @@ public class MainGoodsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             } else {
                 goodsHolder.topTv.setVisibility(View.VISIBLE);
                 goodsHolder.unlockTv.setVisibility(View.GONE);
-//                if (bean.getWeight() > 0) {
-//                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.icon_untop);
-//                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getMinimumHeight());
-//                    goodsHolder.topTv.setCompoundDrawables(null, drawable, null, null);
-//                    goodsHolder.topTv.setText(R.string.goods_untop);
-//                } else {
-//                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.icon_goods_top);
-//                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getMinimumHeight());
-//                    goodsHolder.topTv.setCompoundDrawables(null, drawable, null, null);
-//                    goodsHolder.topTv.setText(R.string.goods_top);
-//                }
+                if (bean.getWeight() > 0) {
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.icon_untop);
+                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getMinimumHeight());
+                    goodsHolder.topTv.setCompoundDrawables(null, drawable, null, null);
+                    goodsHolder.topTv.setText(R.string.goods_untop);
+                } else {
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.icon_goods_top);
+                    drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getMinimumHeight());
+                    goodsHolder.topTv.setCompoundDrawables(null, drawable, null, null);
+                    goodsHolder.topTv.setText(R.string.goods_top);
+                }
             }
             if ("未归位".equals(goodsHolder.locationNameTv.getText().toString())) {
                 goodsHolder.addLocationTv.setVisibility(View.VISIBLE);

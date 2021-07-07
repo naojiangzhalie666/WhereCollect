@@ -1,12 +1,15 @@
 package com.gongwu.wherecollect.net;
 
+import com.gongwu.wherecollect.net.entity.BarcodeBean;
 import com.gongwu.wherecollect.net.entity.base.ResponseBase;
 import com.gongwu.wherecollect.net.entity.response.ArticleBean;
+import com.gongwu.wherecollect.net.entity.response.BarcodeResultBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangListBean;
 import com.gongwu.wherecollect.net.entity.response.DetailedListBean;
+import com.gongwu.wherecollect.net.entity.response.EnergyPriceBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.FeedbackBean;
 import com.gongwu.wherecollect.net.entity.response.ImportGoodsBean;
@@ -45,6 +48,8 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -266,9 +271,8 @@ public interface TakeawayApi {
     @POST("api/app/v330/a/discontinue")
     Call<ResponseBase<RequestSuccessBean>> closeShareUser(@FieldMap Map<String, String> map);
 
-    @FormUrlEncoded
-    @POST("api/app/v330/messages")
-    Call<ResponseBase<MsgBean>> getShareMsgList(@FieldMap Map<String, String> map);
+    @GET("api/app/v330/messages")
+    Call<ResponseBase<MsgBean>> getShareMsgList(@Query("uid") String uid, @Query("type") String type);
 
 
     @FormUrlEncoded
@@ -398,9 +402,8 @@ public interface TakeawayApi {
     @POST("api/app/v340/search")
     Call<ResponseBase<SerchListBean>> getSearchList(@FieldMap Map<String, String> map);
 
-    @FormUrlEncoded
-    @POST("api/app/v330/messages")
-    Call<ResponseBase<MessagePostBean>> getMessagesList(@FieldMap Map<String, String> map);
+    @GET("api/app/v330/messages")
+    Call<ResponseBase<MessagePostBean>> getMessagesList(@Query("uid") String uid, @Query("page") int page, @Query("content_type") String content_type);
 
     @FormUrlEncoded
     @POST("api/app/v300/location/remove-object")
@@ -475,6 +478,12 @@ public interface TakeawayApi {
     @POST("api/app/v440/object/untop")
     Call<ResponseBase<RequestSuccessBean>> setGoodsNoWeight(@FieldMap Map<String, String> map);
 
+    @POST("api/app/v440/barcode")
+    Call<ResponseBase<BarcodeResultBean>> getGoodsByBarcode(@Body BarcodeBean barcodeBean);
+
+    @POST("api/app/v440/taokouling")
+    Call<ResponseBase<BarcodeResultBean>> getGoodsByTBbarcode(@Body BarcodeBean barcodeBean);
+
     @GET("api/app/v420/statics1")
     Call<ResponseBase<List<StatisticsBean>>> getGoodsReturnDetails(@Query("uid") String uid, @Query("family_code") String family_code, @Query("code") String code);
 
@@ -498,6 +507,9 @@ public interface TakeawayApi {
 
     @GET("article/list")
     Call<ResponseBase<List<ArticleBean>>> getArticList();
+
+    @GET("api/app/v440/energyPrice/list")
+    Call<ResponseBase<EnergyPriceBean>> getEnergyPrice(@Query("uid") String uid);
 
 
 }

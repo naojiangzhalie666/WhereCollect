@@ -163,7 +163,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
             @Override
             public void onResult(SHARE_MEDIA share_media) {
                 getPresenter().sharedApp(App.getUser(mContext).getId(), "WECHAT");
-
             }
 
             @Override

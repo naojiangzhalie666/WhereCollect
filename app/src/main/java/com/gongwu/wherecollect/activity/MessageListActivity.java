@@ -55,6 +55,7 @@ public class MessageListActivity extends BaseMvpActivity<MessageListActivity, Me
     private int page = AppConstant.DEFAULT_PAGE;
     private List<MessageBean> mlist = new ArrayList<>();
     private MessageListAdapter mAdapter;
+    private String msgType;
 
     @Override
     protected int getLayoutId() {
@@ -65,6 +66,10 @@ public class MessageListActivity extends BaseMvpActivity<MessageListActivity, Me
     protected void initViews() {
         titleLayout.setBackgroundColor(Color.WHITE);
         titleTv.setText(R.string.message_title);
+        msgType = getIntent().getStringExtra("MessageType");
+        if (!TextUtils.isEmpty(msgType) && msgType.equals("ENERGY")) {
+            titleTv.setText(R.string.enetgy_msg_title);
+        }
         mAdapter = new MessageListAdapter(mContext, mlist);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
@@ -72,14 +77,14 @@ public class MessageListActivity extends BaseMvpActivity<MessageListActivity, Me
             @Override
             public void onRefresh(@NonNull RefreshLayout mRefreshLayout) {
                 page = AppConstant.DEFAULT_PAGE;
-                getPresenter().getMessagesList(App.getUser(mContext).getId(), page);
+                getPresenter().getMessagesList(App.getUser(mContext).getId(), page, msgType);
             }
         });
         mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout mRefreshLayout) {
                 page++;
-                getPresenter().getMessagesList(App.getUser(mContext).getId(), page);
+                getPresenter().getMessagesList(App.getUser(mContext).getId(), page, msgType);
             }
         });
         mRefreshLayout.autoRefresh();
@@ -195,6 +200,14 @@ public class MessageListActivity extends BaseMvpActivity<MessageListActivity, Me
 
     public static void start(Context context) {
         Intent intent = new Intent(context, MessageListActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, String msgType) {
+        Intent intent = new Intent(context, MessageListActivity.class);
+        if (!TextUtils.isEmpty(msgType)) {
+            intent.putExtra("MessageType", msgType);
+        }
         context.startActivity(intent);
     }
 }

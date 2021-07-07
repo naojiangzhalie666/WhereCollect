@@ -11,9 +11,9 @@ import com.gongwu.wherecollect.util.ApiUtils;
 
 public class MessageModel implements IMessageContract.IMessageModel {
     @Override
-    public void getMessagesList(MsgReq req, RequestCallback callback) {
+    public void getMessagesList(String uid, int page, String content_type, RequestCallback callback) {
         if (callback == null) return;
-        ApiUtils.getMessagesList(req, new ApiCallBack<MessagePostBean>() {
+        ApiUtils.getMessagesList(uid, page, content_type, new ApiCallBack<MessagePostBean>() {
             @Override
             public void onSuccess(MessagePostBean data) {
                 callback.onSuccess(data);

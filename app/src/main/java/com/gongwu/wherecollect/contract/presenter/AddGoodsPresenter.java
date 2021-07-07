@@ -23,10 +23,13 @@ import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IAddGoodsContract;
 import com.gongwu.wherecollect.contract.model.AddGoodsModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.BarcodeBean;
 import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.ImageData;
 import com.gongwu.wherecollect.net.entity.request.AddGoodsReq;
 import com.gongwu.wherecollect.net.entity.request.GoodsDetailsReq;
+import com.gongwu.wherecollect.net.entity.request.UserReq;
+import com.gongwu.wherecollect.net.entity.response.BarcodeResultBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -43,6 +46,7 @@ import com.gongwu.wherecollect.util.PermissionUtil;
 import com.gongwu.wherecollect.util.QiNiuUploadUtil;
 import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.util.ToastUtil;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.ExplainReasonCallback;
 import com.permissionx.guolindev.callback.ForwardToSettingsCallback;
@@ -197,7 +201,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         goodsReq.setUid(App.getUser(context).getId());
         goodsReq.setISBN(isbn);
         goodsReq.setCategory_codes(StringUtils.isEmpty(tempBean.getCategories()) ? "" : tempBean.getCategories().get(tempBean.getCategories().size() - 1).getCode());
-        goodsReq.setChannel(TextUtils.isEmpty(tempBean.getChannel()) ? "" : JsonUtils.jsonFromObject(tempBean.getChannel().split(">")));
+        goodsReq.setChannel(TextUtils.isEmpty(tempBean.getChannel()) ? "" : JsonUtils.jsonFromObject(tempBean.getChannelList()));
         goodsReq.setColor(TextUtils.isEmpty(tempBean.getColor()) ? "" : JsonUtils.jsonFromObject(tempBean.getColor().split("、")));
         goodsReq.setDetail(TextUtils.isEmpty(tempBean.getDetail()) ? "" : tempBean.getDetail());
         goodsReq.setPrice_max(tempBean.getPrice() + "");
@@ -248,7 +252,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         AddGoodsReq goodsReq = new AddGoodsReq();
         goodsReq.setUid(App.getUser(mContext).getId());
         goodsReq.setCategory_codes(StringUtils.isEmpty(tempBean.getCategories()) ? "" : tempBean.getCategories().get(tempBean.getCategories().size() - 1).getCode());
-        goodsReq.setChannel(TextUtils.isEmpty(tempBean.getChannel()) ? "" : JsonUtils.jsonFromObject(tempBean.getChannel().split(">")));
+        goodsReq.setChannel(TextUtils.isEmpty(tempBean.getChannel()) ? "" : JsonUtils.jsonFromObject(tempBean.getChannelList()));
         goodsReq.setColor(TextUtils.isEmpty(tempBean.getColor()) ? "" : JsonUtils.jsonFromObject(tempBean.getColor().split("、")));
         goodsReq.setDetail(TextUtils.isEmpty(tempBean.getDetail()) ? "" : tempBean.getDetail());
         goodsReq.setPrice_max(tempBean.getPrice() + "");
@@ -326,6 +330,56 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
                     getUIView().getTaobaoInfoSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getGoodsByBarcode(String uid, String key, String type) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        mModel.getGoodsByBarcode(new BarcodeBean(uid, key, type), new RequestCallback<BarcodeResultBean>() {
+
+            @Override
+            public void onSuccess(BarcodeResultBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getGoodsByBarcodeSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void getGoodsByTBbarcode(String uid, String tkey) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        mModel.getGoodsByTBbarcode(new BarcodeBean(uid, tkey), new RequestCallback<BarcodeResultBean>() {
+
+            @Override
+            public void onSuccess(BarcodeResultBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getGoodsByTBbarcodeSuccess(data);
                 }
             }
 
@@ -540,28 +594,53 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
         }).start();
     }
 
-    public void onActivityResult(Context mContext, int requestCode, int resultCode, Intent data) {
-        //拍照的原照片
-        if (data != null && requestCode == CameraMainActivity.CAMERA_CODE) {
-            String path = data.getStringExtra(CameraMainActivity.CAMERA_TAG);
-            if (!TextUtils.isEmpty(path)) {
-                if (getUIView() != null) {
-                    getUIView().getCropBitmap(new File(path));
+    public void initBarCodeData(Context mContext, ObjectBean mGoodsBean, BarcodeResultBean data) {
+        if (mGoodsBean != null && data != null) {
+            if (!TextUtils.isEmpty(data.getName())) {
+                mGoodsBean.setName(data.getName());
+            }
+            if (TextUtils.isEmpty(mGoodsBean.getObjectUrl())) {
+                if (!TextUtils.isEmpty(data.getObject_url())) {
+                    mGoodsBean.setObject_url(data.getObject_url());
+                } else {
+                    ToastUtil.show(mContext, "该物品暂无图片");
                 }
             }
-        }
-        if (requestCode == REQUST_PHOTOSELECT && resultCode == ImageGridActivity.RESULT) {
-            List<ImageData> temp = (ArrayList<ImageData>) data.getSerializableExtra("list");
-            if (getUIView() != null) {
-                getUIView().getSelectPhotoImg(new File(temp.get(AppConstant.DEFAULT_INDEX_OF).getBigUri()));
+            if (mGoodsBean.getCount() == 0) {
+                mGoodsBean.setCount(1);
             }
-        }
-        //裁剪界面返回的照片
-        if (requestCode == UCrop.REQUEST_CROP) {
-            if (getUIView() != null) {
-                getUIView().getCropBitmap(mOutputFile);
+            if (TextUtils.isEmpty(mGoodsBean.getBuy_date())) {
+                mGoodsBean.setBuy_date(DateUtil.getNowDate(DateUtil.DatePattern.ONLY_DAY));
             }
+            if (!TextUtils.isEmpty(data.getCategory_code()) && !TextUtils.isEmpty(data.getCategory_name())) {
+                if (mGoodsBean.getCategories() == null || mGoodsBean.getCategories().size() == 0) {
+                    List<BaseBean> list = new ArrayList<>();
+                    BaseBean baseBean = new BaseBean();
+                    baseBean.setName(data.getCategory_name());
+                    baseBean.setCode(data.getCategory_code());
+                    baseBean.setLevel(AppConstant.LEVEL_MAIN_SORT);
+                    list.add(baseBean);
+                    mGoodsBean.setCategories(list);
+                }
+            }
+            if (data.getChannel() != null && data.getChannel().size() > 0) {
+                if (mGoodsBean.getChannelList() == null || mGoodsBean.getChannelList().size() == 0) {
+                    List<String> channels = new ArrayList<>();
+                    for (BaseBean baseBean : data.getChannel()) {
+                        channels.add(baseBean.getName());
+                    }
+                    mGoodsBean.setChannel(channels);
+                }
+            }
+            if (data.getPrice() > 0 && TextUtils.isEmpty(mGoodsBean.getPrice())) {
+                mGoodsBean.setPrice(String.valueOf(data.getPrice()));
+            }
+        } else {
+            ToastUtil.show(mContext, "暂无该条码数据");
         }
+    }
+
+    public void onActivityResult(Context mContext, int requestCode, int resultCode, Intent data) {
         //扫码
         if (requestCode == AddGoodsActivity.BOOK_CODE && resultCode == CaptureActivity.result) {//扫描的到结果
             String code = data.getStringExtra("result");
@@ -573,41 +652,6 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
                 getBookInfo(App.getUser(mContext).getId(), code);
             }
         }
-    }
-
-    public void startCropBitmap(Context mContext, File imgOldFile) {
-        mOutputFile = new File(App.CACHEPATH, System.currentTimeMillis() + ".jpg");
-        try {
-            mOutputFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //裁剪界面
-        cropBitmap(mContext, imgOldFile, mOutputFile);
-    }
-
-    // 剪切界面
-    private void cropBitmap(Context context, File imgFile, File mOutputFile) {
-
-        UCrop uCrop = UCrop.of(Uri.fromFile(imgFile), Uri.fromFile(mOutputFile));
-        //初始化UCrop配置
-        UCrop.Options options = new UCrop.Options();
-        //设置裁剪图片可操作的手势
-        options.setAllowedGestures(UCropActivity.SCALE, UCropActivity.ROTATE, UCropActivity.NONE);
-        //设置toolbar颜色
-        options.setToolbarColor(ActivityCompat.getColor(context, R.color.black));
-        options.setToolbarWidgetColor(ActivityCompat.getColor(context, R.color.white));
-        //设置状态栏颜色
-        options.setStatusBarColor(ActivityCompat.getColor(context, R.color.black));
-        //是否能调整裁剪框
-        //        options.setAspectRatioOptions(5,new AspectRatio("1:1",1f,1f),new AspectRatio("1:1",1f,1f));
-        //是否隐藏底部容器，默认显示
-        options.setHideBottomControls(false);
-        options.setFreeStyleCropEnabled(false);
-        uCrop.withOptions(options).withMaxResultSize(720, 720);
-        //设置裁剪图片的宽高比，比如16：9（设置后就不能选择其他比例了、选择面板就不会出现了）
-        uCrop.withAspectRatio(1, 1);
-        uCrop.start(((Activity) context));
     }
 
     public void startImageGridActivity(Context mContext) {

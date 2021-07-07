@@ -278,6 +278,19 @@ public class SaveDate {
         ed.commit();
     }
 
+    public boolean getEnergyHint() {
+        return sharedPreferences.getBoolean("EnergyHint", false);
+    }
+
+    /**
+     * 分享app
+     */
+    public void setEnergyHint(boolean isEnergyHint) {
+        Editor ed = sharedPreferences.edit();
+        ed.putBoolean("EnergyHint", isEnergyHint);
+        ed.commit();
+    }
+
     public boolean getShareApp(String uid) {
         return sharedPreferences.getBoolean(String.format("shareapp%s", uid), false);
     }

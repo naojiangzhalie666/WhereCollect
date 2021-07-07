@@ -31,6 +31,7 @@ public class AppConstant {
     public final static int LEVEL_FURNITURE = 1;
     public final static int LEVEL_INTERLAYER = 2;
     public final static int LEVEL_BOX = 3;
+    public final static int LEVEL_MAIN_SORT = 0;
     //购货渠道type 用于区分物品分类
     public final static String BUY_TYPE = "buy";
     public final static String BELONGER_TYPE = "belonger_type";
@@ -51,6 +52,7 @@ public class AppConstant {
 
     public static final int START_GOODS_INFO_CODE = 0x0210;
     public static final int START_GOODS_REMARKS_CODE = 0x0310;
+    public static final int START_BAR_CODE = 0x0340;
     public static String BASE_CODE;
 
     public static boolean isShowMsg;

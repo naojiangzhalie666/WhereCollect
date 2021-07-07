@@ -56,6 +56,7 @@
 
     <string name="room_object_count">%1$s个物品</string>
     <string name="definition_sort">自定义为“%1$s”分类</string>
+    <string name="definition_energy">能量值%1$s</string>
 
     <string name="add_other_content_text">添加其他属性</string>
     <string name="base_content">基本属性</string>
@@ -136,6 +137,7 @@
     <string name="open">展开全部</string>
     <string name="close">收起全部</string>
     <string name="message_title">消息中心</string>
+    <string name="enetgy_msg_title">充值记录</string>
     <string name="commit_edit">确认修改</string>
     <string name="act_vip_buy_title">购买服务</string>
     <string name="shared_vip_buy_hint">*原价18元，已享6元优惠</string>

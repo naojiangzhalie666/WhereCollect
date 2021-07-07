@@ -10,7 +10,7 @@ package com.gongwu.wherecollect.net;
  * @class describe
  */
 public class Config {
-    public static final boolean IS_TEST = false;
+    public static final boolean IS_TEST = true;
     //网络环境
     public static final String BASE_URL = IS_TEST ? "http://www.shouner.com:9202/" : "https://www.shouner.com/";
 
@@ -24,9 +24,19 @@ public class Config {
 
     public static final String WEB_PRIVACY_NAME = "收哪儿隐私保护政策";
     public static final String WEB_PRIVACY_URL = BASE_URL + "article?identifier=xy-ys";
+
+    public static final String WEB_ENERGY_NAME = "能量值帮助文档";
+    public static final String WEB_ENERGY_URL = BASE_URL + "article?identifier=yd-nlz";
+
+    public static final String WEB_COLLECTION_NAME = "领取码介绍";
+    public static final String WEB_COLLECTION_URL = BASE_URL + "article?identifier=yd-lqm";
+
+    public static final String WEB_TBBARCODE_NAME = "淘口令介绍";
+    public static final String WEB_TBBARCODE_URL = BASE_URL + "article?identifier=yd-tkl";
+
     public static final String WEB_GUIDER_NAME = "帮助与引导";
     public static final String WEB_GUIDER_URL = IS_TEST ? "http://std.shouner.com/popularize/" : "https://rg.shouner.com/";
     //个人详情 显示小版本,发一个测试版本就加一,好让测试区别 测试版本
-    public static final int VERSION = 77;
+    public static final int VERSION = 78;
 
 }

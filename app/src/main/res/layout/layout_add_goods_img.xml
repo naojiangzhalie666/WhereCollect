@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/add_goods_camare"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:background="@drawable/select_changheader_top_btn_bg"
+            android:gravity="center"
+            android:text="拍 照"
+            android:textColor="@color/black_87"
+            android:textScaleX="1.05"
+            android:textSize="@dimen/f_15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/split_color" />
+
+        <TextView
+            android:id="@+id/select_img_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:background="@drawable/select_changheader_btn"
+            android:gravity="center"
+            android:text="从相册选择"
+            android:textColor="@color/black_87"
+            android:textScaleX="1.05"
+            android:textSize="@dimen/f_15" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/split_color" />
+
+        <TextView
+            android:id="@+id/edit_img_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_40"
+            android:background="@drawable/select_changheader_btn"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="@color/black_87"
+            android:textScaleX="1.05"
+            android:textSize="@dimen/f_15"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/energy_item_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/books_bar_code_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_changheader_btn">
+
+                <TextView
+                    android:id="@+id/books_bar_code_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dip_40"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="图书扫条码"
+                    android:textColor="@color/black_87"
+                    android:textScaleX="1.05"
+                    android:textSize="@dimen/f_15" />
+
+                <ImageView
+                    android:id="@+id/books_bar_code_iv"
+                    android:layout_width="@dimen/dip_16"
+                    android:layout_height="@dimen/dip_16"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dip_12"
+                    android:layout_toRightOf="@id/books_bar_code_tv"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_energy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dip_6"
+                    android:layout_toRightOf="@id/books_bar_code_iv"
+                    android:text="-1"
+                    android:textColor="@color/remind_first_color"
+                    android:textSize="@dimen/f_16" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/split_color" />
+
+            <RelativeLayout
+                android:id="@+id/select_bar_code_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_changheader_btn">
+
+                <TextView
+                    android:id="@+id/select_bar_code_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dip_40"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="物品扫条码"
+                    android:textColor="@color/black_87"
+                    android:textScaleX="1.05"
+                    android:textSize="@dimen/f_15" />
+
+                <ImageView
+                    android:id="@+id/select_bar_code_iv"
+                    android:layout_width="@dimen/dip_16"
+                    android:layout_height="@dimen/dip_16"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dip_12"
+                    android:layout_toRightOf="@id/select_bar_code_tv"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_energy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dip_6"
+                    android:layout_toRightOf="@id/select_bar_code_iv"
+                    android:text="-1"
+                    android:textColor="@color/remind_first_color"
+                    android:textSize="@dimen/f_16" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/split_color" />
+
+            <RelativeLayout
+                android:id="@+id/select_password_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/select_changheader_btn">
+
+                <TextView
+                    android:id="@+id/select_password_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dip_40"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="淘口令添加"
+                    android:textColor="@color/black_87"
+                    android:textScaleX="1.05"
+                    android:textSize="@dimen/f_15" />
+
+                <ImageView
+                    android:id="@+id/select_password_iv"
+                    android:layout_width="@dimen/dip_16"
+                    android:layout_height="@dimen/dip_16"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dip_12"
+                    android:layout_toRightOf="@id/select_password_tv"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_energy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dip_6"
+                    android:layout_toRightOf="@id/select_password_iv"
+                    android:text="-1"
+                    android:textColor="@color/remind_first_color"
+                    android:textSize="@dimen/f_16" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/start_energy_act_tv"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dip_40"
+                android:background="#FAF7F7"
+                android:gravity="center"
+                android:text="什么是能量值？"
+                android:textColor="@color/dialog_hint_energy_bg"
+                android:textScaleX="1.05"
+                android:textSize="@dimen/f_15" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

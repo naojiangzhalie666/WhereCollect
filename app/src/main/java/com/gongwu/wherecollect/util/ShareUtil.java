@@ -96,7 +96,7 @@ public class ShareUtil {
             return;
         }
         UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
-        UMWeb web = new UMWeb("https://www.shouner.com/");
+        UMWeb web = new UMWeb(Config.SHARE_URL);
         web.setTitle("收哪儿-你的物品收纳记录管家");//标题
         web.setThumb(thumb);  //缩略图
         web.setDescription("找东西,不操心");//描述

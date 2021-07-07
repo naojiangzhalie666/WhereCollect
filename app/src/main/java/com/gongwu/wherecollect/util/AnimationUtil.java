@@ -78,6 +78,52 @@ public class AnimationUtil {
         view.startAnimation(animation);
     }
 
+    public static void StartTranslate(View view, boolean showOrHide) {
+        if (showOrHide) {
+            if (view.getVisibility() == View.VISIBLE) {
+                return;
+            } else {
+                view.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (view.getVisibility() != View.VISIBLE) {
+                return;
+            }
+        }
+        TranslateAnimation animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, showOrHide ? 0.0f : 1.0f,
+                Animation.RELATIVE_TO_SELF, showOrHide ? 1.0f : 0.0f);
+        animation.setDuration(500);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        if (!showOrHide) {
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    public static void StartTranslateOutside(View view, boolean showOrHide) {
+        if (showOrHide) {
+            if (view.getVisibility() == View.VISIBLE) {
+                return;
+            }
+        } else {
+            if (view.getVisibility() != View.VISIBLE) {
+                return;
+            }
+        }
+        TranslateAnimation animation = new TranslateAnimation(
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.0f,
+                Animation.RELATIVE_TO_SELF, showOrHide ? -1.0f : 0.0f,
+                Animation.RELATIVE_TO_SELF, showOrHide ? 0.0f : -1.0f);
+        animation.setDuration(500);
+        animation.setFillAfter(true);
+        view.startAnimation(animation);
+        view.setVisibility(showOrHide?View.VISIBLE:View.GONE);
+    }
+
     /**
      * 向上滑动
      *
@@ -89,6 +135,15 @@ public class AnimationUtil {
             return;
         }
         ObjectAnimator.ofFloat(view, "translationY", view.getHeight(), 0)
+                .setDuration(time).start();
+        view.setTag(true);
+    }
+
+    public static void upSlide(View view, int time, float y) {
+        if (view.getTag() != null && ((Boolean) view.getTag())) {
+            return;
+        }
+        ObjectAnimator.ofFloat(view, "translationY", y, 0)
                 .setDuration(time).start();
         view.setTag(true);
     }

@@ -27,8 +27,8 @@ public class MessagePresenter extends BasePresenter<IMessageContract.IMessageVie
     }
 
     @Override
-    public void getMessagesList(String uid, int page) {
-        mModel.getMessagesList(new MsgReq(uid, page), new RequestCallback<MessagePostBean>() {
+    public void getMessagesList(String uid, int page, String msgType) {
+        mModel.getMessagesList(uid, page, msgType, new RequestCallback<MessagePostBean>() {
             @Override
             public void onSuccess(MessagePostBean data) {
                 if (getUIView() != null) {

@@ -9,17 +9,15 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.View;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.azhon.appupdate.config.UpdateConfiguration;
@@ -36,28 +34,32 @@ import com.gongwu.wherecollect.base.BaseMvpActivity;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IMainContract;
 import com.gongwu.wherecollect.contract.presenter.MainPresenter;
+import com.gongwu.wherecollect.net.Config;
 import com.gongwu.wherecollect.net.entity.response.MessageBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
+import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.net.entity.response.VersionBean;
-import com.gongwu.wherecollect.object.SealGoodsActivity;
+import com.gongwu.wherecollect.object.AddGoodsActivity;
 import com.gongwu.wherecollect.permission.FloatWindowManager;
 import com.gongwu.wherecollect.service.TimerService;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
+import com.gongwu.wherecollect.util.JsonUtils;
 import com.gongwu.wherecollect.util.Lg;
+import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.ActivityTaskManager;
+import com.gongwu.wherecollect.view.EnergyDialog;
 import com.gongwu.wherecollect.view.GoodsImageView;
+import com.gongwu.wherecollect.view.HintEnergyDialog;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.ExplainReasonCallback;
 import com.permissionx.guolindev.callback.ForwardToSettingsCallback;
 import com.permissionx.guolindev.callback.RequestCallback;
 import com.permissionx.guolindev.request.ExplainScope;
 import com.permissionx.guolindev.request.ForwardScope;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
@@ -109,6 +111,8 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     TextView tabRemindTv;
     @BindView(R.id.main_tab_me_tv)
     TextView tabMeTv;
+    @BindView(R.id.hint_add_goods_or_energy_layout)
+    View energyView;
 
 
     private SparseArray<BaseFragment> fragments;
@@ -161,7 +165,8 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
 
     @OnClick({R.id.main_tab_space_tv, R.id.main_tab_look_tv, R.id.main_tab_remind_tv, R.id.main_tab_me_tv,
-            R.id.add_goods_iv, R.id.main_place_tv, R.id.main_cancel_tv, R.id.main_move_goods_iv})
+            R.id.add_goods_iv, R.id.main_place_tv, R.id.main_cancel_tv, R.id.main_move_goods_iv, R.id.start_energy_act,
+            R.id.energy_i_know})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.main_tab_space_tv:
@@ -216,7 +221,31 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                 mainTabLayout.setVisibility(View.VISIBLE);
                 moveLayerView.setVisibility(View.GONE);
                 break;
+            case R.id.start_energy_act:
+                WebActivity.start(mContext, Config.WEB_ENERGY_NAME, Config.WEB_ENERGY_URL, 50);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        initEnergyDialog();
+                    }
+                }, 1000);
+                break;
+            case R.id.energy_i_know:
+                initEnergyDialog();
+                break;
         }
+    }
+
+    private void initEnergyDialog() {
+        energyView.setVisibility(View.GONE);
+        SaveDate.getInstence(mContext).setEnergyHint(true);
+        EnergyDialog energyDialog = new EnergyDialog(mContext) {
+            @Override
+            public void getUserInfo() {
+                getPresenter().getUserInfo(App.getUser(mContext).getId());
+            }
+        };
+        energyDialog.show();
     }
 
     private void checkPermissionRequestEach() {
@@ -238,7 +267,8 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             @Override
             public void onResult(boolean allGranted, List<String> grantedList, List<String> deniedList) {
                 if (allGranted) {
-                    CameraMainActivity.start(mContext, false, null);
+//                    CameraMainActivity.start(mContext, false, null);
+                    AddGoodsActivity.start(mContext, null, null, null);
                 } else {
                     Toast.makeText(mContext, "您拒绝了如下权限：" + deniedList, Toast.LENGTH_SHORT).show();
                 }
@@ -438,6 +468,17 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     }
 
     @Override
+    public void getUserInfoSuccess(UserBean data) {
+        if (data != null) {
+            SaveDate.getInstence(this).setUser(JsonUtils.jsonFromObject(data));
+            App.setUser(data);
+            if (data.getEnergy_value() == 0) {
+                new HintEnergyDialog(MainActivity.this, App.getUser(mContext).isIs_vip());
+            }
+        }
+    }
+
+    @Override
     public void getVersionSuccess(VersionBean bean) {
         if (!TextUtils.isEmpty(bean.getVersion()) && !TextUtils.isEmpty(bean.getNewlyVersion())
                 && !bean.getVersion().equals(bean.getNewlyVersion())) {
@@ -477,6 +518,13 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                     .setApkVersionName(bean.getNewlyVersion())
                     .setApkSize("6")
                     .download();
+        } else {
+            //能量值介绍
+            if (!SaveDate.getInstence(mContext).getEnergyHint()) {
+                energyView.setVisibility(View.VISIBLE);
+            } else {
+                getPresenter().getUserInfo(App.getUser(mContext).getId());
+            }
         }
     }
 
@@ -536,7 +584,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         }
     }
 
-    private void initUM(){
+    private void initUM() {
         //获取消息推送代理示例
         //注册推送服务，每次调用register方法都会回调该接口
         PushAgent mPushAgent = PushAgent.getInstance(mContext.getApplicationContext());

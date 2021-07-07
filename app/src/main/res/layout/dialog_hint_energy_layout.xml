@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dip_10"
+        android:background="@drawable/home01_bg_card"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dip_30">
+
+        <TextView
+            android:id="@+id/dialog_energy_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_30"
+            android:drawableStart="@drawable/icon_not_energy"
+            android:drawablePadding="@dimen/dip_10"
+            android:text="能量值已用完，是否补充"
+            android:textColor="@color/color333"
+            android:textSize="@dimen/f_15" />
+
+        <TextView
+            android:id="@+id/hint_start_energy_act_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_12"
+            android:text="什么是能量值？"
+            android:textColor="@color/maincolor"
+            android:textSize="@dimen/f_12" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dip_76"
+            android:layout_marginTop="@dimen/dip_24"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dip_20"
+            android:paddingEnd="@dimen/dip_20">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_orange_r10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f_18">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1元"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_10"
+                    android:text="20点(高级会员+5点)"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_12" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/dip_16"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_orange_r10dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/f_18">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6元"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dip_10"
+                    android:text="160点 (高级会员+40点)"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/f_12" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/energy_buy_vip_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dip_20"
+            android:layout_marginBottom="@dimen/dip_10"
+            android:text="升级成为高级会员"
+            android:textColor="@color/maincolor"
+            android:textSize="@dimen/f_18" />
+    </LinearLayout>
+
+</RelativeLayout>

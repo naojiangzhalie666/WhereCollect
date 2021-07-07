@@ -26,6 +26,7 @@ import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.contract.IAddGoodsContract;
 import com.gongwu.wherecollect.contract.presenter.AddGoodsPresenter;
 import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
+import com.gongwu.wherecollect.net.entity.response.BarcodeResultBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
@@ -344,6 +345,16 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     }
 
     @Override
+    public void getGoodsByBarcodeSuccess(BarcodeResultBean data) {
+
+    }
+
+    @Override
+    public void getGoodsByTBbarcodeSuccess(BarcodeResultBean data) {
+
+    }
+
+    @Override
     public void onUpLoadSuccess(String path) {
         uploadBean.setObject_url(path);
         if (!uploadBean.isSelect()) {
@@ -497,21 +508,6 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             mDialog.setObjectBean(tempBean);
             mDialog.show();
         }
-    }
-
-    @Override
-    public void getCamareImg(File file) {
-
-    }
-
-    @Override
-    public void getSelectPhotoImg(File file) {
-
-    }
-
-    @Override
-    public void getCropBitmap(File file) {
-
     }
 
     @Override

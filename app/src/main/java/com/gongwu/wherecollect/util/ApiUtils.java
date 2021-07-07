@@ -3,8 +3,10 @@ package com.gongwu.wherecollect.util;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.ApiInstance;
+import com.gongwu.wherecollect.net.entity.BarcodeBean;
 import com.gongwu.wherecollect.net.entity.base.RequestBase;
 import com.gongwu.wherecollect.net.entity.response.ArticleBean;
+import com.gongwu.wherecollect.net.entity.response.BarcodeResultBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
 import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
@@ -13,6 +15,7 @@ import com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangListBean;
 import com.gongwu.wherecollect.net.entity.response.ChannelBean;
 import com.gongwu.wherecollect.net.entity.response.DetailedListBean;
+import com.gongwu.wherecollect.net.entity.response.EnergyPriceBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyBean;
 import com.gongwu.wherecollect.net.entity.response.FamilyListDetailsBean;
 import com.gongwu.wherecollect.net.entity.response.FeedbackBean;
@@ -491,10 +494,7 @@ public class ApiUtils {
      * 获取共享消息列表
      */
     public static <D extends RequestBase> void getShareMsgList(String uid, ApiCallBack<MsgBean> callBack) {
-        Map<String, String> requestMap = new TreeMap<>();
-        requestMap.put("uid", uid);
-        requestMap.put("type", "0");
-        ApiInstance.getApi().getShareMsgList(requestMap).enqueue(callBack);
+        ApiInstance.getApi().getShareMsgList(uid, "0").enqueue(callBack);
     }
 
     /**
@@ -780,9 +780,8 @@ public class ApiUtils {
     /**
      * 消息列表
      */
-    public static <D extends RequestBase> void getMessagesList(D request, ApiCallBack<MessagePostBean> callBack) {
-        Map<String, String> requestMap = requestPrepare(request);
-        ApiInstance.getApi().getMessagesList(requestMap).enqueue(callBack);
+    public static <D extends RequestBase> void getMessagesList(String uid, int page, String content_type, ApiCallBack<MessagePostBean> callBack) {
+        ApiInstance.getApi().getMessagesList(uid, page, content_type).enqueue(callBack);
     }
 
     /**
@@ -930,6 +929,14 @@ public class ApiUtils {
         ApiInstance.getApi().setGoodsNoWeight(requestMap).enqueue(callBack);
     }
 
+    public static <D extends RequestBase> void getGoodsByBarcode(BarcodeBean barcodeBean, ApiCallBack<BarcodeResultBean> callBack) {
+        ApiInstance.getApi().getGoodsByBarcode(barcodeBean).enqueue(callBack);
+    }
+
+    public static <D extends RequestBase> void getGoodsByTBbarcode(BarcodeBean barcodeBean, ApiCallBack<BarcodeResultBean> callBack) {
+        ApiInstance.getApi().getGoodsByTBbarcode(barcodeBean).enqueue(callBack);
+    }
+
     /**
      * 归位统计
      */
@@ -981,6 +988,10 @@ public class ApiUtils {
 
     public static <D extends RequestBase> void getArticList(ApiCallBack<List<ArticleBean>> callBack) {
         ApiInstance.getApi().getArticList().enqueue(callBack);
+    }
+
+    public static <D extends RequestBase> void getEnergyPrice(String uid, ApiCallBack<EnergyPriceBean> callBack) {
+        ApiInstance.getApi().getEnergyPrice(uid).enqueue(callBack);
     }
 
 }
