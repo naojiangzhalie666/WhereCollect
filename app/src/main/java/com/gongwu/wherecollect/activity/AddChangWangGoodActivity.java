@@ -23,6 +23,7 @@ import com.gongwu.wherecollect.net.entity.response.ChangWangDetailBean;
 import com.gongwu.wherecollect.net.entity.response.ChangWangListBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView;
+import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.Loading;
@@ -134,6 +135,7 @@ public class AddChangWangGoodActivity extends BaseMvpActivity<AddChangWangGoodAc
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_back:
+                finishCWActivity();
                 finish();
                 break;
             case R.id.no_good_view:
@@ -223,6 +225,7 @@ public class AddChangWangGoodActivity extends BaseMvpActivity<AddChangWangGoodAc
 
     @Override
     public void onBackPressed() {
+        finishCWActivity();
         super.onBackPressed();
     }
 
@@ -293,10 +296,8 @@ public class AddChangWangGoodActivity extends BaseMvpActivity<AddChangWangGoodAc
             }
             //删除做了标记的物品后
             if (changWangList.size() == 0) {
-                if (addGoodList.size() > 0) {
-//                    ImportSelectFurnitureActivity.start(context, new ArrayList<>(addGoodList.values()));
-                }
 //                EventBus.getDefault().post(new EventBusMsg.updateShareMsg());
+                finishCWActivity();
                 finish();
             }
 
@@ -324,4 +325,11 @@ public class AddChangWangGoodActivity extends BaseMvpActivity<AddChangWangGoodAc
     public void onError(String result) {
         setAllBtnEnable(true);
     }
+
+    private void finishCWActivity() {
+        if (addGoodList.size() > 0) {
+            EventBus.getDefault().post(new EventBusMsg.SetGoodsLocationByCangWang(addGoodList));
+        }
+    }
+
 }

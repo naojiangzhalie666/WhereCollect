@@ -2,6 +2,7 @@ package com.gongwu.wherecollect.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +22,10 @@ import com.gongwu.wherecollect.net.entity.response.LayerTemplateListBean;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.JsonUtils;
 import com.gongwu.wherecollect.util.Lg;
+import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.view.Loading;
+import com.gongwu.wherecollect.view.StubDialog;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -65,16 +68,16 @@ public class LayerTemplateActivity extends BaseMvpActivity<LayerTemplateActivity
         mAdapter = new LayerTemplateListAdapter(mContext, mlist);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mAdapter);
-        getPresenter().getTemplateLayerList(App.getUser(mContext).getId(), null);
         mAdapter.setOnItemClickListener(new LayerTemplateListAdapter.OnItemChildClickListener() {
             @Override
             public void onItemClick(FurnitureBean bean) {
                 getPresenter().updataFurniture(App.getUser(mContext).getId(), familyCode, furnitureBean.getCode(), JsonUtils.jsonFromObject(bean.getLayers()));
             }
         });
-
         furnitureBean = (FurnitureBean) getIntent().getSerializableExtra("furnitureBean");
         familyCode = getIntent().getStringExtra("familyCode");
+        if (furnitureBean == null) return;
+        getPresenter().getTemplateLayerList(App.getUser(mContext).getId(), !TextUtils.isEmpty(furnitureBean.getSystem_furniture_code()) ? furnitureBean.getSystem_furniture_code() : null);
     }
 
     @OnClick({R.id.back_btn})
@@ -117,6 +120,14 @@ public class LayerTemplateActivity extends BaseMvpActivity<LayerTemplateActivity
             mlist.add(listBean);
         }
         mAdapter.notifyDataSetChanged();
+        if (!SaveDate.getInstence(mContext).getRoomGeCengStub()) {
+            new StubDialog(this, R.string.add_room_geceng_hint) {
+                @Override
+                public void onDismissDialog() {
+                    SaveDate.getInstence(mContext).setRoomGeCengStub(true);
+                }
+            };
+        }
     }
 
     @Override

@@ -23,7 +23,7 @@
         android:layout_above="@id/object_count_tv"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/dip_6"
-        android:textColor="@color/color999"
+        android:textColor="@color/color333"
         android:textSize="@dimen/f_13"
         tools:text="鞋柜" />
 

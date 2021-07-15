@@ -33,6 +33,7 @@ import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
 import com.gongwu.wherecollect.swipecardview.SwipeFlingAdapterView;
+import com.gongwu.wherecollect.util.AesUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
 import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.gongwu.wherecollect.util.StatusBarUtil;
@@ -201,11 +202,13 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             objectBean.setSelect(true);
         }
         //添加
-        mDialog = new AddGoodsDialog(mContext, mlist.size()) {
+        mDialog = new AddGoodsDialog(this, mlist.size()) {
             @Override
             public void result(ObjectBean bean) {
                 //上传
-                if (!TextUtils.isEmpty(bean.getObject_url()) && !bean.getObject_url().contains("7xroa4") && !bean.getObject_url().contains("#") && !bean.getObject_url().contains("cdn.shouner.com/object/image")) {
+                if (!TextUtils.isEmpty(bean.getObject_url()) && !bean.getObject_url().contains("http")
+                        && !bean.getObject_url().contains("7xroa4") && !bean.getObject_url().contains("#")
+                        && !bean.getObject_url().contains("cdn.shouner.com/object/image")) {
                     uploadBean = bean;
                     getPresenter().uploadImg(mContext, new File(bean.getObject_url()));
                     return;
@@ -214,13 +217,21 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
                     bean.setSelect(false);
                     mlist.add(AppConstant.DEFAULT_INDEX_OF, bean);
                 }
+                if (sortBean != null && (sortBean.getCategories() == null || sortBean.getCategories().size() == 0)
+                        && bean.getCategories() != null && bean.getCategories().size() > 0) {
+                    if ("图书".equals(bean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName())) {
+                        sortBean.setCategories(bean.getCategories());
+                        sortNameTv.setText(sortBean.getCategories().get(AppConstant.DEFAULT_INDEX_OF).getName());
+                        initInfoData();
+                    }
+                }
                 mAdapter.notifyDataSetChanged();
                 setCommitBtnEnable(mlist.size() > 1);
             }
 
             @Override
-            public void scanCode() {
-                startActivityForResult(new Intent(mContext, CaptureActivity.class), BOOK_CODE);
+            public void scanCode(String code, String barcodeType) {
+                getPresenter().getGoodsByBarcode(App.getUser(mContext).getId(), AesUtil.AES256Encode(mContext, App.getUser(mContext).getId(), code), barcodeType);
             }
         };
         mDialog.show();
@@ -246,6 +257,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     }
 
     private void initSwipeViewAdapter() {
+        //批量添加,外面传进来图片
         mStackAdapter = new StackAdapter(mContext, selectImgs) {
             @Override
             public void selectItem(boolean select, String name, String url) {
@@ -346,12 +358,21 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
 
     @Override
     public void getGoodsByBarcodeSuccess(BarcodeResultBean data) {
-
+        App.getUser(mContext).setEnergy_value(App.getUser(mContext).getEnergy_value() - 1);
+        refreshUIByBarcode(data);
     }
 
     @Override
     public void getGoodsByTBbarcodeSuccess(BarcodeResultBean data) {
+        App.getUser(mContext).setEnergy_value(App.getUser(mContext).getEnergy_value() - 1);
+        refreshUIByBarcode(data);
+    }
 
+    private void refreshUIByBarcode(BarcodeResultBean data) {
+        if (mDialog.getGoodsBean() != null) {
+            getPresenter().initBarCodeData(mContext, mDialog.getGoodsBean(), data);
+            mDialog.setObjectBean(mDialog.getGoodsBean());
+        }
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.os.Vibrator;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
 import com.gongwu.wherecollect.BuildConfig;
@@ -92,6 +93,8 @@ public class App extends Application {
             return;
         }
         LeakCanary.install(this);
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO);
     }
 
 

@@ -496,6 +496,25 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.SetGoodsLocationByCangWang msg) {
+        MessageDialog dialog = new MessageDialog(mContext) {
+            @Override
+            public void submit() {
+                if (msg != null && msg.addGoodList != null) {
+                    MainActivity.moveGoodsList = new ArrayList<>();
+                    MainActivity.moveGoodsList.clear();
+                    for (ObjectBean bean : msg.addGoodList.values()) {
+                        MainActivity.moveGoodsList.add(bean);
+                    }
+                    EventBus.getDefault().post(new EventBusMsg.SelectHomeFragmentTab());
+                }
+            }
+        };
+        dialog.show();
+        dialog.setMessage(R.string.add_cangwang_hint_dialog_msg);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

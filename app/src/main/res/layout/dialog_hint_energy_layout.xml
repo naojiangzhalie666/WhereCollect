@@ -43,6 +43,7 @@
             android:paddingEnd="@dimen/dip_20">
 
             <LinearLayout
+                android:id="@+id/dialog_energy_one_ly"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -73,6 +74,7 @@
                 android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:id="@+id/dialog_energy_six_ly"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

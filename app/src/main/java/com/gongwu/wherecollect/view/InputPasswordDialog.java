@@ -63,8 +63,10 @@ public class InputPasswordDialog {
 
         dialog.setContentView(view);
         Window window = dialog.getWindow();
-        //设置弹出位置
-        window.setGravity(Gravity.CENTER);
+        if (window != null) {
+            //设置弹出位置
+            window.setGravity(Gravity.CENTER);
+        }
         dialog.show();
 
 //        WindowManager windowManager = ((Activity) context).getWindowManager();

@@ -68,6 +68,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoodsView> implements IAddGoodsContract.IAddGoodsPresenter {
@@ -91,7 +92,7 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
     }
 
     public static AddGoodsPresenter getInstance() {
-        return AddGoodsPresenter.Inner.instance;
+        return new AddGoodsPresenter();
     }
 
     /**
@@ -603,7 +604,8 @@ public class AddGoodsPresenter extends BasePresenter<IAddGoodsContract.IAddGoods
                 if (!TextUtils.isEmpty(data.getObject_url())) {
                     mGoodsBean.setObject_url(data.getObject_url());
                 } else {
-                    ToastUtil.show(mContext, "该物品暂无图片");
+                    // 随机颜色
+                    mGoodsBean.setObject_url(StringUtils.getResCode(new Random().nextInt(AppConstant.COCLOR_COUNT)));
                 }
             }
             if (mGoodsBean.getCount() == 0) {

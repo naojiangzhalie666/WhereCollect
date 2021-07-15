@@ -67,7 +67,7 @@ public class MessageListActivity extends BaseMvpActivity<MessageListActivity, Me
         titleLayout.setBackgroundColor(Color.WHITE);
         titleTv.setText(R.string.message_title);
         msgType = getIntent().getStringExtra("MessageType");
-        if (!TextUtils.isEmpty(msgType) && msgType.equals("ENERGY")) {
+        if (!TextUtils.isEmpty(msgType) && msgType.equals(AppConstant.ENERGY_TYPE)) {
             titleTv.setText(R.string.enetgy_msg_title);
         }
         mAdapter = new MessageListAdapter(mContext, mlist);

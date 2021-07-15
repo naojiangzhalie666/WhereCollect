@@ -2,6 +2,7 @@ package com.gongwu.wherecollect.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
@@ -25,7 +26,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.core.content.ContextCompat;
+
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.base.App;
 import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.GoodsInfoBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
@@ -954,5 +958,41 @@ public class StringUtils {
             e.printStackTrace();
         }
         return dest;
+    }
+
+    /**
+     * 获取系统剪贴板内容
+     */
+    public static String getClipContent(Context mContext) {
+        ClipboardManager manager = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (manager != null) {
+            try {
+                if (manager.hasPrimaryClip() && manager.getPrimaryClip().getItemCount() > 0) {
+                    CharSequence addedText = manager.getPrimaryClip().getItemAt(0).getText();
+                    String addedTextString = String.valueOf(addedText);
+                    if (!TextUtils.isEmpty(addedTextString)) {
+                        return addedTextString;
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 清空剪贴板内容
+     */
+    public static void clearClipboard(Context mContext) {
+        ClipboardManager manager = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (manager != null) {
+            try {
+                manager.setPrimaryClip(manager.getPrimaryClip());
+                manager.setText(null);
+            } catch (Exception e) {
+                Lg.getInstance().e("clearClipboard", e.getMessage());
+            }
+        }
     }
 }

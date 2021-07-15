@@ -103,6 +103,7 @@
             </RelativeLayout>
 
             <View
+                android:id="@+id/books_bar_code_split"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/split_color" />
@@ -146,6 +147,7 @@
             </RelativeLayout>
 
             <View
+                android:id="@+id/select_bar_code_split"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/split_color" />

@@ -3,6 +3,7 @@ package com.gongwu.wherecollect.object;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
@@ -50,6 +51,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -299,6 +301,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
             setResult(RESULT_OK, intent);
             if (location != null) {
                 EventBus.getDefault().post(new EventBusMsg.RefreshFurnitureLook());
+                EventBus.getDefault().post(new EventBusMsg.RefreshRoomsFragment());
             }
             finish();
         }
@@ -346,11 +349,13 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
 
     @Override
     public void getGoodsByBarcodeSuccess(BarcodeResultBean data) {
+        App.getUser(mContext).setEnergy_value(App.getUser(mContext).getEnergy_value() - 1);
         refreshUIByBarcode(data);
     }
 
     @Override
     public void getGoodsByTBbarcodeSuccess(BarcodeResultBean data) {
+        App.getUser(mContext).setEnergy_value(App.getUser(mContext).getEnergy_value() - 1);
         refreshUIByBarcode(data);
     }
 
@@ -364,6 +369,9 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         addGoodsInfotView.init(mGoodsBean);
         if (mGoodsBean.getObject_url().contains("http")) {
             mImageView.setImg(mGoodsBean.getObject_url(), 3, true);
+        } else if (mGoodsBean.getObject_url().contains("#")) {
+            int resId = Color.parseColor(mGoodsBean.getObject_url());
+            mImageView.setResourceColor(mGoodsBean.getName(), resId, 3);
         }
     }
 
@@ -564,8 +572,9 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
      */
     private void onClickCommit() {
         //如果图片没有地址，则传一个颜色服务牌
-        if (TextUtils.isEmpty(mGoodsBean.getObject_url())) {
-            mGoodsBean.setObject_url("#E66868");
+        if (TextUtils.isEmpty(mGoodsBean.getObjectUrl())) {
+            // 随机颜色
+            mGoodsBean.setObject_url(StringUtils.getResCode(new Random().nextInt(AppConstant.COCLOR_COUNT)));
         }
         if (mGoodsBean.getObject_url().contains("#")) {
             //调用接口
@@ -646,7 +655,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
     }
 
     private void initImgDialog() {
-        mImgDialog = new AddGoodsImgDialog(this, mGoodsBean);
+        mImgDialog = new AddGoodsImgDialog(this, mGoodsBean, false);
         mImgDialog.setAddGoodsImgDialogListener(new AddGoodsImgDialog.OnAddGoodsImgDialogListener() {
             @Override
             public void getTBbarCodeClick() {

@@ -11,10 +11,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import androidx.core.content.ContextCompat;
 
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
@@ -36,6 +39,7 @@ import com.gongwu.wherecollect.util.JsonUtils;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.ShareUtil;
+import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.SelectVIPChannelDialog;
@@ -70,16 +74,20 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     TextView buyVipOriginal;
     @BindView(R.id.commit_bt)
     Button commitBt;
-
-    private static final String WECHAT = "wechat";
-
-    private static final String ALIPAY = "alipay";
+    @BindView(R.id.buy_vip_bg_iv)
+    View bgView;
+    @BindView(R.id.vip_content)
+    View contentView;
+    @BindView(R.id.back_btn)
+    ImageView backView;
 
     private boolean isWechatCk;
 
     private VIPBean vipBean;
     private Loading loading;
     private String orderId;
+    private String buyType;
+    private int energyPrice;
 
     @Override
     protected int getLayoutId() {
@@ -95,7 +103,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+                    | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             decorView.setSystemUiVisibility(option);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
@@ -105,7 +113,21 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         buyVipHint.setVisibility(View.GONE);
         buyVipOriginal.setVisibility(View.GONE);
         commitBt.setVisibility(View.GONE);
-
+        buyType = getIntent().getStringExtra("buy_type");
+        energyPrice = getIntent().getIntExtra("price", 0);
+        //判断是否为能量值购买
+        if (AppConstant.ENERGY_TYPE.equals(buyType)) {
+            if (energyPrice > 0) {
+                bgView.setVisibility(View.GONE);
+                contentView.setVisibility(View.GONE);
+                titleTv.setText("支付");
+                titleTv.setTextColor(ContextCompat.getColor(mContext, R.color.black_txt));
+                backView.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.icon_card_act_finish));
+                showBuyVipSelectChannel();
+            } else {
+                finish();
+            }
+        }
     }
 
 
@@ -142,19 +164,35 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
             @Override
             public void WECHATClick() {
                 isWechatCk = true;
-                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), WECHAT, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+                if (AppConstant.ENERGY_TYPE.equals(buyType)) {
+                    //能量
+                    getPresenter().buyEnergy(App.getUser(mContext).getId(), energyPrice, AppConstant.WECHAT);
+                } else {
+                    //会员
+                    getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), AppConstant.WECHAT, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+                }
             }
 
             @Override
             public void ALIPAYClick() {
                 isWechatCk = false;
-                getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+                if (AppConstant.ENERGY_TYPE.equals(buyType)) {
+                    //能量
+                    getPresenter().buyEnergy(App.getUser(mContext).getId(), energyPrice, AppConstant.ALIPAY);
+                } else {
+                    getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), AppConstant.ALIPAY, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+                }
+            }
+
+            @Override
+            public void finish() {
+                finishByEnergy();
             }
         };
     }
 
     private void sharedAPP() {
-        ShareUtil.openShareVIPDialog(this, new UMShareListener() {
+        ShareUtil.openShareVIPDialog(this, App.getUser(mContext).getId(), new UMShareListener() {
             @Override
             public void onStart(SHARE_MEDIA share_media) {
 
@@ -249,11 +287,12 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         if (TextUtils.isEmpty(orderId)) return;
-                        getPresenter().notificationServer(App.getUser(mContext).getId(), isWechatCk ? WECHAT : ALIPAY, orderId);
+                        getPresenter().notificationServer(App.getUser(mContext).getId(), isWechatCk ? AppConstant.WECHAT : AppConstant.ALIPAY, orderId);
                         Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(mContext, "支付失败", Toast.LENGTH_SHORT).show();
+                        finishByEnergy();
                     }
                     break;
                 }
@@ -281,11 +320,27 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
             }
         }
 
-        ;
     };
+
+    private void finishByEnergy() {
+        if (AppConstant.ENERGY_TYPE.equals(buyType)) {
+            finish();
+        }
+    }
 
     public static void start(Context context) {
         Intent intent = new Intent(context, BuyVIPActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, String type, int price) {
+        Intent intent = new Intent(context, BuyVIPActivity.class);
+        if (!TextUtils.isEmpty(type)) {
+            intent.putExtra("buy_type", type);
+        }
+        if (price > 0) {
+            intent.putExtra("price", price);
+        }
         context.startActivity(intent);
     }
 
@@ -347,6 +402,18 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     }
 
     @Override
+    public void buyEnergySuccess(BuyVIPResultBean data) {
+        if (data != null && data.getWeichat() != null) {
+            startWechatPay(data.getWeichat());
+        } else if (data != null && data.getAlipay() != null && !TextUtils.isEmpty(data.getAlipay().getPayUrl())) {
+            pay(data.getAlipay().getPayUrl());
+            if (!TextUtils.isEmpty(data.getAlipay().getOrder_no())) {
+                orderId = data.getAlipay().getOrder_no();
+            }
+        }
+    }
+
+    @Override
     public void showProgressDialog() {
         loading = Loading.show(loading, mContext, "");
     }
@@ -370,7 +437,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.BuyVipSuccess msg) {
-        getPresenter().notificationServer(App.getUser(mContext).getId(), isWechatCk ? WECHAT : ALIPAY, orderId);
+        getPresenter().notificationServer(App.getUser(mContext).getId(), isWechatCk ? AppConstant.WECHAT : AppConstant.ALIPAY, orderId);
     }
 
     @Override
@@ -378,5 +445,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
 
 }

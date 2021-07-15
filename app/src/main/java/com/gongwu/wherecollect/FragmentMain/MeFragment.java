@@ -1,7 +1,5 @@
 package com.gongwu.wherecollect.FragmentMain;
 
-
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,8 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,27 +30,28 @@ import com.gongwu.wherecollect.activity.BuyEnergyActivity;
 import com.gongwu.wherecollect.activity.BuyVIPActivity;
 import com.gongwu.wherecollect.activity.FeedBackActivity;
 import com.gongwu.wherecollect.activity.FurnitureLookActivity;
-import com.gongwu.wherecollect.activity.MainActivity;
 import com.gongwu.wherecollect.activity.MessageListActivity;
 import com.gongwu.wherecollect.activity.PersonActivity;
 import com.gongwu.wherecollect.activity.ShareListActivity;
 import com.gongwu.wherecollect.activity.WebActivity;
 import com.gongwu.wherecollect.base.BaseFragment;
-import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.base.App;
+import com.gongwu.wherecollect.contract.IMeContract;
+import com.gongwu.wherecollect.contract.presenter.MePresenter;
 import com.gongwu.wherecollect.net.Config;
 import com.gongwu.wherecollect.net.entity.response.FurnitureBean;
+import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
 import com.gongwu.wherecollect.util.AnimationUtil;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.ShareUtil;
-import com.gongwu.wherecollect.util.StatusBarUtil;
 import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
-import com.gongwu.wherecollect.view.HintEnergyDialog;
+import com.gongwu.wherecollect.view.BuyEnergyDialog;
 import com.gongwu.wherecollect.view.InputPasswordDialog;
+import com.gongwu.wherecollect.view.Loading;
 import com.gongwu.wherecollect.view.UserCodeDialog;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
 
@@ -64,7 +61,7 @@ import butterknife.OnClick;
 /**
  * 主页-我的fragment
  */
-public class MeFragment extends BaseFragment {
+public class MeFragment extends BaseFragment<MePresenter> implements IMeContract.IMeView {
 
     private static final String TAG = "MeFragment";
     private final int START_CODE = 1012;
@@ -90,6 +87,8 @@ public class MeFragment extends BaseFragment {
 
     private UserBean user;
     private int vipViewHeight;
+    private Loading loading;
+    private boolean anim = false;
 
     private MeFragment() {
     }
@@ -107,18 +106,25 @@ public class MeFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (!isAdded()) return;
+        user = App.getUser(getActivity());
         buyVipIv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                vipViewHeight = buyVipIv.getMeasuredHeight();
+                if (buyVipIv.getMeasuredHeight() > 0) {
+                    vipViewHeight = buyVipIv.getMeasuredHeight();
+                }
                 buyVipIv.setVisibility(View.GONE);
                 buyVipIv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                if (anim) {
+                    AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
+                    AnimationUtil.StartTranslateOutside(buyVipIv, true);
+                    anim = false;
+                }
             }
         });
     }
 
     private void initUI() {
-
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getActivity().getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -131,30 +137,33 @@ public class MeFragment extends BaseFragment {
     @Override
     public void onStart() {
         super.onStart();
-        refreshUi();
         initUI();
+        refreshUi();
+        getPresenter().getUserInfo(App.getUser(mContext).getId());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if (!user.isIs_vip()) {
+        if (user != null && !user.isIs_vip()) {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
-                    AnimationUtil.StartTranslateOutside(buyVipIv, true);
+                    if (vipViewHeight != 0) {
+                        AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
+                        AnimationUtil.StartTranslateOutside(buyVipIv, true);
+                    } else {
+                        anim = true;
+                    }
                 }
-            }, 500);
+            }, 800);
         }
-
     }
 
     /**
      * 刷新UI
      */
     private void refreshUi() {
-        user = App.getUser(getActivity());
         if (user == null) return;
         vipView.setVisibility(user.isIs_vip() ? View.VISIBLE : View.GONE);
         ImageLoader.loadCircle(getActivity(), personIv, user.getAvatar(), R.drawable.ic_user_error);
@@ -164,6 +173,10 @@ public class MeFragment extends BaseFragment {
         privacyPolicyTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 //        privacyPolicyTv.setVisibility(StringUtils.isTencent(mContext) ? View.VISIBLE : View.GONE);
         privacyPolicyTv.setVisibility(View.GONE);
+        if (user.isIs_vip()) {
+            AnimationUtil.upSlide(viewContent, ANIMATION_TIME, buyVipIv.getHeight());
+            AnimationUtil.StartTranslateOutside(buyVipIv, false);
+        }
     }
 
     @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.qr_code_tv, R.id.start_share_tv, R.id.user_code_iv,
@@ -203,7 +216,8 @@ public class MeFragment extends BaseFragment {
                 FeedBackActivity.start(mContext);
                 break;
             case R.id.user_share_app:
-                ShareUtil.openShareDialog(getActivity());
+                if (user == null) return;
+                ShareUtil.openShareDialog(getActivity(), user.getId());
                 break;
             case R.id.privacy_policy_tv:
                 WebActivity.start(mContext, Config.WEB_PRIVACY_NAME, Config.WEB_PRIVACY_URL);
@@ -216,10 +230,16 @@ public class MeFragment extends BaseFragment {
                 BuyEnergyActivity.start(mContext);
                 break;
             case R.id.collection_code_tv:
-                new InputPasswordDialog((Activity) mContext, "请输入领取码", "【如何获取领取码?】", Config.WEB_COLLECTION_NAME, Config.WEB_COLLECTION_URL);
+                if (user == null) return;
+                new InputPasswordDialog((Activity) mContext, "请输入领取码", "【如何获取领取码?】", Config.WEB_COLLECTION_NAME, Config.WEB_COLLECTION_URL) {
+                    @Override
+                    public void result(String result) {
+                        getPresenter().getEnergyCode(user.getId(), result);
+                    }
+                };
                 break;
             case R.id.replenish_energy_tv:
-                new HintEnergyDialog((Activity) mContext, App.getUser(mContext).isIs_vip());
+                new BuyEnergyDialog((Activity) mContext, App.getUser(mContext).isIs_vip(), user.getEnergy_value());
                 break;
             default:
                 Lg.getInstance().e(TAG, "onClick default");
@@ -276,18 +296,20 @@ public class MeFragment extends BaseFragment {
     }
 
     @Override
-    public BasePresenter initPresenter() {
-        return null;
+    public MePresenter initPresenter() {
+        return MePresenter.getInstance();
     }
 
     @Override
     public void showProgressDialog() {
-
+        loading = Loading.show(loading, mContext, "");
     }
 
     @Override
     public void hideProgressDialog() {
-
+        if (loading != null) {
+            loading.dismiss();
+        }
     }
 
     @Override
@@ -295,4 +317,19 @@ public class MeFragment extends BaseFragment {
         Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void getUserInfoSuccess(UserBean data) {
+        if (data != null) {
+            user = data;
+            refreshUi();
+        }
+    }
+
+    @Override
+    public void getEnergyCodeSuccess(RequestSuccessBean data) {
+        if (data != null) {
+            ToastUtil.show(mContext, data.getContent());
+            getPresenter().getUserInfo(App.getUser(mContext).getId());
+        }
+    }
 }

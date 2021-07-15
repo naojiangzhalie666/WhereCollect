@@ -61,7 +61,7 @@ public class RemindListAdapter extends RecyclerView.Adapter<RemindListAdapter.Vi
             if (TextUtils.isEmpty(remindBean.getAssociated_object_url())) {
                 // 随机颜色
                 Random random = new Random();
-                int randomcolor = random.nextInt(10);
+                int randomcolor = random.nextInt(AppConstant.COCLOR_COUNT);
                 remindBean.setAssociated_object_url(StringUtils.getResCode(randomcolor));
             }
             int resId = Color.parseColor(remindBean.getAssociated_object_url());

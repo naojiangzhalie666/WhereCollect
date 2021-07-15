@@ -4,6 +4,7 @@ import com.gongwu.wherecollect.base.BasePresenter;
 import com.gongwu.wherecollect.contract.IBuyVIPContract;
 import com.gongwu.wherecollect.contract.model.BuyVIPModel;
 import com.gongwu.wherecollect.interfacedef.RequestCallback;
+import com.gongwu.wherecollect.net.entity.request.BuyEnergyReq;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.UserBean;
@@ -129,6 +130,34 @@ public class BuyVIPPresenter extends BasePresenter<IBuyVIPContract.IBuyVIPView> 
             getUIView().showProgressDialog();
         }
         mModel.buyVipWXOrAli(uid, price, type, couponId, new RequestCallback<BuyVIPResultBean>() {
+            @Override
+            public void onSuccess(BuyVIPResultBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().buyVipWXOrAliSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void buyEnergy(String uid, int price, String type) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        BuyEnergyReq req = new BuyEnergyReq();
+        req.setPrice(price * 100);
+        req.setUid(uid);
+        req.setType(type);
+        mModel.buyEnergy(req, new RequestCallback<BuyVIPResultBean>() {
             @Override
             public void onSuccess(BuyVIPResultBean data) {
                 if (getUIView() != null) {

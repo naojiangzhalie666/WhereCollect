@@ -14,7 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gongwu.wherecollect.R;
+import com.gongwu.wherecollect.base.App;
+import com.gongwu.wherecollect.contract.AppConstant;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+import com.gongwu.wherecollect.util.AesUtil;
+import com.gongwu.wherecollect.util.FileUtil;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.SelectImgDialog;
 import com.gongwu.wherecollect.util.StringUtils;
@@ -36,17 +40,15 @@ import butterknife.OnClick;
 public class AddGoodsDialog extends Dialog {
 
     @BindView(R.id.add_goods_iv)
-    ImageView addGoodsIv;
+    GoodsImageView mImageView;
     @BindView(R.id.goods_name_et)
     EditText goodsNameEdit;
     @BindView(R.id.submit_tv)
     TextView submit_tv;
 
-    private Context context;
-    private ObjectBean bean;
-    SelectImgDialog selectImgDialog;
-    private final int imgMax = 1;
-    private final int COCLOR_COUNT = 10;
+    private Activity mContext;
+    private ObjectBean mGoodsBean;
+    AddGoodsImgDialog selectImgDialog;
     private int goodsCount;
     private int goodsMaxCount = 10;
     /**
@@ -54,9 +56,9 @@ public class AddGoodsDialog extends Dialog {
      */
     private File imgOldFile;
 
-    public AddGoodsDialog(Context context, int goodsCount) {
+    public AddGoodsDialog(Activity context, int goodsCount) {
         super(context);
-        this.context = context;
+        this.mContext = context;
         this.goodsCount = goodsCount;
     }
 
@@ -67,7 +69,7 @@ public class AddGoodsDialog extends Dialog {
      */
     public void setObjectBean(ObjectBean bean) {
         if (bean != null) {
-            this.bean = bean;
+            this.mGoodsBean = bean;
             new Handler().post(new Runnable() {
                 @Override
                 public void run() {
@@ -75,31 +77,34 @@ public class AddGoodsDialog extends Dialog {
                 }
             });
         } else {
-            this.bean = new ObjectBean();
+            this.mGoodsBean = new ObjectBean();
             initUi();
         }
     }
 
+    public ObjectBean getGoodsBean() {
+        return mGoodsBean;
+    }
+
     private void initUi() {
-        addGoodsIv.setImageDrawable(context.getResources().getDrawable(R.drawable.select_pic));
+        mImageView.setImageResource(R.drawable.select_pic);
         goodsNameEdit.setText(null);
     }
 
     private void initData() {
-        if (!TextUtils.isEmpty(bean.getName())) {
-            goodsNameEdit.setText(bean.getName());
-            goodsNameEdit.setSelection(bean.getName().length());
+        if (!TextUtils.isEmpty(mGoodsBean.getName())) {
+            goodsNameEdit.setText(mGoodsBean.getName());
+            goodsNameEdit.setSelection(mGoodsBean.getName().length());
         }
-        if (!TextUtils.isEmpty(bean.getObject_url())) {
-            if (bean.getObject_url().contains("http")) {
-                ImageLoader.load(context, addGoodsIv, bean.getObject_url());
-            } else if (bean.getObject_url().contains("#")) {
+        if (!TextUtils.isEmpty(mGoodsBean.getObject_url())) {
+            if (mGoodsBean.getObject_url().contains("http")) {
+                mImageView.setImg(mGoodsBean.getObject_url(), 3, true);
+            } else if (mGoodsBean.getObject_url().contains("#")) {
                 //给了默认色
-                addGoodsIv.setImageDrawable(context.getResources().getDrawable(R.drawable.select_pic));
+                mImageView.setImageResource(R.drawable.select_pic);
             } else {
-                File file = new File(bean.getObject_url());
-                ImageLoader.loadFromFile(context, file, addGoodsIv);
-                imgOldFile = file;
+                imgOldFile = new File(mGoodsBean.getObject_url());
+                mImageView.setImg(mGoodsBean.getObject_url(), 3);
             }
         }
     }
@@ -120,7 +125,6 @@ public class AddGoodsDialog extends Dialog {
                 showSelectDialog();
                 break;
             case R.id.code_layout:
-                scanCode();
                 break;
             case R.id.cancel_tv:
                 if (imgOldFile != null) {
@@ -131,25 +135,25 @@ public class AddGoodsDialog extends Dialog {
                 dismiss();
                 break;
             case R.id.submit_tv:
-                if (goodsCount >= goodsMaxCount && !bean.isSelect()) {
-                    ToastUtil.show(context, "一次最多添加9个物品", Toast.LENGTH_SHORT);
+                if (goodsCount >= goodsMaxCount && !mGoodsBean.isSelect()) {
+                    ToastUtil.show(mContext, "一次最多添加9个物品", Toast.LENGTH_SHORT);
                     return;
                 }
                 //确定
                 if (!TextUtils.isEmpty(goodsNameEdit.getText().toString().trim())) {
-                    bean.setName(goodsNameEdit.getText().toString().trim());
+                    mGoodsBean.setName(goodsNameEdit.getText().toString().trim());
                 }
-                if (TextUtils.isEmpty(bean.getObjectUrl()) && TextUtils.isEmpty(goodsNameEdit.getText().toString().trim())) {
-                    ToastUtil.show(context, "图片或名称至少选填一项", Toast.LENGTH_SHORT);
+                if (TextUtils.isEmpty(mGoodsBean.getObjectUrl()) && TextUtils.isEmpty(goodsNameEdit.getText().toString().trim())) {
+                    ToastUtil.show(mContext, "图片或名称至少选填一项", Toast.LENGTH_SHORT);
                     return;
                 }
-                if (TextUtils.isEmpty(bean.getObjectUrl())) {
+                if (TextUtils.isEmpty(mGoodsBean.getObjectUrl())) {
                     // 随机颜色
                     Random random = new Random();
-                    int randomcolor = random.nextInt(COCLOR_COUNT);
-                    bean.setObject_url(StringUtils.getResCode(randomcolor));
+                    int randomcolor = random.nextInt(AppConstant.COCLOR_COUNT);
+                    mGoodsBean.setObject_url(StringUtils.getResCode(randomcolor));
                 }
-                result(bean);
+                result(mGoodsBean);
                 //初始化imgOldFile
                 imgOldFile = null;
                 dismiss();
@@ -162,32 +166,44 @@ public class AddGoodsDialog extends Dialog {
      */
     private void showSelectDialog() {
         //bean url没数据的时候，编辑选择肯定是隐藏的
-        if (TextUtils.isEmpty(bean.getObject_url())) {
+        if (TextUtils.isEmpty(mGoodsBean.getObject_url())) {
             imgOldFile = null;
         }
-        selectImgDialog = new SelectImgDialog((Activity) context, null, imgMax, imgOldFile) {
+        selectImgDialog = new AddGoodsImgDialog(mContext, mGoodsBean, true);
+        selectImgDialog.setAddGoodsImgDialogListener(new AddGoodsImgDialog.OnAddGoodsImgDialogListener() {
             @Override
-            public void getResult(List<File> list) {
-                super.getResult(list);
-                if (list.size() == 1) {
-                    imgOldFile = list.get(0);
-                    selectImgDialog.cropBitmap(imgOldFile);
-                } else {
-                    setDataUrl(list);
-                }
+            public void getTBbarCodeClick() {
+                //淘口令
+//                initInputDialog();
             }
 
             @Override
-            protected void resultFile(File file) {
-                super.resultFile(file);
-                ImageLoader.loadFromFile(context, file, addGoodsIv);
-                bean.setObject_url(file.getPath());
+            public void getBarCodeType(String code, String barcodeType) {
+                //条形扫码
+                scanCode(code, barcodeType);
             }
-        };
-        selectImgDialog.hintLayout();
-        //编辑选择是否隐藏的 根据imgOldFile来判断
-        selectImgDialog.showEditIV(imgOldFile == null ? View.GONE : View.VISIBLE);
-        selectImgDialog.show();
+
+            @Override
+            public void getResult(File file) {
+                //结果
+                mGoodsBean.setObject_url(file.getAbsolutePath());
+                mImageView.setImg(mGoodsBean.getObject_url(), 3);
+            }
+
+            @Override
+            public void editImg() {
+                //编辑
+                if (TextUtils.isEmpty(mGoodsBean.getObjectUrl())) return;
+                if (mGoodsBean.getObject_url().contains("http")) {
+                    if (mImageView.getBitmap() != null && selectImgDialog != null) {
+                        selectImgDialog.cropBitmap(FileUtil.getFile(mImageView.getBitmap(), System.currentTimeMillis() + ".jpg"));
+                    }
+                } else if (mGoodsBean.getObject_url().contains(App.CACHEPATH) && selectImgDialog != null) {
+                    //图片有地址 直接传
+                    selectImgDialog.cropBitmap(mGoodsBean.getObjectFiles());
+                }
+            }
+        });
     }
 
 
@@ -224,7 +240,7 @@ public class AddGoodsDialog extends Dialog {
 
     }
 
-    public void scanCode() {
+    public void scanCode(String code, String barcodeType) {
 
     }
 

@@ -423,8 +423,15 @@ public interface TakeawayApi {
     @GET("api/app/v420/vorder")
     Call<ResponseBase<BuyVIPResultBean>> buyVipWXOrAli(@Query("uid") String uid, @Query("price") int price, @Query("type") String type, @Query("couponId") String couponId);
 
+    @FormUrlEncoded
+    @POST("api/app/v440/vorder")
+    Call<ResponseBase<BuyVIPResultBean>> buyEnergy(@FieldMap Map<String, String> map);
+
     @GET("users/user-info")
     Call<ResponseBase<UserBean>> getUserInfo(@Query("uid") String uid);
+
+    @GET("api/app/v440/promotion2energy")
+    Call<ResponseBase<RequestSuccessBean>> getEnergyCode(@Query("uid") String uid, @Query("code") String code);
 
     @FormUrlEncoded
     @POST("users/feedback")

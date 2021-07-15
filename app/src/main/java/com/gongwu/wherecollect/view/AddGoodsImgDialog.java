@@ -59,7 +59,7 @@ public class AddGoodsImgDialog {
     private boolean isCanChangeAspect = false;
     private String barcodeType;
 
-    public AddGoodsImgDialog(Activity context, ObjectBean mGoodsBean) {
+    public AddGoodsImgDialog(Activity context, ObjectBean mGoodsBean, boolean isAddMore) {
         this.mContext = context;
         String sdPath = App.CACHEPATH;
         File file = new File(sdPath);
@@ -82,6 +82,12 @@ public class AddGoodsImgDialog {
                 R.layout.layout_add_goods_img, null);
         view.findViewById(R.id.energy_item_layout).setVisibility(hideEnergy ? View.GONE : View.VISIBLE);
         view.findViewById(R.id.edit_img_tv).setVisibility(hideEnergy ? View.VISIBLE : View.GONE);
+        if (!hideEnergy && isAddMore) {
+            view.findViewById(R.id.books_bar_code_split).setVisibility(View.GONE);
+            view.findViewById(R.id.select_bar_code_view).setVisibility(View.GONE);
+            view.findViewById(R.id.select_bar_code_split).setVisibility(View.GONE);
+            view.findViewById(R.id.select_password_view).setVisibility(View.GONE);
+        }
         //拍照
         view.findViewById(R.id.add_goods_camare).setOnClickListener(
                 new View.OnClickListener() {
@@ -149,8 +155,10 @@ public class AddGoodsImgDialog {
         Animation ani = AnimationUtils.loadAnimation(context, R.anim.push_bottom_in);
         view.findViewById(R.id.linearLayout).startAnimation(ani);
         Window window = dialog.getWindow();
-        //设置弹出位置
-        window.setGravity(Gravity.BOTTOM);
+        if (window != null) {
+            //设置弹出位置
+            window.setGravity(Gravity.BOTTOM);
+        }
         dialog.show();
         WindowManager windowManager = ((Activity) context).getWindowManager();
         Display display = windowManager.getDefaultDisplay();

@@ -371,6 +371,7 @@ public class ObjectBean implements Serializable, Cloneable {
             return object_url;
         }
         if (object_url.contains("#")) {
+            //判断色号值是否正确
             String colorbase = "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$";
             return object_url.matches(colorbase) ? object_url : "#E66868";
         }

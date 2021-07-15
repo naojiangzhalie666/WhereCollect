@@ -278,6 +278,7 @@ public class GoodsImageView extends FrameLayout {
     }
 
     public void setResourceColor(String nickName, int resId, int radius) {
+        head.setImageDrawable(null);
         name.setVisibility(VISIBLE);
         name.setText(getEndNick(nickName));
         GradientDrawable drawable = new GradientDrawable();

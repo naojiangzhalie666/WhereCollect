@@ -90,6 +90,7 @@
     <string name="remind_goods_name_text">名称: %1$s</string>
     <string name="remind_goods_classify_text">分类: %1$s</string>
     <string name="remind_goods_location_text">位置: %1$s</string>
+    <string name="dialog_energy_num">能量值%1$s，是否补充</string>
     <string name="remind_remarks_title_text">说明备注</string>
     <string name="remind_remarks_hint_text">说明备注描述</string>
     <string name="goods_remarks_hint_text">其他描述</string>
@@ -175,4 +176,7 @@
     <string name="seal_hint_vip_tv">封存为高级账户功能,需内购升级才可试用</string>
     <string name="seal_buy_vip_btn">升级为高级账户</string>
     <string name="seal_cancel_vip_btn">移出暗格内物品,暂不升级</string>
+    <string name="add_cangwang_hint_dialog_msg">已添加不少物品了,先去给他们定位吧</string>
+    <string name="add_goods_location_hint">选择家具及隔层,放置物品,标记其位置</string>
+    <string name="add_room_geceng_hint">新家具需创建家具内部隔层分布</string>
 </resources>

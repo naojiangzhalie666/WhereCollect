@@ -14,6 +14,7 @@ public class FurnitureBean implements Serializable {
     private String background_url;
     private String type;
     private String type_name;
+    private String system_furniture_code;
     private boolean is_user;
     private int object_count;
     private int location_count;
@@ -156,5 +157,13 @@ public class FurnitureBean implements Serializable {
 
     public void setScale(Point scale) {
         this.scale = scale;
+    }
+
+    public String getSystem_furniture_code() {
+        return system_furniture_code;
+    }
+
+    public void setSystem_furniture_code(String system_furniture_code) {
+        this.system_furniture_code = system_furniture_code;
     }
 }

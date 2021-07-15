@@ -2,6 +2,8 @@ package com.gongwu.wherecollect.activity;
 
 import android.Manifest;
 import android.app.Notification;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,6 +12,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.Vibrator;
 import android.text.TextUtils;
 import android.util.SparseArray;
@@ -50,16 +54,20 @@ import com.gongwu.wherecollect.util.JsonUtils;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.SaveDate;
 import com.gongwu.wherecollect.util.StringUtils;
+import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.ActivityTaskManager;
+import com.gongwu.wherecollect.view.DialogMessageTwoBtn;
 import com.gongwu.wherecollect.view.EnergyDialog;
 import com.gongwu.wherecollect.view.GoodsImageView;
-import com.gongwu.wherecollect.view.HintEnergyDialog;
+import com.gongwu.wherecollect.view.BuyEnergyDialog;
+import com.gongwu.wherecollect.view.StubDialog;
 import com.permissionx.guolindev.PermissionX;
 import com.permissionx.guolindev.callback.ExplainReasonCallback;
 import com.permissionx.guolindev.callback.ForwardToSettingsCallback;
 import com.permissionx.guolindev.callback.RequestCallback;
 import com.permissionx.guolindev.request.ExplainScope;
 import com.permissionx.guolindev.request.ForwardScope;
+import com.tencent.wxop.stat.StatService;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.PushAgent;
 import com.umeng.message.UmengMessageHandler;
@@ -114,10 +122,10 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     @BindView(R.id.hint_add_goods_or_energy_layout)
     View energyView;
 
-
     private SparseArray<BaseFragment> fragments;
     private DownloadManager manager;
     private long exitTime, downTime;
+    private String energyCode;
 
     @Override
     protected void initViews() {
@@ -329,12 +337,46 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             } else {
                 redNumberTv.setVisibility(View.GONE);
             }
+            if (!SaveDate.getInstence(mContext).getGoodsLocationStub()) {
+                new StubDialog(this, R.string.add_goods_location_hint) {
+                    @Override
+                    public void onDismissDialog() {
+                        SaveDate.getInstence(mContext).setGoodsLocationStub(true);
+                    }
+                };
+            }
         } else {
             MainActivity.moveBoxBean = null;
             MainActivity.moveGoodsList = null;
             MainActivity.moveLayerBean = null;
             mainTabLayout.setVisibility(View.VISIBLE);
             moveLayerView.setVisibility(View.GONE);
+        }
+        initEnergyCode();
+    }
+
+
+    class ContentRunThread implements Runnable {
+        @Override
+        public void run() {
+            // 获取剪贴板数据
+            String content = null;
+            content = StringUtils.getClipContent(mContext);
+            if (content.contains("SN-")) {
+                if (content.equals(energyCode)) {
+                    return;
+                }
+                energyCode = content;
+                content = content.substring(3, content.length());
+                new DialogMessageTwoBtn(MainActivity.this, "检测到剪切板中有领取码，是否领取？", content) {
+                    @Override
+                    public void submit(String type) {
+                        if (fragments != null && fragments.size() > TAB_ME) {
+                            getPresenter().getEnergyCode(App.getUser(mContext).getId(), type);
+                        }
+                    }
+                };
+            }
         }
     }
 
@@ -435,6 +477,12 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.SelectHomeFragmentTab msg) {
+        selectTab(AppConstant.DEFAULT_INDEX_OF);
+        initEditLayout();
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -473,9 +521,17 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
             SaveDate.getInstence(this).setUser(JsonUtils.jsonFromObject(data));
             App.setUser(data);
             if (data.getEnergy_value() == 0) {
-                new HintEnergyDialog(MainActivity.this, App.getUser(mContext).isIs_vip());
+                new BuyEnergyDialog(MainActivity.this, App.getUser(mContext).isIs_vip(), 0);
             }
         }
+    }
+
+    private void initEnergyCode() {
+        //必须放在 hander的 runable 异步线程中（不能放在Thread  中，有的手机（oppo就会出现）会报线程中不能使用hander 的异常，
+//        可能获取剪切板的操作 在不能在Thread线程中使用吧）
+        Handler mHandler = new Handler(Looper.getMainLooper());
+        //延迟一秒
+        mHandler.postDelayed(new ContentRunThread(), 1000);
     }
 
     @Override
@@ -536,6 +592,14 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         }
     }
 
+    @Override
+    public void getEnergyCodeSuccess(RequestSuccessBean data) {
+        if (data != null) {
+            ToastUtil.show(mContext, data.getContent());
+            StringUtils.clearClipboard(mContext);
+        }
+    }
+
     /**
      * 启动服务
      */
@@ -571,6 +635,9 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
     @Override
     public void onError(String result) {
         Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
+        if (result.contains("领取码")) {
+            StringUtils.clearClipboard(mContext);
+        }
     }
 
     @Override

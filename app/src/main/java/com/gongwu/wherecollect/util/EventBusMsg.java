@@ -2,6 +2,9 @@ package com.gongwu.wherecollect.util;
 
 
 import com.gongwu.wherecollect.net.entity.response.MessageBean;
+import com.gongwu.wherecollect.net.entity.response.ObjectBean;
+
+import java.util.Map;
 
 /**
  * Function:
@@ -38,6 +41,17 @@ public class EventBusMsg {
     }
 
     public static class StopService {
+    }
+
+    public static class SetGoodsLocationByCangWang {
+        public Map<String, ObjectBean> addGoodList;
+
+        public SetGoodsLocationByCangWang(Map<String, ObjectBean> addGoodList) {
+            this.addGoodList = addGoodList;
+        }
+    }
+
+    public static class SelectHomeFragmentTab {
     }
 
     public static class SelectHomeTab {

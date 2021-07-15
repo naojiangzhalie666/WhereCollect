@@ -91,4 +91,28 @@ public class MainPresenter extends BasePresenter<IMainContract.IMainView> implem
         });
     }
 
+    @Override
+    public void getEnergyCode(String uid, String code) {
+        if (getUIView() != null) {
+            getUIView().showProgressDialog();
+        }
+        mModel.getEnergyCode(uid, code, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().getEnergyCodeSuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
 }

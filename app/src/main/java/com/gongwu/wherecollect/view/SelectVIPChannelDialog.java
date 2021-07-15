@@ -2,40 +2,27 @@ package com.gongwu.wherecollect.view;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore;
+import android.content.DialogInterface;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.loader.content.CursorLoader;
 
 import com.gongwu.wherecollect.R;
 import com.gongwu.wherecollect.base.App;
-import com.gongwu.wherecollect.util.PermissionUtil;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.UCropActivity;
 
 import java.io.File;
 
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by zhaojin on 15/11/16.
  */
 public class SelectVIPChannelDialog {
-    Activity context;
+    private Activity context;
+    private boolean isFinish = true;
 
     public SelectVIPChannelDialog(Activity context) {
         this.context = context;
@@ -49,16 +36,18 @@ public class SelectVIPChannelDialog {
         dialog.setCanceledOnTouchOutside(true);
         View view = View.inflate(context,
                 R.layout.layout_select_vip_channel, null);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        view.findViewById(R.id.cancel).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
         view.findViewById(R.id.wechat_layout).setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        isFinish = false;
                         WECHATClick();
                         dialog.dismiss();
                     }
@@ -67,13 +56,27 @@ public class SelectVIPChannelDialog {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        isFinish = false;
                         ALIPAYClick();
                         dialog.dismiss();
                     }
                 });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialogInterface) {
+                if (isFinish) {
+                    finish();
+                }
+            }
+        });
         dialog.setContentView(view);
         Animation ani = AnimationUtils.loadAnimation(context, R.anim.push_bottom_in);
         view.findViewById(R.id.linearLayout).startAnimation(ani);
+        Window window = dialog.getWindow();
+        if (window != null) {
+            //设置弹出位置
+            window.setGravity(Gravity.BOTTOM);
+        }
         dialog.show();
         WindowManager windowManager = ((Activity) context).getWindowManager();
         Display display = windowManager.getDefaultDisplay();
@@ -87,6 +90,10 @@ public class SelectVIPChannelDialog {
     }
 
     public void ALIPAYClick() {
+
+    }
+
+    public void finish() {
 
     }
 }

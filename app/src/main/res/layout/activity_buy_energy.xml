@@ -67,7 +67,7 @@
                 <TextView
                     android:id="@+id/vip_buy_energy_tv"
                     style="@style/buy_energy_item_btn_style"
-                    android:text="立即购买" />
+                    android:text="立即升级" />
             </RelativeLayout>
 
             <RelativeLayout style="@style/buy_energy_item_style">

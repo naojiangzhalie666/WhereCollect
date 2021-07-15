@@ -4,6 +4,7 @@ public class RequestSuccessBean {
     private int ok;
     private int bound;
     private String remindId;
+    private String content;
     private boolean isRegistered;
 
     public int getOk() {
@@ -36,5 +37,13 @@ public class RequestSuccessBean {
 
     public void setBound(int bound) {
         this.bound = bound;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

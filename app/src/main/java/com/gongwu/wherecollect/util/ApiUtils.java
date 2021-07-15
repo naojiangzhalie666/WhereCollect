@@ -805,6 +805,7 @@ public class ApiUtils {
         ApiInstance.getApi().delGoods(requestMap).enqueue(callBack);
     }
 
+
     /**
      * 获取vip价格
      */
@@ -820,10 +821,22 @@ public class ApiUtils {
     }
 
     /**
+     * 购买能量
+     */
+    public static <D extends RequestBase> void buyEnergy(D request, ApiCallBack<BuyVIPResultBean> callBack) {
+        Map<String, String> requestMap = requestPrepare(request);
+        ApiInstance.getApi().buyEnergy(requestMap).enqueue(callBack);
+    }
+
+    /**
      * 获取用户信息
      */
     public static <D extends RequestBase> void getUserInfo(String uid, ApiCallBack<UserBean> callBack) {
         ApiInstance.getApi().getUserInfo(uid).enqueue(callBack);
+    }
+
+    public static <D extends RequestBase> void getEnergyCode(String uid, String code, ApiCallBack<RequestSuccessBean> callBack) {
+        ApiInstance.getApi().getEnergyCode(uid, code).enqueue(callBack);
     }
 
     /**

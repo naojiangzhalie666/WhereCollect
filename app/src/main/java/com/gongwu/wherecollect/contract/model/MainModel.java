@@ -59,4 +59,20 @@ public class MainModel implements IMainContract.IMainModel {
             }
         });
     }
+
+    @Override
+    public void getEnergyCode(String uid, String code, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.getEnergyCode(uid, code, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
 }

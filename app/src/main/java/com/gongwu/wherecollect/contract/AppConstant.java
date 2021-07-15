@@ -25,6 +25,8 @@ public class AppConstant {
 
     public final static int SELECT_PHOTO_COUNT = 1;
 
+    public final static int COCLOR_COUNT = 10;
+
 
     public final static int LEVEL_FAMILY = -1;
     public final static int LEVEL_ROOM = 0;
@@ -38,6 +40,11 @@ public class AppConstant {
     public final static String TYPE_SEAL = "type_seal";
     public final static String IMG_COLOR_CODE = "0";
 
+    public static final String WECHAT = "wechat";
+
+    public static final String ALIPAY = "alipay";
+
+    public static final String ENERGY_TYPE = "ENERGY";
     /**
      * 友盟推送token
      */

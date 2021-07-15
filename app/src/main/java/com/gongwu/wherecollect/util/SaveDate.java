@@ -278,8 +278,38 @@ public class SaveDate {
         ed.commit();
     }
 
+    /**
+     * 第一次放置物品
+     *
+     * @return
+     */
+    public boolean getRoomGeCengStub() {
+        return sharedPreferences.getBoolean("roomGeCengStub", false);
+    }
+
+    public void setRoomGeCengStub(boolean isShow) {
+        Editor ed = sharedPreferences.edit();
+        ed.putBoolean("roomGeCengStub", isShow);
+        ed.commit();
+    }
+
+    /**
+     * 第一次放置物品
+     *
+     * @return
+     */
+    public boolean getGoodsLocationStub() {
+        return sharedPreferences.getBoolean("goodsLocationStub", false);
+    }
+
+    public void setGoodsLocationStub(boolean isShow) {
+        Editor ed = sharedPreferences.edit();
+        ed.putBoolean("goodsLocationStub", isShow);
+        ed.commit();
+    }
+
     public boolean getEnergyHint() {
-        return sharedPreferences.getBoolean("EnergyHint", false);
+        return sharedPreferences.getBoolean("energyHint", false);
     }
 
     /**
@@ -287,7 +317,7 @@ public class SaveDate {
      */
     public void setEnergyHint(boolean isEnergyHint) {
         Editor ed = sharedPreferences.edit();
-        ed.putBoolean("EnergyHint", isEnergyHint);
+        ed.putBoolean("energyHint", isEnergyHint);
         ed.commit();
     }
 

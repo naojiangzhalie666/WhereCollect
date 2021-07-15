@@ -7,6 +7,7 @@
     tools:context=".activity.BuyVIPActivity">
 
     <ImageView
+        android:id="@+id/buy_vip_bg_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
@@ -27,7 +28,7 @@
             android:textSize="@dimen/f_17"
             tools:text="标题" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/back_btn"
             android:layout_width="@dimen/title_hight"
             android:layout_height="@dimen/title_hight"
@@ -75,6 +76,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dip_27"
+                android:layout_marginEnd="@dimen/dip_27"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/dip_40">
@@ -82,8 +85,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dip_27"
-                    android:layout_marginEnd="@dimen/dip_27"
                     android:background="@drawable/shape_white_bottom_r20dp"
                     android:orientation="vertical"
                     android:paddingTop="@dimen/dip_20"
@@ -286,6 +287,48 @@
                         android:src="@drawable/icon_vip_two" />
 
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dip_150"
+                    android:layout_marginTop="@dimen/dip_30">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dip_120"
+                        android:layout_marginTop="@dimen/dip_20"
+                        android:background="@drawable/shape_white_r10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dip_20">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="* 升级高级会员立送60点能量值"
+                            android:textColor="@color/color333"
+                            android:textSize="@dimen/f_15" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dip_20"
+                            android:text="* 高级会员购买充能加量25%"
+                            android:textColor="@color/color333"
+                            android:textSize="@dimen/f_15" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="@dimen/dip_260"
+                        android:layout_height="@dimen/dip_30"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/shape_white_r10dp"
+                        android:elevation="@dimen/dip_3"
+                        android:gravity="center"
+                        android:text="解锁高级会员，更有能量值福利"
+                        android:textColor="#FE992C"
+                        android:textSize="@dimen/f_15" />
+                </RelativeLayout>
 
             </LinearLayout>
         </ScrollView>

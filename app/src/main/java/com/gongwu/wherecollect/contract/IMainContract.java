@@ -21,6 +21,7 @@ public interface IMainContract {
 
         void getUserInfo(String uid, final RequestCallback callback);
 
+        void getEnergyCode(String uid, String code, final RequestCallback callback);
     }
 
     interface IMainPresenter {
@@ -30,6 +31,8 @@ public interface IMainContract {
         void getVersion(String app_version);
 
         void getUserInfo(String uid);
+
+        void getEnergyCode(String uid, String code);
     }
 
     interface IMainView extends BaseView {
@@ -39,5 +42,6 @@ public interface IMainContract {
 
         void dealWithShareRequestSuccess(RequestSuccessBean data);
 
+        void getEnergyCodeSuccess(RequestSuccessBean data);
     }
 }

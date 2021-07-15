@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
-    <ImageView
+    <com.gongwu.wherecollect.view.GoodsImageView
         android:id="@+id/add_goods_iv"
         android:layout_width="@dimen/dip_120"
         android:layout_height="@dimen/dip_120"

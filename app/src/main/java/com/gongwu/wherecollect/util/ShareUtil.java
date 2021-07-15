@@ -90,13 +90,13 @@ public class ShareUtil {
      *
      * @param context
      */
-    public static void openShareDialog(Activity context) {
+    public static void openShareDialog(Activity context, String uid) {
         if (!StringUtils.isWxAppInstalled(context)) {
             Toast.makeText(context, "请安装微信后分享", Toast.LENGTH_SHORT).show();
             return;
         }
         UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
-        UMWeb web = new UMWeb(Config.SHARE_URL);
+        UMWeb web = new UMWeb(new StringBuilder(Config.SHARE_URL).append(uid).toString());
         web.setTitle("收哪儿-你的物品收纳记录管家");//标题
         web.setThumb(thumb);  //缩略图
         web.setDescription("找东西,不操心");//描述
@@ -106,13 +106,13 @@ public class ShareUtil {
                 .share();
     }
 
-    public static void openShareVIPDialog(Activity context, UMShareListener listener) {
+    public static void openShareVIPDialog(Activity context, String uid, UMShareListener listener) {
         if (!StringUtils.isWxAppInstalled(context)) {
             Toast.makeText(context, "请安装微信后分享", Toast.LENGTH_SHORT).show();
             return;
         }
         UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
-        UMWeb web = new UMWeb(Config.SHARE_URL);
+        UMWeb web = new UMWeb(new StringBuilder(Config.SHARE_URL).append(uid).toString());
         web.setTitle("收哪儿-你的物品收纳记录管家");//标题
         web.setThumb(thumb);  //缩略图
         web.setDescription("找东西,不操心");//描述
