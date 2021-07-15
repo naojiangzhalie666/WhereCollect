@@ -161,7 +161,7 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeContract
     }
 
     /**
-     * 刷新UI
+     * 刷新 UI
      */
     private void refreshUi() {
         if (user == null) return;
