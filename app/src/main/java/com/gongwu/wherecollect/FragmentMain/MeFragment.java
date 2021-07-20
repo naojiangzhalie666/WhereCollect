@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,7 +48,6 @@ import com.gongwu.wherecollect.util.AnimationUtil;
 import com.gongwu.wherecollect.util.ImageLoader;
 import com.gongwu.wherecollect.util.Lg;
 import com.gongwu.wherecollect.util.ShareUtil;
-import com.gongwu.wherecollect.util.StringUtils;
 import com.gongwu.wherecollect.util.ToastUtil;
 import com.gongwu.wherecollect.view.BuyEnergyDialog;
 import com.gongwu.wherecollect.view.InputPasswordDialog;
@@ -83,12 +83,14 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeContract
     @BindView(R.id.user_energy_num_tv)
     TextView userEnergyNumTv;
     @BindView(R.id.view_content)
-    View viewContent;
+    LinearLayout viewContent;
 
     private UserBean user;
     private int vipViewHeight;
     private Loading loading;
     private boolean anim = false;
+    private boolean isShowVip = false;
+    private Handler handler = new Handler();
 
     private MeFragment() {
     }
@@ -106,25 +108,11 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeContract
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (!isAdded()) return;
+        initBar();
         user = App.getUser(getActivity());
-        buyVipIv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if (buyVipIv.getMeasuredHeight() > 0) {
-                    vipViewHeight = buyVipIv.getMeasuredHeight();
-                }
-                buyVipIv.setVisibility(View.GONE);
-                buyVipIv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                if (anim) {
-                    AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
-                    AnimationUtil.StartTranslateOutside(buyVipIv, true);
-                    anim = false;
-                }
-            }
-        });
     }
 
-    private void initUI() {
+    private void initBar() {
         if (Build.VERSION.SDK_INT >= 21) {
             View decorView = getActivity().getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -137,28 +125,52 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeContract
     @Override
     public void onStart() {
         super.onStart();
-        initUI();
         refreshUi();
         getPresenter().getUserInfo(App.getUser(mContext).getId());
+        if (user == null || buyVipIv == null) return;
+        if (user.isIs_vip()) {
+            buyVipIv.setVisibility(View.GONE);
+            return;
+        } else {
+            buyVipIv.setVisibility(View.VISIBLE);
+        }
+        buyVipIv.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (buyVipIv == null) return;
+                vipViewHeight = buyVipIv.getMeasuredHeight();
+                buyVipIv.setVisibility(View.GONE);
+                buyVipIv.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                if (anim && viewContent != null) {
+                    AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
+                    AnimationUtil.StartTranslateOutside(buyVipIv, true);
+                    isShowVip = true;
+                    anim = false;
+                }
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if (user != null && !user.isIs_vip()) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (vipViewHeight != 0) {
-                        AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
-                        AnimationUtil.StartTranslateOutside(buyVipIv, true);
-                    } else {
-                        anim = true;
-                    }
-                }
-            }, 800);
+            handler.postDelayed(runnable, 800);
         }
     }
+
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if (vipViewHeight != 0 && viewContent != null) {
+                AnimationUtil.downSlide(viewContent, ANIMATION_TIME, vipViewHeight);
+                AnimationUtil.StartTranslateOutside(buyVipIv, true);
+                isShowVip = true;
+            } else {
+                anim = true;
+            }
+        }
+    };
 
     /**
      * 刷新 UI
@@ -173,10 +185,6 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeContract
         privacyPolicyTv.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 //        privacyPolicyTv.setVisibility(StringUtils.isTencent(mContext) ? View.VISIBLE : View.GONE);
         privacyPolicyTv.setVisibility(View.GONE);
-        if (user.isIs_vip()) {
-            AnimationUtil.upSlide(viewContent, ANIMATION_TIME, buyVipIv.getHeight());
-            AnimationUtil.StartTranslateOutside(buyVipIv, false);
-        }
     }
 
     @OnClick({R.id.person_iv, R.id.person_details_layout, R.id.qr_code_tv, R.id.start_share_tv, R.id.user_code_iv,
@@ -292,6 +300,10 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeContract
         if (!user.isIs_vip()) {
             AnimationUtil.upSlide(viewContent, ANIMATION_TIME, buyVipIv.getHeight());
             AnimationUtil.StartTranslateOutside(buyVipIv, false);
+            isShowVip = false;
+        }
+        if (handler != null) {
+            handler.removeCallbacks(runnable);
         }
     }
 
@@ -322,6 +334,14 @@ public class MeFragment extends BaseFragment<MePresenter> implements IMeContract
         if (data != null) {
             user = data;
             refreshUi();
+            if (isShowVip && user.isIs_vip()) {
+                AnimationUtil.upSlide(viewContent, ANIMATION_TIME, buyVipIv.getHeight());
+                AnimationUtil.StartTranslateOutside(buyVipIv, false);
+                isShowVip = false;
+                if (handler != null) {
+                    handler.removeCallbacks(runnable);
+                }
+            }
         }
     }
 

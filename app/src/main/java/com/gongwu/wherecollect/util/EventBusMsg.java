@@ -30,6 +30,9 @@ public class EventBusMsg {
     public static class RefreshEditItem {
     }
 
+    public static class FinishActivity {
+    }
+
     public static class UpdateShareMsg {
     }
 
@@ -70,6 +73,14 @@ public class EventBusMsg {
 
         public MainTabMessage(int position) {
             this.position = position;
+        }
+    }
+
+    public static class WXPayMessage {
+        public int code;
+
+        public WXPayMessage(int code) {
+            this.code = code;
         }
     }
 

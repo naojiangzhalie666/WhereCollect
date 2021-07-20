@@ -74,21 +74,18 @@ public class TimerService extends Service {
     //请求网络获取数据
     private void getHttp() {
         if (AppConstant.isShowMsg) return;
-        AppConstant.isShowMsg = true;
         if (App.getUser(this) == null) return;
         ApiUtils.getShareMsgList(App.getUser(this).getId(), new ApiCallBack<MsgBean>() {
             @Override
             public void onSuccess(MsgBean data) {
                 if (data != null && data.getItems() != null && data.getItems().size() > 0) {
                     EventBus.getDefault().post(new EventBusMsg.GetMessageList(data.getItems().get(AppConstant.DEFAULT_INDEX_OF)));
-                } else {
-                    AppConstant.isShowMsg = false;
                 }
             }
 
             @Override
             public void onFailed(String msg) {
-                AppConstant.isShowMsg = false;
+
             }
         });
     }

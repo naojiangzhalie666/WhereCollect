@@ -95,6 +95,7 @@ public class ShareUtil {
             Toast.makeText(context, "请安装微信后分享", Toast.LENGTH_SHORT).show();
             return;
         }
+        Toast.makeText(context, "新用户需在注册24小时内领取", Toast.LENGTH_SHORT).show();
         UMImage thumb = new UMImage(context, R.drawable.icon_app_img);
         UMWeb web = new UMWeb(new StringBuilder(Config.SHARE_URL).append(uid).toString());
         web.setTitle("收哪儿-你的物品收纳记录管家");//标题

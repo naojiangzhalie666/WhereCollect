@@ -220,7 +220,7 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
                 break;
             case R.id.main_place_tv:
             case R.id.main_move_goods_iv:
-                Toast.makeText(mContext, "请选择隔层", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "请选择要放置的家具", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.main_cancel_tv:
                 MainActivity.moveBoxBean = null;
@@ -410,13 +410,16 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.GetMessageList msg) {
-        if (!FloatWindowManager.getInstance().applyOrShowFloatWindow(mContext)) {
-            AppConstant.isShowMsg = false;
+//        if (!FloatWindowManager.getInstance().applyOrShowFloatWindow(mContext)) {
+//            AppConstant.isShowMsg = false;
+//            return;
+//        }
+        if (!hasFocus) {
             return;
         }
+        AppConstant.isShowMsg = true;
         final MessageBean messageBean = msg.messageBean;
         String msgId = messageBean.getId();
-
         if (messageBean.getButtons().size() > 0) {
             for (int i = 0; i < messageBean.getButtons().size(); i++) {
                 if (messageBean.getButtons().get(i).getColor().equals("SUCCESS")) {
@@ -634,9 +637,11 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
 
     @Override
     public void onError(String result) {
-        Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
         if (result.contains("领取码")) {
             StringUtils.clearClipboard(mContext);
+            Toast.makeText(mContext, "领取码不存在或已使用", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -712,5 +717,13 @@ public class MainActivity extends BaseMvpActivity<MainActivity, MainPresenter> i
         if (vibrator != null) {
             vibrator.vibrate(pattern, -1);
         }
+    }
+
+    private boolean hasFocus;
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        this.hasFocus = hasFocus;
     }
 }

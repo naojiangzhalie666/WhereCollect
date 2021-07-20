@@ -164,7 +164,7 @@ public class AddGoodsDialog extends Dialog {
     /**
      * 图片选择
      */
-    private void showSelectDialog() {
+    public void showSelectDialog() {
         //bean url没数据的时候，编辑选择肯定是隐藏的
         if (TextUtils.isEmpty(mGoodsBean.getObject_url())) {
             imgOldFile = null;

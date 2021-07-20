@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:clickable="true">
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/item_goods_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dip_90"
@@ -17,15 +17,14 @@
             android:id="@+id/main_goods_img_view"
             android:layout_width="@dimen/dip_68"
             android:layout_height="@dimen/dip_68"
-            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/dip_10" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/dip_10"
-            android:layout_toEndOf="@id/main_goods_img_view"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dip_88"
             android:orientation="vertical">
 
             <TextView
@@ -54,10 +53,10 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
             android:layout_marginStart="@dimen/dip_24"
             android:background="@color/split_color" />
-    </RelativeLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

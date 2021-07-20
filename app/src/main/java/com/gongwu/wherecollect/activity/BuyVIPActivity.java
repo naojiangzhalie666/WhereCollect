@@ -68,10 +68,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     RelativeLayout titleLayout;
     @BindView(R.id.title_tv)
     TextView titleTv;
-    @BindView(R.id.buy_vip_hint)
-    TextView buyVipHint;
-    @BindView(R.id.buy_vip_original)
-    TextView buyVipOriginal;
     @BindView(R.id.commit_bt)
     Button commitBt;
     @BindView(R.id.buy_vip_bg_iv)
@@ -110,9 +106,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) titleLayout.getLayoutParams();
         lp.setMargins(0, StringUtils.getStatusBarHeight(mContext), 0, 0);
         getPresenter().getVIPPrice(App.getUser(mContext).getId());
-        buyVipHint.setVisibility(View.GONE);
-        buyVipOriginal.setVisibility(View.GONE);
-        commitBt.setVisibility(View.GONE);
         buyType = getIntent().getStringExtra("buy_type");
         energyPrice = getIntent().getIntExtra("price", 0);
         //判断是否为能量值购买
@@ -131,7 +124,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     }
 
 
-    @OnClick({R.id.back_btn, R.id.commit_bt, R.id.buy_vip_original})
+    @OnClick({R.id.back_btn, R.id.commit_bt})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_btn://返回
@@ -141,19 +134,9 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
                 if (vipBean == null) {
                     getPresenter().getVIPPrice(App.getUser(mContext).getId());
                 } else {
-                    //是否分享
-                    if (TextUtils.isEmpty(vipBean.getCouponId())) {
-                        sharedAPP();
-                    } else {
-                        showBuyVipSelectChannel();
-                    }
+                    showBuyVipSelectChannel();
                 }
                 break;
-            case R.id.buy_vip_original:
-                if (vipBean == null) return;
-                showBuyVipSelectChannel();
-                break;
-
             default:
                 break;
         }
@@ -200,7 +183,7 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
 
             @Override
             public void onResult(SHARE_MEDIA share_media) {
-                getPresenter().sharedApp(App.getUser(mContext).getId(), "WECHAT");
+//                getPresenter().sharedApp(App.getUser(mContext).getId(), "WECHAT");
             }
 
             @Override
@@ -222,6 +205,8 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
      *
      * @param wxPayBean
      */
+    private boolean initwechat;
+
     private void startWechatPay(WxPayBean wxPayBean) {
 //        tv_paylist.setText(tv_paylist.getText() + "\n\n调起微信支付....");
         //这里的appid，替换成自己的即可
@@ -240,6 +225,20 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         boolean send = api.sendReq(payRequest);
         if (send) {
             orderId = wxPayBean.getOrder_no();
+        } else {
+            if (!initwechat) {
+                initwechat = true;
+                if (AppConstant.ENERGY_TYPE.equals(buyType)) {
+                    if (energyPrice <= 0) return;
+                    //能量
+                    getPresenter().buyEnergy(App.getUser(mContext).getId(), energyPrice, AppConstant.WECHAT);
+                } else {
+                    if (vipBean != null && vipBean.getPrice() > 0) {
+                        //会员
+                        getPresenter().buyVipWXOrAli(App.getUser(mContext).getId(), (int) (vipBean.getPrice() * 100), AppConstant.WECHAT, !TextUtils.isEmpty(vipBean.getCouponId()) ? vipBean.getCouponId() : null);
+                    }
+                }
+            }
         }
     }
 
@@ -348,15 +347,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     public void getVIPPriceSuccess(VIPBean data) {
         if (data != null) {
             vipBean = data;
-            if (TextUtils.isEmpty(data.getCouponId())) {
-                buyVipOriginal.setVisibility(View.VISIBLE);
-                commitBt.setVisibility(View.VISIBLE);
-            } else {
-                commitBt.setVisibility(View.VISIBLE);
-                commitBt.setText(R.string.shared_vip_buy_commit);
-                buyVipHint.setVisibility(View.VISIBLE);
-                buyVipHint.setText(R.string.shared_vip_buy_hint);
-            }
         }
     }
 
@@ -373,8 +363,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     @Override
     public void sharedAppSuccess(RequestSuccessBean data) {
         if (data.getOk() == AppConstant.REQUEST_SUCCESS) {
-            buyVipHint.setVisibility(View.GONE);
-            buyVipOriginal.setVisibility(View.GONE);
             commitBt.setVisibility(View.GONE);
             getPresenter().getVIPPrice(App.getUser(mContext).getId());
         }
@@ -438,6 +426,15 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(EventBusMsg.BuyVipSuccess msg) {
         getPresenter().notificationServer(App.getUser(mContext).getId(), isWechatCk ? AppConstant.WECHAT : AppConstant.ALIPAY, orderId);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.WXPayMessage msg) {
+        switch (msg.code) {
+            case -2://用户取消，无需处理。发生场景：用户不支付了，点击取消，返回APP。
+                finish();
+                break;
+        }
     }
 
     @Override

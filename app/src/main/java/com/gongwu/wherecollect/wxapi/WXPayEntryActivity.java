@@ -41,6 +41,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     @Override
     public void onReq(BaseReq req) {
+        Lg.getInstance().d(TAG, "onPayFinish, errCode = ");
     }
 
     /**
@@ -53,7 +54,6 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         Lg.getInstance().d(TAG, "onPayFinish, errCode = " + resp.errCode);
 
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-
             switch (resp.errCode) {
                 case 0://支付成功
                     Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
@@ -66,8 +66,8 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 case -2://用户取消，无需处理。发生场景：用户不支付了，点击取消，返回APP。
                     Lg.getInstance().d(TAG, "onResp: resp.errCode = -2  用户取消");
                     break;
-
             }
+            EventBus.getDefault().post(new EventBusMsg.WXPayMessage(resp.errCode));
             finish();//这里需要关闭该页面
         }
 

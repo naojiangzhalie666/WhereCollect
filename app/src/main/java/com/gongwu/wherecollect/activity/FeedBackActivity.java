@@ -68,7 +68,7 @@ public class FeedBackActivity extends BaseMvpActivity<FeedBackActivity, FeedBack
                     ToastUtil.show(this, "请填写反馈内容", Toast.LENGTH_LONG);
                     return;
                 }
-                if (StringUtils.isEmail(phone.getText().toString())) {
+                if (StringUtils.isEmail(phone.getText().toString().trim())) {
                     feedBack();
                 } else {
                     DialogUtil.show("提醒", "如果需要反馈，请添加联系邮箱，我们每一条都会回复。", "直接提交", "填邮箱", this, new DialogInterface.OnClickListener() {

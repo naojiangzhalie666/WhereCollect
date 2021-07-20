@@ -485,19 +485,19 @@ public class FurnitureLookActivity extends BaseMvpActivity<FurnitureLookActivity
         List<ObjectBean> mList = new ArrayList<>();
         for (ObjectBean bean : mAdapterData) {
             if (bean.getLevel() == AppConstant.LEVEL_BOX) {
-                //物品信息,筛选收纳盒内的物品
-                for (int i = 0; i < objects.size(); i++) {
-                    ObjectBean goodsBean = objects.get(i);
-                    if (goodsBean.getLocations() == null || goodsBean.getLocations().size() <= 0) {
-                        continue;
-                    }
-                    for (int j = 0; j < goodsBean.getLocations().size(); j++) {
-                        if (bean.getCode().equals(goodsBean.getLocations().get(j).getCode())) {
-                            goodsBean.setSelect(false);
-                            mList.add(goodsBean);
-                        }
-                    }
-                }
+//                //物品信息,筛选收纳盒内的物品
+//                for (int i = 0; i < objects.size(); i++) {
+//                    ObjectBean goodsBean = objects.get(i);
+//                    if (goodsBean.getLocations() == null || goodsBean.getLocations().size() <= 0) {
+//                        continue;
+//                    }
+//                    for (int j = 0; j < goodsBean.getLocations().size(); j++) {
+//                        if (bean.getCode().equals(goodsBean.getLocations().get(j).getCode())) {
+//                            goodsBean.setSelect(false);
+//                            mList.add(goodsBean);
+//                        }
+//                    }
+//                }
             } else {
                 mList.add(bean);
             }

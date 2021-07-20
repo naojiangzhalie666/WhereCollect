@@ -93,11 +93,11 @@ public class DialogUtil {
 //                    mDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
 //                }
         //8.0系统加强后台管理，禁止在其他应用和窗口弹提醒弹窗，如果要弹，必须使用TYPE_APPLICATION_OVERLAY
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY));
-        } else {
-            dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY));
+//        } else {
+//            dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
+//        }
         dialog.setCancelable(false);
         dialog.show();
         WindowManager.LayoutParams params =

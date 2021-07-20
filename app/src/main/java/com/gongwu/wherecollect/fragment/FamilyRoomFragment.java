@@ -68,10 +68,6 @@ public class FamilyRoomFragment extends BaseFragment<FamilyPresenter> implements
     private List<FurnitureBean> mlist;
     private FamilyRoomAdapter mAdapter;
 
-
-    private FamilyRoomFragment() {
-    }
-
     public static FamilyRoomFragment getInstance(RoomBean roomBean, String familyCode, boolean isEdit) {
         FamilyRoomFragment fm = new FamilyRoomFragment();
         Bundle bundle = new Bundle();

@@ -146,7 +146,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             initSwipeView();
             upLoadSelectImgs(list);
         } else {
-            startDialog(null);
+            startDialog(null, true);
         }
     }
 
@@ -191,13 +191,13 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             return;
         }
         ObjectBean objectBean = mlist.get(positions);
-        startDialog(ADD_GOODS_CODE == objectBean.get__v() ? null : objectBean);
+        startDialog(ADD_GOODS_CODE == objectBean.get__v() ? null : objectBean, false);
     }
 
     /**
      * 添加物品的dialog
      */
-    private void startDialog(ObjectBean objectBean) {
+    private void startDialog(ObjectBean objectBean, boolean isShowImgDailog) {
         if (objectBean != null) {
             objectBean.setSelect(true);
         }
@@ -236,6 +236,9 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         };
         mDialog.show();
         mDialog.setObjectBean(objectBean);
+        if (isShowImgDailog) {
+            mDialog.showSelectDialog();
+        }
     }
 
     private void initSwipeView() {
@@ -342,7 +345,9 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         }
         if (location != null) {
             EventBus.getDefault().post(new EventBusMsg.RefreshFurnitureLook());
+            EventBus.getDefault().post(new EventBusMsg.RefreshRoomsFragment());
         }
+        EventBus.getDefault().post(new EventBusMsg.FinishActivity());
         finish();
     }
 
@@ -451,10 +456,15 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
     }
 
 
-    public static void start(Context context, ObjectBean objectBean) {
+    public static void start(Context context) {
         Intent intent = new Intent(context, AddMoreGoodsActivity.class);
-        if (objectBean != null) {
-            intent.putExtra("bean", objectBean);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, RoomFurnitureBean roomBean) {
+        Intent intent = new Intent(context, AddMoreGoodsActivity.class);
+        if (roomBean != null) {
+            intent.putExtra("locationCode", roomBean);
         }
         context.startActivity(intent);
     }

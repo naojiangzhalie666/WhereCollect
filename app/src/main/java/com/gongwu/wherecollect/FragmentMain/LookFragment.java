@@ -424,7 +424,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             if (mList != null && mList.size() > 0 && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects() != null
                     && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects().size() > 0) {
                 if (addCWGoodView.getVisibility() == View.GONE) {
-                    AnimationUtil.downSlide(addCWGoodView, 1000);
+//                    AnimationUtil.downSlide(addCWGoodView, 1000);
                     addCWGoodView.setVisibility(View.VISIBLE);
                 }
             } else {
@@ -441,7 +441,7 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
                 if (mList != null && mList.size() > 0 && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects() != null
                         && mList.get(AppConstant.DEFAULT_INDEX_OF).getObjects().size() > 0) {
                     if (addCWGoodView.getVisibility() == View.GONE) {
-                        AnimationUtil.downSlide(addCWGoodView, 1000);
+//                        AnimationUtil.downSlide(addCWGoodView, 1000);
                         addCWGoodView.setVisibility(View.VISIBLE);
                     }
                 } else {
@@ -502,12 +502,14 @@ public class LookFragment extends BaseFragment<LookPresenter> implements ILookCo
             @Override
             public void submit() {
                 if (msg != null && msg.addGoodList != null) {
-                    MainActivity.moveGoodsList = new ArrayList<>();
-                    MainActivity.moveGoodsList.clear();
-                    for (ObjectBean bean : msg.addGoodList.values()) {
-                        MainActivity.moveGoodsList.add(bean);
+                    List<ObjectBean> goodsList = new ArrayList<>();
+                    goodsList.addAll(msg.addGoodList.values());
+                    if (goodsList.size() > 0) {
+                        MainActivity.moveGoodsList = new ArrayList<>();
+                        MainActivity.moveGoodsList.clear();
+                        MainActivity.moveGoodsList.addAll(goodsList);
+                        EventBus.getDefault().post(new EventBusMsg.SelectHomeFragmentTab());
                     }
-                    EventBus.getDefault().post(new EventBusMsg.SelectHomeFragmentTab());
                 }
             }
         };

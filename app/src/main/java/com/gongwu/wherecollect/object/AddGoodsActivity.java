@@ -29,6 +29,7 @@ import com.gongwu.wherecollect.net.entity.response.BookBean;
 import com.gongwu.wherecollect.net.entity.response.ObjectBean;
 import com.gongwu.wherecollect.net.entity.response.RequestSuccessBean;
 import com.gongwu.wherecollect.net.entity.response.RoomFurnitureBean;
+import com.gongwu.wherecollect.service.TimerService;
 import com.gongwu.wherecollect.util.AesUtil;
 import com.gongwu.wherecollect.util.DialogUtil;
 import com.gongwu.wherecollect.util.EventBusMsg;
@@ -47,6 +48,8 @@ import com.gongwu.wherecollect.view.SortChildDialog;
 import com.zsitech.oncon.barcode.core.CaptureActivity;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -124,6 +127,7 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         StatusBarUtil.setStatusBarColor(this, getResources().getColor(R.color.activity_bg));
         mTitleView.setText(R.string.add_goods_text);
         head.setImageDrawable(getResources().getDrawable(R.drawable.icon_add_goods));
+        EventBus.getDefault().register(this);
         initData();
     }
 
@@ -158,15 +162,15 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
         }
         location = (RoomFurnitureBean) getIntent().getSerializableExtra("locationCode");
         if (location != null) {
-            commitLayout.setVisibility(View.GONE);
-            editInfoCommitTv.setVisibility(View.VISIBLE);
+            mSelectLocationBt.setVisibility(View.GONE);
+//            editInfoCommitTv.setVisibility(View.VISIBLE);
             locationView.setVisibility(View.VISIBLE);
             locationTv.setText(StringUtils.getGoodsLoction(location));
         }
         addGoodsInfotView.setViewBackground(R.drawable.shape_white_r10dp);
         addGoodsInfotView.init(mGoodsBean);
         addGoodsInfotView.setOnItemClickListener(this);
-        if (location == null && TextUtils.isEmpty(path) && TextUtils.isEmpty(code)) {
+        if (TextUtils.isEmpty(path) && TextUtils.isEmpty(code)) {
             addMoreGoodsView.setText(R.string.add_more_text);
             addMoreGoodsView.setVisibility(View.VISIBLE);
         }
@@ -203,7 +207,6 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 SelectSortActivity.start(mContext, mGoodsBean);
                 break;
             case R.id.commit_bt:
-            case R.id.title_commit_bg_main_color_tv:
                 onClickCommit();
                 break;
             case R.id.select_location_bt:
@@ -215,7 +218,11 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 editLocation();
                 break;
             case R.id.title_commit_tv_color_maincolor:
-                AddMoreGoodsActivity.start(mContext, null);
+                if (location != null) {
+                    AddMoreGoodsActivity.start(mContext, location);
+                } else {
+                    AddMoreGoodsActivity.start(mContext);
+                }
                 break;
         }
     }
@@ -696,5 +703,16 @@ public class AddGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddGoods
                 getPresenter().getGoodsByTBbarcode(App.getUser(mContext).getId(), AesUtil.AES256Encode(mContext, App.getUser(mContext).getId(), result));
             }
         };
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventBusMsg.FinishActivity msg) {
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
     }
 }
