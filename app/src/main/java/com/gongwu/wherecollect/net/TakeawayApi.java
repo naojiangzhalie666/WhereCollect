@@ -2,6 +2,7 @@ package com.gongwu.wherecollect.net;
 
 import com.gongwu.wherecollect.net.entity.BarcodeBean;
 import com.gongwu.wherecollect.net.entity.base.ResponseBase;
+import com.gongwu.wherecollect.net.entity.request.BuyEnergyReq;
 import com.gongwu.wherecollect.net.entity.response.ArticleBean;
 import com.gongwu.wherecollect.net.entity.response.BarcodeResultBean;
 import com.gongwu.wherecollect.net.entity.response.BuyVIPResultBean;
@@ -484,6 +485,10 @@ public interface TakeawayApi {
     @FormUrlEncoded
     @POST("api/app/v440/object/untop")
     Call<ResponseBase<RequestSuccessBean>> setGoodsNoWeight(@FieldMap Map<String, String> map);
+
+
+    @POST("api/app/v440/vorder-cancel")
+    Call<ResponseBase<RequestSuccessBean>> cancelWX(@Body BuyEnergyReq barcodeBean);
 
     @POST("api/app/v440/barcode")
     Call<ResponseBase<BarcodeResultBean>> getGoodsByBarcode(@Body BarcodeBean barcodeBean);

@@ -5,6 +5,7 @@ import com.gongwu.wherecollect.net.ApiCallBack;
 import com.gongwu.wherecollect.net.ApiInstance;
 import com.gongwu.wherecollect.net.entity.BarcodeBean;
 import com.gongwu.wherecollect.net.entity.base.RequestBase;
+import com.gongwu.wherecollect.net.entity.request.BuyEnergyReq;
 import com.gongwu.wherecollect.net.entity.response.ArticleBean;
 import com.gongwu.wherecollect.net.entity.response.BarcodeResultBean;
 import com.gongwu.wherecollect.net.entity.response.BaseBean;
@@ -940,6 +941,10 @@ public class ApiUtils {
     public static <D extends RequestBase> void setGoodsNoWeight(D request, ApiCallBack<RequestSuccessBean> callBack) {
         Map<String, String> requestMap = requestPrepare(request);
         ApiInstance.getApi().setGoodsNoWeight(requestMap).enqueue(callBack);
+    }
+
+    public static <D extends RequestBase> void cancelWXEnergy(BuyEnergyReq barcodeBean, ApiCallBack<RequestSuccessBean> callBack) {
+        ApiInstance.getApi().cancelWX(barcodeBean).enqueue(callBack);
     }
 
     public static <D extends RequestBase> void getGoodsByBarcode(BarcodeBean barcodeBean, ApiCallBack<BarcodeResultBean> callBack) {

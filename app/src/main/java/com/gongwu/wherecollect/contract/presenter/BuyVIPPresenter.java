@@ -162,7 +162,31 @@ public class BuyVIPPresenter extends BasePresenter<IBuyVIPContract.IBuyVIPView> 
             public void onSuccess(BuyVIPResultBean data) {
                 if (getUIView() != null) {
                     getUIView().hideProgressDialog();
-                    getUIView().buyVipWXOrAliSuccess(data);
+                    getUIView().buyEnergySuccess(data);
+                }
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().onError(msg);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void cancelWXEnergy(String uid, String order_no) {
+        BuyEnergyReq req = new BuyEnergyReq();
+        req.setUid(uid);
+        req.setOrder_no(order_no);
+        mModel.cancelWXEnergy(req, new RequestCallback<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                if (getUIView() != null) {
+                    getUIView().hideProgressDialog();
+                    getUIView().cancelWXEnergySuccess(data);
                 }
             }
 

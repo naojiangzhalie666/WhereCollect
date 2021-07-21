@@ -105,7 +105,6 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
         }
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) titleLayout.getLayoutParams();
         lp.setMargins(0, StringUtils.getStatusBarHeight(mContext), 0, 0);
-        getPresenter().getVIPPrice(App.getUser(mContext).getId());
         buyType = getIntent().getStringExtra("buy_type");
         energyPrice = getIntent().getIntExtra("price", 0);
         //判断是否为能量值购买
@@ -120,6 +119,8 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
             } else {
                 finish();
             }
+        } else {
+            getPresenter().getVIPPrice(App.getUser(mContext).getId());
         }
     }
 
@@ -392,13 +393,22 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     @Override
     public void buyEnergySuccess(BuyVIPResultBean data) {
         if (data != null && data.getWeichat() != null) {
-            startWechatPay(data.getWeichat());
+            if (!TextUtils.isEmpty(data.getWeichat().getOrder_no())) {
+                orderId = data.getWeichat().getOrder_no();
+                startWechatPay(data.getWeichat());
+            }
         } else if (data != null && data.getAlipay() != null && !TextUtils.isEmpty(data.getAlipay().getPayUrl())) {
             pay(data.getAlipay().getPayUrl());
             if (!TextUtils.isEmpty(data.getAlipay().getOrder_no())) {
                 orderId = data.getAlipay().getOrder_no();
             }
         }
+    }
+
+    @Override
+    public void cancelWXEnergySuccess(RequestSuccessBean data) {
+        //取消微信订单
+        finish();
     }
 
     @Override
@@ -432,7 +442,12 @@ public class BuyVIPActivity extends BaseMvpActivity<BuyVIPActivity, BuyVIPPresen
     public void onMessageEvent(EventBusMsg.WXPayMessage msg) {
         switch (msg.code) {
             case -2://用户取消，无需处理。发生场景：用户不支付了，点击取消，返回APP。
-                finish();
+                if (AppConstant.ENERGY_TYPE.equals(buyType)) {
+                    if (energyPrice > 0 && !TextUtils.isEmpty(orderId)) {
+                        //能量
+                        getPresenter().cancelWXEnergy(App.getUser(mContext).getId(), orderId);
+                    }
+                }
                 break;
         }
     }

@@ -23,6 +23,8 @@ public interface IBuyVIPContract {
         void buyVipWXOrAli(String uid, int price, String type, String couponId, final RequestCallback callback);
 
         void buyEnergy(BuyEnergyReq energyBean, final RequestCallback callback);
+
+        void cancelWXEnergy(BuyEnergyReq energyBean, final RequestCallback callback);
     }
 
     interface IBuyVIPPresenter {
@@ -37,6 +39,8 @@ public interface IBuyVIPContract {
         void buyVipWXOrAli(String uid, int price, String type, String couponId);
 
         void buyEnergy(String uid, int price, String type);
+
+        void cancelWXEnergy(String uid, String order_no);
     }
 
     interface IBuyVIPView extends BaseView {
@@ -51,5 +55,7 @@ public interface IBuyVIPContract {
         void buyVipWXOrAliSuccess(BuyVIPResultBean data);
 
         void buyEnergySuccess(BuyVIPResultBean data);
+
+        void cancelWXEnergySuccess(RequestSuccessBean data);
     }
 }

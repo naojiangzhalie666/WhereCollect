@@ -146,7 +146,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             initSwipeView();
             upLoadSelectImgs(list);
         } else {
-            startDialog(null, true);
+            startDialog(null);
         }
     }
 
@@ -191,13 +191,13 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
             return;
         }
         ObjectBean objectBean = mlist.get(positions);
-        startDialog(ADD_GOODS_CODE == objectBean.get__v() ? null : objectBean, false);
+        startDialog(ADD_GOODS_CODE == objectBean.get__v() ? null : objectBean);
     }
 
     /**
      * 添加物品的dialog
      */
-    private void startDialog(ObjectBean objectBean, boolean isShowImgDailog) {
+    private void startDialog(ObjectBean objectBean) {
         if (objectBean != null) {
             objectBean.setSelect(true);
         }
@@ -236,9 +236,7 @@ public class AddMoreGoodsActivity extends BaseMvpActivity<AddGoodsActivity, AddG
         };
         mDialog.show();
         mDialog.setObjectBean(objectBean);
-        if (isShowImgDailog) {
-            mDialog.showSelectDialog();
-        }
+        mDialog.showSelectDialog();
     }
 
     private void initSwipeView() {

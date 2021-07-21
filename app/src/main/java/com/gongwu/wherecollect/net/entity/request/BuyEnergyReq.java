@@ -8,6 +8,15 @@ public class BuyEnergyReq extends RequestBase {
     private String uid;
     private String type;
     private int price;
+    private String order_no;
+
+    public String getOrder_no() {
+        return order_no;
+    }
+
+    public void setOrder_no(String order_no) {
+        this.order_no = order_no;
+    }
 
     public String getUid() {
         return uid;

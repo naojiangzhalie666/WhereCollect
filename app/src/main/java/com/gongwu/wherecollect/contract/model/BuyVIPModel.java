@@ -106,4 +106,20 @@ public class BuyVIPModel implements IBuyVIPContract.IBuyVIPModel {
             }
         });
     }
+
+    @Override
+    public void cancelWXEnergy(BuyEnergyReq energyBean, RequestCallback callback) {
+        if (callback == null) return;
+        ApiUtils.cancelWXEnergy(energyBean, new ApiCallBack<RequestSuccessBean>() {
+            @Override
+            public void onSuccess(RequestSuccessBean data) {
+                callback.onSuccess(data);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                callback.onFailure(msg);
+            }
+        });
+    }
 }
